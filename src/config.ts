@@ -15,6 +15,11 @@ function optional(name: string, fallback: string): string {
   return process.env[name] ?? fallback;
 }
 
+// On Cloud Run we connect via the Cloud SQL Unix socket at
+// /cloudsql/<INSTANCE_CONNECTION_NAME>, so DATABASE_HOST/PORT are unused.
+// Locally we connect over TCP and INSTANCE_CONNECTION_NAME is unused.
+const isCloudRun = process.env.K_SERVICE !== undefined;
+
 export const config = {
   port: Number(optional("PORT", "3000")),
   nodeEnv: optional("NODE_ENV", "development"),
@@ -24,11 +29,14 @@ export const config = {
     .filter(Boolean),
 
   db: {
-    host: required("DATABASE_HOST"),
-    port: Number(optional("DATABASE_PORT", "3306")),
+    host: isCloudRun ? "" : required("DATABASE_HOST"),
+    port: Number(optional("DATABASE_PORT", "5432")),
     database: required("DATABASE_NAME"),
     user: required("DATABASE_USER"),
     password: required("DATABASE_PASSWORD"),
+    instanceConnectionName: isCloudRun
+      ? required("INSTANCE_CONNECTION_NAME")
+      : (process.env.INSTANCE_CONNECTION_NAME ?? ""),
   },
 
   stripe: {

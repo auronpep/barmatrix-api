@@ -1,40 +1,48 @@
-// MySQL connection pool. Lazy-initialized so the server can boot even when
-// MySQL is briefly unavailable; first query attempt will surface the error.
+// Postgres connection pool. On Cloud Run we connect to Cloud SQL via the
+// Unix socket mounted at /cloudsql/<INSTANCE_CONNECTION_NAME>; locally we
+// connect over TCP. Lazy-initialized so the server can boot even when the
+// database is briefly unavailable — first query surfaces the error.
 
-import mysql, { type Pool, type PoolOptions } from "mysql2/promise";
+import pg from "pg";
 import { config } from "./config.js";
 
-let pool: Pool | null = null;
+const { Pool } = pg;
 
-export function getPool(): Pool {
+let pool: pg.Pool | null = null;
+
+export function getPool(): pg.Pool {
   if (pool) return pool;
 
-  const options: PoolOptions = {
-    host: config.db.host,
-    port: config.db.port,
-    user: config.db.user,
-    password: config.db.password,
-    database: config.db.database,
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0,
-    timezone: "Z", // store and read everything in UTC
-    decimalNumbers: true,
-    dateStrings: false,
-    multipleStatements: false,
-    namedPlaceholders: true,
-  };
+  const isCloudRun = process.env.K_SERVICE !== undefined;
 
-  pool = mysql.createPool(options);
+  pool = new Pool(
+    isCloudRun
+      ? {
+          host: `/cloudsql/${config.db.instanceConnectionName}`,
+          database: config.db.database,
+          user: config.db.user,
+          password: config.db.password,
+          max: 10,
+        }
+      : {
+          host: config.db.host,
+          port: config.db.port,
+          database: config.db.database,
+          user: config.db.user,
+          password: config.db.password,
+          max: 10,
+        },
+  );
+
   return pool;
 }
 
 export async function ping(): Promise<boolean> {
-  const conn = await getPool().getConnection();
+  const client = await getPool().connect();
   try {
-    await conn.ping();
+    await client.query("SELECT 1");
     return true;
   } finally {
-    conn.release();
+    client.release();
   }
 }

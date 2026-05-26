@@ -1,19 +1,18 @@
 // BarMatrix API — Day 1 skeleton.
-// Production target: Hostinger Node.js Selector on api.barmatrix.app
+// Production target: Google Cloud Run at api.barmatrix.app (see ADR 0004).
 // Contracts: BARMATRIX/engineering/API_CONTRACTS.md (SRC-0020)
-// Schema:    BARMATRIX/engineering/SCHEMA_MYSQL.sql
+// Schema:    BARMATRIX/engineering/SCHEMA_ONE_COHORT.sql (Postgres canonical)
 
 import express, { type Request, type Response, type NextFunction } from "express";
 import cors from "cors";
 import helmet from "helmet";
-import type { RowDataPacket } from "mysql2";
 import { config } from "./config.js";
 import { getPool, ping } from "./db.js";
 import { CAPACITY_COPY, type CohortPublicStatus } from "./copy.js";
 import { z } from "zod";
 import Stripe from "stripe";
 
-interface CohortStatusRow extends RowDataPacket {
+interface CohortStatusRow {
   cohort_code: string;
   public_status: CohortPublicStatus;
   public_copy: string;
@@ -81,9 +80,9 @@ app.get("/health", async (_req, res) => {
 // ----- cohort capacity -----
 app.get("/api/cohort/status", async (_req, res) => {
   try {
-    const [rows] = await getPool().query<CohortStatusRow[]>(
-      "SELECT cohort_code, public_status, public_copy FROM cohort_public_status WHERE cohort_code = :code LIMIT 1",
-      { code: config.cohort.code },
+    const { rows } = await getPool().query<CohortStatusRow>(
+      "SELECT cohort_code, public_status, public_copy FROM cohort_public_status WHERE cohort_code = $1 LIMIT 1",
+      [config.cohort.code],
     );
     const row = rows[0];
     if (!row) {

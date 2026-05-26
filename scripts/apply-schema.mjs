@@ -1,17 +1,21 @@
 #!/usr/bin/env node
-// Apply BARMATRIX/engineering/SCHEMA_MYSQL.sql against the configured MySQL.
-// Usage: npm run migrate
-// Reads from ../BMO/BARMATRIX/engineering/SCHEMA_MYSQL.sql when run from C:\barmatrix-api.
+// Apply BARMATRIX/engineering/SCHEMA_ONE_COHORT.sql against the configured
+// Postgres. Usage: npm run migrate
+//
+// Locally: run the Cloud SQL Auth Proxy first so DATABASE_HOST=127.0.0.1
+// reaches Cloud SQL, OR connect to a local Postgres seeded the same way.
+// On Cloud Run we typically apply schemas via `gcloud sql connect` instead
+// of via this script.
 
 import "dotenv/config";
 import fs from "node:fs/promises";
 import path from "node:path";
-import mysql from "mysql2/promise";
+import pg from "pg";
+
+const { Client } = pg;
 
 const SCHEMA_PATHS = [
-  // Relative to barmatrix-api root when run as a sibling of C:\BMO
-  path.resolve("../BMO/BARMATRIX/engineering/SCHEMA_MYSQL.sql"),
-  // Allow override via env
+  path.resolve("../BMO/BARMATRIX/engineering/SCHEMA_ONE_COHORT.sql"),
   process.env.SCHEMA_PATH ?? "",
 ].filter(Boolean);
 
@@ -25,7 +29,7 @@ async function findSchema() {
     }
   }
   throw new Error(
-    `Could not locate SCHEMA_MYSQL.sql. Set SCHEMA_PATH env var or place this repo as a sibling of BMO.`,
+    `Could not locate SCHEMA_ONE_COHORT.sql. Set SCHEMA_PATH env var or place this repo as a sibling of BMO.`,
   );
 }
 
@@ -33,21 +37,21 @@ async function main() {
   const schemaPath = await findSchema();
   const sql = await fs.readFile(schemaPath, "utf8");
 
-  const conn = await mysql.createConnection({
+  const client = new Client({
     host: process.env.DATABASE_HOST,
-    port: Number(process.env.DATABASE_PORT ?? 3306),
+    port: Number(process.env.DATABASE_PORT ?? 5432),
     user: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE_NAME,
-    multipleStatements: true,
   });
 
+  await client.connect();
   try {
     console.log(`Applying ${schemaPath} ...`);
-    await conn.query(sql);
+    await client.query(sql);
     console.log("Schema applied.");
   } finally {
-    await conn.end();
+    await client.end();
   }
 }
 
