@@ -43,8 +43,22 @@ export const config = {
     secretKey: required("STRIPE_SECRET_KEY"),
     webhookSecret: required("STRIPE_WEBHOOK_SECRET"),
     productFlagship: required("STRIPE_PRODUCT_BARMATRIX_FLAGSHIP"),
+    // Pay-in-full: a single one-time price object that Checkout charges in
+    // `mode: "payment"`.
     pricePayInFull: required("STRIPE_PRICE_PAY_IN_FULL"),
+    // 2-pay plan ("two_pay_500_499") uses Stripe Subscription with three
+    // price objects, per ADR 0004 § Pattern X:
+    //   - priceFlagshipAnchor: $0/month recurring, the required "anchor" so
+    //     Stripe will schedule a 30-day billing cycle for the second invoice.
+    //   - pricePayInTwo: $500 one-time, added via `subscription_data.add_invoice_items`
+    //     on the FIRST invoice (charged at checkout completion = day 0).
+    //   - pricePayInTwoSecond: $499 one-time, attached as a pending
+    //     InvoiceItem in the webhook handler so it auto-includes on the
+    //     subscription's next invoice (day 30). The subscription is set to
+    //     cancel_at = day 60 so no further invoices fire.
+    priceFlagshipAnchor: required("STRIPE_PRICE_FLAGSHIP_ANCHOR"),
     pricePayInTwo: required("STRIPE_PRICE_PAY_IN_TWO"),
+    pricePayInTwoSecond: required("STRIPE_PRICE_PAY_IN_TWO_SECOND"),
   },
 
   clerk: {

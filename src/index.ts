@@ -10,8 +10,105 @@ import { randomUUID } from "node:crypto";
 import { config } from "./config.js";
 import { getPool, ping } from "./db.js";
 import { CAPACITY_COPY, type CohortPublicStatus } from "./copy.js";
+import {
+  fulfillCheckoutSession,
+  recordInstallmentPayment,
+  suspendEntitlement,
+} from "./entitlement.js";
 import { z } from "zod";
 import Stripe from "stripe";
+import { registerQuestionsRoutes } from "./routes/questions.js";
+import { registerAttemptsRoutes } from "./routes/attempts.js";
+import { registerRedZonesRoutes } from "./routes/red-zones.js";
+
+// Module-scoped Stripe client — cheaper than instantiating per request.
+const stripeClient = new Stripe(config.stripe.secretKey);
+
+/**
+ * Idempotent 2-pay subscription arming. If a subscription already exists
+ * for this checkout session (identified by metadata.first_session_id), it
+ * is returned. Otherwise, a fresh $0 anchor subscription is created with
+ * billing_cycle_anchor = day 30, cancel_at = day 60, default_payment_method
+ * set, and a pending $499 InvoiceItem attached.
+ */
+async function armTwoPaySubscription(
+  session: Stripe.Checkout.Session,
+): Promise<string | null> {
+  const customerId =
+    typeof session.customer === "string"
+      ? session.customer
+      : (session.customer?.id ?? null);
+  const paymentIntentId =
+    typeof session.payment_intent === "string"
+      ? session.payment_intent
+      : (session.payment_intent?.id ?? null);
+  if (!customerId || !paymentIntentId) {
+    console.error(
+      `[stripe webhook] two-pay arming: session missing customer/payment_intent`,
+      { sessionId: session.id, customerId, paymentIntentId },
+    );
+    return null;
+  }
+
+  // Idempotency: look for an existing subscription tagged with this session.
+  const existing = await stripeClient.subscriptions.list({
+    customer: customerId,
+    limit: 10,
+  });
+  const reused = existing.data.find(
+    (s) => s.metadata?.first_session_id === session.id,
+  );
+  if (reused) {
+    console.log(
+      `[stripe webhook] two-pay arming: reusing sub=${reused.id} for session=${session.id}`,
+    );
+    return reused.id;
+  }
+
+  const pi = await stripeClient.paymentIntents.retrieve(paymentIntentId);
+  const paymentMethodId =
+    typeof pi.payment_method === "string"
+      ? pi.payment_method
+      : (pi.payment_method?.id ?? null);
+  if (!paymentMethodId) {
+    throw new Error(
+      `two-pay arming: no payment_method on payment_intent ${paymentIntentId}`,
+    );
+  }
+
+  await stripeClient.customers.update(customerId, {
+    invoice_settings: { default_payment_method: paymentMethodId },
+  });
+
+  const now = Math.floor(Date.now() / 1000);
+  const day30 = now + 30 * 86400;
+  const day60 = now + 60 * 86400;
+
+  const sub = await stripeClient.subscriptions.create({
+    customer: customerId,
+    items: [{ price: config.stripe.priceFlagshipAnchor }],
+    default_payment_method: paymentMethodId,
+    billing_cycle_anchor: day30,
+    proration_behavior: "none",
+    cancel_at: day60,
+    metadata: {
+      payment_plan: "two_pay_500_499",
+      first_session_id: session.id,
+      cohort_code: config.cohort.code,
+    },
+  });
+
+  await stripeClient.invoiceItems.create({
+    customer: customerId,
+    price: config.stripe.pricePayInTwoSecond,
+    subscription: sub.id,
+  });
+
+  console.log(
+    `[stripe webhook] two-pay armed: sub=${sub.id} customer=${customerId} day30=${day30} day60=${day60}`,
+  );
+  return sub.id;
+}
 
 interface CohortStatusRow {
   cohort_code: string;
@@ -33,7 +130,6 @@ app.post(
   "/api/webhooks/stripe",
   express.raw({ type: "application/json" }),
   async (req, res) => {
-    const stripe = new Stripe(config.stripe.secretKey);
     const signature = req.headers["stripe-signature"];
     if (typeof signature !== "string") {
       res.status(400).send("Missing stripe-signature header");
@@ -41,7 +137,7 @@ app.post(
     }
     let event: Stripe.Event;
     try {
-      event = stripe.webhooks.constructEvent(
+      event = stripeClient.webhooks.constructEvent(
         req.body,
         signature,
         config.stripe.webhookSecret,
@@ -53,9 +149,55 @@ app.post(
       return;
     }
 
-    // TODO: persist the event, grant entitlement, assign cohort seat.
-    // Skeleton: log and acknowledge.
     console.log(`[stripe webhook] ${event.type} ${event.id}`);
+
+    try {
+      switch (event.type) {
+        case "checkout.session.completed": {
+          const session = event.data.object as Stripe.Checkout.Session;
+          let subscriptionId: string | null = null;
+
+          // For 2-pay, the subscription must be armed BEFORE we record the
+          // purchase so the stripe_subscription_id is populated.
+          if (session.metadata?.payment_plan === "two_pay_500_499") {
+            subscriptionId = await armTwoPaySubscription(session);
+          } else if (typeof session.subscription === "string") {
+            subscriptionId = session.subscription;
+          } else if (
+            session.subscription &&
+            typeof session.subscription === "object"
+          ) {
+            subscriptionId = session.subscription.id;
+          }
+
+          await fulfillCheckoutSession({ session, subscriptionId });
+          break;
+        }
+
+        case "invoice.payment_succeeded": {
+          await recordInstallmentPayment(event.data.object as Stripe.Invoice);
+          break;
+        }
+
+        case "invoice.payment_failed": {
+          await suspendEntitlement(event.data.object as Stripe.Invoice);
+          break;
+        }
+
+        default:
+          // payment_intent.* and other events are observed but require no
+          // domain action — Stripe gives us 200 either way.
+          break;
+      }
+    } catch (err) {
+      // Return 500 so Stripe retries delivery. Idempotency guards in
+      // fulfillCheckoutSession / recordInstallmentPayment prevent
+      // double-application.
+      console.error(`[stripe webhook] handler failed for ${event.type} ${event.id}:`, err);
+      res.status(500).json({ error: "webhook handler failed" });
+      return;
+    }
+
     res.json({ received: true });
   },
 );
@@ -159,49 +301,13 @@ app.post("/api/diagnostic/start", async (req, res) => {
   });
 });
 
-// ----- attempts (skeleton) -----
-const attemptBody = z.object({
-  question_id: z.string().uuid(),
-  selected_letter: z.enum(["A", "B", "C", "D"]),
-  confidence: z.number().int().min(1).max(5),
-  time_seconds: z.number().int().min(0),
-  platform: z.enum(["web", "ios", "android"]).default("web"),
-});
-
-app.post("/api/attempts", async (req, res) => {
-  const parse = attemptBody.safeParse(req.body);
-  if (!parse.success) {
-    res.status(400).json({ error: parse.error.flatten() });
-    return;
-  }
-  // TODO: persist attempt, compute correctness, update red-zones, queue drill assignment.
-  res.json({
-    attempt_id: "00000000-0000-0000-0000-000000000000",
-    correct: false,
-    correct_answer: "D",
-    forensics_url: "/api/attempts/00000000-0000-0000-0000-000000000000/forensics",
-    red_zone_updates: [],
-  });
-});
-
-app.get("/api/attempts/:id/forensics", async (req, res) => {
-  const id = req.params.id;
-  if (!/^[0-9a-f-]{36}$/i.test(id)) {
-    res.status(400).json({ error: "invalid attempt id" });
-    return;
-  }
-  // TODO: hydrate forensics from the selected wrong-answer choice + focus-group data.
-  res.json({
-    trap_name: "Purpose-of-offer hearsay trap",
-    why_attractive:
-      "The statement was made out of court, which makes the hearsay answer feel familiar.",
-    why_wrong:
-      "The statement is offered to show notice, not to prove the statement was true.",
-    future_cue: "Ask why the statement is offered before hunting for an exception.",
-    focus_group: { selected_choice_pct: 22, sample_size: 100 },
-    assigned_drill: { name: "Hearsay Purpose-of-Offer Drill" },
-  });
-});
+// ----- question flow (Hearsay seam) -----
+// Real handlers live in src/routes/*. The placeholders that used to sit here
+// (returning fixed strings) were replaced after Handoff 10 wired the DB-backed
+// implementations against the Hearsay seed.
+registerQuestionsRoutes(app);
+registerAttemptsRoutes(app);
+registerRedZonesRoutes(app);
 
 // ----- checkout -----
 const checkoutBody = z.object({
@@ -216,25 +322,44 @@ app.post("/api/checkout/create-session", async (req, res) => {
     res.status(400).json({ error: parse.error.flatten() });
     return;
   }
-  const stripe = new Stripe(config.stripe.secretKey);
-  const priceId =
-    parse.data.payment_plan === "pay_in_full"
-      ? config.stripe.pricePayInFull
-      : config.stripe.pricePayInTwo;
+  const metadata = {
+    cohort_code: config.cohort.code,
+    partner_id: parse.data.partner_id ?? "",
+    referral_click_id: parse.data.referral_click_id ?? "",
+    payment_plan: parse.data.payment_plan,
+  };
 
   try {
-    const session = await stripe.checkout.sessions.create({
-      mode: "payment",
-      line_items: [{ price: priceId, quantity: 1 }],
-      success_url: config.urls.checkoutSuccess,
-      cancel_url: config.urls.checkoutCancel,
-      metadata: {
-        cohort_code: config.cohort.code,
-        partner_id: parse.data.partner_id ?? "",
-        referral_click_id: parse.data.referral_click_id ?? "",
-        payment_plan: parse.data.payment_plan,
-      },
-    });
+    // Both flows use Checkout in payment mode. Pay-in-full charges $999
+    // one-time. Two-pay charges $500 now AND saves the card off_session so
+    // the webhook handler can spin up a $0 anchor subscription that fires
+    // the $499 second installment at day 30 and cancels at day 60.
+    const sessionParams: Stripe.Checkout.SessionCreateParams =
+      parse.data.payment_plan === "pay_in_full"
+        ? {
+            mode: "payment",
+            line_items: [
+              { price: config.stripe.pricePayInFull, quantity: 1 },
+            ],
+            success_url: config.urls.checkoutSuccess,
+            cancel_url: config.urls.checkoutCancel,
+            metadata,
+          }
+        : {
+            mode: "payment",
+            line_items: [
+              { price: config.stripe.pricePayInTwo, quantity: 1 }, // $500
+            ],
+            customer_creation: "always",
+            payment_intent_data: {
+              setup_future_usage: "off_session",
+              metadata,
+            },
+            success_url: config.urls.checkoutSuccess,
+            cancel_url: config.urls.checkoutCancel,
+            metadata,
+          };
+    const session = await stripeClient.checkout.sessions.create(sessionParams);
     res.json({ checkout_url: session.url, session_id: session.id });
   } catch (err) {
     console.error("[checkout] failed:", err);
