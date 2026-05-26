@@ -6,6 +6,7 @@
 import express, { type Request, type Response, type NextFunction } from "express";
 import cors from "cors";
 import helmet from "helmet";
+import { randomUUID } from "node:crypto";
 import { config } from "./config.js";
 import { getPool, ping } from "./db.js";
 import { CAPACITY_COPY, type CohortPublicStatus } from "./copy.js";
@@ -17,6 +18,12 @@ interface CohortStatusRow {
   public_status: CohortPublicStatus;
   public_copy: string;
 }
+
+interface QuestionIdRow {
+  question_id: string;
+}
+
+const DIAGNOSTIC_LENGTH = 12;
 
 const app = express();
 
@@ -117,11 +124,38 @@ app.post("/api/diagnostic/start", async (req, res) => {
     res.status(400).json({ error: parse.error.flatten() });
     return;
   }
-  // TODO: create a diagnostic session, attach partner attribution, return first question.
+
+  // The diagnostic_id is the set_id we tag every diagnostic-mode attempt with
+  // in student_attempts (via the `set_id` column). It is generated server-side
+  // so partner attribution and tracking can attach immediately even before the
+  // student creates an account.
+  const diagnosticId = randomUUID();
+
+  // Try to pull 12 active questions from the loaded bank. Until the 2,400-item
+  // bank is ingested, this returns an empty array — the frontend should switch
+  // to a "bank loading" copy variant when bank_loaded=false rather than try to
+  // render placeholder UUIDs as real questions.
+  let questionIds: string[] = [];
+  let bankLoaded = false;
+  try {
+    const { rows } = await getPool().query<QuestionIdRow>(
+      "SELECT question_id FROM questions WHERE status = 'active' ORDER BY random() LIMIT $1",
+      [DIAGNOSTIC_LENGTH],
+    );
+    questionIds = rows.map((r) => r.question_id);
+    bankLoaded = questionIds.length >= DIAGNOSTIC_LENGTH;
+  } catch (err) {
+    console.error("[diagnostic start] question pick failed:", err);
+    // Fall through with empty list; the response shape stays valid.
+  }
+
   res.json({
-    diagnostic_id: "00000000-0000-0000-0000-000000000000",
+    diagnostic_id: diagnosticId,
+    question_ids: questionIds,
+    total_questions: questionIds.length,
+    expected_total: DIAGNOSTIC_LENGTH,
+    bank_loaded: bankLoaded,
     next_question_index: 0,
-    total_questions: 12,
   });
 });
 

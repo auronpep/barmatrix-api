@@ -1,0 +1,80 @@
+# Cloud Build pipeline: GitHub push to main → build image → push to Artifact
+# Registry → deploy Cloud Run revision. Existing service config (env vars,
+# Secret Manager bindings, --add-cloudsql-instances) is preserved across
+# revisions because `gcloud run deploy --image` only updates the container
+# image, leaving everything else alone.
+#
+# One-time trigger setup (operator runs this, not Cloud Build):
+#
+#   gcloud builds triggers create github \
+#       --name=barmatrix-api-main \
+#       --repo-owner=auronpep \
+#       --repo-name=barmatrix-api \
+#       --branch-pattern="^main$" \
+#       --build-config=cloudbuild.yaml \
+#       --region=us-central1
+#
+#   gcloud projects add-iam-policy-binding $PROJECT_ID \
+#       --member="serviceAccount:$(gcloud projects describe $PROJECT_ID --format='value(projectNumber)')-compute@developer.gserviceaccount.com" \
+#       --role="roles/run.admin"
+#
+#   gcloud projects add-iam-policy-binding $PROJECT_ID \
+#       --member="serviceAccount:$(gcloud projects describe $PROJECT_ID --format='value(projectNumber)')-compute@developer.gserviceaccount.com" \
+#       --role="roles/iam.serviceAccountUser"
+#
+# After that, every push to main auto-deploys.
+
+substitutions:
+  _REGION: us-central1
+  _SERVICE: barmatrix-api
+  _REPO: barmatrix
+
+steps:
+  # 1. Build the image, tagged with the commit sha (immutable) and 'latest'.
+  - id: build
+    name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - --tag=${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO}/api:${SHORT_SHA}
+      - --tag=${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO}/api:latest
+      - .
+
+  # 2. Push both tags to Artifact Registry.
+  - id: push-sha
+    name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - ${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO}/api:${SHORT_SHA}
+    waitFor: [build]
+  - id: push-latest
+    name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - ${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO}/api:latest
+    waitFor: [build]
+
+  # 3. Deploy the new image to the existing Cloud Run service.
+  #    --image is the only change; env vars, secrets, Cloud SQL binding,
+  #    min-instances, etc. carry over from the prior revision.
+  - id: deploy
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    args:
+      - run
+      - deploy
+      - ${_SERVICE}
+      - --image=${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO}/api:${SHORT_SHA}
+      - --region=${_REGION}
+      - --platform=managed
+      - --quiet
+    waitFor: [push-sha, push-latest]
+
+images:
+  - ${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO}/api:${SHORT_SHA}
+  - ${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO}/api:latest
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+  machineType: E2_HIGHCPU_8
+
+timeout: 900s
