@@ -1,48 +1,111 @@
-// Postgres connection pool. On Cloud Run we connect to Cloud SQL via the
-// Unix socket mounted at /cloudsql/<INSTANCE_CONNECTION_NAME>; locally we
-// connect over TCP. Lazy-initialized so the server can boot even when the
-// database is briefly unavailable — first query surfaces the error.
+// MySQL connection pool for the Hostinger runtime. The wrapper intentionally
+// returns a pg-like { rows, rowCount } shape so route code can stay focused on
+// domain behavior while the backing database moves from Postgres to MySQL.
 
-import pg from "pg";
+import mysql, {
+  type Pool as MysqlPool,
+  type PoolConnection,
+  type ResultSetHeader,
+  type RowDataPacket,
+} from "mysql2/promise";
 import { config } from "./config.js";
 
-const { Pool } = pg;
+export interface QueryResult<T> {
+  rows: T[];
+  rowCount: number;
+}
 
-let pool: pg.Pool | null = null;
+export interface DbClient {
+  query<T = RowDataPacket>(
+    sql: string,
+    values?: readonly unknown[],
+  ): Promise<QueryResult<T>>;
+  release(): void;
+}
 
-export function getPool(): pg.Pool {
+export interface DbPool {
+  query<T = RowDataPacket>(
+    sql: string,
+    values?: readonly unknown[],
+  ): Promise<QueryResult<T>>;
+  connect(): Promise<DbClient>;
+  end(): Promise<void>;
+}
+
+let pool: DbPool | null = null;
+
+export function toMysqlQuery(
+  sql: string,
+  values: readonly unknown[] = [],
+): { sql: string; values: unknown[] } {
+  const orderedValues: unknown[] = [];
+  const convertedSql = sql.replace(/\$(\d+)/g, (_match, indexText: string) => {
+    const index = Number(indexText) - 1;
+    orderedValues.push(values[index]);
+    return "?";
+  });
+  return { sql: convertedSql, values: orderedValues };
+}
+
+export function getPool(): DbPool {
   if (pool) return pool;
 
-  const isCloudRun = process.env.K_SERVICE !== undefined;
+  const mysqlPool = mysql.createPool({
+    host: config.db.host,
+    port: config.db.port,
+    database: config.db.database,
+    user: config.db.user,
+    password: config.db.password,
+    waitForConnections: true,
+    connectionLimit: 10,
+    timezone: "Z",
+    namedPlaceholders: false,
+  });
 
-  pool = new Pool(
-    isCloudRun
-      ? {
-          host: `/cloudsql/${config.db.instanceConnectionName}`,
-          database: config.db.database,
-          user: config.db.user,
-          password: config.db.password,
-          max: 10,
-        }
-      : {
-          host: config.db.host,
-          port: config.db.port,
-          database: config.db.database,
-          user: config.db.user,
-          password: config.db.password,
-          max: 10,
-        },
-  );
+  pool = {
+    query: <T = RowDataPacket>(
+      sql: string,
+      values?: readonly unknown[],
+    ): Promise<QueryResult<T>> => queryMysql(mysqlPool, sql, values),
+    connect: async (): Promise<DbClient> => {
+      const connection = await mysqlPool.getConnection();
+      return {
+        query: <T = RowDataPacket>(
+          sql: string,
+          values?: readonly unknown[],
+        ): Promise<QueryResult<T>> => queryMysql(connection, sql, values),
+        release: () => connection.release(),
+      };
+    },
+    end: () => mysqlPool.end(),
+  };
 
   return pool;
 }
 
-export async function ping(): Promise<boolean> {
-  const client = await getPool().connect();
-  try {
-    await client.query("SELECT 1");
-    return true;
-  } finally {
-    client.release();
+async function queryMysql<T>(
+  executor: MysqlPool | PoolConnection,
+  sql: string,
+  values: readonly unknown[] = [],
+): Promise<QueryResult<T>> {
+  const converted = toMysqlQuery(sql, values);
+  const [result] = await executor.execute(converted.sql, converted.values as never[]);
+
+  if (Array.isArray(result)) {
+    return {
+      rows: result as T[],
+      rowCount: result.length,
+    };
   }
+
+  const header = result as ResultSetHeader;
+  return {
+    rows: [],
+    rowCount: header.affectedRows ?? 0,
+  };
+}
+
+export async function ping(): Promise<boolean> {
+  await getPool().query("SELECT 1");
+  return true;
 }

@@ -10,7 +10,7 @@
 // store correct_count separately, because user_red_zones doesn't carry a
 // correct_count column (changing the schema is out of scope per the handoff).
 
-import type { PoolClient } from "pg";
+import type { DbClient } from "../db.js";
 
 export interface RedZoneUpdate {
   dimension: string;
@@ -38,7 +38,7 @@ export const QUESTION_DIMENSION_COLUMNS: ReadonlyArray<{
  * the recompute sees includes the just-inserted attempt.
  */
 export async function upsertColumnDerivedRedZone(
-  client: PoolClient,
+  client: DbClient,
   studentId: string,
   dimension: string,
   column: "subject" | "subtopic" | "tension_point",
@@ -48,15 +48,6 @@ export async function upsertColumnDerivedRedZone(
   // Identifier (column name) is from a constant array, never user input — safe
   // to interpolate. Values are all parameterized.
   const sql = `
-    WITH stats AS (
-      SELECT
-        COUNT(*)::int AS attempts_count,
-        SUM(CASE WHEN a.correct THEN 1 ELSE 0 END)::int AS correct_count,
-        SUM(CASE WHEN NOT a.correct AND a.confidence >= 4 THEN 1 ELSE 0 END)::int AS hc_wrong
-      FROM student_attempts a
-      JOIN questions q ON q.question_id = a.question_id
-      WHERE a.student_id = $1 AND q.${column} = $2
-    )
     INSERT INTO user_red_zones
       (student_id, dimension, tag_value, proficiency_score, attempts_count, high_confidence_wrong_count, last_updated)
     SELECT
@@ -64,18 +55,26 @@ export async function upsertColumnDerivedRedZone(
       $3,
       $2,
       CASE WHEN (s.attempts_count + s.hc_wrong) > 0
-           THEN s.correct_count::numeric / (s.attempts_count + s.hc_wrong)
+           THEN CAST(s.correct_count AS DECIMAL(12,6)) / (s.attempts_count + s.hc_wrong)
            ELSE 0
       END,
       s.attempts_count,
       s.hc_wrong,
-      NOW()
-    FROM stats s
-    ON CONFLICT (student_id, dimension, tag_value) DO UPDATE
-    SET proficiency_score = EXCLUDED.proficiency_score,
-        attempts_count = EXCLUDED.attempts_count,
-        high_confidence_wrong_count = EXCLUDED.high_confidence_wrong_count,
-        last_updated = NOW();
+      CURRENT_TIMESTAMP(6)
+    FROM (
+      SELECT
+        COUNT(*) AS attempts_count,
+        SUM(CASE WHEN a.correct = 1 THEN 1 ELSE 0 END) AS correct_count,
+        SUM(CASE WHEN a.correct = 0 AND a.confidence >= 4 THEN 1 ELSE 0 END) AS hc_wrong
+      FROM student_attempts a
+      JOIN questions q ON q.question_id = a.question_id
+      WHERE a.student_id = $1 AND q.${column} = $2
+    ) s
+    ON DUPLICATE KEY UPDATE
+      proficiency_score = VALUES(proficiency_score),
+      attempts_count = VALUES(attempts_count),
+      high_confidence_wrong_count = VALUES(high_confidence_wrong_count),
+      last_updated = CURRENT_TIMESTAMP(6);
   `;
   await client.query(sql, [studentId, value, dimension]);
   return { dimension, tag: value };

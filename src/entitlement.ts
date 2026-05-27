@@ -5,8 +5,8 @@
 // twice for the same session.
 
 import type Stripe from "stripe";
-import type pg from "pg";
-import { getPool } from "./db.js";
+import { randomUUID } from "node:crypto";
+import { getPool, type DbClient } from "./db.js";
 import { config } from "./config.js";
 
 const REFERRAL_COMMISSION_CENTS = 19900; // $199 per RULES.md
@@ -72,17 +72,20 @@ export async function fulfillCheckoutSession(
     }
 
     // ---- Upsert student by email ----
-    const studentInsert = await client.query<{ student_id: string }>(
-      `INSERT INTO students (email, full_name, status)
-       VALUES ($1, $2, 'enrolled')
-       ON CONFLICT (email) DO UPDATE
-         SET full_name = COALESCE(EXCLUDED.full_name, students.full_name),
-             status = 'enrolled',
-             updated_at = now()
-       RETURNING student_id`,
+    await client.query(
+      `INSERT INTO students (email, full_name, status, consent_flags)
+       VALUES ($1, $2, 'enrolled', JSON_OBJECT())
+       ON DUPLICATE KEY UPDATE
+         full_name = COALESCE(VALUES(full_name), full_name),
+         status = 'enrolled',
+         updated_at = CURRENT_TIMESTAMP(6)`,
       [email, fullName],
     );
-    const studentId = studentInsert.rows[0]!.student_id;
+    const studentLookup = await client.query<{ student_id: string }>(
+      "SELECT student_id FROM students WHERE email = $1 LIMIT 1",
+      [email],
+    );
+    const studentId = studentLookup.rows[0]!.student_id;
 
     // ---- Look up cohort ----
     const cohortLookup = await client.query<{ cohort_id: string }>(
@@ -113,17 +116,18 @@ export async function fulfillCheckoutSession(
     }
 
     // ---- Insert purchase ----
-    const purchaseInsert = await client.query<{ purchase_id: string }>(
+    const purchaseId = randomUUID();
+    await client.query(
       `INSERT INTO purchases (
-         student_id, cohort_id,
+         purchase_id, student_id, cohort_id,
          stripe_customer_id, stripe_checkout_session_id, stripe_subscription_id,
          product_code, price_cents, payment_plan, net_collected_cents,
          partner_id, referral_click_id,
-         refund_status, entitlement_status
+         refund_status, entitlement_status, metadata
        )
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, 'none', 'active')
-       RETURNING purchase_id`,
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, 'none', 'active', JSON_OBJECT())`,
       [
+        purchaseId,
         studentId,
         cohortId,
         stripeCustomerId,
@@ -137,7 +141,6 @@ export async function fulfillCheckoutSession(
         referralClickId,
       ],
     );
-    const purchaseId = purchaseInsert.rows[0]!.purchase_id;
 
     // ---- Assign cohort seat (with retry on seat_number race) ----
     const seatNumber = await assignSeat(client, cohortId, studentId);
@@ -145,11 +148,10 @@ export async function fulfillCheckoutSession(
     // ---- Referral conversion (only if partner attribution resolved) ----
     if (partnerId) {
       await client.query(
-        `INSERT INTO referral_conversions (
+        `INSERT IGNORE INTO referral_conversions (
            partner_id, student_id, purchase_id, commission_cents, status
          )
-         VALUES ($1, $2, $3, $4, 'pending')
-         ON CONFLICT (partner_id, purchase_id) DO NOTHING`,
+         VALUES ($1, $2, $3, $4, 'pending')`,
         [partnerId, studentId, purchaseId, REFERRAL_COMMISSION_CENTS],
       );
     }
@@ -203,7 +205,7 @@ export async function recordInstallmentPayment(
 
     const purchase = await client.query<{
       purchase_id: string;
-      metadata: { recorded_invoices?: string[] };
+      metadata: unknown;
     }>(
       "SELECT purchase_id, metadata FROM purchases WHERE stripe_subscription_id = $1 LIMIT 1",
       [subscriptionId],
@@ -218,9 +220,7 @@ export async function recordInstallmentPayment(
     }
 
     // Idempotency: track which invoice IDs we've already accumulated.
-    const recorded = Array.isArray(row.metadata?.recorded_invoices)
-      ? row.metadata.recorded_invoices
-      : [];
+    const recorded = getRecordedInvoices(row.metadata);
     if (recorded.includes(invoice.id)) {
       await client.query("ROLLBACK");
       return;
@@ -230,11 +230,10 @@ export async function recordInstallmentPayment(
     await client.query(
       `UPDATE purchases
          SET net_collected_cents = COALESCE(net_collected_cents, 0) + $1,
-             metadata = jsonb_set(
-               COALESCE(metadata, '{}'::jsonb),
-               '{recorded_invoices}',
-               $2::jsonb,
-               true
+             metadata = JSON_SET(
+               COALESCE(metadata, JSON_OBJECT()),
+               '$.recorded_invoices',
+               JSON_EXTRACT($2, '$')
              )
        WHERE purchase_id = $3`,
       [amountPaid, JSON.stringify(recorded), row.purchase_id],
@@ -271,14 +270,17 @@ export async function suspendEntitlement(invoice: Stripe.Invoice): Promise<void>
     `UPDATE purchases
        SET entitlement_status = 'suspended'
      WHERE stripe_subscription_id = $1
-       AND entitlement_status <> 'suspended'
-     RETURNING purchase_id`,
+       AND entitlement_status <> 'suspended'`,
     [subscriptionId],
   );
 
   if (result.rowCount && result.rowCount > 0) {
+    const purchase = await pool.query<{ purchase_id: string }>(
+      "SELECT purchase_id FROM purchases WHERE stripe_subscription_id = $1 LIMIT 1",
+      [subscriptionId],
+    );
     console.warn(
-      `[entitlement] suspended purchase=${result.rows[0]!.purchase_id} subscription=${subscriptionId} invoice=${invoice.id}`,
+      `[entitlement] suspended purchase=${purchase.rows[0]?.purchase_id ?? "unknown"} subscription=${subscriptionId} invoice=${invoice.id}`,
     );
   } else {
     console.warn(
@@ -295,7 +297,7 @@ function parseUuidOrNull(value: string | null | undefined): string | null {
 }
 
 async function assignSeat(
-  client: pg.PoolClient,
+  client: DbClient,
   cohortId: string,
   studentId: string,
 ): Promise<number> {
@@ -304,15 +306,39 @@ async function assignSeat(
   // (cohort_id, seat_number) unique race.
   for (let attempt = 0; attempt < 5; attempt++) {
     try {
-      const result = await client.query<{ seat_number: number }>(
-        `INSERT INTO cohort_enrollments (cohort_id, student_id, seat_number, enrollment_status)
-         SELECT $1::uuid, $2::uuid, COALESCE(MAX(seat_number), 0) + 1, 'active'
-         FROM cohort_enrollments WHERE cohort_id = $1
-         ON CONFLICT (cohort_id, student_id) DO UPDATE SET enrollment_status = 'active'
-         RETURNING seat_number`,
+      const existing = await client.query<{ seat_number: number }>(
+        `SELECT seat_number
+           FROM cohort_enrollments
+          WHERE cohort_id = $1 AND student_id = $2
+          LIMIT 1`,
         [cohortId, studentId],
       );
-      return result.rows[0]!.seat_number;
+      if (existing.rows[0]) {
+        await client.query(
+          `UPDATE cohort_enrollments
+              SET enrollment_status = 'active'
+            WHERE cohort_id = $1 AND student_id = $2`,
+          [cohortId, studentId],
+        );
+        return Number(existing.rows[0].seat_number);
+      }
+
+      const enrollmentId = randomUUID();
+      await client.query(
+        `INSERT INTO cohort_enrollments (
+           enrollment_id, cohort_id, student_id, seat_number, enrollment_status
+         )
+         SELECT $1, $2, $3, COALESCE(MAX(seat_number), 0) + 1, 'active'
+           FROM cohort_enrollments
+          WHERE cohort_id = $2`,
+        [enrollmentId, cohortId, studentId],
+      );
+
+      const inserted = await client.query<{ seat_number: number }>(
+        "SELECT seat_number FROM cohort_enrollments WHERE enrollment_id = $1 LIMIT 1",
+        [enrollmentId],
+      );
+      return Number(inserted.rows[0]!.seat_number);
     } catch (err: unknown) {
       if (isSeatNumberRace(err)) {
         continue;
@@ -327,6 +353,19 @@ async function assignSeat(
 
 function isSeatNumberRace(err: unknown): boolean {
   if (typeof err !== "object" || err === null) return false;
-  const e = err as { code?: string; constraint?: string };
-  return e.code === "23505" && (e.constraint?.includes("seat_number") ?? false);
+  const e = err as { code?: string; errno?: number; message?: string };
+  return (
+    e.code === "ER_DUP_ENTRY" &&
+    (e.errno === 1062 || e.message?.includes("uq_cohort_seat") === true)
+  );
+}
+
+function getRecordedInvoices(metadata: unknown): string[] {
+  const parsed =
+    typeof metadata === "string" ? (JSON.parse(metadata) as unknown) : metadata;
+  if (typeof parsed !== "object" || parsed === null) return [];
+  const invoices = (parsed as { recorded_invoices?: unknown }).recorded_invoices;
+  return Array.isArray(invoices)
+    ? invoices.filter((value): value is string => typeof value === "string")
+    : [];
 }

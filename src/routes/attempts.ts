@@ -39,7 +39,7 @@ interface QuestionForAttempt {
 
 interface ChoiceForAttempt {
   choice_id: string;
-  is_correct: boolean;
+  is_correct: boolean | 0 | 1;
   remediation_id: string | null;
 }
 
@@ -49,10 +49,6 @@ interface CorrectChoice {
 
 interface AnonStudent {
   student_id: string;
-}
-
-interface AttemptInsertRow {
-  attempt_id: string;
 }
 
 export function registerAttemptsRoutes(app: Express): void {
@@ -89,7 +85,7 @@ export function registerAttemptsRoutes(app: Express): void {
       const { rows: correctRows } = await client.query<CorrectChoice>(
         `SELECT letter
            FROM answer_choices
-          WHERE question_id = $1 AND is_correct = TRUE
+          WHERE question_id = $1 AND is_correct = 1
           LIMIT 1`,
         [body.question_id],
       );
@@ -104,11 +100,14 @@ export function registerAttemptsRoutes(app: Express): void {
         const anonEmail = body.set_id
           ? `anon-${body.set_id}@barmatrix.local`
           : `anon-${crypto.randomUUID()}@barmatrix.local`;
-        const { rows: anonRows } = await client.query<AnonStudent>(
+        await client.query(
           `INSERT INTO students (email, full_name, status, consent_flags)
-                VALUES ($1, 'Anonymous diagnostic', 'anonymous', '{"anonymous": true}'::jsonb)
-           ON CONFLICT (email) DO UPDATE SET status = students.status
-           RETURNING student_id`,
+                VALUES ($1, 'Anonymous diagnostic', 'anonymous', JSON_OBJECT('anonymous', true))
+           ON DUPLICATE KEY UPDATE status = status`,
+          [anonEmail],
+        );
+        const { rows: anonRows } = await client.query<AnonStudent>(
+          "SELECT student_id FROM students WHERE email = $1 LIMIT 1",
           [anonEmail],
         );
         studentId = anonRows[0]?.student_id ?? null;
@@ -120,31 +119,27 @@ export function registerAttemptsRoutes(app: Express): void {
       }
 
       // 3. Insert the attempt.
-      const { rows: attemptRows } = await client.query<AttemptInsertRow>(
+      const selectedIsCorrect = selected.is_correct === true || selected.is_correct === 1;
+      const attemptId = crypto.randomUUID();
+      await client.query(
         `INSERT INTO student_attempts
-           (student_id, question_id, selected_choice_id, selected_letter,
+           (attempt_id, student_id, question_id, selected_choice_id, selected_letter,
             correct, confidence, time_seconds, platform, set_id, metadata)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
-         RETURNING attempt_id`,
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
         [
+          attemptId,
           studentId,
           body.question_id,
           selected.choice_id,
           body.selected_letter,
-          selected.is_correct,
+          selectedIsCorrect,
           body.confidence,
           body.time_seconds,
           body.platform,
           body.set_id ?? null,
-          isAnonymous ? '{"anonymous": true}' : "{}",
+          isAnonymous ? JSON.stringify({ anonymous: true }) : JSON.stringify({}),
         ],
       );
-      const attemptId = attemptRows[0]?.attempt_id;
-      if (!attemptId) {
-        await client.query("ROLLBACK");
-        res.status(500).json({ error: "failed to persist attempt" });
-        return;
-      }
 
       // 4. Update red-zones + drill assignment when not anonymous.
       const redZoneUpdates: RedZoneUpdate[] = [];
@@ -173,11 +168,11 @@ export function registerAttemptsRoutes(app: Express): void {
           }
         }
 
-        if (!selected.is_correct && selected.remediation_id) {
+        if (!selectedIsCorrect && selected.remediation_id) {
           await client.query(
             `INSERT INTO drill_assignments
                (student_id, drill_slug, reason, red_zone_dimension, red_zone_tag, question_ids, status)
-             VALUES ($1, $2, $3, $4, $5, ARRAY[$6]::uuid[], 'prescribed')`,
+             VALUES ($1, $2, $3, $4, $5, JSON_ARRAY($6), 'prescribed')`,
             [
               studentId,
               selected.remediation_id,
@@ -194,7 +189,7 @@ export function registerAttemptsRoutes(app: Express): void {
 
       res.json({
         attempt_id: attemptId,
-        correct: selected.is_correct,
+        correct: selectedIsCorrect,
         correct_answer: correctAnswer,
         forensics_url: `/api/attempts/${attemptId}/forensics`,
         red_zone_updates: redZoneUpdates,
@@ -216,10 +211,9 @@ export function registerAttemptsRoutes(app: Express): void {
     }
 
     interface ForensicsRow {
-      attempt_correct: boolean;
+      attempt_correct: boolean | 0 | 1;
       selected_letter: "A" | "B" | "C" | "D";
-      selected_forensic_tags: string[] | null;
-      selected_misconception_tags: string[] | null;
+      selected_forensic_tags: unknown;
       selected_why_attractive: string | null;
       selected_why_wrong_or_correct: string | null;
       selected_future_cue: string | null;
@@ -276,7 +270,7 @@ export function registerAttemptsRoutes(app: Express): void {
             }
           : null;
 
-      if (r.attempt_correct) {
+      if (r.attempt_correct === true || r.attempt_correct === 1) {
         res.json({
           correct: true,
           why_correct: r.selected_why_wrong_or_correct ?? "",
@@ -287,7 +281,7 @@ export function registerAttemptsRoutes(app: Express): void {
 
       // Wrong answer: derive trap_name from the first non-meta forensic tag,
       // falling back to the question's subtopic.
-      const forensicTags = r.selected_forensic_tags ?? [];
+      const forensicTags = asStringArray(r.selected_forensic_tags);
       const trapTag = forensicTags.find((t) => t && t !== "correct_answer");
       const trapName = trapTag
         ? `${snakeToTitle(trapTag)} trap`
@@ -313,4 +307,12 @@ export function registerAttemptsRoutes(app: Express): void {
       res.status(500).json({ error: "internal server error" });
     }
   });
+}
+
+function asStringArray(value: unknown): string[] {
+  const parsed =
+    typeof value === "string" ? (JSON.parse(value) as unknown) : value;
+  return Array.isArray(parsed)
+    ? parsed.filter((item): item is string => typeof item === "string")
+    : [];
 }

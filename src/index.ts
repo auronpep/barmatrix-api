@@ -281,7 +281,7 @@ app.post("/api/diagnostic/start", async (req, res) => {
   let bankLoaded = false;
   try {
     const { rows } = await getPool().query<QuestionIdRow>(
-      "SELECT question_id FROM questions WHERE status = 'active' ORDER BY random() LIMIT $1",
+      "SELECT question_id FROM questions WHERE status = 'active' ORDER BY RAND() LIMIT $1",
       [DIAGNOSTIC_LENGTH],
     );
     questionIds = rows.map((r) => r.question_id);
@@ -328,6 +328,50 @@ app.post("/api/checkout/create-session", async (req, res) => {
     referral_click_id: parse.data.referral_click_id ?? "",
     payment_plan: parse.data.payment_plan,
   };
+
+  // ---- Cohort capacity gate ----
+  // RULES.md locks an internal cap of 1,000 students for the July cohort.
+  // Don't let Stripe Checkout open for a customer who can't actually get a
+  // seat. The cohort_public_status view already reports the right band; we
+  // just enforce it on writes here. A tiny concurrent race (two creates at
+  // count=999) can over-sell by 1-2 — acceptable per founder defaults.
+  try {
+    const capRes = await getPool().query<{
+      internal_capacity: number;
+      active_count: string;
+    }>(
+      `SELECT c.internal_capacity,
+              COALESCE(COUNT(e.enrollment_id), 0) AS active_count
+         FROM cohort_config c
+         LEFT JOIN cohort_enrollments e
+           ON e.cohort_id = c.cohort_id
+          AND e.enrollment_status = 'active'
+        WHERE c.cohort_code = $1 AND c.active = 1
+        GROUP BY c.cohort_id, c.internal_capacity`,
+      [config.cohort.code],
+    );
+    const capRow = capRes.rows[0];
+    if (!capRow) {
+      console.error(
+        `[checkout] no active cohort_config row for code=${config.cohort.code}`,
+      );
+      res.status(503).json({ error: "cohort_unavailable" });
+      return;
+    }
+    if (Number(capRow.active_count) >= capRow.internal_capacity) {
+      // Public copy per DRIFT_CONTROL.md "waitlist" band.
+      res.status(409).json({
+        error: "cohort_full",
+        public_copy: "Cohort capacity reached. Join the waitlist.",
+      });
+      return;
+    }
+  } catch (err) {
+    // Fail-open is the wrong default for a capacity gate, but a DB outage
+    // shouldn't block all checkout traffic indefinitely. Log loudly and let
+    // the call through — the rare over-sell beats a blanket revenue cutoff.
+    console.error("[checkout] capacity check failed, proceeding:", err);
+  }
 
   try {
     // Both flows use Checkout in payment mode. Pay-in-full charges $999

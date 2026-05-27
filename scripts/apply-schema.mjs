@@ -1,22 +1,16 @@
 #!/usr/bin/env node
-// Apply BARMATRIX/engineering/SCHEMA_ONE_COHORT.sql against the configured
-// Postgres. Usage: npm run migrate
-//
-// Locally: run the Cloud SQL Auth Proxy first so DATABASE_HOST=127.0.0.1
-// reaches Cloud SQL, OR connect to a local Postgres seeded the same way.
-// On Cloud Run we typically apply schemas via `gcloud sql connect` instead
-// of via this script.
+// Apply the Hostinger MySQL schema against the configured database.
+// Usage: npm run migrate
 
 import "dotenv/config";
 import fs from "node:fs/promises";
 import path from "node:path";
-import pg from "pg";
-
-const { Client } = pg;
+import mysql from "mysql2/promise";
 
 const SCHEMA_PATHS = [
-  path.resolve("../BMO/BARMATRIX/engineering/SCHEMA_ONE_COHORT.sql"),
   process.env.SCHEMA_PATH ?? "",
+  path.resolve("../BMO/BARMATRIX/engineering/SCHEMA_MYSQL.sql"),
+  path.resolve("../../BMO/BARMATRIX/engineering/SCHEMA_MYSQL.sql"),
 ].filter(Boolean);
 
 async function findSchema() {
@@ -25,33 +19,37 @@ async function findSchema() {
       const stat = await fs.stat(p);
       if (stat.isFile()) return p;
     } catch {
-      // not found, try next
+      // Try the next candidate.
     }
   }
   throw new Error(
-    `Could not locate SCHEMA_ONE_COHORT.sql. Set SCHEMA_PATH env var or place this repo as a sibling of BMO.`,
+    "Could not locate SCHEMA_MYSQL.sql. Set SCHEMA_PATH or run from the expected BMO/api-repo layout.",
   );
 }
 
 async function main() {
   const schemaPath = await findSchema();
-  const sql = await fs.readFile(schemaPath, "utf8");
+  const sql = (await fs.readFile(schemaPath, "utf8")).replaceAll(
+    "utf8mb4_0900_ai_ci",
+    "utf8mb4_unicode_ci",
+  );
 
-  const client = new Client({
+  const connection = await mysql.createConnection({
     host: process.env.DATABASE_HOST,
-    port: Number(process.env.DATABASE_PORT ?? 5432),
+    port: Number(process.env.DATABASE_PORT ?? 3306),
     user: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE_NAME,
+    multipleStatements: true,
+    timezone: "Z",
   });
 
-  await client.connect();
   try {
     console.log(`Applying ${schemaPath} ...`);
-    await client.query(sql);
+    await connection.query(sql);
     console.log("Schema applied.");
   } finally {
-    await client.end();
+    await connection.end();
   }
 }
 
