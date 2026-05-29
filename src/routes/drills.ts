@@ -465,6 +465,7 @@ export function registerDrillsRoutes(app: Express): void {
               WHERE q.status = 'active'
            ) t
           WHERE t.slug IS NOT NULL AND t.slug <> '' AND t.slug <> 'correct_answer'
+            AND t.slug NOT LIKE 'source%'
           GROUP BY t.slug
          HAVING COUNT(DISTINCT t.question_id) > 0
           ORDER BY question_count DESC, t.slug ASC
@@ -609,11 +610,14 @@ export function registerDrillsRoutes(app: Express): void {
 
       const assignmentId = randomUUID();
       const drillSlug = input.slug && input.slug.length <= 128 ? input.slug : null;
+      // question_ids is a JSON column. Pass the stringified array directly — the
+      // prod DB is MariaDB, which has no `CAST(... AS JSON)` (JSON is a LONGTEXT
+      // alias there); a valid JSON string is accepted by both MariaDB and MySQL 8.
       await client.query(
         `INSERT INTO drill_assignments
            (assignment_id, student_id, drill_slug, reason, red_zone_dimension,
             red_zone_tag, question_ids, status)
-         VALUES ($1, $2, $3, $4, $5, $6, CAST($7 AS JSON), 'in_progress')`,
+         VALUES ($1, $2, $3, $4, $5, $6, $7, 'in_progress')`,
         [
           assignmentId,
           studentId,
