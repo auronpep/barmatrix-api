@@ -157,6 +157,16 @@ interface DiagnosticAttemptQueryRow {
   selected_forensic_tags: unknown;
 }
 
+interface BodyParseError extends Error {
+  status?: number;
+  type?: string;
+}
+
+function isBodyParseError(err: Error): err is BodyParseError {
+  const maybe = err as BodyParseError;
+  return maybe.status === 400 && maybe.type === "entity.parse.failed";
+}
+
 // Tolerant JSON-array parse — mysql2 may hand back forensic_tags as a JSON
 // string or an already-parsed array depending on column/driver config.
 function parseStringArray(value: unknown): string[] {
@@ -260,7 +270,7 @@ app.use(
     origin: (origin, callback) => {
       if (!origin) return callback(null, true);
       if (config.allowedOrigins.includes(origin)) return callback(null, true);
-      return callback(new Error(`Origin ${origin} not allowed`));
+      return callback(null, false);
     },
     credentials: true,
   }),
@@ -621,6 +631,10 @@ app.use((_req, res) => {
 });
 
 app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
+  if (isBodyParseError(err)) {
+    res.status(400).json({ error: "invalid JSON body" });
+    return;
+  }
   console.error("[unhandled]", err);
   res.status(500).json({ error: "internal server error" });
 });

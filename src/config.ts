@@ -15,13 +15,26 @@ function optional(name: string, fallback: string): string {
   return process.env[name] ?? fallback;
 }
 
+const DEFAULT_ALLOWED_ORIGINS = "http://localhost:3000,http://127.0.0.1:3000";
+
+function originList(value: string | undefined): string[] {
+  return (value ?? "")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
+
+function allowedOrigins(): string[] {
+  return [...new Set([
+    ...originList(DEFAULT_ALLOWED_ORIGINS),
+    ...originList(process.env.ALLOWED_ORIGINS),
+  ])];
+}
+
 export const config = {
   port: Number(optional("PORT", "3000")),
   nodeEnv: optional("NODE_ENV", "development"),
-  allowedOrigins: optional("ALLOWED_ORIGINS", "http://localhost:3000")
-    .split(",")
-    .map((s) => s.trim())
-    .filter(Boolean),
+  allowedOrigins: allowedOrigins(),
 
   db: {
     host: optional("DATABASE_HOST", "localhost"),
