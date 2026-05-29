@@ -1,17 +1,17 @@
 # barmatrix-api
 
-Backend API for [BarMatrix.app](https://barmatrix.app). Node 24 / TypeScript / Express / `pg` / Stripe / Clerk.
+Backend API for [BarMatrix.app](https://barmatrix.app). Node 24 / TypeScript / Express / `mysql2` / Stripe / Clerk.
 
 ## Production target
 
-**Google Cloud Run** (us-central1) at `api.barmatrix.app`, backed by **Cloud SQL Postgres 16** via Unix socket. See [ADR 0004](https://github.com/auronpep/barmatrix-ops-center/blob/main/docs/decisions/0004-reverse-to-cloud-stack.md) (supersedes ADR 0003).
+**Hostinger Node.js** at `api.barmatrix.app`, backed by Hostinger MariaDB/MySQL. Cloud SQL Postgres is preserved as a target architecture, but it is not the current writable runtime.
 
 ## Source of truth
 
 | Surface | Where |
 |---|---|
 | API contracts | `BARMATRIX/engineering/API_CONTRACTS.md` (SRC-0020) |
-| Database schema | `BARMATRIX/engineering/SCHEMA_ONE_COHORT.sql` (canonical Postgres) |
+| Database schema | `BARMATRIX/engineering/SCHEMA_MYSQL.sql` and `BARMATRIX/engineering/SCHEMA_KNOWLEDGE_CORE_MYSQL.sql` |
 | Locked offer + decisions | `BARMATRIX/CLAUDE.md`, `BARMATRIX/RULES.md`, `BARMATRIX/MASTER_CONTEXT.md` |
 | Capacity language | `BARMATRIX/DRIFT_CONTROL.md` allowed phrases |
 
@@ -20,9 +20,8 @@ Backend API for [BarMatrix.app](https://barmatrix.app). Node 24 / TypeScript / E
 ```bash
 npm install
 cp .env.example .env       # fill in real values; never commit
-# Option A: start the Cloud SQL Auth Proxy so DATABASE_HOST=127.0.0.1 reaches Cloud SQL
-#   cloud-sql-proxy barmatrix-496201:us-central1:barmatrix-db &
-# Option B: point DATABASE_HOST at a local Postgres seeded from SCHEMA_ONE_COHORT.sql
+# Option A: start an SSH tunnel so DATABASE_HOST=127.0.0.1 reaches Hostinger MySQL
+# Option B: point DATABASE_HOST at a local MySQL/MariaDB seeded from SCHEMA_MYSQL.sql
 npm run dev                # starts on http://localhost:8080 with auto-reload
 ```
 
@@ -33,17 +32,15 @@ curl http://localhost:8080/health
 curl http://localhost:8080/api/cohort/status
 ```
 
-## Apply Postgres schema
+## Apply schema
 
-For local dev (after `.env` is set and a proxy or local Postgres is reachable):
+For local dev (after `.env` is set and a tunnel or local MariaDB/MySQL is reachable):
 
 ```bash
 npm run migrate
 ```
 
-This reads `../BMO/BARMATRIX/engineering/SCHEMA_ONE_COHORT.sql` and applies it.
-
-For Cloud SQL production: the schema was applied during initial provisioning via direct `psql` over an authorized-network allowlist (see [HANDOFFS/09_GCP_VERCEL_MIGRATION_HANDOFF.md](https://github.com/auronpep/barmatrix-ops-center/blob/main/HANDOFFS/09_GCP_VERCEL_MIGRATION_HANDOFF.md) Phase 1).
+This reads the configured schema path and applies it.
 
 ## Deploy to Cloud Run
 
@@ -71,6 +68,7 @@ Skeleton implementations of the SRC-0020 contracts. TODO markers in source flag 
 | POST | `/api/diagnostic/start` | Create diagnostic session |
 | POST | `/api/attempts` | Record answer attempt |
 | GET | `/api/attempts/:id/forensics` | Wrong-answer forensics card |
+| GET | `/api/knowledge/search` | Internal knowledge-core retrieval with provenance and review gates |
 | POST | `/api/checkout/create-session` | Stripe Checkout Session for $999 or 2-pay |
 | POST | `/api/webhooks/stripe` | Stripe webhook receiver (raw body) |
 | POST | `/api/referrals/click` | Capture partner attribution |
@@ -82,5 +80,16 @@ Skeleton implementations of the SRC-0020 contracts. TODO markers in source flag 
 - CORS allowlist seeded from `ALLOWED_ORIGINS`
 - Helmet adds default secure headers
 - Zod validates every request body
-- `pg` uses positional placeholders (`$1`) — no string-concatenated SQL
+- SQL uses positional placeholders (`$1`) converted to MySQL placeholders in `src/db.ts` — no string-concatenated values
 - The internal capacity number (1,000) is NEVER returned in any API response
+
+## Knowledge retrieval
+
+Run a local/live retrieval check through the API query helper:
+
+```bash
+npm run knowledge:search -- --q decoder --component trap-taxonomy --limit 5
+```
+
+Every result includes `source` and `review` blocks. Candidate material remains
+candidate material; retrieval does not promote anything.

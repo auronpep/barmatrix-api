@@ -1,12 +1,16 @@
 // POST /api/attempts        — record an answer, update red-zones, queue drill
 // GET  /api/attempts/:id/forensics — hydrate the Wrong Answer Forensics card
 //
-// student_id is optional. When absent we mint an anonymous students row keyed
-// on email anon-{set_id}@barmatrix.local so all attempts in the same
-// diagnostic session attach to one synthetic student. Anonymous attempts skip
-// red-zone updates and drill assignments.
+// Identity is resolved server-side from the Clerk session (optional auth):
+//   - signed in  -> the caller's own student row; red-zones + drills update.
+//   - signed out -> a synthetic anonymous row keyed on
+//     anon-{set_id}@barmatrix.local so all attempts in one diagnostic session
+//     attach to one student. Anonymous attempts skip red-zone + drill writes.
+// A client-supplied student_id is never trusted (no cross-student writes).
 
 import type { Express, Request, Response } from "express";
+import { clerkMiddleware, getAuth } from "@clerk/express";
+import { randomUUID, createHash } from "node:crypto";
 import { z } from "zod";
 import { getPool } from "../db.js";
 import { kebabToTitle, snakeToTitle } from "../lib/format.js";
@@ -15,10 +19,25 @@ import {
   upsertColumnDerivedRedZone,
   type RedZoneUpdate,
 } from "../lib/redzones.js";
+import {
+  resolveClerkEmail,
+  findOrCreateStudentByEmail,
+} from "../lib/clerk-identity.js";
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 // Per SRC-0007 CLAIMS_SIGNOFF: never publish focus-group data below n=30.
 const FOCUS_GROUP_MIN_SAMPLE = 30;
+
+// set_id is a CHAR(36) column. The diagnostic sends a real UUID, but the drill
+// and timed-set surfaces send human-readable labels like "evidence-inline-<ts>"
+// (some exceed 36 chars). Normalize any non-UUID label into a deterministic
+// UUID so it fits the column AND still groups one session's attempts together.
+function normalizeSetId(raw: string | undefined): string | null {
+  if (!raw) return null;
+  if (UUID_RE.test(raw)) return raw;
+  const h = createHash("sha1").update(raw).digest("hex");
+  return `${h.slice(0, 8)}-${h.slice(8, 12)}-${h.slice(12, 16)}-${h.slice(16, 20)}-${h.slice(20, 32)}`;
+}
 
 const attemptBody = z.object({
   question_id: z.string().uuid(),
@@ -26,8 +45,7 @@ const attemptBody = z.object({
   confidence: z.number().int().min(1).max(5),
   time_seconds: z.number().int().min(0),
   platform: z.enum(["web", "ios", "android"]).default("web"),
-  set_id: z.string().uuid().optional(),
-  student_id: z.string().uuid().optional(),
+  set_id: z.string().min(1).max(128).optional(),
 });
 
 interface QuestionForAttempt {
@@ -52,13 +70,29 @@ interface AnonStudent {
 }
 
 export function registerAttemptsRoutes(app: Express): void {
-  app.post("/api/attempts", async (req: Request, res: Response) => {
+  app.post("/api/attempts", clerkMiddleware(), async (req: Request, res: Response) => {
     const parse = attemptBody.safeParse(req.body);
     if (!parse.success) {
       res.status(400).json({ error: parse.error.flatten() });
       return;
     }
     const body = parse.data;
+    const setId = normalizeSetId(body.set_id);
+
+    // Resolve the Clerk session (optional auth) BEFORE opening the transaction
+    // so we never hold one open across the network call to Clerk. No session ->
+    // anonymous attempt; a session that resolves to an email -> attributed.
+    const { userId } = getAuth(req);
+    let authedEmail: string | null = null;
+    if (userId) {
+      try {
+        authedEmail = await resolveClerkEmail(userId);
+      } catch (err) {
+        console.error("[attempts post] clerk lookup failed:", err);
+        res.status(502).json({ error: "auth provider lookup failed" });
+        return;
+      }
+    }
 
     const pool = getPool();
     const client = await pool.connect();
@@ -91,15 +125,18 @@ export function registerAttemptsRoutes(app: Express): void {
       );
       const correctAnswer = correctRows[0]?.letter ?? null;
 
-      // 2. Resolve student_id. If the caller passed one, use it. Otherwise
-      // create-or-reuse a synthetic anonymous students row keyed by set_id
-      // so a multi-question diagnostic session attaches to one row.
-      let studentId = body.student_id ?? null;
-      const isAnonymous = studentId === null;
-      if (studentId === null) {
-        const anonEmail = body.set_id
-          ? `anon-${body.set_id}@barmatrix.local`
-          : `anon-${crypto.randomUUID()}@barmatrix.local`;
+      // 2. Resolve student_id SERVER-SIDE. A signed-in student attributes to
+      // their own row so red-zones + drills update; everyone else attaches to a
+      // synthetic anonymous row keyed by set_id so one diagnostic session's
+      // attempts group together.
+      let studentId: string;
+      const isAnonymous = authedEmail === null;
+      if (authedEmail) {
+        studentId = await findOrCreateStudentByEmail(client, authedEmail);
+      } else {
+        const anonEmail = setId
+          ? `anon-${setId}@barmatrix.local`
+          : `anon-${randomUUID()}@barmatrix.local`;
         await client.query(
           `INSERT INTO students (email, full_name, status, consent_flags)
                 VALUES ($1, 'Anonymous diagnostic', 'anonymous', JSON_OBJECT('anonymous', true))
@@ -110,17 +147,18 @@ export function registerAttemptsRoutes(app: Express): void {
           "SELECT student_id FROM students WHERE email = $1 LIMIT 1",
           [anonEmail],
         );
-        studentId = anonRows[0]?.student_id ?? null;
-        if (studentId === null) {
+        const anonId = anonRows[0]?.student_id ?? null;
+        if (anonId === null) {
           await client.query("ROLLBACK");
           res.status(500).json({ error: "failed to allocate anonymous student" });
           return;
         }
+        studentId = anonId;
       }
 
       // 3. Insert the attempt.
       const selectedIsCorrect = selected.is_correct === true || selected.is_correct === 1;
-      const attemptId = crypto.randomUUID();
+      const attemptId = randomUUID();
       await client.query(
         `INSERT INTO student_attempts
            (attempt_id, student_id, question_id, selected_choice_id, selected_letter,
@@ -136,7 +174,7 @@ export function registerAttemptsRoutes(app: Express): void {
           body.confidence,
           body.time_seconds,
           body.platform,
-          body.set_id ?? null,
+          setId,
           isAnonymous ? JSON.stringify({ anonymous: true }) : JSON.stringify({}),
         ],
       );

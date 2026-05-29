@@ -14,7 +14,8 @@
     "start": "node dist/index.js",
     "typecheck": "tsc --noEmit",
     "test": "tsx --test src/**/*.test.ts",
-    "migrate": "node scripts/apply-schema.mjs"
+    "migrate": "node scripts/apply-schema.mjs",
+    "knowledge:search": "tsx src/scripts/query-knowledge.ts"
   },
   "dependencies": {
     "@clerk/express": "^1.4.0",

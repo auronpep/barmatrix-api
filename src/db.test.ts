@@ -5,6 +5,7 @@ process.env.DATABASE_HOST = "127.0.0.1";
 process.env.DATABASE_NAME = "test_db";
 process.env.DATABASE_USER = "test_user";
 process.env.DATABASE_PASSWORD = "test_password";
+process.env.BARMATRIX_DB_KEY = "test_password";
 process.env.STRIPE_SECRET_KEY = "sk_test_placeholder";
 process.env.STRIPE_WEBHOOK_SECRET = "whsec_placeholder";
 process.env.STRIPE_PRODUCT_BARMATRIX_FLAGSHIP = "prod_placeholder";

@@ -20,6 +20,25 @@ import Stripe from "stripe";
 import { registerQuestionsRoutes } from "./routes/questions.js";
 import { registerAttemptsRoutes } from "./routes/attempts.js";
 import { registerRedZonesRoutes } from "./routes/red-zones.js";
+import { registerKnowledgeRoutes } from "./routes/knowledge.js";
+import {
+  buildCheckoutSessionParams,
+  resolveCheckoutReturnUrls,
+} from "./checkout.js";
+import { registerMeRoutes } from "./routes/me.js";
+import { registerMeRedZonesRoutes } from "./routes/me-red-zones.js";
+import { registerTrapsRoutes } from "./routes/traps.js";
+import { registerBootCampsRoutes } from "./routes/boot-camps.js";
+import { registerDrillsRoutes } from "./routes/drills.js";
+import { registerTensionsRoutes } from "./routes/tensions.js";
+import {
+  computeDiagnosticResults,
+  selectDiagnosticQuestionIds,
+  DIAGNOSTIC_LENGTH,
+  DIAGNOSTIC_POOL_SIZE,
+  type DiagnosticAttemptRow,
+  type DiagnosticCandidate,
+} from "./lib/diagnostic.js";
 
 // Module-scoped Stripe client — cheaper than instantiating per request.
 const stripeClient = new Stripe(config.stripe.secretKey);
@@ -116,11 +135,43 @@ interface CohortStatusRow {
   public_copy: string;
 }
 
-interface QuestionIdRow {
+// n>=30 focus-group sample gate (SRC-0007 CLAIMS_SIGNOFF) — only questions with
+// a publishable distractor signal contribute attractiveness to selection.
+const DIAGNOSTIC_FOCUS_GROUP_MIN_SAMPLE = 30;
+const DIAGNOSTIC_ID_RE =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+interface DiagnosticCandidateRow {
   question_id: string;
+  subject: string | null;
+  attractiveness: number | string | null;
 }
 
-const DIAGNOSTIC_LENGTH = 12;
+interface DiagnosticAttemptQueryRow {
+  correct: boolean | 0 | 1;
+  confidence: number | null;
+  time_seconds: number | null;
+  subject: string | null;
+  subtopic: string | null;
+  tension_point: string | null;
+  selected_forensic_tags: unknown;
+}
+
+// Tolerant JSON-array parse — mysql2 may hand back forensic_tags as a JSON
+// string or an already-parsed array depending on column/driver config.
+function parseStringArray(value: unknown): string[] {
+  let parsed: unknown = value;
+  if (typeof value === "string") {
+    try {
+      parsed = JSON.parse(value);
+    } catch {
+      parsed = null;
+    }
+  }
+  return Array.isArray(parsed)
+    ? parsed.filter((item): item is string => typeof item === "string")
+    : [];
+}
 
 const app = express();
 
@@ -273,18 +324,40 @@ app.post("/api/diagnostic/start", async (req, res) => {
   // student creates an account.
   const diagnosticId = randomUUID();
 
-  // Try to pull 12 active questions from the loaded bank. Until the 2,400-item
-  // bank is ingested, this returns an empty array — the frontend should switch
-  // to a "bank loading" copy variant when bank_loaded=false rather than try to
-  // render placeholder UUIDs as real questions.
+  // Pull a trap-weighted candidate pool, then pick the diagnostic set with
+  // subject spread. "Attractiveness" = the most-chosen WRONG distractor's
+  // focus-group pct (n>=30, correct letter excluded). Questions without that
+  // signal sort last via RAND(), so when no focus-group data exists selection
+  // degrades to a random pick — no regression from the prior behavior.
   let questionIds: string[] = [];
   let bankLoaded = false;
   try {
-    const { rows } = await getPool().query<QuestionIdRow>(
-      "SELECT question_id FROM questions WHERE status = 'active' ORDER BY RAND() LIMIT $1",
-      [DIAGNOSTIC_LENGTH],
+    const { rows } = await getPool().query<DiagnosticCandidateRow>(
+      `SELECT q.question_id, q.subject,
+              CASE
+                WHEN fg.sample_size >= $1 THEN GREATEST(
+                  CASE WHEN cc.letter = 'A' THEN -1 ELSE COALESCE(fg.pct_a, 0) END,
+                  CASE WHEN cc.letter = 'B' THEN -1 ELSE COALESCE(fg.pct_b, 0) END,
+                  CASE WHEN cc.letter = 'C' THEN -1 ELSE COALESCE(fg.pct_c, 0) END,
+                  CASE WHEN cc.letter = 'D' THEN -1 ELSE COALESCE(fg.pct_d, 0) END
+                )
+                ELSE 0
+              END AS attractiveness
+         FROM questions q
+         LEFT JOIN focus_group_response_data fg ON fg.question_id = q.question_id
+         LEFT JOIN answer_choices cc
+           ON cc.question_id = q.question_id AND cc.is_correct = 1
+        WHERE q.status = 'active'
+        ORDER BY attractiveness DESC, RAND()
+        LIMIT $2`,
+      [DIAGNOSTIC_FOCUS_GROUP_MIN_SAMPLE, DIAGNOSTIC_POOL_SIZE],
     );
-    questionIds = rows.map((r) => r.question_id);
+    const candidates: DiagnosticCandidate[] = rows.map((r) => ({
+      question_id: r.question_id,
+      subject: r.subject ?? null,
+      attractiveness: Number(r.attractiveness) || 0,
+    }));
+    questionIds = selectDiagnosticQuestionIds(candidates, DIAGNOSTIC_LENGTH);
     bankLoaded = questionIds.length >= DIAGNOSTIC_LENGTH;
   } catch (err) {
     console.error("[diagnostic start] question pick failed:", err);
@@ -301,6 +374,46 @@ app.post("/api/diagnostic/start", async (req, res) => {
   });
 });
 
+// ----- diagnostic results (anonymous-safe Red-Zone preview) -----
+// Aggregate one diagnostic session's attempts (grouped by set_id = the
+// diagnostic id) into a score summary + computed Red-Zone preview. Computed on
+// the fly and NEVER written to user_red_zones — that persistent surface stays
+// gated to identified/enrolled students. Works for anonymous takers (no
+// student_id) because attempts are keyed only by set_id.
+app.get("/api/diagnostic/:id/results", async (req: Request, res: Response) => {
+  const id = req.params.id;
+  if (typeof id !== "string" || !DIAGNOSTIC_ID_RE.test(id)) {
+    res.status(400).json({ error: "invalid diagnostic id" });
+    return;
+  }
+  try {
+    const { rows } = await getPool().query<DiagnosticAttemptQueryRow>(
+      `SELECT a.correct, a.confidence, a.time_seconds,
+              q.subject, q.subtopic, q.tension_point,
+              ac.forensic_tags AS selected_forensic_tags
+         FROM student_attempts a
+         JOIN questions q ON q.question_id = a.question_id
+         LEFT JOIN answer_choices ac ON ac.choice_id = a.selected_choice_id
+        WHERE a.set_id = $1
+        ORDER BY a.attempted_at ASC`,
+      [id],
+    );
+    const attempts: DiagnosticAttemptRow[] = rows.map((r) => ({
+      correct: r.correct,
+      confidence: r.confidence,
+      time_seconds: r.time_seconds,
+      subject: r.subject,
+      subtopic: r.subtopic,
+      tension_point: r.tension_point,
+      selected_forensic_tags: parseStringArray(r.selected_forensic_tags),
+    }));
+    res.json({ diagnostic_id: id, ...computeDiagnosticResults(attempts) });
+  } catch (err) {
+    console.error("[diagnostic results] failed:", err);
+    res.status(500).json({ error: "internal server error" });
+  }
+});
+
 // ----- question flow (Hearsay seam) -----
 // Real handlers live in src/routes/*. The placeholders that used to sit here
 // (returning fixed strings) were replaced after Handoff 10 wired the DB-backed
@@ -308,12 +421,22 @@ app.post("/api/diagnostic/start", async (req, res) => {
 registerQuestionsRoutes(app);
 registerAttemptsRoutes(app);
 registerRedZonesRoutes(app);
+registerKnowledgeRoutes(app);
+registerMeRoutes(app);
+registerMeRedZonesRoutes(app);
+registerTrapsRoutes(app);
+registerBootCampsRoutes(app);
+registerDrillsRoutes(app);
+registerTensionsRoutes(app);
 
 // ----- checkout -----
 const checkoutBody = z.object({
+  product_code: z.literal("barmatrix_flagship_999").optional(),
   payment_plan: z.enum(["pay_in_full", "two_pay_500_499"]),
   partner_id: z.string().uuid().nullable().optional(),
   referral_click_id: z.string().uuid().nullable().optional(),
+  success_url: z.string().url().optional(),
+  cancel_url: z.string().url().optional(),
 });
 
 app.post("/api/checkout/create-session", async (req, res) => {
@@ -374,40 +497,100 @@ app.post("/api/checkout/create-session", async (req, res) => {
   }
 
   try {
-    // Both flows use Checkout in payment mode. Pay-in-full charges $999
-    // one-time. Two-pay charges $500 now AND saves the card off_session so
-    // the webhook handler can spin up a $0 anchor subscription that fires
-    // the $499 second installment at day 30 and cancels at day 60.
-    const sessionParams: Stripe.Checkout.SessionCreateParams =
-      parse.data.payment_plan === "pay_in_full"
-        ? {
-            mode: "payment",
-            line_items: [
-              { price: config.stripe.pricePayInFull, quantity: 1 },
-            ],
-            success_url: config.urls.checkoutSuccess,
-            cancel_url: config.urls.checkoutCancel,
-            metadata,
-          }
-        : {
-            mode: "payment",
-            line_items: [
-              { price: config.stripe.pricePayInTwo, quantity: 1 }, // $500
-            ],
-            customer_creation: "always",
-            payment_intent_data: {
-              setup_future_usage: "off_session",
-              metadata,
-            },
-            success_url: config.urls.checkoutSuccess,
-            cancel_url: config.urls.checkoutCancel,
-            metadata,
-          };
+    const { successUrl, cancelUrl } = resolveCheckoutReturnUrls(parse.data, {
+      frontendUrl: config.urls.frontend,
+      checkoutSuccess: config.urls.checkoutSuccess,
+      checkoutCancel: config.urls.checkoutCancel,
+      nodeEnv: config.nodeEnv,
+    });
+
+    const sessionParams = buildCheckoutSessionParams({
+      paymentPlan: parse.data.payment_plan,
+      metadata,
+      successUrl,
+      cancelUrl,
+      pricePayInFull: config.stripe.pricePayInFull,
+      pricePayInTwo: config.stripe.pricePayInTwo,
+    });
+
     const session = await stripeClient.checkout.sessions.create(sessionParams);
     res.json({ checkout_url: session.url, session_id: session.id });
   } catch (err) {
     console.error("[checkout] failed:", err);
     res.status(500).json({ error: "checkout session creation failed" });
+  }
+});
+
+// ----- billing portal -----
+// Contract: API_CONTRACTS.md "POST /api/billing/create-portal-session".
+// The API has no auth middleware yet, so the only verifiable identity signal
+// is a checkout session that maps to a real purchase row. When Clerk auth is
+// wired into the API, resolve the Stripe customer from the authenticated
+// student instead of (or in addition to) the checkout session.
+const portalBody = z.object({
+  checkout_session_id: z.string().min(1).nullable().optional(),
+  return_url: z.string().url(),
+});
+
+app.post("/api/billing/create-portal-session", async (req, res) => {
+  const parse = portalBody.safeParse(req.body);
+  if (!parse.success) {
+    res.status(400).json({ error: parse.error.flatten() });
+    return;
+  }
+  const { checkout_session_id: checkoutSessionId, return_url: returnUrl } =
+    parse.data;
+
+  if (!checkoutSessionId) {
+    res.status(401).json({ error: "no verified checkout session" });
+    return;
+  }
+
+  // Resolve the Stripe customer from our own purchase record first.
+  let customerId: string | null = null;
+  try {
+    const { rows } = await getPool().query<{
+      stripe_customer_id: string | null;
+    }>(
+      "SELECT stripe_customer_id FROM purchases WHERE stripe_checkout_session_id = $1 LIMIT 1",
+      [checkoutSessionId],
+    );
+    customerId = rows[0]?.stripe_customer_id ?? null;
+  } catch (err) {
+    console.error("[billing portal] purchase lookup failed:", err);
+    res.status(500).json({ error: "internal server error" });
+    return;
+  }
+
+  // Fallback: pay-in-full sessions may not have created a Stripe Customer in
+  // our row. Ask Stripe directly — this also verifies the session is real.
+  if (!customerId) {
+    try {
+      const session =
+        await stripeClient.checkout.sessions.retrieve(checkoutSessionId);
+      customerId =
+        typeof session.customer === "string"
+          ? session.customer
+          : (session.customer?.id ?? null);
+    } catch (err) {
+      console.error("[billing portal] session retrieve failed:", err);
+    }
+  }
+
+  if (!customerId) {
+    res.status(404).json({ error: "no enrollment matched to this session" });
+    return;
+  }
+
+  try {
+    const portal = await stripeClient.billingPortal.sessions.create({
+      customer: customerId,
+      return_url: returnUrl,
+    });
+    res.json({ portal_url: portal.url, session_id: portal.id });
+  } catch (err) {
+    console.error("[billing portal] stripe portal create failed:", err);
+    res.status(502).json({ error: "could not create billing portal session" });
   }
 });
 
