@@ -79,6 +79,26 @@ export function isOfficialTrap(slug: string): boolean {
   return slug !== "correct_answer" && OFFICIAL_WRONG_ANSWER_ARCHITECTURES.has(slug);
 }
 
+// Provenance/meta tags that ride along on most wrong choices to record HOW the
+// distractor's explanation was produced — not how the wrong answer is built.
+// source_combined_explanation alone tags ~1,800 questions / ~5,200 choices, so
+// it is near-universal and would otherwise sit atop the catalog ahead of every
+// real architecture. These are excluded from browsing, like correct_answer. The
+// whole `source_` namespace is reserved for provenance, so future source_* tags
+// drop out automatically.
+export const NON_DISCRIMINATING_TRAP_SLUGS: readonly string[] = [
+  "source_combined_explanation",
+  "source_combined_explanation_fallback",
+];
+
+const NON_DISCRIMINATING_TRAP_SET: ReadonlySet<string> = new Set(
+  NON_DISCRIMINATING_TRAP_SLUGS,
+);
+
+export function isNonDiscriminatingTrapSlug(slug: string): boolean {
+  return NON_DISCRIMINATING_TRAP_SET.has(slug) || slug.startsWith("source_");
+}
+
 export function humanizeTrapSlug(slug: string): string {
   const cleaned = slug.replace(/[_-]+/g, " ").trim();
   if (!cleaned) return slug;
@@ -172,6 +192,7 @@ export function buildTrapListQuery(includeHidden: boolean): TrapQuery {
            WHERE ac.is_correct = 0 AND ${status}
         ) t
        WHERE t.slug IS NOT NULL AND t.slug <> '' AND t.slug <> 'correct_answer'
+         AND t.slug NOT IN (${NON_DISCRIMINATING_TRAP_SLUGS.map((s) => `'${s}'`).join(", ")})
        GROUP BY t.slug, t.kind
        ORDER BY question_count DESC, t.slug ASC`,
     values: [],
@@ -393,7 +414,14 @@ export function shapeTrapList(rows: TrapListRow[]): TrapListResponse {
 
   for (const row of rows) {
     const slug = typeof row.slug === "string" ? row.slug : "";
+    // Never surface a trap the user cannot open or that isn't a real architecture:
+    // the correct-answer tag, provenance/meta tags, and malformed slugs (e.g. the
+    // comma-joined compound elements found in forensic_tags) that the detail route
+    // rejects via normalizeTrapSlug/TRAP_SLUG_RE. Defense-in-depth alongside the
+    // SQL exclusions so a slug that slips through aggregation still never lists.
     if (!slug || slug === "correct_answer") continue;
+    if (isNonDiscriminatingTrapSlug(slug)) continue;
+    if (!TRAP_SLUG_RE.test(slug)) continue;
     const official = isOfficialTrap(slug);
     const entry: TrapEntry = {
       slug,

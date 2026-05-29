@@ -12,7 +12,9 @@ import {
   clampTrapPage,
   clampTrapQuestionsLimit,
   humanizeTrapSlug,
+  isNonDiscriminatingTrapSlug,
   isOfficialTrap,
+  NON_DISCRIMINATING_TRAP_SLUGS,
   normalizeTrapSlug,
   resolveIncludeHidden,
   shapeTrapDetail,
@@ -57,6 +59,29 @@ describe("official trap classification", () => {
     // correct_answer is in the canonical array but only ever tags the correct
     // choice, which trap queries filter out (is_correct = 0).
     assert.equal(isOfficialTrap("correct_answer"), false);
+  });
+});
+
+describe("non-discriminating trap exclusion", () => {
+  it("flags source_ provenance/meta tags as non-discriminating", () => {
+    // source_combined_explanation rides along on ~1,800 wrong choices to record
+    // how the explanation was generated — it is provenance, not an architecture.
+    assert.equal(isNonDiscriminatingTrapSlug("source_combined_explanation"), true);
+    assert.equal(isNonDiscriminatingTrapSlug("source_combined_explanation_fallback"), true);
+    // The whole source_ namespace is reserved provenance, so future tags drop too.
+    assert.equal(isNonDiscriminatingTrapSlug("source_anything_new"), true);
+  });
+
+  it("does not flag real architectures, even ones that merely contain 'source'", () => {
+    assert.equal(isNonDiscriminatingTrapSlug("overbroad_rule"), false);
+    assert.equal(isNonDiscriminatingTrapSlug("wrong_party"), false);
+    assert.equal(isNonDiscriminatingTrapSlug("wrong_power_source"), false);
+    assert.equal(isNonDiscriminatingTrapSlug("standard_source_missed"), false);
+  });
+
+  it("publishes the known provenance tags", () => {
+    assert.ok(NON_DISCRIMINATING_TRAP_SLUGS.includes("source_combined_explanation"));
+    assert.ok(NON_DISCRIMINATING_TRAP_SLUGS.includes("source_combined_explanation_fallback"));
   });
 });
 
@@ -116,6 +141,16 @@ describe("list query", () => {
     const query = buildTrapListQuery(true);
     assert.match(query.sql, /q\.status IN \('active', 'hidden'\)/);
     assert.doesNotMatch(query.sql, /q\.status = 'active'/);
+  });
+
+  it("excludes non-discriminating provenance tags from the catalog query", () => {
+    const query = buildTrapListQuery(false);
+    assert.match(
+      query.sql,
+      /t\.slug NOT IN \('source_combined_explanation', 'source_combined_explanation_fallback'\)/,
+    );
+    // Exclusions are inlined code constants, never user input — values stay empty.
+    assert.deepEqual(query.values, []);
   });
 });
 
@@ -177,6 +212,29 @@ describe("list shaping", () => {
     assert.equal(shaped.totals.official_count, 2);
     assert.equal(shaped.totals.architecture_count, 2);
     assert.equal(shaped.totals.misconception_count, 2);
+  });
+
+  it("drops provenance/meta tags and unopenable compound slugs, keeping a real headline", () => {
+    const rows: TrapListRow[] = [
+      { slug: "overbroad_rule", kind: "forensic", question_count: 238, choice_count: 248 },
+      { slug: "source_combined_explanation", kind: "forensic", question_count: 1811, choice_count: 5247 },
+      { slug: "source_combined_explanation_fallback", kind: "forensic", question_count: 137, choice_count: 186 },
+      // A single forensic_tags element that is actually two comma-joined tags. The
+      // detail route's normalizeTrapSlug rejects commas/spaces, so it is unopenable.
+      { slug: "overbroad_rule, wrong_standard", kind: "forensic", question_count: 60, choice_count: 71 },
+      { slug: "wrong_exception", kind: "forensic", question_count: 31, choice_count: 34 },
+    ];
+
+    const shaped = shapeTrapList(rows);
+    const slugs = shaped.architecture.map((t) => t.slug);
+
+    // Only the clean, openable single-tag architectures survive, in input order.
+    assert.deepEqual(slugs, ["overbroad_rule", "wrong_exception"]);
+    // The headline is a real wrong-answer architecture, not a near-universal meta tag.
+    assert.equal(shaped.architecture[0]?.slug, "overbroad_rule");
+    assert.equal(slugs.some((s) => s.startsWith("source_")), false);
+    assert.equal(slugs.some((s) => s.includes(",") || s.includes(" ")), false);
+    assert.equal(shaped.totals.architecture_count, 2);
   });
 });
 
