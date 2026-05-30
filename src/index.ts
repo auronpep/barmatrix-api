@@ -33,6 +33,7 @@ import { registerDrillsRoutes } from "./routes/drills.js";
 import { registerTensionsRoutes } from "./routes/tensions.js";
 import { registerFoundationsRoutes } from "./routes/foundations.js";
 import { registerC3Routes } from "./routes/c3.js";
+import { registerCertificationRoutes } from "./routes/certification.js";
 import {
   computeDiagnosticResults,
   selectDiagnosticQuestionIds,
@@ -442,6 +443,7 @@ registerDrillsRoutes(app);
 registerTensionsRoutes(app);
 registerFoundationsRoutes(app);
 registerC3Routes(app);
+registerCertificationRoutes(app);
 
 // ----- checkout -----
 const checkoutBody = z.object({
