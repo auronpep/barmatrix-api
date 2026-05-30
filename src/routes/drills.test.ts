@@ -83,7 +83,6 @@ describe("normalizeStartInput", () => {
     assert.equal(r.kind, "tension");
     assert.equal(r.slug, "effect_on_listener");
     assert.equal(r.size, DEFAULT_DRILL_SIZE);
-    assert.equal(r.student_id, null);
   });
   it("requires a slug for tension/trap drills", () => {
     assert.throws(() => normalizeStartInput({ kind: "tension" }), DrillInputError);
@@ -111,17 +110,6 @@ describe("normalizeStartInput", () => {
     assert.throws(
       () => normalizeStartInput({ kind: "trap", slug: "x", size: 3.5 }),
       DrillInputError,
-    );
-  });
-  it("validates student_id as a uuid when present", () => {
-    assert.throws(
-      () => normalizeStartInput({ kind: "trap", slug: "x", student_id: "not-a-uuid" }),
-      DrillInputError,
-    );
-    const uuid = "11111111-1111-1111-1111-111111111111";
-    assert.equal(
-      normalizeStartInput({ kind: "trap", slug: "x", student_id: uuid }).student_id,
-      uuid,
     );
   });
   it("rejects a non-object body", () => {

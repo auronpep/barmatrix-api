@@ -6,13 +6,12 @@
 //   GET  /api/drills/:drill_id               — drill detail + progress
 //   POST /api/drills/:drill_id/complete      — aggregate attempts, compute mastery + red-zone snapshot
 //
-// Identity model mirrors routes/boot-camps.ts: start accepts an optional
-// student_id (else mints a synthetic anonymous student); everything afterward is
-// keyed by the drill's own assignment_id, which is the set_id the runner tags
-// every attempt with. Progress is therefore aggregated by set_id ALONE — the
-// id is globally unique, so this captures attempts whether routes/attempts.ts
-// attributed them to a signed-in student (via Clerk) or to an anonymous row.
-// A client student_id is only used to read that student's red-zone snapshot.
+// Identity model: start requires an enrolled Clerk session (requireEnrollment
+// middleware resolves the student server-side). Everything afterward is keyed by
+// the drill's own assignment_id, which is the set_id the runner tags every attempt
+// with. Progress is aggregated by set_id — the id is globally unique, so this
+// captures attempts whether made by a signed-in enrolled student or, for other
+// read endpoints, attributed via the Clerk token. No anonymous student minting.
 //
 // SQL is MySQL 8 (see BARMATRIX/engineering/SCHEMA_MYSQL.sql): question sets are
 // pinned as a JSON array, randomized with ORDER BY RAND(), trap tags matched
@@ -48,7 +47,6 @@ export interface NormalizedStartInput {
   red_zone_dimension: string | null;
   red_zone_tag: string | null;
   size: number;
-  student_id: string | null;
 }
 
 export class DrillInputError extends Error {
@@ -113,14 +111,6 @@ export function normalizeStartInput(raw: unknown): NormalizedStartInput {
     size = Math.min(MAX_DRILL_SIZE, Math.max(MIN_DRILL_SIZE, n));
   }
 
-  let studentId: string | null = null;
-  if (b.student_id !== undefined && b.student_id !== null && b.student_id !== "") {
-    if (typeof b.student_id !== "string" || !UUID_RE.test(b.student_id)) {
-      throw new DrillInputError("student_id must be a uuid");
-    }
-    studentId = b.student_id;
-  }
-
   let slug: string | null = null;
   let redZoneDimension: string | null = null;
   let redZoneTag: string | null = null;
@@ -151,7 +141,6 @@ export function normalizeStartInput(raw: unknown): NormalizedStartInput {
     red_zone_dimension: redZoneDimension,
     red_zone_tag: redZoneTag,
     size,
-    student_id: studentId,
   };
 }
 
