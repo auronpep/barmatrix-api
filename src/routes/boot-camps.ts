@@ -30,6 +30,7 @@ import {
   summarizeDayProgress,
   type DayQuestionMap,
 } from "../lib/bootcamps.js";
+import { requireEnrollment } from "../lib/clerk-entitlement.js";
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const SLUG_RE = /^[a-z0-9][a-z0-9-]{0,127}$/i;
@@ -245,27 +246,6 @@ async function answeredMapForSet(
   return map;
 }
 
-async function resolveStudentId(
-  client: DbClient,
-  provided: string | undefined,
-): Promise<{ studentId: string; anonymous: boolean }> {
-  if (provided) return { studentId: provided, anonymous: false };
-  // Mirror routes/attempts.ts: mint a synthetic anonymous student.
-  const anonEmail = `anon-bootcamp-${randomUUID()}@barmatrix.local`;
-  await client.query(
-    `INSERT INTO students (email, full_name, status, consent_flags)
-          VALUES ($1, 'Anonymous boot camp', 'anonymous', JSON_OBJECT('anonymous', true))
-     ON DUPLICATE KEY UPDATE status = status`,
-    [anonEmail],
-  );
-  const { rows } = await client.query<{ student_id: string }>(
-    "SELECT student_id FROM students WHERE email = $1 LIMIT 1",
-    [anonEmail],
-  );
-  const studentId = rows[0]?.student_id;
-  if (!studentId) throw new Error("failed to allocate anonymous student");
-  return { studentId, anonymous: true };
-}
 
 const startBody = z.object({
   student_id: z.string().uuid().optional(),
@@ -549,7 +529,7 @@ export function registerBootCampsRoutes(app: Express): void {
     }
   });
 
-  app.post("/api/boot-camps/:slug/start", async (req: Request, res: Response) => {
+  app.post("/api/boot-camps/:slug/start", ...requireEnrollment(), async (req: Request, res: Response) => {
     const slug = req.params.slug;
     if (typeof slug !== "string" || !SLUG_RE.test(slug)) {
       res.status(400).json({ error: "invalid slug" });
@@ -561,6 +541,7 @@ export function registerBootCampsRoutes(app: Express): void {
       return;
     }
     const includeHidden = parsed.data.include_hidden === true;
+    const studentId = res.locals.enrolledStudentId as string;
 
     const pool = getPool();
     const client = await pool.connect();
@@ -580,8 +561,6 @@ export function registerBootCampsRoutes(app: Express): void {
         res.status(404).json({ error: "boot camp not found" });
         return;
       }
-
-      const { studentId } = await resolveStudentId(client, parsed.data.student_id);
 
       // Resume: a known student already enrolled returns the existing session.
       const { rows: existingRows } = await client.query<SessionRow>(
