@@ -248,7 +248,6 @@ async function answeredMapForSet(
 
 
 const startBody = z.object({
-  student_id: z.string().uuid().optional(),
   include_hidden: z.boolean().optional(),
 });
 
