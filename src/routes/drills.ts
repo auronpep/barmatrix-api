@@ -22,6 +22,7 @@ import type { Express, Request, Response } from "express";
 import { randomUUID } from "node:crypto";
 import { getPool, type DbClient, type DbPool } from "../db.js";
 import { kebabToTitle } from "../lib/format.js";
+import { requireEnrollment } from "../lib/clerk-entitlement.js";
 
 const UUID_RE =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -206,9 +207,6 @@ function isTruthy(value: number | boolean): boolean {
 interface QuestionIdRow {
   question_id: string;
 }
-interface StudentIdRow {
-  student_id: string;
-}
 interface CatalogRow {
   slug: string;
   question_count: number | string;
@@ -337,20 +335,6 @@ async function selectQuestionIds(
   return selectByTrapTag(client, input.red_zone_tag ?? "", input.size);
 }
 
-async function ensureAnonymousStudent(client: DbClient): Promise<string | null> {
-  const anonEmail = `anon-drill-${randomUUID()}@barmatrix.local`;
-  await client.query(
-    `INSERT INTO students (email, full_name, status, consent_flags)
-          VALUES ($1, 'Anonymous drill', 'anonymous', JSON_OBJECT('anonymous', true))
-     ON DUPLICATE KEY UPDATE status = status`,
-    [anonEmail],
-  );
-  const { rows } = await client.query<StudentIdRow>(
-    "SELECT student_id FROM students WHERE email = $1 LIMIT 1",
-    [anonEmail],
-  );
-  return rows[0]?.student_id ?? null;
-}
 
 /**
  * Progress for a drill, aggregated by set_id ALONE (the assignment_id is unique,
@@ -561,7 +545,9 @@ export function registerDrillsRoutes(app: Express): void {
   });
 
   // ---- start -------------------------------------------------------------
-  app.post("/api/drills/start", async (req: Request, res: Response) => {
+  app.post("/api/drills/start", ...requireEnrollment(), async (req: Request, res: Response) => {
+    const studentId = res.locals.enrolledStudentId as string;
+
     let input: NormalizedStartInput;
     try {
       input = normalizeStartInput(req.body);
@@ -578,16 +564,6 @@ export function registerDrillsRoutes(app: Express): void {
     const client = await pool.connect();
     try {
       await client.query("BEGIN");
-
-      let studentId = input.student_id;
-      if (studentId === null) {
-        studentId = await ensureAnonymousStudent(client);
-        if (studentId === null) {
-          await client.query("ROLLBACK");
-          res.status(500).json({ error: "failed to allocate anonymous student" });
-          return;
-        }
-      }
 
       const ids = await selectQuestionIds(client, input);
 
