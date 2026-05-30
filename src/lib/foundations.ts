@@ -48,6 +48,7 @@ export interface FoundationsCourse {
   title: string;
   subtitle: string;
   tagline: string;
+  provenance: string;
   version: string;
   lesson_count: number;
   drill_item_count: number;
@@ -101,6 +102,7 @@ export interface FoundationsOutlineResponse {
   title: string;
   subtitle: string;
   tagline: string;
+  provenance: string;
   version: string;
   lesson_count: number;
   drill_item_count: number;
@@ -213,6 +215,7 @@ export function shapeOutline(rows: ProgressRow[]): FoundationsOutlineResponse {
     title: course.title,
     subtitle: course.subtitle,
     tagline: course.tagline,
+    provenance: course.provenance,
     version: course.version,
     lesson_count: course.lesson_count,
     drill_item_count: course.drill_item_count,
