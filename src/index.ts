@@ -31,6 +31,7 @@ import { registerTrapsRoutes } from "./routes/traps.js";
 import { registerBootCampsRoutes } from "./routes/boot-camps.js";
 import { registerDrillsRoutes } from "./routes/drills.js";
 import { registerTensionsRoutes } from "./routes/tensions.js";
+import { registerFoundationsRoutes } from "./routes/foundations.js";
 import {
   computeDiagnosticResults,
   selectDiagnosticQuestionIds,
@@ -438,6 +439,7 @@ registerTrapsRoutes(app);
 registerBootCampsRoutes(app);
 registerDrillsRoutes(app);
 registerTensionsRoutes(app);
+registerFoundationsRoutes(app);
 
 // ----- checkout -----
 const checkoutBody = z.object({
