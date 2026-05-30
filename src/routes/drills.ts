@@ -458,17 +458,8 @@ export function registerDrillsRoutes(app: Express): void {
   });
 
   // ---- prescribed --------------------------------------------------------
-  app.get("/api/drills/prescribed", async (req: Request, res: Response) => {
-    const studentId =
-      typeof req.query.student_id === "string" ? req.query.student_id : "";
-    if (!UUID_RE.test(studentId)) {
-      res.json({
-        suggested: [],
-        in_progress: [],
-        message: "Take the diagnostic to unlock prescribed drills.",
-      });
-      return;
-    }
+  app.get("/api/drills/prescribed", ...requireEnrollment(), async (_req: Request, res: Response) => {
+    const studentId = res.locals.enrolledStudentId as string;
 
     try {
       const pool = getPool();
