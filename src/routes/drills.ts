@@ -1,8 +1,8 @@
 // Drill Library — Web Component 04 (HANDOFFS/WEB/04-drill-library.md).
 //
 //   GET  /api/drills/catalog                 — free drills by tension / trap
-//   GET  /api/drills/prescribed?student_id=  — red-zone-driven suggestions + resumable in-progress
-//   POST /api/drills/start                   — pin a question set + create a drill_assignments row
+//   GET  /api/drills/prescribed              — red-zone suggestions + resumable (enrollment required)
+//   POST /api/drills/start                   — pin a question set (enrollment required)
 //   GET  /api/drills/:drill_id               — drill detail + progress
 //   POST /api/drills/:drill_id/complete      — aggregate attempts, compute mastery + red-zone snapshot
 //
