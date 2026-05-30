@@ -32,6 +32,7 @@ import { registerBootCampsRoutes } from "./routes/boot-camps.js";
 import { registerDrillsRoutes } from "./routes/drills.js";
 import { registerTensionsRoutes } from "./routes/tensions.js";
 import { registerFoundationsRoutes } from "./routes/foundations.js";
+import { registerC3Routes } from "./routes/c3.js";
 import {
   computeDiagnosticResults,
   selectDiagnosticQuestionIds,
@@ -440,6 +441,7 @@ registerBootCampsRoutes(app);
 registerDrillsRoutes(app);
 registerTensionsRoutes(app);
 registerFoundationsRoutes(app);
+registerC3Routes(app);
 
 // ----- checkout -----
 const checkoutBody = z.object({
