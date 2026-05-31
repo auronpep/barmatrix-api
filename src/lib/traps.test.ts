@@ -134,7 +134,7 @@ describe("list query", () => {
     assert.match(query.sql, /q\.status = 'active'/);
     assert.match(query.sql, /t\.slug <> 'correct_answer'/);
     assert.doesNotMatch(query.sql, /status IN \('active', 'hidden'\)/);
-    assert.deepEqual(query.values, []);
+    assert.deepEqual(query.values, NON_DISCRIMINATING_TRAP_SLUGS);
   });
 
   it("widens the status filter when hidden rows are included", () => {
@@ -145,12 +145,12 @@ describe("list query", () => {
 
   it("excludes non-discriminating provenance tags from the catalog query", () => {
     const query = buildTrapListQuery(false);
-    assert.match(
-      query.sql,
-      /t\.slug NOT IN \('source_combined_explanation', 'source_combined_explanation_fallback'\)/,
-    );
-    // Exclusions are inlined code constants, never user input — values stay empty.
-    assert.deepEqual(query.values, []);
+    assert.match(query.sql, /t\.slug NOT IN \(\$1, \$2\)/);
+    // Exclusions are now parameterized to enforce SQL best practices.
+    assert.deepEqual(query.values, [
+      "source_combined_explanation",
+      "source_combined_explanation_fallback",
+    ]);
   });
 });
 

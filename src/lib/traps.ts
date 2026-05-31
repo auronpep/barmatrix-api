@@ -164,10 +164,24 @@ function statusPredicate(alias: string, includeHidden: boolean): string {
     : `${alias}.status = 'active'`;
 }
 
+// Build parameterized IN clause for non-discriminating trap slugs.
+// Returns the SQL fragment and values that should be added to the query.
+function nonDiscriminatingTrapFilter(): {
+  sql: string;
+  values: string[];
+} {
+  const placeholders = NON_DISCRIMINATING_TRAP_SLUGS.map((_, i) => `$${i + 1}`).join(", ");
+  return {
+    sql: `t.slug NOT IN (${placeholders})`,
+    values: NON_DISCRIMINATING_TRAP_SLUGS,
+  };
+}
+
 // ---- list ----
 
 export function buildTrapListQuery(includeHidden: boolean): TrapQuery {
   const status = statusPredicate("q", includeHidden);
+  const nonDisc = nonDiscriminatingTrapFilter();
   return {
     sql: `
       SELECT t.slug,
@@ -192,10 +206,10 @@ export function buildTrapListQuery(includeHidden: boolean): TrapQuery {
            WHERE ac.is_correct = 0 AND ${status}
         ) t
        WHERE t.slug IS NOT NULL AND t.slug <> '' AND t.slug <> 'correct_answer'
-         AND t.slug NOT IN (${NON_DISCRIMINATING_TRAP_SLUGS.map((s) => `'${s}'`).join(", ")})
+         AND ${nonDisc.sql}
        GROUP BY t.slug, t.kind
        ORDER BY question_count DESC, t.slug ASC`,
-    values: [],
+    values: nonDisc.values,
   };
 }
 

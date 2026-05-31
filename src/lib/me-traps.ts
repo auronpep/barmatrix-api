@@ -27,6 +27,23 @@ function statusPredicate(alias: string, includeHidden: boolean): string {
     : `${alias}.status = 'active'`;
 }
 
+// Build parameterized IN clause for non-discriminating trap slugs.
+// Returns the SQL fragment and values that should be added to the query.
+// Note: caller is responsible for adjusting placeholder numbers if other
+// parameters are used before this filter.
+function nonDiscriminatingTrapFilter(startPlaceholder: number = 1): {
+  sql: string;
+  values: string[];
+} {
+  const placeholders = NON_DISCRIMINATING_TRAP_SLUGS.map(
+    (_, i) => `$${startPlaceholder + i}`,
+  ).join(", ");
+  return {
+    sql: `t.slug NOT IN (${placeholders})`,
+    values: NON_DISCRIMINATING_TRAP_SLUGS,
+  };
+}
+
 // ---- profile (GET /api/me/traps) ----
 
 export function buildMyTrapProfileQuery(
@@ -34,6 +51,7 @@ export function buildMyTrapProfileQuery(
   includeHidden: boolean,
 ): TrapQuery {
   const status = statusPredicate("q", includeHidden);
+  const nonDisc = nonDiscriminatingTrapFilter(2); // Start after $1 (studentId)
   return {
     sql: `
       SELECT t.slug,
@@ -57,10 +75,10 @@ export function buildMyTrapProfileQuery(
            WHERE a.student_id = $1 AND a.correct = 0 AND ${status}
         ) t
        WHERE t.slug IS NOT NULL AND t.slug <> '' AND t.slug <> 'correct_answer'
-         AND t.slug NOT IN (${NON_DISCRIMINATING_TRAP_SLUGS.map((s) => `'${s}'`).join(", ")})
+         AND ${nonDisc.sql}
        GROUP BY t.slug, t.kind
        ORDER BY fell_count DESC, t.slug ASC`,
-    values: [studentId],
+    values: [studentId, ...nonDisc.values],
   };
 }
 
