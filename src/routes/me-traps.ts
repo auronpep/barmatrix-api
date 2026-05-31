@@ -11,6 +11,7 @@ import type { Express, Request, Response } from "express";
 import { clerkMiddleware } from "@clerk/express";
 import { getPool } from "../db.js";
 import { resolveClerkStudent } from "../lib/me-student.js";
+import { humanizeTrapSlug } from "../lib/traps.js";
 import {
   buildMyTrapAggregateQuery,
   buildMyTrapOccurrencesQuery,
@@ -116,7 +117,7 @@ export function registerMeTrapsRoutes(app: Express): void {
         return;
       }
       if (resolution.kind === "not_enrolled") {
-        res.json(emptyHistory(slug, slug));
+        res.json(emptyHistory(slug, humanizeTrapSlug(slug)));
         return;
       }
 

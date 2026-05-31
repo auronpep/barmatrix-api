@@ -12,7 +12,6 @@ import {
   isNonDiscriminatingTrapSlug,
   isOfficialTrap,
   NON_DISCRIMINATING_TRAP_SLUGS,
-  TrapInputError,
   type TrapKind,
   type TrapQuery,
 } from "./traps.js";
@@ -20,15 +19,7 @@ import {
 const TRAP_SLUG_RE = /^[A-Za-z0-9_-]{1,128}$/;
 const RECENT_OCCURRENCES_LIMIT = 8;
 
-export { TrapInputError };
-
-export function normalizeTrapSlug(raw: unknown): string {
-  const value = typeof raw === "string" ? raw.trim() : "";
-  if (!value || !TRAP_SLUG_RE.test(value)) {
-    throw new TrapInputError("invalid trap slug");
-  }
-  return value;
-}
+export { TrapInputError, normalizeTrapSlug } from "./traps.js";
 
 function statusPredicate(alias: string, includeHidden: boolean): string {
   return includeHidden
