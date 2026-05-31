@@ -450,7 +450,7 @@ export function registerMeRedZonesRoutes(app: Express): void {
              FROM student_attempts a
              JOIN questions q ON q.question_id = a.question_id
              LEFT JOIN answer_choices ac ON ac.choice_id = a.selected_choice_id
-            WHERE a.student_id = $1 AND q.${column} = $2 AND a.correct = 0
+            WHERE a.student_id = $1 AND q.${column} = $2 AND a.correct = 0 AND q.status IN (${statusSql})
             ORDER BY a.attempted_at DESC
             LIMIT ${MAX_RECENT_WRONGS}`,
           [studentId, tag],
@@ -462,6 +462,7 @@ export function registerMeRedZonesRoutes(app: Express): void {
             WHERE student_id = $1
               AND red_zone_dimension = $2
               AND red_zone_tag = $3
+              AND status IN ('prescribed', 'in_progress')
             ORDER BY prescribed_at DESC
             LIMIT 1`,
           [studentId, dimension, tag],
