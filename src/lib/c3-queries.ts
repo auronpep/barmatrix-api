@@ -9,6 +9,7 @@ export const ANNOTATED = "an.verdict IN ('PASS','FORK_OR_SPLIT')";
 export function moldStatsQuery(): string {
   return `
     SELECT m.code AS mold_code, m.family AS family, m.default_exam_weight AS weight,
+           m.name AS name, m.lesson_slug AS lesson_slug, m.deck_ref AS deck_ref,
            COUNT(DISTINCT a.attempt_id) AS exposures,
            COUNT(DISTINCT CASE WHEN sel.c3_mold_code = m.code THEN a.attempt_id END) AS bites,
            SUM(an.difficulty) AS w_exposure,
@@ -22,7 +23,7 @@ export function moldStatsQuery(): string {
       LEFT JOIN answer_choices sel
         ON sel.question_id = a.question_id AND sel.letter = a.selected_letter
      WHERE a.student_id = $1
-     GROUP BY m.code, m.family, m.default_exam_weight`;
+     GROUP BY m.code, m.family, m.default_exam_weight, m.name, m.lesson_slug, m.deck_ref`;
 }
 
 export function phaseAccuracyQuery(): string {
