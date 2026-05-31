@@ -10,12 +10,15 @@
 // honor ?include_hidden=true only outside production, per the cross-component
 // contract in HANDOFFS/15_FIVE_COMPONENT_WEB_BUILDOUT.md.
 
-import type { Express, Request, Response } from "express";
+import type { Express, Request, RequestHandler, Response } from "express";
 import { clerkMiddleware } from "@clerk/express";
 import { getPool, type DbPool } from "../db.js";
 import { QUESTION_DIMENSION_COLUMNS } from "../lib/redzones.js";
 import { kebabToTitle, snakeToTitle } from "../lib/format.js";
-import { resolveClerkStudent } from "../lib/me-student.js";
+import {
+  resolveClerkStudent,
+  type StudentResolution,
+} from "../lib/me-student.js";
 
 const ACTIVE_RED_ZONE_THRESHOLD = 0.7;
 const MAX_ZONE_QUESTIONS = 50;
@@ -273,13 +276,24 @@ function emptyDetail(dimension: string, tag: string) {
 // Routes
 // ---------------------------------------------------------------------------
 
-export function registerMeRedZonesRoutes(app: Express): void {
+interface RegisterMeRedZonesDeps {
+  authMiddleware?: RequestHandler;
+  resolveStudent?: (req: Request) => Promise<StudentResolution>;
+}
+
+export function registerMeRedZonesRoutes(
+  app: Express,
+  deps: RegisterMeRedZonesDeps = {},
+): void {
+  const authMiddleware = deps.authMiddleware ?? clerkMiddleware();
+  const resolveStudent = deps.resolveStudent ?? resolveClerkStudent;
+
   app.get(
     "/api/me/red-zones",
-    clerkMiddleware(),
+    authMiddleware,
     async (req: Request, res: Response) => {
       try {
-        const resolution = await resolveClerkStudent(req);
+        const resolution = await resolveStudent(req);
         if (resolution.kind === "unauthenticated") {
           res.status(401).json({ error: "not authenticated" });
           return;
@@ -387,7 +401,7 @@ export function registerMeRedZonesRoutes(app: Express): void {
 
   app.get(
     "/api/me/red-zones/zone",
-    clerkMiddleware(),
+    authMiddleware,
     async (req: Request, res: Response) => {
       const dimension =
         typeof req.query.dimension === "string" ? req.query.dimension : "";
@@ -399,7 +413,7 @@ export function registerMeRedZonesRoutes(app: Express): void {
       }
 
       try {
-        const resolution = await resolveClerkStudent(req);
+        const resolution = await resolveStudent(req);
         if (resolution.kind === "unauthenticated") {
           res.status(401).json({ error: "not authenticated" });
           return;

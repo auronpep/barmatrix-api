@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
-import { describe, it, before } from "node:test";
+import type { Server } from "node:http";
+import { describe, it, before, after } from "node:test";
 import type { Express } from "express";
 
 // Set up environment before importing db
@@ -30,6 +31,8 @@ import { registerMeRedZonesRoutes } from "./me-red-zones.js";
 describe("GET /api/me/red-zones/zone integration tests", () => {
   let app: Express;
   let pool: ReturnType<typeof getPool>;
+  let server: Server;
+  let baseUrl: string;
   const studentId = randomUUID();
   const studentId2 = randomUUID();
   const clerkUserId = randomUUID();
@@ -38,18 +41,35 @@ describe("GET /api/me/red-zones/zone integration tests", () => {
     pool = getPool();
     app = express();
 
-    // Use mock clerk middleware for testing
-    app.use((req: any, res, next) => {
-      const clerkId = req.headers["x-test-clerk-user-id"];
-      if (!clerkId) {
-        res.status(401).json({ error: "not authenticated" });
-        return;
-      }
-      req.auth = { userId: clerkId };
-      next();
+    registerMeRedZonesRoutes(app, {
+      authMiddleware: (_req, _res, next) => next(),
+      resolveStudent: async (req) => {
+        const clerkId = req.headers["x-test-clerk-user-id"];
+        if (!clerkId) return { kind: "unauthenticated" };
+        if (clerkId !== clerkUserId) return { kind: "not_enrolled" };
+        return {
+          kind: "ok",
+          student: {
+            student_id: studentId,
+            student_status: "active",
+            enrolled: true,
+            status: "active",
+            refunded: false,
+          },
+        };
+      },
     });
 
-    registerMeRedZonesRoutes(app);
+    await new Promise<void>((resolve) => {
+      server = app.listen(0, "127.0.0.1", () => {
+        const address = server.address();
+        if (!address || typeof address === "string") {
+          throw new Error("test server did not bind to a TCP port");
+        }
+        baseUrl = `http://127.0.0.1:${address.port}`;
+        resolve();
+      });
+    });
 
     // Set up test data
     try {
@@ -60,27 +80,35 @@ describe("GET /api/me/red-zones/zone integration tests", () => {
     }
   });
 
+  after(async () => {
+    await new Promise<void>((resolve, reject) => {
+      server.close((err) => {
+        if (err) reject(err);
+        else resolve();
+      });
+    });
+    await pool.end();
+  });
+
+  function routeUrl(query: string) {
+    return `${baseUrl}/api/me/red-zones/zone?${query}`;
+  }
+
   async function setupTestData() {
     // Create test student
     await pool.query(
-      `INSERT INTO students (student_id, email, status, enrolled)
-       VALUES ($1, $2, 'active', 1)
+      `INSERT INTO students (student_id, email, status, consent_flags)
+       VALUES ($1, $2, 'active', JSON_OBJECT())
        ON DUPLICATE KEY UPDATE status='active'`,
       [studentId, `student${studentId}@test.local`],
     );
 
     // Create another student to test isolation
     await pool.query(
-      `INSERT INTO students (student_id, email, status, enrolled)
-       VALUES ($1, $2, 'active', 1)
+      `INSERT INTO students (student_id, email, status, consent_flags)
+       VALUES ($1, $2, 'active', JSON_OBJECT())
        ON DUPLICATE KEY UPDATE status='active'`,
       [studentId2, `student${studentId2}@test.local`],
-    );
-
-    // Link student to Clerk user
-    await pool.query(
-      `UPDATE students SET clerk_user_id = $1 WHERE student_id = $2`,
-      [clerkUserId, studentId],
     );
 
     // Create test questions: one active, one hidden
@@ -130,15 +158,15 @@ describe("GET /api/me/red-zones/zone integration tests", () => {
     // Create wrong attempts for both questions
     await pool.query(
       `INSERT INTO student_attempts
-       (attempt_id, student_id, question_id, selected_choice_id, selected_letter, correct, confidence, attempted_at)
-       VALUES ($1, $2, $3, $4, 'A', 0, 5, NOW())`,
+       (attempt_id, student_id, question_id, selected_choice_id, selected_letter, correct, confidence, attempted_at, metadata)
+       VALUES ($1, $2, $3, $4, 'A', 0, 5, NOW(), JSON_OBJECT())`,
       [randomUUID(), studentId, activeQuestionId, activeChoiceId],
     );
 
     await pool.query(
       `INSERT INTO student_attempts
-       (attempt_id, student_id, question_id, selected_choice_id, selected_letter, correct, confidence, attempted_at)
-       VALUES ($1, $2, $3, $4, 'A', 0, 4, NOW())`,
+       (attempt_id, student_id, question_id, selected_choice_id, selected_letter, correct, confidence, attempted_at, metadata)
+       VALUES ($1, $2, $3, $4, 'A', 0, 4, NOW(), JSON_OBJECT())`,
       [randomUUID(), studentId, hiddenQuestionId, hiddenChoiceId],
     );
 
@@ -172,7 +200,7 @@ describe("GET /api/me/red-zones/zone integration tests", () => {
 
   it("returns only ACTIVE wrong answers (excludes hidden questions)", async () => {
     const res = await fetch(
-      "http://localhost:3001/api/me/red-zones/zone?dimension=subject&tag=Evidence",
+      routeUrl("dimension=subject&tag=Evidence"),
       {
         headers: {
           "x-test-clerk-user-id": clerkUserId,
@@ -209,7 +237,7 @@ describe("GET /api/me/red-zones/zone integration tests", () => {
 
   it("returns only ACTIVE drill assignments (excludes completed)", async () => {
     const res = await fetch(
-      "http://localhost:3001/api/me/red-zones/zone?dimension=subject&tag=Evidence",
+      routeUrl("dimension=subject&tag=Evidence"),
       {
         headers: {
           "x-test-clerk-user-id": clerkUserId,
@@ -244,7 +272,7 @@ describe("GET /api/me/red-zones/zone integration tests", () => {
     );
 
     const res = await fetch(
-      "http://localhost:3001/api/me/red-zones/zone?dimension=subject&tag=Evidence",
+      routeUrl("dimension=subject&tag=Evidence"),
       {
         headers: {
           "x-test-clerk-user-id": clerkUserId,
@@ -266,7 +294,7 @@ describe("GET /api/me/red-zones/zone integration tests", () => {
 
   it("validates dimension and tag parameters", async () => {
     const res = await fetch(
-      "http://localhost:3001/api/me/red-zones/zone?dimension=invalid&tag=test",
+      routeUrl("dimension=invalid&tag=test"),
       {
         headers: {
           "x-test-clerk-user-id": clerkUserId,
@@ -281,7 +309,7 @@ describe("GET /api/me/red-zones/zone integration tests", () => {
 
   it("requires authentication", async () => {
     const res = await fetch(
-      "http://localhost:3001/api/me/red-zones/zone?dimension=subject&tag=Evidence",
+      routeUrl("dimension=subject&tag=Evidence"),
     );
 
     assert.equal(res.status, 401, "unauthenticated request should return 401");
