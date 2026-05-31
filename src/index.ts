@@ -44,6 +44,7 @@ import {
 } from "./lib/stripe-event-audit.js";
 import { registerMeRoutes } from "./routes/me.js";
 import { registerMeRedZonesRoutes } from "./routes/me-red-zones.js";
+import { registerMeGamificationRoutes } from "./routes/me-gamification.js";
 import { registerMeTrapsRoutes } from "./routes/me-traps.js";
 import { registerTrapsRoutes } from "./routes/traps.js";
 import { registerBootCampsRoutes } from "./routes/boot-camps.js";
@@ -497,6 +498,7 @@ registerRedZonesRoutes(app);
 registerKnowledgeRoutes(app);
 registerMeRoutes(app);
 registerMeRedZonesRoutes(app);
+registerMeGamificationRoutes(app);
 registerMeTrapsRoutes(app);
 registerTrapsRoutes(app);
 registerBootCampsRoutes(app);
