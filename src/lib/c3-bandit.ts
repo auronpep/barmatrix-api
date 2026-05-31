@@ -2,6 +2,8 @@
 // Thompson sampling over per-mold Beta posteriors, exam-weight tilt, SM-2 spacing
 // gate, and a neutral cohort-boost hook (=0 until Phase 5's item_live_stats lands).
 
+import type { MoldRow } from "./c3-scoring.js";
+
 export type Rng = () => number;
 
 export function mulberry32(seed: number): Rng {
@@ -21,7 +23,7 @@ export function sampleGamma(shape: number, rng: Rng): number {
   }
   const d = shape - 1 / 3;
   const c = 1 / Math.sqrt(9 * d);
-  for (;;) {
+  for (let iter = 0; iter < 1000; iter++) {
     let x = 0, v = 0;
     do {
       const u1 = Math.max(rng(), 1e-12), u2 = rng();
@@ -33,15 +35,15 @@ export function sampleGamma(shape: number, rng: Rng): number {
     if (u < 1 - 0.0331 * x * x * x * x) return d * v;
     if (Math.log(u) < 0.5 * x * x + d * (1 - v + Math.log(v))) return d * v;
   }
+  throw new Error("sampleGamma: sampler did not converge");
 }
 
 export function sampleBeta(a: number, b: number, rng: Rng): number {
   const x = sampleGamma(a, rng);
   const y = sampleGamma(b, rng);
-  return x / (x + y);
+  const sum = x + y;
+  return sum === 0 ? 0.5 : x / sum; // degenerate fallback (uniform) when both underflow to 0
 }
-
-import type { MoldRow } from "./c3-scoring.js";
 
 export const PRIOR_A = 1;          // uniform Beta prior (cold start)
 export const PRIOR_B = 1;

@@ -18,6 +18,14 @@ describe("rng + samplers", () => {
     assert.ok(Math.abs(mean - 3) < 0.3, `gamma mean ${mean}`);
   });
 
+  it("sampleGamma handles shape < 1 (mean ~ shape)", () => {
+    const rng = mulberry32(123);
+    let s = 0; const N = 5000;
+    for (let i = 0; i < N; i++) s += sampleGamma(0.5, rng);
+    const mean = s / N;
+    assert.ok(Math.abs(mean - 0.5) < 0.08, `gamma(0.5) mean ${mean}`);
+  });
+
   it("sampleBeta(a,b) mean ~ a/(a+b) and stays in (0,1)", () => {
     const rng = mulberry32(99);
     let s = 0; const N = 4000;
