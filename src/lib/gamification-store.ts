@@ -45,21 +45,17 @@ export async function grantBootCampActivity(
     await client.query("START TRANSACTION");
 
     // 1. XP ledger — idempotent by (student_id, source_type, source_ref).
+    // INSERT IGNORE (not SELECT-then-INSERT) so a concurrent re-grant of the
+    // same source_ref is a no-op (affectedRows === 0), not a dup-key error.
+    // The UNIQUE(student_id, source_type, source_ref) key enforces exactly-once.
     let xpEarned = 0;
     if (input.xp > 0) {
-      const existing = await client.query<{ one: number }>(
-        `SELECT 1 AS one FROM student_xp_events
-          WHERE student_id = $1 AND source_type = $2 AND source_ref = $3`,
-        [input.studentId, input.sourceType, input.sourceRef],
+      const ins = await client.query(
+        `INSERT IGNORE INTO student_xp_events (xp_event_id, student_id, source_type, source_ref, xp)
+         VALUES ($1, $2, $3, $4, $5)`,
+        [randomUUID(), input.studentId, input.sourceType, input.sourceRef, input.xp],
       );
-      if (existing.rows.length === 0) {
-        await client.query(
-          `INSERT INTO student_xp_events (xp_event_id, student_id, source_type, source_ref, xp)
-           VALUES ($1, $2, $3, $4, $5)`,
-          [randomUUID(), input.studentId, input.sourceType, input.sourceRef, input.xp],
-        );
-        xpEarned = input.xp;
-      }
+      if (ins.rowCount === 1) xpEarned = input.xp;
     }
 
     // 2. Streak — read current row, advance via the pure helper, upsert.
