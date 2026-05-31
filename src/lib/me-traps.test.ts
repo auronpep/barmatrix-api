@@ -19,12 +19,12 @@ describe("shapeMyTrapProfile", () => {
     ];
     const out = shapeMyTrapProfile(rows);
     assert.deepEqual(out.map((t) => t.slug), ["wrong_standard", "physical-injury-required"]);
-    assert.equal(out[0].name, "Wrong Standard");
-    assert.equal(out[0].official, true);
-    assert.equal(out[0].fell_count, 8);
-    assert.equal(out[0].confident_fell_count, 3);
-    assert.equal(out[1].official, false);
-    assert.equal(out[1].kind, "misconception");
+    assert.equal(out[0]!.name, "Wrong Standard");
+    assert.equal(out[0]!.official, true);
+    assert.equal(out[0]!.fell_count, 8);
+    assert.equal(out[0]!.confident_fell_count, 3);
+    assert.equal(out[1]!.official, false);
+    assert.equal(out[1]!.kind, "misconception");
   });
 
   it("orders by fell_count desc then slug asc", () => {
@@ -73,10 +73,10 @@ describe("shapeMyTrapHistory", () => {
     assert.equal(out.official, true);
     assert.equal(out.fell_count, 3);
     assert.equal(out.confident_fell_count, 1);
-    assert.equal(out.recent[0].external_id, "EV-001");
-    assert.equal(out.recent[0].selected_letter, "B");
-    assert.equal(out.recent[0].confidence, 5);
-    assert.equal(out.recent[0].why_wrong, "but isn't");
+    assert.equal(out.recent[0]!.external_id, "EV-001");
+    assert.equal(out.recent[0]!.selected_letter, "B");
+    assert.equal(out.recent[0]!.confidence, 5);
+    assert.equal(out.recent[0]!.why_wrong, "but isn't");
   });
 
   it("returns a zero history when the student never fell for the slug", () => {
