@@ -1,0 +1,35 @@
+# Local MySQL 8 for development + the DB-backed test suite.
+# This is DEV-ONLY. Production runs MariaDB on Hostinger and is unaffected.
+#
+# Quick start (from C:\barmatrix-api):
+#   docker compose -f docker-compose.dev.yml up -d
+#   # load schema into the dev DB and the test DB (run from this folder):
+#   DATABASE_HOST=127.0.0.1 DATABASE_USER=root DATABASE_PASSWORD=devroot DATABASE_NAME=barmatrix   npm run migrate
+#   DATABASE_HOST=127.0.0.1 DATABASE_USER=root DATABASE_PASSWORD=devroot DATABASE_NAME=test_db     npm run migrate
+#
+# Then:
+#   - /health -> 200 once your local .env has DATABASE_HOST=127.0.0.1 (see handoff)
+#   - npm test -> the integration tests connect as test_db / test_user / test_password (created below)
+#
+# Stop:    docker compose -f docker-compose.dev.yml down
+# Reset:   docker compose -f docker-compose.dev.yml down -v   (wipes data volume)
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: barmatrix-mysql-dev
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: devroot
+      MYSQL_DATABASE: barmatrix
+    volumes:
+      - barmatrix-mysql-dev:/var/lib/mysql
+      - ./scripts/dev-mysql-init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-pdevroot"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+volumes:
+  barmatrix-mysql-dev:
