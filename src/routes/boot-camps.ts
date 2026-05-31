@@ -30,7 +30,10 @@ import {
   summarizeDayProgress,
   type DayQuestionMap,
 } from "../lib/bootcamps.js";
-import { requireEnrollment } from "../lib/clerk-entitlement.js";
+import {
+  requireEnrolledResourceOwner,
+  requireEnrollment,
+} from "../lib/clerk-entitlement.js";
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const SLUG_RE = /^[a-z0-9][a-z0-9-]{0,127}$/i;
@@ -277,63 +280,40 @@ export function registerBootCampsRoutes(app: Express): void {
   // ---- Session progress (registered before :slug so "sessions" is not a slug) ----
   app.get(
     "/api/boot-camps/sessions/:session_id",
+    ...requireEnrollment(),
     async (req: Request, res: Response) => {
-      const sessionId = req.params.session_id;
-      if (typeof sessionId !== "string" || !UUID_RE.test(sessionId)) {
-        res.status(400).json({ error: "invalid session id" });
-        return;
-      }
-      try {
+      await withSession(req, res, async ({ session, camp }) => {
         const pool = getPool();
-        const { rows } = await pool.query<SessionRow & CampRow>(
-          `SELECT s.session_id, s.boot_camp_id, s.student_id, s.status,
-                  s.current_day, s.day_question_ids, s.mastery_set_id,
-                  s.mastery_question_ids, s.mastery_score,
-                  c.slug, c.display_name, c.subject, c.description,
-                  c.day_count, c.questions_per_day, c.mastery_question_count,
-                  c.mastery_threshold, c.target_tensions, c.target_traps
-             FROM boot_camp_sessions s
-             JOIN boot_camps c ON c.boot_camp_id = s.boot_camp_id
-            WHERE s.session_id = $1
-            LIMIT 1`,
-          [sessionId],
-        );
-        const row = rows[0];
-        if (!row) {
-          res.status(404).json({ error: "session not found" });
-          return;
-        }
-
-        const dayMap = asDayMap(row.day_question_ids);
-        const masteryIds = asStringArray(row.mastery_question_ids);
+        const dayMap = asDayMap(session.day_question_ids);
+        const masteryIds = asStringArray(session.mastery_question_ids);
         const dayIds = flattenDayQuestionIds(dayMap);
 
-        const dayAnswers = await answeredMapForSet(pool, sessionId, dayIds);
+        const dayAnswers = await answeredMapForSet(pool, session.session_id, dayIds);
         const masteryAnswers = await answeredMapForSet(
           pool,
-          row.mastery_set_id,
+          session.mastery_set_id,
           masteryIds,
         );
 
-        const days = summarizeDayProgress(dayMap, Number(row.current_day), dayAnswers);
+        const days = summarizeDayProgress(dayMap, Number(session.current_day), dayAnswers);
         const masteryAnswered = masteryAnswers.size;
         const masteryCorrect = [...masteryAnswers.values()].filter(Boolean).length;
-        const threshold = Number(row.mastery_threshold);
+        const threshold = Number(camp.mastery_threshold);
         const storedScore =
-          row.mastery_score === null ? null : Number(row.mastery_score);
+          session.mastery_score === null ? null : Number(session.mastery_score);
 
         res.json({
-          session_id: row.session_id,
-          slug: row.slug,
-          display_name: row.display_name,
-          subject: row.subject,
-          status: row.status,
-          current_day: Number(row.current_day),
-          day_count: Number(row.day_count),
+          session_id: session.session_id,
+          slug: camp.slug,
+          display_name: camp.display_name,
+          subject: camp.subject,
+          status: session.status,
+          current_day: Number(session.current_day),
+          day_count: Number(camp.day_count),
           mastery_threshold: threshold,
           days,
           mastery: {
-            unlocked: isMasteryUnlocked(Number(row.current_day), Number(row.day_count)),
+            unlocked: isMasteryUnlocked(Number(session.current_day), Number(camp.day_count)),
             total: masteryIds.length,
             answered: masteryAnswered,
             correct: masteryCorrect,
@@ -341,16 +321,14 @@ export function registerBootCampsRoutes(app: Express): void {
             passed: storedScore !== null && isMasteryPassed(storedScore, threshold),
           },
         });
-      } catch (err) {
-        console.error("[boot-camps session] failed:", err);
-        res.status(500).json({ error: "internal server error" });
-      }
+      });
     },
   );
 
   // ---- Start a day's block (return pinned ids) ----
   app.post(
     "/api/boot-camps/sessions/:session_id/days/:day/start",
+    ...requireEnrollment(),
     async (req: Request, res: Response) => {
       await withDay(req, res, async ({ session, day }) => {
         const dayMap = asDayMap(session.day_question_ids);
@@ -377,6 +355,7 @@ export function registerBootCampsRoutes(app: Express): void {
   // ---- Complete a day's block (advance current_day) ----
   app.post(
     "/api/boot-camps/sessions/:session_id/days/:day/complete",
+    ...requireEnrollment(),
     async (req: Request, res: Response) => {
       const parsedBody = dayCompleteBody.safeParse(req.body ?? {});
       if (!parsedBody.success) {
@@ -435,6 +414,7 @@ export function registerBootCampsRoutes(app: Express): void {
   // ---- Mastery start (ids already pinned at camp start) ----
   app.post(
     "/api/boot-camps/sessions/:session_id/mastery/start",
+    ...requireEnrollment(),
     async (req: Request, res: Response) => {
       await withSession(req, res, async ({ session, camp }) => {
         if (!isMasteryUnlocked(Number(session.current_day), Number(camp.day_count))) {
@@ -453,6 +433,7 @@ export function registerBootCampsRoutes(app: Express): void {
   // ---- Mastery complete (score + finalize, idempotent) ----
   app.post(
     "/api/boot-camps/sessions/:session_id/mastery/complete",
+    ...requireEnrollment(),
     async (req: Request, res: Response) => {
       await withSession(req, res, async ({ session, camp }) => {
         const pool = getPool();
@@ -716,6 +697,7 @@ async function withSession(
       res.status(404).json({ error: "session not found" });
       return;
     }
+    if (!requireEnrolledResourceOwner(res, ctx.session.student_id)) return;
     await handler(ctx);
   } catch (err) {
     console.error("[boot-camps session route] failed:", err);

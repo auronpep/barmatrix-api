@@ -6,8 +6,9 @@
 
 import type Stripe from "stripe";
 import { randomUUID } from "node:crypto";
-import { getPool, type DbClient } from "./db.js";
+import { getPool, type DbClient, type DbPool } from "./db.js";
 import { config } from "./config.js";
+import { assignSeatWithinCapacity } from "./lib/capacity.js";
 
 const REFERRAL_COMMISSION_CENTS = 19900; // $199 per RULES.md
 const COHORT_PRICE_CENTS = 99900; // $999 flat per RULES.md
@@ -25,14 +26,30 @@ interface FulfillCheckoutResult {
   seatNumber?: number;
 }
 
+interface FulfillCheckoutDeps {
+  pool?: Pick<DbPool, "connect">;
+  createId?: () => string;
+  assignSeat?: (
+    client: DbClient,
+    cohortId: string,
+    studentId: string,
+  ) => Promise<number>;
+  logger?: Pick<Console, "log" | "warn">;
+}
+
 /**
  * Convert a completed Stripe Checkout Session into our DB state.
  * Idempotent: a second call with the same session.id returns "duplicate".
  */
 export async function fulfillCheckoutSession(
   input: FulfillCheckoutInput,
+  deps: FulfillCheckoutDeps = {},
 ): Promise<FulfillCheckoutResult> {
   const { session, subscriptionId } = input;
+  const pool = deps.pool ?? getPool();
+  const createId = deps.createId ?? randomUUID;
+  const assignSeat = deps.assignSeat ?? assignSeatWithinCapacity;
+  const logger = deps.logger ?? console;
 
   const email = session.customer_details?.email?.toLowerCase().trim();
   if (!email) {
@@ -56,7 +73,6 @@ export async function fulfillCheckoutSession(
   // recordInstallmentPayment.
   const netCollectedCents = session.amount_total ?? 0;
 
-  const pool = getPool();
   const client = await pool.connect();
   try {
     await client.query("BEGIN");
@@ -109,40 +125,55 @@ export async function fulfillCheckoutSession(
       );
       partnerId = clickLookup.rows[0]?.partner_id ?? null;
       if (!clickLookup.rows[0]) {
-        console.warn(
+        logger.warn(
           `[entitlement] referral_click_id ${referralClickId} on session ${session.id} not found in referral_clicks`,
         );
       }
     }
 
     // ---- Insert purchase ----
-    const purchaseId = randomUUID();
-    await client.query(
-      `INSERT INTO purchases (
-         purchase_id, student_id, cohort_id,
-         stripe_customer_id, stripe_checkout_session_id, stripe_subscription_id,
-         product_code, price_cents, payment_plan, net_collected_cents,
-         partner_id, referral_click_id,
-         refund_status, entitlement_status, metadata
-       )
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, 'none', 'active', JSON_OBJECT())`,
-      [
-        purchaseId,
-        studentId,
-        cohortId,
-        stripeCustomerId,
-        session.id,
-        subscriptionId,
-        PRODUCT_CODE,
-        COHORT_PRICE_CENTS,
-        paymentPlan,
-        netCollectedCents,
-        partnerId,
-        referralClickId,
-      ],
-    );
+    const purchaseId = createId();
+    try {
+      await client.query(
+        `INSERT INTO purchases (
+           purchase_id, student_id, cohort_id,
+           stripe_customer_id, stripe_checkout_session_id, stripe_subscription_id,
+           product_code, price_cents, payment_plan, net_collected_cents,
+           partner_id, referral_click_id,
+           refund_status, entitlement_status, metadata
+         )
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, 'none', 'active', JSON_OBJECT())`,
+        [
+          purchaseId,
+          studentId,
+          cohortId,
+          stripeCustomerId,
+          session.id,
+          subscriptionId,
+          PRODUCT_CODE,
+          COHORT_PRICE_CENTS,
+          paymentPlan,
+          netCollectedCents,
+          partnerId,
+          referralClickId,
+        ],
+      );
+    } catch (err) {
+      if (isDuplicateCheckoutSessionError(err)) {
+        const duplicate = await client.query<{ purchase_id: string }>(
+          "SELECT purchase_id FROM purchases WHERE stripe_checkout_session_id = $1 LIMIT 1",
+          [session.id],
+        );
+        const row = duplicate.rows[0];
+        if (row) {
+          await client.query("COMMIT");
+          return { status: "duplicate", purchaseId: row.purchase_id };
+        }
+      }
+      throw err;
+    }
 
-    // ---- Assign cohort seat (with retry on seat_number race) ----
+    // ---- Assign cohort seat under a cohort row lock and internal-cap check ----
     const seatNumber = await assignSeat(client, cohortId, studentId);
 
     // ---- Referral conversion (only if partner attribution resolved) ----
@@ -158,7 +189,7 @@ export async function fulfillCheckoutSession(
 
     await client.query("COMMIT");
 
-    console.log(
+    logger.log(
       `[entitlement] fulfilled session=${session.id} student=${studentId} purchase=${purchaseId} seat=${seatNumber} plan=${paymentPlan} partner=${partnerId ?? "none"}`,
     );
 
@@ -184,18 +215,18 @@ export async function fulfillCheckoutSession(
  */
 export async function recordInstallmentPayment(
   invoice: Stripe.Invoice,
-): Promise<void> {
+): Promise<{ recorded: boolean; purchaseId?: string }> {
   const subscriptionId =
     typeof invoice.subscription === "string"
       ? invoice.subscription
       : (invoice.subscription?.id ?? null);
   if (!subscriptionId) {
-    return; // not a subscription invoice — ignore
+    return { recorded: false }; // not a subscription invoice — ignore
   }
 
   const amountPaid = invoice.amount_paid ?? 0;
   if (amountPaid <= 0) {
-    return;
+    return { recorded: false };
   }
 
   const pool = getPool();
@@ -216,14 +247,14 @@ export async function recordInstallmentPayment(
         `[entitlement] invoice.payment_succeeded for unknown subscription=${subscriptionId} invoice=${invoice.id}`,
       );
       await client.query("ROLLBACK");
-      return;
+      return { recorded: false };
     }
 
     // Idempotency: track which invoice IDs we've already accumulated.
     const recorded = getRecordedInvoices(row.metadata);
     if (recorded.includes(invoice.id)) {
       await client.query("ROLLBACK");
-      return;
+      return { recorded: false };
     }
     recorded.push(invoice.id ?? "unknown");
 
@@ -243,6 +274,7 @@ export async function recordInstallmentPayment(
     console.log(
       `[entitlement] installment recorded: purchase=${row.purchase_id} invoice=${invoice.id} amount=${amountPaid} subscription=${subscriptionId}`,
     );
+    return { recorded: true, purchaseId: row.purchase_id };
   } catch (err) {
     await client.query("ROLLBACK").catch(() => {});
     throw err;
@@ -256,13 +288,15 @@ export async function recordInstallmentPayment(
  * Fires on invoice.payment_failed for our 2-pay subscriptions.
  * Idempotent: setting entitlement_status='suspended' multiple times is a no-op.
  */
-export async function suspendEntitlement(invoice: Stripe.Invoice): Promise<void> {
+export async function suspendEntitlement(
+  invoice: Stripe.Invoice,
+): Promise<{ suspended: boolean; purchaseId?: string }> {
   const subscriptionId =
     typeof invoice.subscription === "string"
       ? invoice.subscription
       : (invoice.subscription?.id ?? null);
   if (!subscriptionId) {
-    return;
+    return { suspended: false };
   }
 
   const pool = getPool();
@@ -279,14 +313,17 @@ export async function suspendEntitlement(invoice: Stripe.Invoice): Promise<void>
       "SELECT purchase_id FROM purchases WHERE stripe_subscription_id = $1 LIMIT 1",
       [subscriptionId],
     );
+    const purchaseId = purchase.rows[0]?.purchase_id;
     console.warn(
-      `[entitlement] suspended purchase=${purchase.rows[0]?.purchase_id ?? "unknown"} subscription=${subscriptionId} invoice=${invoice.id}`,
+      `[entitlement] suspended purchase=${purchaseId ?? "unknown"} subscription=${subscriptionId} invoice=${invoice.id}`,
     );
-  } else {
-    console.warn(
-      `[entitlement] payment_failed for subscription=${subscriptionId} invoice=${invoice.id} — no matching purchase or already suspended`,
-    );
+    return { suspended: true, purchaseId };
   }
+
+  console.warn(
+    `[entitlement] payment_failed for subscription=${subscriptionId} invoice=${invoice.id} — no matching purchase or already suspended`,
+  );
+  return { suspended: false };
 }
 
 // ---- Helpers ----
@@ -296,67 +333,15 @@ function parseUuidOrNull(value: string | null | undefined): string | null {
   return /^[0-9a-f-]{36}$/i.test(value) ? value : null;
 }
 
-async function assignSeat(
-  client: DbClient,
-  cohortId: string,
-  studentId: string,
-): Promise<number> {
-  // Try-and-retry pattern: compute MAX(seat_number)+1 inside the insert, fall
-  // back to the existing seat number on student conflict, retry on the
-  // (cohort_id, seat_number) unique race.
-  for (let attempt = 0; attempt < 5; attempt++) {
-    try {
-      const existing = await client.query<{ seat_number: number }>(
-        `SELECT seat_number
-           FROM cohort_enrollments
-          WHERE cohort_id = $1 AND student_id = $2
-          LIMIT 1`,
-        [cohortId, studentId],
-      );
-      if (existing.rows[0]) {
-        await client.query(
-          `UPDATE cohort_enrollments
-              SET enrollment_status = 'active'
-            WHERE cohort_id = $1 AND student_id = $2`,
-          [cohortId, studentId],
-        );
-        return Number(existing.rows[0].seat_number);
-      }
-
-      const enrollmentId = randomUUID();
-      await client.query(
-        `INSERT INTO cohort_enrollments (
-           enrollment_id, cohort_id, student_id, seat_number, enrollment_status
-         )
-         SELECT $1, $2, $3, COALESCE(MAX(seat_number), 0) + 1, 'active'
-           FROM cohort_enrollments
-          WHERE cohort_id = $2`,
-        [enrollmentId, cohortId, studentId],
-      );
-
-      const inserted = await client.query<{ seat_number: number }>(
-        "SELECT seat_number FROM cohort_enrollments WHERE enrollment_id = $1 LIMIT 1",
-        [enrollmentId],
-      );
-      return Number(inserted.rows[0]!.seat_number);
-    } catch (err: unknown) {
-      if (isSeatNumberRace(err)) {
-        continue;
-      }
-      throw err;
-    }
-  }
-  throw new Error(
-    `seat assignment failed after 5 attempts (cohort=${cohortId} student=${studentId})`,
-  );
-}
-
-function isSeatNumberRace(err: unknown): boolean {
+function isDuplicateCheckoutSessionError(err: unknown): boolean {
   if (typeof err !== "object" || err === null) return false;
   const e = err as { code?: string; errno?: number; message?: string };
+  const message = e.message ?? "";
   return (
     e.code === "ER_DUP_ENTRY" &&
-    (e.errno === 1062 || e.message?.includes("uq_cohort_seat") === true)
+    e.errno === 1062 &&
+    (message.includes("uq_purchases_checkout_session") ||
+      message.includes("stripe_checkout_session_id"))
   );
 }
 

@@ -34,7 +34,30 @@ const {
   MIN_DRILL_SIZE,
   MAX_DRILL_SIZE,
   MASTERY_THRESHOLD,
+  registerDrillsRoutes,
 } = await import("./drills.js");
+
+type CapturedRoute = {
+  method: "GET" | "POST";
+  path: string;
+  handlerCount: number;
+};
+
+function captureRoutes(register: (app: never) => void): CapturedRoute[] {
+  const routes: CapturedRoute[] = [];
+  const app = {
+    get(path: string, ...handlers: unknown[]) {
+      routes.push({ method: "GET", path, handlerCount: handlers.length });
+      return app;
+    },
+    post(path: string, ...handlers: unknown[]) {
+      routes.push({ method: "POST", path, handlerCount: handlers.length });
+      return app;
+    },
+  };
+  register(app as never);
+  return routes;
+}
 
 describe("masteryResult", () => {
   it("is not mastered with zero total (no NaN)", () => {
@@ -116,6 +139,40 @@ describe("normalizeStartInput", () => {
     assert.throws(() => normalizeStartInput(null), DrillInputError);
     assert.throws(() => normalizeStartInput("nope"), DrillInputError);
   });
+  it("accepts a review drill with an optional subject", () => {
+    const r = normalizeStartInput({ kind: "review", subject: "  Torts " });
+    assert.equal(r.kind, "review");
+    assert.equal(r.subject, "Torts");
+    assert.equal(r.source_drill_id, null);
+    assert.equal(r.exclude_mastered, false);
+  });
+  it("accepts a review drill with no subject", () => {
+    const r = normalizeStartInput({ kind: "review" });
+    assert.equal(r.kind, "review");
+    assert.equal(r.subject, null);
+  });
+  it("requires a valid uuid source_drill_id for retry drills", () => {
+    assert.throws(() => normalizeStartInput({ kind: "retry" }), DrillInputError);
+    assert.throws(
+      () => normalizeStartInput({ kind: "retry", source_drill_id: "not-a-uuid" }),
+      DrillInputError,
+    );
+    const id = "11111111-2222-4333-8444-555555555555";
+    const r = normalizeStartInput({ kind: "retry", source_drill_id: ` ${id} ` });
+    assert.equal(r.kind, "retry");
+    assert.equal(r.source_drill_id, id);
+  });
+  it("reads exclude_mastered as a strict boolean on existing kinds", () => {
+    assert.equal(normalizeStartInput({ kind: "tension", slug: "x" }).exclude_mastered, false);
+    assert.equal(
+      normalizeStartInput({ kind: "tension", slug: "x", exclude_mastered: true }).exclude_mastered,
+      true,
+    );
+    assert.equal(
+      normalizeStartInput({ kind: "tension", slug: "x", exclude_mastered: "yes" }).exclude_mastered,
+      false,
+    );
+  });
 });
 
 describe("redZoneTargetFor / reasonFor / drillNameFor", () => {
@@ -145,5 +202,45 @@ describe("redZoneTargetFor / reasonFor / drillNameFor", () => {
     assert.deepEqual(redZoneTargetFor(input), { dimension: "subtopic", tag: "Hearsay" });
     assert.equal(reasonFor(input), "prescribed_red_zone_drill");
     assert.equal(drillNameFor(input), "Hearsay repair drill");
+  });
+});
+
+describe("review/retry naming + targets", () => {
+  const review = normalizeStartInput({ kind: "review" });
+  const retry = normalizeStartInput({
+    kind: "retry",
+    source_drill_id: "11111111-2222-4333-8444-555555555555",
+  });
+
+  it("reasonFor derives <kind>_drill", () => {
+    assert.equal(reasonFor(review), "review_drill");
+    assert.equal(reasonFor(retry), "retry_drill");
+  });
+  it("drillNameFor gives stable human labels", () => {
+    assert.equal(drillNameFor(review), "Review missed questions");
+    assert.equal(drillNameFor(retry), "Retry — missed only");
+  });
+  it("redZoneTargetFor is empty for review/retry (no anchor)", () => {
+    assert.deepEqual(redZoneTargetFor(review), { dimension: "", tag: "" });
+    assert.deepEqual(redZoneTargetFor(retry), { dimension: "", tag: "" });
+  });
+});
+
+describe("registerDrillsRoutes auth guards", () => {
+  it("gates paid drill resume and completion routes with enrollment middleware", () => {
+    const routes = captureRoutes(registerDrillsRoutes as (app: never) => void);
+
+    const detail = routes.find(
+      (route) => route.method === "GET" && route.path === "/api/drills/:drill_id",
+    );
+    const complete = routes.find(
+      (route) =>
+        route.method === "POST" && route.path === "/api/drills/:drill_id/complete",
+    );
+
+    assert.ok(detail);
+    assert.ok(complete);
+    assert.equal(detail.handlerCount >= 3, true);
+    assert.equal(complete.handlerCount >= 3, true);
   });
 });

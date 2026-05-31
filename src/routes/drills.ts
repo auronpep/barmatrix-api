@@ -21,7 +21,10 @@ import type { Express, Request, Response } from "express";
 import { randomUUID } from "node:crypto";
 import { getPool, type DbClient, type DbPool } from "../db.js";
 import { kebabToTitle } from "../lib/format.js";
-import { requireEnrollment } from "../lib/clerk-entitlement.js";
+import {
+  requireEnrolledResourceOwner,
+  requireEnrollment,
+} from "../lib/clerk-entitlement.js";
 
 const UUID_RE =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -39,13 +42,21 @@ const MAX_IN_PROGRESS = 20;
 const TRACKED_COLUMNS = ["subject", "subtopic", "tension_point"] as const;
 type TrackedColumn = (typeof TRACKED_COLUMNS)[number];
 
-export type DrillKind = "tension" | "trap" | "prescribed_red_zone";
+export type DrillKind =
+  | "tension"
+  | "trap"
+  | "prescribed_red_zone"
+  | "review"
+  | "retry";
 
 export interface NormalizedStartInput {
   kind: DrillKind;
   slug: string | null;
   red_zone_dimension: string | null;
   red_zone_tag: string | null;
+  source_drill_id: string | null;
+  subject: string | null;
+  exclude_mastered: boolean;
   size: number;
 }
 
@@ -96,9 +107,15 @@ export function normalizeStartInput(raw: unknown): NormalizedStartInput {
   const b = raw as Record<string, unknown>;
 
   const kind = b.kind;
-  if (kind !== "tension" && kind !== "trap" && kind !== "prescribed_red_zone") {
+  if (
+    kind !== "tension" &&
+    kind !== "trap" &&
+    kind !== "prescribed_red_zone" &&
+    kind !== "review" &&
+    kind !== "retry"
+  ) {
     throw new DrillInputError(
-      "kind must be one of: tension, trap, prescribed_red_zone",
+      "kind must be one of: tension, trap, prescribed_red_zone, review, retry",
     );
   }
 
@@ -111,16 +128,20 @@ export function normalizeStartInput(raw: unknown): NormalizedStartInput {
     size = Math.min(MAX_DRILL_SIZE, Math.max(MIN_DRILL_SIZE, n));
   }
 
+  const excludeMastered = b.exclude_mastered === true;
+
   let slug: string | null = null;
   let redZoneDimension: string | null = null;
   let redZoneTag: string | null = null;
+  let sourceDrillId: string | null = null;
+  let subject: string | null = null;
 
   if (kind === "tension" || kind === "trap") {
     if (typeof b.slug !== "string" || b.slug.trim() === "") {
       throw new DrillInputError(`slug is required for ${kind} drills`);
     }
     slug = b.slug.trim();
-  } else {
+  } else if (kind === "prescribed_red_zone") {
     if (typeof b.red_zone_dimension !== "string" || b.red_zone_dimension.trim() === "") {
       throw new DrillInputError(
         "red_zone_dimension is required for prescribed_red_zone drills",
@@ -133,6 +154,21 @@ export function normalizeStartInput(raw: unknown): NormalizedStartInput {
     }
     redZoneDimension = b.red_zone_dimension.trim();
     redZoneTag = b.red_zone_tag.trim();
+  } else if (kind === "retry") {
+    if (
+      typeof b.source_drill_id !== "string" ||
+      !UUID_RE.test(b.source_drill_id.trim())
+    ) {
+      throw new DrillInputError(
+        "source_drill_id (a valid drill id) is required for retry drills",
+      );
+    }
+    sourceDrillId = b.source_drill_id.trim();
+  } else {
+    // review — optional subject filter
+    if (typeof b.subject === "string" && b.subject.trim() !== "") {
+      subject = b.subject.trim();
+    }
   }
 
   return {
@@ -140,6 +176,9 @@ export function normalizeStartInput(raw: unknown): NormalizedStartInput {
     slug,
     red_zone_dimension: redZoneDimension,
     red_zone_tag: redZoneTag,
+    source_drill_id: sourceDrillId,
+    subject,
+    exclude_mastered: excludeMastered,
     size,
   };
 }
@@ -149,6 +188,9 @@ export function redZoneTargetFor(input: NormalizedStartInput): {
   dimension: string;
   tag: string;
 } {
+  if (input.kind === "review" || input.kind === "retry") {
+    return { dimension: "", tag: "" };
+  }
   if (input.kind === "tension") {
     return { dimension: "tension_point", tag: input.slug ?? "" };
   }
@@ -166,6 +208,8 @@ export function reasonFor(input: NormalizedStartInput): string {
 }
 
 export function drillNameFor(input: NormalizedStartInput): string {
+  if (input.kind === "review") return "Review missed questions";
+  if (input.kind === "retry") return "Retry — missed only";
   const { tag } = redZoneTargetFor(input);
   const label = humanizeTag(tag) || "Targeted";
   if (input.kind === "tension") return `${label} tension drill`;
@@ -239,6 +283,9 @@ interface RedZoneRow {
   attempts_count: number;
   high_confidence_wrong_count: number;
 }
+interface MissCountRow {
+  c: number | string;
+}
 
 function displayName(row: {
   drill_slug: string | null;
@@ -254,11 +301,41 @@ function displayName(row: {
 // DB-touching helpers
 // ---------------------------------------------------------------------------
 
+/**
+ * Optional SQL fragment excluding questions the student has already mastered —
+ * i.e. whose LATEST attempt is a high-confidence (>=4) correct answer. Portable
+ * (correlated MAX subquery; no window functions). Returns the clause plus the
+ * params to append; the clause references the student id at $<paramIndex>.
+ */
+function masteredExclusion(
+  studentId: string,
+  enabled: boolean,
+  paramIndex: number,
+): { clause: string; params: unknown[] } {
+  if (!enabled) return { clause: "", params: [] };
+  const clause = `
+        AND q.question_id NOT IN (
+          SELECT a.question_id FROM student_attempts a
+           WHERE a.student_id = $${paramIndex}
+             AND a.correct = 1 AND a.confidence >= 4
+             AND a.attempted_at = (
+               SELECT MAX(a2.attempted_at) FROM student_attempts a2
+                WHERE a2.student_id = $${paramIndex}
+                  AND a2.question_id = a.question_id
+             )
+        )`;
+  return { clause, params: [studentId] };
+}
+
 async function selectByTrapTag(
   client: DbClient,
   tag: string,
   size: number,
+  studentId: string,
+  excludeMastered: boolean,
 ): Promise<string[]> {
+  // tag=$1, size=$2, studentId (exclusion)=$3
+  const excl = masteredExclusion(studentId, excludeMastered, 3);
   const { rows } = await client.query<QuestionIdRow>(
     `SELECT question_id FROM (
        SELECT DISTINCT q.question_id
@@ -268,10 +345,11 @@ async function selectByTrapTag(
         WHERE q.status = 'active'
           AND ( JSON_CONTAINS(ac.forensic_tags, JSON_QUOTE($1))
              OR JSON_CONTAINS(ac.misconception_tags, JSON_QUOTE($1)) )
+          ${excl.clause}
      ) t
      ORDER BY RAND()
      LIMIT $2`,
-    [tag, size],
+    [tag, size, ...excl.params],
   );
   return rows.map((r) => r.question_id);
 }
@@ -279,8 +357,11 @@ async function selectByTrapTag(
 async function selectQuestionIds(
   client: DbClient,
   input: NormalizedStartInput,
+  studentId: string,
 ): Promise<string[]> {
   if (input.kind === "tension") {
+    // slug=$1, size=$2, studentId (exclusion)=$3
+    const excl = masteredExclusion(studentId, input.exclude_mastered, 3);
     const { rows } = await client.query<QuestionIdRow>(
       `SELECT question_id FROM (
          SELECT DISTINCT q.question_id
@@ -292,36 +373,102 @@ async function selectQuestionIds(
                      WHERE qt.question_id = q.question_id
                        AND qt.dimension IN ('tension', 'tension_point')
                        AND qt.value = $1 ) )
+            ${excl.clause}
        ) t
        ORDER BY RAND()
        LIMIT $2`,
-      [input.slug, input.size],
+      [input.slug, input.size, ...excl.params],
     );
     return rows.map((r) => r.question_id);
   }
 
   if (input.kind === "trap") {
-    return selectByTrapTag(client, input.slug ?? "", input.size);
+    return selectByTrapTag(
+      client,
+      input.slug ?? "",
+      input.size,
+      studentId,
+      input.exclude_mastered,
+    );
+  }
+
+  if (input.kind === "review") {
+    // Questions whose LATEST attempt by this student is wrong, most-recent first.
+    const hasSubject = input.subject !== null;
+    const subjectClause = hasSubject ? "AND q.subject = $2" : "";
+    const sizeParam = hasSubject ? "$3" : "$2";
+    const params = hasSubject
+      ? [studentId, input.subject, input.size]
+      : [studentId, input.size];
+    const { rows } = await client.query<QuestionIdRow>(
+      `SELECT q.question_id
+         FROM questions q
+         JOIN student_attempts a ON a.question_id = q.question_id
+        WHERE a.student_id = $1
+          AND q.status = 'active'
+          AND a.correct = 0
+          AND a.attempted_at = (
+            SELECT MAX(a2.attempted_at) FROM student_attempts a2
+             WHERE a2.student_id = $1 AND a2.question_id = q.question_id
+          )
+          ${subjectClause}
+        GROUP BY q.question_id
+        ORDER BY MAX(a.attempted_at) DESC
+        LIMIT ${sizeParam}`,
+      params,
+    );
+    return rows.map((r) => r.question_id);
+  }
+
+  if (input.kind === "retry") {
+    // Questions missed within the source drill (set_id), latest attempt wins.
+    // source_drill_id=$1 (used twice), studentId=$2, size=$3
+    const { rows } = await client.query<QuestionIdRow>(
+      `SELECT q.question_id
+         FROM questions q
+         JOIN student_attempts a ON a.question_id = q.question_id
+        WHERE a.set_id = $1
+          AND a.student_id = $2
+          AND q.status = 'active'
+          AND a.correct = 0
+          AND a.attempted_at = (
+            SELECT MAX(a2.attempted_at) FROM student_attempts a2
+             WHERE a2.set_id = $1 AND a2.question_id = q.question_id
+          )
+        GROUP BY q.question_id
+        LIMIT $3`,
+      [input.source_drill_id, studentId, input.size],
+    );
+    return rows.map((r) => r.question_id);
   }
 
   // prescribed_red_zone
   const col = mapDimensionToColumn(input.red_zone_dimension);
   if (col) {
+    // tag=$1, size=$2, studentId (exclusion)=$3
+    const excl = masteredExclusion(studentId, input.exclude_mastered, 3);
     const { rows } = await client.query<QuestionIdRow>(
       // col is from the TRACKED_COLUMNS whitelist, never user input.
       `SELECT question_id FROM (
          SELECT DISTINCT q.question_id
            FROM questions q
           WHERE q.status = 'active' AND q.${col} = $1
+            ${excl.clause}
        ) t
        ORDER BY RAND()
        LIMIT $2`,
-      [input.red_zone_tag, input.size],
+      [input.red_zone_tag, input.size, ...excl.params],
     );
     return rows.map((r) => r.question_id);
   }
   // Untracked dimension (e.g. wrong_answer_architecture): treat tag as a trap.
-  return selectByTrapTag(client, input.red_zone_tag ?? "", input.size);
+  return selectByTrapTag(
+    client,
+    input.red_zone_tag ?? "",
+    input.size,
+    studentId,
+    input.exclude_mastered,
+  );
 }
 
 
@@ -463,7 +610,7 @@ export function registerDrillsRoutes(app: Express): void {
 
     try {
       const pool = getPool();
-      const [zoneRes, ipRes] = await Promise.all([
+      const [zoneRes, ipRes, missRes] = await Promise.all([
         pool.query<ZoneSuggestionRow>(
           `SELECT rz.dimension, rz.tag_value, rz.proficiency_score,
                   rz.attempts_count, rz.high_confidence_wrong_count,
@@ -489,6 +636,22 @@ export function registerDrillsRoutes(app: Express): void {
             ORDER BY prescribed_at DESC
             LIMIT $2`,
           [studentId, MAX_IN_PROGRESS],
+        ),
+        pool.query<MissCountRow>(
+          `SELECT COUNT(*) AS c FROM (
+             SELECT q.question_id
+               FROM questions q
+               JOIN student_attempts a ON a.question_id = q.question_id
+              WHERE a.student_id = $1
+                AND q.status = 'active'
+                AND a.correct = 0
+                AND a.attempted_at = (
+                  SELECT MAX(a2.attempted_at) FROM student_attempts a2
+                   WHERE a2.student_id = $1 AND a2.question_id = q.question_id
+                )
+              GROUP BY q.question_id
+           ) t`,
+          [studentId],
         ),
       ]);
 
@@ -517,7 +680,13 @@ export function registerDrillsRoutes(app: Express): void {
         prescribed_at: r.prescribed_at,
       }));
 
-      res.json({ suggested, in_progress: inProgress });
+      const availableMisses = Number(missRes.rows[0]?.c ?? 0);
+      const review = {
+        available_count: availableMisses,
+        suggested_size: Math.min(DEFAULT_DRILL_SIZE, availableMisses),
+      };
+
+      res.json({ suggested, in_progress: inProgress, review });
     } catch (err) {
       console.error("[drills prescribed] failed:", err);
       res.status(500).json({ error: "internal server error" });
@@ -540,12 +709,27 @@ export function registerDrillsRoutes(app: Express): void {
     }
 
     const target = redZoneTargetFor(input);
+
+    // retry must reference one of the requesting student's own drills.
+    if (input.kind === "retry") {
+      const ownerPool = getPool();
+      const { rows: ownerRows } = await ownerPool.query<{ student_id: string }>(
+        `SELECT student_id FROM drill_assignments WHERE assignment_id = $1 LIMIT 1`,
+        [input.source_drill_id],
+      );
+      const owner = ownerRows[0];
+      if (!owner || owner.student_id !== studentId) {
+        res.status(404).json({ error: "source drill not found" });
+        return;
+      }
+    }
+
     const pool = getPool();
     const client = await pool.connect();
     try {
       await client.query("BEGIN");
 
-      const ids = await selectQuestionIds(client, input);
+      const ids = await selectQuestionIds(client, input, studentId);
 
       if (ids.length === 0) {
         await client.query("ROLLBACK");
@@ -609,113 +793,126 @@ export function registerDrillsRoutes(app: Express): void {
   });
 
   // ---- detail ------------------------------------------------------------
-  app.get("/api/drills/:drill_id", async (req: Request, res: Response) => {
-    const id = req.params.drill_id;
-    if (typeof id !== "string" || !UUID_RE.test(id)) {
-      res.status(400).json({ error: "invalid drill id" });
-      return;
-    }
-    try {
-      const pool = getPool();
-      const { rows } = await pool.query<AssignmentRow>(
-        `SELECT assignment_id, student_id, drill_slug, reason, red_zone_dimension,
-                red_zone_tag, question_ids, status, prescribed_at, completed_at
-           FROM drill_assignments
-          WHERE assignment_id = $1
-          LIMIT 1`,
-        [id],
-      );
-      const a = rows[0];
-      if (!a) {
-        res.status(404).json({ error: "drill not found" });
+  app.get(
+    "/api/drills/:drill_id",
+    ...requireEnrollment(),
+    async (req: Request, res: Response) => {
+      const id = req.params.drill_id;
+      if (typeof id !== "string" || !UUID_RE.test(id)) {
+        res.status(400).json({ error: "invalid drill id" });
         return;
       }
-      const questionIds = parseJsonIdArray(a.question_ids);
-      const progress = await drillProgress(pool, id, questionIds.length);
-      res.json({
-        drill_id: a.assignment_id,
-        student_id: a.student_id,
-        status: a.status,
-        drill_name: displayName(a),
-        red_zone_dimension: a.red_zone_dimension,
-        red_zone_tag: a.red_zone_tag,
-        question_ids: questionIds,
-        size: questionIds.length,
-        progress,
-      });
-    } catch (err) {
-      console.error("[drills detail] failed:", err);
-      res.status(500).json({ error: "internal server error" });
-    }
-  });
-
-  // ---- complete ----------------------------------------------------------
-  app.post("/api/drills/:drill_id/complete", async (req: Request, res: Response) => {
-    const id = req.params.drill_id;
-    if (typeof id !== "string" || !UUID_RE.test(id)) {
-      res.status(400).json({ error: "invalid drill id" });
-      return;
-    }
-
-    const pool = getPool();
-    const client = await pool.connect();
-    try {
-      await client.query("BEGIN");
-
-      const { rows } = await client.query<AssignmentRow>(
-        `SELECT assignment_id, student_id, drill_slug, reason, red_zone_dimension,
-                red_zone_tag, question_ids, status
-           FROM drill_assignments
-          WHERE assignment_id = $1
-          LIMIT 1`,
-        [id],
-      );
-      const a = rows[0];
-      if (!a) {
-        await client.query("ROLLBACK");
-        res.status(404).json({ error: "drill not found" });
-        return;
-      }
-
-      const questionIds = parseJsonIdArray(a.question_ids);
-      const progress = await drillProgress(client, id, questionIds.length);
-      const { mastered } = masteryResult(progress.correct, progress.total);
-
-      let status = a.status;
-      if (mastered && a.status !== "completed") {
-        await client.query(
-          `UPDATE drill_assignments
-              SET status = 'completed', completed_at = CURRENT_TIMESTAMP(6)
-            WHERE assignment_id = $1`,
+      try {
+        const pool = getPool();
+        const { rows } = await pool.query<AssignmentRow>(
+          `SELECT assignment_id, student_id, drill_slug, reason, red_zone_dimension,
+                  red_zone_tag, question_ids, status, prescribed_at, completed_at
+             FROM drill_assignments
+            WHERE assignment_id = $1
+            LIMIT 1`,
           [id],
         );
-        status = "completed";
+        const a = rows[0];
+        if (!a) {
+          res.status(404).json({ error: "drill not found" });
+          return;
+        }
+        if (!requireEnrolledResourceOwner(res, a.student_id)) return;
+        const questionIds = parseJsonIdArray(a.question_ids);
+        const progress = await drillProgress(pool, id, questionIds.length);
+        res.json({
+          drill_id: a.assignment_id,
+          student_id: a.student_id,
+          status: a.status,
+          drill_name: displayName(a),
+          red_zone_dimension: a.red_zone_dimension,
+          red_zone_tag: a.red_zone_tag,
+          question_ids: questionIds,
+          size: questionIds.length,
+          progress,
+        });
+      } catch (err) {
+        console.error("[drills detail] failed:", err);
+        res.status(500).json({ error: "internal server error" });
+      }
+    },
+  );
+
+  // ---- complete ----------------------------------------------------------
+  app.post(
+    "/api/drills/:drill_id/complete",
+    ...requireEnrollment(),
+    async (req: Request, res: Response) => {
+      const id = req.params.drill_id;
+      if (typeof id !== "string" || !UUID_RE.test(id)) {
+        res.status(400).json({ error: "invalid drill id" });
+        return;
       }
 
-      const redZone = await redZoneSnapshot(
-        client,
-        a.student_id,
-        a.red_zone_dimension,
-        a.red_zone_tag,
-      );
+      const pool = getPool();
+      const client = await pool.connect();
+      try {
+        await client.query("BEGIN");
 
-      await client.query("COMMIT");
+        const { rows } = await client.query<AssignmentRow>(
+          `SELECT assignment_id, student_id, drill_slug, reason, red_zone_dimension,
+                  red_zone_tag, question_ids, status
+             FROM drill_assignments
+            WHERE assignment_id = $1
+            LIMIT 1`,
+          [id],
+        );
+        const a = rows[0];
+        if (!a) {
+          await client.query("ROLLBACK");
+          res.status(404).json({ error: "drill not found" });
+          return;
+        }
+        if (!requireEnrolledResourceOwner(res, a.student_id)) {
+          await client.query("ROLLBACK");
+          return;
+        }
 
-      res.json({
-        drill_id: id,
-        correct: progress.correct,
-        total: progress.total,
-        answered: progress.answered,
-        mastered,
-        status,
-        red_zone: redZone,
-      });
-    } catch (err) {
-      await client.query("ROLLBACK").catch(() => undefined);
-      console.error("[drills complete] failed:", err);
-      res.status(500).json({ error: "internal server error" });
-    } finally {
-      client.release();
-    }
-  });
+        const questionIds = parseJsonIdArray(a.question_ids);
+        const progress = await drillProgress(client, id, questionIds.length);
+        const { mastered } = masteryResult(progress.correct, progress.total);
+
+        let status = a.status;
+        if (mastered && a.status !== "completed") {
+          await client.query(
+            `UPDATE drill_assignments
+                SET status = 'completed', completed_at = CURRENT_TIMESTAMP(6)
+              WHERE assignment_id = $1`,
+            [id],
+          );
+          status = "completed";
+        }
+
+        const redZone = await redZoneSnapshot(
+          client,
+          a.student_id,
+          a.red_zone_dimension,
+          a.red_zone_tag,
+        );
+
+        await client.query("COMMIT");
+
+        res.json({
+          drill_id: id,
+          correct: progress.correct,
+          total: progress.total,
+          answered: progress.answered,
+          mastered,
+          status,
+          red_zone: redZone,
+        });
+      } catch (err) {
+        await client.query("ROLLBACK").catch(() => undefined);
+        console.error("[drills complete] failed:", err);
+        res.status(500).json({ error: "internal server error" });
+      } finally {
+        client.release();
+      }
+    },
+  );
 }

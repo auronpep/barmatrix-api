@@ -1,0 +1,566 @@
+import type Stripe from "stripe";
+import { Resend } from "resend";
+
+type Env = NodeJS.ProcessEnv | Record<string, string | undefined>;
+
+export interface EnrollmentEmailConfig {
+  apiKey: string;
+  from: string;
+  supportEmail: string;
+  replyTo: string;
+  frontendUrl: string;
+}
+
+export interface EnrollmentEmailInput {
+  to: string | null | undefined;
+  fullName: string | null | undefined;
+  checkoutSessionId: string;
+  purchaseId?: string;
+}
+
+export interface EnrollmentEmailPayload {
+  from: string;
+  to: string[];
+  replyTo: string;
+  subject: string;
+  text: string;
+  html: string;
+}
+
+export interface EnrollmentEmailClient {
+  emails: {
+    send(payload: EnrollmentEmailPayload): Promise<{
+      data?: { id?: string } | null;
+      error?: unknown | null;
+    }>;
+  };
+}
+
+export type EnrollmentEmailResult =
+  | { status: "sent"; id: string | null }
+  | {
+      status: "skipped";
+      reason: "missing_config" | "missing_recipient" | "duplicate_fulfillment";
+    }
+  | { status: "failed"; reason: "resend_error" };
+
+interface SendEnrollmentEmailOptions {
+  env?: Env;
+  createClient?: (apiKey: string) => EnrollmentEmailClient;
+}
+
+interface CheckoutFulfillmentResult {
+  status: "fulfilled" | "duplicate";
+  purchaseId?: string;
+}
+
+interface FulfillmentEmailOptions {
+  sendEmail?: (input: EnrollmentEmailInput) => Promise<EnrollmentEmailResult>;
+  logger?: Pick<typeof console, "log" | "warn" | "error">;
+}
+
+export function resolveEnrollmentEmailConfig(
+  env: Env = process.env,
+): EnrollmentEmailConfig | null {
+  const apiKey = clean(env.RESEND_API_KEY);
+  const from = clean(env.BARMATRIX_EMAIL_FROM);
+  const supportEmail = clean(env.BARMATRIX_SUPPORT_EMAIL);
+  if (!apiKey || !from || !supportEmail) {
+    return null;
+  }
+
+  return {
+    apiKey,
+    from,
+    supportEmail,
+    replyTo: clean(env.BARMATRIX_REPLY_TO_EMAIL) ?? supportEmail,
+    frontendUrl: stripTrailingSlash(clean(env.FRONTEND_URL) ?? "https://barmatrix.app"),
+  };
+}
+
+export async function sendEnrollmentEmail(
+  input: EnrollmentEmailInput,
+  options: SendEnrollmentEmailOptions = {},
+): Promise<EnrollmentEmailResult> {
+  const config = resolveEnrollmentEmailConfig(options.env);
+  if (!config) {
+    return { status: "skipped", reason: "missing_config" };
+  }
+
+  const recipient = normalizeEmail(input.to);
+  if (!recipient) {
+    return { status: "skipped", reason: "missing_recipient" };
+  }
+
+  return dispatchEmail(
+    buildEnrollmentEmailPayload(input, recipient, config),
+    config,
+    options.createClient,
+  );
+}
+
+export async function sendEnrollmentEmailForFulfillment(
+  input: {
+    session: Stripe.Checkout.Session;
+    fulfillment: CheckoutFulfillmentResult;
+  },
+  options: FulfillmentEmailOptions = {},
+): Promise<EnrollmentEmailResult> {
+  if (input.fulfillment.status !== "fulfilled") {
+    return { status: "skipped", reason: "duplicate_fulfillment" };
+  }
+
+  const sendEmail = options.sendEmail ?? sendEnrollmentEmail;
+  const logger = options.logger ?? console;
+  let result: EnrollmentEmailResult;
+  try {
+    result = await sendEmail({
+      to: input.session.customer_details?.email,
+      fullName: input.session.customer_details?.name,
+      checkoutSessionId: input.session.id,
+      purchaseId: input.fulfillment.purchaseId,
+    });
+  } catch {
+    result = { status: "failed", reason: "resend_error" };
+  }
+
+  const context = {
+    checkoutSessionId: input.session.id,
+    purchaseId: input.fulfillment.purchaseId,
+  };
+  if (result.status === "sent") {
+    logger.log("[email] enrollment email sent", {
+      ...context,
+      emailId: result.id,
+    });
+  } else if (result.status === "failed") {
+    logger.error("[email] enrollment email failed", {
+      ...context,
+      reason: result.reason,
+    });
+  } else {
+    logger.warn("[email] enrollment email skipped", {
+      ...context,
+      reason: result.reason,
+    });
+  }
+
+  return result;
+}
+
+// ---------------------------------------------------------------------------
+// Shared transactional dispatch
+// ---------------------------------------------------------------------------
+
+type DispatchResult =
+  | { status: "sent"; id: string | null }
+  | { status: "failed"; reason: "resend_error" };
+
+async function dispatchEmail(
+  payload: EnrollmentEmailPayload,
+  config: EnrollmentEmailConfig,
+  createClient?: (apiKey: string) => EnrollmentEmailClient,
+): Promise<DispatchResult> {
+  const client = createClient?.(config.apiKey) ?? new Resend(config.apiKey);
+  try {
+    const response = await client.emails.send(payload);
+    if (response.error) {
+      return { status: "failed", reason: "resend_error" };
+    }
+    return { status: "sent", id: response.data?.id ?? null };
+  } catch {
+    return { status: "failed", reason: "resend_error" };
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Billing lifecycle emails (payment failed / installment receipt / upcoming)
+// ---------------------------------------------------------------------------
+
+export interface InvoiceEmailInput {
+  to: string | null | undefined;
+  fullName: string | null | undefined;
+  amountCents: number | null | undefined;
+  currency: string | null | undefined;
+  hostedInvoiceUrl?: string | null;
+  nextAttemptAt?: number | null;
+}
+
+export type InvoiceEmailResult =
+  | { status: "sent"; id: string | null }
+  | { status: "skipped"; reason: "missing_config" | "missing_recipient" }
+  | { status: "failed"; reason: "resend_error" };
+
+interface SendInvoiceEmailOptions {
+  env?: Env;
+  createClient?: (apiKey: string) => EnrollmentEmailClient;
+}
+
+async function sendInvoiceEmail(
+  input: InvoiceEmailInput,
+  buildPayload: (
+    input: InvoiceEmailInput,
+    recipient: string,
+    config: EnrollmentEmailConfig,
+  ) => EnrollmentEmailPayload,
+  options: SendInvoiceEmailOptions,
+): Promise<InvoiceEmailResult> {
+  const config = resolveEnrollmentEmailConfig(options.env);
+  if (!config) {
+    return { status: "skipped", reason: "missing_config" };
+  }
+
+  const recipient = normalizeEmail(input.to);
+  if (!recipient) {
+    return { status: "skipped", reason: "missing_recipient" };
+  }
+
+  return dispatchEmail(
+    buildPayload(input, recipient, config),
+    config,
+    options.createClient,
+  );
+}
+
+export async function sendPaymentFailedEmail(
+  input: InvoiceEmailInput,
+  options: SendInvoiceEmailOptions = {},
+): Promise<InvoiceEmailResult> {
+  return sendInvoiceEmail(input, buildPaymentFailedPayload, options);
+}
+
+export async function sendInstallmentReceiptEmail(
+  input: InvoiceEmailInput,
+  options: SendInvoiceEmailOptions = {},
+): Promise<InvoiceEmailResult> {
+  return sendInvoiceEmail(input, buildInstallmentReceiptPayload, options);
+}
+
+export async function sendUpcomingPaymentEmail(
+  input: InvoiceEmailInput,
+  options: SendInvoiceEmailOptions = {},
+): Promise<InvoiceEmailResult> {
+  return sendInvoiceEmail(input, buildUpcomingPaymentPayload, options);
+}
+
+// ---------------------------------------------------------------------------
+// Stripe-invoice wrappers (extract + gate on real state change + log)
+// ---------------------------------------------------------------------------
+
+interface InvoiceEmailWrapperOptions {
+  send?: (input: InvoiceEmailInput) => Promise<InvoiceEmailResult>;
+  logger?: Pick<typeof console, "log" | "warn" | "error">;
+}
+
+export type BillingInvoice = Pick<
+  Stripe.Invoice,
+  | "id"
+  | "customer_email"
+  | "customer_name"
+  | "amount_due"
+  | "amount_paid"
+  | "currency"
+  | "hosted_invoice_url"
+  | "next_payment_attempt"
+  | "billing_reason"
+>;
+
+function invoiceInput(
+  invoice: BillingInvoice,
+  amountCents: number | null | undefined,
+): InvoiceEmailInput {
+  return {
+    to: invoice.customer_email,
+    fullName: invoice.customer_name,
+    amountCents,
+    currency: invoice.currency,
+    hostedInvoiceUrl: invoice.hosted_invoice_url,
+    nextAttemptAt: invoice.next_payment_attempt,
+  };
+}
+
+function logInvoiceEmail(
+  logger: Pick<typeof console, "log" | "warn" | "error">,
+  kind: string,
+  context: Record<string, unknown>,
+  result: InvoiceEmailResult,
+): void {
+  if (result.status === "sent") {
+    logger.log(`[email] ${kind} email sent`, { ...context, emailId: result.id });
+  } else if (result.status === "failed") {
+    logger.error(`[email] ${kind} email failed`, {
+      ...context,
+      reason: result.reason,
+    });
+  } else {
+    logger.warn(`[email] ${kind} email skipped`, {
+      ...context,
+      reason: result.reason,
+    });
+  }
+}
+
+/**
+ * Dunning email. Only fires when the invoice failure actually moved the
+ * entitlement to suspended (so Stripe retries on the same failed invoice do
+ * not re-notify the student).
+ */
+export async function sendPaymentFailedEmailForInvoice(
+  input: { invoice: BillingInvoice; suspended: boolean },
+  options: InvoiceEmailWrapperOptions = {},
+): Promise<InvoiceEmailResult | { status: "skipped"; reason: "not_suspended" }> {
+  const logger = options.logger ?? console;
+  const context = { invoiceId: input.invoice.id };
+  if (!input.suspended) {
+    return { status: "skipped", reason: "not_suspended" };
+  }
+
+  const send = options.send ?? sendPaymentFailedEmail;
+  let result: InvoiceEmailResult;
+  try {
+    result = await send(invoiceInput(input.invoice, input.invoice.amount_due));
+  } catch {
+    result = { status: "failed", reason: "resend_error" };
+  }
+  logInvoiceEmail(logger, "payment failed", context, result);
+  return result;
+}
+
+/**
+ * Receipt for a recorded installment payment. Skips the initial
+ * subscription_create invoice (that customer already received the enrollment
+ * welcome email) and only fires when the payment was newly recorded.
+ */
+export async function sendInstallmentReceiptForInvoice(
+  input: {
+    invoice: BillingInvoice;
+    recorded: boolean;
+  },
+  options: InvoiceEmailWrapperOptions = {},
+): Promise<
+  InvoiceEmailResult | { status: "skipped"; reason: "not_recorded" | "initial_invoice" }
+> {
+  const logger = options.logger ?? console;
+  const context = { invoiceId: input.invoice.id };
+  if (!input.recorded) {
+    return { status: "skipped", reason: "not_recorded" };
+  }
+  if (input.invoice.billing_reason === "subscription_create") {
+    return { status: "skipped", reason: "initial_invoice" };
+  }
+
+  const send = options.send ?? sendInstallmentReceiptEmail;
+  let result: InvoiceEmailResult;
+  try {
+    result = await send(invoiceInput(input.invoice, input.invoice.amount_paid));
+  } catch {
+    result = { status: "failed", reason: "resend_error" };
+  }
+  logInvoiceEmail(logger, "installment receipt", context, result);
+  return result;
+}
+
+/**
+ * Upcoming-charge reminder. Fired from invoice.upcoming (a preview event with
+ * no invoice id). Only emails when an amount is actually due.
+ */
+export async function sendUpcomingPaymentEmailForInvoice(
+  input: { invoice: BillingInvoice },
+  options: InvoiceEmailWrapperOptions = {},
+): Promise<InvoiceEmailResult | { status: "skipped"; reason: "nothing_due" }> {
+  const logger = options.logger ?? console;
+  const context = { customerEmail: input.invoice.customer_email ?? null };
+  const amountDue = input.invoice.amount_due ?? 0;
+  if (amountDue <= 0) {
+    return { status: "skipped", reason: "nothing_due" };
+  }
+
+  const send = options.send ?? sendUpcomingPaymentEmail;
+  let result: InvoiceEmailResult;
+  try {
+    result = await send(invoiceInput(input.invoice, amountDue));
+  } catch {
+    result = { status: "failed", reason: "resend_error" };
+  }
+  logInvoiceEmail(logger, "upcoming payment", context, result);
+  return result;
+}
+
+// ---------------------------------------------------------------------------
+// Payload builders
+// ---------------------------------------------------------------------------
+
+function buildPaymentFailedPayload(
+  input: InvoiceEmailInput,
+  recipient: string,
+  config: EnrollmentEmailConfig,
+): EnrollmentEmailPayload {
+  const accountUrl = `${config.frontendUrl}/account/`;
+  const payUrl = clean(input.hostedInvoiceUrl) ?? accountUrl;
+  const salutation = clean(input.fullName) ?? "Hi there";
+  const amount = formatAmount(input.amountCents, input.currency);
+  const amountClause = amount ? ` of ${amount}` : "";
+
+  const text =
+    `${salutation},\n\n` +
+    `We weren't able to process your recent BarMatrix payment${amountClause}, ` +
+    `so your account access has been paused.\n\n` +
+    `Update your payment method to restore access: ${payUrl}\n\n` +
+    `Once the payment goes through, your access is restored automatically. ` +
+    `Need help? Reply to this email or contact ${config.supportEmail}.`;
+  const html =
+    `<p>${escapeHtml(salutation)},</p>` +
+    `<p>We weren't able to process your recent BarMatrix payment${escapeHtml(
+      amountClause,
+    )}, so your account access has been paused.</p>` +
+    `<p><a href="${escapeHtml(payUrl)}">Update your payment method</a> to restore access.</p>` +
+    `<p>Once the payment goes through, your access is restored automatically. ` +
+    `Need help? Reply to this email or contact ${escapeHtml(config.supportEmail)}.</p>`;
+
+  return {
+    from: config.from,
+    to: [recipient],
+    replyTo: config.replyTo,
+    subject: "Action needed: your BarMatrix payment didn't go through",
+    text,
+    html,
+  };
+}
+
+function buildInstallmentReceiptPayload(
+  input: InvoiceEmailInput,
+  recipient: string,
+  config: EnrollmentEmailConfig,
+): EnrollmentEmailPayload {
+  const accountUrl = `${config.frontendUrl}/account/`;
+  const salutation = clean(input.fullName) ?? "Hi there";
+  const amount = formatAmount(input.amountCents, input.currency);
+  const amountClause = amount ? ` of ${amount}` : "";
+
+  const text =
+    `${salutation},\n\n` +
+    `We've received your BarMatrix payment${amountClause} — thank you. ` +
+    `Your enrollment remains active.\n\n` +
+    `Pick up where you left off: ${accountUrl}\n\n` +
+    `Questions about your billing? Reply to this email or contact ${config.supportEmail}.`;
+  const html =
+    `<p>${escapeHtml(salutation)},</p>` +
+    `<p>We've received your BarMatrix payment${escapeHtml(
+      amountClause,
+    )} — thank you. Your enrollment remains active.</p>` +
+    `<p><a href="${escapeHtml(accountUrl)}">Pick up where you left off</a>.</p>` +
+    `<p>Questions about your billing? Reply to this email or contact ${escapeHtml(
+      config.supportEmail,
+    )}.</p>`;
+
+  return {
+    from: config.from,
+    to: [recipient],
+    replyTo: config.replyTo,
+    subject: "Payment received — your BarMatrix plan",
+    text,
+    html,
+  };
+}
+
+function buildUpcomingPaymentPayload(
+  input: InvoiceEmailInput,
+  recipient: string,
+  config: EnrollmentEmailConfig,
+): EnrollmentEmailPayload {
+  const accountUrl = `${config.frontendUrl}/account/`;
+  const salutation = clean(input.fullName) ?? "Hi there";
+  const amount = formatAmount(input.amountCents, input.currency);
+  const amountClause = amount ? ` of ${amount}` : "";
+
+  const text =
+    `${salutation},\n\n` +
+    `This is a heads-up that your next BarMatrix payment${amountClause} ` +
+    `is scheduled soon.\n\n` +
+    `Make sure your card on file is current so your access continues without ` +
+    `interruption: ${accountUrl}\n\n` +
+    `No action is needed if your payment details are up to date. ` +
+    `Questions? Reply to this email or contact ${config.supportEmail}.`;
+  const html =
+    `<p>${escapeHtml(salutation)},</p>` +
+    `<p>This is a heads-up that your next BarMatrix payment${escapeHtml(
+      amountClause,
+    )} is scheduled soon.</p>` +
+    `<p><a href="${escapeHtml(accountUrl)}">Review your payment details</a> so your ` +
+    `access continues without interruption.</p>` +
+    `<p>No action is needed if your payment details are up to date. ` +
+    `Questions? Reply to this email or contact ${escapeHtml(config.supportEmail)}.</p>`;
+
+  return {
+    from: config.from,
+    to: [recipient],
+    replyTo: config.replyTo,
+    subject: "Heads up: your BarMatrix payment is coming up",
+    text,
+    html,
+  };
+}
+
+function formatAmount(
+  cents: number | null | undefined,
+  currency: string | null | undefined,
+): string | null {
+  if (typeof cents !== "number" || !Number.isFinite(cents) || cents <= 0) {
+    return null;
+  }
+  const code = clean(currency)?.toUpperCase() ?? "USD";
+  const value = (cents / 100).toFixed(2);
+  return code === "USD" ? `$${value}` : `${value} ${code}`;
+}
+
+function buildEnrollmentEmailPayload(
+  input: EnrollmentEmailInput,
+  recipient: string,
+  config: EnrollmentEmailConfig,
+): EnrollmentEmailPayload {
+  const accessUrl = `${config.frontendUrl}/account/`;
+  const salutation = clean(input.fullName) ?? "Welcome to BarMatrix";
+  const text =
+    `${salutation},\n\n` +
+    `Your BarMatrix enrollment is active. Access your account at ${accessUrl}.\n\n` +
+    `Questions? Reply to this email or contact ${config.supportEmail}.`;
+  const html =
+    `<p>${escapeHtml(salutation)},</p>` +
+    "<p>Your BarMatrix enrollment is active.</p>" +
+    `<p><a href="${escapeHtml(accessUrl)}">Access your account</a></p>` +
+    `<p>Questions? Reply to this email or contact ${escapeHtml(
+      config.supportEmail,
+    )}.</p>`;
+
+  return {
+    from: config.from,
+    to: [recipient],
+    replyTo: config.replyTo,
+    subject: "Your BarMatrix access is ready",
+    text,
+    html,
+  };
+}
+
+function clean(value: string | null | undefined): string | null {
+  const trimmed = value?.trim();
+  return trimmed ? trimmed : null;
+}
+
+function normalizeEmail(value: string | null | undefined): string | null {
+  const trimmed = clean(value);
+  return trimmed ? trimmed.toLowerCase() : null;
+}
+
+function stripTrailingSlash(value: string): string {
+  return value.replace(/\/+$/, "");
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}

@@ -26,6 +26,23 @@ interface PurchaseRow {
   refund_status: string;
 }
 
+interface BillingPortalPurchaseRow extends PurchaseRow {
+  purchase_id: string;
+  stripe_customer_id: string | null;
+}
+
+type AuthForRequest = (req: Request) => { userId?: string | null };
+type EnrollmentCheck = (userId: string) => Promise<EnrollmentResult>;
+
+interface EnrollmentCheckOptions {
+  getAuthForRequest?: AuthForRequest;
+  checkEnrollmentForUser?: EnrollmentCheck;
+}
+
+export type BillingPortalOwnershipResult =
+  | { status: "ok"; customerId: string; purchaseId: string }
+  | { status: "unauthenticated" | "forbidden" | "not_found" | "missing_customer" };
+
 /**
  * Pure helper: given a list of purchase rows, is any one active?
  * Testable without a DB or Clerk.
@@ -84,19 +101,26 @@ export async function checkEnrollment(
  * On success: attaches res.locals.enrolledStudentId (string) and calls next().
  * On failure: 401 (no session), 403 (not enrolled), 502 (Clerk/DB error).
  */
-export function requireEnrollment(): RequestHandler[] {
+export function createEnrollmentCheckHandler(
+  options: EnrollmentCheckOptions = {},
+): RequestHandler {
+  const getAuthForRequest = options.getAuthForRequest ?? getAuth;
+  const checkEnrollmentForUser =
+    options.checkEnrollmentForUser ??
+    ((userId: string): Promise<EnrollmentResult> => checkEnrollment(userId, getPool()));
+
   const checkHandler: RequestHandler = async (
     req: Request,
     res: Response,
     next: NextFunction,
   ): Promise<void> => {
-    const { userId } = getAuth(req);
+    const { userId } = getAuthForRequest(req);
     if (!userId) {
       res.status(401).json({ error: "not authenticated" });
       return;
     }
     try {
-      const result = await checkEnrollment(userId, getPool());
+      const result = await checkEnrollmentForUser(userId);
       if (!result.enrolled) {
         res.status(403).json({ error: "enrollment required" });
         return;
@@ -108,5 +132,83 @@ export function requireEnrollment(): RequestHandler[] {
       res.status(502).json({ error: "auth provider lookup failed" });
     }
   };
-  return [clerkMiddleware(), checkHandler];
+  return checkHandler;
+}
+
+export async function resolveOwnedBillingPortalCustomer(
+  input: {
+    studentId: unknown;
+    checkoutSessionId?: string | null;
+  },
+  db: Pick<DbPool, "query"> = getPool(),
+): Promise<BillingPortalOwnershipResult> {
+  if (typeof input.studentId !== "string" || input.studentId.length === 0) {
+    return { status: "unauthenticated" };
+  }
+
+  const checkoutSessionId =
+    typeof input.checkoutSessionId === "string" &&
+    input.checkoutSessionId.trim().length > 0
+      ? input.checkoutSessionId.trim()
+      : null;
+
+  if (checkoutSessionId) {
+    const { rows } = await db.query<BillingPortalPurchaseRow>(
+      `SELECT purchase_id, student_id, stripe_customer_id,
+              entitlement_status, refund_status
+         FROM purchases
+        WHERE stripe_checkout_session_id = $1
+        LIMIT 1`,
+      [checkoutSessionId],
+    );
+    const row = rows[0];
+    if (!row) return { status: "not_found" };
+    if (row.student_id !== input.studentId) return { status: "forbidden" };
+    return ownedPortalCustomerFromPurchase(row);
+  }
+
+  const { rows } = await db.query<BillingPortalPurchaseRow>(
+    `SELECT purchase_id, student_id, stripe_customer_id,
+            entitlement_status, refund_status
+       FROM purchases
+      WHERE student_id = $1
+        AND entitlement_status = 'active'
+        AND refund_status = 'none'
+        AND stripe_customer_id IS NOT NULL
+      ORDER BY created_at DESC
+      LIMIT 1`,
+    [input.studentId],
+  );
+  const row = rows[0];
+  return row ? ownedPortalCustomerFromPurchase(row) : { status: "not_found" };
+}
+
+function ownedPortalCustomerFromPurchase(
+  row: BillingPortalPurchaseRow,
+): BillingPortalOwnershipResult {
+  if (!isEnrolled([row])) return { status: "forbidden" };
+  if (!row.stripe_customer_id) return { status: "missing_customer" };
+  return {
+    status: "ok",
+    customerId: row.stripe_customer_id,
+    purchaseId: row.purchase_id,
+  };
+}
+
+export function requireEnrolledResourceOwner(
+  res: Response,
+  resourceStudentId: string | null | undefined,
+): boolean {
+  if (
+    typeof res.locals.enrolledStudentId === "string" &&
+    resourceStudentId === res.locals.enrolledStudentId
+  ) {
+    return true;
+  }
+  res.status(403).json({ error: "resource forbidden" });
+  return false;
+}
+
+export function requireEnrollment(): RequestHandler[] {
+  return [clerkMiddleware(), createEnrollmentCheckHandler()];
 }

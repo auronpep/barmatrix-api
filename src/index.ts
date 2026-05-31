@@ -8,6 +8,7 @@ import cors from "cors";
 import helmet from "helmet";
 import { randomUUID } from "node:crypto";
 import { config } from "./config.js";
+import { initSentry, setupSentryErrorHandler } from "./sentry.js";
 import { getPool, ping } from "./db.js";
 import { CAPACITY_COPY, type CohortPublicStatus } from "./copy.js";
 import {
@@ -15,6 +16,12 @@ import {
   recordInstallmentPayment,
   suspendEntitlement,
 } from "./entitlement.js";
+import {
+  sendEnrollmentEmailForFulfillment,
+  sendInstallmentReceiptForInvoice,
+  sendPaymentFailedEmailForInvoice,
+  sendUpcomingPaymentEmailForInvoice,
+} from "./email.js";
 import { z } from "zod";
 import Stripe from "stripe";
 import { registerQuestionsRoutes } from "./routes/questions.js";
@@ -25,6 +32,16 @@ import {
   buildCheckoutSessionParams,
   resolveCheckoutReturnUrls,
 } from "./checkout.js";
+import {
+  CohortCapacityFullError,
+  CohortCapacityUnavailableError,
+  enforceCheckoutCapacityOpen,
+} from "./lib/capacity.js";
+import {
+  runStripeEventWithAudit,
+  summarizeStripeWebhookError,
+  type StripeEventAuditCompletion,
+} from "./lib/stripe-event-audit.js";
 import { registerMeRoutes } from "./routes/me.js";
 import { registerMeRedZonesRoutes } from "./routes/me-red-zones.js";
 import { registerTrapsRoutes } from "./routes/traps.js";
@@ -34,6 +51,10 @@ import { registerTensionsRoutes } from "./routes/tensions.js";
 import { registerFoundationsRoutes } from "./routes/foundations.js";
 import { registerC3Routes } from "./routes/c3.js";
 import { registerCertificationRoutes } from "./routes/certification.js";
+import {
+  requireEnrollment,
+  resolveOwnedBillingPortalCustomer,
+} from "./lib/clerk-entitlement.js";
 import {
   computeDiagnosticResults,
   selectDiagnosticQuestionIds,
@@ -187,6 +208,7 @@ function parseStringArray(value: unknown): string[] {
 }
 
 const app = express();
+const sentryEnabled = initSentry();
 
 // Stripe webhook needs the raw body for signature verification —
 // register that route BEFORE express.json() globally consumes the stream.
@@ -216,48 +238,25 @@ app.post(
     console.log(`[stripe webhook] ${event.type} ${event.id}`);
 
     try {
-      switch (event.type) {
-        case "checkout.session.completed": {
-          const session = event.data.object as Stripe.Checkout.Session;
-          let subscriptionId: string | null = null;
-
-          // For 2-pay, the subscription must be armed BEFORE we record the
-          // purchase so the stripe_subscription_id is populated.
-          if (session.metadata?.payment_plan === "two_pay_500_499") {
-            subscriptionId = await armTwoPaySubscription(session);
-          } else if (typeof session.subscription === "string") {
-            subscriptionId = session.subscription;
-          } else if (
-            session.subscription &&
-            typeof session.subscription === "object"
-          ) {
-            subscriptionId = session.subscription.id;
-          }
-
-          await fulfillCheckoutSession({ session, subscriptionId });
-          break;
-        }
-
-        case "invoice.payment_succeeded": {
-          await recordInstallmentPayment(event.data.object as Stripe.Invoice);
-          break;
-        }
-
-        case "invoice.payment_failed": {
-          await suspendEntitlement(event.data.object as Stripe.Invoice);
-          break;
-        }
-
-        default:
-          // payment_intent.* and other events are observed but require no
-          // domain action — Stripe gives us 200 either way.
-          break;
+      const audit = await runStripeEventWithAudit({
+        event,
+        handleEvent: handleStripeWebhookEvent,
+      });
+      if (audit.status === "in_progress") {
+        res.status(409).json({ error: "webhook event already processing" });
+        return;
+      }
+      if (audit.status === "replayed") {
+        res.json({ received: true, replay: true });
+        return;
       }
     } catch (err) {
       // Return 500 so Stripe retries delivery. Idempotency guards in
-      // fulfillCheckoutSession / recordInstallmentPayment prevent
+      // the event audit store and fulfillment handlers prevent
       // double-application.
-      console.error(`[stripe webhook] handler failed for ${event.type} ${event.id}:`, err);
+      console.error(
+        `[stripe webhook] handler failed for ${event.type} ${event.id}: ${summarizeStripeWebhookError(err)}`,
+      );
       res.status(500).json({ error: "webhook handler failed" });
       return;
     }
@@ -265,6 +264,66 @@ app.post(
     res.json({ received: true });
   },
 );
+
+async function handleStripeWebhookEvent(
+  event: Stripe.Event,
+): Promise<StripeEventAuditCompletion> {
+  switch (event.type) {
+    case "checkout.session.completed": {
+      const session = event.data.object as Stripe.Checkout.Session;
+      let subscriptionId: string | null = null;
+
+      // For 2-pay, the subscription must be armed BEFORE we record the
+      // purchase so the stripe_subscription_id is populated.
+      if (session.metadata?.payment_plan === "two_pay_500_499") {
+        subscriptionId = await armTwoPaySubscription(session);
+      } else if (typeof session.subscription === "string") {
+        subscriptionId = session.subscription;
+      } else if (
+        session.subscription &&
+        typeof session.subscription === "object"
+      ) {
+        subscriptionId = session.subscription.id;
+      }
+
+      const fulfillment = await fulfillCheckoutSession({
+        session,
+        subscriptionId,
+      });
+      await sendEnrollmentEmailForFulfillment({ session, fulfillment });
+      return {
+        processingStatus: "processed",
+        relatedPurchaseId: fulfillment.purchaseId,
+        relatedStudentId: fulfillment.studentId,
+      };
+    }
+
+    case "invoice.payment_succeeded": {
+      const invoice = event.data.object as Stripe.Invoice;
+      const { recorded } = await recordInstallmentPayment(invoice);
+      await sendInstallmentReceiptForInvoice({ invoice, recorded });
+      return { processingStatus: "processed" };
+    }
+
+    case "invoice.payment_failed": {
+      const invoice = event.data.object as Stripe.Invoice;
+      const { suspended } = await suspendEntitlement(invoice);
+      await sendPaymentFailedEmailForInvoice({ invoice, suspended });
+      return { processingStatus: "processed" };
+    }
+
+    case "invoice.upcoming": {
+      const invoice = event.data.object as Stripe.Invoice;
+      await sendUpcomingPaymentEmailForInvoice({ invoice });
+      return { processingStatus: "processed" };
+    }
+
+    default:
+      // payment_intent.* and other events are observed but require no domain
+      // action. Audit them as ignored and return 200.
+      return { processingStatus: "ignored" };
+  }
+}
 
 // Standard middleware for the rest of the API.
 app.use(helmet());
@@ -471,33 +530,12 @@ app.post("/api/checkout/create-session", async (req, res) => {
   // ---- Cohort capacity gate ----
   // RULES.md locks an internal cap of 1,000 students for the July cohort.
   // Don't let Stripe Checkout open for a customer who can't actually get a
-  // seat. The cohort_public_status view already reports the right band; we
-  // just enforce it on writes here. A tiny concurrent race (two creates at
-  // count=999) can over-sell by 1-2 — acceptable per founder defaults.
+  // seat. DB failures fail closed; fulfillment repeats the cap check under
+  // a transaction lock before assigning a seat.
   try {
-    const capRes = await getPool().query<{
-      internal_capacity: number;
-      active_count: string;
-    }>(
-      `SELECT c.internal_capacity,
-              COALESCE(COUNT(e.enrollment_id), 0) AS active_count
-         FROM cohort_config c
-         LEFT JOIN cohort_enrollments e
-           ON e.cohort_id = c.cohort_id
-          AND e.enrollment_status = 'active'
-        WHERE c.cohort_code = $1 AND c.active = 1
-        GROUP BY c.cohort_id, c.internal_capacity`,
-      [config.cohort.code],
-    );
-    const capRow = capRes.rows[0];
-    if (!capRow) {
-      console.error(
-        `[checkout] no active cohort_config row for code=${config.cohort.code}`,
-      );
-      res.status(503).json({ error: "cohort_unavailable" });
-      return;
-    }
-    if (Number(capRow.active_count) >= capRow.internal_capacity) {
+    await enforceCheckoutCapacityOpen(getPool(), config.cohort.code);
+  } catch (err) {
+    if (err instanceof CohortCapacityFullError) {
       // Public copy per DRIFT_CONTROL.md "waitlist" band.
       res.status(409).json({
         error: "cohort_full",
@@ -505,11 +543,13 @@ app.post("/api/checkout/create-session", async (req, res) => {
       });
       return;
     }
-  } catch (err) {
-    // Fail-open is the wrong default for a capacity gate, but a DB outage
-    // shouldn't block all checkout traffic indefinitely. Log loudly and let
-    // the call through — the rare over-sell beats a blanket revenue cutoff.
-    console.error("[checkout] capacity check failed, proceeding:", err);
+    if (err instanceof CohortCapacityUnavailableError) {
+      console.error("[checkout] capacity check failed closed:", err.name);
+    } else {
+      console.error("[checkout] capacity check failed closed: unknown");
+    }
+    res.status(503).json({ error: "cohort_capacity_unavailable" });
+    return;
   }
 
   try {
@@ -539,16 +579,15 @@ app.post("/api/checkout/create-session", async (req, res) => {
 
 // ----- billing portal -----
 // Contract: API_CONTRACTS.md "POST /api/billing/create-portal-session".
-// The API has no auth middleware yet, so the only verifiable identity signal
-// is a checkout session that maps to a real purchase row. When Clerk auth is
-// wired into the API, resolve the Stripe customer from the authenticated
-// student instead of (or in addition to) the checkout session.
+// Clerk auth plus local purchase ownership are required. Do not fall back to
+// Stripe session retrieval here: a provider-side session ID alone is not proof
+// that the signed-in student owns the billing customer.
 const portalBody = z.object({
   checkout_session_id: z.string().min(1).nullable().optional(),
   return_url: z.string().url(),
 });
 
-app.post("/api/billing/create-portal-session", async (req, res) => {
+app.post("/api/billing/create-portal-session", ...requireEnrollment(), async (req, res) => {
   const parse = portalBody.safeParse(req.body);
   if (!parse.success) {
     res.status(400).json({ error: parse.error.flatten() });
@@ -557,50 +596,34 @@ app.post("/api/billing/create-portal-session", async (req, res) => {
   const { checkout_session_id: checkoutSessionId, return_url: returnUrl } =
     parse.data;
 
-  if (!checkoutSessionId) {
-    res.status(401).json({ error: "no verified checkout session" });
-    return;
-  }
-
-  // Resolve the Stripe customer from our own purchase record first.
-  let customerId: string | null = null;
+  let ownership;
   try {
-    const { rows } = await getPool().query<{
-      stripe_customer_id: string | null;
-    }>(
-      "SELECT stripe_customer_id FROM purchases WHERE stripe_checkout_session_id = $1 LIMIT 1",
-      [checkoutSessionId],
-    );
-    customerId = rows[0]?.stripe_customer_id ?? null;
+    ownership = await resolveOwnedBillingPortalCustomer({
+      studentId: res.locals.enrolledStudentId,
+      checkoutSessionId,
+    });
   } catch (err) {
     console.error("[billing portal] purchase lookup failed:", err);
     res.status(500).json({ error: "internal server error" });
     return;
   }
 
-  // Fallback: pay-in-full sessions may not have created a Stripe Customer in
-  // our row. Ask Stripe directly — this also verifies the session is real.
-  if (!customerId) {
-    try {
-      const session =
-        await stripeClient.checkout.sessions.retrieve(checkoutSessionId);
-      customerId =
-        typeof session.customer === "string"
-          ? session.customer
-          : (session.customer?.id ?? null);
-    } catch (err) {
-      console.error("[billing portal] session retrieve failed:", err);
+  if (ownership.status !== "ok") {
+    if (ownership.status === "unauthenticated") {
+      res.status(401).json({ error: "not authenticated" });
+      return;
     }
-  }
-
-  if (!customerId) {
-    res.status(404).json({ error: "no enrollment matched to this session" });
+    if (ownership.status === "forbidden") {
+      res.status(403).json({ error: "billing portal forbidden" });
+      return;
+    }
+    res.status(404).json({ error: "no local billing purchase found" });
     return;
   }
 
   try {
     const portal = await stripeClient.billingPortal.sessions.create({
-      customer: customerId,
+      customer: ownership.customerId,
       return_url: returnUrl,
     });
     res.json({ portal_url: portal.url, session_id: portal.id });
@@ -632,6 +655,8 @@ app.post("/api/referrals/click", async (req, res) => {
 });
 
 // ----- 404 + error handlers -----
+setupSentryErrorHandler(app, sentryEnabled);
+
 app.use((_req, res) => {
   res.status(404).json({ error: "not found" });
 });

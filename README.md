@@ -82,6 +82,7 @@ Skeleton implementations of the SRC-0020 contracts. TODO markers in source flag 
 - Zod validates every request body
 - SQL uses positional placeholders (`$1`) converted to MySQL placeholders in `src/db.ts` — no string-concatenated values
 - The internal capacity number (1,000) is NEVER returned in any API response
+- Sentry error capture is enabled only when `BARMATRIX_API_SENTRY_DSN` or `SENTRY_DSN` is configured
 
 ## Knowledge retrieval
 
