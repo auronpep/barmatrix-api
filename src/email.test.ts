@@ -379,7 +379,9 @@ describe("sendInstallmentReceiptForInvoice", () => {
       },
     );
     assert.deepEqual(result, { status: "sent", id: "email_billing" });
-    assert.equal(inputs[0].amountCents, 49900);
+    const input = inputs[0];
+    assert.ok(input);
+    assert.equal(input.amountCents, 49900);
   });
 });
 
@@ -412,6 +414,8 @@ describe("sendUpcomingPaymentEmailForInvoice", () => {
       },
     );
     assert.deepEqual(result, { status: "sent", id: "email_billing" });
-    assert.equal(inputs[0].amountCents, 49900);
+    const input = inputs[0];
+    assert.ok(input);
+    assert.equal(input.amountCents, 49900);
   });
 });
