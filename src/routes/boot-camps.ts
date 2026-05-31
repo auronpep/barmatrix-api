@@ -30,6 +30,8 @@ import {
   summarizeDayProgress,
   type DayQuestionMap,
 } from "../lib/bootcamps.js";
+import { dayXp, evaluateDayContentBadges } from "../lib/gamification.js";
+import { grantBootCampActivity, type GamificationGrant } from "../lib/gamification-store.js";
 import {
   requireEnrolledResourceOwner,
   requireEnrollment,
@@ -386,11 +388,38 @@ export function registerBootCampsRoutes(app: Express): void {
         if (evalResult.eligibleToAdvance || skip) {
           newCurrentDay = nextCurrentDay(currentDay, day, dayCount);
           if (newCurrentDay !== currentDay) {
-            await pool.query(
-              "UPDATE boot_camp_sessions SET current_day = $1 WHERE session_id = $2",
-              [newCurrentDay, session.session_id],
+            const upd = await pool.query(
+              "UPDATE boot_camp_sessions SET current_day = $1 WHERE session_id = $2 AND current_day = $3",
+              [newCurrentDay, session.session_id, currentDay],
             );
-            advanced = true;
+            // Exactly-once: a concurrent caller that already advanced this day
+            // changes zero rows here and must not be treated as the advancer.
+            advanced = upd.rowCount === 1;
+          }
+        }
+
+        let gamification: GamificationGrant | null = null;
+        if (advanced) {
+          const skippedDay = skip && !evalResult.eligibleToAdvance;
+          try {
+            gamification = await grantBootCampActivity(pool, {
+              studentId: session.student_id,
+              sourceType: "boot_camp_day",
+              sourceRef: `${session.session_id}:day:${day}`,
+              xp: dayXp(correct, skippedDay),
+              contentBadges: evaluateDayContentBadges({
+                day,
+                dayCount,
+                correct,
+                dayQuestionCount: dayIds.length,
+              }),
+              now: new Date(),
+            });
+          } catch (err) {
+            // The day advancement is authoritative and already persisted; a
+            // gamification failure must not lose it. Log and return null — the
+            // grant is recoverable on the next idempotent completion call.
+            console.error("[boot-camps] gamification grant (day) failed:", err);
           }
         }
 
@@ -406,6 +435,7 @@ export function registerBootCampsRoutes(app: Express): void {
           skipped: skip && advanced && !evalResult.eligibleToAdvance,
           current_day: newCurrentDay,
           mastery_unlocked: isMasteryUnlocked(newCurrentDay, dayCount),
+          gamification,
         });
       });
     },
