@@ -24,11 +24,11 @@ export interface MoldSrs {
   due_at_ms: number;
 }
 
-function fresh(): MoldSrs {
+export function fresh(): MoldSrs {
   return { reps: 0, lapses: 0, ease: DEFAULT_EASE, interval_days: 0, last_reviewed_ms: 0, due_at_ms: 0 };
 }
 
-function applySuccess(s: MoldSrs, atMs: number): void {
+export function applySuccess(s: MoldSrs, atMs: number): void {
   s.reps += 1;
   s.interval_days = s.reps === 1 ? 1 : s.reps === 2 ? 6 : Math.round(s.interval_days * s.ease);
   const q = SUCCESS_QUALITY;
@@ -37,7 +37,7 @@ function applySuccess(s: MoldSrs, atMs: number): void {
   s.due_at_ms = atMs + s.interval_days * DAY_MS;
 }
 
-function applyLapse(s: MoldSrs, atMs: number): void {
+export function applyLapse(s: MoldSrs, atMs: number): void {
   s.reps = 0; s.lapses += 1; s.interval_days = 1;
   s.ease = Math.max(MIN_EASE, s.ease - 0.2);
   s.last_reviewed_ms = atMs;

@@ -384,6 +384,7 @@ const startDiagnosticBody = z.object({
   email: z.string().email().optional(),
   jurisdiction: z.string().max(64).optional(),
   partner_id: z.string().uuid().optional(),
+  seen_question_ids: z.array(z.string().uuid()).max(500).optional(),
 });
 
 app.post("/api/diagnostic/start", async (req, res) => {
@@ -404,6 +405,11 @@ app.post("/api/diagnostic/start", async (req, res) => {
   // focus-group pct (n>=30, correct letter excluded). Questions without that
   // signal sort last via RAND(), so when no focus-group data exists selection
   // degrades to a random pick — no regression from the prior behavior.
+  const seen = parse.data.seen_question_ids ?? [];
+  const seenExclusion =
+    seen.length > 0
+      ? `AND q.question_id NOT IN (${seen.map((_: string, i: number) => `$${i + 3}`).join(", ")})`
+      : "";
   let questionIds: string[] = [];
   let bankLoaded = false;
   try {
@@ -423,9 +429,10 @@ app.post("/api/diagnostic/start", async (req, res) => {
          LEFT JOIN answer_choices cc
            ON cc.question_id = q.question_id AND cc.is_correct = 1
         WHERE q.status = 'active'
+          ${seenExclusion}
         ORDER BY attractiveness DESC, RAND()
         LIMIT $2`,
-      [DIAGNOSTIC_FOCUS_GROUP_MIN_SAMPLE, DIAGNOSTIC_POOL_SIZE],
+      [DIAGNOSTIC_FOCUS_GROUP_MIN_SAMPLE, DIAGNOSTIC_POOL_SIZE, ...seen],
     );
     const candidates: DiagnosticCandidate[] = rows.map((r) => ({
       question_id: r.question_id,
@@ -433,7 +440,7 @@ app.post("/api/diagnostic/start", async (req, res) => {
       attractiveness: Number(r.attractiveness) || 0,
     }));
     questionIds = selectDiagnosticQuestionIds(candidates, DIAGNOSTIC_LENGTH);
-    bankLoaded = questionIds.length >= DIAGNOSTIC_LENGTH;
+    bankLoaded = questionIds.length > 0;
   } catch (err) {
     console.error("[diagnostic start] question pick failed:", err);
     // Fall through with empty list; the response shape stays valid.

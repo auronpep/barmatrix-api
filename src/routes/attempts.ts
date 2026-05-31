@@ -23,6 +23,7 @@ import {
   resolveClerkEmail,
   findOrCreateStudentByEmail,
 } from "../lib/clerk-identity.js";
+import { fresh, applySuccess, applyLapse, type MoldSrs } from "../lib/c3-srs.js";
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 // Per SRC-0007 CLAIMS_SIGNOFF: never publish focus-group data below n=30.
@@ -59,6 +60,7 @@ interface ChoiceForAttempt {
   choice_id: string;
   is_correct: boolean | 0 | 1;
   remediation_id: string | null;
+  c3_mold_code: string | null;
 }
 
 interface CorrectChoice {
@@ -101,7 +103,7 @@ export function registerAttemptsRoutes(app: Express): void {
 
       // 1. Resolve the selected choice to compute correctness + remediation.
       const { rows: selectedRows } = await client.query<ChoiceForAttempt>(
-        `SELECT choice_id, is_correct, remediation_id
+        `SELECT choice_id, is_correct, remediation_id, c3_mold_code
            FROM answer_choices
           WHERE question_id = $1 AND letter = $2
           LIMIT 1`,
@@ -209,14 +211,15 @@ export function registerAttemptsRoutes(app: Express): void {
         if (!selectedIsCorrect && selected.remediation_id) {
           await client.query(
             `INSERT INTO drill_assignments
-               (student_id, drill_slug, reason, red_zone_dimension, red_zone_tag, question_ids, status)
-             VALUES ($1, $2, $3, $4, $5, JSON_ARRAY($6), 'prescribed')`,
+               (assignment_id, student_id, drill_slug, reason, red_zone_dimension, red_zone_tag, question_ids, status)
+             VALUES ($1, $2, $3, $4, $5, $6, JSON_ARRAY($7), 'in_progress')`,
             [
+              randomUUID(),
               studentId,
               selected.remediation_id,
               "wrong_answer_forensics",
-              "subtopic",
-              q?.subtopic ?? "",
+              q?.subtopic ? "subtopic" : null,
+              q?.subtopic ?? null,
               body.question_id,
             ],
           );
@@ -224,6 +227,14 @@ export function registerAttemptsRoutes(app: Express): void {
       }
 
       await client.query("COMMIT");
+
+      // Fire-and-forget: persist SM-2 state so c3-coach doesn't replay full history.
+      if (!isAnonymous) {
+        void updateC3SrsAsync(
+          studentId, body.question_id, selectedIsCorrect,
+          selected.c3_mold_code ?? null, Date.now(),
+        );
+      }
 
       res.json({
         attempt_id: attemptId,
@@ -345,6 +356,59 @@ export function registerAttemptsRoutes(app: Express): void {
       res.status(500).json({ error: "internal server error" });
     }
   });
+}
+
+// ── C3 SRS helpers ────────────────────────────────────────────────────────────
+
+async function upsertSrsRow(
+  studentId: string, moldCode: string, success: boolean, nowMs: number,
+): Promise<void> {
+  const pool = getPool();
+  const { rows } = await pool.query<Record<string, unknown>>(
+    `SELECT reps, lapses, ease, interval_days, last_reviewed_ms, due_at_ms
+       FROM student_c3_srs WHERE student_id = $1 AND mold_code = $2 LIMIT 1`,
+    [studentId, moldCode],
+  );
+  const r = rows[0];
+  const s: MoldSrs = r
+    ? { reps: Number(r.reps), lapses: Number(r.lapses), ease: Number(r.ease),
+        interval_days: Number(r.interval_days), last_reviewed_ms: Number(r.last_reviewed_ms),
+        due_at_ms: Number(r.due_at_ms) }
+    : fresh();
+  if (success) applySuccess(s, nowMs);
+  else applyLapse(s, nowMs);
+  await pool.query(
+    `INSERT INTO student_c3_srs
+       (student_id, mold_code, reps, lapses, ease, interval_days, last_reviewed_ms, due_at_ms)
+     VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+     ON DUPLICATE KEY UPDATE
+       reps = VALUES(reps), lapses = VALUES(lapses), ease = VALUES(ease),
+       interval_days = VALUES(interval_days),
+       last_reviewed_ms = VALUES(last_reviewed_ms),
+       due_at_ms = VALUES(due_at_ms)`,
+    [studentId, moldCode, s.reps, s.lapses, s.ease, s.interval_days, s.last_reviewed_ms, s.due_at_ms],
+  );
+}
+
+async function updateC3SrsAsync(
+  studentId: string, questionId: string, correct: boolean,
+  bittenMold: string | null, nowMs: number,
+): Promise<void> {
+  try {
+    if (correct) {
+      const pool = getPool();
+      const { rows } = await pool.query<Record<string, unknown>>(
+        `SELECT DISTINCT c3_mold_code FROM answer_choices
+          WHERE question_id = $1 AND c3_mold_code IS NOT NULL`,
+        [questionId],
+      );
+      await Promise.all(rows.map((r) => upsertSrsRow(studentId, String(r.c3_mold_code), true, nowMs)));
+    } else if (bittenMold) {
+      await upsertSrsRow(studentId, bittenMold, false, nowMs);
+    }
+  } catch (err) {
+    console.error("[c3-srs] background update failed:", err);
+  }
 }
 
 function asStringArray(value: unknown): string[] {

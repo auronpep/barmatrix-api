@@ -23,6 +23,12 @@ export function questionMoldsQuery(): string {
      WHERE a.student_id = $1`;
 }
 
+export function srsStateQuery(): string {
+  return `
+    SELECT mold_code, reps, lapses, ease, interval_days, last_reviewed_ms, due_at_ms
+      FROM student_c3_srs WHERE student_id = $1`;
+}
+
 export function recentlySeenQuery(): string {
   return `
     SELECT a.question_id AS question_id

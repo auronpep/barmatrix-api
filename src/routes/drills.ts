@@ -434,6 +434,7 @@ async function selectQuestionIds(
           AND a.attempted_at = (
             SELECT MAX(a2.attempted_at) FROM student_attempts a2
              WHERE a2.set_id = $1 AND a2.question_id = q.question_id
+               AND a2.student_id = $2
           )
         GROUP BY q.question_id
         LIMIT $3`,
@@ -632,7 +633,7 @@ export function registerDrillsRoutes(app: Express): void {
                   red_zone_tag, status, JSON_LENGTH(question_ids) AS question_count,
                   prescribed_at
              FROM drill_assignments
-            WHERE student_id = $1 AND status = 'in_progress'
+            WHERE student_id = $1 AND status IN ('prescribed', 'in_progress')
             ORDER BY prescribed_at DESC
             LIMIT $2`,
           [studentId, MAX_IN_PROGRESS],

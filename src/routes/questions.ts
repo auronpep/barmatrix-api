@@ -102,7 +102,7 @@ export function registerQuestionsRoutes(app: Express): void {
         `SELECT question_id, external_id, subject, topic, subtopic, tension_point
            FROM questions
           WHERE subject = $1 AND status = 'active'
-          ORDER BY subtopic ASC, question_id ASC
+          ORDER BY RAND()
           LIMIT $2 OFFSET $3`,
         [subject, limit, offset],
       );

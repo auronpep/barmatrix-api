@@ -7,10 +7,10 @@ import { getPool } from "../db.js";
 import { resolveClerkStudent } from "../lib/me-student.js";
 import { moldStatsQuery, coverageQuery } from "../lib/c3-queries.js";
 import { selectTarget, type Rng } from "../lib/c3-bandit.js";
-import { computeSrsState, isDue, type AttemptEvent } from "../lib/c3-srs.js";
+import { isDue, type MoldSrs } from "../lib/c3-srs.js";
 import { moldProficiency, type MoldRow, type Family } from "../lib/c3-scoring.js";
 import {
-  attemptStreamQuery, questionMoldsQuery, recentlySeenQuery,
+  srsStateQuery, recentlySeenQuery,
   candidatesForMoldQuery, servableQuestionQuery, servableChoicesQuery,
 } from "../lib/c3-coach-queries.js";
 
@@ -78,10 +78,9 @@ export function registerC3CoachRoutes(app: Express, rngFactory: () => Rng = () =
     const sid = resolution.student.student_id;
     try {
       const pool = getPool();
-      const [moldsR, streamR, qmR, seenR, covR] = await Promise.all([
+      const [moldsR, srsR, seenR, covR] = await Promise.all([
         pool.query(moldStatsQuery(), [sid]),
-        pool.query(attemptStreamQuery(), [sid]),
-        pool.query(questionMoldsQuery(), [sid]),
+        pool.query(srsStateQuery(), [sid]),
         pool.query(recentlySeenQuery(), [sid, RECENTLY_SEEN_LIMIT]),
         pool.query(coverageQuery(), [sid]),
       ]);
@@ -99,16 +98,15 @@ export function registerC3CoachRoutes(app: Express, rngFactory: () => Rng = () =
         });
       }
 
-      const events: AttemptEvent[] = (streamR.rows as Record<string, unknown>[]).map((r) => ({
-        question_id: String(r.question_id), correct: Boolean(num(r.correct)),
-        bitten_mold: r.bitten_mold == null ? null : String(r.bitten_mold),
-        attempted_at_ms: new Date(r.attempted_at as string).getTime(),
-      }));
-      const questionMolds: Record<string, string[]> = {};
-      for (const r of qmR.rows as Record<string, unknown>[]) {
-        const q = String(r.question_id); (questionMolds[q] ||= []).push(String(r.mold_code));
+      const srs = new Map<string, MoldSrs>();
+      for (const r of srsR.rows as Record<string, unknown>[]) {
+        srs.set(String(r.mold_code), {
+          reps: num(r.reps), lapses: num(r.lapses), ease: Number(r.ease),
+          interval_days: num(r.interval_days),
+          last_reviewed_ms: Number(r.last_reviewed_ms),
+          due_at_ms: Number(r.due_at_ms),
+        });
       }
-      const srs = computeSrsState(events, questionMolds);
       const nowMs = Date.now();
       const srsDue: Record<string, boolean> = {};
       for (const m of molds) srsDue[m.mold_code] = isDue(srs, m.mold_code, nowMs);
