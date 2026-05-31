@@ -1,7 +1,21 @@
 // Centralized config — fail loud at boot if a required env var is missing,
 // so we never deploy a half-configured backend that silently degrades.
 
-import "dotenv/config";
+import dotenv from "dotenv";
+import { existsSync } from "node:fs";
+import { homedir } from "node:os";
+import { join } from "node:path";
+
+// Load env from a path OUTSIDE the deploy/clone dir so Hostinger auto-deploy
+// re-clones can never wipe production secrets (the recurring 503 cause). The
+// external file lives in ~/secrets and survives re-clones; fall back to the
+// repo-local .env for local development.
+const externalEnvPath = join(homedir(), "secrets", "barmatrix-api.env");
+if (existsSync(externalEnvPath)) {
+  dotenv.config({ path: externalEnvPath });
+} else {
+  dotenv.config();
+}
 
 function required(name: string): string {
   const v = process.env[name];
