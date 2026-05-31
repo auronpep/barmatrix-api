@@ -52,6 +52,7 @@ import { registerDrillsRoutes } from "./routes/drills.js";
 import { registerTensionsRoutes } from "./routes/tensions.js";
 import { registerFoundationsRoutes } from "./routes/foundations.js";
 import { registerC3Routes } from "./routes/c3.js";
+import { registerC3CoachRoutes } from "./routes/c3-coach.js";
 import { registerCertificationRoutes } from "./routes/certification.js";
 import {
   requireEnrollment,
@@ -506,6 +507,7 @@ registerDrillsRoutes(app);
 registerTensionsRoutes(app);
 registerFoundationsRoutes(app);
 registerC3Routes(app);
+registerC3CoachRoutes(app);
 registerCertificationRoutes(app);
 
 // ----- checkout -----

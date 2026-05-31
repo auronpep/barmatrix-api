@@ -1,6 +1,28 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { pickFromCandidates, buildCoachPayload } from "./c3-coach.js";
+
+// Importing the route module pulls in db.js -> config.js, which validates env on
+// load. Mirror c3.test.ts and provide placeholders so the import works, then
+// import the pure helpers dynamically.
+process.env.DATABASE_HOST = "127.0.0.1";
+process.env.DATABASE_NAME = "test_db";
+process.env.DATABASE_USER = "test_user";
+process.env.DATABASE_PASSWORD = "test_password";
+process.env.BARMATRIX_DB_KEY = "test_password";
+process.env.STRIPE_SECRET_KEY = "sk_test_placeholder";
+process.env.STRIPE_WEBHOOK_SECRET = "whsec_placeholder";
+process.env.STRIPE_PRODUCT_BARMATRIX_FLAGSHIP = "prod_placeholder";
+process.env.STRIPE_PRICE_PAY_IN_FULL = "price_placeholder_full";
+process.env.STRIPE_PRICE_FLAGSHIP_ANCHOR = "price_placeholder_anchor";
+process.env.STRIPE_PRICE_PAY_IN_TWO = "price_placeholder_two";
+process.env.STRIPE_PRICE_PAY_IN_TWO_SECOND = "price_placeholder_second";
+process.env.CLERK_PUBLISHABLE_KEY = "pk_test_placeholder";
+process.env.CLERK_SECRET_KEY = "sk_test_placeholder";
+process.env.FRONTEND_URL = "https://barmatrix.app";
+process.env.SUCCESS_URL = "https://barmatrix.app/account/?welcome=1";
+process.env.CANCEL_URL = "https://barmatrix.app/pricing/";
+
+const { pickFromCandidates, buildCoachPayload } = await import("./c3-coach.js");
 
 describe("pickFromCandidates", () => {
   it("returns the first candidate not in recently-seen", () => {
