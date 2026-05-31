@@ -5,7 +5,7 @@ import type { Express, Request, Response } from "express";
 import { clerkMiddleware } from "@clerk/express";
 import { getPool } from "../db.js";
 import { resolveClerkStudent } from "../lib/me-student.js";
-import { moldStatsQuery } from "../lib/c3-queries.js";
+import { moldStatsQuery, coverageQuery } from "../lib/c3-queries.js";
 import { selectTarget, type Rng } from "../lib/c3-bandit.js";
 import { computeSrsState, isDue, type AttemptEvent } from "../lib/c3-srs.js";
 import { moldProficiency, type MoldRow, type Family } from "../lib/c3-scoring.js";
@@ -78,11 +78,12 @@ export function registerC3CoachRoutes(app: Express, rngFactory: () => Rng = () =
     const sid = resolution.student.student_id;
     try {
       const pool = getPool();
-      const [moldsR, streamR, qmR, seenR] = await Promise.all([
+      const [moldsR, streamR, qmR, seenR, covR] = await Promise.all([
         pool.query(moldStatsQuery(), [sid]),
         pool.query(attemptStreamQuery(), [sid]),
         pool.query(questionMoldsQuery(), [sid]),
         pool.query(recentlySeenQuery(), [sid, RECENTLY_SEEN_LIMIT]),
+        pool.query(coverageQuery(), [sid]),
       ]);
 
       const molds: MoldRow[] = (moldsR.rows as Record<string, unknown>[]).map((m) => ({
@@ -150,8 +151,11 @@ export function registerC3CoachRoutes(app: Express, rngFactory: () => Rng = () =
       const prof = moldProficiency(row);
       const meta = metaByCode.get(chosenCode)!;
       const deficit = sel.ranking.find((r) => r.mold_code === chosenCode)?.deficit ?? 0;
-      const measured_attempts = events.length;
-      const total = (streamR.rows as unknown[]).length;
+      // Honest coverage denominator: coverageQuery LEFT JOINs so total counts ALL
+      // attempts while measured counts only C3-annotated ones (events.length matches).
+      const covRow = (covR.rows[0] ?? {}) as Record<string, unknown>;
+      const total = num(covRow.total_attempts);
+      const measured_attempts = num(covRow.measured_attempts);
 
       const payload = buildCoachPayload({
         question: { ...(qR.rows[0] as ServableQuestion), choices: chR.rows as ServableChoice[] },
