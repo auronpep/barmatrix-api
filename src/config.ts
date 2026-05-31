@@ -10,8 +10,13 @@ import { join } from "node:path";
 // re-clones can never wipe production secrets (the recurring 503 cause). The
 // external file lives in ~/secrets and survives re-clones; fall back to the
 // repo-local .env for local development.
-const externalEnvPath = join(homedir(), "secrets", "barmatrix-api.env");
-if (existsSync(externalEnvPath)) {
+const envCandidates = [
+  process.env.BARMATRIX_ENV_FILE,
+  join(homedir(), "secrets", "barmatrix-api.env"),
+  "/home/u211961595/secrets/barmatrix-api.env",
+].filter((p): p is string => Boolean(p));
+const externalEnvPath = envCandidates.find((p) => existsSync(p));
+if (externalEnvPath) {
   dotenv.config({ path: externalEnvPath });
 } else {
   dotenv.config();
