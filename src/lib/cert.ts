@@ -38,7 +38,7 @@ export interface CertKeyItem {
   key_axis?: string; key_survivor?: string; key_band?: "HIGH"|"MED"|"COIN";
   key_answer?: string; key_phase?: "CUT"|"CLASH"|"CALL";
   mechanism?: string; is_clean_or_anchor?: boolean; is_deterministic?: boolean; is_fork?: boolean;
-  explanation?: string;
+  explanation?: string; review_note?: string;
 }
 export interface CertKeyCompetency {
   pass: PassSpec; capture: Capture; remediation_lessons: string[]; items: CertKeyItem[];

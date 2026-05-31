@@ -357,9 +357,9 @@ export const CERT_CONTENT: PublicCertContent = {
         },
         {
           "id": "M5-5",
-          "prompt": "(State law struck on federal and state grounds; SCOTUS petition.) Survivors: independent state ground vs federal interpretation. Name the axis and pick the survivor.",
+          "prompt": "(State law struck on federal and state grounds; SCOTUS petition.) Survivors: adequate and independent state ground vs federal interpretation. Name the axis and pick the survivor.",
           "axis_options": [
-            "Independent state ground vs federal ground",
+            "Adequate and independent state ground vs federal ground",
             "Market participant vs regulator",
             "Content-based vs content-neutral",
             "Specific vs general personal jurisdiction"
@@ -367,7 +367,7 @@ export const CERT_CONTENT: PublicCertContent = {
           "survivor_options": [
             {
               "letter": "A",
-              "text": "independent state ground"
+              "text": "adequate and independent state ground"
             },
             {
               "letter": "B",
@@ -419,7 +419,7 @@ export const CERT_CONTENT: PublicCertContent = {
           "id": "M5-8",
           "prompt": "(Negligently mishandled corpse.) Survivors: extreme-and-outrageous vs negligent failure to safeguard. Name the axis and pick the survivor.",
           "axis_options": [
-            "NIED: zone-of-danger vs special exception",
+            "IIED/extreme-and-outrageous vs negligent corpse-mishandling NIED",
             "Strict liability vs negligence (products)",
             "Direct vs vicarious liability",
             "Material vs minor breach"
@@ -502,7 +502,7 @@ export const CERT_CONTENT: PublicCertContent = {
         },
         {
           "id": "M6-2",
-          "prompt": "Whether a firm offer is still open after four months."
+          "prompt": "Whether a merchant firm offer remains irrevocable after four months."
         },
         {
           "id": "M6-3",
@@ -1020,7 +1020,7 @@ export const CERT_CONTENT: PublicCertContent = {
         },
         {
           "id": "M10-9",
-          "prompt": "(Subsequent repair offered to prove the defendant's negligence.) Pick the answer, name the deciding phase, state a confidence band.",
+          "prompt": "(Subsequent repair offered to prove the defendant's negligence.) For what purpose, if any, may the subsequent remedial measure be admitted? Pick the answer, name the deciding phase, state a confidence band.",
           "options": [
             {
               "letter": "A",

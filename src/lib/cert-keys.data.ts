@@ -308,7 +308,7 @@ export const CERT_KEYS: CertKeys = {
       },
       {
         "id": "M5-5",
-        "key_axis": "Independent state ground vs federal ground",
+        "key_axis": "Adequate and independent state ground vs federal ground",
         "key_survivor": "A",
         "explanation": "The judgment rests on an adequate and independent state ground, so SCOTUS declines review."
       },
@@ -326,7 +326,7 @@ export const CERT_KEYS: CertKeys = {
       },
       {
         "id": "M5-8",
-        "key_axis": "NIED: zone-of-danger vs special exception",
+        "key_axis": "IIED/extreme-and-outrageous vs negligent corpse-mishandling NIED",
         "key_survivor": "B",
         "explanation": "This is NIED (negligent corpse mishandling), not IIED — the negligent-failure theory governs."
       },
@@ -364,7 +364,7 @@ export const CERT_KEYS: CertKeys = {
       {
         "id": "M6-2",
         "key": "CLEAN",
-        "explanation": "The 3-month cap resolves it cleanly — closed after three months."
+        "explanation": "The 3-month cap resolves it cleanly — a merchant firm offer is irrevocable for at most three months, so it is no longer irrevocable after four."
       },
       {
         "id": "M6-3",
@@ -703,7 +703,8 @@ export const CERT_KEYS: CertKeys = {
         "key_band": "COIN",
         "is_deterministic": false,
         "is_fork": true,
-        "explanation": "FORK — entrant status (the deciding fact) is withheld; flag (answer depends on status)."
+        "explanation": "FORK — entrant status (the deciding fact) is withheld; flag (answer depends on status).",
+        "review_note": "D (\"depends on status\") + FLAG — recognize the fork (entrant status withheld) and flag it. Scored on fork-recognition (the FLAG), not on a single credited answer; D is the lean if forced."
       },
       {
         "id": "M10-9",
@@ -721,7 +722,8 @@ export const CERT_KEYS: CertKeys = {
         "key_band": "COIN",
         "is_deterministic": false,
         "is_fork": true,
-        "explanation": "FORK (split-doctrine) — legal vs factual impossibility splits by jurisdiction (Jaffe); flag, lean modern/MPC (guilty) if forced."
+        "explanation": "FORK (split-doctrine) — legal vs factual impossibility splits by jurisdiction (Jaffe); flag, lean modern/MPC (guilty) if forced.",
+        "review_note": "FLAG / COIN. If forced under modern/MPC approach, lean C."
       }
     ]
   }
