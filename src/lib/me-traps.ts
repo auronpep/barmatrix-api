@@ -33,7 +33,7 @@ function statusPredicate(alias: string, includeHidden: boolean): string {
 // parameters are used before this filter.
 function nonDiscriminatingTrapFilter(startPlaceholder: number = 1): {
   sql: string;
-  values: string[];
+  values: readonly string[];
 } {
   const placeholders = NON_DISCRIMINATING_TRAP_SLUGS.map(
     (_, i) => `$${startPlaceholder + i}`,

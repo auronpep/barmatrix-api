@@ -69,7 +69,7 @@ export class TrapInputError extends Error {
 
 export interface TrapQuery {
   sql: string;
-  values: unknown[];
+  values: readonly unknown[];
 }
 
 // "correct_answer" is a forensic tag carried only by the CORRECT choice, which
@@ -168,7 +168,7 @@ function statusPredicate(alias: string, includeHidden: boolean): string {
 // Returns the SQL fragment and values that should be added to the query.
 function nonDiscriminatingTrapFilter(): {
   sql: string;
-  values: string[];
+  values: readonly string[];
 } {
   const placeholders = NON_DISCRIMINATING_TRAP_SLUGS.map((_, i) => `$${i + 1}`).join(", ");
   return {
