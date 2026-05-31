@@ -12,9 +12,12 @@
 
 import type { Express, Request, Response } from "express";
 import { clerkMiddleware, getAuth } from "@clerk/express";
+import Stripe from "stripe";
 import { getPool } from "../db.js";
 import { snakeToTitle, kebabToTitle } from "../lib/format.js";
 import { resolveClerkEmail } from "../lib/clerk-identity.js";
+import { fulfillCheckoutSession } from "../entitlement.js";
+import { config } from "../config.js";
 
 const MAX_ZONES_PER_DIMENSION = 5;
 const ACTIVE_RED_ZONE_THRESHOLD = 0.7;
@@ -288,4 +291,106 @@ export function registerMeRoutes(app: Express): void {
       }
     },
   );
+
+  // ---- Check if a checkout session has been fulfilled ----
+  // Public endpoint — checks if a checkout session has been processed into a purchase.
+  // Used by account page to detect if webhook failed.
+  app.get("/api/checkout/:sessionId/status", async (req: Request, res: Response) => {
+    const sessionId = Array.isArray(req.params.sessionId)
+      ? req.params.sessionId[0]
+      : req.params.sessionId;
+    if (!sessionId) {
+      res.status(400).json({ error: "sessionId required" });
+      return;
+    }
+
+    try {
+      const pool = getPool();
+      const result = await pool.query<{
+        purchase_id: string;
+        entitlement_status: string;
+      }>(
+        `SELECT p.purchase_id, p.entitlement_status
+         FROM purchases p
+         WHERE p.stripe_checkout_session_id = $1
+         LIMIT 1`,
+        [sessionId],
+      );
+
+      if (result.rows.length > 0) {
+        const purchase = result.rows[0]!;
+        res.json({
+          fulfilled: true,
+          purchaseId: purchase.purchase_id,
+          status: purchase.entitlement_status,
+        });
+      } else {
+        res.json({ fulfilled: false });
+      }
+    } catch (err) {
+      console.error("[checkout status] failed:", err);
+      res.status(500).json({ error: "internal server error" });
+    }
+  });
+
+  // ---- Recovery endpoint: manually fulfill a checkout session if webhook failed ----
+  // Public endpoint — allows users to recover enrollment if webhook didn't fire.
+  app.post("/api/checkout/:sessionId/recover", async (req: Request, res: Response) => {
+    const sessionId = Array.isArray(req.params.sessionId)
+      ? req.params.sessionId[0]
+      : req.params.sessionId;
+    if (!sessionId) {
+      res.status(400).json({ error: "sessionId required" });
+      return;
+    }
+
+    try {
+      const stripe = new Stripe(config.stripe.secretKey);
+      const pool = getPool();
+
+      // Check if already fulfilled
+      const existing = await pool.query<{ purchase_id: string }>(
+        "SELECT purchase_id FROM purchases WHERE stripe_checkout_session_id = $1 LIMIT 1",
+        [sessionId],
+      );
+      if (existing.rows.length > 0) {
+        res.json({
+          status: "already_fulfilled",
+          purchaseId: existing.rows[0]?.purchase_id,
+          message: "Checkout session was already processed",
+        });
+        return;
+      }
+
+      // Fetch the session from Stripe
+      const session = await stripe.checkout.sessions.retrieve(sessionId);
+      if (!session) {
+        res.status(404).json({ error: "checkout session not found in Stripe" });
+        return;
+      }
+
+      // Manually fulfill the session
+      const result = await fulfillCheckoutSession({
+        session,
+        subscriptionId: null,
+      });
+
+      res.json({
+        status: result.status,
+        purchaseId: result.purchaseId,
+        studentId: result.studentId,
+        seatNumber: result.seatNumber,
+        message:
+          result.status === "fulfilled"
+            ? "Enrollment recovered successfully"
+            : "Session was already processed",
+      });
+    } catch (err) {
+      console.error("[checkout recover] failed:", err);
+      res.status(500).json({
+        error: "recovery failed",
+        details: err instanceof Error ? err.message : String(err),
+      });
+    }
+  });
 }

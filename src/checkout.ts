@@ -50,6 +50,7 @@ export function buildCheckoutSessionParams(
     return {
       mode: "payment",
       customer_creation: "always",
+      allow_promotion_codes: true,
       line_items: [{ price: input.pricePayInFull, quantity: 1 }],
       success_url: input.successUrl,
       cancel_url: input.cancelUrl,
@@ -59,6 +60,7 @@ export function buildCheckoutSessionParams(
 
   return {
     mode: "payment",
+    allow_promotion_codes: true,
     line_items: [{ price: input.pricePayInTwo, quantity: 1 }],
     customer_creation: "always",
     payment_intent_data: {
