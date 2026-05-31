@@ -30,7 +30,7 @@ import {
   summarizeDayProgress,
   type DayQuestionMap,
 } from "../lib/bootcamps.js";
-import { dayXp, evaluateDayContentBadges } from "../lib/gamification.js";
+import { dayXp, evaluateDayContentBadges, masteryXp, evaluateMasteryBadges } from "../lib/gamification.js";
 import { grantBootCampActivity, type GamificationGrant } from "../lib/gamification-store.js";
 import {
   requireEnrolledResourceOwner,
@@ -502,6 +502,20 @@ export function registerBootCampsRoutes(app: Express): void {
           [score, mastered ? "completed" : session.status, mastered ? 1 : 0, session.session_id],
         );
 
+        let gamification: GamificationGrant | null = null;
+        try {
+          gamification = await grantBootCampActivity(pool, {
+            studentId: session.student_id,
+            sourceType: "boot_camp_mastery",
+            sourceRef: `${session.session_id}:mastery`,
+            xp: masteryXp(correct, mastered),
+            contentBadges: evaluateMasteryBadges({ score, mastered }),
+            now: new Date(),
+          });
+        } catch (err) {
+          console.error("[boot-camps] gamification grant (mastery) failed:", err);
+        }
+
         res.json({
           session_id: session.session_id,
           mastery_score: score,
@@ -510,6 +524,7 @@ export function registerBootCampsRoutes(app: Express): void {
           correct,
           total,
           red_zone_deltas: await redZoneSnapshot(pool, session.student_id, camp),
+          gamification,
         });
       });
     },
