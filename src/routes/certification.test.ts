@@ -22,7 +22,13 @@ process.env.FRONTEND_URL = "https://barmatrix.app";
 process.env.SUCCESS_URL = "https://barmatrix.app/account/?welcome=1";
 process.env.CANCEL_URL = "https://barmatrix.app/pricing/";
 
-const { canStartCertification, shapeOutline, nextRetryAt } = await import("./certification.js");
+const {
+  canStartCertification,
+  isMissingTable,
+  nextRetryAt,
+  shapeCertStartResponse,
+  shapeOutline,
+} = await import("./certification.js");
 
 describe("cert outline shaping", () => {
   it("locked when fewer than 14 lessons complete", () => {
@@ -52,5 +58,24 @@ describe("canStartCertification", () => {
     assert.equal(canStartCertification(null), false);
     assert.equal(canStartCertification(13), false);
     assert.equal(canStartCertification(14), true);
+  });
+});
+
+describe("certification start persistence", () => {
+  it("recognizes missing optional certification tables", () => {
+    assert.equal(isMissingTable({ code: "ER_NO_SUCH_TABLE" }), true);
+    assert.equal(isMissingTable({ errno: 1146 }), true);
+    assert.equal(isMissingTable({ code: "ER_DUP_ENTRY" }), false);
+  });
+
+  it("can return a non-persisted start response instead of failing the runner", () => {
+    assert.deepEqual(
+      shapeCertStartResponse("session-1", false, "not_provisioned"),
+      { session_id: "session-1", persisted: false, reason: "not_provisioned" },
+    );
+    assert.deepEqual(
+      shapeCertStartResponse("session-2", true),
+      { session_id: "session-2", persisted: true },
+    );
   });
 });

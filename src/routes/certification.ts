@@ -54,9 +54,21 @@ export function shapeOutline(input: {
   };
 }
 
-function isMissingTable(err: unknown): boolean {
+export function isMissingTable(err: unknown): boolean {
   const e = err as { code?: unknown; errno?: unknown } | null;
   return !!e && (e.code === "ER_NO_SUCH_TABLE" || e.errno === 1146);
+}
+
+export function shapeCertStartResponse(
+  sessionId: string,
+  persisted: boolean,
+  reason?: "not_provisioned",
+) {
+  return {
+    session_id: sessionId,
+    persisted,
+    ...(reason ? { reason } : {}),
+  };
 }
 
 async function lessonsCompleted(studentId: string): Promise<number | null> {
@@ -121,8 +133,14 @@ export function registerCertificationRoutes(app: Express): void {
       await getPool().query(
         "INSERT INTO cert_sessions (session_id, student_id, competency_id) VALUES ($1,$2,$3)",
         [sessionId, resolution.student.student_id, id]);
-      res.json({ session_id: sessionId });
-    } catch (err) { console.error("[cert start] failed:", err); res.status(500).json({ error: "internal server error" }); }
+      res.json(shapeCertStartResponse(sessionId, true));
+    } catch (err) {
+      if (isMissingTable(err)) {
+        res.json(shapeCertStartResponse(randomUUID(), false, "not_provisioned"));
+        return;
+      }
+      console.error("[cert start] failed:", err); res.status(500).json({ error: "internal server error" });
+    }
   });
 
   // Submit + grade.
