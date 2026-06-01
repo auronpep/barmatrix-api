@@ -10,7 +10,11 @@ import {
   getCertOutline, getPublicCompetency, getKeys, isValidCompetencyId,
   cooldownMsFor, overallStatus,
 } from "../lib/cert.js";
-import { gradeCompetency, type SubmittedAnswer } from "../lib/cert-grading.js";
+import {
+  gradeCompetency,
+  type GradeResult,
+  type SubmittedAnswer,
+} from "../lib/cert-grading.js";
 
 const FOUNDATIONS_LESSON_COUNT = 14;
 
@@ -68,6 +72,28 @@ export function shapeCertStartResponse(
     session_id: sessionId,
     persisted,
     ...(reason ? { reason } : {}),
+  };
+}
+
+export function shapeCertGradeResponse(input: {
+  persisted: boolean;
+  result: GradeResult;
+  remediationLessons: string[];
+  overall?: "CONFIRMED" | "NOT_YET";
+}) {
+  return {
+    persisted: input.persisted,
+    passed: input.result.passed,
+    score: input.result.score,
+    conditions: {
+      accuracy_score: input.result.accuracy_score,
+      forks_passed: input.result.forks_passed,
+      phase_score: input.result.phase_score,
+      calibration_passed: input.result.calibration_passed,
+    },
+    per_item: input.result.per_item,
+    remediation_lessons: input.remediationLessons,
+    ...(input.overall ? { overall: input.overall } : {}),
   };
 }
 
@@ -194,7 +220,14 @@ export function registerCertificationRoutes(app: Express): void {
          JSON.stringify({ v: 1, items: result.per_item })],
       );
     } catch (err) {
-      if (isMissingTable(err)) { res.json({ persisted: false, ...result, remediation_lessons: keys.remediation_lessons }); return; }
+      if (isMissingTable(err)) {
+        res.json(shapeCertGradeResponse({
+          persisted: false,
+          result,
+          remediationLessons: keys.remediation_lessons,
+        }));
+        return;
+      }
       console.error("[cert submit] failed:", err); res.status(500).json({ error: "internal server error" }); return;
     }
 
@@ -207,8 +240,11 @@ export function registerCertificationRoutes(app: Express): void {
       overall = overallStatus(passedById);
     } catch { /* non-fatal */ }
 
-    res.json({ persisted: true, passed: result.passed, score: result.score,
-      conditions: { accuracy_score: result.accuracy_score, forks_passed: result.forks_passed, phase_score: result.phase_score, calibration_passed: result.calibration_passed },
-      per_item: result.per_item, remediation_lessons: keys.remediation_lessons, overall });
+    res.json(shapeCertGradeResponse({
+      persisted: true,
+      result,
+      remediationLessons: keys.remediation_lessons,
+      overall,
+    }));
   });
 }

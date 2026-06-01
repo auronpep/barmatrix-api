@@ -26,6 +26,7 @@ const {
   canStartCertification,
   isMissingTable,
   nextRetryAt,
+  shapeCertGradeResponse,
   shapeCertStartResponse,
   shapeOutline,
 } = await import("./certification.js");
@@ -77,5 +78,36 @@ describe("certification start persistence", () => {
       shapeCertStartResponse("session-2", true),
       { session_id: "session-2", persisted: true },
     );
+  });
+});
+
+describe("certification submit persistence", () => {
+  it("keeps the same graded response contract when storage is not provisioned", () => {
+    const response = shapeCertGradeResponse({
+      persisted: false,
+      remediationLessons: ["lesson-01"],
+      result: {
+        passed: false,
+        score: 1,
+        accuracy_score: null,
+        forks_passed: null,
+        phase_score: null,
+        calibration_passed: null,
+        per_item: [{ id: "M1-1", correct: false, your: "NOT-TRUE", key: "NOT-RESPONSIVE" }],
+      },
+    });
+    assert.deepEqual(response, {
+      persisted: false,
+      passed: false,
+      score: 1,
+      conditions: {
+        accuracy_score: null,
+        forks_passed: null,
+        phase_score: null,
+        calibration_passed: null,
+      },
+      per_item: [{ id: "M1-1", correct: false, your: "NOT-TRUE", key: "NOT-RESPONSIVE" }],
+      remediation_lessons: ["lesson-01"],
+    });
   });
 });
