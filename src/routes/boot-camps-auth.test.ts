@@ -1,5 +1,7 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { describe, it } from "node:test";
+import { fileURLToPath } from "node:url";
 
 // Mirror the route-test env setup so config loads without touching real services.
 process.env.DATABASE_HOST = "127.0.0.1";
@@ -79,5 +81,15 @@ describe("boot camp catalog missing-table handling", () => {
 
     assert.equal(isMissingBootCampTable(err), true);
     assert.equal(isMissingBootCampTable(new Error("other failure")), false);
+  });
+});
+
+describe("boot camp mastery resume contract", () => {
+  it("returns answered mastery question ids and correct count from start", () => {
+    const sourcePath = fileURLToPath(new URL("./boot-camps.ts", import.meta.url));
+    const source = readFileSync(sourcePath, "utf8");
+    assert.match(source, /answered_question_ids:\s*\[\.\.\.answers\.keys\(\)\]/);
+    assert.match(source, /correct_count:\s*\[\.\.\.answers\.values\(\)\]\.filter\(Boolean\)\.length/);
+    assert.match(source, /session\.mastery_set_id/);
   });
 });

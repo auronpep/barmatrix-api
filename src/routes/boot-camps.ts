@@ -460,10 +460,18 @@ export function registerBootCampsRoutes(app: Express): void {
           res.status(409).json({ error: "mastery_locked" });
           return;
         }
+        const masteryIds = asStringArray(session.mastery_question_ids);
+        const answers = await answeredMapForSet(
+          getPool(),
+          session.mastery_set_id,
+          masteryIds,
+        );
         res.json({
           session_id: session.session_id,
           set_id: session.mastery_set_id,
-          question_ids: asStringArray(session.mastery_question_ids),
+          question_ids: masteryIds,
+          answered_question_ids: [...answers.keys()],
+          correct_count: [...answers.values()].filter(Boolean).length,
         });
       });
     },
