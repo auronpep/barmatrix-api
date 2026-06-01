@@ -144,6 +144,11 @@ function campResponse(camp: CampRow) {
   };
 }
 
+export function isMissingBootCampTable(err: unknown): boolean {
+  const e = err as { code?: unknown; errno?: unknown } | null;
+  return !!e && (e.code === "ER_NO_SUCH_TABLE" || e.errno === 1146);
+}
+
 // Layered candidate selection: tag matches first, then a tension_point column
 // fallback, then a subject fallback so a camp is never empty in dev when the
 // bank's tags are sparse. Over-fetches per layer and dedupes to `limit`.
@@ -274,6 +279,10 @@ export function registerBootCampsRoutes(app: Express): void {
       );
       res.json({ boot_camps: rows.map(campResponse) });
     } catch (err) {
+      if (isMissingBootCampTable(err)) {
+        res.json({ boot_camps: [] });
+        return;
+      }
       console.error("[boot-camps catalog] failed:", err);
       res.status(500).json({ error: "internal server error" });
     }

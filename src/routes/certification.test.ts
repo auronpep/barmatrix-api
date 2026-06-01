@@ -22,7 +22,7 @@ process.env.FRONTEND_URL = "https://barmatrix.app";
 process.env.SUCCESS_URL = "https://barmatrix.app/account/?welcome=1";
 process.env.CANCEL_URL = "https://barmatrix.app/pricing/";
 
-const { shapeOutline, nextRetryAt } = await import("./certification.js");
+const { canStartCertification, shapeOutline, nextRetryAt } = await import("./certification.js");
 
 describe("cert outline shaping", () => {
   it("locked when fewer than 14 lessons complete", () => {
@@ -44,5 +44,13 @@ describe("nextRetryAt", () => {
     assert.equal(nextRetryAt(0, new Date("2026-05-30T00:00:00Z")), null);
     const t = nextRetryAt(1, new Date("2026-05-30T00:00:00Z"));
     assert.equal(t, new Date("2026-05-30T01:00:00Z").toISOString()); // +1h
+  });
+});
+
+describe("canStartCertification", () => {
+  it("fails closed until all Method lessons are complete", () => {
+    assert.equal(canStartCertification(null), false);
+    assert.equal(canStartCertification(13), false);
+    assert.equal(canStartCertification(14), true);
   });
 });

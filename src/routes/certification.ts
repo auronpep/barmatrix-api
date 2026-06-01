@@ -22,11 +22,18 @@ export function nextRetryAt(attemptsCount: number, lastAttemptAt: Date | null): 
   return new Date(lastAttemptAt.getTime() + ms).toISOString();
 }
 
+export function canStartCertification(
+  lessonsCompletedCount: number | null,
+  lessonCount = FOUNDATIONS_LESSON_COUNT,
+): boolean {
+  return (lessonsCompletedCount ?? 0) >= lessonCount;
+}
+
 export function shapeOutline(input: {
   lessonsCompleted: number; lessonCount: number; results: ResultRow[];
 }) {
   const outline = getCertOutline();
-  const unlocked = input.lessonsCompleted >= input.lessonCount;
+  const unlocked = canStartCertification(input.lessonsCompleted, input.lessonCount);
   const byId = new Map(input.results.map((r) => [r.competency_id, r]));
   const passedById: Record<string, boolean> = {};
   const competencies = outline.competencies.map((c) => {
@@ -95,7 +102,7 @@ export function registerCertificationRoutes(app: Express): void {
     const resolution = await resolveClerkStudent(req).catch(() => ({ kind: "db_error" }) as const);
     if (resolution.kind !== "ok") { res.status(resolution.kind === "unauthenticated" ? 401 : 403).json({ error: "locked" }); return; }
     const done = await lessonsCompleted(resolution.student.student_id);
-    if ((done ?? 0) < FOUNDATIONS_LESSON_COUNT) { res.status(403).json({ error: "complete The Method first" }); return; }
+    if (!canStartCertification(done)) { res.status(403).json({ error: "complete The Method first" }); return; }
     const comp = getPublicCompetency(id);
     if (!comp) { res.status(404).json({ error: "not found" }); return; }
     res.json(comp);
@@ -107,6 +114,8 @@ export function registerCertificationRoutes(app: Express): void {
     if (!isValidCompetencyId(id)) { res.status(400).json({ error: "invalid competency" }); return; }
     const resolution = await resolveClerkStudent(req).catch(() => ({ kind: "db_error" }) as const);
     if (resolution.kind !== "ok") { res.status(resolution.kind === "unauthenticated" ? 401 : 403).json({ error: "not authorized" }); return; }
+    const done = await lessonsCompleted(resolution.student.student_id);
+    if (!canStartCertification(done)) { res.status(403).json({ error: "complete The Method first" }); return; }
     try {
       const sessionId = randomUUID();
       await getPool().query(

@@ -20,7 +20,7 @@ process.env.FRONTEND_URL = "https://barmatrix.app";
 process.env.SUCCESS_URL = "https://barmatrix.app/account/?welcome=1";
 process.env.CANCEL_URL = "https://barmatrix.app/pricing/";
 
-const { registerBootCampsRoutes } = await import("./boot-camps.js");
+const { isMissingBootCampTable, registerBootCampsRoutes } = await import("./boot-camps.js");
 
 type CapturedRoute = {
   method: "GET" | "POST";
@@ -67,5 +67,17 @@ describe("registerBootCampsRoutes auth guards", () => {
         `${expected.method} ${expected.path} includes enrollment middleware`,
       );
     }
+  });
+});
+
+describe("boot camp catalog missing-table handling", () => {
+  it("recognizes an unprovisioned boot camp catalog table", () => {
+    const err = Object.assign(new Error("Table 'barmatrix.boot_camps' doesn't exist"), {
+      code: "ER_NO_SUCH_TABLE",
+      errno: 1146,
+    });
+
+    assert.equal(isMissingBootCampTable(err), true);
+    assert.equal(isMissingBootCampTable(new Error("other failure")), false);
   });
 });

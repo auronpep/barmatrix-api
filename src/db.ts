@@ -47,6 +47,19 @@ export function toMysqlQuery(
   return { sql: convertedSql, values: orderedValues };
 }
 
+type MysqlExecutionMethod = "query";
+
+export function toMysqlExecutionPlan(
+  sql: string,
+  values: readonly unknown[] = [],
+): { sql: string; values: unknown[]; method: MysqlExecutionMethod } {
+  const converted = toMysqlQuery(sql, values);
+  return {
+    ...converted,
+    method: "query",
+  };
+}
+
 export function getPool(): DbPool {
   if (pool) return pool;
 
@@ -88,8 +101,8 @@ async function queryMysql<T>(
   sql: string,
   values: readonly unknown[] = [],
 ): Promise<QueryResult<T>> {
-  const converted = toMysqlQuery(sql, values);
-  const [result] = await executor.execute(converted.sql, converted.values as never[]);
+  const plan = toMysqlExecutionPlan(sql, values);
+  const [result] = await executor.query(plan.sql, plan.values as never[]);
 
   if (Array.isArray(result)) {
     return {

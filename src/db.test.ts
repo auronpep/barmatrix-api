@@ -19,7 +19,7 @@ process.env.FRONTEND_URL = "https://barmatrix.app";
 process.env.SUCCESS_URL = "https://barmatrix.app/account/?welcome=1";
 process.env.CANCEL_URL = "https://barmatrix.app/pricing/";
 
-const { toMysqlQuery } = await import("./db.js");
+const { toMysqlExecutionPlan, toMysqlQuery } = await import("./db.js");
 
 describe("toMysqlQuery", () => {
   it("converts Postgres-style numbered placeholders to MySQL placeholders", () => {
@@ -46,5 +46,38 @@ describe("toMysqlQuery", () => {
       "SELECT ? AS first_value, ? AS second_value, ? AS repeated_value",
     );
     assert.deepEqual(converted.values, ["alpha", "beta", "alpha"]);
+  });
+});
+
+describe("toMysqlExecutionPlan", () => {
+  it("uses the simple query protocol for transaction control SQL", () => {
+    const plan = toMysqlExecutionPlan("BEGIN");
+
+    assert.equal(plan.sql, "BEGIN");
+    assert.deepEqual(plan.values, []);
+    assert.equal(plan.method, "query");
+  });
+
+  it("keeps bound placeholder values on the simple query protocol", () => {
+    const plan = toMysqlExecutionPlan("SELECT * FROM questions WHERE question_id = $1", [
+      "3c3a7993-5b90-11f1-a7ad-f9e8a06a2fad",
+    ]);
+
+    assert.equal(plan.sql, "SELECT * FROM questions WHERE question_id = ?");
+    assert.deepEqual(plan.values, ["3c3a7993-5b90-11f1-a7ad-f9e8a06a2fad"]);
+    assert.equal(plan.method, "query");
+  });
+
+  it("uses the simple query protocol for parameterized LIMIT/OFFSET SQL", () => {
+    const plan = toMysqlExecutionPlan(
+      `SELECT question_id FROM questions
+         WHERE subject = $1 AND status = 'active'
+         ORDER BY RAND()
+         LIMIT $2 OFFSET $3`,
+      ["Criminal Law", 6, 0],
+    );
+
+    assert.equal(plan.method, "query");
+    assert.deepEqual(plan.values, ["Criminal Law", 6, 0]);
   });
 });

@@ -46,11 +46,13 @@ async function executeMysql(
 }
 
 const mysqlConnection = {
+  query: executeMysql,
   execute: executeMysql,
   release: () => {},
 };
 
 const mysqlPool = {
+  query: executeMysql,
   execute: executeMysql,
   getConnection: async () => mysqlConnection,
   end: async () => {},

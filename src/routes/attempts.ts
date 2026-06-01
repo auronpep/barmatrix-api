@@ -12,7 +12,7 @@ import type { Express, Request, Response } from "express";
 import { clerkMiddleware, getAuth } from "@clerk/express";
 import { randomUUID, createHash } from "node:crypto";
 import { z } from "zod";
-import { getPool } from "../db.js";
+import { getPool, type DbClient } from "../db.js";
 import { kebabToTitle, snakeToTitle } from "../lib/format.js";
 import {
   QUESTION_DIMENSION_COLUMNS,
@@ -71,6 +71,47 @@ interface AnonStudent {
   student_id: string;
 }
 
+function isMissingC3MoldColumn(err: unknown): boolean {
+  const e = err as {
+    code?: unknown;
+    errno?: unknown;
+    message?: unknown;
+    sqlMessage?: unknown;
+  } | null;
+  if (!e || (e.code !== "ER_BAD_FIELD_ERROR" && e.errno !== 1054)) return false;
+  const message = String(e.sqlMessage ?? e.message ?? "");
+  return message.includes("c3_mold_code");
+}
+
+export async function findSelectedChoiceForAttempt(
+  client: Pick<DbClient, "query">,
+  questionId: string,
+  selectedLetter: "A" | "B" | "C" | "D",
+): Promise<ChoiceForAttempt | null> {
+  try {
+    const { rows } = await client.query<ChoiceForAttempt>(
+      `SELECT choice_id, is_correct, remediation_id, c3_mold_code
+         FROM answer_choices
+        WHERE question_id = $1 AND letter = $2
+        LIMIT 1`,
+      [questionId, selectedLetter],
+    );
+    return rows[0] ?? null;
+  } catch (err) {
+    if (!isMissingC3MoldColumn(err)) throw err;
+  }
+
+  const { rows } = await client.query<Omit<ChoiceForAttempt, "c3_mold_code">>(
+    `SELECT choice_id, is_correct, remediation_id
+       FROM answer_choices
+      WHERE question_id = $1 AND letter = $2
+      LIMIT 1`,
+    [questionId, selectedLetter],
+  );
+  const selected = rows[0];
+  return selected ? { ...selected, c3_mold_code: null } : null;
+}
+
 export function registerAttemptsRoutes(app: Express): void {
   app.post("/api/attempts", clerkMiddleware(), async (req: Request, res: Response) => {
     const parse = attemptBody.safeParse(req.body);
@@ -102,14 +143,11 @@ export function registerAttemptsRoutes(app: Express): void {
       await client.query("BEGIN");
 
       // 1. Resolve the selected choice to compute correctness + remediation.
-      const { rows: selectedRows } = await client.query<ChoiceForAttempt>(
-        `SELECT choice_id, is_correct, remediation_id, c3_mold_code
-           FROM answer_choices
-          WHERE question_id = $1 AND letter = $2
-          LIMIT 1`,
-        [body.question_id, body.selected_letter],
+      const selected = await findSelectedChoiceForAttempt(
+        client,
+        body.question_id,
+        body.selected_letter,
       );
-      const selected = selectedRows[0];
       if (!selected) {
         await client.query("ROLLBACK");
         res.status(404).json({
