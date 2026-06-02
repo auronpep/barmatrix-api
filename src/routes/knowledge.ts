@@ -10,8 +10,26 @@ import {
   KnowledgeSearchInputError,
   normalizeKnowledgeSearch,
   shapeKnowledgeSearchResponse,
+  type KnowledgeSearchFilters,
+  type KnowledgeSearchResponse,
   type KnowledgeRow,
 } from "../lib/knowledge.js";
+
+export function isMissingKnowledgeSchema(err: unknown): boolean {
+  const e = err as { code?: unknown; errno?: unknown } | null;
+  return !!e && (
+    e.code === "ER_NO_SUCH_TABLE" ||
+    e.errno === 1146 ||
+    e.code === "ER_BAD_FIELD_ERROR" ||
+    e.errno === 1054
+  );
+}
+
+export function shapeMissingKnowledgeResponse(
+  filters: KnowledgeSearchFilters,
+): KnowledgeSearchResponse {
+  return shapeKnowledgeSearchResponse(filters, []);
+}
 
 export function registerKnowledgeRoutes(app: Express): void {
   app.get("/api/knowledge/search", async (req: Request, res: Response) => {
@@ -31,6 +49,10 @@ export function registerKnowledgeRoutes(app: Express): void {
       const { rows } = await getPool().query<KnowledgeRow>(query.sql, query.values);
       res.json(shapeKnowledgeSearchResponse(filters, rows));
     } catch (err) {
+      if (isMissingKnowledgeSchema(err)) {
+        res.json(shapeMissingKnowledgeResponse(filters));
+        return;
+      }
       console.error("[knowledge search] failed:", err);
       res.status(500).json({ error: "internal server error" });
     }

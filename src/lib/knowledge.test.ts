@@ -5,6 +5,7 @@ process.env.DATABASE_HOST = "127.0.0.1";
 process.env.DATABASE_NAME = "test_db";
 process.env.DATABASE_USER = "test_user";
 process.env.DATABASE_PASSWORD = "test_password";
+process.env.BARMATRIX_DB_KEY = "test_password";
 process.env.STRIPE_SECRET_KEY = "sk_test_placeholder";
 process.env.STRIPE_WEBHOOK_SECRET = "whsec_placeholder";
 process.env.STRIPE_PRODUCT_BARMATRIX_FLAGSHIP = "prod_placeholder";
@@ -23,6 +24,10 @@ const {
   normalizeKnowledgeSearch,
   shapeKnowledgeSearchResponse,
 } = await import("./knowledge.js");
+const {
+  isMissingKnowledgeSchema,
+  shapeMissingKnowledgeResponse,
+} = await import("../routes/knowledge.js");
 
 describe("knowledge retrieval helpers", () => {
   it("normalizes component aliases and clamps the result limit", () => {
@@ -100,5 +105,29 @@ describe("knowledge retrieval helpers", () => {
     assert.equal(response.results[0]?.source.source_id, "SRC-0650");
     assert.equal(response.results[0]?.review.review_status, "needs_review");
     assert.deepEqual(response.results[0]?.wrong_answer_tags, ["wrong_party"]);
+  });
+
+  it("recognizes an unprovisioned knowledge schema", () => {
+    assert.equal(isMissingKnowledgeSchema({ code: "ER_NO_SUCH_TABLE" }), true);
+    assert.equal(isMissingKnowledgeSchema({ errno: 1146 }), true);
+    assert.equal(isMissingKnowledgeSchema({ code: "ER_BAD_FIELD_ERROR" }), true);
+    assert.equal(isMissingKnowledgeSchema({ errno: 1054 }), true);
+    assert.equal(isMissingKnowledgeSchema(new Error("other db failure")), false);
+  });
+
+  it("degrades missing knowledge storage to an empty search response", () => {
+    const filters = normalizeKnowledgeSearch({
+      q: "decoder",
+      component: "trap-taxonomy",
+      limit: 5,
+    });
+    const response = shapeMissingKnowledgeResponse(filters);
+
+    assert.deepEqual(response, {
+      filters,
+      results: [],
+      by_component: {},
+      review_summary: {},
+    });
   });
 });
