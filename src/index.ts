@@ -333,6 +333,7 @@ async function handleStripeWebhookEvent(
 // Standard middleware for the rest of the API.
 app.use(helmet());
 app.use((_req, res, next) => {
+  res.set("Cache-Control", "no-store");
   res.vary("Origin");
   next();
 });
