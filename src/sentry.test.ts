@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
+import { readFileSync } from "node:fs";
 import type express from "express";
 
 import {
@@ -77,5 +78,16 @@ describe("Sentry API wiring", () => {
     setupSentryErrorHandler(app, true, sentry);
 
     assert.deepEqual(calls.setupExpressErrorHandler, [app]);
+  });
+
+  it("preloads Sentry instrumentation before the production app starts", () => {
+    const packageJson = JSON.parse(
+      readFileSync(new URL("../package.json", import.meta.url), "utf8"),
+    ) as { scripts?: { start?: string } };
+
+    assert.equal(
+      packageJson.scripts?.start,
+      "node --import @sentry/node/preload dist/index.js",
+    );
   });
 });
