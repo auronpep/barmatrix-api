@@ -97,6 +97,32 @@ describe("recoverBillingCustomerFromCheckoutSession", () => {
     assert.equal(retrieveCalled, false);
     assert.equal(calls.length, 0);
   });
+
+  it("treats a missing historical Stripe checkout session as unrecoverable", async () => {
+    const { calls, db } = mockDb();
+
+    const customerId = await recoverBillingCustomerFromCheckoutSession(
+      {
+        purchaseId: "purchase_old_session",
+        checkoutSessionId: "cs_test_old",
+      },
+      {
+        db,
+        checkoutSessions: {
+          async retrieve() {
+            throw {
+              type: "StripeInvalidRequestError",
+              statusCode: 404,
+              code: "resource_missing",
+            };
+          },
+        },
+      },
+    );
+
+    assert.equal(customerId, null);
+    assert.equal(calls.length, 0);
+  });
 });
 
 describe("billing portal route wiring", () => {

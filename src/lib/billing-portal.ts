@@ -24,7 +24,13 @@ export async function recoverBillingCustomerFromCheckoutSession(
     return null;
   }
 
-  const session = await deps.checkoutSessions.retrieve(checkoutSessionId);
+  let session: Pick<Stripe.Checkout.Session, "customer">;
+  try {
+    session = await deps.checkoutSessions.retrieve(checkoutSessionId);
+  } catch (err) {
+    if (isMissingStripeCheckoutSession(err)) return null;
+    throw err;
+  }
   const customerId =
     typeof session.customer === "string"
       ? session.customer
@@ -41,4 +47,10 @@ export async function recoverBillingCustomerFromCheckoutSession(
   );
 
   return customerId;
+}
+
+function isMissingStripeCheckoutSession(err: unknown): boolean {
+  if (!err || typeof err !== "object") return false;
+  const candidate = err as { code?: unknown; statusCode?: unknown };
+  return candidate.statusCode === 404 || candidate.code === "resource_missing";
 }
