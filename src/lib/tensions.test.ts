@@ -13,6 +13,7 @@ import {
   shapeTensionDetail,
   shapeTensionList,
   shapeTensionQuestions,
+  toTensionRouteSlug,
   tensionLinkKeys,
   TensionInputError,
   type TensionCatalogRow,
@@ -66,6 +67,24 @@ describe("normalizeTensionSlug", () => {
     assert.throws(() => normalizeTensionSlug(""), TensionInputError);
     assert.throws(() => normalizeTensionSlug("x';DROP"), TensionInputError);
     assert.throws(() => normalizeTensionSlug(42), TensionInputError);
+  });
+});
+
+describe("toTensionRouteSlug", () => {
+  it("keeps path-safe observed values readable", () => {
+    assert.equal(
+      toTensionRouteSlug("FM-I.B-AMBIGUOUS-ACCEPTANCE-MODE"),
+      "FM-I.B-AMBIGUOUS-ACCEPTANCE-MODE",
+    );
+  });
+
+  it("encodes observed values that are unsafe as a Next path segment", () => {
+    const raw = "Fact of consequence + weak proof/alternative cause";
+    const routeSlug = toTensionRouteSlug(raw);
+
+    assert.match(routeSlug, /^observed_[A-Za-z0-9_-]+$/);
+    assert.notEqual(routeSlug, raw);
+    assert.equal(normalizeTensionSlug(routeSlug), raw);
   });
 });
 
@@ -155,6 +174,18 @@ describe("shapeTensionList", () => {
       out.subjects,
       ["Civil Procedure", "Evidence"],
     );
+  });
+
+  it("publishes route-safe slugs for observed-only unsafe bank values", () => {
+    const raw = "CON-CM-001; CON-CM-003";
+    const out = shapeTensionList(null, [
+      { tension_value: raw, question_count: 2, subject: "Contracts" },
+    ]);
+
+    const observedOnly = out.tensions[0];
+    assert.ok(observedOnly);
+    assert.match(observedOnly.slug, /^observed_[A-Za-z0-9_-]+$/);
+    assert.equal(normalizeTensionSlug(observedOnly.slug), raw);
   });
 
   it("keeps a curated tension with zero coverage", () => {

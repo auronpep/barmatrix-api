@@ -24,6 +24,8 @@
 // and integer caps that are code constants, never user input (same idiom as
 // lib/traps.ts / lib/knowledge.ts).
 
+import { Buffer } from "node:buffer";
+
 export const DEFAULT_TENSION_QUESTIONS_LIMIT = 25;
 export const MAX_TENSION_QUESTIONS_LIMIT = 100;
 const DEFAULT_EXAMPLES_LIMIT = 12;
@@ -36,6 +38,9 @@ const OBSERVED_LIMIT = 500;
 // is still always bound as a SQL parameter; this validator only limits URL
 // params to printable bank-tag punctuation that the list endpoint may emit.
 const TENSION_SLUG_RE = /^[A-Za-z0-9_.; +\/-]{1,128}$/;
+const ROUTE_SAFE_TENSION_SLUG_RE = /^[A-Za-z0-9_.-]{1,128}$/;
+const ENCODED_OBSERVED_PREFIX = "observed_";
+const BASE64URL_RE = /^[A-Za-z0-9_-]{1,220}$/;
 
 export class TensionInputError extends Error {
   constructor(message: string) {
@@ -67,13 +72,34 @@ export function humanizeTensionSlug(slug: string): string {
   return cleaned.replace(/\b\w/g, (ch) => ch.toUpperCase());
 }
 
+export function toTensionRouteSlug(value: string): string {
+  const trimmed = value.trim();
+  if (ROUTE_SAFE_TENSION_SLUG_RE.test(trimmed)) return trimmed;
+  return `${ENCODED_OBSERVED_PREFIX}${Buffer.from(trimmed, "utf8").toString(
+    "base64url",
+  )}`;
+}
+
+function decodeTensionRouteSlug(value: string): string {
+  if (!value.startsWith(ENCODED_OBSERVED_PREFIX)) return value;
+  const encoded = value.slice(ENCODED_OBSERVED_PREFIX.length);
+  if (!BASE64URL_RE.test(encoded)) return value;
+
+  const decoded = Buffer.from(encoded, "base64url").toString("utf8").trim();
+  if (Buffer.from(decoded, "utf8").toString("base64url") !== encoded) {
+    return value;
+  }
+  return decoded;
+}
+
 export function normalizeTensionSlug(raw: unknown): string {
-  const value =
+  const value = decodeTensionRouteSlug(
     typeof raw === "string"
       ? raw.trim()
       : Array.isArray(raw)
         ? String(raw[0] ?? "").trim()
-        : "";
+        : "",
+  );
   if (!value || !TENSION_SLUG_RE.test(value)) {
     throw new TensionInputError("invalid tension slug");
   }
@@ -456,7 +482,7 @@ export function shapeTensionList(
   for (const [value, info] of observed) {
     if (consumed.has(value)) continue;
     tensions.push({
-      slug: value,
+      slug: toTensionRouteSlug(value),
       name: humanizeTensionSlug(value),
       subject: info.subject ?? "Uncategorized",
       domain: null,
