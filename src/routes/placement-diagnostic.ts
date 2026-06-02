@@ -62,6 +62,23 @@ interface PlacementChoiceRow {
   choice_text: string;
 }
 
+interface PlacementQuestionPayload {
+  question_id: string;
+  external_id: string | null;
+  subject: string;
+  topic: string | null;
+  subtopic: string | null;
+  tension_point: string | null;
+  fact_pattern: string;
+  question_stem: string;
+  call_of_question: string | null;
+  choices: Array<{
+    choice_id: string;
+    letter: "A" | "B" | "C" | "D";
+    choice_text: string;
+  }>;
+}
+
 interface CorrectChoiceRow {
   letter: Letter;
   choice_text: string;
@@ -275,6 +292,19 @@ export function shapePlacementResults(rows: PlacementResultRow[]) {
   };
 }
 
+export function shapePlacementStartResponse(
+  sessionId: string,
+  questions: PlacementQuestionPayload[],
+) {
+  return {
+    session_id: sessionId,
+    question_count: questions.length,
+    question_ids: questions.map((question) => question.question_id),
+    questions,
+    placement_model: PLACEMENT_MODEL,
+  };
+}
+
 function idPlaceholders(ids: string[], offset = 1): string {
   return ids.map((_, index) => `$${index + offset}`).join(", ");
 }
@@ -329,7 +359,7 @@ async function selectPlacementQuestionIds(
 async function loadPlacementQuestions(
   client: Pick<DbClient, "query">,
   questionIds: string[],
-) {
+): Promise<PlacementQuestionPayload[]> {
   if (questionIds.length === 0) return [];
   const placeholders = idPlaceholders(questionIds);
   const { rows: questionRows } = await client.query<PlacementQuestionRow>(
@@ -408,12 +438,8 @@ export function registerPlacementDiagnosticRoutes(app: Express): void {
     try {
       const pool = getPool();
       const questionIds = await selectPlacementQuestionIds(pool);
-      res.json({
-        session_id: randomUUID(),
-        question_count: questionIds.length,
-        question_ids: questionIds,
-        placement_model: PLACEMENT_MODEL,
-      });
+      const questions = await loadPlacementQuestions(pool, questionIds);
+      res.json(shapePlacementStartResponse(randomUUID(), questions));
     } catch (err) {
       console.error("[placement diagnostic start] failed:", err);
       res.status(500).json({ error: "internal server error" });

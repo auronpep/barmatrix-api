@@ -23,12 +23,36 @@ const {
   PLACEMENT_LENGTH,
   confidencePctToBand,
   scorePlacementAttempt,
+  shapePlacementStartResponse,
   shapePlacementResults,
 } = await import("./placement-diagnostic.js");
 
 describe("placement diagnostic helpers", () => {
   it("uses the 18-question placement contract", () => {
     assert.equal(PLACEMENT_LENGTH, 18);
+  });
+
+  it("starts with the exact hydrated question payloads selected for the session", () => {
+    const response = shapePlacementStartResponse("session-1", [
+      {
+        question_id: "question-1",
+        external_id: null,
+        subject: "Evidence",
+        topic: null,
+        subtopic: "Hearsay",
+        tension_point: null,
+        fact_pattern: "Facts",
+        question_stem: "Stem?",
+        call_of_question: null,
+        choices: [
+          { choice_id: "choice-1", letter: "A", choice_text: "Answer A" },
+        ],
+      },
+    ]);
+
+    assert.equal(response.question_count, 1);
+    assert.deepEqual(response.question_ids, ["question-1"]);
+    assert.equal(response.questions[0]?.choices[0]?.letter, "A");
   });
 
   it("maps 0-100 placement confidence onto the attempts 1-5 band", () => {
