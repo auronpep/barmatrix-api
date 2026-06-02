@@ -54,6 +54,7 @@ import { registerFoundationsRoutes } from "./routes/foundations.js";
 import { registerC3Routes } from "./routes/c3.js";
 import { registerC3CoachRoutes } from "./routes/c3-coach.js";
 import { registerCertificationRoutes } from "./routes/certification.js";
+import { registerPlacementDiagnosticRoutes } from "./routes/placement-diagnostic.js";
 import {
   requireEnrollment,
   resolveOwnedBillingPortalCustomer,
@@ -516,6 +517,7 @@ registerFoundationsRoutes(app);
 registerC3Routes(app);
 registerC3CoachRoutes(app);
 registerCertificationRoutes(app);
+registerPlacementDiagnosticRoutes(app);
 
 // ----- checkout -----
 const checkoutBody = z.object({
