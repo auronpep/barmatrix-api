@@ -9,7 +9,7 @@ import helmet from "helmet";
 import { randomUUID } from "node:crypto";
 import * as Sentry from "@sentry/node";
 import { config } from "./config.js";
-import { isSentryEnabled, setupSentryErrorHandler } from "./sentry.js";
+import { initSentry, isSentryEnabled, setupSentryErrorHandler } from "./sentry.js";
 import { handleListenError } from "./lib/listen.js";
 import { getPool, ping } from "./db.js";
 import { CAPACITY_COPY, type CohortPublicStatus } from "./copy.js";
@@ -70,6 +70,16 @@ import {
   type DiagnosticAttemptRow,
   type DiagnosticCandidate,
 } from "./lib/diagnostic.js";
+
+// Production runs under LiteSpeed lsnode, which starts the entry file with
+// NODE_OPTIONS=--require <logger> and does NOT honor the package.json
+// `--import ./dist/sentry-init.js` preload. So initialize Sentry here as an
+// idempotent fallback — config.js (imported above) has already loaded the
+// Hostinger env, so the DSN is present. When the preload DID run (local
+// `npm start`), isSentryEnabled() is already true and this is a no-op.
+if (!isSentryEnabled()) {
+  initSentry();
+}
 
 // Module-scoped Stripe client — cheaper than instantiating per request.
 const stripeClient = new Stripe(config.stripe.secretKey);

@@ -11,6 +11,7 @@
 // client-supplied id — so one student can't read another's data.
 
 import type { Express, Request, Response } from "express";
+import * as Sentry from "@sentry/node";
 import { clerkMiddleware, getAuth } from "@clerk/express";
 import Stripe from "stripe";
 import { getPool } from "../db.js";
@@ -426,6 +427,10 @@ export function registerMeRoutes(app: Express): void {
       });
     } catch (err) {
       console.error("[checkout recover] failed:", err);
+      Sentry.captureException(err, {
+        tags: { area: "checkout_recover" },
+        extra: { sessionId },
+      });
       res.status(500).json({
         error: "recovery failed",
         details: err instanceof Error ? err.message : String(err),
