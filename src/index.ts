@@ -332,6 +332,10 @@ async function handleStripeWebhookEvent(
 
 // Standard middleware for the rest of the API.
 app.use(helmet());
+app.use((_req, res, next) => {
+  res.vary("Origin");
+  next();
+});
 app.use(
   cors({
     origin: (origin, callback) => {
