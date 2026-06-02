@@ -133,4 +133,48 @@ describe("resolveOwnedBillingPortalCustomer", () => {
     assert.match(calls[0]?.sql ?? "", /stripe_checkout_session_id = \$1/);
     assert.deepEqual(calls[0]?.values, ["cs_test_owned"]);
   });
+
+  it("recovers a missing billing customer from an active owned checkout session", async () => {
+    const { db, calls } = mockDb([
+      {
+        purchase_id: "purchase_owned",
+        student_id: "student_owner",
+        stripe_customer_id: null,
+        stripe_checkout_session_id: "cs_test_owned",
+        entitlement_status: "active",
+        refund_status: "none",
+      },
+    ]);
+    const recoveries: Array<{
+      purchaseId: string;
+      checkoutSessionId: string | null;
+    }> = [];
+
+    const result = await resolveOwnedBillingPortalCustomer(
+      {
+        studentId: "student_owner",
+      },
+      db,
+      async (purchase) => {
+        recoveries.push(purchase);
+        return "cus_recovered";
+      },
+    );
+
+    assert.deepEqual(result, {
+      status: "ok",
+      customerId: "cus_recovered",
+      purchaseId: "purchase_owned",
+    });
+    assert.equal(recoveries.length, 1);
+    assert.deepEqual(recoveries[0], {
+      purchaseId: "purchase_owned",
+      checkoutSessionId: "cs_test_owned",
+    });
+    assert.match(calls[0]?.sql ?? "", /student_id = \$1/);
+    assert.doesNotMatch(
+      calls[0]?.sql ?? "",
+      /AND\s+stripe_customer_id IS NOT NULL/,
+    );
+  });
 });

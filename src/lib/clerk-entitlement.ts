@@ -29,10 +29,15 @@ interface PurchaseRow {
 interface BillingPortalPurchaseRow extends PurchaseRow {
   purchase_id: string;
   stripe_customer_id: string | null;
+  stripe_checkout_session_id: string | null;
 }
 
 type AuthForRequest = (req: Request) => { userId?: string | null };
 type EnrollmentCheck = (userId: string) => Promise<EnrollmentResult>;
+type MissingBillingCustomerResolver = (purchase: {
+  purchaseId: string;
+  checkoutSessionId: string | null;
+}) => Promise<string | null>;
 
 interface EnrollmentCheckOptions {
   getAuthForRequest?: AuthForRequest;
@@ -141,6 +146,7 @@ export async function resolveOwnedBillingPortalCustomer(
     checkoutSessionId?: string | null;
   },
   db: Pick<DbPool, "query"> = getPool(),
+  recoverMissingCustomer?: MissingBillingCustomerResolver,
 ): Promise<BillingPortalOwnershipResult> {
   if (typeof input.studentId !== "string" || input.studentId.length === 0) {
     return { status: "unauthenticated" };
@@ -154,7 +160,7 @@ export async function resolveOwnedBillingPortalCustomer(
 
   if (checkoutSessionId) {
     const { rows } = await db.query<BillingPortalPurchaseRow>(
-      `SELECT purchase_id, student_id, stripe_customer_id,
+      `SELECT purchase_id, student_id, stripe_customer_id, stripe_checkout_session_id,
               entitlement_status, refund_status
          FROM purchases
         WHERE stripe_checkout_session_id = $1
@@ -164,30 +170,44 @@ export async function resolveOwnedBillingPortalCustomer(
     const row = rows[0];
     if (!row) return { status: "not_found" };
     if (row.student_id !== input.studentId) return { status: "forbidden" };
-    return ownedPortalCustomerFromPurchase(row);
+    return ownedPortalCustomerFromPurchase(row, recoverMissingCustomer);
   }
 
   const { rows } = await db.query<BillingPortalPurchaseRow>(
-    `SELECT purchase_id, student_id, stripe_customer_id,
+    `SELECT purchase_id, student_id, stripe_customer_id, stripe_checkout_session_id,
             entitlement_status, refund_status
        FROM purchases
       WHERE student_id = $1
         AND entitlement_status = 'active'
         AND refund_status = 'none'
-        AND stripe_customer_id IS NOT NULL
-      ORDER BY created_at DESC
+      ORDER BY (stripe_customer_id IS NOT NULL AND stripe_customer_id <> '') DESC,
+               created_at DESC
       LIMIT 1`,
     [input.studentId],
   );
   const row = rows[0];
-  return row ? ownedPortalCustomerFromPurchase(row) : { status: "not_found" };
+  return row
+    ? ownedPortalCustomerFromPurchase(row, recoverMissingCustomer)
+    : { status: "not_found" };
 }
 
-function ownedPortalCustomerFromPurchase(
+async function ownedPortalCustomerFromPurchase(
   row: BillingPortalPurchaseRow,
-): BillingPortalOwnershipResult {
+  recoverMissingCustomer?: MissingBillingCustomerResolver,
+): Promise<BillingPortalOwnershipResult> {
   if (!isEnrolled([row])) return { status: "forbidden" };
-  if (!row.stripe_customer_id) return { status: "missing_customer" };
+  if (!row.stripe_customer_id) {
+    const recoveredCustomerId = await recoverMissingCustomer?.({
+      purchaseId: row.purchase_id,
+      checkoutSessionId: row.stripe_checkout_session_id,
+    });
+    if (!recoveredCustomerId) return { status: "missing_customer" };
+    return {
+      status: "ok",
+      customerId: recoveredCustomerId,
+      purchaseId: row.purchase_id,
+    };
+  }
   return {
     status: "ok",
     customerId: row.stripe_customer_id,

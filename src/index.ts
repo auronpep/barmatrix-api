@@ -59,6 +59,7 @@ import {
   requireEnrollment,
   resolveOwnedBillingPortalCustomer,
 } from "./lib/clerk-entitlement.js";
+import { recoverBillingCustomerFromCheckoutSession } from "./lib/billing-portal.js";
 import {
   computeDiagnosticResults,
   selectDiagnosticQuestionIds,
@@ -594,9 +595,8 @@ app.post("/api/checkout/create-session", async (req, res) => {
 
 // ----- billing portal -----
 // Contract: API_CONTRACTS.md "POST /api/billing/create-portal-session".
-// Clerk auth plus local purchase ownership are required. Do not fall back to
-// Stripe session retrieval here: a provider-side session ID alone is not proof
-// that the signed-in student owns the billing customer.
+// Clerk auth plus local purchase ownership are required before any Stripe
+// session recovery; a provider-side session ID alone is not proof of ownership.
 const portalBody = z.object({
   checkout_session_id: z.string().min(1).nullable().optional(),
   return_url: z.string().url(),
@@ -616,7 +616,11 @@ app.post("/api/billing/create-portal-session", ...requireEnrollment(), async (re
     ownership = await resolveOwnedBillingPortalCustomer({
       studentId: res.locals.enrolledStudentId,
       checkoutSessionId,
-    });
+    }, getPool(), (purchase) =>
+      recoverBillingCustomerFromCheckoutSession(purchase, {
+        checkoutSessions: stripeClient.checkout.sessions,
+      }),
+    );
   } catch (err) {
     console.error("[billing portal] purchase lookup failed:", err);
     res.status(500).json({ error: "internal server error" });
