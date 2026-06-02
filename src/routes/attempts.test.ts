@@ -20,7 +20,8 @@ process.env.FRONTEND_URL = "https://barmatrix.app";
 process.env.SUCCESS_URL = "https://barmatrix.app/account/?welcome=1";
 process.env.CANCEL_URL = "https://barmatrix.app/pricing/";
 
-const { findSelectedChoiceForAttempt } = await import("./attempts.js");
+const { findSelectedChoiceForAttempt, listQuestionC3MoldCodesForAttempt } =
+  await import("./attempts.js");
 
 class ScriptedChoiceClient implements Pick<DbClient, "query"> {
   calls: string[] = [];
@@ -84,5 +85,22 @@ describe("findSelectedChoiceForAttempt", () => {
       remediation_id: "general-principles",
       c3_mold_code: null,
     });
+  });
+});
+
+describe("listQuestionC3MoldCodesForAttempt", () => {
+  it("returns no SRS molds when the optional C3 mold column is not provisioned", async () => {
+    const client = new ScriptedChoiceClient([
+      missingC3MoldColumnError(),
+    ]);
+
+    const moldCodes = await listQuestionC3MoldCodesForAttempt(
+      client,
+      "3c3a7993-5b90-11f1-a7ad-f9e8a06a2fad",
+    );
+
+    assert.equal(client.calls.length, 1);
+    assert.match(client.calls[0] ?? "", /c3_mold_code/);
+    assert.deepEqual(moldCodes, []);
   });
 });

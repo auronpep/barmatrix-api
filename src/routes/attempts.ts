@@ -112,6 +112,23 @@ export async function findSelectedChoiceForAttempt(
   return selected ? { ...selected, c3_mold_code: null } : null;
 }
 
+export async function listQuestionC3MoldCodesForAttempt(
+  client: Pick<DbClient, "query">,
+  questionId: string,
+): Promise<string[]> {
+  try {
+    const { rows } = await client.query<Record<string, unknown>>(
+      `SELECT DISTINCT c3_mold_code FROM answer_choices
+        WHERE question_id = $1 AND c3_mold_code IS NOT NULL`,
+      [questionId],
+    );
+    return rows.map((r) => String(r.c3_mold_code));
+  } catch (err) {
+    if (isMissingC3MoldColumn(err)) return [];
+    throw err;
+  }
+}
+
 export function registerAttemptsRoutes(app: Express): void {
   app.post("/api/attempts", clerkMiddleware(), async (req: Request, res: Response) => {
     const parse = attemptBody.safeParse(req.body);
@@ -435,12 +452,8 @@ async function updateC3SrsAsync(
   try {
     if (correct) {
       const pool = getPool();
-      const { rows } = await pool.query<Record<string, unknown>>(
-        `SELECT DISTINCT c3_mold_code FROM answer_choices
-          WHERE question_id = $1 AND c3_mold_code IS NOT NULL`,
-        [questionId],
-      );
-      await Promise.all(rows.map((r) => upsertSrsRow(studentId, String(r.c3_mold_code), true, nowMs)));
+      const moldCodes = await listQuestionC3MoldCodesForAttempt(pool, questionId);
+      await Promise.all(moldCodes.map((moldCode) => upsertSrsRow(studentId, moldCode, true, nowMs)));
     } else if (bittenMold) {
       await upsertSrsRow(studentId, bittenMold, false, nowMs);
     }
