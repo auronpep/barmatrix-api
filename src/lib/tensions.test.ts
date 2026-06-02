@@ -48,9 +48,22 @@ describe("normalizeTensionSlug", () => {
     assert.equal(normalizeTensionSlug(" effect_on_listener "), "effect_on_listener");
     assert.equal(normalizeTensionSlug(["CP-TM-001"]), "CP-TM-001");
   });
+  it("accepts observed bank tension values that the list endpoint links", () => {
+    assert.equal(
+      normalizeTensionSlug("FM-I.B-AMBIGUOUS-ACCEPTANCE-MODE"),
+      "FM-I.B-AMBIGUOUS-ACCEPTANCE-MODE",
+    );
+    assert.equal(
+      normalizeTensionSlug("CON-CM-001; CON-CM-003"),
+      "CON-CM-001; CON-CM-003",
+    );
+    assert.equal(
+      normalizeTensionSlug("Fact of consequence + weak proof/alternative cause"),
+      "Fact of consequence + weak proof/alternative cause",
+    );
+  });
   it("rejects empty and unsafe values", () => {
     assert.throws(() => normalizeTensionSlug(""), TensionInputError);
-    assert.throws(() => normalizeTensionSlug("a b"), TensionInputError);
     assert.throws(() => normalizeTensionSlug("x';DROP"), TensionInputError);
     assert.throws(() => normalizeTensionSlug(42), TensionInputError);
   });

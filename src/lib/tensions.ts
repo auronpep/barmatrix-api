@@ -31,11 +31,11 @@ const DEFAULT_EXAMPLES_LIMIT = 12;
 const CATALOG_LIMIT = 500;
 const OBSERVED_LIMIT = 500;
 
-// Tension values seen in the wild: catalog ids ('CP-TM-001'), catalog slugs
-// ('cp_diversity_amount_vs_supplemental_jurisdiction'), bank codes ('CON-CM-018',
-// 'FM-PT1-247'), and clean snake tags ('effect_on_listener'). All are
-// [A-Za-z0-9_-]; this stays injection-safe (the value is still bound as a param).
-const TENSION_SLUG_RE = /^[A-Za-z0-9_-]{1,128}$/;
+// Tension values seen in the wild include catalog ids/slugs, dotted bank codes
+// ('FM-I.B-*'), semicolon-separated composites, and short prose tags. The value
+// is still always bound as a SQL parameter; this validator only limits URL
+// params to printable bank-tag punctuation that the list endpoint may emit.
+const TENSION_SLUG_RE = /^[A-Za-z0-9_.; +\/-]{1,128}$/;
 
 export class TensionInputError extends Error {
   constructor(message: string) {
