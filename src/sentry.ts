@@ -12,6 +12,22 @@ export function getSentryDsn(env: Env = process.env): string | undefined {
   return env.BARMATRIX_API_SENTRY_DSN || env.SENTRY_DSN || undefined;
 }
 
+// Trial default: capture all traces to evaluate distributed/DB tracing.
+// Override with SENTRY_TRACES_SAMPLE_RATE (0..1) and dial down post-trial.
+const DEFAULT_TRACES_SAMPLE_RATE = 1.0;
+
+export function resolveTracesSampleRate(env: Env = process.env): number {
+  const raw = env.SENTRY_TRACES_SAMPLE_RATE;
+  if (raw === undefined || raw === "") {
+    return DEFAULT_TRACES_SAMPLE_RATE;
+  }
+  const parsed = Number(raw);
+  if (!Number.isFinite(parsed) || parsed < 0 || parsed > 1) {
+    return DEFAULT_TRACES_SAMPLE_RATE;
+  }
+  return parsed;
+}
+
 export function initSentry(
   env: Env = process.env,
   sentry: SentryApi = Sentry,
@@ -26,7 +42,7 @@ export function initSentry(
     environment: env.SENTRY_ENVIRONMENT ?? env.NODE_ENV ?? "development",
     integrations: [sentry.expressIntegration()],
     sendDefaultPii: false,
-    tracesSampleRate: 0,
+    tracesSampleRate: resolveTracesSampleRate(env),
   });
   return true;
 }

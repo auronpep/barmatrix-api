@@ -7,6 +7,7 @@ import {
   getSentryDsn,
   initSentry,
   isSentryEnabled,
+  resolveTracesSampleRate,
   setupSentryErrorHandler,
   type SentryApi,
 } from "./sentry.js";
@@ -81,10 +82,18 @@ describe("Sentry API wiring", () => {
         environment: "production",
         integrations: [{ name: "Express" }],
         sendDefaultPii: false,
-        tracesSampleRate: 0,
+        tracesSampleRate: 1,
       },
     ]);
     assert.deepEqual(calls.expressIntegration, [undefined]);
+  });
+
+  it("honors SENTRY_TRACES_SAMPLE_RATE and falls back to 1.0 on bad values", () => {
+    assert.equal(resolveTracesSampleRate({}), 1);
+    assert.equal(resolveTracesSampleRate({ SENTRY_TRACES_SAMPLE_RATE: "0.2" }), 0.2);
+    assert.equal(resolveTracesSampleRate({ SENTRY_TRACES_SAMPLE_RATE: "0" }), 0);
+    assert.equal(resolveTracesSampleRate({ SENTRY_TRACES_SAMPLE_RATE: "nope" }), 1);
+    assert.equal(resolveTracesSampleRate({ SENTRY_TRACES_SAMPLE_RATE: "5" }), 1);
   });
 
   it("reports whether the SDK was initialized by the preload entry", () => {

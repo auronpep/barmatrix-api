@@ -7,6 +7,7 @@ import express, { type Request, type Response, type NextFunction } from "express
 import cors from "cors";
 import helmet from "helmet";
 import { randomUUID } from "node:crypto";
+import * as Sentry from "@sentry/node";
 import { config } from "./config.js";
 import { isSentryEnabled, setupSentryErrorHandler } from "./sentry.js";
 import { handleListenError } from "./lib/listen.js";
@@ -263,6 +264,13 @@ app.post(
       console.error(
         `[stripe webhook] handler failed for ${event.type} ${event.id}: ${summarizeStripeWebhookError(err)}`,
       );
+      // Report to Sentry: this catch responds inline and never reaches the
+      // Express error handler, so without this the most revenue-critical
+      // failure (a webhook that can't fulfill a paid checkout) is invisible.
+      Sentry.captureException(err, {
+        tags: { area: "stripe_webhook", stripe_event_type: event.type },
+        extra: { stripe_event_id: event.id },
+      });
       res.status(500).json({ error: "webhook handler failed" });
       return;
     }
@@ -500,6 +508,7 @@ app.get("/api/diagnostic/:id/results", async (req: Request, res: Response) => {
     res.json({ diagnostic_id: id, ...computeDiagnosticResults(attempts) });
   } catch (err) {
     console.error("[diagnostic results] failed:", err);
+    Sentry.captureException(err, { tags: { area: "diagnostic_results" } });
     res.status(500).json({ error: "internal server error" });
   }
 });
@@ -595,6 +604,9 @@ app.post("/api/checkout/create-session", async (req, res) => {
     res.json({ checkout_url: session.url, session_id: session.id });
   } catch (err) {
     console.error("[checkout] failed:", err);
+    // Inline catch never reaches the Express error handler — report directly
+    // so a broken checkout-session creation surfaces in Sentry.
+    Sentry.captureException(err, { tags: { area: "checkout" } });
     res.status(500).json({ error: "checkout session creation failed" });
   }
 });
@@ -629,6 +641,9 @@ app.post("/api/billing/create-portal-session", ...requireEnrollment(), async (re
     );
   } catch (err) {
     console.error("[billing portal] purchase lookup failed:", err);
+    Sentry.captureException(err, {
+      tags: { area: "billing_portal", step: "purchase_lookup" },
+    });
     res.status(500).json({ error: "internal server error" });
     return;
   }
@@ -654,6 +669,9 @@ app.post("/api/billing/create-portal-session", ...requireEnrollment(), async (re
     res.json({ portal_url: portal.url, session_id: portal.id });
   } catch (err) {
     console.error("[billing portal] stripe portal create failed:", err);
+    Sentry.captureException(err, {
+      tags: { area: "billing_portal", step: "stripe_portal_create" },
+    });
     res.status(502).json({ error: "could not create billing portal session" });
   }
 });
