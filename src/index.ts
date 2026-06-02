@@ -8,7 +8,7 @@ import cors from "cors";
 import helmet from "helmet";
 import { randomUUID } from "node:crypto";
 import { config } from "./config.js";
-import { initSentry, setupSentryErrorHandler } from "./sentry.js";
+import { isSentryEnabled, setupSentryErrorHandler } from "./sentry.js";
 import { getPool, ping } from "./db.js";
 import { CAPACITY_COPY, type CohortPublicStatus } from "./copy.js";
 import {
@@ -212,7 +212,7 @@ function parseStringArray(value: unknown): string[] {
 }
 
 const app = express();
-const sentryEnabled = initSentry();
+const sentryEnabled = isSentryEnabled();
 
 // Stripe webhook needs the raw body for signature verification —
 // register that route BEFORE express.json() globally consumes the stream.

@@ -6,19 +6,33 @@ import type express from "express";
 import {
   getSentryDsn,
   initSentry,
+  isSentryEnabled,
   setupSentryErrorHandler,
   type SentryApi,
 } from "./sentry.js";
 
-function sentrySpy() {
-  const calls: { init: unknown[]; setupExpressErrorHandler: unknown[] } = {
+function sentrySpy(initialized = false) {
+  const expressIntegration = { name: "Express" };
+  const calls: {
+    expressIntegration: unknown[];
+    init: unknown[];
+    setupExpressErrorHandler: unknown[];
+  } = {
+    expressIntegration: [],
     init: [],
     setupExpressErrorHandler: [],
   };
   const sentry: SentryApi = {
+    expressIntegration() {
+      calls.expressIntegration.push(undefined);
+      return expressIntegration;
+    },
     init(options) {
       calls.init.push(options);
       return undefined;
+    },
+    isInitialized() {
+      return initialized;
     },
     setupExpressErrorHandler(app) {
       calls.setupExpressErrorHandler.push(app);
@@ -65,10 +79,17 @@ describe("Sentry API wiring", () => {
       {
         dsn: "api-dsn",
         environment: "production",
+        integrations: [{ name: "Express" }],
         sendDefaultPii: false,
         tracesSampleRate: 0,
       },
     ]);
+    assert.deepEqual(calls.expressIntegration, [undefined]);
+  });
+
+  it("reports whether the SDK was initialized by the preload entry", () => {
+    assert.equal(isSentryEnabled(sentrySpy(false).sentry), false);
+    assert.equal(isSentryEnabled(sentrySpy(true).sentry), true);
   });
 
   it("installs the Express error handler only after Sentry is enabled", () => {
@@ -87,7 +108,7 @@ describe("Sentry API wiring", () => {
 
     assert.equal(
       packageJson.scripts?.start,
-      "node --import @sentry/node/preload dist/index.js",
+      "node --import ./dist/sentry-init.js dist/index.js",
     );
   });
 });

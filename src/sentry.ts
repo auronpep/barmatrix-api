@@ -3,7 +3,7 @@ import * as Sentry from "@sentry/node";
 
 export type SentryApi = Pick<
   typeof Sentry,
-  "init" | "setupExpressErrorHandler"
+  "expressIntegration" | "init" | "isInitialized" | "setupExpressErrorHandler"
 >;
 
 type Env = NodeJS.ProcessEnv | Record<string, string | undefined>;
@@ -24,10 +24,15 @@ export function initSentry(
   sentry.init({
     dsn,
     environment: env.NODE_ENV ?? "development",
+    integrations: [sentry.expressIntegration()],
     sendDefaultPii: false,
     tracesSampleRate: 0,
   });
   return true;
+}
+
+export function isSentryEnabled(sentry: SentryApi = Sentry): boolean {
+  return sentry.isInitialized();
 }
 
 export function setupSentryErrorHandler(
