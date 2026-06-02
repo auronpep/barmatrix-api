@@ -92,6 +92,21 @@ describe("Sentry API wiring", () => {
     assert.equal(isSentryEnabled(sentrySpy(true).sentry), true);
   });
 
+  it("lets SENTRY_ENVIRONMENT override NODE_ENV so local boxes don't report as prod", () => {
+    const { calls, sentry } = sentrySpy();
+
+    initSentry(
+      {
+        BARMATRIX_API_SENTRY_DSN: "api-dsn",
+        NODE_ENV: "production",
+        SENTRY_ENVIRONMENT: "local",
+      },
+      sentry,
+    );
+
+    assert.equal((calls.init[0] as { environment: string }).environment, "local");
+  });
+
   it("installs the Express error handler only after Sentry is enabled", () => {
     const { calls, sentry } = sentrySpy();
     const app = {} as express.Express;

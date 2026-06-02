@@ -23,7 +23,7 @@ export function initSentry(
 
   sentry.init({
     dsn,
-    environment: env.NODE_ENV ?? "development",
+    environment: env.SENTRY_ENVIRONMENT ?? env.NODE_ENV ?? "development",
     integrations: [sentry.expressIntegration()],
     sendDefaultPii: false,
     tracesSampleRate: 0,

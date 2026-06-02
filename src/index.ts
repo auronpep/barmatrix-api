@@ -9,6 +9,7 @@ import helmet from "helmet";
 import { randomUUID } from "node:crypto";
 import { config } from "./config.js";
 import { isSentryEnabled, setupSentryErrorHandler } from "./sentry.js";
+import { handleListenError } from "./lib/listen.js";
 import { getPool, ping } from "./db.js";
 import { CAPACITY_COPY, type CohortPublicStatus } from "./copy.js";
 import {
@@ -695,8 +696,13 @@ app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
 });
 
 // ----- start -----
-app.listen(config.port, () => {
+const server = app.listen(config.port, () => {
   console.log(
     `barmatrix-api listening on :${config.port} (${config.nodeEnv}) — ${config.allowedOrigins.length} allowed origins`,
   );
+});
+// Handle bind failures (e.g. EADDRINUSE) here so they exit cleanly instead of
+// surfacing as a fatal uncaught exception in Sentry. See lib/listen.ts.
+server.on("error", (err: NodeJS.ErrnoException) => {
+  handleListenError(err, config.port);
 });
