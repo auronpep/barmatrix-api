@@ -29,6 +29,9 @@ interface StudentRow {
 interface EntitlementRow {
   entitlement_status: string;
   refund_status: string;
+  stripe_customer_id?: string | null;
+  stripe_checkout_session_id?: string | null;
+  payment_plan?: string | null;
 }
 interface RedZoneRow {
   dimension: string;
@@ -78,6 +81,37 @@ function trapNameFrom(forensicTags: unknown, subtopic: string | null): string {
 
 function isTrue(v: number | boolean): boolean {
   return v === true || v === 1;
+}
+
+function billingPortalCapability(row: EntitlementRow | undefined) {
+  const active =
+    row?.entitlement_status === "active" && row.refund_status === "none";
+  if (!active) {
+    return {
+      portal_available: false,
+      unavailable_reason: "not_enrolled",
+    };
+  }
+
+  if (row.stripe_customer_id && row.stripe_customer_id.trim().length > 0) {
+    return {
+      portal_available: true,
+      unavailable_reason: null,
+    };
+  }
+
+  const checkoutSessionId = row.stripe_checkout_session_id?.trim() ?? "";
+  const manualOrComplimentary =
+    row.payment_plan === "complimentary" ||
+    checkoutSessionId.length === 0 ||
+    checkoutSessionId.startsWith("comp_");
+
+  return {
+    portal_available: false,
+    unavailable_reason: manualOrComplimentary
+      ? "manual_or_complimentary"
+      : "stripe_customer_missing",
+  };
 }
 
 export function registerMeRoutes(app: Express): void {
@@ -147,6 +181,7 @@ export function registerMeRoutes(app: Express): void {
         status: null as string | null,
         refunded: false,
         student_id: null as string | null,
+        billing_portal: billingPortalCapability(undefined),
         metrics: { repair_progress_pct: 0, active_red_zones: 0, high_confidence_wrongs: 0 },
         red_zones: { by_dimension: {} as Record<string, unknown[]> },
         recent_attempts: [] as unknown[],
@@ -172,10 +207,13 @@ export function registerMeRoutes(app: Express): void {
 
         const [entRes, rzRes, atRes, drRes] = await Promise.all([
           pool.query<EntitlementRow>(
-            `SELECT entitlement_status, refund_status
+            `SELECT entitlement_status, refund_status,
+                    stripe_customer_id, stripe_checkout_session_id, payment_plan
                FROM purchases
               WHERE student_id = $1
-              ORDER BY (entitlement_status = 'active' AND refund_status = 'none') DESC
+              ORDER BY (entitlement_status = 'active' AND refund_status = 'none') DESC,
+                       (stripe_customer_id IS NOT NULL AND stripe_customer_id <> '') DESC,
+                       created_at DESC
               LIMIT 1`,
             [studentId],
           ),
@@ -276,6 +314,7 @@ export function registerMeRoutes(app: Express): void {
           status,
           refunded,
           student_id: studentId,
+          billing_portal: billingPortalCapability(ent),
           metrics: {
             repair_progress_pct: repairPct,
             active_red_zones: activeRedZones,
