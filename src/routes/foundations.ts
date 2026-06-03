@@ -18,18 +18,50 @@
 
 import type { Express, Request, Response } from "express";
 import { clerkMiddleware } from "@clerk/express";
+import { randomUUID } from "node:crypto";
+import { z } from "zod";
 import { getPool } from "../db.js";
 import { resolveClerkStudent } from "../lib/me-student.js";
 import {
+  findGradedItem,
   getCourse,
   getLessonBySlug,
+  isItemVisible,
   isValidLessonSlug,
   normalizeProgressUpdate,
   shapeLessonResponse,
   shapeOutline,
   summarizeProgress,
+  type ContentEnv,
   type ProgressRow,
 } from "../lib/foundations.js";
+import { gradeC3Attempt, type C3StudentResponse } from "../lib/c3-drill.js";
+
+// Interactive drills carry reconstructed-from-memory keys pending an attorney
+// pass; only "approved" items reach public callers. FOUNDATIONS_INTERNAL=1 on a
+// dev/staging box exposes pending items for testing the trainer end-to-end.
+function contentEnv(): ContentEnv {
+  return process.env.FOUNDATIONS_INTERNAL === "1" ? "internal" : "public";
+}
+
+const C3_STATUS = z.enum([
+  "TRUE",
+  "NOT_TRUE",
+  "TRUE_BUT_NOT_RESPONSIVE",
+  "SURVIVES",
+]);
+
+const attemptBody = z.object({
+  drill_id: z.string().min(1).max(16),
+  item_id: z.string().min(1).max(64),
+  selected_status: C3_STATUS.optional(),
+  selected_choice_id: z.string().min(1).max(8).optional(),
+  selected_choice_statuses: z.record(z.string().max(8), C3_STATUS).optional(),
+  attempt_number: z.number().int().min(1).max(50).default(1),
+  time_ms: z.number().int().min(0).max(3_600_000).optional(),
+  confidence: z.number().int().min(1).max(5).optional(),
+  reflection_text: z.string().max(2000).optional(),
+});
 
 // mysql2 surfaces a missing table as ER_NO_SUCH_TABLE / errno 1146. Treat the
 // unprovisioned progress table as "no progress yet", not a 500.
@@ -67,8 +99,115 @@ export function registerFoundationsRoutes(app: Express): void {
       res.status(404).json({ error: "lesson not found" });
       return;
     }
-    res.json(shapeLessonResponse(lesson, null));
+    res.json(shapeLessonResponse(lesson, null, contentEnv()));
   });
+
+  // ---- interactive drill grading (the C3 reflex trainer) ----
+  //
+  // Optional auth: anonymous callers get graded (no persistence); signed-in
+  // enrolled students also get the attempt recorded. The answer key never ships
+  // to the client until this endpoint grades a submission, so the lesson cannot
+  // be completed by revealing a key.
+  app.post(
+    "/api/foundations/:slug/attempts",
+    clerkMiddleware(),
+    async (req: Request, res: Response) => {
+      const slug = req.params.slug;
+      if (!isValidLessonSlug(slug)) {
+        res.status(400).json({ error: "invalid lesson slug" });
+        return;
+      }
+      const lesson = getLessonBySlug(slug);
+      if (!lesson) {
+        res.status(404).json({ error: "lesson not found" });
+        return;
+      }
+
+      const parse = attemptBody.safeParse(req.body);
+      if (!parse.success) {
+        res.status(400).json({ error: parse.error.flatten() });
+        return;
+      }
+      const body = parse.data;
+
+      const item = findGradedItem(lesson, body.drill_id, body.item_id);
+      if (!item) {
+        res.status(404).json({ error: "drill item not found" });
+        return;
+      }
+      // Parity with the content gate: you can only be graded on an item you were
+      // allowed to see (else grading would distribute a pending key).
+      if (!isItemVisible(item, contentEnv())) {
+        res.status(403).json({ error: "item not available" });
+        return;
+      }
+
+      const response: C3StudentResponse = {
+        selected_status: body.selected_status,
+        selected_choice_id: body.selected_choice_id,
+        selected_choice_statuses: body.selected_choice_statuses,
+      };
+      const grade = gradeC3Attempt(item, response);
+
+      // Persist only for signed-in, enrolled students. Anonymous learners are
+      // graded but not recorded (the client keeps local session state).
+      let persisted = false;
+      let attemptId: string | null = null;
+      const resolution = await resolveClerkStudent(req).catch(
+        () => ({ kind: "db_error" }) as const,
+      );
+      const noPersistKinds = new Set([
+        "unauthenticated",
+        "clerk_error",
+        "db_error",
+        "not_enrolled",
+      ]);
+      if (!noPersistKinds.has(resolution.kind) && "student" in resolution) {
+        attemptId = randomUUID();
+        try {
+          await getPool().query(
+            `INSERT INTO foundations_attempts
+               (attempt_id, student_id, lesson_slug, drill_id, item_id, task_type,
+                selected_status, selected_choice_id, selected_choice_statuses,
+                correct, attempt_number, time_ms, confidence,
+                missed_filter, missed_skill, reflection_text)
+             VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16)`,
+            [
+              attemptId,
+              resolution.student.student_id,
+              slug,
+              body.drill_id,
+              body.item_id,
+              item.task_type,
+              body.selected_status ?? null,
+              body.selected_choice_id ?? null,
+              body.selected_choice_statuses
+                ? JSON.stringify(body.selected_choice_statuses)
+                : null,
+              grade.correct ? 1 : 0,
+              body.attempt_number,
+              body.time_ms ?? null,
+              body.confidence ?? null,
+              grade.missed_filter,
+              grade.missed_skill,
+              body.reflection_text ?? null,
+            ],
+          );
+          persisted = true;
+        } catch (err) {
+          if (isMissingTableError(err)) {
+            attemptId = null;
+          } else {
+            console.error("[foundations attempt] failed:", err);
+            res.status(500).json({ error: "internal server error" });
+            return;
+          }
+        }
+      }
+
+      res.json({ graded: grade, persisted, attempt_id: attemptId });
+    },
+  );
 
   // ---- authenticated progress ----
 

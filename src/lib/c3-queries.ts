@@ -67,6 +67,23 @@ export function calibrationQuery(): string {
      GROUP BY a.confidence`;
 }
 
+// Flag-quality calibration (triage A5). Requires student_attempts.flagged
+// (SCHEMA_C3_ENHANCE). Run in its OWN try/catch in the route: on a DB without the
+// column it errors (ER_BAD_FIELD_ERROR) and flag-quality degrades to null without
+// blanking the rest of the mastery payload. LOW_CONF threshold is inlined as 2.
+export function flagQualityQuery(): string {
+  return `
+    SELECT
+      SUM(CASE WHEN a.flagged = 1 AND a.correct = 0 THEN 1 ELSE 0 END) AS flagged_wrong,
+      SUM(CASE WHEN a.flagged = 1 AND a.correct = 1 THEN 1 ELSE 0 END) AS flagged_right,
+      SUM(CASE WHEN a.flagged = 0 AND a.correct = 0 AND a.confidence <= 2 THEN 1 ELSE 0 END) AS unflagged_lowconf_miss,
+      SUM(CASE WHEN a.flagged = 1 THEN 1 ELSE 0 END) AS flagged_total,
+      COUNT(*) AS n
+      FROM student_attempts a
+      JOIN c3_annotations an ON an.question_id = a.question_id AND ${ANNOTATED}
+     WHERE a.student_id = $1`;
+}
+
 export function coverageQuery(): string {
   return `
     SELECT

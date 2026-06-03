@@ -40,10 +40,14 @@ function normalizeSetId(raw: string | undefined): string | null {
   return `${h.slice(0, 8)}-${h.slice(8, 12)}-${h.slice(12, 16)}-${h.slice(16, 20)}-${h.slice(20, 32)}`;
 }
 
-const attemptBody = z.object({
+export const attemptBody = z.object({
   question_id: z.string().uuid(),
   selected_letter: z.enum(["A", "B", "C", "D"]),
   confidence: z.number().int().min(1).max(5),
+  // Coin/fork recognition: the student marked this item as a guess/toss-up.
+  // Feeds calibration "flag quality" analytics. Optional + defaulted so older
+  // clients keep working. Requires student_attempts.flagged (SCHEMA_C3_ENHANCE).
+  flagged: z.boolean().default(false),
   time_seconds: z.number().int().min(0),
   platform: z.enum(["web", "ios", "android"]).default("web"),
   set_id: z.string().min(1).max(128).optional(),
@@ -219,8 +223,8 @@ export function registerAttemptsRoutes(app: Express): void {
       await client.query(
         `INSERT INTO student_attempts
            (attempt_id, student_id, question_id, selected_choice_id, selected_letter,
-            correct, confidence, time_seconds, platform, set_id, metadata)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
+            correct, confidence, flagged, time_seconds, platform, set_id, metadata)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
         [
           attemptId,
           studentId,
@@ -229,6 +233,7 @@ export function registerAttemptsRoutes(app: Express): void {
           body.selected_letter,
           selectedIsCorrect,
           body.confidence,
+          body.flagged ? 1 : 0,
           body.time_seconds,
           body.platform,
           setId,

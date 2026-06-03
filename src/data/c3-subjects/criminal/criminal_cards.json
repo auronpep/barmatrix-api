@@ -1,0 +1,416 @@
+[
+  {
+    "id": "CRIM-CUT-01",
+    "type": "CUT",
+    "title": "Right Rule, Wrong Layer",
+    "signal": "The answer states real criminal doctrine but answers the wrong layer: violation instead of remedy, Miranda instead of voluntariness, attempt instead of completed offense, or larceny label instead of property-status variable.",
+    "student_move": "Name the layer the answer occupies before judging its doctrine.",
+    "trap": "Familiar law feels safe even when it does not answer the call.",
+    "confidence": "HARD when call/layer mismatch is visible; ANCHOR-ASSISTED when trigger doctrine is needed.",
+    "example_qids": [
+      "14556",
+      "14561",
+      "14590",
+      "14601",
+      "14610",
+      "14621",
+      "14641",
+      "14744"
+    ]
+  },
+  {
+    "id": "CRIM-CLASH-01",
+    "type": "CLASH",
+    "title": "Criminal Variable Matrix",
+    "signal": "Choices split by actor, scope, remedy, timing, completion, mental state, causation, force, possession/title, or offense label.",
+    "student_move": "Convert the answer set into the variable fight before using law.",
+    "trap": "Student compares crime names or constitutional doctrines instead of identifying the tested variable.",
+    "confidence": "HARD routine; result usually ANCHOR-ASSISTED.",
+    "example_qids": [
+      "14563",
+      "14616",
+      "14630",
+      "14679",
+      "14712",
+      "14715",
+      "14745"
+    ]
+  },
+  {
+    "id": "CRIM-CALL-01",
+    "type": "CALL",
+    "title": "First Live Gate",
+    "signal": "One answer reaches a downstream result while another resolves a prerequisite gate.",
+    "student_move": "Apply output → gate → actor → scope/timing → mental state/completion → remedy/result → ranking.",
+    "trap": "A downstream true answer sounds substantive but is structurally late.",
+    "confidence": "HARD for threshold/remedy/actor ordering; HEURISTIC or ANCHOR-ASSISTED for doctrine-specific outcome.",
+    "example_qids": [
+      "14605",
+      "14621",
+      "14660",
+      "14676",
+      "14696",
+      "14700",
+      "14740"
+    ]
+  },
+  {
+    "id": "CRIM-ANCHOR-01",
+    "type": "ANCHOR",
+    "title": "Tiny Criminal Anchor Deck",
+    "signal": "Two well-built survivors remain, or the array is bare crime/constitutional labels.",
+    "student_move": "Use the smallest anchor that resolves the already-identified variable.",
+    "trap": "Turning Criminal Law into a doctrine outline.",
+    "confidence": "ANCHOR-ASSISTED or PURE ANCHOR.",
+    "example_qids": [
+      "14573",
+      "14582",
+      "14654",
+      "14657",
+      "14690",
+      "14710"
+    ]
+  },
+  {
+    "id": "CRIM-DRIFT-01",
+    "type": "META",
+    "title": "No Mini-Outline Guardrail",
+    "signal": "The explanation starts defining crimes or constitutional doctrines before identifying the answer-array variable.",
+    "student_move": "Stop and restate: 'The choices are fighting over ___; the fact that resolves it is ___.'",
+    "trap": "Legal explanation replaces construction analysis.",
+    "confidence": "Instructor meta-card.",
+    "example_qids": []
+  },
+  {
+    "id": "CRIM-CP-CUT-01",
+    "type": "CUT",
+    "title": "Wrong Route / Wrong Remedy",
+    "signal": "The answer proves a constitutional violation but asks for the wrong consequence.",
+    "student_move": "Ask what consequence the call asks for: suppression, dismissal, admissibility, reversal, immunity, or conviction.",
+    "trap": "Illegal arrest/search/ID becomes automatic dismissal or universal suppression.",
+    "confidence": "HARD STRUCTURAL when remedy mismatch is visible; ANCHOR-ASSISTED for precise remedy rule.",
+    "example_qids": [
+      "14556",
+      "14561",
+      "14590",
+      "14610",
+      "14621"
+    ]
+  },
+  {
+    "id": "CRIM-CP-CLASH-01",
+    "type": "CLASH",
+    "title": "Item / Ground Matrix",
+    "signal": "Grant as to X / deny as to Y, valid stop / invalid search, first private search / second state action.",
+    "student_move": "Build item × gate × scope × remedy grid.",
+    "trap": "One violation contaminates every item without a remedy rule.",
+    "confidence": "HARD routine; ANCHOR-ASSISTED outcome.",
+    "example_qids": [
+      "14563",
+      "14609",
+      "14616",
+      "14619"
+    ]
+  },
+  {
+    "id": "CRIM-CP-CALL-01",
+    "type": "CALL",
+    "title": "Gate → Actor → Scope → Remedy",
+    "signal": "Two plausible answers cite real constitutional doctrines.",
+    "student_move": "Apply gate, then actor, then scope, then remedy.",
+    "trap": "Jumping to suppression or guilt before the constitutional gate is set.",
+    "confidence": "Mostly ANCHOR-ASSISTED; several hard structural pieces.",
+    "example_qids": [
+      "14569",
+      "14570",
+      "14587",
+      "14600",
+      "14629"
+    ]
+  },
+  {
+    "id": "CRIM-CP-ANCHOR-01",
+    "type": "ANCHOR",
+    "title": "Tiny Constitutional Protection Anchor Deck",
+    "signal": "The array is structurally clean but two answers remain well-built.",
+    "student_move": "Use 4A search/scope/remedy, Miranda, voluntariness, 6A, confrontation, grand jury, double jeopardy, burden, immunity, and privilege anchors.",
+    "trap": "Teaching a full Fourth Amendment or Miranda outline instead of resolving the identified gate.",
+    "confidence": "ANCHOR-ASSISTED or PURE ANCHOR.",
+    "example_qids": [
+      "14554",
+      "14575",
+      "14586",
+      "14603",
+      "14615"
+    ]
+  },
+  {
+    "id": "CRIM-GP-CUT-01",
+    "type": "CUT",
+    "title": "Wrong Mens Rea / Wrong Defense Route",
+    "signal": "The answer routes through completed offense instead of attempt, mistake of law instead of fact, intoxication instead of mistake, or strict liability instead of mental state.",
+    "student_move": "Ask what gate controls the charge: act, actor, mental state, or defense.",
+    "trap": "A nearby legal route is true but not operative.",
+    "confidence": "ANCHOR-ASSISTED; hard only when answer visibly addresses a different actor, charge, or posture.",
+    "example_qids": [
+      "14637",
+      "14640",
+      "14641",
+      "14644",
+      "14645",
+      "14655"
+    ]
+  },
+  {
+    "id": "CRIM-GP-CLASH-01",
+    "type": "CLASH",
+    "title": "Actor / Defense Matrix",
+    "signal": "Both/neither/A-only/B-only, guilty/not guilty crossed with reasons, or scenario quartets.",
+    "student_move": "Convert choices into actor/charge/scenario × guilt/defense grid.",
+    "trap": "Shared outcome answers hide actor-specific intent/control facts.",
+    "confidence": "HARD structural routine; ANCHOR-ASSISTED outcome.",
+    "example_qids": [
+      "14630",
+      "14631",
+      "14634",
+      "14637",
+      "14641",
+      "14652"
+    ]
+  },
+  {
+    "id": "CRIM-GP-CALL-01",
+    "type": "CALL",
+    "title": "Route Before Guilt",
+    "signal": "One answer jumps to guilt/acquittal while another identifies the controlling gate.",
+    "student_move": "Apply voluntary act → actor/control → mental state → offense route → defense route → final guilt.",
+    "trap": "Guilt label outruns actus reus or mental-state gate.",
+    "confidence": "Mixed; hard for route order, anchor-assisted for effect.",
+    "example_qids": [
+      "14633",
+      "14638",
+      "14641",
+      "14645",
+      "14649",
+      "14655"
+    ]
+  },
+  {
+    "id": "CRIM-GP-ANCHOR-01",
+    "type": "ANCHOR",
+    "title": "Minimal General Principles Anchor Deck",
+    "signal": "Two answers remain structurally clean or answer set is bare doctrine labels.",
+    "student_move": "Use mens rea, attempt intent, mistake, intoxication, voluntary act, self-defense, regulatory liability, impossibility, insanity, and offense-label anchors.",
+    "trap": "Treating insanity tests or impossibility as pure structure.",
+    "confidence": "ANCHOR-ASSISTED / PURE ANCHOR / FORK_OR_SPLIT.",
+    "example_qids": [
+      "14634",
+      "14649",
+      "14650",
+      "14654"
+    ]
+  },
+  {
+    "id": "CRIM-HOM-CUT-01",
+    "type": "CUT",
+    "title": "Wrong Degree Route",
+    "signal": "Answer jumps to first-degree, second-degree, manslaughter, or no crime without routing causation, actor, mental state, or mitigation.",
+    "student_move": "Ask which homicide gate the answer is using and whether that gate is live.",
+    "trap": "Label-first homicide answering.",
+    "confidence": "ANCHOR-ASSISTED.",
+    "example_qids": [
+      "14657",
+      "14659",
+      "14663",
+      "14667",
+      "14675",
+      "14678",
+      "14685"
+    ]
+  },
+  {
+    "id": "CRIM-HOM-CLASH-01",
+    "type": "CLASH",
+    "title": "Degree Ladder / Causation Matrix",
+    "signal": "First-degree/second-degree/manslaughter/no crime, murder/manslaughter/acquittal, causation yes/no, both actors/one/neither.",
+    "student_move": "Convert the array into a ladder or matrix before using homicide law.",
+    "trap": "Comparing labels instead of finding the splitting fact: death, cause, actor, intent, provocation, or intervention.",
+    "confidence": "HARD structural routine; ANCHOR-ASSISTED outcome.",
+    "example_qids": [
+      "14656",
+      "14657",
+      "14660",
+      "14661",
+      "14676",
+      "14680",
+      "14681",
+      "14684"
+    ]
+  },
+  {
+    "id": "CRIM-HOM-CALL-01",
+    "type": "CALL",
+    "title": "Baseline Before Degree; Highest Valid Offense Last",
+    "signal": "One answer picks a homicide label while another identifies a prior gate.",
+    "student_move": "Death → attribution → actor → mental-state route → mitigation/defense → highest valid offense.",
+    "trap": "Lesser true label chosen in a most-serious call.",
+    "confidence": "Mixed; route order structural, legal effect anchor-assisted.",
+    "example_qids": [
+      "14660",
+      "14661",
+      "14668",
+      "14669",
+      "14671",
+      "14676",
+      "14685"
+    ]
+  },
+  {
+    "id": "CRIM-HOM-ANCHOR-01",
+    "type": "ANCHOR",
+    "title": "Minimal Homicide Anchor Deck",
+    "signal": "Bare homicide-label ladder or two well-built degree answers remain.",
+    "student_move": "Use causation, malice, degree, felony murder, mitigation, self-defense, mistake/intoxication, transferred intent, accomplice, and no-duty anchors.",
+    "trap": "Calling degree labels structurally decidable.",
+    "confidence": "ANCHOR-ASSISTED / PURE ANCHOR / FORK_OR_SPLIT.",
+    "example_qids": [
+      "14656",
+      "14665",
+      "14675",
+      "14677",
+      "14681"
+    ]
+  },
+  {
+    "id": "CRIM-INC-CUT-01",
+    "type": "CUT",
+    "title": "Wrong Inchoate Route",
+    "signal": "Answer uses agreement for attempt, substantial step for conspiracy, payment/agreement for solicitation, or completed label where completion failed.",
+    "student_move": "Ask which route is charged: attempt, conspiracy, solicitation, completed crime, or procedural sufficiency.",
+    "trap": "True rule from neighboring inchoate crime.",
+    "confidence": "HARD routine; ANCHOR-ASSISTED legal consequence.",
+    "example_qids": [
+      "14696",
+      "14700",
+      "14708"
+    ]
+  },
+  {
+    "id": "CRIM-INC-CLASH-01",
+    "type": "CLASH",
+    "title": "Completion-Line Matrix",
+    "signal": "Guilty/not guilty, completed crime/attempt, conspiracy/no conspiracy, solicitation complete/withdrawal effective.",
+    "student_move": "Build route × completion point × stem fact grid.",
+    "trap": "Offense label selected before identifying completion point.",
+    "confidence": "HARD structural routine; ANCHOR-ASSISTED outcome.",
+    "example_qids": [
+      "14692",
+      "14693",
+      "14694",
+      "14697",
+      "14700",
+      "14708"
+    ]
+  },
+  {
+    "id": "CRIM-INC-CALL-01",
+    "type": "CALL",
+    "title": "Completion Point Before Label",
+    "signal": "One answer picks a familiar label while another identifies why crime was incomplete or completed elsewhere.",
+    "student_move": "Charged route → completion point → actor/party status → impossibility/approach → offense label → result.",
+    "trap": "Most-serious ranking before threshold labels are excluded.",
+    "confidence": "Mixed; completion order structural, rule anchor-assisted.",
+    "example_qids": [
+      "14693",
+      "14696",
+      "14697",
+      "14698",
+      "14700"
+    ]
+  },
+  {
+    "id": "CRIM-INC-ANCHOR-01",
+    "type": "ANCHOR",
+    "title": "Minimal Inchoate Anchor Deck",
+    "signal": "Short label quartet, impossibility item, or conspiracy-approach item.",
+    "student_move": "Use attempt, impossibility, conspiracy approach, overt act, personal defense, protected victim, continuation, solicitation, and ranking anchors.",
+    "trap": "Flattening common-law/MPC or legal/factual impossibility splits.",
+    "confidence": "ANCHOR-ASSISTED / FORK_OR_SPLIT.",
+    "example_qids": [
+      "14690",
+      "14691",
+      "14692",
+      "14700"
+    ]
+  },
+  {
+    "id": "CRIM-OC-CUT-01",
+    "type": "CUT",
+    "title": "Wrong Crime Label Before Route",
+    "signal": "Answer jumps to crime label before routing possession/title, force, entry timing, asportation, legal efficacy, or actor purpose.",
+    "student_move": "Ask what variable separates these labels.",
+    "trap": "Nearby crime label sounds right but lacks the route fact.",
+    "confidence": "ANCHOR-ASSISTED.",
+    "example_qids": [
+      "14710",
+      "14720",
+      "14725",
+      "14733",
+      "14736",
+      "14744"
+    ]
+  },
+  {
+    "id": "CRIM-OC-CLASH-01",
+    "type": "CLASH",
+    "title": "Label Quartet / Actor Matrix",
+    "signal": "Larceny/embezzlement/false pretenses/no crime; robbery/larceny/attempt; burglary/attempt/larceny; both/neither/A-only/B-only.",
+    "student_move": "Convert the array into property, timing, force, actor, and completion axes.",
+    "trap": "Student chooses labels by recognition rather than variable routing.",
+    "confidence": "HARD structural routine; ANCHOR-ASSISTED outcome.",
+    "example_qids": [
+      "14712",
+      "14713",
+      "14715",
+      "14719",
+      "14733",
+      "14740",
+      "14745"
+    ]
+  },
+  {
+    "id": "CRIM-OC-CALL-01",
+    "type": "CALL",
+    "title": "Route Variable Before Offense Name",
+    "signal": "Two answers remain because both name plausible crimes.",
+    "student_move": "Property status → timing/concurrence → actor/purpose → force/asportation → completion → lesser-included/most-serious call.",
+    "trap": "Familiar nearby crime beats the operative variable.",
+    "confidence": "Mixed; route order structural, legal label anchor-assisted.",
+    "example_qids": [
+      "14709",
+      "14716",
+      "14724",
+      "14731",
+      "14736",
+      "14743",
+      "14748"
+    ]
+  },
+  {
+    "id": "CRIM-OC-ANCHOR-01",
+    "type": "ANCHOR",
+    "title": "Minimal Other Crimes Anchor Deck",
+    "signal": "Bare crime-label quartet or possession/title/force/timing split remains.",
+    "student_move": "Use larceny, property/title, robbery, burglary, claim of right, forgery, receiving stolen property, kidnapping, accomplice, innocent agent, accessory, lesser-included, and impossibility anchors.",
+    "trap": "Long theft-crimes outline replaces variable decoder.",
+    "confidence": "ANCHOR-ASSISTED / PURE ANCHOR.",
+    "example_qids": [
+      "14709",
+      "14710",
+      "14719",
+      "14725",
+      "14733",
+      "14743"
+    ]
+  }
+]

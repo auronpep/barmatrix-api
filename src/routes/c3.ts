@@ -9,12 +9,13 @@ import { getPool } from "../db.js";
 import { resolveClerkStudent } from "../lib/me-student.js";
 import {
   moldStatsQuery, phaseAccuracyQuery, familyAccuracyQuery, cleanCutQuery,
-  calibrationQuery, coverageQuery, subjectFacetQuery,
+  calibrationQuery, coverageQuery, subjectFacetQuery, flagQualityQuery,
 } from "../lib/c3-queries.js";
 import {
   MOLD_FLOOR, moldProficiency, rollupFamilies, overallReadiness, calibrationError,
   type Family,
 } from "../lib/c3-scoring.js";
+import { flagQuality, type FlagQualityRaw, type FlagQuality } from "../lib/c3-flag-quality.js";
 
 function isMissingError(err: unknown): boolean {
   const e = err as { code?: unknown; errno?: unknown } | null;
@@ -37,6 +38,7 @@ export interface ShapeInput {
   calibration: Array<{ confidence: number; actual: number | string; n: number }>;
   coverage: { total_attempts: number | string; measured_attempts: number | string };
   subjects: Array<{ subject: string; accuracy: number | string; n: number }>;
+  flagQuality?: FlagQuality | null;
 }
 
 const num = (v: number | string | null | undefined): number => (v == null ? 0 : Number(v));
@@ -88,6 +90,7 @@ export function shapeC3Response(input: ShapeInput) {
       phase_accuracy: phaseAcc,
       clean_cut_hit_rate: input.cleanCut.hit_rate == null ? null : round2(num(input.cleanCut.hit_rate)),
       calibration: calib,
+      flag_quality: input.flagQuality ?? null,
     },
     weak_molds,
     facets: { by_subject: input.subjects.map((s) => ({ subject: s.subject, accuracy: round2(num(s.accuracy)), n: s.n })) },
@@ -126,6 +129,23 @@ export function registerC3Routes(app: Express): void {
         pool.query(coverageQuery(), [sid]),
         pool.query(subjectFacetQuery(), [sid]),
       ]);
+      // Flag quality (A5) depends on student_attempts.flagged, which may not exist
+      // on a DB that hasn't run SCHEMA_C3_ENHANCE. Query it independently so a
+      // missing column degrades ONLY this metric instead of blanking the payload.
+      let fq: FlagQuality | null = null;
+      try {
+        const fqR = await pool.query(flagQualityQuery(), [sid]);
+        const r = (fqR.rows[0] ?? {}) as Record<string, unknown>;
+        const raw: FlagQualityRaw = {
+          flagged_wrong: num(r.flagged_wrong as number), flagged_right: num(r.flagged_right as number),
+          unflagged_lowconf_miss: num(r.unflagged_lowconf_miss as number),
+          flagged_total: num(r.flagged_total as number), n: num(r.n as number),
+        };
+        if (raw.n > 0) fq = flagQuality(raw);
+      } catch (fqErr) {
+        if (!isMissingError(fqErr)) throw fqErr; // unexpected error still bubbles
+      }
+
       res.json(shapeC3Response({
         molds: molds.rows as ShapeInput["molds"],
         phases: phases.rows as ShapeInput["phases"],
@@ -134,6 +154,7 @@ export function registerC3Routes(app: Express): void {
         calibration: calibration.rows as ShapeInput["calibration"],
         coverage: (coverage.rows[0] as ShapeInput["coverage"]) ?? { total_attempts: 0, measured_attempts: 0 },
         subjects: subjects.rows as ShapeInput["subjects"],
+        flagQuality: fq,
       }));
     } catch (err) {
       if (isMissingError(err)) { res.json(EMPTY()); return; }

@@ -56,6 +56,19 @@ describe("buildCoachPayload", () => {
     assert.equal(p.remediation.lesson_slug, "lesson-09");
     assert.equal(p.coverage.pct, 75);
     assert.equal(p.cohort_signal, null);
+    assert.equal(p.coaching.fork_practice, false);
     assert.ok(!("is_correct" in p.question.choices[0]!));
+  });
+
+  it("marks fork_practice when injecting a hard-tail item", () => {
+    const p = buildCoachPayload({
+      question,
+      mold: { mold_code: "fork", name: "Fork / Coin", family: "ISSUE_SENSE",
+              lesson_slug: "lesson-10", deck_ref: null, exposures: 0, bite_pct: 0, measured: false },
+      deficit: 0, coverage: { total_attempts: 40, measured_attempts: 30 },
+      forkPractice: true,
+    });
+    assert.equal(p.coaching.fork_practice, true);
+    assert.equal(p.coaching.target_mold, "fork");
   });
 });

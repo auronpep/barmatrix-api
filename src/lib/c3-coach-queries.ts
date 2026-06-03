@@ -50,6 +50,34 @@ export function candidatesForMoldQuery(): string {
      LIMIT $3`;
 }
 
+// Fork-injection candidates: active questions whose annotation is a kept hard
+// item (FORK_OR_SPLIT verdict or is_fork). $1 = pool size. Student-level
+// "recently seen" filtering happens in code against the seen Set, mirroring
+// candidatesForMoldQuery.
+export function forkCandidatesQuery(): string {
+  return `
+    SELECT q.question_id AS question_id
+      FROM questions q
+      JOIN c3_annotations an ON an.question_id = q.question_id
+     WHERE q.status = 'active'
+       AND (an.verdict = 'FORK_OR_SPLIT' OR an.is_fork = 1)
+     ORDER BY RAND()
+     LIMIT $1`;
+}
+
+// Representative mold meta for a fork question, so the coach payload can still
+// route remediation. $1 = question_id. May return zero rows (untagged fork);
+// the route falls back to a synthetic fork mold.
+export function forkMoldForQuestionQuery(): string {
+  return `
+    SELECT m.code AS mold_code, m.family AS family, m.name AS name,
+           m.lesson_slug AS lesson_slug, m.deck_ref AS deck_ref
+      FROM answer_choices ac
+      JOIN c3_molds m ON m.code = ac.c3_mold_code
+     WHERE ac.question_id = $1 AND ac.c3_mold_code IS NOT NULL
+     LIMIT 1`;
+}
+
 export function servableQuestionQuery(): string {
   return `
     SELECT question_id, external_id, subject, topic, subtopic, tension_point,

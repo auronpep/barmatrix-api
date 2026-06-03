@@ -1,0 +1,215 @@
+[
+  {
+    "id": "DRILL-CRIM-01",
+    "title": "Output / Layer Sort",
+    "skill": "Layer recognition",
+    "task": "Given ten Criminal Law answer arrays, label the requested output and the layer of each answer.",
+    "qid_pool": [
+      "14556",
+      "14561",
+      "14610",
+      "14630",
+      "14656",
+      "14693",
+      "14709",
+      "14716",
+      "14740",
+      "14748"
+    ],
+    "cards": [
+      "CRIM-CALL-01",
+      "CRIM-DRIFT-01"
+    ],
+    "pass_criterion": "8/10 correct output labels and 8/10 correct layer labels."
+  },
+  {
+    "id": "DRILL-CRIM-02",
+    "title": "Remedy Wall",
+    "skill": "Violation vs requested consequence",
+    "task": "Assume a violation. Decide whether the requested remedy follows.",
+    "qid_pool": [
+      "14556",
+      "14561",
+      "14590",
+      "14610",
+      "14621"
+    ],
+    "cards": [
+      "CRIM-CUT-01",
+      "CRIM-CP-CUT-01"
+    ],
+    "pass_criterion": "8/10 correct remedy classifications."
+  },
+  {
+    "id": "DRILL-CRIM-03",
+    "title": "Actor Grid",
+    "skill": "Actor allocation",
+    "task": "Build grids for principal/accomplice/private actor/state actor/third-party killer.",
+    "qid_pool": [
+      "14616",
+      "14629",
+      "14658",
+      "14680",
+      "14682",
+      "14723",
+      "14726",
+      "14728",
+      "14735",
+      "14745"
+    ],
+    "cards": [
+      "CRIM-CLASH-01",
+      "CRIM-OC-CLASH-01"
+    ],
+    "pass_criterion": "8/10 correct actor-variable labels."
+  },
+  {
+    "id": "DRILL-CRIM-04",
+    "title": "Timing and Completion",
+    "skill": "Timing/concurrence/completion",
+    "task": "Mark the relevant time: entry, taking, agreement, request, substantial step, or killing.",
+    "qid_pool": [
+      "14641",
+      "14693",
+      "14696",
+      "14697",
+      "14700",
+      "14716",
+      "14731",
+      "14740",
+      "14744",
+      "14748"
+    ],
+    "cards": [
+      "CRIM-CALL-01",
+      "CRIM-INC-CALL-01",
+      "CRIM-OC-CALL-01"
+    ],
+    "pass_criterion": "8/10 correct timing/completion points."
+  },
+  {
+    "id": "DRILL-CRIM-05",
+    "title": "Label Decoder",
+    "skill": "Offense-label variable identification",
+    "task": "Identify the variable separating labels before selecting the label.",
+    "qid_pool": [
+      "14709",
+      "14710",
+      "14719",
+      "14720",
+      "14724",
+      "14725",
+      "14733",
+      "14736",
+      "14743"
+    ],
+    "cards": [
+      "CRIM-OC-CUT-01",
+      "CRIM-OC-CLASH-01"
+    ],
+    "pass_criterion": "8/10 correct variable labels; final legal label may be anchor-assisted."
+  },
+  {
+    "id": "DRILL-CRIM-06",
+    "title": "Calibration and Residue",
+    "skill": "Confidence tagging",
+    "task": "Classify rows as PASS, ANCHOR-ASSISTED, PURE ANCHOR, FORK_OR_SPLIT, NEEDS MANUAL, or NEEDS HUMAN.",
+    "qid_pool": [
+      "14650",
+      "14554",
+      "14556",
+      "14558",
+      "14563",
+      "14693",
+      "14698",
+      "14709",
+      "14719",
+      "14743"
+    ],
+    "cards": [
+      "CRIM-DRIFT-01",
+      "CRIM-ANCHOR-01"
+    ],
+    "pass_criterion": "9/10 correct confidence/residue calls."
+  },
+  {
+    "id": "DRILL-CP-01",
+    "title": "Constitutional Protection Gate Label",
+    "skill": "Crim Pro gate labeling",
+    "task": "Label answer routes as 4A search/scope, 4A remedy, Miranda, 6A counsel, Confrontation, Double Jeopardy, Burden/Due Process, Privilege/Immunity, or Grand Jury.",
+    "qid_pool": [
+      "14567",
+      "14582",
+      "14587",
+      "14601",
+      "14610",
+      "14615",
+      "14621",
+      "14629"
+    ],
+    "cards": [
+      "CRIM-CP-CALL-01"
+    ],
+    "pass_criterion": "8/10 route labels."
+  },
+  {
+    "id": "DRILL-GP-01",
+    "title": "Defense Route Sort",
+    "skill": "Defense routing",
+    "task": "Separate mistake, intoxication, self-defense, insanity, and impossibility.",
+    "qid_pool": [
+      "14633",
+      "14634",
+      "14635",
+      "14639",
+      "14640",
+      "14643",
+      "14649",
+      "14654",
+      "14655"
+    ],
+    "cards": [
+      "CRIM-GP-CUT-01",
+      "CRIM-GP-ANCHOR-01"
+    ],
+    "pass_criterion": "8/10 route labels."
+  },
+  {
+    "id": "DRILL-HOM-01",
+    "title": "Homicide Degree Ladder",
+    "skill": "Homicide route order",
+    "task": "Route death, causation, actor, mental state, mitigation, then highest valid degree.",
+    "qid_pool": [
+      "14657",
+      "14659",
+      "14663",
+      "14667",
+      "14675",
+      "14678",
+      "14685"
+    ],
+    "cards": [
+      "CRIM-HOM-CLASH-01",
+      "CRIM-HOM-CALL-01"
+    ],
+    "pass_criterion": "8/10 degree route calls."
+  },
+  {
+    "id": "DRILL-INC-01",
+    "title": "Completion-Line Sort",
+    "skill": "Inchoate completion",
+    "task": "Identify request, agreement, substantial step, completed result, or fallback label.",
+    "qid_pool": [
+      "14693",
+      "14696",
+      "14697",
+      "14698",
+      "14700"
+    ],
+    "cards": [
+      "CRIM-INC-CLASH-01",
+      "CRIM-INC-CALL-01"
+    ],
+    "pass_criterion": "8/10 completion-line calls."
+  }
+]

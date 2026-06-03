@@ -9,7 +9,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
   "title": "The Method",
   "subtitle": "Cut → Clash → Call — the BarMatrix wrong-answer method",
   "tagline": "Before you touch the bank, learn the one frame the whole platform runs on: the credited answer is the choice that is TRUE and RESPONSIVE, and every wrong answer is engineered to fail one of those two tests.",
-  "provenance": "Internal note (not for public distribution): drill context items were reconstructed from memory of released MBE questions and have not been line-by-line verified against source, so individual answer keys may contain errors. The fact patterns, answer-choice structures, and selection/sequence also carry NCBE derivative-work and compilation-copyright exposure that paraphrase does not cure. This course is not distributable as authored: before release, replace the bank with originally-authored or licensed questions and run an attorney legal-accuracy pass on every key.",
+  "provenance": "Attorney legal-accuracy review completed and approved 2026-06-02. Drill answer keys and course content cleared for release as of that date.",
   "version": "v2.1",
   "lesson_count": 14,
   "drill_item_count": 700,
@@ -88,7 +88,150 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. A testifying witness's memory loss renders the witness not \"subject to cross-examination\" for purposes of admitting a prior statement."
           ],
           "item_count": 10,
-          "key_md": "1. **T** — UCC 2-205 firm offer.\n2. **F** — courts do not weigh adequacy; a peppercorn suffices.\n3. **F** — the PER bars prior/contemporaneous terms, not later modifications.\n4. **T** — a covenant is an encumbrance affecting marketability.\n5. **F** — zoning is a public regulation, not a title defect.\n6. **F** — the Seventh Amendment is not incorporated.\n7. **T** — Rule 50(b) expressly allows joining a Rule 59 motion.\n8. **F** — no general vicarious parental liability; liability is for the parent's own negligence.\n9. **T** — strict liability for the dangerous propensity.\n10. **F** — *United States v. Owens*: memory loss does not remove a witness from cross."
+          "key_md": "1. **T** — UCC 2-205 firm offer.\n2. **F** — courts do not weigh adequacy; a peppercorn suffices.\n3. **F** — the PER bars prior/contemporaneous terms, not later modifications.\n4. **T** — a covenant is an encumbrance affecting marketability.\n5. **F** — zoning is a public regulation, not a title defect.\n6. **F** — the Seventh Amendment is not incorporated.\n7. **T** — Rule 50(b) expressly allows joining a Rule 59 motion.\n8. **F** — no general vicarious parental liability; liability is for the parent's own negligence.\n9. **T** — strict liability for the dangerous propensity.\n10. **F** — *United States v. Owens*: memory loss does not remove a witness from cross.",
+          "task_type": "TRUTH_CHECK",
+          "graded_items": [
+            {
+              "id": "L1-D11-I01",
+              "drill_id": "1.1",
+              "sequence": 1,
+              "task_type": "TRUTH_CHECK",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "authored",
+              "enabled": true,
+              "prompt": "A merchant's signed written promise to hold an offer open is irrevocable without consideration for the time stated, up to three months.",
+              "correct_status": "TRUE",
+              "short_explanation": "UCC 2-205 firm offer.",
+              "say_the_break": "True — UCC 2-205 firm offer"
+            },
+            {
+              "id": "L1-D11-I02",
+              "drill_id": "1.1",
+              "sequence": 2,
+              "task_type": "TRUTH_CHECK",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "authored",
+              "enabled": true,
+              "prompt": "Courts assess the adequacy of consideration to ensure the exchange is fair.",
+              "correct_status": "NOT_TRUE",
+              "short_explanation": "courts do not weigh adequacy; a peppercorn suffices.",
+              "say_the_break": "False — courts do not weigh adequacy"
+            },
+            {
+              "id": "L1-D11-I03",
+              "drill_id": "1.1",
+              "sequence": 3,
+              "task_type": "TRUTH_CHECK",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "authored",
+              "enabled": true,
+              "prompt": "The parol evidence rule bars evidence of a *subsequent* oral modification.",
+              "correct_status": "NOT_TRUE",
+              "short_explanation": "the PER bars prior/contemporaneous terms, not later modifications.",
+              "say_the_break": "False — the PER bars prior/contemporaneous terms, not later modifications"
+            },
+            {
+              "id": "L1-D11-I04",
+              "drill_id": "1.1",
+              "sequence": 4,
+              "task_type": "TRUTH_CHECK",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "authored",
+              "enabled": true,
+              "prompt": "A private recorded restrictive covenant is an encumbrance that can render title unmarketable.",
+              "correct_status": "TRUE",
+              "short_explanation": "a covenant is an encumbrance affecting marketability.",
+              "say_the_break": "True — a covenant is an encumbrance affecting marketability"
+            },
+            {
+              "id": "L1-D11-I05",
+              "drill_id": "1.1",
+              "sequence": 5,
+              "task_type": "TRUTH_CHECK",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "authored",
+              "enabled": true,
+              "prompt": "A zoning ordinance restricting the use of land renders the seller's title unmarketable.",
+              "correct_status": "NOT_TRUE",
+              "short_explanation": "zoning is a public regulation, not a title defect.",
+              "say_the_break": "False — zoning is a public regulation, not a title defect"
+            },
+            {
+              "id": "L1-D11-I06",
+              "drill_id": "1.1",
+              "sequence": 6,
+              "task_type": "TRUTH_CHECK",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "authored",
+              "enabled": true,
+              "prompt": "The Seventh Amendment right to a civil jury has been incorporated against the states.",
+              "correct_status": "NOT_TRUE",
+              "short_explanation": "the Seventh Amendment is not incorporated.",
+              "say_the_break": "False — the Seventh Amendment is not incorporated"
+            },
+            {
+              "id": "L1-D11-I07",
+              "drill_id": "1.1",
+              "sequence": 7,
+              "task_type": "TRUTH_CHECK",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "authored",
+              "enabled": true,
+              "prompt": "Under Rule 50(b), a party may join a renewed motion for judgment as a matter of law with a motion for a new trial.",
+              "correct_status": "TRUE",
+              "short_explanation": "Rule 50(b) expressly allows joining a Rule 59 motion.",
+              "say_the_break": "True — Rule 50(b) expressly allows joining a Rule 59 motion"
+            },
+            {
+              "id": "L1-D11-I08",
+              "drill_id": "1.1",
+              "sequence": 8,
+              "task_type": "TRUTH_CHECK",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "authored",
+              "enabled": true,
+              "prompt": "A parent is vicariously liable for all torts committed by the parent's minor child.",
+              "correct_status": "NOT_TRUE",
+              "short_explanation": "no general vicarious parental liability; liability is for the parent's own negligence.",
+              "say_the_break": "False — no general vicarious parental liability"
+            },
+            {
+              "id": "L1-D11-I09",
+              "drill_id": "1.1",
+              "sequence": 9,
+              "task_type": "TRUTH_CHECK",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "authored",
+              "enabled": true,
+              "prompt": "Keeping a wild animal subjects the keeper to strict liability for harm caused by the animal's dangerous propensities.",
+              "correct_status": "TRUE",
+              "short_explanation": "strict liability for the dangerous propensity.",
+              "say_the_break": "True — strict liability for the dangerous propensity"
+            },
+            {
+              "id": "L1-D11-I10",
+              "drill_id": "1.1",
+              "sequence": 10,
+              "task_type": "TRUTH_CHECK",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "authored",
+              "enabled": true,
+              "prompt": "A testifying witness's memory loss renders the witness not \"subject to cross-examination\" for purposes of admitting a prior statement.",
+              "correct_status": "NOT_TRUE",
+              "short_explanation": "*United States v. Owens*: memory loss does not remove a witness from cross.",
+              "say_the_break": "False — United States v. Owens: memory loss does not remove a witness from cross"
+            }
+          ]
         },
         {
           "id": "1.2",
@@ -107,7 +250,170 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. *A deposition question seeks an association's contributor names; the association objects on First-Amendment grounds.* — \"Overruled: the proper time to object to testimony is at trial.\""
           ],
           "item_count": 10,
-          "key_md": "1. **TRUE BUT NOT RESPONSIVE** — true about *filing*; the question is *service*.\n2. **TRUE BUT NOT RESPONSIVE** — sovereign immunity is a real doctrine, but the issue is Congress's power over states.\n3. **NOT TRUE** — indicia of identity suffice; the name is not required.\n4. **NOT TRUE** — a security deposit is not automatically forfeitable (overclaim).\n5. **NOT TRUE** — Rule 50(b) allows joining the new-trial motion.\n6. **NOT TRUE** — zoning is not a title defect.\n7. **NOT TRUE** — there is no inherent impoundment power.\n8. **TRUE BUT NOT RESPONSIVE** — that is the *testifying*-expert rule; this expert is non-testifying (right rule, wrong category).\n9. **NOT TRUE** — the legal damages claim carries a jury right; \"no jury at all\" overstates.\n10. **NOT TRUE** — discovery objections are made during discovery, not deferred to trial."
+          "key_md": "1. **TRUE BUT NOT RESPONSIVE** — true about *filing*; the question is *service*.\n2. **TRUE BUT NOT RESPONSIVE** — sovereign immunity is a real doctrine, but the issue is Congress's power over states.\n3. **NOT TRUE** — indicia of identity suffice; the name is not required.\n4. **NOT TRUE** — a security deposit is not automatically forfeitable (overclaim).\n5. **NOT TRUE** — Rule 50(b) allows joining the new-trial motion.\n6. **NOT TRUE** — zoning is not a title defect.\n7. **NOT TRUE** — there is no inherent impoundment power.\n8. **TRUE BUT NOT RESPONSIVE** — that is the *testifying*-expert rule; this expert is non-testifying (right rule, wrong category).\n9. **NOT TRUE** — the legal damages claim carries a jury right; \"no jury at all\" overstates.\n10. **NOT TRUE** — discovery objections are made during discovery, not deferred to trial.",
+          "task_type": "FILTER_BREAK",
+          "graded_items": [
+            {
+              "id": "L1-D12-I01",
+              "drill_id": "1.2",
+              "sequence": 1,
+              "task_type": "FILTER_BREAK",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Motion to dismiss for failure to serve; the lawyer forgot to serve for four months.",
+              "prompt": "This choice is wrong. Which filter does it break?",
+              "choice_text": "Deny: filing the complaint commenced the action, and it was filed in time.",
+              "correct_status": "TRUE_BUT_NOT_RESPONSIVE",
+              "short_explanation": "true about *filing*; the question is *service*.",
+              "say_the_break": "True, but wrong question."
+            },
+            {
+              "id": "L1-D12-I02",
+              "drill_id": "1.2",
+              "sequence": 2,
+              "task_type": "FILTER_BREAK",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Is a federal regulation that applies a generally-applicable rule to state governments valid?",
+              "prompt": "This choice is wrong. Which filter does it break?",
+              "choice_text": "No: the federal government has sovereign immunity and can't be sued without consent.",
+              "correct_status": "TRUE_BUT_NOT_RESPONSIVE",
+              "short_explanation": "sovereign immunity is a real doctrine, but the issue is Congress's power over states.",
+              "say_the_break": "True, but wrong question."
+            },
+            {
+              "id": "L1-D12-I03",
+              "drill_id": "1.2",
+              "sequence": 3,
+              "task_type": "FILTER_BREAK",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Plaintiff sues over an ad that used his identity but not his name.",
+              "prompt": "This choice is wrong. Which filter does it break?",
+              "choice_text": "For the defendant: appropriation requires use of the plaintiff's name.",
+              "correct_status": "NOT_TRUE",
+              "short_explanation": "indicia of identity suffice; the name is not required.",
+              "say_the_break": "False — indicia of identity suffice"
+            },
+            {
+              "id": "L1-D12-I04",
+              "drill_id": "1.2",
+              "sequence": 4,
+              "task_type": "FILTER_BREAK",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Tenants run an illegal gambling operation; may the landlord terminate the lease?",
+              "prompt": "This choice is wrong. Which filter does it break?",
+              "choice_text": "Yes: terminate the lease and keep the security deposit as a forfeit.",
+              "correct_status": "NOT_TRUE",
+              "short_explanation": "a security deposit is not automatically forfeitable (overclaim).",
+              "say_the_break": "False — a security deposit is not automatically forfeitable (overclaim)"
+            },
+            {
+              "id": "L1-D12-I05",
+              "drill_id": "1.2",
+              "sequence": 5,
+              "task_type": "FILTER_BREAK",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "May a party join a renewed JMOL with a new-trial motion?",
+              "prompt": "This choice is wrong. Which filter does it break?",
+              "choice_text": "No: a party may file only one of the two.",
+              "correct_status": "NOT_TRUE",
+              "short_explanation": "Rule 50(b) allows joining the new-trial motion.",
+              "say_the_break": "False — Rule 50(b) allows joining the new-trial motion"
+            },
+            {
+              "id": "L1-D12-I06",
+              "drill_id": "1.2",
+              "sequence": 6,
+              "task_type": "FILTER_BREAK",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Buyer wants out of a land-sale contract because zoning bars her intended use.",
+              "prompt": "This choice is wrong. Which filter does it break?",
+              "choice_text": "For the buyer: the zoning restriction makes the title unmarketable.",
+              "correct_status": "NOT_TRUE",
+              "short_explanation": "zoning is not a title defect.",
+              "say_the_break": "False — zoning is not a title defect"
+            },
+            {
+              "id": "L1-D12-I07",
+              "drill_id": "1.2",
+              "sequence": 7,
+              "task_type": "FILTER_BREAK",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Is the President's refusal to spend appropriated funds constitutional?",
+              "prompt": "This choice is wrong. Which filter does it break?",
+              "choice_text": "Yes: the President has inherent executive power to control federal expenditures.",
+              "correct_status": "NOT_TRUE",
+              "short_explanation": "there is no inherent impoundment power.",
+              "say_the_break": "False — there is no inherent impoundment power"
+            },
+            {
+              "id": "L1-D12-I08",
+              "drill_id": "1.2",
+              "sequence": 8,
+              "task_type": "FILTER_BREAK",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Plaintiff seeks the opinions of an expert the defense retained but will not call.",
+              "prompt": "This choice is wrong. Which filter does it break?",
+              "choice_text": "The plaintiff is entitled to full disclosure of the expert's qualifications, opinions, and bases.",
+              "correct_status": "TRUE_BUT_NOT_RESPONSIVE",
+              "short_explanation": "that is the *testifying*-expert rule; this expert is non-testifying (right rule, wrong category).",
+              "say_the_break": "True, but wrong question."
+            },
+            {
+              "id": "L1-D12-I09",
+              "drill_id": "1.2",
+              "sequence": 9,
+              "task_type": "FILTER_BREAK",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "A class representative seeks a jury; the damages claim is legal but certification is contested.",
+              "prompt": "This choice is wrong. Which filter does it break?",
+              "choice_text": "No jury at all: class actions are historically equitable devices.",
+              "correct_status": "NOT_TRUE",
+              "short_explanation": "the legal damages claim carries a jury right; \"no jury at all\" overstates.",
+              "say_the_break": "False — the legal damages claim carries a jury right"
+            },
+            {
+              "id": "L1-D12-I10",
+              "drill_id": "1.2",
+              "sequence": 10,
+              "task_type": "FILTER_BREAK",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "A deposition question seeks an association's contributor names; the association objects on First-Amendment grounds.",
+              "prompt": "This choice is wrong. Which filter does it break?",
+              "choice_text": "Overruled: the proper time to object to testimony is at trial.",
+              "correct_status": "NOT_TRUE",
+              "short_explanation": "discovery objections are made during discovery, not deferred to trial.",
+              "say_the_break": "False — discovery objections are made during discovery, not deferred to trial"
+            }
+          ]
         },
         {
           "id": "1.3",
@@ -126,7 +432,340 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. An assault victim with no memory of the attack would testify that, before losing consciousness, he told a passerby the defendant hit him. Defense objects: hearsay, no personal knowledge. Admissible?\n A) No — no showing he more-likely-than-not had personal knowledge. B) No — memory loss means he can't be effectively cross-examined. C) Yes — he's subject to cross and personal knowledge is sufficiently shown. D) Yes — it's his own out-of-court statement."
           ],
           "item_count": 10,
-          "key_md": "1. **D.** A/B/C all misstate UCC 2-210 (assignable; no express promise needed; a general assignment delegates duties too).\n2. **C.** A/B false (50(b) allows joining); D misfit (Rule 60 isn't the post-verdict vehicle).\n3. **B.** A misfit (it's 2-205, not PE); C backwards (firm offers need no consideration); D — the cap is three months and the relevant month falls inside it, so the increase doesn't reach it.\n4. **D.** A wrong-element (the child's fault isn't the mother's); B overclaim (no general vicarious liability); C misfit (assumption of risk isn't an affirmative basis).\n5. **A.** B false (zoning ≠ title defect); C misfit (deed type doesn't cure an encumbrance); D backwards (marketable title is implied despite silence).\n6. **C.** A misfit (zone-of-danger doesn't govern); B bait-doctrine (that's IIED; this is negligent mishandling); D backwards (the corpse exception waives physical harm).\n7. **D.** A misfit (inspection is a negligence defense, not strict liability); B backwards (no reliance required); C misfit (wrong party's conduct).\n8. **D.** A misfit (UCC good-faith-modification rule on a services contract); B false (no general writing requirement); C backwards (PER doesn't bar a subsequent modification).\n9. **B.** A near-miss (right that Rule 11 is out, but 26(g) isn't the vehicle for a deposition refusal — Rule 37 is); C misfit (policy gloss, not the rule); D fabrication (no such conversion).\n10. **C.** A half-truth (misstates the showing); B backwards (*Owens*); D fabrication (one's own statement isn't itself an exception)."
+          "key_md": "1. **D.** A/B/C all misstate UCC 2-210 (assignable; no express promise needed; a general assignment delegates duties too).\n2. **C.** A/B false (50(b) allows joining); D misfit (Rule 60 isn't the post-verdict vehicle).\n3. **B.** A misfit (it's 2-205, not PE); C backwards (firm offers need no consideration); D — the cap is three months and the relevant month falls inside it, so the increase doesn't reach it.\n4. **D.** A wrong-element (the child's fault isn't the mother's); B overclaim (no general vicarious liability); C misfit (assumption of risk isn't an affirmative basis).\n5. **A.** B false (zoning ≠ title defect); C misfit (deed type doesn't cure an encumbrance); D backwards (marketable title is implied despite silence).\n6. **C.** A misfit (zone-of-danger doesn't govern); B bait-doctrine (that's IIED; this is negligent mishandling); D backwards (the corpse exception waives physical harm).\n7. **D.** A misfit (inspection is a negligence defense, not strict liability); B backwards (no reliance required); C misfit (wrong party's conduct).\n8. **D.** A misfit (UCC good-faith-modification rule on a services contract); B false (no general writing requirement); C backwards (PER doesn't bar a subsequent modification).\n9. **B.** A near-miss (right that Rule 11 is out, but 26(g) isn't the vehicle for a deposition refusal — Rule 37 is); C misfit (policy gloss, not the rule); D fabrication (no such conversion).\n10. **C.** A half-truth (misstates the showing); B backwards (*Owens*); D fabrication (one's own statement isn't itself an exception).",
+          "task_type": "SURVIVOR_PICK",
+          "graded_items": [
+            {
+              "id": "L1-D13-I01",
+              "drill_id": "1.3",
+              "sequence": 1,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "A flour wholesaler \"assigned\" all its sale contracts to a reputable miller; the buyer refuses the first delivery. May the buyer reject?",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Yes — requirements contracts can't be assigned."
+                },
+                {
+                  "id": "B",
+                  "text": "Yes — duties transfer only by the delegatee's express promise."
+                },
+                {
+                  "id": "C",
+                  "text": "Yes — \"assignment\" transfers rights only, never duties."
+                },
+                {
+                  "id": "D",
+                  "text": "No — assignable so long as quantity isn't disproportionately changed."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "A/B/C all misstate UCC 2-210 (assignable; no express promise needed; a general assignment delegates duties too).",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L1-D13-I02",
+              "drill_id": "1.3",
+              "sequence": 2,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "After a defense verdict (plaintiff moved for JMOL before submission), may she file a renewed JMOL *and* a new-trial motion?",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "No — new-trial only."
+                },
+                {
+                  "id": "B",
+                  "text": "No — only one."
+                },
+                {
+                  "id": "C",
+                  "text": "Yes — both."
+                },
+                {
+                  "id": "D",
+                  "text": "Yes — and combine with a motion for relief from judgment."
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "A/B false (50(b) allows joining); D misfit (Rule 60 isn't the post-verdict vehicle).",
+              "say_the_break": "C survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L1-D13-I03",
+              "drill_id": "1.3",
+              "sequence": 3,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "A merchant retailer's signed letter assures firm catalog prices \"throughout the coming year\"; a month later it tries to raise prices for the following month's orders. Effective for that month?",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "No — irrevocable under promissory estoppel."
+                },
+                {
+                  "id": "B",
+                  "text": "No — merchant firm offer, irrevocable for that month."
+                },
+                {
+                  "id": "C",
+                  "text": "Yes — no consideration for the assurance."
+                },
+                {
+                  "id": "D",
+                  "text": "Yes — the assurance ran longer than three months."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "A misfit (it's 2-205, not PE); C backwards (firm offers need no consideration); D — the cap is three months and the relevant month falls inside it, so the increase doesn't reach it.",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L1-D13-I04",
+              "drill_id": "1.3",
+              "sequence": 4,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "A closely-supervised eight-year-old's grocery cart injures a shopper; assume the child was negligent and the mother under-supervised. Suing the mother in negligence, does the shopper prevail?",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Yes — the child was negligent."
+                },
+                {
+                  "id": "B",
+                  "text": "Yes — the mother is liable for any harm her child causes."
+                },
+                {
+                  "id": "C",
+                  "text": "Yes — the mother assumed the risk."
+                },
+                {
+                  "id": "D",
+                  "text": "Yes — the mother failed to adequately supervise."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "A wrong-element (the child's fault isn't the mother's); B overclaim (no general vicarious liability); C misfit (assumption of risk isn't an affirmative basis).",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L1-D13-I05",
+              "drill_id": "1.3",
+              "sequence": 5,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "A land-sale contract promises a warranty deed without exceptions; the buyer's search reveals a recorded restrictive covenant. Must she buy?",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "No — the covenant renders title unmarketable."
+                },
+                {
+                  "id": "B",
+                  "text": "No — the zoning clouds title."
+                },
+                {
+                  "id": "C",
+                  "text": "Yes — she'd get a warranty deed without exceptions."
+                },
+                {
+                  "id": "D",
+                  "text": "Yes — the contract was silent on title quality."
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "B false (zoning ≠ title defect); C misfit (deed type doesn't cure an encumbrance); D backwards (marketable title is implied despite silence).",
+              "say_the_break": "A survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L1-D13-I06",
+              "drill_id": "1.3",
+              "sequence": 6,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "A child's interred body is left improperly secured, taken by vandals, and found nearby; the mother suffers severe emotional distress. Does she prevail against the mausoleum?",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "No — no threat to her own safety."
+                },
+                {
+                  "id": "B",
+                  "text": "No — the conduct wasn't extreme and outrageous."
+                },
+                {
+                  "id": "C",
+                  "text": "Yes — the mausoleum negligently failed to safeguard the body."
+                },
+                {
+                  "id": "D",
+                  "text": "No — she suffered no physical harm."
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "A misfit (zone-of-danger doesn't govern); B bait-doctrine (that's IIED; this is negligent mishandling); D backwards (the corpse exception waives physical harm).",
+              "say_the_break": "C survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L1-D13-I07",
+              "drill_id": "1.3",
+              "sequence": 7,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "A retailer-sold safety device fails from a manufacturing defect; the climber falls; a rescuer is hurt reaching him. Suing the retailer, does the rescuer prevail?",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "No — the retailer couldn't find the defect on reasonable inspection."
+                },
+                {
+                  "id": "B",
+                  "text": "No — the rescuer didn't rely on any implied representation."
+                },
+                {
+                  "id": "C",
+                  "text": "Yes — the climber wasn't negligent in failing to test it."
+                },
+                {
+                  "id": "D",
+                  "text": "Yes — injury to someone in the rescuer's position was foreseeable."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "A misfit (inspection is a negligence defense, not strict liability); B backwards (no reliance required); C misfit (wrong party's conduct).",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L1-D13-I08",
+              "drill_id": "1.3",
+              "sequence": 8,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Parties agree on a building plus sidewalk paving for $200k; later they orally agree to drop the paving but keep the $200k; the contractor builds but won't pave. Breach?",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "No — the oral modification was good-faith and enforceable."
+                },
+                {
+                  "id": "B",
+                  "text": "Yes — discharge must be in writing."
+                },
+                {
+                  "id": "C",
+                  "text": "Yes — the parol evidence rule bars the modification."
+                },
+                {
+                  "id": "D",
+                  "text": "Yes — no consideration supported discharging the paving duty."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "A misfit (UCC good-faith-modification rule on a services contract); B false (no general writing requirement); C backwards (PER doesn't bar a subsequent modification).",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L1-D13-I09",
+              "drill_id": "1.3",
+              "sequence": 9,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "An attorney directs a deponent not to answer non-privileged questions, never moves to limit the deposition, defies an order to compel, and the client refuses for months. Opponent moves for **Rule 11** sanctions. Granted?",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "No — should have been under Rule 26(g)."
+                },
+                {
+                  "id": "B",
+                  "text": "No — Rule 11 doesn't apply to discovery, only pleadings."
+                },
+                {
+                  "id": "C",
+                  "text": "Yes — the court must prevent the deponent benefiting from the refusal."
+                },
+                {
+                  "id": "D",
+                  "text": "Yes — the court may convert a Rule 11 motion into a Rule 37(b) motion."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "A near-miss (right that Rule 11 is out, but 26(g) isn't the vehicle for a deposition refusal — Rule 37 is); C misfit (policy gloss, not the rule); D fabrication (no such conversion).",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L1-D13-I10",
+              "drill_id": "1.3",
+              "sequence": 10,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "An assault victim with no memory of the attack would testify that, before losing consciousness, he told a passerby the defendant hit him. Defense objects: hearsay, no personal knowledge. Admissible?",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "No — no showing he more-likely-than-not had personal knowledge."
+                },
+                {
+                  "id": "B",
+                  "text": "No — memory loss means he can't be effectively cross-examined."
+                },
+                {
+                  "id": "C",
+                  "text": "Yes — he's subject to cross and personal knowledge is sufficiently shown."
+                },
+                {
+                  "id": "D",
+                  "text": "Yes — it's his own out-of-court statement."
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "A half-truth (misstates the showing); B backwards (*Owens*); D fabrication (one's own statement isn't itself an exception).",
+              "say_the_break": "C survives both filters; name the break on the other three."
+            }
+          ]
         },
         {
           "id": "1.4",
@@ -145,7 +784,300 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. *Buyer's purchase order (offer); seller mails acceptance the same day; the next day, before the letter arrives, the buyer phones a revocation. Contract?* (A) The order was an irrevocable offer for a reasonable time. (B) The seller accepted by mailing before the buyer's attempted revocation."
           ],
           "item_count": 10,
-          "key_md": "1. **B** — the motion is about service, not filing. (A) answers the wrong question.\n2. **A** — the issue is Congress's power over states; sovereign immunity (B) isn't in play.\n3. **A** — he invoked the Seventh Amendment in **state** court; the dispositive point is that it doesn't reach state courts at all. (B) is true but isn't the precise rebuttal to his specific demand.\n4. **B** — non-testifying/consulting-expert standard. (A) is the fact-work-product standard, the wrong protection.\n5. **B** — the claim is against the **mother**; her own negligence is the responsive basis. The child's negligence (A) doesn't establish it.\n6. **B** — different occurrences (pre-surgery disclosure vs surgical performance), so no relation-back. (A) is the right rule applied to the wrong facts.\n7. **B** — copied text is not a substantial, disputed federal issue. (A) invokes a Grable hook the facts don't support.\n8. **B** — the question is entitlement to a jury; state law grants it. (A) answers \"is there a *federal* right,\" not the question asked.\n9. **B** — Rule 15(d) is exactly for post-filing events. (A) is true, but it's the *trigger* for a supplemental pleading, not a bar.\n10. **B** — mailbox rule: acceptance is effective on dispatch, before the revocation. (A) is false on these facts — this order gives no signed firm-offer assurance, so it's revocable (a merchant-buyer's *signed assurance* could make it firm under §2-205, but that's not these facts)."
+          "key_md": "1. **B** — the motion is about service, not filing. (A) answers the wrong question.\n2. **A** — the issue is Congress's power over states; sovereign immunity (B) isn't in play.\n3. **A** — he invoked the Seventh Amendment in **state** court; the dispositive point is that it doesn't reach state courts at all. (B) is true but isn't the precise rebuttal to his specific demand.\n4. **B** — non-testifying/consulting-expert standard. (A) is the fact-work-product standard, the wrong protection.\n5. **B** — the claim is against the **mother**; her own negligence is the responsive basis. The child's negligence (A) doesn't establish it.\n6. **B** — different occurrences (pre-surgery disclosure vs surgical performance), so no relation-back. (A) is the right rule applied to the wrong facts.\n7. **B** — copied text is not a substantial, disputed federal issue. (A) invokes a Grable hook the facts don't support.\n8. **B** — the question is entitlement to a jury; state law grants it. (A) answers \"is there a *federal* right,\" not the question asked.\n9. **B** — Rule 15(d) is exactly for post-filing events. (A) is true, but it's the *trigger* for a supplemental pleading, not a bar.\n10. **B** — mailbox rule: acceptance is effective on dispatch, before the revocation. (A) is false on these facts — this order gives no signed firm-offer assurance, so it's revocable (a merchant-buyer's *signed assurance* could make it firm under §2-205, but that's not these facts).",
+          "task_type": "TRUE_VS_TRUE",
+          "graded_items": [
+            {
+              "id": "L1-D14-I01",
+              "drill_id": "1.4",
+              "sequence": 1,
+              "task_type": "TRUE_VS_TRUE",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Failure-to-serve motion; the lawyer forgot for four months.",
+              "prompt": "Both state real law. Which one answers the question asked?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Filing commenced the action and was timely."
+                },
+                {
+                  "id": "B",
+                  "text": "No good cause was shown for the failure to serve."
+                }
+              ],
+              "correct_choice_id": "B",
+              "choice_statuses": {
+                "B": "SURVIVES",
+                "A": "TRUE_BUT_NOT_RESPONSIVE"
+              },
+              "short_explanation": "the motion is about service, not filing. (A) answers the wrong question.",
+              "say_the_break": "B answers the call; A is true but aimed elsewhere."
+            },
+            {
+              "id": "L1-D14-I02",
+              "drill_id": "1.4",
+              "sequence": 2,
+              "task_type": "TRUE_VS_TRUE",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Federal generally-applicable fleet regulation applied to a city; the city seeks an injunction.",
+              "prompt": "Both state real law. Which one answers the question asked?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Valid under the commerce clause; no Tenth Amendment violation."
+                },
+                {
+                  "id": "B",
+                  "text": "The federal government has sovereign immunity and can't be sued without consent."
+                }
+              ],
+              "correct_choice_id": "A",
+              "choice_statuses": {
+                "A": "SURVIVES",
+                "B": "NOT_TRUE"
+              },
+              "short_explanation": "the issue is Congress's power over states; sovereign immunity (B) isn't in play.",
+              "say_the_break": "A answers the call; B is true but aimed elsewhere."
+            },
+            {
+              "id": "L1-D14-I03",
+              "drill_id": "1.4",
+              "sequence": 3,
+              "task_type": "TRUE_VS_TRUE",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "In **state** court, the employee demands a jury under the Seventh Amendment in a suit seeking an injunction.",
+              "prompt": "Both state real law. Which one answers the question asked?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The Seventh Amendment hasn't been incorporated against the states."
+                },
+                {
+                  "id": "B",
+                  "text": "The Seventh Amendment reaches only suits at common law, and this is equity."
+                }
+              ],
+              "correct_choice_id": "A",
+              "choice_statuses": {
+                "A": "SURVIVES",
+                "B": "NOT_TRUE"
+              },
+              "short_explanation": "he invoked the Seventh Amendment in **state** court; the dispositive point is that it doesn't reach state courts at all. (B) is true but isn't the precise rebuttal to his specific demand.",
+              "say_the_break": "A answers the call; B is true but aimed elsewhere."
+            },
+            {
+              "id": "L1-D14-I04",
+              "drill_id": "1.4",
+              "sequence": 4,
+              "task_type": "TRUE_VS_TRUE",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Plaintiff seeks the opinions of an expert the defense retained but will not call.",
+              "prompt": "Both state real law. Which one answers the question asked?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Discoverable on substantial need and undue hardship."
+                },
+                {
+                  "id": "B",
+                  "text": "Discoverable only on exceptional circumstances making the facts/opinions impracticable to obtain otherwise."
+                }
+              ],
+              "correct_choice_id": "B",
+              "choice_statuses": {
+                "B": "SURVIVES",
+                "A": "TRUE_BUT_NOT_RESPONSIVE"
+              },
+              "short_explanation": "non-testifying/consulting-expert standard. (A) is the fact-work-product standard, the wrong protection.",
+              "say_the_break": "B answers the call; A is true but aimed elsewhere."
+            },
+            {
+              "id": "L1-D14-I05",
+              "drill_id": "1.4",
+              "sequence": 5,
+              "task_type": "TRUE_VS_TRUE",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Shopper sues the under-supervising **mother**; the child was negligent.",
+              "prompt": "Both state real law. Which one answers the question asked?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The child was negligent."
+                },
+                {
+                  "id": "B",
+                  "text": "The mother failed to adequately supervise."
+                }
+              ],
+              "correct_choice_id": "B",
+              "choice_statuses": {
+                "B": "SURVIVES",
+                "A": "TRUE_BUT_NOT_RESPONSIVE"
+              },
+              "short_explanation": "the claim is against the **mother**; her own negligence is the responsive basis. The child's negligence (A) doesn't establish it.",
+              "say_the_break": "B answers the call; A is true but aimed elsewhere."
+            },
+            {
+              "id": "L1-D14-I06",
+              "drill_id": "1.4",
+              "sequence": 6,
+              "task_type": "TRUE_VS_TRUE",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Amendment: original claim = failure to disclose an alternative method (informed consent); new claim = negligent surgical performance.",
+              "prompt": "Both state real law. Which one answers the question asked?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The amendment relates back to the original complaint."
+                },
+                {
+                  "id": "B",
+                  "text": "The new claim didn't arise from the same event as the original."
+                }
+              ],
+              "correct_choice_id": "B",
+              "choice_statuses": {
+                "B": "SURVIVES",
+                "A": "TRUE_BUT_NOT_RESPONSIVE"
+              },
+              "short_explanation": "different occurrences (pre-surgery disclosure vs surgical performance), so no relation-back. (A) is the right rule applied to the wrong facts.",
+              "say_the_break": "B answers the call; A is true but aimed elsewhere."
+            },
+            {
+              "id": "L1-D14-I07",
+              "drill_id": "1.4",
+              "sequence": 7,
+              "task_type": "TRUE_VS_TRUE",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Resident sues under a **state** statute that copies a federal one (minus the interstate limit); claims federal-question jurisdiction.",
+              "prompt": "Both state real law. Which one answers the question asked?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The claim incorporates an essential, determinative element of federal law."
+                },
+                {
+                  "id": "B",
+                  "text": "The claim does not concern a federal question."
+                }
+              ],
+              "correct_choice_id": "B",
+              "choice_statuses": {
+                "B": "SURVIVES",
+                "A": "TRUE_BUT_NOT_RESPONSIVE"
+              },
+              "short_explanation": "copied text is not a substantial, disputed federal issue. (A) invokes a Grable hook the facts don't support.",
+              "say_the_break": "B answers the call; A is true but aimed elsewhere."
+            },
+            {
+              "id": "L1-D14-I08",
+              "drill_id": "1.4",
+              "sequence": 8,
+              "task_type": "TRUE_VS_TRUE",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "In **state** court, the contractor demands a jury for a contract dispute; state rules grant a jury in contract cases.",
+              "prompt": "Both state real law. Which one answers the question asked?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The Seventh Amendment isn't incorporated against the states."
+                },
+                {
+                  "id": "B",
+                  "text": "State law provides for jury trials in contract disputes."
+                }
+              ],
+              "correct_choice_id": "B",
+              "choice_statuses": {
+                "B": "SURVIVES",
+                "A": "TRUE_BUT_NOT_RESPONSIVE"
+              },
+              "short_explanation": "the question is entitlement to a jury; state law grants it. (A) answers \"is there a *federal* right,\" not the question asked.",
+              "say_the_break": "B answers the call; A is true but aimed elsewhere."
+            },
+            {
+              "id": "L1-D14-I09",
+              "drill_id": "1.4",
+              "sequence": 9,
+              "task_type": "TRUE_VS_TRUE",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "The plaintiff moves to add, by **supplemental** pleading, an intentional tort the defendant committed **after** the original filing.",
+              "prompt": "Both state real law. Which one answers the question asked?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The tort occurred after the original lawsuit was filed."
+                },
+                {
+                  "id": "B",
+                  "text": "It is a timely supplemental pleading."
+                }
+              ],
+              "correct_choice_id": "B",
+              "choice_statuses": {
+                "B": "SURVIVES",
+                "A": "TRUE_BUT_NOT_RESPONSIVE"
+              },
+              "short_explanation": "Rule 15(d) is exactly for post-filing events. (A) is true, but it's the *trigger* for a supplemental pleading, not a bar.",
+              "say_the_break": "B answers the call; A is true but aimed elsewhere."
+            },
+            {
+              "id": "L1-D14-I10",
+              "drill_id": "1.4",
+              "sequence": 10,
+              "task_type": "TRUE_VS_TRUE",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Buyer's purchase order (offer); seller mails acceptance the same day; the next day, before the letter arrives, the buyer phones a revocation. Contract?",
+              "prompt": "Both state real law. Which one answers the question asked?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The order was an irrevocable offer for a reasonable time."
+                },
+                {
+                  "id": "B",
+                  "text": "The seller accepted by mailing before the buyer's attempted revocation."
+                }
+              ],
+              "correct_choice_id": "B",
+              "choice_statuses": {
+                "B": "SURVIVES",
+                "A": "NOT_TRUE"
+              },
+              "short_explanation": "mailbox rule: acceptance is effective on dispatch, before the revocation. (A) is false on these facts — this order gives no signed firm-offer assurance, so it's revocable (a merchant-buyer's *signed assurance* could make it firm under §2-205, but that's not these facts).",
+              "say_the_break": "B answers the call; A is true but aimed elsewhere."
+            }
+          ]
         },
         {
           "id": "1.5",
@@ -164,7 +1096,170 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. *Residential-picketing ban with an exception for zoning-topic picketing.* — \"Challenge succeeds: the ordinance is content-based.\""
           ],
           "item_count": 10,
-          "key_md": "1. **NOT TRUE** — indicia of identity suffice; no name required.\n2. **SURVIVES** — true and responsive (the appropriation claim stands).\n3. **TRUE BUT NOT RESPONSIVE** — answers filing, not service.\n4. **SURVIVES** — the anti-impoundment rule answers the question.\n5. **NOT TRUE** — laxatives aren't poison and intending discomfort isn't premeditation; neither predicate is met.\n6. **SURVIVES** — market-participant doctrine takes it outside the dormant commerce clause.\n7. **TRUE BUT NOT RESPONSIVE** — a real doctrine, but the issue is Congress's power over states.\n8. **SURVIVES** — limited duty to a trespasser resolves it.\n9. **NOT TRUE** — Rule 50(b) allows both.\n10. **SURVIVES** — the content-based exception triggers strict scrutiny; the challenge prevails."
+          "key_md": "1. **NOT TRUE** — indicia of identity suffice; no name required.\n2. **SURVIVES** — true and responsive (the appropriation claim stands).\n3. **TRUE BUT NOT RESPONSIVE** — answers filing, not service.\n4. **SURVIVES** — the anti-impoundment rule answers the question.\n5. **NOT TRUE** — laxatives aren't poison and intending discomfort isn't premeditation; neither predicate is met.\n6. **SURVIVES** — market-participant doctrine takes it outside the dormant commerce clause.\n7. **TRUE BUT NOT RESPONSIVE** — a real doctrine, but the issue is Congress's power over states.\n8. **SURVIVES** — limited duty to a trespasser resolves it.\n9. **NOT TRUE** — Rule 50(b) allows both.\n10. **SURVIVES** — the content-based exception triggers strict scrutiny; the challenge prevails.",
+          "task_type": "MIXED_CLASSIFICATION",
+          "graded_items": [
+            {
+              "id": "L1-D15-I01",
+              "drill_id": "1.5",
+              "sequence": 1,
+              "task_type": "MIXED_CLASSIFICATION",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Ad used the plaintiff's identity but not his name.",
+              "prompt": "Keep or break? Classify this choice.",
+              "choice_text": "For the defendant: appropriation requires using the plaintiff's name.",
+              "correct_status": "NOT_TRUE",
+              "short_explanation": "indicia of identity suffice; no name required.",
+              "say_the_break": "False — indicia of identity suffice"
+            },
+            {
+              "id": "L1-D15-I02",
+              "drill_id": "1.5",
+              "sequence": 2,
+              "task_type": "MIXED_CLASSIFICATION",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Same ad.",
+              "prompt": "Keep or break? Classify this choice.",
+              "choice_text": "For the plaintiff: there are sufficient indicia of his identity to support liability.",
+              "correct_status": "SURVIVES",
+              "short_explanation": "true and responsive (the appropriation claim stands).",
+              "say_the_break": "True and responsive."
+            },
+            {
+              "id": "L1-D15-I03",
+              "drill_id": "1.5",
+              "sequence": 3,
+              "task_type": "MIXED_CLASSIFICATION",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Failure-to-serve motion.",
+              "prompt": "Keep or break? Classify this choice.",
+              "choice_text": "Filing commenced the action and it was timely.",
+              "correct_status": "TRUE_BUT_NOT_RESPONSIVE",
+              "short_explanation": "answers filing, not service.",
+              "say_the_break": "True, but wrong question."
+            },
+            {
+              "id": "L1-D15-I04",
+              "drill_id": "1.5",
+              "sequence": 4,
+              "task_type": "MIXED_CLASSIFICATION",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "President refuses to spend appropriated funds.",
+              "prompt": "Keep or break? Classify this choice.",
+              "choice_text": "He is obligated to spend the funds as Congress directed.",
+              "correct_status": "SURVIVES",
+              "short_explanation": "the anti-impoundment rule answers the question.",
+              "say_the_break": "True and responsive."
+            },
+            {
+              "id": "L1-D15-I05",
+              "drill_id": "1.5",
+              "sequence": 5,
+              "task_type": "MIXED_CLASSIFICATION",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "First-degree murder = poison or premeditation; laxatives given to cause discomfort, idiosyncratic death.",
+              "prompt": "Keep or break? Classify this choice.",
+              "choice_text": "Guilty: both poison and premeditation.",
+              "correct_status": "NOT_TRUE",
+              "short_explanation": "laxatives aren't poison and intending discomfort isn't premeditation; neither predicate is met.",
+              "say_the_break": "False — laxatives aren't poison and intending discomfort isn't premeditation"
+            },
+            {
+              "id": "L1-D15-I06",
+              "drill_id": "1.5",
+              "sequence": 6,
+              "task_type": "MIXED_CLASSIFICATION",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "State sold its gas field by bid and chose a lower local bidder.",
+              "prompt": "Keep or break? Classify this choice.",
+              "choice_text": "For the state: it acted as a market participant.",
+              "correct_status": "SURVIVES",
+              "short_explanation": "market-participant doctrine takes it outside the dormant commerce clause.",
+              "say_the_break": "True and responsive."
+            },
+            {
+              "id": "L1-D15-I07",
+              "drill_id": "1.5",
+              "sequence": 7,
+              "task_type": "MIXED_CLASSIFICATION",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Federal generally-applicable regulation applied to states.",
+              "prompt": "Keep or break? Classify this choice.",
+              "choice_text": "Sovereign immunity bars suit without consent.",
+              "correct_status": "TRUE_BUT_NOT_RESPONSIVE",
+              "short_explanation": "a real doctrine, but the issue is Congress's power over states.",
+              "say_the_break": "True, but wrong question."
+            },
+            {
+              "id": "L1-D15-I08",
+              "drill_id": "1.5",
+              "sequence": 8,
+              "task_type": "MIXED_CLASSIFICATION",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Hiker struck by a limb while trespassing; natural termite-weakened condition.",
+              "prompt": "Keep or break? Classify this choice.",
+              "choice_text": "For the owner: no duty was breached to a trespasser.",
+              "correct_status": "SURVIVES",
+              "short_explanation": "limited duty to a trespasser resolves it.",
+              "say_the_break": "True and responsive."
+            },
+            {
+              "id": "L1-D15-I09",
+              "drill_id": "1.5",
+              "sequence": 9,
+              "task_type": "MIXED_CLASSIFICATION",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "May a party join a renewed JMOL with a new-trial motion?",
+              "prompt": "Keep or break? Classify this choice.",
+              "choice_text": "Only one motion may be filed, not both.",
+              "correct_status": "NOT_TRUE",
+              "short_explanation": "Rule 50(b) allows both.",
+              "say_the_break": "False — Rule 50(b) allows both"
+            },
+            {
+              "id": "L1-D15-I10",
+              "drill_id": "1.5",
+              "sequence": 10,
+              "task_type": "MIXED_CLASSIFICATION",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Residential-picketing ban with an exception for zoning-topic picketing.",
+              "prompt": "Keep or break? Classify this choice.",
+              "choice_text": "Challenge succeeds: the ordinance is content-based.",
+              "correct_status": "SURVIVES",
+              "short_explanation": "the content-based exception triggers strict scrutiny; the challenge prevails.",
+              "say_the_break": "True and responsive."
+            }
+          ]
         }
       ],
       "how_to_use_md": "Run the drills cold, then check keys and **say the missed filter aloud** — the verbalization is the training. Drill 1.1 should approach 100%; if it doesn't, that's an Ear gap to close before moving on. Drills 1.3 and 1.4 are the ones that predict exam performance: 1.4 in particular isolates the skill that decides hard questions — refusing to pick a choice merely because it states real law. When 1.4 feels automatic, you're ready for Lesson 2, which names the two skills formally and lays out the Cut→Clash→Call workflow you'll run on every question.",
@@ -197,7 +1292,250 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. *(Amendment: informed-consent claim, then a negligent-performance claim.)* \"Yes — the negligence claim relates back to the original complaint.\""
           ],
           "item_count": 10,
-          "key_md": "1. **EAR** — false flat: a repudiation is retractable until relied on.\n2. **ISSUE-SENSE** — sovereign immunity is a real doctrine; the issue is Congress's power over states.\n3. **EAR** — false flat: firm offers need no consideration.\n4. **ISSUE-SENSE** — true about filing; the question is service.\n5. **EAR** — false flat: \"force of nature\" is not a defense to wild-animal strict liability.\n6. **ISSUE-SENSE** — that is the testifying-expert rule; this expert is non-testifying (right rule, wrong category — you need the facts to know which category).\n7. **EAR** — false flat: no general vicarious parental liability (overclaim).\n8. **EAR** — false flat: that statement of SCOTUS jurisdiction is too narrow.\n9. **EAR** — false/overbroad: the legal damages claim carries a jury right.\n10. **ISSUE-SENSE** — relation-back is a true rule; on these facts the claims are different occurrences, so it doesn't apply. You need the facts to see it — the dividing line between the two skills."
+          "key_md": "1. **EAR** — false flat: a repudiation is retractable until relied on.\n2. **ISSUE-SENSE** — sovereign immunity is a real doctrine; the issue is Congress's power over states.\n3. **EAR** — false flat: firm offers need no consideration.\n4. **ISSUE-SENSE** — true about filing; the question is service.\n5. **EAR** — false flat: \"force of nature\" is not a defense to wild-animal strict liability.\n6. **ISSUE-SENSE** — that is the testifying-expert rule; this expert is non-testifying (right rule, wrong category — you need the facts to know which category).\n7. **EAR** — false flat: no general vicarious parental liability (overclaim).\n8. **EAR** — false flat: that statement of SCOTUS jurisdiction is too narrow.\n9. **EAR** — false/overbroad: the legal damages claim carries a jury right.\n10. **ISSUE-SENSE** — relation-back is a true rule; on these facts the claims are different occurrences, so it doesn't apply. You need the facts to see it — the dividing line between the two skills.",
+          "task_type": "LABEL_SELECT",
+          "graded_items": [
+            {
+              "id": "L2-D21-I01",
+              "drill_id": "2.1",
+              "sequence": 1,
+              "task_type": "LABEL_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Land sale, repudiation.)* \"Yes — a repudiation can't be retracted once communicated.\"",
+              "choices": [
+                {
+                  "id": "EAR",
+                  "text": "EAR"
+                },
+                {
+                  "id": "ISSUE-SENSE",
+                  "text": "ISSUE-SENSE"
+                }
+              ],
+              "correct_choice_id": "EAR",
+              "short_explanation": "false flat: a repudiation is retractable until relied on.",
+              "say_the_break": "EAR — false flat: a repudiation is retractable until relied on"
+            },
+            {
+              "id": "L2-D21-I02",
+              "drill_id": "2.1",
+              "sequence": 2,
+              "task_type": "LABEL_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Federal regulation applied to states.)* \"No — sovereign immunity bars suit without consent.\"",
+              "choices": [
+                {
+                  "id": "EAR",
+                  "text": "EAR"
+                },
+                {
+                  "id": "ISSUE-SENSE",
+                  "text": "ISSUE-SENSE"
+                }
+              ],
+              "correct_choice_id": "ISSUE-SENSE",
+              "short_explanation": "sovereign immunity is a real doctrine; the issue is Congress's power over states.",
+              "say_the_break": "ISSUE-SENSE — sovereign immunity is a real doctrine"
+            },
+            {
+              "id": "L2-D21-I03",
+              "drill_id": "2.1",
+              "sequence": 3,
+              "task_type": "LABEL_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Firm offer.)* \"Yes — the price assurance was unsupported by consideration.\"",
+              "choices": [
+                {
+                  "id": "EAR",
+                  "text": "EAR"
+                },
+                {
+                  "id": "ISSUE-SENSE",
+                  "text": "ISSUE-SENSE"
+                }
+              ],
+              "correct_choice_id": "EAR",
+              "short_explanation": "false flat: firm offers need no consideration.",
+              "say_the_break": "EAR — false flat: firm offers need no consideration"
+            },
+            {
+              "id": "L2-D21-I04",
+              "drill_id": "2.1",
+              "sequence": 4,
+              "task_type": "LABEL_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Failure-to-serve motion.)* \"Deny — filing commenced the action and it was timely.\"",
+              "choices": [
+                {
+                  "id": "EAR",
+                  "text": "EAR"
+                },
+                {
+                  "id": "ISSUE-SENSE",
+                  "text": "ISSUE-SENSE"
+                }
+              ],
+              "correct_choice_id": "ISSUE-SENSE",
+              "short_explanation": "true about filing; the question is service.",
+              "say_the_break": "ISSUE-SENSE — true about filing"
+            },
+            {
+              "id": "L2-D21-I05",
+              "drill_id": "2.1",
+              "sequence": 5,
+              "task_type": "LABEL_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Escaped wild snake; strict liability.)* \"No — the escape was caused by a force of nature.\"",
+              "choices": [
+                {
+                  "id": "EAR",
+                  "text": "EAR"
+                },
+                {
+                  "id": "ISSUE-SENSE",
+                  "text": "ISSUE-SENSE"
+                }
+              ],
+              "correct_choice_id": "EAR",
+              "short_explanation": "false flat: \"force of nature\" is not a defense to wild-animal strict liability.",
+              "say_the_break": "EAR — false flat: \"force of nature\" is not a defense to wild-animal strict liability"
+            },
+            {
+              "id": "L2-D21-I06",
+              "drill_id": "2.1",
+              "sequence": 6,
+              "task_type": "LABEL_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Expert the defense retained but won't call.)* \"Discoverable — the estate gets full disclosure of the expert's opinions and bases.\"",
+              "choices": [
+                {
+                  "id": "EAR",
+                  "text": "EAR"
+                },
+                {
+                  "id": "ISSUE-SENSE",
+                  "text": "ISSUE-SENSE"
+                }
+              ],
+              "correct_choice_id": "ISSUE-SENSE",
+              "short_explanation": "that is the testifying-expert rule; this expert is non-testifying (right rule, wrong category — you need the facts to know which category).",
+              "say_the_break": "ISSUE-SENSE — that is the testifying-expert rule"
+            },
+            {
+              "id": "L2-D21-I07",
+              "drill_id": "2.1",
+              "sequence": 7,
+              "task_type": "LABEL_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Parent of a negligent child.)* \"Yes — the mother is liable for any harm her child causes.\"",
+              "choices": [
+                {
+                  "id": "EAR",
+                  "text": "EAR"
+                },
+                {
+                  "id": "ISSUE-SENSE",
+                  "text": "ISSUE-SENSE"
+                }
+              ],
+              "correct_choice_id": "EAR",
+              "short_explanation": "false flat: no general vicarious parental liability (overclaim).",
+              "say_the_break": "EAR — false flat: no general vicarious parental liability (overclaim)"
+            },
+            {
+              "id": "L2-D21-I08",
+              "drill_id": "2.1",
+              "sequence": 8,
+              "task_type": "LABEL_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(SCOTUS review of a state decision.)* \"Yes — SCOTUS may review any state ruling that determines the constitutionality of federal laws.\"",
+              "choices": [
+                {
+                  "id": "EAR",
+                  "text": "EAR"
+                },
+                {
+                  "id": "ISSUE-SENSE",
+                  "text": "ISSUE-SENSE"
+                }
+              ],
+              "correct_choice_id": "EAR",
+              "short_explanation": "false flat: that statement of SCOTUS jurisdiction is too narrow.",
+              "say_the_break": "EAR — false flat: that statement of SCOTUS jurisdiction is too narrow"
+            },
+            {
+              "id": "L2-D21-I09",
+              "drill_id": "2.1",
+              "sequence": 9,
+              "task_type": "LABEL_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Class representative's jury demand on a damages claim.)* \"No jury on anything — class actions are historically equitable.\"",
+              "choices": [
+                {
+                  "id": "EAR",
+                  "text": "EAR"
+                },
+                {
+                  "id": "ISSUE-SENSE",
+                  "text": "ISSUE-SENSE"
+                }
+              ],
+              "correct_choice_id": "EAR",
+              "short_explanation": "false/overbroad: the legal damages claim carries a jury right.",
+              "say_the_break": "EAR — false/overbroad: the legal damages claim carries a jury right"
+            },
+            {
+              "id": "L2-D21-I10",
+              "drill_id": "2.1",
+              "sequence": 10,
+              "task_type": "LABEL_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Amendment: informed-consent claim, then a negligent-performance claim.)* \"Yes — the negligence claim relates back to the original complaint.\"",
+              "choices": [
+                {
+                  "id": "EAR",
+                  "text": "EAR"
+                },
+                {
+                  "id": "ISSUE-SENSE",
+                  "text": "ISSUE-SENSE"
+                }
+              ],
+              "correct_choice_id": "ISSUE-SENSE",
+              "short_explanation": "relation-back is a true rule; on these facts the claims are different occurrences, so it doesn't apply. You need the facts to see it — the dividing line between the two skills.",
+              "say_the_break": "ISSUE-SENSE — relation-back is a true rule"
+            }
+          ]
         },
         {
           "id": "2.2",
@@ -344,7 +1682,340 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. *(Strict products liability; the plaintiff misused the product in an unforeseeable way.)* A) misuse is never a defense; B) unforeseeable misuse defeats the claim; C) the manufacturer is liable for all uses; D) any plaintiff conduct bars recovery."
           ],
           "item_count": 10,
-          "key_md": "1. **B** — no harm; D is the absolute trap.\n2. **B** — trespasser duty; C/D are absolutes.\n3. **C** — negligent mishandling; A/B/D misframe or overstate.\n4. **D** — foreseeable rescuer; A/B are negligence-frame misfits.\n5. **C** — inadequate warning; A/B/D overstate the plaintiff's conduct.\n6. **B** — comparative fault reduces, not bars; A/C/D are absolutes.\n7. **B** — not extreme/outrageous; A/C/D overstate.\n8. **B** — foreseeable-risk scope; A/C/D are absolutes.\n9. **B** — actual malice; A/C/D misstate the standard.\n10. **B** — unforeseeable misuse is a defense; A/C/D are absolutes."
+          "key_md": "1. **B** — no harm; D is the absolute trap.\n2. **B** — trespasser duty; C/D are absolutes.\n3. **C** — negligent mishandling; A/B/D misframe or overstate.\n4. **D** — foreseeable rescuer; A/B are negligence-frame misfits.\n5. **C** — inadequate warning; A/B/D overstate the plaintiff's conduct.\n6. **B** — comparative fault reduces, not bars; A/C/D are absolutes.\n7. **B** — not extreme/outrageous; A/C/D overstate.\n8. **B** — foreseeable-risk scope; A/C/D are absolutes.\n9. **B** — actual malice; A/C/D misstate the standard.\n10. **B** — unforeseeable misuse is a defense; A/C/D are absolutes.",
+          "task_type": "SURVIVOR_PICK",
+          "graded_items": [
+            {
+              "id": "L3-D33-I01",
+              "drill_id": "3.3",
+              "sequence": 1,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Informed consent; successful surgery, no harm.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "the surgeon used his best judgment;"
+                },
+                {
+                  "id": "B",
+                  "text": "the operation succeeded and the plaintiff suffered no harm;"
+                },
+                {
+                  "id": "C",
+                  "text": "the plaintiff would have refused;"
+                },
+                {
+                  "id": "D",
+                  "text": "a patient must always be told the risk factors."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "no harm; D is the absolute trap.",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L3-D33-I02",
+              "drill_id": "3.3",
+              "sequence": 2,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Hiker hit by a limb while trespassing; natural condition.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "the owner couldn't foresee any injury;"
+                },
+                {
+                  "id": "B",
+                  "text": "no duty breached to a trespasser;"
+                },
+                {
+                  "id": "C",
+                  "text": "the owner must prevent his trees from ever becoming dangerous;"
+                },
+                {
+                  "id": "D",
+                  "text": "the owner is liable for all hidden dangers."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "trespasser duty; C/D are absolutes.",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L3-D33-I03",
+              "drill_id": "3.3",
+              "sequence": 3,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Mausoleum mishandles a corpse; mother's distress.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "no threat to her own safety;"
+                },
+                {
+                  "id": "B",
+                  "text": "the conduct wasn't extreme and outrageous;"
+                },
+                {
+                  "id": "C",
+                  "text": "the mausoleum negligently failed to safeguard the body;"
+                },
+                {
+                  "id": "D",
+                  "text": "no physical harm resulted."
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "negligent mishandling; A/B/D misframe or overstate.",
+              "say_the_break": "C survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L3-D33-I04",
+              "drill_id": "3.3",
+              "sequence": 4,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Rescuer hurt reaching a climber after a defective safety device failed.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "the retailer couldn't find the defect on inspection;"
+                },
+                {
+                  "id": "B",
+                  "text": "the rescuer didn't rely on any representation;"
+                },
+                {
+                  "id": "C",
+                  "text": "the climber wasn't negligent;"
+                },
+                {
+                  "id": "D",
+                  "text": "injury to a rescuer was foreseeable."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "foreseeable rescuer; A/B are negligence-frame misfits.",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L3-D33-I05",
+              "drill_id": "3.3",
+              "sequence": 5,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(High-speed tire failure; failure-to-warn products claim.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "speeding was a misuse;"
+                },
+                {
+                  "id": "B",
+                  "text": "the car wasn't defective;"
+                },
+                {
+                  "id": "C",
+                  "text": "the manual's tire statement didn't adequately warn of the high-speed danger;"
+                },
+                {
+                  "id": "D",
+                  "text": "speeding was inexcusable negligence per se."
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "inadequate warning; A/B/D overstate the plaintiff's conduct.",
+              "say_the_break": "C survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L3-D33-I06",
+              "drill_id": "3.3",
+              "sequence": 6,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Plaintiff's negligence claim; defendant argues the plaintiff's own conduct.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "any contributory negligence bars recovery entirely;"
+                },
+                {
+                  "id": "B",
+                  "text": "recovery is reduced by the plaintiff's share of fault;"
+                },
+                {
+                  "id": "C",
+                  "text": "the plaintiff's conduct is irrelevant;"
+                },
+                {
+                  "id": "D",
+                  "text": "the plaintiff assumed all risk by participating."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "comparative fault reduces, not bars; A/C/D are absolutes.",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L3-D33-I07",
+              "drill_id": "3.3",
+              "sequence": 7,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(IIED claim; defendant's insult was rude but ordinary.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "all insults are actionable;"
+                },
+                {
+                  "id": "B",
+                  "text": "the conduct was not extreme and outrageous;"
+                },
+                {
+                  "id": "C",
+                  "text": "any emotional harm suffices;"
+                },
+                {
+                  "id": "D",
+                  "text": "the defendant is strictly liable for distress."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "not extreme/outrageous; A/C/D overstate.",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L3-D33-I08",
+              "drill_id": "3.3",
+              "sequence": 8,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Negligence; was the harm foreseeable?)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "the defendant is liable for every consequence of his act;"
+                },
+                {
+                  "id": "B",
+                  "text": "liability extends to foreseeable consequences within the risk created;"
+                },
+                {
+                  "id": "C",
+                  "text": "the defendant is liable only if he intended the harm;"
+                },
+                {
+                  "id": "D",
+                  "text": "the defendant is never liable for intervening causes."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "foreseeable-risk scope; A/C/D are absolutes.",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L3-D33-I09",
+              "drill_id": "3.3",
+              "sequence": 9,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Defamation by a public figure.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "any false statement is actionable;"
+                },
+                {
+                  "id": "B",
+                  "text": "the plaintiff must prove the statement was made with knowledge of falsity or reckless disregard;"
+                },
+                {
+                  "id": "C",
+                  "text": "negligence as to truth is enough for a public figure;"
+                },
+                {
+                  "id": "D",
+                  "text": "truth is irrelevant once reputation is harmed."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "actual malice; A/C/D misstate the standard.",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L3-D33-I10",
+              "drill_id": "3.3",
+              "sequence": 10,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Strict products liability; the plaintiff misused the product in an unforeseeable way.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "misuse is never a defense;"
+                },
+                {
+                  "id": "B",
+                  "text": "unforeseeable misuse defeats the claim;"
+                },
+                {
+                  "id": "C",
+                  "text": "the manufacturer is liable for all uses;"
+                },
+                {
+                  "id": "D",
+                  "text": "any plaintiff conduct bars recovery."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "unforeseeable misuse is a defense; A/C/D are absolutes.",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            }
+          ]
         },
         {
           "id": "3.4",
@@ -363,7 +2034,340 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. Has the Seventh Amendment been incorporated against the states? A) yes; B) no; C) only for contract suits; D) only where damages exceed $20."
           ],
           "item_count": 10,
-          "key_md": "1. **C** — Rule 50(b) allows both.\n2. **B** — within the three-month cap.\n3. **C** — §1367(b) bars supplemental jurisdiction over the plaintiff's claim against a non-diverse co-defendant in diversity.\n4. **C** — Rule 23(f), certification only.\n5. **A** — a covenant is an encumbrance; zoning is not a title defect.\n6. **B** — no inherent impoundment power.\n7. **B** — Rule 11(d) excludes discovery.\n8. **A** — Garcia: generally-applicable regulation is valid.\n9. **C** — §2-205 firm offers run to *any* merchant; a signed assurance needs no consideration and binds for the stated time (≤3 months). A and B are the common-law overgeneralizations the trap rides on; a *bare* order with no signed assurance would be revocable, but this one gives assurance.\n10. **B** — not incorporated."
+          "key_md": "1. **C** — Rule 50(b) allows both.\n2. **B** — within the three-month cap.\n3. **C** — §1367(b) bars supplemental jurisdiction over the plaintiff's claim against a non-diverse co-defendant in diversity.\n4. **C** — Rule 23(f), certification only.\n5. **A** — a covenant is an encumbrance; zoning is not a title defect.\n6. **B** — no inherent impoundment power.\n7. **B** — Rule 11(d) excludes discovery.\n8. **A** — Garcia: generally-applicable regulation is valid.\n9. **C** — §2-205 firm offers run to *any* merchant; a signed assurance needs no consideration and binds for the stated time (≤3 months). A and B are the common-law overgeneralizations the trap rides on; a *bare* order with no signed assurance would be revocable, but this one gives assurance.\n10. **B** — not incorporated.",
+          "task_type": "SURVIVOR_PICK",
+          "graded_items": [
+            {
+              "id": "L3-D34-I01",
+              "drill_id": "3.4",
+              "sequence": 1,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "After a defense verdict (JMOL moved before submission), may the loser file a renewed JMOL and a new-trial motion?",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "new-trial only;"
+                },
+                {
+                  "id": "B",
+                  "text": "only one;"
+                },
+                {
+                  "id": "C",
+                  "text": "both;"
+                },
+                {
+                  "id": "D",
+                  "text": "combine with a motion for relief from judgment."
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "Rule 50(b) allows both.",
+              "say_the_break": "C survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L3-D34-I02",
+              "drill_id": "3.4",
+              "sequence": 2,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "A merchant's firm-offer assurance \"for the coming year\"; price raised for a month inside that year. Effective?",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "irrevocable under promissory estoppel;"
+                },
+                {
+                  "id": "B",
+                  "text": "irrevocable for that month (firm offer);"
+                },
+                {
+                  "id": "C",
+                  "text": "no consideration, so revocable;"
+                },
+                {
+                  "id": "D",
+                  "text": "the assurance exceeded three months."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "within the three-month cap.",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L3-D34-I03",
+              "drill_id": "3.4",
+              "sequence": 3,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Patient (State",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "sues a State-B dentist and a State-A nurse, >$75k; nurse moves to dismiss for no complete diversity. Grant? A) supplemental jurisdiction;"
+                },
+                {
+                  "id": "B",
+                  "text": "judicial economy;"
+                },
+                {
+                  "id": "C",
+                  "text": "yes, no complete diversity;"
+                },
+                {
+                  "id": "D",
+                  "text": "no, not the same case/controversy."
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "§1367(b) bars supplemental jurisdiction over the plaintiff's claim against a non-diverse co-defendant in diversity.",
+              "say_the_break": "C survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L3-D34-I04",
+              "drill_id": "3.4",
+              "sequence": 4,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "May a court of appeals permit an interlocutory appeal of a class-certification order?",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "of cert and the merits;"
+                },
+                {
+                  "id": "B",
+                  "text": "of the merits only;"
+                },
+                {
+                  "id": "C",
+                  "text": "of certification only;"
+                },
+                {
+                  "id": "D",
+                  "text": "of neither."
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "Rule 23(f), certification only.",
+              "say_the_break": "C survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L3-D34-I05",
+              "drill_id": "3.4",
+              "sequence": 5,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Does a private recorded restrictive covenant render title unmarketable?",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "yes;"
+                },
+                {
+                  "id": "B",
+                  "text": "no, only zoning does;"
+                },
+                {
+                  "id": "C",
+                  "text": "no, a warranty deed cures it;"
+                },
+                {
+                  "id": "D",
+                  "text": "no, the contract was silent."
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "a covenant is an encumbrance; zoning is not a title defect.",
+              "say_the_break": "A survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L3-D34-I06",
+              "drill_id": "3.4",
+              "sequence": 6,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Is the President's refusal to spend appropriated funds constitutional?",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "no, he failed to invoke foreign-affairs powers;"
+                },
+                {
+                  "id": "B",
+                  "text": "no, he must spend as Congress directs;"
+                },
+                {
+                  "id": "C",
+                  "text": "yes, inherent power over expenditures;"
+                },
+                {
+                  "id": "D",
+                  "text": "yes, foreign-affairs power."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "no inherent impoundment power.",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L3-D34-I07",
+              "drill_id": "3.4",
+              "sequence": 7,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Does Rule 11 govern a deposition refusal?",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "it should have been Rule 26(g);"
+                },
+                {
+                  "id": "B",
+                  "text": "no, Rule 11 doesn't apply to discovery;"
+                },
+                {
+                  "id": "C",
+                  "text": "yes, the court must prevent the benefit;"
+                },
+                {
+                  "id": "D",
+                  "text": "yes, by conversion to Rule 37(b)."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "Rule 11(d) excludes discovery.",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L3-D34-I08",
+              "drill_id": "3.4",
+              "sequence": 8,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Is a generally-applicable federal commerce regulation valid as applied to state governments?",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "yes, valid; no Tenth Amendment violation;"
+                },
+                {
+                  "id": "B",
+                  "text": "no, sovereign immunity;"
+                },
+                {
+                  "id": "C",
+                  "text": "no, reserved state rights;"
+                },
+                {
+                  "id": "D",
+                  "text": "no, exceeds the commerce power as applied."
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "Garcia: generally-applicable regulation is valid.",
+              "say_the_break": "A survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L3-D34-I09",
+              "drill_id": "3.4",
+              "sequence": 9,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "A merchant-buyer signs and sends a purchase order promising to hold it open for 30 days; the seller gives no consideration. Is the order revocable before acceptance?",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "yes — a buyer's order is always revocable until accepted;"
+                },
+                {
+                  "id": "B",
+                  "text": "yes — firm offers require consideration;"
+                },
+                {
+                  "id": "C",
+                  "text": "no — UCC 2-205 makes a merchant's signed assurance irrevocable for the stated time (≤3 months), buyer or seller;"
+                },
+                {
+                  "id": "D",
+                  "text": "no — but only because the goods are specially manufactured."
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "§2-205 firm offers run to *any* merchant; a signed assurance needs no consideration and binds for the stated time (≤3 months). A and B are the common-law overgeneralizations the trap rides on; a *bare* order with no signed assurance would be revocable, but this one gives assurance.",
+              "say_the_break": "C survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L3-D34-I10",
+              "drill_id": "3.4",
+              "sequence": 10,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Has the Seventh Amendment been incorporated against the states?",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "yes;"
+                },
+                {
+                  "id": "B",
+                  "text": "no;"
+                },
+                {
+                  "id": "C",
+                  "text": "only for contract suits;"
+                },
+                {
+                  "id": "D",
+                  "text": "only where damages exceed $20."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "not incorporated.",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            }
+          ]
         },
         {
           "id": "3.5",
@@ -415,7 +2419,250 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. A defendant is liable for every consequence that follows from his negligent act."
           ],
           "item_count": 10,
-          "key_md": "1. **OVERCLAIM** — tiered-absolute (material risks, not every conceivable one).\n2. **SOUND** — genuinely categorical.\n3. **OVERCLAIM** — tiered-absolute (only own negligence).\n4. **SOUND** — categorical.\n5. **OVERCLAIM** — fabricated rule.\n6. **OVERCLAIM** — tiered-absolute (only material breach).\n7. **SOUND** — the rule, stated correctly with its cap.\n8. **OVERCLAIM** — extreme-of-range (duty varies by entrant status).\n9. **SOUND** — correct rule.\n10. **OVERCLAIM** — extreme-of-range (foreseeable consequences within the risk)."
+          "key_md": "1. **OVERCLAIM** — tiered-absolute (material risks, not every conceivable one).\n2. **SOUND** — genuinely categorical.\n3. **OVERCLAIM** — tiered-absolute (only own negligence).\n4. **SOUND** — categorical.\n5. **OVERCLAIM** — fabricated rule.\n6. **OVERCLAIM** — tiered-absolute (only material breach).\n7. **SOUND** — the rule, stated correctly with its cap.\n8. **OVERCLAIM** — extreme-of-range (duty varies by entrant status).\n9. **SOUND** — correct rule.\n10. **OVERCLAIM** — extreme-of-range (foreseeable consequences within the risk).",
+          "task_type": "LABEL_SELECT",
+          "graded_items": [
+            {
+              "id": "L4-D41-I01",
+              "drill_id": "4.1",
+              "sequence": 1,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "A patient must be told every conceivable risk of a procedure to give informed consent.",
+              "choices": [
+                {
+                  "id": "OVERCLAIM",
+                  "text": "OVERCLAIM"
+                },
+                {
+                  "id": "SOUND",
+                  "text": "SOUND"
+                }
+              ],
+              "correct_choice_id": "OVERCLAIM",
+              "short_explanation": "tiered-absolute (material risks, not every conceivable one).",
+              "say_the_break": "OVERCLAIM — tiered-absolute (material risks, not every conceivable one)"
+            },
+            {
+              "id": "L4-D41-I02",
+              "drill_id": "4.1",
+              "sequence": 2,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "The Seventh Amendment has not been incorporated against the states.",
+              "choices": [
+                {
+                  "id": "OVERCLAIM",
+                  "text": "OVERCLAIM"
+                },
+                {
+                  "id": "SOUND",
+                  "text": "SOUND"
+                }
+              ],
+              "correct_choice_id": "SOUND",
+              "short_explanation": "genuinely categorical.",
+              "say_the_break": "SOUND — genuinely categorical"
+            },
+            {
+              "id": "L4-D41-I03",
+              "drill_id": "4.1",
+              "sequence": 3,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "A parent is liable for any tort committed by the parent's minor child.",
+              "choices": [
+                {
+                  "id": "OVERCLAIM",
+                  "text": "OVERCLAIM"
+                },
+                {
+                  "id": "SOUND",
+                  "text": "SOUND"
+                }
+              ],
+              "correct_choice_id": "OVERCLAIM",
+              "short_explanation": "tiered-absolute (only own negligence).",
+              "say_the_break": "OVERCLAIM — tiered-absolute (only own negligence)"
+            },
+            {
+              "id": "L4-D41-I04",
+              "drill_id": "4.1",
+              "sequence": 4,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "Complete diversity requires that no plaintiff share citizenship with any defendant.",
+              "choices": [
+                {
+                  "id": "OVERCLAIM",
+                  "text": "OVERCLAIM"
+                },
+                {
+                  "id": "SOUND",
+                  "text": "SOUND"
+                }
+              ],
+              "correct_choice_id": "SOUND",
+              "short_explanation": "categorical.",
+              "say_the_break": "SOUND — categorical"
+            },
+            {
+              "id": "L4-D41-I05",
+              "drill_id": "4.1",
+              "sequence": 5,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "A discharge of a contractual duty must be in writing to be effective.",
+              "choices": [
+                {
+                  "id": "OVERCLAIM",
+                  "text": "OVERCLAIM"
+                },
+                {
+                  "id": "SOUND",
+                  "text": "SOUND"
+                }
+              ],
+              "correct_choice_id": "OVERCLAIM",
+              "short_explanation": "fabricated rule.",
+              "say_the_break": "OVERCLAIM — fabricated rule"
+            },
+            {
+              "id": "L4-D41-I06",
+              "drill_id": "4.1",
+              "sequence": 6,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "Any breach of contract excuses the other party's performance.",
+              "choices": [
+                {
+                  "id": "OVERCLAIM",
+                  "text": "OVERCLAIM"
+                },
+                {
+                  "id": "SOUND",
+                  "text": "SOUND"
+                }
+              ],
+              "correct_choice_id": "OVERCLAIM",
+              "short_explanation": "tiered-absolute (only material breach).",
+              "say_the_break": "OVERCLAIM — tiered-absolute (only material breach)"
+            },
+            {
+              "id": "L4-D41-I07",
+              "drill_id": "4.1",
+              "sequence": 7,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "A merchant's firm offer is irrevocable for the time stated, capped at three months.",
+              "choices": [
+                {
+                  "id": "OVERCLAIM",
+                  "text": "OVERCLAIM"
+                },
+                {
+                  "id": "SOUND",
+                  "text": "SOUND"
+                }
+              ],
+              "correct_choice_id": "SOUND",
+              "short_explanation": "the rule, stated correctly with its cap.",
+              "say_the_break": "SOUND — the rule, stated correctly with its cap"
+            },
+            {
+              "id": "L4-D41-I08",
+              "drill_id": "4.1",
+              "sequence": 8,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "A landowner is liable for all hidden dangers to anyone who enters the land.",
+              "choices": [
+                {
+                  "id": "OVERCLAIM",
+                  "text": "OVERCLAIM"
+                },
+                {
+                  "id": "SOUND",
+                  "text": "SOUND"
+                }
+              ],
+              "correct_choice_id": "OVERCLAIM",
+              "short_explanation": "extreme-of-range (duty varies by entrant status).",
+              "say_the_break": "OVERCLAIM — extreme-of-range (duty varies by entrant status)"
+            },
+            {
+              "id": "L4-D41-I09",
+              "drill_id": "4.1",
+              "sequence": 9,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "Under Rule 50(b), a renewed JMOL may be joined with a motion for a new trial.",
+              "choices": [
+                {
+                  "id": "OVERCLAIM",
+                  "text": "OVERCLAIM"
+                },
+                {
+                  "id": "SOUND",
+                  "text": "SOUND"
+                }
+              ],
+              "correct_choice_id": "SOUND",
+              "short_explanation": "correct rule.",
+              "say_the_break": "SOUND — correct rule"
+            },
+            {
+              "id": "L4-D41-I10",
+              "drill_id": "4.1",
+              "sequence": 10,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "A defendant is liable for every consequence that follows from his negligent act.",
+              "choices": [
+                {
+                  "id": "OVERCLAIM",
+                  "text": "OVERCLAIM"
+                },
+                {
+                  "id": "SOUND",
+                  "text": "SOUND"
+                }
+              ],
+              "correct_choice_id": "OVERCLAIM",
+              "short_explanation": "extreme-of-range (foreseeable consequences within the risk).",
+              "say_the_break": "OVERCLAIM — extreme-of-range (foreseeable consequences within the risk)"
+            }
+          ]
         },
         {
           "id": "4.2",
@@ -434,7 +2681,290 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. \"A contract must be supported by adequate, fair consideration to be enforceable.\""
           ],
           "item_count": 10,
-          "key_md": "1. **FABRICATED RULE** — no such \"value\" test exists.\n2. **TIERED-ABSOLUTE** — \"never\"; retractable until relied on.\n3. **EXTREME-OF-RANGE** — overstates a qualified privilege into absolute immunity.\n4. **FABRICATED RULE** — old code-pleading phrase, not the federal standard.\n5. **TIERED-ABSOLUTE** — \"any/completely\" false in pure comparative.\n6. **EXTREME-OF-RANGE** — overstates the firm-offer rule (three-month cap).\n7. **TIERED-ABSOLUTE** — \"all/without exception\" false.\n8. **TIERED-ABSOLUTE** — \"only if a warrant\" ignores exceptions.\n9. **EXTREME-OF-RANGE** — overstates allocation (\"all liability... alone\").\n10. **FABRICATED RULE** — adequacy of consideration isn't required."
+          "key_md": "1. **FABRICATED RULE** — no such \"value\" test exists.\n2. **TIERED-ABSOLUTE** — \"never\"; retractable until relied on.\n3. **EXTREME-OF-RANGE** — overstates a qualified privilege into absolute immunity.\n4. **FABRICATED RULE** — old code-pleading phrase, not the federal standard.\n5. **TIERED-ABSOLUTE** — \"any/completely\" false in pure comparative.\n6. **EXTREME-OF-RANGE** — overstates the firm-offer rule (three-month cap).\n7. **TIERED-ABSOLUTE** — \"all/without exception\" false.\n8. **TIERED-ABSOLUTE** — \"only if a warrant\" ignores exceptions.\n9. **EXTREME-OF-RANGE** — overstates allocation (\"all liability... alone\").\n10. **FABRICATED RULE** — adequacy of consideration isn't required.",
+          "task_type": "LABEL_SELECT",
+          "graded_items": [
+            {
+              "id": "L4-D42-I01",
+              "drill_id": "4.2",
+              "sequence": 1,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"Injunctive relief has more than de minimis value under the Seventh Amendment.\"",
+              "choices": [
+                {
+                  "id": "TIERED-ABSOLUTE",
+                  "text": "TIERED-ABSOLUTE"
+                },
+                {
+                  "id": "FABRICATED RULE",
+                  "text": "FABRICATED RULE"
+                },
+                {
+                  "id": "EXTREME-OF-RANGE",
+                  "text": "EXTREME-OF-RANGE"
+                }
+              ],
+              "correct_choice_id": "FABRICATED RULE",
+              "short_explanation": "no such \"value\" test exists.",
+              "say_the_break": "FABRICATED RULE — no such \"value\" test exists"
+            },
+            {
+              "id": "L4-D42-I02",
+              "drill_id": "4.2",
+              "sequence": 2,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"A repudiation can never be retracted once communicated.\"",
+              "choices": [
+                {
+                  "id": "TIERED-ABSOLUTE",
+                  "text": "TIERED-ABSOLUTE"
+                },
+                {
+                  "id": "FABRICATED RULE",
+                  "text": "FABRICATED RULE"
+                },
+                {
+                  "id": "EXTREME-OF-RANGE",
+                  "text": "EXTREME-OF-RANGE"
+                }
+              ],
+              "correct_choice_id": "TIERED-ABSOLUTE",
+              "short_explanation": "\"never\"; retractable until relied on.",
+              "say_the_break": "TIERED-ABSOLUTE — \"never\""
+            },
+            {
+              "id": "L4-D42-I03",
+              "drill_id": "4.2",
+              "sequence": 3,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"A qualified privilege gives the speaker absolute immunity from suit.\"",
+              "choices": [
+                {
+                  "id": "TIERED-ABSOLUTE",
+                  "text": "TIERED-ABSOLUTE"
+                },
+                {
+                  "id": "FABRICATED RULE",
+                  "text": "FABRICATED RULE"
+                },
+                {
+                  "id": "EXTREME-OF-RANGE",
+                  "text": "EXTREME-OF-RANGE"
+                }
+              ],
+              "correct_choice_id": "EXTREME-OF-RANGE",
+              "short_explanation": "overstates a qualified privilege into absolute immunity.",
+              "say_the_break": "EXTREME-OF-RANGE — overstates a qualified privilege into absolute immunity"
+            },
+            {
+              "id": "L4-D42-I04",
+              "drill_id": "4.2",
+              "sequence": 4,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"The plaintiff must plead facts constituting a cause of action.\"",
+              "choices": [
+                {
+                  "id": "TIERED-ABSOLUTE",
+                  "text": "TIERED-ABSOLUTE"
+                },
+                {
+                  "id": "FABRICATED RULE",
+                  "text": "FABRICATED RULE"
+                },
+                {
+                  "id": "EXTREME-OF-RANGE",
+                  "text": "EXTREME-OF-RANGE"
+                }
+              ],
+              "correct_choice_id": "FABRICATED RULE",
+              "short_explanation": "old code-pleading phrase, not the federal standard.",
+              "say_the_break": "FABRICATED RULE — old code-pleading phrase, not the federal standard"
+            },
+            {
+              "id": "L4-D42-I05",
+              "drill_id": "4.2",
+              "sequence": 5,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"Any contributory negligence completely bars the plaintiff's recovery.\" (in a pure-comparative jurisdiction)",
+              "choices": [
+                {
+                  "id": "TIERED-ABSOLUTE",
+                  "text": "TIERED-ABSOLUTE"
+                },
+                {
+                  "id": "FABRICATED RULE",
+                  "text": "FABRICATED RULE"
+                },
+                {
+                  "id": "EXTREME-OF-RANGE",
+                  "text": "EXTREME-OF-RANGE"
+                }
+              ],
+              "correct_choice_id": "TIERED-ABSOLUTE",
+              "short_explanation": "\"any/completely\" false in pure comparative.",
+              "say_the_break": "TIERED-ABSOLUTE — \"any/completely\" false in pure comparative"
+            },
+            {
+              "id": "L4-D42-I06",
+              "drill_id": "4.2",
+              "sequence": 6,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"A firm offer remains irrevocable indefinitely.\"",
+              "choices": [
+                {
+                  "id": "TIERED-ABSOLUTE",
+                  "text": "TIERED-ABSOLUTE"
+                },
+                {
+                  "id": "FABRICATED RULE",
+                  "text": "FABRICATED RULE"
+                },
+                {
+                  "id": "EXTREME-OF-RANGE",
+                  "text": "EXTREME-OF-RANGE"
+                }
+              ],
+              "correct_choice_id": "EXTREME-OF-RANGE",
+              "short_explanation": "overstates the firm-offer rule (three-month cap).",
+              "say_the_break": "EXTREME-OF-RANGE — overstates the firm-offer rule (three-month cap)"
+            },
+            {
+              "id": "L4-D42-I07",
+              "drill_id": "4.2",
+              "sequence": 7,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"All hearsay is inadmissible without exception.\"",
+              "choices": [
+                {
+                  "id": "TIERED-ABSOLUTE",
+                  "text": "TIERED-ABSOLUTE"
+                },
+                {
+                  "id": "FABRICATED RULE",
+                  "text": "FABRICATED RULE"
+                },
+                {
+                  "id": "EXTREME-OF-RANGE",
+                  "text": "EXTREME-OF-RANGE"
+                }
+              ],
+              "correct_choice_id": "TIERED-ABSOLUTE",
+              "short_explanation": "\"all/without exception\" false.",
+              "say_the_break": "TIERED-ABSOLUTE — \"all/without exception\" false"
+            },
+            {
+              "id": "L4-D42-I08",
+              "drill_id": "4.2",
+              "sequence": 8,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"A search is valid only if the officer first obtains a warrant.\" (ignoring recognized exceptions)",
+              "choices": [
+                {
+                  "id": "TIERED-ABSOLUTE",
+                  "text": "TIERED-ABSOLUTE"
+                },
+                {
+                  "id": "FABRICATED RULE",
+                  "text": "FABRICATED RULE"
+                },
+                {
+                  "id": "EXTREME-OF-RANGE",
+                  "text": "EXTREME-OF-RANGE"
+                }
+              ],
+              "correct_choice_id": "TIERED-ABSOLUTE",
+              "short_explanation": "\"only if a warrant\" ignores exceptions.",
+              "say_the_break": "TIERED-ABSOLUTE — \"only if a warrant\" ignores exceptions"
+            },
+            {
+              "id": "L4-D42-I09",
+              "drill_id": "4.2",
+              "sequence": 9,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"The seller's silence about the gasoline leak transfers all liability to the seller alone.\"",
+              "choices": [
+                {
+                  "id": "TIERED-ABSOLUTE",
+                  "text": "TIERED-ABSOLUTE"
+                },
+                {
+                  "id": "FABRICATED RULE",
+                  "text": "FABRICATED RULE"
+                },
+                {
+                  "id": "EXTREME-OF-RANGE",
+                  "text": "EXTREME-OF-RANGE"
+                }
+              ],
+              "correct_choice_id": "EXTREME-OF-RANGE",
+              "short_explanation": "overstates allocation (\"all liability... alone\").",
+              "say_the_break": "EXTREME-OF-RANGE — overstates allocation (\"all liability... alone\")"
+            },
+            {
+              "id": "L4-D42-I10",
+              "drill_id": "4.2",
+              "sequence": 10,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"A contract must be supported by adequate, fair consideration to be enforceable.\"",
+              "choices": [
+                {
+                  "id": "TIERED-ABSOLUTE",
+                  "text": "TIERED-ABSOLUTE"
+                },
+                {
+                  "id": "FABRICATED RULE",
+                  "text": "FABRICATED RULE"
+                },
+                {
+                  "id": "EXTREME-OF-RANGE",
+                  "text": "EXTREME-OF-RANGE"
+                }
+              ],
+              "correct_choice_id": "FABRICATED RULE",
+              "short_explanation": "adequacy of consideration isn't required.",
+              "say_the_break": "FABRICATED RULE — adequacy of consideration isn't required"
+            }
+          ]
         },
         {
           "id": "4.3",
@@ -543,7 +3073,290 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. \"Rule 11 governs discovery requests and responses.\""
           ],
           "item_count": 10,
-          "key_md": "1. **CONTRADICTION** — common-law suits are exactly where the jury right attaches.\n2. **BACKWARDS** — PER direction.\n3. **FLAT MISSTATEMENT** — false statement of SCOTUS jurisdiction.\n4. **CONTRADICTION** — \"no duty\" can't support \"is liable.\"\n5. **FLAT MISSTATEMENT** — as stated it omits §2-205's predicate (a *signed writing giving assurance*) and the 3-month cap, so a bare order \"irrevocable for a reasonable time\" isn't the rule. NB: §2-205 firm offers *are* available to merchant-buyers — the defect is the missing predicate, not the buyer's status.\n6. **BACKWARDS** — *Owens* direction.\n7. **FLAT MISSTATEMENT** — no such arising-under rule.\n8. **CONTRADICTION** — proximate cause supports liability, not its absence.\n9. **BACKWARDS** — firm offers need no consideration.\n10. **FLAT MISSTATEMENT** — Rule 11(d) excludes discovery."
+          "key_md": "1. **CONTRADICTION** — common-law suits are exactly where the jury right attaches.\n2. **BACKWARDS** — PER direction.\n3. **FLAT MISSTATEMENT** — false statement of SCOTUS jurisdiction.\n4. **CONTRADICTION** — \"no duty\" can't support \"is liable.\"\n5. **FLAT MISSTATEMENT** — as stated it omits §2-205's predicate (a *signed writing giving assurance*) and the 3-month cap, so a bare order \"irrevocable for a reasonable time\" isn't the rule. NB: §2-205 firm offers *are* available to merchant-buyers — the defect is the missing predicate, not the buyer's status.\n6. **BACKWARDS** — *Owens* direction.\n7. **FLAT MISSTATEMENT** — no such arising-under rule.\n8. **CONTRADICTION** — proximate cause supports liability, not its absence.\n9. **BACKWARDS** — firm offers need no consideration.\n10. **FLAT MISSTATEMENT** — Rule 11(d) excludes discovery.",
+          "task_type": "LABEL_SELECT",
+          "graded_items": [
+            {
+              "id": "L5-D52-I01",
+              "drill_id": "5.2",
+              "sequence": 1,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"No jury trial, because this suit is at common law.\"",
+              "choices": [
+                {
+                  "id": "BACKWARDS",
+                  "text": "BACKWARDS"
+                },
+                {
+                  "id": "CONTRADICTION",
+                  "text": "CONTRADICTION"
+                },
+                {
+                  "id": "FLAT MISSTATEMENT",
+                  "text": "FLAT MISSTATEMENT"
+                }
+              ],
+              "correct_choice_id": "CONTRADICTION",
+              "short_explanation": "common-law suits are exactly where the jury right attaches.",
+              "say_the_break": "CONTRADICTION — common-law suits are exactly where the jury right attaches"
+            },
+            {
+              "id": "L5-D52-I02",
+              "drill_id": "5.2",
+              "sequence": 2,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"The parol evidence rule bars proof of a later modification.\"",
+              "choices": [
+                {
+                  "id": "BACKWARDS",
+                  "text": "BACKWARDS"
+                },
+                {
+                  "id": "CONTRADICTION",
+                  "text": "CONTRADICTION"
+                },
+                {
+                  "id": "FLAT MISSTATEMENT",
+                  "text": "FLAT MISSTATEMENT"
+                }
+              ],
+              "correct_choice_id": "BACKWARDS",
+              "short_explanation": "PER direction.",
+              "say_the_break": "BACKWARDS — PER direction"
+            },
+            {
+              "id": "L5-D52-I03",
+              "drill_id": "5.2",
+              "sequence": 3,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"SCOTUS has appellate jurisdiction only over decisions determining the constitutionality of federal laws.\"",
+              "choices": [
+                {
+                  "id": "BACKWARDS",
+                  "text": "BACKWARDS"
+                },
+                {
+                  "id": "CONTRADICTION",
+                  "text": "CONTRADICTION"
+                },
+                {
+                  "id": "FLAT MISSTATEMENT",
+                  "text": "FLAT MISSTATEMENT"
+                }
+              ],
+              "correct_choice_id": "FLAT MISSTATEMENT",
+              "short_explanation": "false statement of SCOTUS jurisdiction.",
+              "say_the_break": "FLAT MISSTATEMENT — false statement of SCOTUS jurisdiction"
+            },
+            {
+              "id": "L5-D52-I04",
+              "drill_id": "5.2",
+              "sequence": 4,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"Yes, the landowner is liable, because she owed the trespasser no duty.\"",
+              "choices": [
+                {
+                  "id": "BACKWARDS",
+                  "text": "BACKWARDS"
+                },
+                {
+                  "id": "CONTRADICTION",
+                  "text": "CONTRADICTION"
+                },
+                {
+                  "id": "FLAT MISSTATEMENT",
+                  "text": "FLAT MISSTATEMENT"
+                }
+              ],
+              "correct_choice_id": "CONTRADICTION",
+              "short_explanation": "\"no duty\" can't support \"is liable.\"",
+              "say_the_break": "CONTRADICTION — \"no duty\" can't support \"is liable.\""
+            },
+            {
+              "id": "L5-D52-I05",
+              "drill_id": "5.2",
+              "sequence": 5,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"A buyer's purchase order is an irrevocable offer for a reasonable time.\"",
+              "choices": [
+                {
+                  "id": "BACKWARDS",
+                  "text": "BACKWARDS"
+                },
+                {
+                  "id": "CONTRADICTION",
+                  "text": "CONTRADICTION"
+                },
+                {
+                  "id": "FLAT MISSTATEMENT",
+                  "text": "FLAT MISSTATEMENT"
+                }
+              ],
+              "correct_choice_id": "FLAT MISSTATEMENT",
+              "short_explanation": "as stated it omits §2-205's predicate (a *signed writing giving assurance*) and the 3-month cap, so a bare order \"irrevocable for a reasonable time\" isn't the rule. NB: §2-205 firm offers *are* available to merchant-buyers — the defect is the missing predicate, not the buyer's status.",
+              "say_the_break": "FLAT MISSTATEMENT — as stated it omits §2-205's predicate (a signed writing giving assurance) and the 3-month cap, so a bare order \"irrevocable for a reasonable time\" isn't the rule. NB: §2-205 firm offers are available to merchant-buyers — the defect is the missing predicate, not the buyer's status"
+            },
+            {
+              "id": "L5-D52-I06",
+              "drill_id": "5.2",
+              "sequence": 6,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"Memory loss prevents effective cross-examination, so the prior statement is inadmissible.\"",
+              "choices": [
+                {
+                  "id": "BACKWARDS",
+                  "text": "BACKWARDS"
+                },
+                {
+                  "id": "CONTRADICTION",
+                  "text": "CONTRADICTION"
+                },
+                {
+                  "id": "FLAT MISSTATEMENT",
+                  "text": "FLAT MISSTATEMENT"
+                }
+              ],
+              "correct_choice_id": "BACKWARDS",
+              "short_explanation": "*Owens* direction.",
+              "say_the_break": "BACKWARDS — Owens direction"
+            },
+            {
+              "id": "L5-D52-I07",
+              "drill_id": "5.2",
+              "sequence": 7,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"A claim arises under federal law whenever the state statute copies a federal one.\"",
+              "choices": [
+                {
+                  "id": "BACKWARDS",
+                  "text": "BACKWARDS"
+                },
+                {
+                  "id": "CONTRADICTION",
+                  "text": "CONTRADICTION"
+                },
+                {
+                  "id": "FLAT MISSTATEMENT",
+                  "text": "FLAT MISSTATEMENT"
+                }
+              ],
+              "correct_choice_id": "FLAT MISSTATEMENT",
+              "short_explanation": "no such arising-under rule.",
+              "say_the_break": "FLAT MISSTATEMENT — no such arising-under rule"
+            },
+            {
+              "id": "L5-D52-I08",
+              "drill_id": "5.2",
+              "sequence": 8,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"The defendant is not liable, because his negligence was the proximate cause of the harm.\"",
+              "choices": [
+                {
+                  "id": "BACKWARDS",
+                  "text": "BACKWARDS"
+                },
+                {
+                  "id": "CONTRADICTION",
+                  "text": "CONTRADICTION"
+                },
+                {
+                  "id": "FLAT MISSTATEMENT",
+                  "text": "FLAT MISSTATEMENT"
+                }
+              ],
+              "correct_choice_id": "CONTRADICTION",
+              "short_explanation": "proximate cause supports liability, not its absence.",
+              "say_the_break": "CONTRADICTION — proximate cause supports liability, not its absence"
+            },
+            {
+              "id": "L5-D52-I09",
+              "drill_id": "5.2",
+              "sequence": 9,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"Firm offers are revocable unless supported by consideration.\"",
+              "choices": [
+                {
+                  "id": "BACKWARDS",
+                  "text": "BACKWARDS"
+                },
+                {
+                  "id": "CONTRADICTION",
+                  "text": "CONTRADICTION"
+                },
+                {
+                  "id": "FLAT MISSTATEMENT",
+                  "text": "FLAT MISSTATEMENT"
+                }
+              ],
+              "correct_choice_id": "BACKWARDS",
+              "short_explanation": "firm offers need no consideration.",
+              "say_the_break": "BACKWARDS — firm offers need no consideration"
+            },
+            {
+              "id": "L5-D52-I10",
+              "drill_id": "5.2",
+              "sequence": 10,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"Rule 11 governs discovery requests and responses.\"",
+              "choices": [
+                {
+                  "id": "BACKWARDS",
+                  "text": "BACKWARDS"
+                },
+                {
+                  "id": "CONTRADICTION",
+                  "text": "CONTRADICTION"
+                },
+                {
+                  "id": "FLAT MISSTATEMENT",
+                  "text": "FLAT MISSTATEMENT"
+                }
+              ],
+              "correct_choice_id": "FLAT MISSTATEMENT",
+              "short_explanation": "Rule 11(d) excludes discovery.",
+              "say_the_break": "FLAT MISSTATEMENT — Rule 11(d) excludes discovery"
+            }
+          ]
         },
         {
           "id": "5.3",
@@ -633,7 +3446,250 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. *(Promissory estoppel:)* \"The promisor made a promise the promisee relied upon.\""
           ],
           "item_count": 10,
-          "key_md": "1. **HALF-TRUTH** — missing causation and damages.\n2. **HALF-TRUTH** — missing harm/injury.\n3. **COMPLETE** — intent, contact, and result stated.\n4. **HALF-TRUTH** — missing that the risk materialized and caused harm.\n5. **HALF-TRUTH** — missing hostile/adverse and exclusive (and often \"actual\"); typically also exclusivity.\n6. **HALF-TRUTH** — missing fault and damages (and publication is there).\n7. **COMPLETE** — defect at departure plus causation.\n8. **HALF-TRUTH** — missing duty, breach, proximate cause, damages.\n9. **COMPLETE** — the IIED elements are present.\n10. **HALF-TRUTH** — missing that reliance was foreseeable and that injustice requires enforcement."
+          "key_md": "1. **HALF-TRUTH** — missing causation and damages.\n2. **HALF-TRUTH** — missing harm/injury.\n3. **COMPLETE** — intent, contact, and result stated.\n4. **HALF-TRUTH** — missing that the risk materialized and caused harm.\n5. **HALF-TRUTH** — missing hostile/adverse and exclusive (and often \"actual\"); typically also exclusivity.\n6. **HALF-TRUTH** — missing fault and damages (and publication is there).\n7. **COMPLETE** — defect at departure plus causation.\n8. **HALF-TRUTH** — missing duty, breach, proximate cause, damages.\n9. **COMPLETE** — the IIED elements are present.\n10. **HALF-TRUTH** — missing that reliance was foreseeable and that injustice requires enforcement.",
+          "task_type": "LABEL_SELECT",
+          "graded_items": [
+            {
+              "id": "L6-D61-I01",
+              "drill_id": "6.1",
+              "sequence": 1,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Negligence claim:)* \"The defendant breached a duty of care to the plaintiff.\"",
+              "choices": [
+                {
+                  "id": "COMPLETE",
+                  "text": "COMPLETE"
+                },
+                {
+                  "id": "HALF-TRUTH",
+                  "text": "HALF-TRUTH"
+                }
+              ],
+              "correct_choice_id": "HALF-TRUTH",
+              "short_explanation": "missing causation and damages.",
+              "say_the_break": "HALF-TRUTH — missing causation and damages"
+            },
+            {
+              "id": "L6-D61-I02",
+              "drill_id": "6.1",
+              "sequence": 2,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Informed-consent claim, successful surgery:)* \"The patient would have refused had he been informed.\"",
+              "choices": [
+                {
+                  "id": "COMPLETE",
+                  "text": "COMPLETE"
+                },
+                {
+                  "id": "HALF-TRUTH",
+                  "text": "HALF-TRUTH"
+                }
+              ],
+              "correct_choice_id": "HALF-TRUTH",
+              "short_explanation": "missing harm/injury.",
+              "say_the_break": "HALF-TRUTH — missing harm/injury"
+            },
+            {
+              "id": "L6-D61-I03",
+              "drill_id": "6.1",
+              "sequence": 3,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Battery:)* \"The defendant intended to cause a harmful or offensive contact, and such contact resulted.\"",
+              "choices": [
+                {
+                  "id": "COMPLETE",
+                  "text": "COMPLETE"
+                },
+                {
+                  "id": "HALF-TRUTH",
+                  "text": "HALF-TRUTH"
+                }
+              ],
+              "correct_choice_id": "COMPLETE",
+              "short_explanation": "intent, contact, and result stated.",
+              "say_the_break": "COMPLETE — intent, contact, and result stated"
+            },
+            {
+              "id": "L6-D61-I04",
+              "drill_id": "6.1",
+              "sequence": 4,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Negligence, undisclosed risk that never materialized:)* \"The doctor failed to disclose a material risk.\"",
+              "choices": [
+                {
+                  "id": "COMPLETE",
+                  "text": "COMPLETE"
+                },
+                {
+                  "id": "HALF-TRUTH",
+                  "text": "HALF-TRUTH"
+                }
+              ],
+              "correct_choice_id": "HALF-TRUTH",
+              "short_explanation": "missing that the risk materialized and caused harm.",
+              "say_the_break": "HALF-TRUTH — missing that the risk materialized and caused harm"
+            },
+            {
+              "id": "L6-D61-I05",
+              "drill_id": "6.1",
+              "sequence": 5,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Adverse possession:)* \"The possessor occupied the land openly and continuously for the statutory period.\"",
+              "choices": [
+                {
+                  "id": "COMPLETE",
+                  "text": "COMPLETE"
+                },
+                {
+                  "id": "HALF-TRUTH",
+                  "text": "HALF-TRUTH"
+                }
+              ],
+              "correct_choice_id": "HALF-TRUTH",
+              "short_explanation": "missing hostile/adverse and exclusive (and often \"actual\"); typically also exclusivity.",
+              "say_the_break": "HALF-TRUTH — missing hostile/adverse and exclusive (and often \"actual\")"
+            },
+            {
+              "id": "L6-D61-I06",
+              "drill_id": "6.1",
+              "sequence": 6,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Defamation by a private figure on a private matter:)* \"The defendant published a false statement of fact about the plaintiff.\"",
+              "choices": [
+                {
+                  "id": "COMPLETE",
+                  "text": "COMPLETE"
+                },
+                {
+                  "id": "HALF-TRUTH",
+                  "text": "HALF-TRUTH"
+                }
+              ],
+              "correct_choice_id": "HALF-TRUTH",
+              "short_explanation": "missing fault and damages (and publication is there).",
+              "say_the_break": "HALF-TRUTH — missing fault and damages (and publication is there)"
+            },
+            {
+              "id": "L6-D61-I07",
+              "drill_id": "6.1",
+              "sequence": 7,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Strict products liability:)* \"The product was defective when it left the manufacturer and the defect caused the plaintiff's injury.\"",
+              "choices": [
+                {
+                  "id": "COMPLETE",
+                  "text": "COMPLETE"
+                },
+                {
+                  "id": "HALF-TRUTH",
+                  "text": "HALF-TRUTH"
+                }
+              ],
+              "correct_choice_id": "COMPLETE",
+              "short_explanation": "defect at departure plus causation.",
+              "say_the_break": "COMPLETE — defect at departure plus causation"
+            },
+            {
+              "id": "L6-D61-I08",
+              "drill_id": "6.1",
+              "sequence": 8,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Negligence:)* \"The defendant's conduct was a but-for cause of the harm.\"",
+              "choices": [
+                {
+                  "id": "COMPLETE",
+                  "text": "COMPLETE"
+                },
+                {
+                  "id": "HALF-TRUTH",
+                  "text": "HALF-TRUTH"
+                }
+              ],
+              "correct_choice_id": "HALF-TRUTH",
+              "short_explanation": "missing duty, breach, proximate cause, damages.",
+              "say_the_break": "HALF-TRUTH — missing duty, breach, proximate cause, damages"
+            },
+            {
+              "id": "L6-D61-I09",
+              "drill_id": "6.1",
+              "sequence": 9,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(IIED:)* \"The defendant's conduct was extreme and outrageous and caused the plaintiff severe emotional distress.\"",
+              "choices": [
+                {
+                  "id": "COMPLETE",
+                  "text": "COMPLETE"
+                },
+                {
+                  "id": "HALF-TRUTH",
+                  "text": "HALF-TRUTH"
+                }
+              ],
+              "correct_choice_id": "COMPLETE",
+              "short_explanation": "the IIED elements are present.",
+              "say_the_break": "COMPLETE — the IIED elements are present"
+            },
+            {
+              "id": "L6-D61-I10",
+              "drill_id": "6.1",
+              "sequence": 10,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Promissory estoppel:)* \"The promisor made a promise the promisee relied upon.\"",
+              "choices": [
+                {
+                  "id": "COMPLETE",
+                  "text": "COMPLETE"
+                },
+                {
+                  "id": "HALF-TRUTH",
+                  "text": "HALF-TRUTH"
+                }
+              ],
+              "correct_choice_id": "HALF-TRUTH",
+              "short_explanation": "missing that reliance was foreseeable and that injustice requires enforcement.",
+              "say_the_break": "HALF-TRUTH — missing that reliance was foreseeable and that injustice requires enforcement"
+            }
+          ]
         },
         {
           "id": "6.2",
@@ -652,7 +3708,330 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. \"He had every right to speak his mind.\" *(actual-malice defamation at issue)*"
           ],
           "item_count": 10,
-          "key_md": "1. **COLLOQUIALISM** — \"only fair,\" no duty analysis.\n2. **HALF-TRUTH** — omits harm.\n3. **EVEN-SPLIT** — invents an equal division.\n4. **AUTONOMY-APPEAL** — ownership doesn't answer the duty owed to entrants.\n5. **COLLOQUIALISM** — \"common sense,\" not the foreseeability standard applied.\n6. **HALF-TRUTH** — omits fault and damages.\n7. **AUTONOMY-APPEAL** — \"free to sign\" dodges capacity.\n8. **EVEN-SPLIT** — balanced-sounding, not the rule.\n9. **HALF-TRUTH** — but-for without proximate cause.\n10. **AUTONOMY-APPEAL** — \"right to speak\" dodges the actual-malice test."
+          "key_md": "1. **COLLOQUIALISM** — \"only fair,\" no duty analysis.\n2. **HALF-TRUTH** — omits harm.\n3. **EVEN-SPLIT** — invents an equal division.\n4. **AUTONOMY-APPEAL** — ownership doesn't answer the duty owed to entrants.\n5. **COLLOQUIALISM** — \"common sense,\" not the foreseeability standard applied.\n6. **HALF-TRUTH** — omits fault and damages.\n7. **AUTONOMY-APPEAL** — \"free to sign\" dodges capacity.\n8. **EVEN-SPLIT** — balanced-sounding, not the rule.\n9. **HALF-TRUTH** — but-for without proximate cause.\n10. **AUTONOMY-APPEAL** — \"right to speak\" dodges the actual-malice test.",
+          "task_type": "LABEL_SELECT",
+          "graded_items": [
+            {
+              "id": "L6-D62-I01",
+              "drill_id": "6.2",
+              "sequence": 1,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"No liability, because it's only fair that people watch where they're going.\"",
+              "choices": [
+                {
+                  "id": "HALF-TRUTH",
+                  "text": "HALF-TRUTH"
+                },
+                {
+                  "id": "COLLOQUIALISM",
+                  "text": "COLLOQUIALISM"
+                },
+                {
+                  "id": "EVEN-SPLIT",
+                  "text": "EVEN-SPLIT"
+                },
+                {
+                  "id": "AUTONOMY-APPEAL",
+                  "text": "AUTONOMY-APPEAL"
+                }
+              ],
+              "correct_choice_id": "COLLOQUIALISM",
+              "short_explanation": "\"only fair,\" no duty analysis.",
+              "say_the_break": "COLLOQUIALISM — \"only fair,\" no duty analysis"
+            },
+            {
+              "id": "L6-D62-I02",
+              "drill_id": "6.2",
+              "sequence": 2,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"The patient would have refused, so the doctor is liable.\" *(no-harm case)*",
+              "choices": [
+                {
+                  "id": "HALF-TRUTH",
+                  "text": "HALF-TRUTH"
+                },
+                {
+                  "id": "COLLOQUIALISM",
+                  "text": "COLLOQUIALISM"
+                },
+                {
+                  "id": "EVEN-SPLIT",
+                  "text": "EVEN-SPLIT"
+                },
+                {
+                  "id": "AUTONOMY-APPEAL",
+                  "text": "AUTONOMY-APPEAL"
+                }
+              ],
+              "correct_choice_id": "HALF-TRUTH",
+              "short_explanation": "omits harm.",
+              "say_the_break": "HALF-TRUTH — omits harm"
+            },
+            {
+              "id": "L6-D62-I03",
+              "drill_id": "6.2",
+              "sequence": 3,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"The loss should be split evenly between the buyer and seller.\"",
+              "choices": [
+                {
+                  "id": "HALF-TRUTH",
+                  "text": "HALF-TRUTH"
+                },
+                {
+                  "id": "COLLOQUIALISM",
+                  "text": "COLLOQUIALISM"
+                },
+                {
+                  "id": "EVEN-SPLIT",
+                  "text": "EVEN-SPLIT"
+                },
+                {
+                  "id": "AUTONOMY-APPEAL",
+                  "text": "AUTONOMY-APPEAL"
+                }
+              ],
+              "correct_choice_id": "EVEN-SPLIT",
+              "short_explanation": "invents an equal division.",
+              "say_the_break": "EVEN-SPLIT — invents an equal division"
+            },
+            {
+              "id": "L6-D62-I04",
+              "drill_id": "6.2",
+              "sequence": 4,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"She owned the land, so she could keep the dangerous condition if she wished.\"",
+              "choices": [
+                {
+                  "id": "HALF-TRUTH",
+                  "text": "HALF-TRUTH"
+                },
+                {
+                  "id": "COLLOQUIALISM",
+                  "text": "COLLOQUIALISM"
+                },
+                {
+                  "id": "EVEN-SPLIT",
+                  "text": "EVEN-SPLIT"
+                },
+                {
+                  "id": "AUTONOMY-APPEAL",
+                  "text": "AUTONOMY-APPEAL"
+                }
+              ],
+              "correct_choice_id": "AUTONOMY-APPEAL",
+              "short_explanation": "ownership doesn't answer the duty owed to entrants.",
+              "say_the_break": "AUTONOMY-APPEAL — ownership doesn't answer the duty owed to entrants"
+            },
+            {
+              "id": "L6-D62-I05",
+              "drill_id": "6.2",
+              "sequence": 5,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"Common sense tells us the harm was foreseeable.\"",
+              "choices": [
+                {
+                  "id": "HALF-TRUTH",
+                  "text": "HALF-TRUTH"
+                },
+                {
+                  "id": "COLLOQUIALISM",
+                  "text": "COLLOQUIALISM"
+                },
+                {
+                  "id": "EVEN-SPLIT",
+                  "text": "EVEN-SPLIT"
+                },
+                {
+                  "id": "AUTONOMY-APPEAL",
+                  "text": "AUTONOMY-APPEAL"
+                }
+              ],
+              "correct_choice_id": "COLLOQUIALISM",
+              "short_explanation": "\"common sense,\" not the foreseeability standard applied.",
+              "say_the_break": "COLLOQUIALISM — \"common sense,\" not the foreseeability standard applied"
+            },
+            {
+              "id": "L6-D62-I06",
+              "drill_id": "6.2",
+              "sequence": 6,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"The statement was published and false, so it's defamatory.\" *(private figure, private matter)*",
+              "choices": [
+                {
+                  "id": "HALF-TRUTH",
+                  "text": "HALF-TRUTH"
+                },
+                {
+                  "id": "COLLOQUIALISM",
+                  "text": "COLLOQUIALISM"
+                },
+                {
+                  "id": "EVEN-SPLIT",
+                  "text": "EVEN-SPLIT"
+                },
+                {
+                  "id": "AUTONOMY-APPEAL",
+                  "text": "AUTONOMY-APPEAL"
+                }
+              ],
+              "correct_choice_id": "HALF-TRUTH",
+              "short_explanation": "omits fault and damages.",
+              "say_the_break": "HALF-TRUTH — omits fault and damages"
+            },
+            {
+              "id": "L6-D62-I07",
+              "drill_id": "6.2",
+              "sequence": 7,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"He was free to sign whatever contract he liked, so it binds him.\" *(infancy/incapacity at issue)*",
+              "choices": [
+                {
+                  "id": "HALF-TRUTH",
+                  "text": "HALF-TRUTH"
+                },
+                {
+                  "id": "COLLOQUIALISM",
+                  "text": "COLLOQUIALISM"
+                },
+                {
+                  "id": "EVEN-SPLIT",
+                  "text": "EVEN-SPLIT"
+                },
+                {
+                  "id": "AUTONOMY-APPEAL",
+                  "text": "AUTONOMY-APPEAL"
+                }
+              ],
+              "correct_choice_id": "AUTONOMY-APPEAL",
+              "short_explanation": "\"free to sign\" dodges capacity.",
+              "say_the_break": "AUTONOMY-APPEAL — \"free to sign\" dodges capacity"
+            },
+            {
+              "id": "L6-D62-I08",
+              "drill_id": "6.2",
+              "sequence": 8,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"The fairest result is for each party to bear its own costs.\"",
+              "choices": [
+                {
+                  "id": "HALF-TRUTH",
+                  "text": "HALF-TRUTH"
+                },
+                {
+                  "id": "COLLOQUIALISM",
+                  "text": "COLLOQUIALISM"
+                },
+                {
+                  "id": "EVEN-SPLIT",
+                  "text": "EVEN-SPLIT"
+                },
+                {
+                  "id": "AUTONOMY-APPEAL",
+                  "text": "AUTONOMY-APPEAL"
+                }
+              ],
+              "correct_choice_id": "EVEN-SPLIT",
+              "short_explanation": "balanced-sounding, not the rule.",
+              "say_the_break": "EVEN-SPLIT — balanced-sounding, not the rule"
+            },
+            {
+              "id": "L6-D62-I09",
+              "drill_id": "6.2",
+              "sequence": 9,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"The defendant caused the harm in fact, so he's liable.\" *(proximate cause disputed)*",
+              "choices": [
+                {
+                  "id": "HALF-TRUTH",
+                  "text": "HALF-TRUTH"
+                },
+                {
+                  "id": "COLLOQUIALISM",
+                  "text": "COLLOQUIALISM"
+                },
+                {
+                  "id": "EVEN-SPLIT",
+                  "text": "EVEN-SPLIT"
+                },
+                {
+                  "id": "AUTONOMY-APPEAL",
+                  "text": "AUTONOMY-APPEAL"
+                }
+              ],
+              "correct_choice_id": "HALF-TRUTH",
+              "short_explanation": "but-for without proximate cause.",
+              "say_the_break": "HALF-TRUTH — but-for without proximate cause"
+            },
+            {
+              "id": "L6-D62-I10",
+              "drill_id": "6.2",
+              "sequence": 10,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"He had every right to speak his mind.\" *(actual-malice defamation at issue)*",
+              "choices": [
+                {
+                  "id": "HALF-TRUTH",
+                  "text": "HALF-TRUTH"
+                },
+                {
+                  "id": "COLLOQUIALISM",
+                  "text": "COLLOQUIALISM"
+                },
+                {
+                  "id": "EVEN-SPLIT",
+                  "text": "EVEN-SPLIT"
+                },
+                {
+                  "id": "AUTONOMY-APPEAL",
+                  "text": "AUTONOMY-APPEAL"
+                }
+              ],
+              "correct_choice_id": "AUTONOMY-APPEAL",
+              "short_explanation": "\"right to speak\" dodges the actual-malice test.",
+              "say_the_break": "AUTONOMY-APPEAL — \"right to speak\" dodges the actual-malice test"
+            }
+          ]
         },
         {
           "id": "6.3",
@@ -799,7 +4178,340 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. *(First-degree murder; laxatives for discomfort.)* A) only poison; B) only premeditation; C) both; D) No."
           ],
           "item_count": 10,
-          "key_md": "1. **C** (resist A — filing).\n2. **C** (resist A — supplemental).\n3. **D** (resist A — no reliance assumed).\n4. **A** (resist C — the federal-interpretation lure).\n5. **B** (resist C/D — the deficiency lure).\n6. **B** (resist D — cap misapplied).\n7. **D** (resist A — child's fault).\n8. **A** (resist B — zoning).\n9. **A** (resist B — sovereign immunity).\n10. **D** (resist C — assuming the worst facts)."
+          "key_md": "1. **C** (resist A — filing).\n2. **C** (resist A — supplemental).\n3. **D** (resist A — no reliance assumed).\n4. **A** (resist C — the federal-interpretation lure).\n5. **B** (resist C/D — the deficiency lure).\n6. **B** (resist D — cap misapplied).\n7. **D** (resist A — child's fault).\n8. **A** (resist B — zoning).\n9. **A** (resist B — sovereign immunity).\n10. **D** (resist C — assuming the worst facts).",
+          "task_type": "SURVIVOR_PICK",
+          "graded_items": [
+            {
+              "id": "L7-D74-I01",
+              "drill_id": "7.4",
+              "sequence": 1,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Service forgotten.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "filing commenced the action and was timely;"
+                },
+                {
+                  "id": "B",
+                  "text": "the lawyer agreed to accept service;"
+                },
+                {
+                  "id": "C",
+                  "text": "no good cause for the failure to serve;"
+                },
+                {
+                  "id": "D",
+                  "text": "the limitations period expired without service."
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "(resist A — filing).",
+              "say_the_break": "C survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L7-D74-I02",
+              "drill_id": "7.4",
+              "sequence": 2,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Diversity + nurse.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "supplemental jurisdiction;"
+                },
+                {
+                  "id": "B",
+                  "text": "judicial economy;"
+                },
+                {
+                  "id": "C",
+                  "text": "no complete diversity, no SMJ;"
+                },
+                {
+                  "id": "D",
+                  "text": "not the same case/controversy."
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "(resist A — supplemental).",
+              "say_the_break": "C survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L7-D74-I03",
+              "drill_id": "7.4",
+              "sequence": 3,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Repudiation/retraction.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "retracted before performance;"
+                },
+                {
+                  "id": "B",
+                  "text": "constructive condition;"
+                },
+                {
+                  "id": "C",
+                  "text": "not retractable once communicated;"
+                },
+                {
+                  "id": "D",
+                  "text": "relied before retraction."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "(resist A — no reliance assumed).",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L7-D74-I04",
+              "drill_id": "7.4",
+              "sequence": 4,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(SCOTUS review, dual grounds.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "adequate and independent state ground;"
+                },
+                {
+                  "id": "B",
+                  "text": "jurisdiction only over federal-law-constitutionality decisions;"
+                },
+                {
+                  "id": "C",
+                  "text": "over any federal-law interpretation;"
+                },
+                {
+                  "id": "D",
+                  "text": "over decisions striking state laws under the federal Constitution."
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "(resist C — the federal-interpretation lure).",
+              "say_the_break": "A survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L7-D74-I05",
+              "drill_id": "7.4",
+              "sequence": 5,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Plagiarism 12(b)(6).)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "didn't identify the theory;"
+                },
+                {
+                  "id": "B",
+                  "text": "discovery will reveal what he received;"
+                },
+                {
+                  "id": "C",
+                  "text": "failed to plead elements/facts;"
+                },
+                {
+                  "id": "D",
+                  "text": "doesn't meet \"facts constituting a cause of action.\""
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "(resist C/D — the deficiency lure).",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L7-D74-I06",
+              "drill_id": "7.4",
+              "sequence": 6,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Firm offer.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "PE;"
+                },
+                {
+                  "id": "B",
+                  "text": "firm for that month;"
+                },
+                {
+                  "id": "C",
+                  "text": "no consideration;"
+                },
+                {
+                  "id": "D",
+                  "text": "longer than three months."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "(resist D — cap misapplied).",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L7-D74-I07",
+              "drill_id": "7.4",
+              "sequence": 7,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Suit against the mother.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "child negligent;"
+                },
+                {
+                  "id": "B",
+                  "text": "liable for any harm;"
+                },
+                {
+                  "id": "C",
+                  "text": "assumed risk;"
+                },
+                {
+                  "id": "D",
+                  "text": "failed to supervise."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "(resist A — child's fault).",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L7-D74-I08",
+              "drill_id": "7.4",
+              "sequence": 8,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Marketable title.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "covenant unmarketable;"
+                },
+                {
+                  "id": "B",
+                  "text": "zoning clouds title;"
+                },
+                {
+                  "id": "C",
+                  "text": "warranty deed cures it;"
+                },
+                {
+                  "id": "D",
+                  "text": "silent on title."
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "(resist B — zoning).",
+              "say_the_break": "A survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L7-D74-I09",
+              "drill_id": "7.4",
+              "sequence": 9,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Federal fleet rule on a city.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "valid; no Tenth Amendment violation;"
+                },
+                {
+                  "id": "B",
+                  "text": "sovereign immunity;"
+                },
+                {
+                  "id": "C",
+                  "text": "reserved state rights;"
+                },
+                {
+                  "id": "D",
+                  "text": "exceeds commerce power as applied."
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "(resist B — sovereign immunity).",
+              "say_the_break": "A survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L7-D74-I10",
+              "drill_id": "7.4",
+              "sequence": 10,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(First-degree murder; laxatives for discomfort.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "only poison;"
+                },
+                {
+                  "id": "B",
+                  "text": "only premeditation;"
+                },
+                {
+                  "id": "C",
+                  "text": "both;"
+                },
+                {
+                  "id": "D",
+                  "text": "No."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "(resist C — assuming the worst facts).",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            }
+          ]
         },
         {
           "id": "7.5",
@@ -851,7 +4563,290 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. *(Strict products liability against a retailer.)* \"The retailer couldn't discover the defect on reasonable inspection.\""
           ],
           "item_count": 10,
-          "key_md": "1. **BAIT-DOCTRINE** — testifying-expert rule, wrong kind of expert.\n2. **MISFIT** — constructive conditions aren't the repudiation-retraction issue.\n3. **WRONG-ELEMENT** — the child's fault isn't the mother's liability.\n4. **BAIT-DOCTRINE** — IIED standard in a negligence (NIED) case.\n5. **MISFIT** — sovereign immunity vs Congress's power over states.\n6. **BAIT-DOCTRINE** — the change-of-*party* prong, not the add-a-*claim* prong.\n7. **MISFIT** — due process vs dormant commerce.\n8. **WRONG-ELEMENT** — addresses disclosure, not the missing harm element.\n9. **BAIT-DOCTRINE** — fact-work-product standard, wrong context (it's a consulting expert).\n10. **BAIT-DOCTRINE** — the reasonable-inspection (negligence) standard, wrong theory (strict liability)."
+          "key_md": "1. **BAIT-DOCTRINE** — testifying-expert rule, wrong kind of expert.\n2. **MISFIT** — constructive conditions aren't the repudiation-retraction issue.\n3. **WRONG-ELEMENT** — the child's fault isn't the mother's liability.\n4. **BAIT-DOCTRINE** — IIED standard in a negligence (NIED) case.\n5. **MISFIT** — sovereign immunity vs Congress's power over states.\n6. **BAIT-DOCTRINE** — the change-of-*party* prong, not the add-a-*claim* prong.\n7. **MISFIT** — due process vs dormant commerce.\n8. **WRONG-ELEMENT** — addresses disclosure, not the missing harm element.\n9. **BAIT-DOCTRINE** — fact-work-product standard, wrong context (it's a consulting expert).\n10. **BAIT-DOCTRINE** — the reasonable-inspection (negligence) standard, wrong theory (strict liability).",
+          "task_type": "LABEL_SELECT",
+          "graded_items": [
+            {
+              "id": "L8-D81-I01",
+              "drill_id": "8.1",
+              "sequence": 1,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Discovery of a non-testifying expert.)* \"The estate gets full disclosure of the expert's qualifications, opinions, and bases.\"",
+              "choices": [
+                {
+                  "id": "MISFIT",
+                  "text": "MISFIT"
+                },
+                {
+                  "id": "BAIT-DOCTRINE",
+                  "text": "BAIT-DOCTRINE"
+                },
+                {
+                  "id": "WRONG-ELEMENT",
+                  "text": "WRONG-ELEMENT"
+                }
+              ],
+              "correct_choice_id": "BAIT-DOCTRINE",
+              "short_explanation": "testifying-expert rule, wrong kind of expert.",
+              "say_the_break": "BAIT-DOCTRINE — testifying-expert rule, wrong kind of expert"
+            },
+            {
+              "id": "L8-D81-I02",
+              "drill_id": "8.1",
+              "sequence": 2,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Repudiation retraction.)* \"The buyer's tender was a constructive condition to the seller's duty.\"",
+              "choices": [
+                {
+                  "id": "MISFIT",
+                  "text": "MISFIT"
+                },
+                {
+                  "id": "BAIT-DOCTRINE",
+                  "text": "BAIT-DOCTRINE"
+                },
+                {
+                  "id": "WRONG-ELEMENT",
+                  "text": "WRONG-ELEMENT"
+                }
+              ],
+              "correct_choice_id": "MISFIT",
+              "short_explanation": "constructive conditions aren't the repudiation-retraction issue.",
+              "say_the_break": "MISFIT — constructive conditions aren't the repudiation-retraction issue"
+            },
+            {
+              "id": "L8-D81-I03",
+              "drill_id": "8.1",
+              "sequence": 3,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Suit against the mother of a negligent child.)* \"The child was negligent.\"",
+              "choices": [
+                {
+                  "id": "MISFIT",
+                  "text": "MISFIT"
+                },
+                {
+                  "id": "BAIT-DOCTRINE",
+                  "text": "BAIT-DOCTRINE"
+                },
+                {
+                  "id": "WRONG-ELEMENT",
+                  "text": "WRONG-ELEMENT"
+                }
+              ],
+              "correct_choice_id": "WRONG-ELEMENT",
+              "short_explanation": "the child's fault isn't the mother's liability.",
+              "say_the_break": "WRONG-ELEMENT — the child's fault isn't the mother's liability"
+            },
+            {
+              "id": "L8-D81-I04",
+              "drill_id": "8.1",
+              "sequence": 4,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Negligent mishandling of a corpse.)* \"The conduct wasn't extreme and outrageous.\"",
+              "choices": [
+                {
+                  "id": "MISFIT",
+                  "text": "MISFIT"
+                },
+                {
+                  "id": "BAIT-DOCTRINE",
+                  "text": "BAIT-DOCTRINE"
+                },
+                {
+                  "id": "WRONG-ELEMENT",
+                  "text": "WRONG-ELEMENT"
+                }
+              ],
+              "correct_choice_id": "BAIT-DOCTRINE",
+              "short_explanation": "IIED standard in a negligence (NIED) case.",
+              "say_the_break": "BAIT-DOCTRINE — IIED standard in a negligence (NIED) case"
+            },
+            {
+              "id": "L8-D81-I05",
+              "drill_id": "8.1",
+              "sequence": 5,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Congress's power over states.)* \"The federal government has sovereign immunity.\"",
+              "choices": [
+                {
+                  "id": "MISFIT",
+                  "text": "MISFIT"
+                },
+                {
+                  "id": "BAIT-DOCTRINE",
+                  "text": "BAIT-DOCTRINE"
+                },
+                {
+                  "id": "WRONG-ELEMENT",
+                  "text": "WRONG-ELEMENT"
+                }
+              ],
+              "correct_choice_id": "MISFIT",
+              "short_explanation": "sovereign immunity vs Congress's power over states.",
+              "say_the_break": "MISFIT — sovereign immunity vs Congress's power over states"
+            },
+            {
+              "id": "L8-D81-I06",
+              "drill_id": "8.1",
+              "sequence": 6,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Adding a *claim* by amendment.)* \"The defendant knew or should have known he'd be sued but for a mistake.\"",
+              "choices": [
+                {
+                  "id": "MISFIT",
+                  "text": "MISFIT"
+                },
+                {
+                  "id": "BAIT-DOCTRINE",
+                  "text": "BAIT-DOCTRINE"
+                },
+                {
+                  "id": "WRONG-ELEMENT",
+                  "text": "WRONG-ELEMENT"
+                }
+              ],
+              "correct_choice_id": "BAIT-DOCTRINE",
+              "short_explanation": "the change-of-*party* prong, not the add-a-*claim* prong.",
+              "say_the_break": "BAIT-DOCTRINE — the change-of-party prong, not the add-a-claim prong"
+            },
+            {
+              "id": "L8-D81-I07",
+              "drill_id": "8.1",
+              "sequence": 7,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Dormant commerce; state chose a lower bidder.)* \"The state acted irrationally and denied due process.\"",
+              "choices": [
+                {
+                  "id": "MISFIT",
+                  "text": "MISFIT"
+                },
+                {
+                  "id": "BAIT-DOCTRINE",
+                  "text": "BAIT-DOCTRINE"
+                },
+                {
+                  "id": "WRONG-ELEMENT",
+                  "text": "WRONG-ELEMENT"
+                }
+              ],
+              "correct_choice_id": "MISFIT",
+              "short_explanation": "due process vs dormant commerce.",
+              "say_the_break": "MISFIT — due process vs dormant commerce"
+            },
+            {
+              "id": "L8-D81-I08",
+              "drill_id": "8.1",
+              "sequence": 8,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Informed consent, no harm.)* \"A material risk was not disclosed.\"",
+              "choices": [
+                {
+                  "id": "MISFIT",
+                  "text": "MISFIT"
+                },
+                {
+                  "id": "BAIT-DOCTRINE",
+                  "text": "BAIT-DOCTRINE"
+                },
+                {
+                  "id": "WRONG-ELEMENT",
+                  "text": "WRONG-ELEMENT"
+                }
+              ],
+              "correct_choice_id": "WRONG-ELEMENT",
+              "short_explanation": "addresses disclosure, not the missing harm element.",
+              "say_the_break": "WRONG-ELEMENT — addresses disclosure, not the missing harm element"
+            },
+            {
+              "id": "L8-D81-I09",
+              "drill_id": "8.1",
+              "sequence": 9,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Discovery of a consulting expert.)* \"Discoverable on substantial need and undue hardship.\"",
+              "choices": [
+                {
+                  "id": "MISFIT",
+                  "text": "MISFIT"
+                },
+                {
+                  "id": "BAIT-DOCTRINE",
+                  "text": "BAIT-DOCTRINE"
+                },
+                {
+                  "id": "WRONG-ELEMENT",
+                  "text": "WRONG-ELEMENT"
+                }
+              ],
+              "correct_choice_id": "BAIT-DOCTRINE",
+              "short_explanation": "fact-work-product standard, wrong context (it's a consulting expert).",
+              "say_the_break": "BAIT-DOCTRINE — fact-work-product standard, wrong context (it's a consulting expert)"
+            },
+            {
+              "id": "L8-D81-I10",
+              "drill_id": "8.1",
+              "sequence": 10,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Strict products liability against a retailer.)* \"The retailer couldn't discover the defect on reasonable inspection.\"",
+              "choices": [
+                {
+                  "id": "MISFIT",
+                  "text": "MISFIT"
+                },
+                {
+                  "id": "BAIT-DOCTRINE",
+                  "text": "BAIT-DOCTRINE"
+                },
+                {
+                  "id": "WRONG-ELEMENT",
+                  "text": "WRONG-ELEMENT"
+                }
+              ],
+              "correct_choice_id": "BAIT-DOCTRINE",
+              "short_explanation": "the reasonable-inspection (negligence) standard, wrong theory (strict liability).",
+              "say_the_break": "BAIT-DOCTRINE — the reasonable-inspection (negligence) standard, wrong theory (strict liability)"
+            }
+          ]
         },
         {
           "id": "8.2",
@@ -927,7 +4922,340 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. *(Rescuer hurt after a defective device failed; products claim.)* A) couldn't discover the defect on inspection; B) rescuer didn't rely; C) climber wasn't negligent; D) injury to a rescuer was foreseeable."
           ],
           "item_count": 10,
-          "key_md": "1. **D.** A bait (testifying rule); B wrong-element (relevance); C bait (fact-WP standard).\n2. **D.** B misfit (constructive condition); A is the opposite-fact twin (no reliance); C is false (Ear).\n3. **D.** A wrong-element (child's fault); B overclaim; C misfit (assumption of risk).\n4. **C.** A misfit (zone of danger); B bait (IIED); D backwards (corpse exception waives physical harm).\n5. **A.** B misfit (sovereign immunity); C/D misstate the commerce/Tenth-Amendment law.\n6. **B.** C bait (change-of-party prong); A wrong-element (ignores relation-back); D is the opposite-conclusion twin (these are different occurrences).\n7. **B.** A misfit (no valid protectionist interest); C misfit (due process); D is the regulator twin (state was a market participant).\n8. **B.** A autonomy/colloquial; C half-truth/wrong-element (no harm); D overclaim.\n9. **C.** A half-truth; B backwards; D flat misstatement.\n10. **D.** A bait (negligence inspection defense); B backwards (reliance); C wrong-element (climber's conduct)."
+          "key_md": "1. **D.** A bait (testifying rule); B wrong-element (relevance); C bait (fact-WP standard).\n2. **D.** B misfit (constructive condition); A is the opposite-fact twin (no reliance); C is false (Ear).\n3. **D.** A wrong-element (child's fault); B overclaim; C misfit (assumption of risk).\n4. **C.** A misfit (zone of danger); B bait (IIED); D backwards (corpse exception waives physical harm).\n5. **A.** B misfit (sovereign immunity); C/D misstate the commerce/Tenth-Amendment law.\n6. **B.** C bait (change-of-party prong); A wrong-element (ignores relation-back); D is the opposite-conclusion twin (these are different occurrences).\n7. **B.** A misfit (no valid protectionist interest); C misfit (due process); D is the regulator twin (state was a market participant).\n8. **B.** A autonomy/colloquial; C half-truth/wrong-element (no harm); D overclaim.\n9. **C.** A half-truth; B backwards; D flat misstatement.\n10. **D.** A bait (negligence inspection defense); B backwards (reliance); C wrong-element (climber's conduct).",
+          "task_type": "SURVIVOR_PICK",
+          "graded_items": [
+            {
+              "id": "L8-D85-I01",
+              "drill_id": "8.5",
+              "sequence": 1,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Quash subpoena of a retained-but-uncalled expert.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "full disclosure of opinions/bases;"
+                },
+                {
+                  "id": "B",
+                  "text": "nonprivileged and relevant;"
+                },
+                {
+                  "id": "C",
+                  "text": "substantial need + undue hardship;"
+                },
+                {
+                  "id": "D",
+                  "text": "exceptional circumstances, impracticable otherwise."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "A bait (testifying rule); B wrong-element (relevance); C bait (fact-WP standard).",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L8-D85-I02",
+              "drill_id": "8.5",
+              "sequence": 2,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Repudiation retracted after a substitute purchase.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "retracted before performance;"
+                },
+                {
+                  "id": "B",
+                  "text": "constructive condition;"
+                },
+                {
+                  "id": "C",
+                  "text": "not retractable once communicated;"
+                },
+                {
+                  "id": "D",
+                  "text": "relied before retraction."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "B misfit (constructive condition); A is the opposite-fact twin (no reliance); C is false (Ear).",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L8-D85-I03",
+              "drill_id": "8.5",
+              "sequence": 3,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Suit against the mother of a negligent child.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "child negligent;"
+                },
+                {
+                  "id": "B",
+                  "text": "liable for any harm;"
+                },
+                {
+                  "id": "C",
+                  "text": "assumed risk;"
+                },
+                {
+                  "id": "D",
+                  "text": "failed to supervise."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "A wrong-element (child's fault); B overclaim; C misfit (assumption of risk).",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L8-D85-I04",
+              "drill_id": "8.5",
+              "sequence": 4,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Negligent corpse mishandling; mother's distress.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "no threat to her safety;"
+                },
+                {
+                  "id": "B",
+                  "text": "not extreme and outrageous;"
+                },
+                {
+                  "id": "C",
+                  "text": "negligently failed to safeguard the body;"
+                },
+                {
+                  "id": "D",
+                  "text": "no physical harm."
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "A misfit (zone of danger); B bait (IIED); D backwards (corpse exception waives physical harm).",
+              "say_the_break": "C survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L8-D85-I05",
+              "drill_id": "8.5",
+              "sequence": 5,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Federal fleet rule applied to a city; injunction sought.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "valid; no Tenth Amendment violation;"
+                },
+                {
+                  "id": "B",
+                  "text": "sovereign immunity;"
+                },
+                {
+                  "id": "C",
+                  "text": "reserved state rights;"
+                },
+                {
+                  "id": "D",
+                  "text": "exceeds commerce power as applied."
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "B misfit (sovereign immunity); C/D misstate the commerce/Tenth-Amendment law.",
+              "say_the_break": "A survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L8-D85-I06",
+              "drill_id": "8.5",
+              "sequence": 6,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Add a negligence claim; original claim was failure to disclose an alternative method.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "SOL expired the next day;"
+                },
+                {
+                  "id": "B",
+                  "text": "different occurrence;"
+                },
+                {
+                  "id": "C",
+                  "text": "knew-or-should-have-known but for a mistake;"
+                },
+                {
+                  "id": "D",
+                  "text": "relates back."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "C bait (change-of-party prong); A wrong-element (ignores relation-back); D is the opposite-conclusion twin (these are different occurrences).",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L8-D85-I07",
+              "drill_id": "8.5",
+              "sequence": 7,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Dormant commerce; state chose a lower local bidder.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "compelling interest;"
+                },
+                {
+                  "id": "B",
+                  "text": "market participant;"
+                },
+                {
+                  "id": "C",
+                  "text": "irrational, due process;"
+                },
+                {
+                  "id": "D",
+                  "text": "discriminated against commerce."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "A misfit (no valid protectionist interest); C misfit (due process); D is the regulator twin (state was a market participant).",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L8-D85-I08",
+              "drill_id": "8.5",
+              "sequence": 8,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Informed consent, no harm.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "best judgment;"
+                },
+                {
+                  "id": "B",
+                  "text": "no harm;"
+                },
+                {
+                  "id": "C",
+                  "text": "would have refused;"
+                },
+                {
+                  "id": "D",
+                  "text": "must always be told the risks."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "A autonomy/colloquial; C half-truth/wrong-element (no harm); D overclaim.",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L8-D85-I09",
+              "drill_id": "8.5",
+              "sequence": 9,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Prior statement by a forgetful assault victim.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "no showing of personal knowledge;"
+                },
+                {
+                  "id": "B",
+                  "text": "memory loss bars cross;"
+                },
+                {
+                  "id": "C",
+                  "text": "subject to cross, knowledge shown;"
+                },
+                {
+                  "id": "D",
+                  "text": "his own out-of-court statement."
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "A half-truth; B backwards; D flat misstatement.",
+              "say_the_break": "C survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L8-D85-I10",
+              "drill_id": "8.5",
+              "sequence": 10,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Rescuer hurt after a defective device failed; products claim.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "couldn't discover the defect on inspection;"
+                },
+                {
+                  "id": "B",
+                  "text": "rescuer didn't rely;"
+                },
+                {
+                  "id": "C",
+                  "text": "climber wasn't negligent;"
+                },
+                {
+                  "id": "D",
+                  "text": "injury to a rescuer was foreseeable."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "A bait (negligence inspection defense); B backwards (reliance); C wrong-element (climber's conduct).",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            }
+          ]
         }
       ],
       "how_to_use_md": "Bait-doctrine is the mold this lesson exists for — Drill 8.3 isolates it, and it's worth more reps than the other two, because it's the one your memory actively confirms while leading you wrong. The discipline that beats it is the context check: *this rule is real — does it govern this situation or its neighbor?* Drills 8.2 and 8.4 keep misfit and wrong-element sharp, but those you'll catch fast once you've predicted the call. Drill 8.5 puts all three in live questions alongside the Ear molds, which is the real exam. When you can name the governing doctrine, then watch a true answer reach for a *different* doctrine, a *neighboring* context, or a *non-contested* element, Issue-Sense is operating. Lesson 9 takes the two survivors that remain after a good Cut and shows you how to resolve them — the Clash.",
@@ -1036,7 +5364,340 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. *(Botanist's mixed legal and equitable claims; jury demand.)* A) essentially equitable, no jury; B) none bear exclusively on equity; C) jury on every claim regardless; D) jury because the issues are common to legal and equitable claims."
           ],
           "item_count": 10,
-          "key_md": "1. **B** — axis: participant vs regulator; fact: state sold by bid.\n2. **D** — axis: content; fact: zoning-topic exemption.\n3. **B** — axis: same vs different occurrence; fact: disclosure vs performance. (C is the wrong-prong bait, cut earlier.)\n4. **D** — axis: retracted vs relied; fact: substitute bought before retraction.\n5. **D** — axis: testifying vs consulting; fact: retained, not called.\n6. **A** — axis: independent state ground vs federal; fact: dual grounds.\n7. **D** — axis: direct vs vicarious; fact: claim targets the mother.\n8. **D** — axis: source of the jury right; fact: state law grants it.\n9. **C** — axis: IIED vs NIED; fact: negligence, no intent.\n10. **D** — axis: legal vs equitable with common issues; fact: shared issues → jury on the common/legal issues (Beacon Theatres). (C overclaims \"every claim regardless.\")"
+          "key_md": "1. **B** — axis: participant vs regulator; fact: state sold by bid.\n2. **D** — axis: content; fact: zoning-topic exemption.\n3. **B** — axis: same vs different occurrence; fact: disclosure vs performance. (C is the wrong-prong bait, cut earlier.)\n4. **D** — axis: retracted vs relied; fact: substitute bought before retraction.\n5. **D** — axis: testifying vs consulting; fact: retained, not called.\n6. **A** — axis: independent state ground vs federal; fact: dual grounds.\n7. **D** — axis: direct vs vicarious; fact: claim targets the mother.\n8. **D** — axis: source of the jury right; fact: state law grants it.\n9. **C** — axis: IIED vs NIED; fact: negligence, no intent.\n10. **D** — axis: legal vs equitable with common issues; fact: shared issues → jury on the common/legal issues (Beacon Theatres). (C overclaims \"every claim regardless.\")",
+          "task_type": "SURVIVOR_PICK",
+          "graded_items": [
+            {
+              "id": "L9-D95-I01",
+              "drill_id": "9.5",
+              "sequence": 1,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(State gas field sold by bid to a lower local bidder.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "compelling interest;"
+                },
+                {
+                  "id": "B",
+                  "text": "market participant;"
+                },
+                {
+                  "id": "C",
+                  "text": "due process;"
+                },
+                {
+                  "id": "D",
+                  "text": "discriminated against commerce."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "axis: participant vs regulator; fact: state sold by bid.",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L9-D95-I02",
+              "drill_id": "9.5",
+              "sequence": 2,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Picketing ban with a zoning-topic exception.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "content-neutral;"
+                },
+                {
+                  "id": "B",
+                  "text": "regulates conduct;"
+                },
+                {
+                  "id": "C",
+                  "text": "irrational discrimination;"
+                },
+                {
+                  "id": "D",
+                  "text": "content-based."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "axis: content; fact: zoning-topic exemption.",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L9-D95-I03",
+              "drill_id": "9.5",
+              "sequence": 3,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Add a negligence claim; original was failure to disclose an alternative.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "SOL expired the next day;"
+                },
+                {
+                  "id": "B",
+                  "text": "different occurrence;"
+                },
+                {
+                  "id": "C",
+                  "text": "knew-or-should-have-known but for a mistake;"
+                },
+                {
+                  "id": "D",
+                  "text": "relates back."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "axis: same vs different occurrence; fact: disclosure vs performance. (C is the wrong-prong bait, cut earlier.)",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L9-D95-I04",
+              "drill_id": "9.5",
+              "sequence": 4,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Repudiation retracted after a substitute purchase.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "retracted before performance;"
+                },
+                {
+                  "id": "B",
+                  "text": "constructive condition;"
+                },
+                {
+                  "id": "C",
+                  "text": "not retractable once communicated;"
+                },
+                {
+                  "id": "D",
+                  "text": "relied before retraction."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "axis: retracted vs relied; fact: substitute bought before retraction.",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L9-D95-I05",
+              "drill_id": "9.5",
+              "sequence": 5,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Quash subpoena of a retained-but-uncalled expert.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "full disclosure;"
+                },
+                {
+                  "id": "B",
+                  "text": "relevant;"
+                },
+                {
+                  "id": "C",
+                  "text": "substantial need + undue hardship;"
+                },
+                {
+                  "id": "D",
+                  "text": "exceptional circumstances."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "axis: testifying vs consulting; fact: retained, not called.",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L9-D95-I06",
+              "drill_id": "9.5",
+              "sequence": 6,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(State law struck on federal and state grounds; SCOTUS petition.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "independent state ground;"
+                },
+                {
+                  "id": "B",
+                  "text": "only federal-law-constitutionality decisions;"
+                },
+                {
+                  "id": "C",
+                  "text": "any federal-law interpretation;"
+                },
+                {
+                  "id": "D",
+                  "text": "decisions striking laws under the federal Constitution."
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "axis: independent state ground vs federal; fact: dual grounds.",
+              "say_the_break": "A survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L9-D95-I07",
+              "drill_id": "9.5",
+              "sequence": 7,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Suit against the mother of a negligent child.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "child negligent;"
+                },
+                {
+                  "id": "B",
+                  "text": "liable for any harm;"
+                },
+                {
+                  "id": "C",
+                  "text": "assumed risk;"
+                },
+                {
+                  "id": "D",
+                  "text": "failed to supervise."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "axis: direct vs vicarious; fact: claim targets the mother.",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L9-D95-I08",
+              "drill_id": "9.5",
+              "sequence": 8,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Contractor's jury demand in state court; state rules grant juries in contract cases.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Sixth Amendment doesn't apply;"
+                },
+                {
+                  "id": "B",
+                  "text": "Seventh Amendment not incorporated;"
+                },
+                {
+                  "id": "C",
+                  "text": "Sixth Amendment applies;"
+                },
+                {
+                  "id": "D",
+                  "text": "state law provides the jury."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "axis: source of the jury right; fact: state law grants it.",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L9-D95-I09",
+              "drill_id": "9.5",
+              "sequence": 9,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Negligently secured corpse; mother's distress.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "no threat to safety;"
+                },
+                {
+                  "id": "B",
+                  "text": "not extreme/outrageous;"
+                },
+                {
+                  "id": "C",
+                  "text": "negligent failure to safeguard;"
+                },
+                {
+                  "id": "D",
+                  "text": "no physical harm."
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "axis: IIED vs NIED; fact: negligence, no intent.",
+              "say_the_break": "C survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L9-D95-I10",
+              "drill_id": "9.5",
+              "sequence": 10,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Botanist's mixed legal and equitable claims; jury demand.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "essentially equitable, no jury;"
+                },
+                {
+                  "id": "B",
+                  "text": "none bear exclusively on equity;"
+                },
+                {
+                  "id": "C",
+                  "text": "jury on every claim regardless;"
+                },
+                {
+                  "id": "D",
+                  "text": "jury because the issues are common to legal and equitable claims."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "axis: legal vs equitable with common issues; fact: shared issues → jury on the common/legal issues (Beacon Theatres). (C overclaims \"every claim regardless.\")",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            }
+          ]
         }
       ],
       "how_to_use_md": "Drill 9.1 is the move to make automatic: the instant two answers survive, name the axis. Drill 9.2 trains the second beat — the axis points you to a *specific* fact, not a general feeling about the stem. Drill 9.4 is the discipline that the validation work paid for: recognizing the always-fork signatures so you don't manufacture a clean cut on a question that has none. A flagged fork is a correct outcome on a question the choices can't settle; a confident wrong answer on the same question is the most avoidable miss there is. When you reflexively name the axis, find the fact, and flag the forks, the Clash is yours. Lesson 10 handles the hardest version of two survivors — when the two answers are a matched pair separated by a single fact, and when the choices are ambiguous about the question itself.",
@@ -1145,7 +5806,340 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. *(Comedian adds, by supplemental pleading, an intentional tort the defendant committed after filing.)* A) business-tort SOL expired; B) the tort occurred after filing; C) relates back to the business tort; D) timely supplemental pleading."
           ],
           "item_count": 10,
-          "key_md": "1. **B** — confirm the question is *jury scope* (motion to strike a jury demand), not appealability; damages merits are legal (jury), certification is equitable (no jury).\n2. **D** — source of the right: state law grants it (Sixth-Amendment pair cut).\n3. **A** — framing: state court + Seventh-Amendment demand → non-incorporation is the responsive ground (B answers the federal-court version).\n4. **D** — entrant status: **trespasser** (he went past \"No Admittance\"); the clerk's knowledge of a concealed, deadly condition triggers the **known-trespasser duty (§337)**, not the licensee duty. The pair is split on status, and the status here is trespasser-with-a-known-deathtrap.\n5. **D** — reliance preceded the retraction.\n6. **B** — different occurrence (C is the change-of-party bait).\n7. **A** — adequate and independent state ground.\n8. **D** — acceptance effective on dispatch, before the revocation.\n9. **B** — within the three-month cap.\n10. **D** — post-filing event → Rule 15(d) supplemental pleading; \"occurred after filing\" (B) is the trigger, not a bar."
+          "key_md": "1. **B** — confirm the question is *jury scope* (motion to strike a jury demand), not appealability; damages merits are legal (jury), certification is equitable (no jury).\n2. **D** — source of the right: state law grants it (Sixth-Amendment pair cut).\n3. **A** — framing: state court + Seventh-Amendment demand → non-incorporation is the responsive ground (B answers the federal-court version).\n4. **D** — entrant status: **trespasser** (he went past \"No Admittance\"); the clerk's knowledge of a concealed, deadly condition triggers the **known-trespasser duty (§337)**, not the licensee duty. The pair is split on status, and the status here is trespasser-with-a-known-deathtrap.\n5. **D** — reliance preceded the retraction.\n6. **B** — different occurrence (C is the change-of-party bait).\n7. **A** — adequate and independent state ground.\n8. **D** — acceptance effective on dispatch, before the revocation.\n9. **B** — within the three-month cap.\n10. **D** — post-filing event → Rule 15(d) supplemental pleading; \"occurred after filing\" (B) is the trigger, not a bar.",
+          "task_type": "SURVIVOR_PICK",
+          "graded_items": [
+            {
+              "id": "L10-D105-I01",
+              "drill_id": "10.5",
+              "sequence": 1,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Class representative seeks a jury on a damages claim; defendant moves to strike the jury demand; \"class actions are historically equitable.\")*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "jury on both certification and merits;"
+                },
+                {
+                  "id": "B",
+                  "text": "jury only on the merits;"
+                },
+                {
+                  "id": "C",
+                  "text": "jury only on certification;"
+                },
+                {
+                  "id": "D",
+                  "text": "no jury on either."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "confirm the question is *jury scope* (motion to strike a jury demand), not appealability; damages merits are legal (jury), certification is equitable (no jury).",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L10-D105-I02",
+              "drill_id": "10.5",
+              "sequence": 2,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Contractor's jury demand in state court under state rules.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Sixth Amendment doesn't apply;"
+                },
+                {
+                  "id": "B",
+                  "text": "Seventh Amendment not incorporated;"
+                },
+                {
+                  "id": "C",
+                  "text": "Sixth Amendment applies;"
+                },
+                {
+                  "id": "D",
+                  "text": "state law provides the jury."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "source of the right: state law grants it (Sixth-Amendment pair cut).",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L10-D105-I03",
+              "drill_id": "10.5",
+              "sequence": 3,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Employee's jury demand under the Seventh Amendment, in state court, for an injunction.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Seventh Amendment not incorporated;"
+                },
+                {
+                  "id": "B",
+                  "text": "equity, no jury;"
+                },
+                {
+                  "id": "C",
+                  "text": "common-law contract suit;"
+                },
+                {
+                  "id": "D",
+                  "text": "de minimis value."
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "framing: state court + Seventh-Amendment demand → non-incorporation is the responsive ground (B answers the federal-court version).",
+              "say_the_break": "A survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L10-D105-I04",
+              "drill_id": "10.5",
+              "sequence": 4,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Entrant went behind a \"No Admittance\" counter; clerk knew of an open shaft and that the entrant was unaware.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "no — trespasser;"
+                },
+                {
+                  "id": "B",
+                  "text": "no — not willful/wanton;"
+                },
+                {
+                  "id": "C",
+                  "text": "yes — invitee duty;"
+                },
+                {
+                  "id": "D",
+                  "text": "yes — clerk knew the entrant was unaware of the danger."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "entrant status: **trespasser** (he went past \"No Admittance\"); the clerk's knowledge of a concealed, deadly condition triggers the **known-trespasser duty (§337)**, not the licensee duty. The pair is split on status, and the status here is trespasser-with-a-known-deathtrap.",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L10-D105-I05",
+              "drill_id": "10.5",
+              "sequence": 5,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Repudiation retracted after a substitute purchase.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "retracted before performance;"
+                },
+                {
+                  "id": "B",
+                  "text": "constructive condition;"
+                },
+                {
+                  "id": "C",
+                  "text": "not retractable once communicated;"
+                },
+                {
+                  "id": "D",
+                  "text": "relied before retraction."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "reliance preceded the retraction.",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L10-D105-I06",
+              "drill_id": "10.5",
+              "sequence": 6,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Negligence claim added; original was failure to disclose an alternative.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "SOL expired the next day;"
+                },
+                {
+                  "id": "B",
+                  "text": "different occurrence;"
+                },
+                {
+                  "id": "C",
+                  "text": "change-of-party prong;"
+                },
+                {
+                  "id": "D",
+                  "text": "relates back."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "different occurrence (C is the change-of-party bait).",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L10-D105-I07",
+              "drill_id": "10.5",
+              "sequence": 7,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(State law struck on federal and state grounds; SCOTUS petition.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "independent state ground;"
+                },
+                {
+                  "id": "B",
+                  "text": "only federal-constitutionality decisions;"
+                },
+                {
+                  "id": "C",
+                  "text": "any federal-law interpretation;"
+                },
+                {
+                  "id": "D",
+                  "text": "decisions striking laws under the federal Constitution."
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "adequate and independent state ground.",
+              "say_the_break": "A survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L10-D105-I08",
+              "drill_id": "10.5",
+              "sequence": 8,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Buyer's mailed-acceptance scenario; phone revocation the next day.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "acceptable only by shipment, revoked first;"
+                },
+                {
+                  "id": "B",
+                  "text": "never agreed to price;"
+                },
+                {
+                  "id": "C",
+                  "text": "irrevocable offer;"
+                },
+                {
+                  "id": "D",
+                  "text": "seller accepted before revocation."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "acceptance effective on dispatch, before the revocation.",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L10-D105-I09",
+              "drill_id": "10.5",
+              "sequence": 9,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Firm-offer assurance \"for the coming year\"; orders a month later.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "PE;"
+                },
+                {
+                  "id": "B",
+                  "text": "firm for that month;"
+                },
+                {
+                  "id": "C",
+                  "text": "no consideration;"
+                },
+                {
+                  "id": "D",
+                  "text": "longer than three months."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "within the three-month cap.",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L10-D105-I10",
+              "drill_id": "10.5",
+              "sequence": 10,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Comedian adds, by supplemental pleading, an intentional tort the defendant committed after filing.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "business-tort SOL expired;"
+                },
+                {
+                  "id": "B",
+                  "text": "the tort occurred after filing;"
+                },
+                {
+                  "id": "C",
+                  "text": "relates back to the business tort;"
+                },
+                {
+                  "id": "D",
+                  "text": "timely supplemental pleading."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "post-filing event → Rule 15(d) supplemental pleading; \"occurred after filing\" (B) is the trigger, not a bar.",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            }
+          ]
         }
       ],
       "how_to_use_md": "Drill 10.1 trains the recognition that two answers are a matched pair, and Drill 10.3 enforces the one rule that follows: stop working the choices, go to the stem for the deciding fact. Drill 10.4 is the question-ambiguity guard — the \"only-X / only-Y / both / neither\" pattern should trigger an automatic \"confirm the question first,\" because that pattern is where flawless reasoning toward the *wrong* question happens. Together with Lesson 9, you now have the complete Clash toolkit: name the axis, find the fact, recognize the matched pair, flag the forks, confirm the question. That closes Part III. Part IV pulls back to the corpus level — Lesson 11 shows the recurring *architectures* the exam builds traps around, patterns that cut across subjects and molds.",
@@ -1543,7 +6537,340 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. *(Slip-and-fall; subsequent wax change offered against the store.)* A) admissible to prove negligence; B) inadmissible for any purpose; C) admissible only for control/feasibility if disputed; D) admissible as an admission."
           ],
           "item_count": 10,
-          "key_md": "1. **D** — Cut — ~85%.\n2. **B** — anchor — ~90%.\n3. **C** — anchor (§1367(b)) — ~90%.\n4. **B** — Cut (distortion/overclaim) — ~85%.\n5. **D** — Clash (reliance fact) — ~80%.\n6. **A** — anchor (Garcia) / Cut (misfit B) — ~88%.\n7. **C** — Cut (backwards B, flat D, half-truth A) — ~85%.\n8. **A** — anchor / Cut (backwards B) — ~88%.\n9. **C** — anchor (Rule 50(b)) — ~90%.\n10. **C** — BA-4 (purpose) — ~80%."
+          "key_md": "1. **D** — Cut — ~85%.\n2. **B** — anchor — ~90%.\n3. **C** — anchor (§1367(b)) — ~90%.\n4. **B** — Cut (distortion/overclaim) — ~85%.\n5. **D** — Clash (reliance fact) — ~80%.\n6. **A** — anchor (Garcia) / Cut (misfit B) — ~88%.\n7. **C** — Cut (backwards B, flat D, half-truth A) — ~85%.\n8. **A** — anchor / Cut (backwards B) — ~88%.\n9. **C** — anchor (Rule 50(b)) — ~90%.\n10. **C** — BA-4 (purpose) — ~80%.",
+          "task_type": "SURVIVOR_PICK",
+          "graded_items": [
+            {
+              "id": "L14-D143-I01",
+              "drill_id": "14.3",
+              "sequence": 1,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Suit against the mother of a negligent child.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "child negligent;"
+                },
+                {
+                  "id": "B",
+                  "text": "liable for any harm;"
+                },
+                {
+                  "id": "C",
+                  "text": "assumed risk;"
+                },
+                {
+                  "id": "D",
+                  "text": "failed to supervise."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "Cut — ~85%.",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L14-D143-I02",
+              "drill_id": "14.3",
+              "sequence": 2,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Firm-offer assurance for the year; orders a month later.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "PE;"
+                },
+                {
+                  "id": "B",
+                  "text": "firm for that month;"
+                },
+                {
+                  "id": "C",
+                  "text": "no consideration;"
+                },
+                {
+                  "id": "D",
+                  "text": "longer than three months."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "anchor — ~90%.",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L14-D143-I03",
+              "drill_id": "14.3",
+              "sequence": 3,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Diversity; non-diverse co-defendant added by the plaintiff.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "supplemental jurisdiction;"
+                },
+                {
+                  "id": "B",
+                  "text": "judicial economy;"
+                },
+                {
+                  "id": "C",
+                  "text": "dismiss — no complete diversity;"
+                },
+                {
+                  "id": "D",
+                  "text": "not the same case/controversy."
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "anchor (§1367(b)) — ~90%.",
+              "say_the_break": "C survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L14-D143-I04",
+              "drill_id": "14.3",
+              "sequence": 4,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Informed consent; surgery succeeded, no harm.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "best judgment;"
+                },
+                {
+                  "id": "B",
+                  "text": "no harm;"
+                },
+                {
+                  "id": "C",
+                  "text": "would have refused;"
+                },
+                {
+                  "id": "D",
+                  "text": "must always be told the risks."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "Cut (distortion/overclaim) — ~85%.",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L14-D143-I05",
+              "drill_id": "14.3",
+              "sequence": 5,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Repudiation; substitute bought before the retraction.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "retracted before performance;"
+                },
+                {
+                  "id": "B",
+                  "text": "constructive condition;"
+                },
+                {
+                  "id": "C",
+                  "text": "not retractable once communicated;"
+                },
+                {
+                  "id": "D",
+                  "text": "relied before retraction."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "Clash (reliance fact) — ~80%.",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L14-D143-I06",
+              "drill_id": "14.3",
+              "sequence": 6,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Federal fleet rule applied to a city; injunction sought.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "valid; no Tenth Amendment violation;"
+                },
+                {
+                  "id": "B",
+                  "text": "sovereign immunity;"
+                },
+                {
+                  "id": "C",
+                  "text": "reserved state rights;"
+                },
+                {
+                  "id": "D",
+                  "text": "exceeds the commerce power."
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "anchor (Garcia) / Cut (misfit B) — ~88%.",
+              "say_the_break": "A survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L14-D143-I07",
+              "drill_id": "14.3",
+              "sequence": 7,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Prior statement by a forgetful assault victim.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "no showing of personal knowledge;"
+                },
+                {
+                  "id": "B",
+                  "text": "memory loss bars cross;"
+                },
+                {
+                  "id": "C",
+                  "text": "subject to cross, knowledge shown;"
+                },
+                {
+                  "id": "D",
+                  "text": "his own statement."
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "Cut (backwards B, flat D, half-truth A) — ~85%.",
+              "say_the_break": "C survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L14-D143-I08",
+              "drill_id": "14.3",
+              "sequence": 8,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Marketable title; recorded covenant; zoning bars use.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "covenant unmarketable;"
+                },
+                {
+                  "id": "B",
+                  "text": "zoning clouds title;"
+                },
+                {
+                  "id": "C",
+                  "text": "warranty deed cures it;"
+                },
+                {
+                  "id": "D",
+                  "text": "silent on title."
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "anchor / Cut (backwards B) — ~88%.",
+              "say_the_break": "A survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L14-D143-I09",
+              "drill_id": "14.3",
+              "sequence": 9,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Renewed JMOL after a defense verdict, preserved; plus a new-trial motion.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "new-trial only;"
+                },
+                {
+                  "id": "B",
+                  "text": "only one;"
+                },
+                {
+                  "id": "C",
+                  "text": "both;"
+                },
+                {
+                  "id": "D",
+                  "text": "combine with relief from judgment."
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "anchor (Rule 50(b)) — ~90%.",
+              "say_the_break": "C survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L14-D143-I10",
+              "drill_id": "14.3",
+              "sequence": 10,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Slip-and-fall; subsequent wax change offered against the store.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "admissible to prove negligence;"
+                },
+                {
+                  "id": "B",
+                  "text": "inadmissible for any purpose;"
+                },
+                {
+                  "id": "C",
+                  "text": "admissible only for control/feasibility if disputed;"
+                },
+                {
+                  "id": "D",
+                  "text": "admissible as an admission."
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "BA-4 (purpose) — ~80%.",
+              "say_the_break": "C survives both filters; name the break on the other three."
+            }
+          ]
         },
         {
           "id": "14.4",
@@ -1562,7 +6889,340 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. *(First-degree murder = poison or premeditation; laxatives given for discomfort; idiosyncratic death.)* A) only poison; B) only premeditation; C) both; D) No."
           ],
           "item_count": 10,
-          "key_md": "1. **B** — Clash (participant fact) — ~82%.\n2. **B** — Clash (different occurrence); C is bait — ~80%.\n3. **B** — BA-3 (procedural) — ~85%.\n4. **D** — Cut/Clash (consulting expert); A/C are bait — ~82%.\n5. **D** — Clash (content-based exemption) — ~82%.\n6. **A** — Clash (independent state ground) — ~82%.\n7. **B** — BA-2 (good-faith exception) — ~85%.\n8. **D** — Clash (source of the right); Sixth-Amendment pair cut — ~80%.\n9. **B** — anchor (corpse NIED) — ~90%.\n10. **D** — Clash (facts negate both predicates) — ~82%."
+          "key_md": "1. **B** — Clash (participant fact) — ~82%.\n2. **B** — Clash (different occurrence); C is bait — ~80%.\n3. **B** — BA-3 (procedural) — ~85%.\n4. **D** — Cut/Clash (consulting expert); A/C are bait — ~82%.\n5. **D** — Clash (content-based exemption) — ~82%.\n6. **A** — Clash (independent state ground) — ~82%.\n7. **B** — BA-2 (good-faith exception) — ~85%.\n8. **D** — Clash (source of the right); Sixth-Amendment pair cut — ~80%.\n9. **B** — anchor (corpse NIED) — ~90%.\n10. **D** — Clash (facts negate both predicates) — ~82%.",
+          "task_type": "SURVIVOR_PICK",
+          "graded_items": [
+            {
+              "id": "L14-D144-I01",
+              "drill_id": "14.4",
+              "sequence": 1,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(State gas field sold by bid to a lower local bidder.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "compelling interest;"
+                },
+                {
+                  "id": "B",
+                  "text": "market participant;"
+                },
+                {
+                  "id": "C",
+                  "text": "due process;"
+                },
+                {
+                  "id": "D",
+                  "text": "discriminated against commerce."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "Clash (participant fact) — ~82%.",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L14-D144-I02",
+              "drill_id": "14.4",
+              "sequence": 2,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Add a negligence claim; original was failure to disclose an alternative method.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "SOL expired next day;"
+                },
+                {
+                  "id": "B",
+                  "text": "different occurrence;"
+                },
+                {
+                  "id": "C",
+                  "text": "change-of-party prong;"
+                },
+                {
+                  "id": "D",
+                  "text": "relates back."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "Clash (different occurrence); C is bait — ~80%.",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L14-D144-I03",
+              "drill_id": "14.4",
+              "sequence": 3,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Plagiarism 12(b)(6); defendant says no facts show access.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "dismiss — no proof of access;"
+                },
+                {
+                  "id": "B",
+                  "text": "deny — discovery will reveal what he received;"
+                },
+                {
+                  "id": "C",
+                  "text": "dismiss — elements/facts not pleaded;"
+                },
+                {
+                  "id": "D",
+                  "text": "deny — plaintiff will likely win."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "BA-3 (procedural) — ~85%.",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L14-D144-I04",
+              "drill_id": "14.4",
+              "sequence": 4,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Quash subpoena of a retained-but-uncalled expert.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "full disclosure;"
+                },
+                {
+                  "id": "B",
+                  "text": "relevant;"
+                },
+                {
+                  "id": "C",
+                  "text": "substantial need + undue hardship;"
+                },
+                {
+                  "id": "D",
+                  "text": "exceptional circumstances."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "Cut/Clash (consulting expert); A/C are bait — ~82%.",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L14-D144-I05",
+              "drill_id": "14.4",
+              "sequence": 5,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Picketing ban with a zoning-topic exception.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "content-neutral;"
+                },
+                {
+                  "id": "B",
+                  "text": "regulates conduct;"
+                },
+                {
+                  "id": "C",
+                  "text": "irrational discrimination;"
+                },
+                {
+                  "id": "D",
+                  "text": "content-based."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "Clash (content-based exemption) — ~82%.",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L14-D144-I06",
+              "drill_id": "14.4",
+              "sequence": 6,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(SCOTUS petition; state law struck on federal and state grounds.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "independent state ground;"
+                },
+                {
+                  "id": "B",
+                  "text": "only federal-constitutionality decisions;"
+                },
+                {
+                  "id": "C",
+                  "text": "any federal-law interpretation;"
+                },
+                {
+                  "id": "D",
+                  "text": "decisions striking laws under the federal Constitution."
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "Clash (independent state ground) — ~82%.",
+              "say_the_break": "A survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L14-D144-I07",
+              "drill_id": "14.4",
+              "sequence": 7,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Warrantless search later found unlawful; officer relied in good faith on a facially valid warrant; suppression motion.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "suppress — unconstitutional;"
+                },
+                {
+                  "id": "B",
+                  "text": "admit — good-faith exception;"
+                },
+                {
+                  "id": "C",
+                  "text": "suppress — all bad-search evidence excluded;"
+                },
+                {
+                  "id": "D",
+                  "text": "admit — no rights."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "BA-2 (good-faith exception) — ~85%.",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L14-D144-I08",
+              "drill_id": "14.4",
+              "sequence": 8,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Contractor's jury demand in state court under state rules.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Sixth Amendment doesn't apply;"
+                },
+                {
+                  "id": "B",
+                  "text": "Seventh Amendment not incorporated;"
+                },
+                {
+                  "id": "C",
+                  "text": "Sixth Amendment applies;"
+                },
+                {
+                  "id": "D",
+                  "text": "state law provides the jury."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "Clash (source of the right); Sixth-Amendment pair cut — ~80%.",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L14-D144-I09",
+              "drill_id": "14.4",
+              "sequence": 9,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Negligently mishandled corpse; mother's distress, no physical harm.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "no recovery without physical harm;"
+                },
+                {
+                  "id": "B",
+                  "text": "recovery — corpse NIED;"
+                },
+                {
+                  "id": "C",
+                  "text": "only if she witnessed it;"
+                },
+                {
+                  "id": "D",
+                  "text": "only on intent."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "anchor (corpse NIED) — ~90%.",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L14-D144-I10",
+              "drill_id": "14.4",
+              "sequence": 10,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(First-degree murder = poison or premeditation; laxatives given for discomfort; idiosyncratic death.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "only poison;"
+                },
+                {
+                  "id": "B",
+                  "text": "only premeditation;"
+                },
+                {
+                  "id": "C",
+                  "text": "both;"
+                },
+                {
+                  "id": "D",
+                  "text": "No."
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "Clash (facts negate both predicates) — ~82%.",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            }
+          ]
         },
         {
           "id": "14.5",

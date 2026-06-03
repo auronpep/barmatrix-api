@@ -11,7 +11,19 @@ const {
   shapeLessonResponse,
   normalizeProgressUpdate,
   indexProgress,
+  publicizeLesson,
+  findGradedItem,
 } = await import("./foundations.js");
+
+// Fields that must NEVER reach a wire response (they are the answer key).
+const ANSWER_FIELDS = [
+  "correct_status",
+  "correct_choice_id",
+  "choice_statuses",
+  "short_explanation",
+  "why_tempting",
+  "say_the_break",
+] as const;
 
 const completed = (slug: string) => ({
   lesson_slug: slug,
@@ -103,6 +115,90 @@ describe("progress shapers", () => {
 
     const last = shapeLessonResponse(getLessonBySlug("lesson-14")!, null);
     assert.equal(last.next_slug, null);
+  });
+});
+
+describe("interactive drills — content gate + answer stripping", () => {
+  it("lesson-01 ships 5 gradeable drills of 10 items each in the source module", () => {
+    const lesson = getLessonBySlug("lesson-01")!;
+    const graded = lesson.drills.filter((d) => d.graded_items?.length);
+    assert.equal(graded.length, 5);
+    for (const d of graded) {
+      assert.equal(d.graded_items!.length, 10);
+      assert.ok(d.task_type);
+      // The source module carries the full answer key for server-side grading.
+      assert.ok(d.graded_items!.every((it) => it.say_the_break.length > 0));
+    }
+  });
+
+  it("public env (attorney-approved 2026-06-02) serves interactive drills with keys stripped", () => {
+    // Pre-approval this asserted a reveal-key fallback (all items pending). After the
+    // attorney pass, approved graded drills are served interactively in public too —
+    // answer fields stripped (toPublicItem) and the markdown key suppressed.
+    const lesson = getLessonBySlug("lesson-01")!;
+    const view = publicizeLesson(lesson, "public");
+    const graded = view.drills.filter((d) => d.graded_items?.length);
+    assert.equal(graded.length, 5);
+    for (const d of graded) {
+      assert.equal(d.key_md, ""); // markdown key suppressed pre-submission
+      for (const it of d.graded_items!) {
+        const keys = Object.keys(it as Record<string, unknown>);
+        for (const f of ANSWER_FIELDS) {
+          assert.ok(!keys.includes(f), `${it.id} leaked ${f} in public env`);
+        }
+        assert.ok(it.prompt.length > 0); // student still gets what they need
+      }
+    }
+  });
+
+  it("internal env serves interactive items with EVERY answer field stripped and key_md blanked", () => {
+    const lesson = getLessonBySlug("lesson-01")!;
+    const view = publicizeLesson(lesson, "internal");
+    const graded = view.drills.filter((d) => d.graded_items?.length);
+    assert.equal(graded.length, 5);
+    for (const d of graded) {
+      assert.equal(d.key_md, ""); // markdown key suppressed
+      for (const it of d.graded_items!) {
+        const keys = Object.keys(it as Record<string, unknown>);
+        for (const f of ANSWER_FIELDS) {
+          assert.ok(!keys.includes(f), `${it.id} leaked ${f}`);
+        }
+        // …but the student still gets what they need to answer.
+        assert.ok(it.prompt.length > 0);
+      }
+    }
+  });
+
+  it("findGradedItem returns the FULL answer-bearing item for server grading", () => {
+    const lesson = getLessonBySlug("lesson-01")!;
+    const item = findGradedItem(lesson, "1.1", "L1-D11-I01");
+    assert.ok(item);
+    assert.equal(item!.task_type, "TRUTH_CHECK");
+    assert.ok(item!.correct_status); // the key IS present server-side
+    assert.equal(findGradedItem(lesson, "1.1", "nope"), null);
+  });
+
+  it("every parsed lesson-01 item grades CORRECT when fed its own answer key", async () => {
+    const { gradeC3Attempt } = await import("./c3-drill.js");
+    const lesson = getLessonBySlug("lesson-01")!;
+    let graded = 0;
+    for (const drill of lesson.drills) {
+      for (const item of drill.graded_items ?? []) {
+        graded += 1;
+        const response = item.correct_status
+          ? { selected_status: item.correct_status }
+          : {
+              selected_choice_id: item.correct_choice_id,
+              selected_choice_statuses: item.choice_statuses,
+            };
+        const result = gradeC3Attempt(item, response);
+        assert.equal(result.correct, true, `${item.id} did not grade correct`);
+        assert.equal(result.missed_filter, null, `${item.id} flagged a miss`);
+        assert.ok(result.explanation.verdict.length > 0, `${item.id} empty verdict`);
+        assert.ok(result.explanation.say_the_break.length > 0, `${item.id} empty break`);
+      }
+    }
+    assert.equal(graded, 50); // 5 drills × 10 items
   });
 });
 

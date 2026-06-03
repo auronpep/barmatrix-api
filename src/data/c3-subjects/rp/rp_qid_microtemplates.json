@@ -1,0 +1,245 @@
+{
+  "Contracts": {
+    "contract_to_closing_merger_timing": [
+      14906,
+      14910,
+      14912,
+      14915,
+      14916,
+      14921,
+      14922,
+      14923,
+      14924,
+      14927,
+      14933,
+      14935,
+      14936
+    ],
+    "marketability_encumbrance": [
+      14907,
+      14916,
+      14919,
+      14920,
+      14921,
+      14924,
+      14935
+    ],
+    "seller_lessor_disclosure": [
+      14913,
+      14914,
+      14918,
+      14926,
+      14929,
+      14937
+    ],
+    "sof_part_performance": [
+      14909,
+      14931,
+      14932
+    ],
+    "lease_transfer_crossover": [
+      14925
+    ],
+    "equitable_conversion_risk": [
+      14908,
+      14911
+    ],
+    "contract_validity_anchor": [
+      14917
+    ]
+  },
+  "Mortgages": {
+    "assumption_subject_to_surety": [
+      14938,
+      14940,
+      14941,
+      14952,
+      14953,
+      14955,
+      14956
+    ],
+    "due_on_sale_redemption": [
+      14939,
+      14942
+    ],
+    "pmm_priority_recording": [
+      14945,
+      14947,
+      14957,
+      14958
+    ],
+    "foreclosure_surplus_deficiency_marshaling": [
+      14944,
+      14950,
+      14959,
+      14961
+    ],
+    "mortgagee_in_possession_waste": [
+      14946
+    ],
+    "note_mortgage_separation": [
+      14951
+    ],
+    "joint_mortgage_liability": [
+      14948
+    ],
+    "equitable_mortgage_fixtures": [
+      14949,
+      14954
+    ]
+  },
+  "Ownership": {
+    "life_tenant_remainderman_duties": [
+      14962,
+      14983,
+      14990,
+      14998
+    ],
+    "co_ownership_joint_tenancy_partition": [
+      14966,
+      14973,
+      14976,
+      14977,
+      14985,
+      14986,
+      14988,
+      14995,
+      15007
+    ],
+    "leasehold_transfers_consequences": [
+      14969,
+      14971,
+      14972,
+      14984,
+      14996,
+      15001,
+      15002,
+      15004
+    ],
+    "future_interests_rap_class_gifts_powers": [
+      14964,
+      14965,
+      14967,
+      14968,
+      14970,
+      14974,
+      14978,
+      14979,
+      14980,
+      14982,
+      14987,
+      14989,
+      14992,
+      14993,
+      14994,
+      14999,
+      15005,
+      15006
+    ],
+    "choice_of_law_situs_fraud": [
+      14975,
+      14991,
+      15003
+    ],
+    "possession_status": [
+      14963
+    ]
+  },
+  "Rights in Land": {
+    "easement_creation_scope_termination": [
+      15011,
+      15012,
+      15025,
+      15028,
+      15029,
+      15030,
+      15035,
+      15036,
+      15038
+    ],
+    "covenants_equitable_servitudes_restrictions": [
+      15010,
+      15014,
+      15017,
+      15022,
+      15024,
+      15031,
+      15034
+    ],
+    "hoa_private_land_use_rules": [
+      15018,
+      15019,
+      15020,
+      15027
+    ],
+    "support_nuisance_light_air_view": [
+      15008,
+      15016,
+      15021,
+      15023,
+      15026
+    ],
+    "fixtures_licenses": [
+      15009,
+      15013,
+      15015
+    ],
+    "partition_fairness": [
+      15032
+    ]
+  },
+  "Titles": {
+    "deed_formalities_delivery_death_escrow_agent": [
+      15040,
+      15043,
+      15044,
+      15045,
+      15046,
+      15048,
+      15049,
+      15053,
+      15057,
+      15064,
+      15065,
+      15068,
+      15071,
+      15079,
+      15084
+    ],
+    "recording_bfp_judgment_creditor_priority_inquiry_notice": [
+      15039,
+      15042,
+      15047,
+      15050,
+      15060,
+      15062,
+      15063,
+      15066,
+      15072,
+      15074,
+      15075,
+      15077,
+      15078,
+      15081,
+      15083
+    ],
+    "adverse_possession": [
+      15058,
+      15067,
+      15076,
+      15082
+    ],
+    "deed_covenants_title_insurance_closings_after_acquired_title": [
+      15041,
+      15051,
+      15056,
+      15059,
+      15061,
+      15080
+    ],
+    "equitable_title_proceeds_expired_life_estate": [
+      15052,
+      15054
+    ]
+  }
+}
