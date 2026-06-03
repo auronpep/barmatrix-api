@@ -53,14 +53,20 @@ ssh_run "mkdir -p $APP_DIR/$STAGE"
 scp -i "$SSH_KEY" -P "$SSH_PORT" -r dist package.json "$SSH_HOST:$APP_DIR/$STAGE/"
 
 echo "==> [4/6] Snapshot current dist for rollback, then atomic-swap each file"
-ssh_run "set -e; cd $APP_DIR; \
+# Resolve the app dir to an ABSOLUTE path on the remote first. APP_DIR may be a
+# tilde path (default "~/domains/..."); tilde does NOT expand inside the double
+# quotes used for the mv/mkdir targets below, so a literal "~" path would send
+# every swapped file into a junk relative dir that rm -rf then deletes — a silent
+# no-op deploy. Capturing $ROOT via `cd $APP_DIR; pwd` (unquoted cd does expand ~)
+# makes all targets absolute and quote-safe.
+ssh_run "set -e; cd $APP_DIR; ROOT=\"\$(pwd)\"; \
   cp -r dist dist.bak-${STAMP}; \
-  cd $STAGE/dist; \
+  cd \"\$ROOT/$STAGE/dist\"; \
   find . -type f | while read -r f; do \
-    mkdir -p \"$APP_DIR/dist/\$(dirname \"\$f\")\"; \
-    mv -f \"\$f\" \"$APP_DIR/dist/\$f\"; \
+    mkdir -p \"\$ROOT/dist/\$(dirname \"\$f\")\"; \
+    mv -f \"\$f\" \"\$ROOT/dist/\$f\"; \
   done; \
-  cd $APP_DIR; cp -f $STAGE/package.json package.json; rm -rf $STAGE"
+  cd \"\$ROOT\"; cp -f \"\$ROOT/$STAGE/package.json\" package.json; rm -rf \"\$ROOT/$STAGE\""
 
 echo "==> [5/6] Restart Passenger (touch restart marker)"
 ssh_run "touch $APP_DIR/tmp/restart.txt"
