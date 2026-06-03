@@ -1,0 +1,94 @@
+{
+  "subject": "Criminal Law and Procedure",
+  "fit": "Criminal Law & Procedure = criminal layer-gate arrays + the structural task of finding the first live gate that controls suppression, guilt, degree, completion, or offense label.",
+  "student_mantra": "Output first. Gate second. Variable third. Label last.",
+  "question_shape": "Suppression/admissibility/remedy arrays in Crim Pro; guilt/degree/completion/label arrays in substantive Criminal Law.",
+  "dominant_cut": [
+    "Right rule at wrong layer",
+    "Violation-vs-remedy collapse",
+    "Wrong actor",
+    "Wrong scope",
+    "Wrong timing",
+    "Wrong mental state",
+    "Label before variable"
+  ],
+  "dominant_clash": [
+    "High-overlap pair",
+    "2×2 matrix",
+    "Grant/deny status pair",
+    "Guilty/not-guilty pair",
+    "Degree ladder",
+    "Offense-label quartet"
+  ],
+  "dominant_call": "First live gate beats downstream truth; route variable beats familiar label; highest valid offense only after earlier gates are satisfied.",
+  "subtopic_layers": {
+    "Constitutional Protection of Accused Persons": [
+      "constitutional home",
+      "actor / state action",
+      "scope / trigger",
+      "remedy",
+      "suppress/admit/dismiss/reverse"
+    ],
+    "General Principles": [
+      "voluntary act",
+      "actor",
+      "mens rea",
+      "defense",
+      "guilty/not guilty"
+    ],
+    "Homicide": [
+      "death",
+      "causation",
+      "actor",
+      "mental state / mitigation",
+      "degree"
+    ],
+    "Inchoate Crimes": [
+      "route: attempt/conspiracy/solicitation",
+      "completion point",
+      "party status",
+      "impossibility / split",
+      "offense label"
+    ],
+    "Other Crimes": [
+      "property/status variable",
+      "timing",
+      "force/asportation",
+      "actor-purpose",
+      "crime label"
+    ]
+  },
+  "hard_vs_heuristic": {
+    "hard_structural": [
+      "Remedy mismatch when call/output mismatch is visible",
+      "Threshold absence",
+      "Actor grid when actor allocation is textual",
+      "Completed-result absence",
+      "Clear posture mismatch",
+      "Burden on element cannot be shifted"
+    ],
+    "heuristic": [
+      "No warrant suspicion",
+      "Most-serious ranking",
+      "Hedged-over-absolute",
+      "Specific-over-general",
+      "Lesser-label suspicion",
+      "Only/both exclusivity check"
+    ],
+    "anchor_assisted": [
+      "Fourth Amendment scope",
+      "Miranda/Sixth Amendment triggers",
+      "Mens rea",
+      "Homicide degree",
+      "Inchoate completion",
+      "Property-crime labels"
+    ],
+    "pure_anchor_or_residue": [
+      "Bare doctrine names",
+      "Bare crime labels",
+      "Insanity tests",
+      "Split impossibility/conspiracy approach",
+      "Multi-key defects"
+    ]
+  }
+}

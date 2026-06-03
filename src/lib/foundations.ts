@@ -11,6 +11,12 @@
 // own the HTTP + SQL.
 
 import { FOUNDATIONS_COURSE } from "./foundations.data.js";
+import {
+  toPublicItem,
+  type C3DrillItem,
+  type C3DrillItemPublic,
+  type C3TaskType,
+} from "./c3-drill.js";
 
 // ---- content types (the shape foundations.data.ts must satisfy) ----
 
@@ -21,6 +27,38 @@ export interface FoundationsDrill {
   items: readonly string[];
   item_count: number;
   key_md: string;
+  // Interactive reflex-trainer payload (additive). Present only on drills whose
+  // markdown key was parsed into gradeable items by build_foundations.py. The
+  // generated module carries the FULL items (answer keys included) for
+  // server-side grading; the keys are stripped before any wire response.
+  task_type?: C3TaskType;
+  graded_items?: readonly C3DrillItem[];
+}
+
+// ---- legal/content visibility gate ----
+//
+// Distribution guardrail: the drill keys were reconstructed from memory and need
+// an attorney pass before public release (see build_foundations.py / lesson
+// provenance). Public callers only get an item once it is "approved"; internal
+// builds see everything for testing. When no item in a drill is visible, the
+// drill degrades to its existing reveal-key form rather than vanishing.
+
+export type ContentEnv = "public" | "internal";
+
+export function isItemVisible(item: C3DrillItem, env: ContentEnv): boolean {
+  if (!item.enabled) return false;
+  if (env === "internal") return true;
+  return item.legal_review_status === "approved";
+}
+
+// ---- wire views (answers stripped) ----
+
+export interface FoundationsDrillView extends Omit<FoundationsDrill, "graded_items"> {
+  graded_items?: readonly C3DrillItemPublic[];
+}
+
+export interface FoundationsLessonView extends Omit<FoundationsLesson, "drills"> {
+  drills: readonly FoundationsDrillView[];
 }
 
 export interface FoundationsLesson {
@@ -114,7 +152,7 @@ export interface FoundationsOutlineResponse {
 export interface FoundationsLessonResponse {
   course_slug: string;
   course_title: string;
-  lesson: FoundationsLesson;
+  lesson: FoundationsLessonView;
   prev_slug: string | null;
   next_slug: string | null;
   progress: LessonProgress;
@@ -246,17 +284,61 @@ export function summarizeProgress(rows: ProgressRow[]): CourseProgressSummary {
 export function shapeLessonResponse(
   lesson: FoundationsLesson,
   row: ProgressRow | null,
+  env: ContentEnv = "public",
 ): FoundationsLessonResponse {
   const { prev, next } = neighborSlugs(lesson.slug);
   const p = row ? indexProgress([row]).get(lesson.slug) : undefined;
   return {
     course_slug: FOUNDATIONS_COURSE.slug,
     course_title: FOUNDATIONS_COURSE.title,
-    lesson,
+    lesson: publicizeLesson(lesson, env),
     prev_slug: prev,
     next_slug: next,
     progress: p ?? { status: "not_started", drills_completed: [], completed_at: null },
   };
+}
+
+/** Strip answer keys + apply the legal gate, turning a lesson into a wire view. */
+export function publicizeLesson(
+  lesson: FoundationsLesson,
+  env: ContentEnv,
+): FoundationsLessonView {
+  return {
+    ...lesson,
+    drills: lesson.drills.map((d) => publicizeDrill(d, env)),
+  };
+}
+
+function publicizeDrill(drill: FoundationsDrill, env: ContentEnv): FoundationsDrillView {
+  const graded = drill.graded_items ?? [];
+  if (graded.length === 0) {
+    const { graded_items: _g, task_type: _t, ...rest } = drill;
+    return rest;
+  }
+  const visible = graded.filter((it) => isItemVisible(it, env));
+  if (visible.length === 0) {
+    // Nothing approved for this env → keep the reveal-key form (items + key_md).
+    const { graded_items: _g, task_type: _t, ...rest } = drill;
+    return rest;
+  }
+  // Interactive: ship answer-stripped items and suppress the markdown key.
+  const { graded_items: _g, ...rest } = drill;
+  return {
+    ...rest,
+    key_md: "",
+    graded_items: visible.map(toPublicItem),
+  };
+}
+
+/** Look up a full (answer-bearing) graded item for server-side grading. */
+export function findGradedItem(
+  lesson: FoundationsLesson,
+  drillId: string,
+  itemId: string,
+): C3DrillItem | null {
+  const drill = lesson.drills.find((d) => d.id === drillId);
+  if (!drill?.graded_items) return null;
+  return drill.graded_items.find((it) => it.id === itemId) ?? null;
 }
 
 // ---- write-side helpers ----

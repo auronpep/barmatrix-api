@@ -20,7 +20,7 @@ process.env.FRONTEND_URL = "https://barmatrix.app";
 process.env.SUCCESS_URL = "https://barmatrix.app/account/?welcome=1";
 process.env.CANCEL_URL = "https://barmatrix.app/pricing/";
 
-const { findSelectedChoiceForAttempt, listQuestionC3MoldCodesForAttempt } =
+const { findSelectedChoiceForAttempt, listQuestionC3MoldCodesForAttempt, attemptBody } =
   await import("./attempts.js");
 
 class ScriptedChoiceClient implements Pick<DbClient, "query"> {
@@ -102,5 +102,27 @@ describe("listQuestionC3MoldCodesForAttempt", () => {
     assert.equal(client.calls.length, 1);
     assert.match(client.calls[0] ?? "", /c3_mold_code/);
     assert.deepEqual(moldCodes, []);
+  });
+});
+
+describe("attemptBody.flagged", () => {
+  const base = {
+    question_id: "00000000-0000-4000-8000-000000000000",
+    selected_letter: "A" as const,
+    confidence: 3,
+    time_seconds: 12,
+  };
+
+  it("defaults flagged to false when omitted (older clients keep working)", () => {
+    assert.equal(attemptBody.parse(base).flagged, false);
+  });
+
+  it("accepts an explicit flagged boolean", () => {
+    assert.equal(attemptBody.parse({ ...base, flagged: true }).flagged, true);
+    assert.equal(attemptBody.parse({ ...base, flagged: false }).flagged, false);
+  });
+
+  it("rejects a non-boolean flag", () => {
+    assert.equal(attemptBody.safeParse({ ...base, flagged: "yes" }).success, false);
   });
 });

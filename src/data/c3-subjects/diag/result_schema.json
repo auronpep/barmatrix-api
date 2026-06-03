@@ -1,0 +1,273 @@
+{
+  "schema_id": "DIAGNOSTIC_RESULT_SCHEMA",
+  "version": "v1.0",
+  "status": "draft_pending_attorney_signoff",
+  "created_from": {
+    "diagnostic_source": "Pasted markdown.md",
+    "routing_source": "DIAGNOSTIC_ROUTING_filled_v1.yaml",
+    "routing_version_required": "v1.0-c3-diagnostic-routing",
+    "deployment_version": "DIAG_v1"
+  },
+  "purpose": "Turn a raw 18-question diagnostic attempt into a C3 red-zone report, assigned remediation bundles, and pilot analytics records.",
+  "guardrails": {
+    "attorney_signoff_required_before_live_use": true,
+    "route_by_choice_uuid_not_display_letter": true,
+    "do_not_expose_admin_answer_map_to_students": true,
+    "correct_answer_low_confidence_routes_to_calibration_not_subject_remediation": true,
+    "correct_answer_wrong_reason_is_not_mastered_until_three_distractor_breaks_are_named": true
+  },
+  "required_inputs": {
+    "diagnostic_routing_yaml": {
+      "path": "DIAGNOSTIC_ROUTING_filled_v1.yaml",
+      "required_fields": [
+        "diagnostic_set.questions[].external_id",
+        "wrong_choices.*.routing",
+        "correct_route",
+        "adaptive_routing_rules",
+        "subject_overlay_index"
+      ]
+    },
+    "deployment_manifest_yaml": {
+      "path": "Randomized_DIAG_v1_deployment_manifest.yaml",
+      "required_fields": [
+        "questions[].displayed_choice_order",
+        "questions[].choice_uuid_map",
+        "questions[].correct_display_letter"
+      ]
+    },
+    "student_attempt": {
+      "student_id": "string",
+      "cohort_id": "string",
+      "diagnostic_version": "DIAG_v1",
+      "started_at": "timestamp",
+      "completed_at": "timestamp",
+      "responses": [
+        {
+          "question_id": "DIAG-001",
+          "displayed_choice_order": {
+            "A": "choice_uuid",
+            "B": "choice_uuid",
+            "C": "choice_uuid",
+            "D": "choice_uuid"
+          },
+          "selected_display_letter": "A|B|C|D",
+          "selected_choice_uuid": "uuid",
+          "confidence": "integer 0-100",
+          "time_ms": "integer",
+          "flagged": "boolean",
+          "student_reason": "optional string or selected reason code"
+        }
+      ]
+    }
+  },
+  "normalization": {
+    "response_join_steps": [
+      "Resolve selected_choice_uuid against deployment_manifest.questions[].choice_uuid_map.",
+      "Recover original_choice_letter and original_choice_content_id.",
+      "If original_choice_letter equals correct_original_letter, attach correct_route.",
+      "If original_choice_letter is a wrong choice, attach wrong_choices[letter].routing and remediation_id.",
+      "Persist both selected_display_letter and original_choice_letter; never score solely by display letter."
+    ],
+    "normalized_response_record": {
+      "question_id": "string",
+      "subject": "string",
+      "difficulty": "Foundational|Mid|Hard",
+      "selected_display_letter": "A|B|C|D",
+      "selected_original_letter": "A|B|C|D",
+      "selected_choice_uuid": "uuid",
+      "is_correct": "boolean",
+      "confidence": "0-100",
+      "time_ms": "integer",
+      "flagged": "boolean",
+      "remediation_id": "null if correct else routing.route_id",
+      "route_family": "null if correct else routing.route_family",
+      "forensic_tags": "array<string>",
+      "failure_mode": "null if correct else routing.failure_mode",
+      "c3_phase": "CUT|CLASH|CALL or null if correct",
+      "confidence_class": "HARD_STRUCTURAL|HEURISTIC_STRUCTURAL|ANCHOR_ASSISTED|PURE_ANCHOR|HUMAN_REVIEW",
+      "correct_route_id": "ADV-DIAG-### if correct"
+    }
+  },
+  "scoring_engine": {
+    "summary_metrics": {
+      "raw_score": "count(is_correct)",
+      "accuracy_pct": "raw_score / 18",
+      "mean_confidence": "avg(confidence)",
+      "mean_time_ms": "avg(time_ms)",
+      "flag_rate": "count(flagged) / 18",
+      "overconfidence_wrong_count": "wrong responses with confidence >= 75",
+      "underconfidence_correct_count": "correct responses with confidence <= 55",
+      "fast_wrong_count": "wrong responses with time_ms <= 30000"
+    },
+    "aggregation_dimensions": [
+      "subject",
+      "route_family",
+      "remediation_id",
+      "failure_mode",
+      "forensic_tags",
+      "c3_phase",
+      "confidence_class",
+      "difficulty"
+    ],
+    "red_zone_thresholds": {
+      "subject_red_zone": ">= 3 misses in same subject OR accuracy <= 50% for subject with >=2 attempts",
+      "route_family_red_zone": ">= 2 misses in same route_family",
+      "phase_red_zone": ">= 3 misses in same c3_phase",
+      "layer_exception_red_zone": ">= 2 misses whose failure_mode contains layer, exception, threshold, counter-exception, or trigger-fact",
+      "overclaim_red_zone": ">= 2 misses whose forensic_tags/failure_mode include overbroad, absolute, overclaim, always, never",
+      "calibration_red_zone": ">= 2 overconfident wrong OR >= 3 underconfident correct"
+    }
+  },
+  "routing_engine": {
+    "primary_route_selection_order": [
+      "human_review_hold if manifest/routing mismatch or missing choice_uuid",
+      "correct_but_wrong_reason if evaluator flags invalid reasoning",
+      "single selected wrong-choice remediation_id",
+      "two_or_more_same_route_family escalation",
+      "three_or_more_same_subject overlay assignment",
+      "three_or_more_issue_sense_misses assignment",
+      "three_or_more_ear_misses assignment",
+      "two_or_more_layer_or_exception_misses assignment",
+      "two_or_more_overbroad_or_absolute_misses assignment",
+      "correct_but_low_confidence calibration route"
+    ],
+    "tie_breakers": [
+      "prefer routes with multiple source misses",
+      "prefer HARD_STRUCTURAL before HEURISTIC_STRUCTURAL for initial drills because it is more trainable",
+      "prefer high-confidence wrong answers over low-confidence wrong answers for first remediation",
+      "prefer faster wrong answers as reflex errors; assign answer-choice-only drills first",
+      "if equal, prioritize Evidence purpose/layer, Civ Pro gate/status, Con Law tier/burden, then mixed transfer"
+    ],
+    "adaptive_rules_from_routing_yaml": {
+      "single_miss": {
+        "action": "assign_the_wrong_choice_remediation_only",
+        "notes": "Use the specific remediation_id attached to the selected wrong answer."
+      },
+      "two_or_more_same_route_family": {
+        "action": "escalate_to_route_family_micro_module",
+        "minimum_drills": 10,
+        "mastery_gate": "8/10 on fresh mixed items using the same failure mode"
+      },
+      "three_or_more_same_subject": {
+        "action": "assign_subject_overlay_before_more_black_letter_review",
+        "notes": "Subject overlay should teach the subject FIT and dominant C3 construction pattern."
+      },
+      "three_or_more_ear_misses": {
+        "action": "assign_lessons_04_to_06_answer_choice_only_cut_drills",
+        "notes": "Overclaim/falsity/distortion drills before full-stem practice."
+      },
+      "three_or_more_issue_sense_misses": {
+        "action": "assign_lessons_07_to_08_predict_before_peek_and_not_responsive_molds",
+        "notes": "Student is being pulled by true-but-off answers."
+      },
+      "two_or_more_layer_or_exception_misses": {
+        "action": "assign_layer_training_default_exception_counter_exception",
+        "notes": "Use trigger-fact counting and ask what layer the selected answer stopped at."
+      },
+      "two_or_more_overbroad_or_absolute_misses": {
+        "action": "assign_lesson_04_overclaim_family",
+        "minimum_drills": 20
+      },
+      "correct_but_low_confidence": {
+        "action": "assign_calibration_check_not_subject_remediation",
+        "lesson_route": [
+          "L13"
+        ],
+        "notes": "Correct content with poor confidence is a calibration issue."
+      },
+      "correct_but_wrong_reason": {
+        "action": "assign_why_other_three_are_wrong_protocol",
+        "notes": "Do not mark as mastered until student can name the three breaks."
+      }
+    }
+  },
+  "student_report_payload": {
+    "student_id": "string",
+    "diagnostic_version": "DIAG_v1",
+    "report_id": "uuid",
+    "generated_at": "timestamp",
+    "headline_profile": "string",
+    "score_summary": {
+      "raw_score": "int",
+      "accuracy_pct": "number",
+      "confidence_note": "string"
+    },
+    "primary_failure_pattern": {
+      "label": "string",
+      "evidence": [
+        "question_id"
+      ],
+      "route_family": "string"
+    },
+    "secondary_failure_pattern": {
+      "label": "string",
+      "evidence": [
+        "question_id"
+      ],
+      "route_family": "string"
+    },
+    "subject_red_zones": [
+      {
+        "subject": "string",
+        "misses": "int",
+        "assigned_overlay": "string"
+      }
+    ],
+    "c3_phase_map": [
+      {
+        "phase": "CUT|CLASH|CALL|ANCHOR",
+        "miss_count": "int",
+        "instructional_meaning": "string"
+      }
+    ],
+    "assigned_route": {
+      "remediation_id": "string",
+      "bundle_id": "string",
+      "lesson_route": [
+        "L#"
+      ],
+      "subject_overlay": "string",
+      "tiny_anchor": "string"
+    },
+    "first_30_minute_assignment": [
+      {
+        "minute_range": "string",
+        "task": "string",
+        "success_check": "string"
+      }
+    ],
+    "question_by_question_appendix": [
+      {
+        "question_id": "string",
+        "student_pick": "letter",
+        "result": "correct|wrong",
+        "diagnosis": "string"
+      }
+    ]
+  },
+  "admin_analytics_payload": {
+    "attempt_table_record": "one row per student-question response",
+    "diagnostic_run_record": "one row per completed diagnostic",
+    "item_live_stats_record": "aggregated by question_id and cohort_id after n>=30",
+    "review_queue_record": "created when discrimination/flag/distractor-pull thresholds fire",
+    "routing_audit_record": "records which rules assigned the route and why"
+  },
+  "validation_checks": {
+    "manifest_choice_uuid_count_per_question": 4,
+    "all_questions_present": 18,
+    "all_wrong_choices_have_remediation_id": true,
+    "all_correct_choices_have_correct_route": true,
+    "displayed_correct_letter_distribution_target": {
+      "A": "4-5",
+      "B": "4-5",
+      "C": "4-5",
+      "D": "4-5"
+    },
+    "block_live_use_until_attorney_approval": true
+  },
+  "output_contracts": {
+    "student_report_markdown": "render STUDENT_REPORT_TEMPLATE_v1.md with student_report_payload",
+    "remediation_bundle_lookup": "REMEDIATION_BUNDLES_v1.yaml keyed by remediation_id",
+    "dashboard_spec": "PILOT_SCORING_DASHBOARD_SPEC_v1.md defines pilot metrics and review queue"
+  }
+}

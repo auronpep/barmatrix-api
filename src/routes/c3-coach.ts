@@ -12,7 +12,9 @@ import { moldProficiency, type MoldRow, type Family } from "../lib/c3-scoring.js
 import {
   srsStateQuery, recentlySeenQuery,
   candidatesForMoldQuery, servableQuestionQuery, servableChoicesQuery,
+  forkCandidatesQuery, forkMoldForQuestionQuery,
 } from "../lib/c3-coach-queries.js";
+import { shouldInjectFork } from "../lib/c3-fork-injection.js";
 
 export interface ServableChoice { choice_id: string; letter: string; choice_text: string; }
 export interface ServableQuestion {
@@ -33,6 +35,7 @@ export interface BuildPayloadInput {
   mold: CoachMoldMeta;
   deficit: number;
   coverage: { total_attempts: number; measured_attempts: number };
+  forkPractice?: boolean;
 }
 
 export function pickFromCandidates(candidates: string[], recentlySeen: Set<string>): string | null {
@@ -41,7 +44,7 @@ export function pickFromCandidates(candidates: string[], recentlySeen: Set<strin
 }
 
 export function buildCoachPayload(input: BuildPayloadInput) {
-  const { question, mold, deficit, coverage } = input;
+  const { question, mold, deficit, coverage, forkPractice = false } = input;
   const pct = coverage.total_attempts > 0
     ? Math.round((coverage.measured_attempts / coverage.total_attempts) * 100) : 0;
   return {
@@ -51,6 +54,7 @@ export function buildCoachPayload(input: BuildPayloadInput) {
     coaching: {
       target_mold: mold.mold_code, name: mold.name, family: mold.family,
       deficit_pct: Math.round(deficit * 100), exposures: mold.exposures, measured: mold.measured,
+      fork_practice: forkPractice,
     },
     remediation: { lesson_slug: mold.lesson_slug, deck_ref: mold.deck_ref },
     cohort_signal: null,
@@ -127,6 +131,47 @@ export function registerC3CoachRoutes(app: Express, rngFactory: () => Rng = () =
 
       const seen = new Set<string>((seenR.rows as Record<string, unknown>[]).map((r) => String(r.question_id)));
       const rng = rngFactory();
+
+      // Coverage is needed both for fork-injection phase and the final payload.
+      const covRow = (covR.rows[0] ?? {}) as Record<string, unknown>;
+      const total = num(covRow.total_attempts);
+      const measured_attempts = num(covRow.measured_attempts);
+
+      // Fork injection (triage A6): with a progress-scaled probability, serve a
+      // kept hard-tail item instead of the mold-targeted one to train flag/coin
+      // discipline. Falls through to normal selection if no servable fork exists.
+      if (shouldInjectFork(measured_attempts, rng)) {
+        const fc = await pool.query(forkCandidatesQuery(), [CANDIDATE_POOL]);
+        const forkIds = (fc.rows as Record<string, unknown>[]).map((r) => String(r.question_id));
+        const forkPick = pickFromCandidates(forkIds, seen);
+        if (forkPick) {
+          const [fqR, fchR, fmR] = await Promise.all([
+            pool.query(servableQuestionQuery(), [forkPick]),
+            pool.query(servableChoicesQuery(), [forkPick]),
+            pool.query(forkMoldForQuestionQuery(), [forkPick]),
+          ]);
+          if ((fqR.rows as unknown[]).length > 0) {
+            const fm = (fmR.rows[0] ?? {}) as Record<string, unknown>;
+            res.json(buildCoachPayload({
+              question: { ...(fqR.rows[0] as ServableQuestion), choices: fchR.rows as ServableChoice[] },
+              mold: {
+                mold_code: (fm.mold_code as string) ?? "fork",
+                name: (fm.name as string) ?? "Fork / Coin",
+                family: (fm.family as Family) ?? "ISSUE_SENSE",
+                lesson_slug: (fm.lesson_slug as string) ?? "lesson-10",
+                deck_ref: (fm.deck_ref as string) ?? null,
+                exposures: 0, bite_pct: 0, measured: false,
+              },
+              deficit: 0,
+              coverage: { total_attempts: total, measured_attempts },
+              forkPractice: true,
+            }));
+            return;
+          }
+        }
+        // No servable fork available -> normal mold-targeted selection below.
+      }
+
       const sel = selectTarget({ molds, srsDue, rng });
 
       let chosenQid: string | null = null;
@@ -149,12 +194,7 @@ export function registerC3CoachRoutes(app: Express, rngFactory: () => Rng = () =
       const prof = moldProficiency(row);
       const meta = metaByCode.get(chosenCode)!;
       const deficit = sel.ranking.find((r) => r.mold_code === chosenCode)?.deficit ?? 0;
-      // Honest coverage denominator: coverageQuery LEFT JOINs so total counts ALL
-      // attempts while measured counts only C3-annotated ones (events.length matches).
-      const covRow = (covR.rows[0] ?? {}) as Record<string, unknown>;
-      const total = num(covRow.total_attempts);
-      const measured_attempts = num(covRow.measured_attempts);
-
+      // Honest coverage denominator (total/measured_attempts) computed above.
       const payload = buildCoachPayload({
         question: { ...(qR.rows[0] as ServableQuestion), choices: chR.rows as ServableChoice[] },
         mold: {

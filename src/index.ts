@@ -55,6 +55,8 @@ import { registerTensionsRoutes } from "./routes/tensions.js";
 import { registerFoundationsRoutes } from "./routes/foundations.js";
 import { registerC3Routes } from "./routes/c3.js";
 import { registerC3CoachRoutes } from "./routes/c3-coach.js";
+import { registerAdminC3Routes } from "./routes/admin-c3.js";
+import { registerC3SubjectsRoutes } from "./routes/c3-subjects.js";
 import { registerCertificationRoutes } from "./routes/certification.js";
 import { registerPlacementDiagnosticRoutes } from "./routes/placement-diagnostic.js";
 import {
@@ -542,6 +544,8 @@ registerTensionsRoutes(app);
 registerFoundationsRoutes(app);
 registerC3Routes(app);
 registerC3CoachRoutes(app);
+registerAdminC3Routes(app);
+registerC3SubjectsRoutes(app);
 registerCertificationRoutes(app);
 registerPlacementDiagnosticRoutes(app);
 

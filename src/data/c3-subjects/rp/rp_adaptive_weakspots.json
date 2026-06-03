@@ -1,0 +1,47 @@
+{
+  "weakspot_streams": [
+    {
+      "miss_pattern": "wrong_chain_type",
+      "diagnosis": "structural issue",
+      "remediation": "DRILL-RP-MACRO-01 Chain Classifier"
+    },
+    {
+      "miss_pattern": "correct_chain_wrong_status_pair",
+      "diagnosis": "clash issue",
+      "remediation": "DRILL-RP-MACRO-02 Status Pair Sorter"
+    },
+    {
+      "miss_pattern": "correct_status_pair_wrong_rule",
+      "diagnosis": "anchor issue",
+      "remediation": "tiny-anchor card for bucket"
+    },
+    {
+      "miss_pattern": "correct_anchor_wrong_consequence",
+      "diagnosis": "call issue",
+      "remediation": "DRILL-RP-MACRO-03 First Broken Link"
+    },
+    {
+      "miss_pattern": "long_time_high_flag_rate",
+      "diagnosis": "calibration issue",
+      "remediation": "DRILL-RP-MACRO-04 Anchor Honesty"
+    },
+    {
+      "miss_pattern": "all_candidate_quartet_miss",
+      "diagnosis": "overusing prose heuristics",
+      "remediation": "label/anchor drill"
+    },
+    {
+      "miss_pattern": "high_overlap_pair_miss",
+      "diagnosis": "matched-pair issue",
+      "remediation": "mirror fact drill"
+    }
+  ],
+  "live_divergence_labels": [
+    "RP_CHAIN_CONFUSION",
+    "RP_STATUS_PAIR_CONFUSION",
+    "RP_ANCHOR_GAP",
+    "RP_FALSE_STRUCTURE_OVERCLAIM",
+    "RP_MISREAD_EVENT_ORDER",
+    "RP_FORK_CALIBRATION_FAILURE"
+  ]
+}
