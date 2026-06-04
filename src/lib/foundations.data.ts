@@ -76,19 +76,19 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
           "title": "Is it TRUE? (Pure law. No fact pattern.)",
           "instructions_md": "Mark each proposition **T** or **F**. This is the Ear's raw material: hearing correct law from incorrect law with no stem to lean on.",
           "items": [
-            "1. A merchant's signed written promise to hold an offer open is irrevocable without consideration for the time stated, up to three months.",
+            "1. Subject to UCC 2-205's offeree-form separate-signature rule, a merchant's signed writing offering to buy or sell goods, if it gives assurance that the offer will be held open, is irrevocable without consideration for the time stated, up to three months.",
             "2. Courts assess the adequacy of consideration to ensure the exchange is fair.",
-            "3. The parol evidence rule bars evidence of a *subsequent* oral modification.",
+            "3. The parol evidence rule itself bars evidence of a *subsequent* oral modification.",
             "4. A private recorded restrictive covenant is an encumbrance that can render title unmarketable.",
-            "5. A zoning ordinance restricting the use of land renders the seller's title unmarketable.",
+            "5. A mere zoning ordinance restricting the use of land renders the seller's title unmarketable.",
             "6. The Seventh Amendment right to a civil jury has been incorporated against the states.",
-            "7. Under Rule 50(b), a party may join a renewed motion for judgment as a matter of law with a motion for a new trial.",
+            "7. After a party has properly moved for judgment as a matter of law under Rule 50(a), a timely Rule 50(b) renewed JMOL may include an alternative or joint request for a new trial.",
             "8. A parent is vicariously liable for all torts committed by the parent's minor child.",
             "9. Keeping a wild animal subjects the keeper to strict liability for harm caused by the animal's dangerous propensities.",
-            "10. A testifying witness's memory loss renders the witness not \"subject to cross-examination\" for purposes of admitting a prior statement."
+            "10. A testifying witness's memory loss, by itself, renders the witness not \"subject to cross-examination\" for purposes of admitting a prior statement."
           ],
           "item_count": 10,
-          "key_md": "1. **T** — UCC 2-205 firm offer.\n2. **F** — courts do not weigh adequacy; a peppercorn suffices.\n3. **F** — the PER bars prior/contemporaneous terms, not later modifications.\n4. **T** — a covenant is an encumbrance affecting marketability.\n5. **F** — zoning is a public regulation, not a title defect.\n6. **F** — the Seventh Amendment is not incorporated.\n7. **T** — Rule 50(b) expressly allows joining a Rule 59 motion.\n8. **F** — no general vicarious parental liability; liability is for the parent's own negligence.\n9. **T** — strict liability for the dangerous propensity.\n10. **F** — *United States v. Owens*: memory loss does not remove a witness from cross.",
+          "key_md": "1. **T** — UCC 2-205 firm offer: merchant + goods + signed writing + assurance; no consideration is required, and irrevocability is capped at three months. If the assurance term is on a form supplied by the offeree, that assurance must be separately signed by the offeror.\n2. **F** — courts generally do not weigh the adequacy of bargained-for consideration; they ask whether consideration exists, not whether the exchange was fair.\n3. **F** — the PER itself bars prior/contemporaneous terms, not later modifications; later modifications may still face other doctrines, such as consideration or the statute of frauds.\n4. **T** — a covenant is an encumbrance affecting marketability.\n5. **F** — a zoning restriction is a public regulation, not a title defect; an existing violation of zoning may be different.\n6. **F** — the Seventh Amendment is not incorporated.\n7. **T** — Rule 50(b) allows a renewed JMOL within Rule 50(b)'s deadline after a Rule 50(a) motion and permits an alternative or joint Rule 59 new-trial request.\n8. **F** — under the general common-law rule, there is no automatic vicarious parental liability; liability rests on the parent's own negligence or on a specific statutory rule.\n9. **T** — strict liability applies to harm of the kind that makes the wild animal dangerous.\n10. **F** — *United States v. Owens*: memory loss does not, by itself, remove a testifying witness from cross-examination; the prior statement still needs a separate hearsay exclusion or exception.",
           "task_type": "TRUTH_CHECK",
           "graded_items": [
             {
@@ -100,10 +100,10 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "authored",
               "enabled": true,
-              "prompt": "A merchant's signed written promise to hold an offer open is irrevocable without consideration for the time stated, up to three months.",
+              "prompt": "Subject to UCC 2-205's offeree-form separate-signature rule, a merchant's signed writing offering to buy or sell goods, if it gives assurance that the offer will be held open, is irrevocable without consideration for the time stated, up to three months.",
               "correct_status": "TRUE",
-              "short_explanation": "UCC 2-205 firm offer.",
-              "say_the_break": "True — UCC 2-205 firm offer"
+              "short_explanation": "UCC 2-205 firm offer: merchant + goods + signed writing + assurance; no consideration is required, and irrevocability is capped at three months. If the assurance term is on a form supplied by the offeree, that assurance must be separately signed by the offeror.",
+              "say_the_break": "True — UCC 2-205 firm offer: merchant + goods + signed writing + assurance"
             },
             {
               "id": "L1-D11-I02",
@@ -116,8 +116,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "enabled": true,
               "prompt": "Courts assess the adequacy of consideration to ensure the exchange is fair.",
               "correct_status": "NOT_TRUE",
-              "short_explanation": "courts do not weigh adequacy; a peppercorn suffices.",
-              "say_the_break": "False — courts do not weigh adequacy"
+              "short_explanation": "courts generally do not weigh the adequacy of bargained-for consideration; they ask whether consideration exists, not whether the exchange was fair.",
+              "say_the_break": "False — courts generally do not weigh the adequacy of bargained-for consideration"
             },
             {
               "id": "L1-D11-I03",
@@ -128,10 +128,10 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "authored",
               "enabled": true,
-              "prompt": "The parol evidence rule bars evidence of a *subsequent* oral modification.",
+              "prompt": "The parol evidence rule itself bars evidence of a *subsequent* oral modification.",
               "correct_status": "NOT_TRUE",
-              "short_explanation": "the PER bars prior/contemporaneous terms, not later modifications.",
-              "say_the_break": "False — the PER bars prior/contemporaneous terms, not later modifications"
+              "short_explanation": "the PER itself bars prior/contemporaneous terms, not later modifications; later modifications may still face other doctrines, such as consideration or the statute of frauds.",
+              "say_the_break": "False — the PER itself bars prior/contemporaneous terms, not later modifications"
             },
             {
               "id": "L1-D11-I04",
@@ -156,10 +156,10 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "authored",
               "enabled": true,
-              "prompt": "A zoning ordinance restricting the use of land renders the seller's title unmarketable.",
+              "prompt": "A mere zoning ordinance restricting the use of land renders the seller's title unmarketable.",
               "correct_status": "NOT_TRUE",
-              "short_explanation": "zoning is a public regulation, not a title defect.",
-              "say_the_break": "False — zoning is a public regulation, not a title defect"
+              "short_explanation": "a zoning restriction is a public regulation, not a title defect; an existing violation of zoning may be different.",
+              "say_the_break": "False — a zoning restriction is a public regulation, not a title defect"
             },
             {
               "id": "L1-D11-I06",
@@ -184,10 +184,10 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "authored",
               "enabled": true,
-              "prompt": "Under Rule 50(b), a party may join a renewed motion for judgment as a matter of law with a motion for a new trial.",
+              "prompt": "After a party has properly moved for judgment as a matter of law under Rule 50(a), a timely Rule 50(b) renewed JMOL may include an alternative or joint request for a new trial.",
               "correct_status": "TRUE",
-              "short_explanation": "Rule 50(b) expressly allows joining a Rule 59 motion.",
-              "say_the_break": "True — Rule 50(b) expressly allows joining a Rule 59 motion"
+              "short_explanation": "Rule 50(b) allows a renewed JMOL within Rule 50(b)'s deadline after a Rule 50(a) motion and permits an alternative or joint Rule 59 new-trial request.",
+              "say_the_break": "True — Rule 50(b) allows a renewed JMOL within Rule 50(b)'s deadline after a Rule 50(a) motion and permits an alternative or joint Rule 59 new-trial request"
             },
             {
               "id": "L1-D11-I08",
@@ -200,8 +200,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "enabled": true,
               "prompt": "A parent is vicariously liable for all torts committed by the parent's minor child.",
               "correct_status": "NOT_TRUE",
-              "short_explanation": "no general vicarious parental liability; liability is for the parent's own negligence.",
-              "say_the_break": "False — no general vicarious parental liability"
+              "short_explanation": "under the general common-law rule, there is no automatic vicarious parental liability; liability rests on the parent's own negligence or on a specific statutory rule.",
+              "say_the_break": "False — under the general common-law rule, there is no automatic vicarious parental liability"
             },
             {
               "id": "L1-D11-I09",
@@ -214,8 +214,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "enabled": true,
               "prompt": "Keeping a wild animal subjects the keeper to strict liability for harm caused by the animal's dangerous propensities.",
               "correct_status": "TRUE",
-              "short_explanation": "strict liability for the dangerous propensity.",
-              "say_the_break": "True — strict liability for the dangerous propensity"
+              "short_explanation": "strict liability applies to harm of the kind that makes the wild animal dangerous.",
+              "say_the_break": "True — strict liability applies to harm of the kind that makes the wild animal dangerous"
             },
             {
               "id": "L1-D11-I10",
@@ -226,10 +226,10 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "authored",
               "enabled": true,
-              "prompt": "A testifying witness's memory loss renders the witness not \"subject to cross-examination\" for purposes of admitting a prior statement.",
+              "prompt": "A testifying witness's memory loss, by itself, renders the witness not \"subject to cross-examination\" for purposes of admitting a prior statement.",
               "correct_status": "NOT_TRUE",
-              "short_explanation": "*United States v. Owens*: memory loss does not remove a witness from cross.",
-              "say_the_break": "False — United States v. Owens: memory loss does not remove a witness from cross"
+              "short_explanation": "*United States v. Owens*: memory loss does not, by itself, remove a testifying witness from cross-examination; the prior statement still needs a separate hearsay exclusion or exception.",
+              "say_the_break": "False — United States v. Owens: memory loss does not, by itself, remove a testifying witness from cross-examination"
             }
           ]
         },
@@ -238,19 +238,19 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
           "title": "Which filter breaks? (Short stem + one wrong choice.)",
           "instructions_md": "For each item, the choice given is **wrong**. Classify it: **[NOT TRUE]** or **[TRUE BUT NOT RESPONSIVE]**.",
           "items": [
-            "1. *Motion to dismiss for failure to serve; the lawyer forgot to serve for four months.* — \"Deny: filing the complaint commenced the action, and it was filed in time.\"",
-            "2. *Is a federal regulation that applies a generally-applicable rule to state governments valid?* — \"No: the federal government has sovereign immunity and can't be sued without consent.\"",
-            "3. *Plaintiff sues over an ad that used his identity but not his name.* — \"For the defendant: appropriation requires use of the plaintiff's name.\"",
-            "4. *Tenants run an illegal gambling operation; may the landlord terminate the lease?* — \"Yes: terminate the lease and keep the security deposit as a forfeit.\"",
-            "5. *May a party join a renewed JMOL with a new-trial motion?* — \"No: a party may file only one of the two.\"",
+            "1. *Motion to dismiss for failure to serve; the complaint was filed before the limitations deadline, but the lawyer forgot to serve for four months.* — \"Filing the complaint commenced the federal action, and the complaint was filed before the limitations deadline.\"",
+            "2. *Is a federal regulation, otherwise within Congress's enumerated power and not requiring states to enact or administer a federal program, invalid merely because it applies a generally applicable rule to state governments as regulated actors?* — \"The United States generally cannot be sued for damages without its consent.\"",
+            "3. *Plaintiff sues over a commercial ad that used his recognizable identity without consent but not his name.* — \"For the defendant: appropriation requires use of the plaintiff's name.\"",
+            "4. *Tenants run an illegal gambling operation in violation of a lease clause that permits termination; the landlord also seeks to keep the security deposit automatically as a forfeiture.* — \"For the landlord: it may terminate the lease and automatically keep the security deposit as a forfeit.\"",
+            "5. *After preserving JMOL under Rule 50(a), may a party timely file a Rule 50(b) renewed JMOL that includes a new-trial request?* — \"No: a party may file only one of the two.\"",
             "6. *Buyer wants out of a land-sale contract because zoning bars her intended use.* — \"For the buyer: the zoning restriction makes the title unmarketable.\"",
-            "7. *Is the President's refusal to spend appropriated funds constitutional?* — \"Yes: the President has inherent executive power to control federal expenditures.\"",
-            "8. *Plaintiff seeks the opinions of an expert the defense retained but will not call.* — \"The plaintiff is entitled to full disclosure of the expert's qualifications, opinions, and bases.\"",
+            "7. *Is the President's refusal to spend funds that Congress appropriated and directed to be spent constitutional, absent a valid statutory basis for withholding?* — \"Yes: the President has inherent executive power to control federal expenditures.\"",
+            "8. *Plaintiff seeks the opinions of an expert the defense retained in anticipation of litigation, used only for trial preparation, and does not expect to call at trial.* — \"For a retained expert expected to testify and required to provide a report, the party must disclose the expert's opinions and bases.\"",
             "9. *A class representative seeks a jury; the damages claim is legal but certification is contested.* — \"No jury at all: class actions are historically equitable devices.\"",
-            "10. *A deposition question seeks an association's contributor names; the association objects on First-Amendment grounds.* — \"Overruled: the proper time to object to testimony is at trial.\""
+            "10. *During a deposition, a question seeks an association's contributor names; the association objects on First-Amendment grounds.* — \"Overruled: the proper time to object to testimony is at trial.\""
           ],
           "item_count": 10,
-          "key_md": "1. **TRUE BUT NOT RESPONSIVE** — true about *filing*; the question is *service*.\n2. **TRUE BUT NOT RESPONSIVE** — sovereign immunity is a real doctrine, but the issue is Congress's power over states.\n3. **NOT TRUE** — indicia of identity suffice; the name is not required.\n4. **NOT TRUE** — a security deposit is not automatically forfeitable (overclaim).\n5. **NOT TRUE** — Rule 50(b) allows joining the new-trial motion.\n6. **NOT TRUE** — zoning is not a title defect.\n7. **NOT TRUE** — there is no inherent impoundment power.\n8. **TRUE BUT NOT RESPONSIVE** — that is the *testifying*-expert rule; this expert is non-testifying (right rule, wrong category).\n9. **NOT TRUE** — the legal damages claim carries a jury right; \"no jury at all\" overstates.\n10. **NOT TRUE** — discovery objections are made during discovery, not deferred to trial.",
+          "key_md": "1. **TRUE BUT NOT RESPONSIVE** — true about *filing* and limitations timing; the question is *service*. Filing commences the federal action, but Rule 4(m) separately requires service within 90 days after the complaint is filed or a court-ordered extension.\n2. **TRUE BUT NOT RESPONSIVE** — federal sovereign immunity is a real doctrine, but the issue here is Congress's power to regulate states as regulated actors without commandeering state lawmaking or enforcement.\n3. **NOT TRUE** — unauthorized commercial use of recognizable indicia of identity can suffice; use of the plaintiff's legal name is not required.\n4. **NOT TRUE** — assuming termination is available under the lease, the security-deposit remedy is separate: a deposit is not automatically forfeitable merely because the tenant breached.\n5. **NOT TRUE** — once the Rule 50(a) predicate is preserved and the Rule 50(b) renewal is timely, the renewed JMOL may include an alternative or joint new-trial request.\n6. **NOT TRUE** — a mere zoning restriction is not a title defect; an existing zoning violation or separate title covenant issue would be different.\n7. **NOT TRUE** — absent a valid statutory basis for withholding, the President has no inherent power to refuse to spend funds Congress has directed to be spent.\n8. **TRUE BUT NOT RESPONSIVE** — that is the *testifying retained expert* disclosure rule; this expert was retained only for trial preparation and is not expected to testify. Facts or opinions of that type of non-testifying expert are generally discoverable only as provided in Rule 35(b) or on exceptional circumstances making it impracticable to obtain them by other means.\n9. **NOT TRUE** — the legal damages claim carries a jury right; \"no jury at all\" overstates.\n10. **NOT TRUE** — the categorical statement is false. Deposition objections are stated on the record during the deposition; whether the First Amendment objection ultimately succeeds is a separate issue. Testimony generally proceeds subject to the objection, and instructions not to answer are limited.",
           "task_type": "FILTER_BREAK",
           "graded_items": [
             {
@@ -262,11 +262,11 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "Motion to dismiss for failure to serve; the lawyer forgot to serve for four months.",
+              "stem": "Motion to dismiss for failure to serve; the complaint was filed before the limitations deadline, but the lawyer forgot to serve for four months.",
               "prompt": "This choice is wrong. Which filter does it break?",
-              "choice_text": "Deny: filing the complaint commenced the action, and it was filed in time.",
+              "choice_text": "Filing the complaint commenced the federal action, and the complaint was filed before the limitations deadline.",
               "correct_status": "TRUE_BUT_NOT_RESPONSIVE",
-              "short_explanation": "true about *filing*; the question is *service*.",
+              "short_explanation": "true about *filing* and limitations timing; the question is *service*. Filing commences the federal action, but Rule 4(m) separately requires service within 90 days after the complaint is filed or a court-ordered extension.",
               "say_the_break": "True, but wrong question."
             },
             {
@@ -278,11 +278,11 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "Is a federal regulation that applies a generally-applicable rule to state governments valid?",
+              "stem": "Is a federal regulation, otherwise within Congress's enumerated power and not requiring states to enact or administer a federal program, invalid merely because it applies a generally applicable rule to state governments as regulated actors?",
               "prompt": "This choice is wrong. Which filter does it break?",
-              "choice_text": "No: the federal government has sovereign immunity and can't be sued without consent.",
+              "choice_text": "The United States generally cannot be sued for damages without its consent.",
               "correct_status": "TRUE_BUT_NOT_RESPONSIVE",
-              "short_explanation": "sovereign immunity is a real doctrine, but the issue is Congress's power over states.",
+              "short_explanation": "federal sovereign immunity is a real doctrine, but the issue here is Congress's power to regulate states as regulated actors without commandeering state lawmaking or enforcement.",
               "say_the_break": "True, but wrong question."
             },
             {
@@ -294,12 +294,12 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "Plaintiff sues over an ad that used his identity but not his name.",
+              "stem": "Plaintiff sues over a commercial ad that used his recognizable identity without consent but not his name.",
               "prompt": "This choice is wrong. Which filter does it break?",
               "choice_text": "For the defendant: appropriation requires use of the plaintiff's name.",
               "correct_status": "NOT_TRUE",
-              "short_explanation": "indicia of identity suffice; the name is not required.",
-              "say_the_break": "False — indicia of identity suffice"
+              "short_explanation": "unauthorized commercial use of recognizable indicia of identity can suffice; use of the plaintiff's legal name is not required.",
+              "say_the_break": "False — unauthorized commercial use of recognizable indicia of identity can suffice"
             },
             {
               "id": "L1-D12-I04",
@@ -310,12 +310,12 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "Tenants run an illegal gambling operation; may the landlord terminate the lease?",
+              "stem": "Tenants run an illegal gambling operation in violation of a lease clause that permits termination; the landlord also seeks to keep the security deposit automatically as a forfeiture.",
               "prompt": "This choice is wrong. Which filter does it break?",
-              "choice_text": "Yes: terminate the lease and keep the security deposit as a forfeit.",
+              "choice_text": "For the landlord: it may terminate the lease and automatically keep the security deposit as a forfeit.",
               "correct_status": "NOT_TRUE",
-              "short_explanation": "a security deposit is not automatically forfeitable (overclaim).",
-              "say_the_break": "False — a security deposit is not automatically forfeitable (overclaim)"
+              "short_explanation": "assuming termination is available under the lease, the security-deposit remedy is separate: a deposit is not automatically forfeitable merely because the tenant breached.",
+              "say_the_break": "False — assuming termination is available under the lease, the security-deposit remedy is separate: a deposit is not automatically forfeitable merely because the tenant breached"
             },
             {
               "id": "L1-D12-I05",
@@ -326,12 +326,12 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "May a party join a renewed JMOL with a new-trial motion?",
+              "stem": "After preserving JMOL under Rule 50(a), may a party timely file a Rule 50(b) renewed JMOL that includes a new-trial request?",
               "prompt": "This choice is wrong. Which filter does it break?",
               "choice_text": "No: a party may file only one of the two.",
               "correct_status": "NOT_TRUE",
-              "short_explanation": "Rule 50(b) allows joining the new-trial motion.",
-              "say_the_break": "False — Rule 50(b) allows joining the new-trial motion"
+              "short_explanation": "once the Rule 50(a) predicate is preserved and the Rule 50(b) renewal is timely, the renewed JMOL may include an alternative or joint new-trial request.",
+              "say_the_break": "False — once the Rule 50(a) predicate is preserved and the Rule 50(b) renewal is timely, the renewed JMOL may include an alternative or joint new-trial request"
             },
             {
               "id": "L1-D12-I06",
@@ -346,8 +346,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "prompt": "This choice is wrong. Which filter does it break?",
               "choice_text": "For the buyer: the zoning restriction makes the title unmarketable.",
               "correct_status": "NOT_TRUE",
-              "short_explanation": "zoning is not a title defect.",
-              "say_the_break": "False — zoning is not a title defect"
+              "short_explanation": "a mere zoning restriction is not a title defect; an existing zoning violation or separate title covenant issue would be different.",
+              "say_the_break": "False — a mere zoning restriction is not a title defect"
             },
             {
               "id": "L1-D12-I07",
@@ -358,12 +358,12 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "Is the President's refusal to spend appropriated funds constitutional?",
+              "stem": "Is the President's refusal to spend funds that Congress appropriated and directed to be spent constitutional, absent a valid statutory basis for withholding?",
               "prompt": "This choice is wrong. Which filter does it break?",
               "choice_text": "Yes: the President has inherent executive power to control federal expenditures.",
               "correct_status": "NOT_TRUE",
-              "short_explanation": "there is no inherent impoundment power.",
-              "say_the_break": "False — there is no inherent impoundment power"
+              "short_explanation": "absent a valid statutory basis for withholding, the President has no inherent power to refuse to spend funds Congress has directed to be spent.",
+              "say_the_break": "False — absent a valid statutory basis for withholding, the President has no inherent power to refuse to spend funds Congress has directed to be spent"
             },
             {
               "id": "L1-D12-I08",
@@ -374,11 +374,11 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "Plaintiff seeks the opinions of an expert the defense retained but will not call.",
+              "stem": "Plaintiff seeks the opinions of an expert the defense retained in anticipation of litigation, used only for trial preparation, and does not expect to call at trial.",
               "prompt": "This choice is wrong. Which filter does it break?",
-              "choice_text": "The plaintiff is entitled to full disclosure of the expert's qualifications, opinions, and bases.",
+              "choice_text": "For a retained expert expected to testify and required to provide a report, the party must disclose the expert's opinions and bases.",
               "correct_status": "TRUE_BUT_NOT_RESPONSIVE",
-              "short_explanation": "that is the *testifying*-expert rule; this expert is non-testifying (right rule, wrong category).",
+              "short_explanation": "that is the *testifying retained expert* disclosure rule; this expert was retained only for trial preparation and is not expected to testify. Facts or opinions of that type of non-testifying expert are generally discoverable only as provided in Rule 35(b) or on exceptional circumstances making it impracticable to obtain them by other means.",
               "say_the_break": "True, but wrong question."
             },
             {
@@ -406,12 +406,12 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "A deposition question seeks an association's contributor names; the association objects on First-Amendment grounds.",
+              "stem": "During a deposition, a question seeks an association's contributor names; the association objects on First-Amendment grounds.",
               "prompt": "This choice is wrong. Which filter does it break?",
               "choice_text": "Overruled: the proper time to object to testimony is at trial.",
               "correct_status": "NOT_TRUE",
-              "short_explanation": "discovery objections are made during discovery, not deferred to trial.",
-              "say_the_break": "False — discovery objections are made during discovery, not deferred to trial"
+              "short_explanation": "the categorical statement is false. Deposition objections are stated on the record during the deposition; whether the First Amendment objection ultimately succeeds is a separate issue. Testimony generally proceeds subject to the objection, and instructions not to answer are limited.",
+              "say_the_break": "False — the categorical statement is false. Deposition objections are stated on the record during the deposition"
             }
           ]
         },
@@ -420,19 +420,19 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
           "title": "Spot the residual. (Full compact question; name every break.)",
           "instructions_md": "For each, pick the survivor and, in the key, confirm the break on each of the three distractors.",
           "items": [
-            "1. A flour wholesaler \"assigned\" all its sale contracts to a reputable miller; the buyer refuses the first delivery. May the buyer reject?\n A) Yes — requirements contracts can't be assigned. B) Yes — duties transfer only by the delegatee's express promise. C) Yes — \"assignment\" transfers rights only, never duties. D) No — assignable so long as quantity isn't disproportionately changed.",
-            "2. After a defense verdict (plaintiff moved for JMOL before submission), may she file a renewed JMOL *and* a new-trial motion?\n A) No — new-trial only. B) No — only one. C) Yes — both. D) Yes — and combine with a motion for relief from judgment.",
-            "3. A merchant retailer's signed letter assures firm catalog prices \"throughout the coming year\"; a month later it tries to raise prices for the following month's orders. Effective for that month?\n A) No — irrevocable under promissory estoppel. B) No — merchant firm offer, irrevocable for that month. C) Yes — no consideration for the assurance. D) Yes — the assurance ran longer than three months.",
-            "4. A closely-supervised eight-year-old's grocery cart injures a shopper; assume the child was negligent and the mother under-supervised. Suing the mother in negligence, does the shopper prevail?\n A) Yes — the child was negligent. B) Yes — the mother is liable for any harm her child causes. C) Yes — the mother assumed the risk. D) Yes — the mother failed to adequately supervise.",
+            "1. A flour wholesaler assigned \"the contract\" for monthly flour deliveries to a reputable miller, which accepted the assignment and tendered the same quantity and quality on the same terms. The buyer refuses the first delivery merely because of the assignment. May the buyer reject?\n A) Yes — sale-of-goods contracts can't be assigned or delegated. B) Yes — duties transfer only by the delegatee's express promise. C) Yes — an assignment of \"the contract\" transfers rights only, never duties. D) No — performance may be delegated because no substantial interest is shown in having the original wholesaler perform or control performance, and this assignment/delegation does not materially change the buyer's duty, burden, risk, or chance of return performance.",
+            "2. Within Rule 50(b)'s deadline after a defense verdict, and after moving for JMOL before submission, may the plaintiff file a renewed JMOL that includes a new-trial request?\n A) No — new-trial only. B) No — only one. C) Yes — the renewed JMOL may include the new-trial request. D) Yes — but only if the court first grants relief from judgment under Rule 60.",
+            "3. A merchant seller sends a buyer a signed written offer to sell 500 units of specified goods at a stated price and assures the offer will remain open \"throughout the coming year\"; one month later, before the buyer accepts, the seller tries to raise the price. Effective for an acceptance that month?\n A) No — irrevocable under promissory estoppel. B) No — merchant firm offer, irrevocable for that month. C) Yes — no consideration for the assurance. D) Yes — the assurance ran longer than three months.",
+            "4. An under-supervised eight-year-old's grocery cart injures a shopper; assume the child was negligent and the mother failed to supervise adequately. Suing the mother in negligence, does the shopper prevail?\n A) Yes — the child was negligent. B) Yes — the mother is liable for any harm her child causes. C) Yes — the mother assumed the risk. D) Yes — the mother failed to adequately supervise.",
             "5. A land-sale contract promises a warranty deed without exceptions; the buyer's search reveals a recorded restrictive covenant. Must she buy?\n A) No — the covenant renders title unmarketable. B) No — the zoning clouds title. C) Yes — she'd get a warranty deed without exceptions. D) Yes — the contract was silent on title quality.",
             "6. A child's interred body is left improperly secured, taken by vandals, and found nearby; the mother suffers severe emotional distress. Does she prevail against the mausoleum?\n A) No — no threat to her own safety. B) No — the conduct wasn't extreme and outrageous. C) Yes — the mausoleum negligently failed to safeguard the body. D) No — she suffered no physical harm.",
-            "7. A retailer-sold safety device fails from a manufacturing defect; the climber falls; a rescuer is hurt reaching him. Suing the retailer, does the rescuer prevail?\n A) No — the retailer couldn't find the defect on reasonable inspection. B) No — the rescuer didn't rely on any implied representation. C) Yes — the climber wasn't negligent in failing to test it. D) Yes — injury to someone in the rescuer's position was foreseeable.",
-            "8. Parties agree on a building plus sidewalk paving for $200k; later they orally agree to drop the paving but keep the $200k; the contractor builds but won't pave. Breach?\n A) No — the oral modification was good-faith and enforceable. B) Yes — discharge must be in writing. C) Yes — the parol evidence rule bars the modification. D) Yes — no consideration supported discharging the paving duty.",
-            "9. An attorney directs a deponent not to answer non-privileged questions, never moves to limit the deposition, defies an order to compel, and the client refuses for months. Opponent moves for **Rule 11** sanctions. Granted?\n A) No — should have been under Rule 26(g). B) No — Rule 11 doesn't apply to discovery, only pleadings. C) Yes — the court must prevent the deponent benefiting from the refusal. D) Yes — the court may convert a Rule 11 motion into a Rule 37(b) motion.",
-            "10. An assault victim with no memory of the attack would testify that, before losing consciousness, he told a passerby the defendant hit him. Defense objects: hearsay, no personal knowledge. Admissible?\n A) No — no showing he more-likely-than-not had personal knowledge. B) No — memory loss means he can't be effectively cross-examined. C) Yes — he's subject to cross and personal knowledge is sufficiently shown. D) Yes — it's his own out-of-court statement."
+            "7. A retailer-sold safety device fails from a manufacturing defect; the climber falls; a foreseeable rescuer is hurt while reaching him. Suing the retailer in strict products liability, does the rescuer prevail?\n A) No — the retailer couldn't find the defect on reasonable inspection. B) No — the rescuer didn't rely on any implied representation. C) Yes — the climber wasn't negligent in failing to test it. D) Yes — injury to a foreseeable rescuer was within the risk created by the defective product.",
+            "8. Parties enter a construction/services contract for a building plus sidewalk paving for $200k; later they orally agree to drop the paving but keep the $200k; the contractor builds but won't pave. Breach?\n A) No — the oral modification was good-faith and enforceable. B) Yes — discharge must be in writing. C) Yes — the parol evidence rule bars the modification. D) Yes — no consideration supported discharging the paving duty.",
+            "9. An attorney directs a deponent not to answer non-privileged questions, never moves to limit the deposition, defies an order to compel, and the client refuses for months. Opponent moves for **Rule 11** sanctions. Granted?\n A) No — should have been under Rule 26(g) alone. B) No — Rule 11 itself excludes discovery matters governed by Rules 26–37. C) Yes — the court must prevent the deponent benefiting from the refusal. D) Yes — Rule 11 expressly authorizes sanctions for discovery refusals covered by Rules 26–37.",
+            "10. An assault victim saw the attacker, identified the defendant to a passerby moments after the attack, then lost consciousness. At trial, the victim testifies but has no memory of the attack or the identification. The passerby would testify to the victim's identification. Defense objects: hearsay, no personal knowledge. Admissible?\n A) No — personal knowledge must be proved more likely than not before the statement can be admitted. B) No — memory loss means he can't be effectively cross-examined. C) Yes — the prior identification is not hearsay because the victim testifies and is subject to cross-examination about it, and the circumstances sufficiently support personal knowledge. D) Yes — it's his own out-of-court statement, so hearsay is not a problem."
           ],
           "item_count": 10,
-          "key_md": "1. **D.** A/B/C all misstate UCC 2-210 (assignable; no express promise needed; a general assignment delegates duties too).\n2. **C.** A/B false (50(b) allows joining); D misfit (Rule 60 isn't the post-verdict vehicle).\n3. **B.** A misfit (it's 2-205, not PE); C backwards (firm offers need no consideration); D — the cap is three months and the relevant month falls inside it, so the increase doesn't reach it.\n4. **D.** A wrong-element (the child's fault isn't the mother's); B overclaim (no general vicarious liability); C misfit (assumption of risk isn't an affirmative basis).\n5. **A.** B false (zoning ≠ title defect); C misfit (deed type doesn't cure an encumbrance); D backwards (marketable title is implied despite silence).\n6. **C.** A misfit (zone-of-danger doesn't govern); B bait-doctrine (that's IIED; this is negligent mishandling); D backwards (the corpse exception waives physical harm).\n7. **D.** A misfit (inspection is a negligence defense, not strict liability); B backwards (no reliance required); C misfit (wrong party's conduct).\n8. **D.** A misfit (UCC good-faith-modification rule on a services contract); B false (no general writing requirement); C backwards (PER doesn't bar a subsequent modification).\n9. **B.** A near-miss (right that Rule 11 is out, but 26(g) isn't the vehicle for a deposition refusal — Rule 37 is); C misfit (policy gloss, not the rule); D fabrication (no such conversion).\n10. **C.** A half-truth (misstates the showing); B backwards (*Owens*); D fabrication (one's own statement isn't itself an exception).",
+          "key_md": "1. **D.** A/B/C overstate UCC 2-210: performance duties generally may be delegated unless the buyer has a substantial interest in the original promisor performing or controlling performance; assignment is limited if it materially changes the other party's duty, burden, risk, or chance of return performance; an assignment of \"the contract\" generally delegates duties as well; acceptance of the assignment can supply the delegatee's promise to perform. Delegation does not by itself release the original obligor from liability.\n2. **C.** A/B false: after a proper Rule 50(a) motion, a timely Rule 50(b) renewed JMOL may include an alternative or joint Rule 59 new-trial request. D adds a false Rule 60 prerequisite.\n3. **B.** A misfit (the operative rule is UCC 2-205, not promissory estoppel); C backwards (a firm offer needs no consideration); D misstates the cap — the assurance is enforceable only up to three months, and the relevant month is inside that cap.\n4. **D.** A wrong-element (the child's fault alone isn't the mother's negligence); B overclaim (no general vicarious parental liability); C misfit (assumption of risk isn't an affirmative basis for the mother's liability).\n5. **A.** A private recorded covenant is an encumbrance that can make title unmarketable. B false (mere zoning ≠ title defect); C misfit (deed type does not cure an existing encumbrance); D backwards (marketable title is implied despite silence).\n6. **C.** A misfit (zone-of-danger rules do not control this special negligent-mishandling category); B bait-doctrine (that is IIED framing, not the negligence theory); D backwards (negligent mishandling of a corpse can permit serious emotional-distress recovery without a separate physical-impact requirement).\n7. **D.** A misfit: the retailer's inability to discover the manufacturing defect by reasonable inspection does not defeat strict products liability. B backwards (strict products liability does not require reliance); C misfit (the climber's failure to test is not the rescuer's responsive basis).\n8. **D.** A misfit (UCC good-faith-modification rule on a services contract); B false (no general writing requirement); C backwards (the PER itself does not bar a subsequent modification).\n9. **B.** A is too narrow: Rule 26(g) covers certification of discovery papers, while deposition misconduct and violation of an order to compel point to discovery-sanctions authority, especially Rules 30 and 37. C is policy gloss, not the rule. D contradicts Rule 11(d), which excludes discovery matters governed by Rules 26–37 from Rule 11.\n10. **C.** A overstates the Rule 602 foundation threshold; B is backwards under *Owens* because memory loss does not by itself remove the witness from cross-examination; D is wrong because a person's own statement is not automatically admissible for that reason. The admissibility route is the prior-identification exclusion from hearsay, plus a Rule 602 foundation sufficient to support a finding of personal knowledge.",
           "task_type": "SURVIVOR_PICK",
           "graded_items": [
             {
@@ -444,12 +444,12 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "A flour wholesaler \"assigned\" all its sale contracts to a reputable miller; the buyer refuses the first delivery. May the buyer reject?",
+              "stem": "A flour wholesaler assigned \"the contract\" for monthly flour deliveries to a reputable miller, which accepted the assignment and tendered the same quantity and quality on the same terms. The buyer refuses the first delivery merely because of the assignment. May the buyer reject?",
               "prompt": "Run the filters. Which choice survives both?",
               "choices": [
                 {
                   "id": "A",
-                  "text": "Yes — requirements contracts can't be assigned."
+                  "text": "Yes — sale-of-goods contracts can't be assigned or delegated."
                 },
                 {
                   "id": "B",
@@ -457,15 +457,15 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 },
                 {
                   "id": "C",
-                  "text": "Yes — \"assignment\" transfers rights only, never duties."
+                  "text": "Yes — an assignment of \"the contract\" transfers rights only, never duties."
                 },
                 {
                   "id": "D",
-                  "text": "No — assignable so long as quantity isn't disproportionately changed."
+                  "text": "No — performance may be delegated because no substantial interest is shown in having the original wholesaler perform or control performance, and this assignment/delegation does not materially change the buyer's duty, burden, risk, or chance of return performance."
                 }
               ],
               "correct_choice_id": "D",
-              "short_explanation": "A/B/C all misstate UCC 2-210 (assignable; no express promise needed; a general assignment delegates duties too).",
+              "short_explanation": "A/B/C overstate UCC 2-210: performance duties generally may be delegated unless the buyer has a substantial interest in the original promisor performing or controlling performance; assignment is limited if it materially changes the other party's duty, burden, risk, or chance of return performance; an assignment of \"the contract\" generally delegates duties as well; acceptance of the assignment can supply the delegatee's promise to perform. Delegation does not by itself release the original obligor from liability.",
               "say_the_break": "D survives both filters; name the break on the other three."
             },
             {
@@ -477,7 +477,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "After a defense verdict (plaintiff moved for JMOL before submission), may she file a renewed JMOL *and* a new-trial motion?",
+              "stem": "Within Rule 50(b)'s deadline after a defense verdict, and after moving for JMOL before submission, may the plaintiff file a renewed JMOL that includes a new-trial request?",
               "prompt": "Run the filters. Which choice survives both?",
               "choices": [
                 {
@@ -490,15 +490,15 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 },
                 {
                   "id": "C",
-                  "text": "Yes — both."
+                  "text": "Yes — the renewed JMOL may include the new-trial request."
                 },
                 {
                   "id": "D",
-                  "text": "Yes — and combine with a motion for relief from judgment."
+                  "text": "Yes — but only if the court first grants relief from judgment under Rule 60."
                 }
               ],
               "correct_choice_id": "C",
-              "short_explanation": "A/B false (50(b) allows joining); D misfit (Rule 60 isn't the post-verdict vehicle).",
+              "short_explanation": "A/B false: after a proper Rule 50(a) motion, a timely Rule 50(b) renewed JMOL may include an alternative or joint Rule 59 new-trial request. D adds a false Rule 60 prerequisite.",
               "say_the_break": "C survives both filters; name the break on the other three."
             },
             {
@@ -510,7 +510,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "A merchant retailer's signed letter assures firm catalog prices \"throughout the coming year\"; a month later it tries to raise prices for the following month's orders. Effective for that month?",
+              "stem": "A merchant seller sends a buyer a signed written offer to sell 500 units of specified goods at a stated price and assures the offer will remain open \"throughout the coming year\"; one month later, before the buyer accepts, the seller tries to raise the price. Effective for an acceptance that month?",
               "prompt": "Run the filters. Which choice survives both?",
               "choices": [
                 {
@@ -531,7 +531,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "B",
-              "short_explanation": "A misfit (it's 2-205, not PE); C backwards (firm offers need no consideration); D — the cap is three months and the relevant month falls inside it, so the increase doesn't reach it.",
+              "short_explanation": "A misfit (the operative rule is UCC 2-205, not promissory estoppel); C backwards (a firm offer needs no consideration); D misstates the cap — the assurance is enforceable only up to three months, and the relevant month is inside that cap.",
               "say_the_break": "B survives both filters; name the break on the other three."
             },
             {
@@ -543,7 +543,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "A closely-supervised eight-year-old's grocery cart injures a shopper; assume the child was negligent and the mother under-supervised. Suing the mother in negligence, does the shopper prevail?",
+              "stem": "An under-supervised eight-year-old's grocery cart injures a shopper; assume the child was negligent and the mother failed to supervise adequately. Suing the mother in negligence, does the shopper prevail?",
               "prompt": "Run the filters. Which choice survives both?",
               "choices": [
                 {
@@ -564,7 +564,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "D",
-              "short_explanation": "A wrong-element (the child's fault isn't the mother's); B overclaim (no general vicarious liability); C misfit (assumption of risk isn't an affirmative basis).",
+              "short_explanation": "A wrong-element (the child's fault alone isn't the mother's negligence); B overclaim (no general vicarious parental liability); C misfit (assumption of risk isn't an affirmative basis for the mother's liability).",
               "say_the_break": "D survives both filters; name the break on the other three."
             },
             {
@@ -597,7 +597,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "A",
-              "short_explanation": "B false (zoning ≠ title defect); C misfit (deed type doesn't cure an encumbrance); D backwards (marketable title is implied despite silence).",
+              "short_explanation": "A private recorded covenant is an encumbrance that can make title unmarketable. B false (mere zoning ≠ title defect); C misfit (deed type does not cure an existing encumbrance); D backwards (marketable title is implied despite silence).",
               "say_the_break": "A survives both filters; name the break on the other three."
             },
             {
@@ -630,7 +630,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "C",
-              "short_explanation": "A misfit (zone-of-danger doesn't govern); B bait-doctrine (that's IIED; this is negligent mishandling); D backwards (the corpse exception waives physical harm).",
+              "short_explanation": "A misfit (zone-of-danger rules do not control this special negligent-mishandling category); B bait-doctrine (that is IIED framing, not the negligence theory); D backwards (negligent mishandling of a corpse can permit serious emotional-distress recovery without a separate physical-impact requirement).",
               "say_the_break": "C survives both filters; name the break on the other three."
             },
             {
@@ -642,7 +642,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "A retailer-sold safety device fails from a manufacturing defect; the climber falls; a rescuer is hurt reaching him. Suing the retailer, does the rescuer prevail?",
+              "stem": "A retailer-sold safety device fails from a manufacturing defect; the climber falls; a foreseeable rescuer is hurt while reaching him. Suing the retailer in strict products liability, does the rescuer prevail?",
               "prompt": "Run the filters. Which choice survives both?",
               "choices": [
                 {
@@ -659,11 +659,11 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 },
                 {
                   "id": "D",
-                  "text": "Yes — injury to someone in the rescuer's position was foreseeable."
+                  "text": "Yes — injury to a foreseeable rescuer was within the risk created by the defective product."
                 }
               ],
               "correct_choice_id": "D",
-              "short_explanation": "A misfit (inspection is a negligence defense, not strict liability); B backwards (no reliance required); C misfit (wrong party's conduct).",
+              "short_explanation": "A misfit: the retailer's inability to discover the manufacturing defect by reasonable inspection does not defeat strict products liability. B backwards (strict products liability does not require reliance); C misfit (the climber's failure to test is not the rescuer's responsive basis).",
               "say_the_break": "D survives both filters; name the break on the other three."
             },
             {
@@ -675,7 +675,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "Parties agree on a building plus sidewalk paving for $200k; later they orally agree to drop the paving but keep the $200k; the contractor builds but won't pave. Breach?",
+              "stem": "Parties enter a construction/services contract for a building plus sidewalk paving for $200k; later they orally agree to drop the paving but keep the $200k; the contractor builds but won't pave. Breach?",
               "prompt": "Run the filters. Which choice survives both?",
               "choices": [
                 {
@@ -696,7 +696,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "D",
-              "short_explanation": "A misfit (UCC good-faith-modification rule on a services contract); B false (no general writing requirement); C backwards (PER doesn't bar a subsequent modification).",
+              "short_explanation": "A misfit (UCC good-faith-modification rule on a services contract); B false (no general writing requirement); C backwards (the PER itself does not bar a subsequent modification).",
               "say_the_break": "D survives both filters; name the break on the other three."
             },
             {
@@ -713,11 +713,11 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "choices": [
                 {
                   "id": "A",
-                  "text": "No — should have been under Rule 26(g)."
+                  "text": "No — should have been under Rule 26(g) alone."
                 },
                 {
                   "id": "B",
-                  "text": "No — Rule 11 doesn't apply to discovery, only pleadings."
+                  "text": "No — Rule 11 itself excludes discovery matters governed by Rules 26–37."
                 },
                 {
                   "id": "C",
@@ -725,11 +725,11 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 },
                 {
                   "id": "D",
-                  "text": "Yes — the court may convert a Rule 11 motion into a Rule 37(b) motion."
+                  "text": "Yes — Rule 11 expressly authorizes sanctions for discovery refusals covered by Rules 26–37."
                 }
               ],
               "correct_choice_id": "B",
-              "short_explanation": "A near-miss (right that Rule 11 is out, but 26(g) isn't the vehicle for a deposition refusal — Rule 37 is); C misfit (policy gloss, not the rule); D fabrication (no such conversion).",
+              "short_explanation": "A is too narrow: Rule 26(g) covers certification of discovery papers, while deposition misconduct and violation of an order to compel point to discovery-sanctions authority, especially Rules 30 and 37. C is policy gloss, not the rule. D contradicts Rule 11(d), which excludes discovery matters governed by Rules 26–37 from Rule 11.",
               "say_the_break": "B survives both filters; name the break on the other three."
             },
             {
@@ -741,12 +741,12 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "An assault victim with no memory of the attack would testify that, before losing consciousness, he told a passerby the defendant hit him. Defense objects: hearsay, no personal knowledge. Admissible?",
+              "stem": "An assault victim saw the attacker, identified the defendant to a passerby moments after the attack, then lost consciousness. At trial, the victim testifies but has no memory of the attack or the identification. The passerby would testify to the victim's identification. Defense objects: hearsay, no personal knowledge. Admissible?",
               "prompt": "Run the filters. Which choice survives both?",
               "choices": [
                 {
                   "id": "A",
-                  "text": "No — no showing he more-likely-than-not had personal knowledge."
+                  "text": "No — personal knowledge must be proved more likely than not before the statement can be admitted."
                 },
                 {
                   "id": "B",
@@ -754,15 +754,15 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 },
                 {
                   "id": "C",
-                  "text": "Yes — he's subject to cross and personal knowledge is sufficiently shown."
+                  "text": "Yes — the prior identification is not hearsay because the victim testifies and is subject to cross-examination about it, and the circumstances sufficiently support personal knowledge."
                 },
                 {
                   "id": "D",
-                  "text": "Yes — it's his own out-of-court statement."
+                  "text": "Yes — it's his own out-of-court statement, so hearsay is not a problem."
                 }
               ],
               "correct_choice_id": "C",
-              "short_explanation": "A half-truth (misstates the showing); B backwards (*Owens*); D fabrication (one's own statement isn't itself an exception).",
+              "short_explanation": "A overstates the Rule 602 foundation threshold; B is backwards under *Owens* because memory loss does not by itself remove the witness from cross-examination; D is wrong because a person's own statement is not automatically admissible for that reason. The admissibility route is the prior-identification exclusion from hearsay, plus a Rule 602 foundation sufficient to support a finding of personal knowledge.",
               "say_the_break": "C survives both filters; name the break on the other three."
             }
           ]
@@ -772,19 +772,19 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
           "title": "The true-versus-true cut. (Isolate the RESPONSIVE choice.)",
           "instructions_md": "Each item gives a stem and **two** choices. Both state real legal propositions — or one states a real rule misapplied to these facts. Picking by \"which is true law\" will not work. Pick the one that **answers the question asked.**",
           "items": [
-            "1. *Failure-to-serve motion; the lawyer forgot for four months.* (A) Filing commenced the action and was timely. (B) No good cause was shown for the failure to serve.",
-            "2. *Federal generally-applicable fleet regulation applied to a city; the city seeks an injunction.* (A) Valid under the commerce clause; no Tenth Amendment violation. (B) The federal government has sovereign immunity and can't be sued without consent.",
-            "3. *In **state** court, the employee demands a jury under the Seventh Amendment in a suit seeking an injunction.* (A) The Seventh Amendment hasn't been incorporated against the states. (B) The Seventh Amendment reaches only suits at common law, and this is equity.",
-            "4. *Plaintiff seeks the opinions of an expert the defense retained but will not call.* (A) Discoverable on substantial need and undue hardship. (B) Discoverable only on exceptional circumstances making the facts/opinions impracticable to obtain otherwise.",
+            "1. *Failure-to-serve motion; the complaint was filed before the limitations deadline, but the lawyer forgot to serve for four months and shows no good cause for the delay.* (A) The complaint was filed before the limitations deadline and filing commenced the federal action. (B) Service was not made within Rule 4(m)'s service period, so the court may dismiss without prejudice or order service within a specified time.",
+            "2. *A federal fleet regulation, otherwise within Congress's enumerated power, applies generally to public and private fleet operators, including a city as a fleet operator; it does not require the city to enact laws or administer a federal program. The city argues the rule is invalid under the Tenth Amendment.* (A) A generally applicable federal regulation may regulate the city as a fleet operator without commandeering the city. (B) The United States generally cannot be sued for damages without its consent.",
+            "3. *In **state** court, the employee demands a jury under the Seventh Amendment in a legal damages claim.* (A) The Seventh Amendment hasn't been incorporated against the states. (B) In federal court, the Seventh Amendment preserves jury rights in suits at common law, not equitable claims.",
+            "4. *Plaintiff seeks the opinions of an expert the defense retained in anticipation of litigation, used only for trial preparation, and does not expect to call at trial.* (A) Ordinary fact work product, if otherwise discoverable, may be discovered if the party has substantial need and cannot without undue hardship obtain its substantial equivalent by other means. (B) Facts or opinions of an expert retained only for trial preparation and not expected to testify are discoverable only as provided in Rule 35(b) or on exceptional circumstances making it impracticable to obtain them by other means.",
             "5. *Shopper sues the under-supervising **mother**; the child was negligent.* (A) The child was negligent. (B) The mother failed to adequately supervise.",
-            "6. *Amendment: original claim = failure to disclose an alternative method (informed consent); new claim = negligent surgical performance.* (A) The amendment relates back to the original complaint. (B) The new claim didn't arise from the same event as the original.",
-            "7. *Resident sues under a **state** statute that copies a federal one (minus the interstate limit); claims federal-question jurisdiction.* (A) The claim incorporates an essential, determinative element of federal law. (B) The claim does not concern a federal question.",
+            "6. *Amendment: original claim = failure to disclose an alternative method before a May procedure; new claim = negligent surgical performance during a different July procedure.* (A) An amendment can relate back when it arises from the same conduct, transaction, or occurrence as the original pleading. (B) This new claim did not arise from the same conduct, transaction, or occurrence as the original claim.",
+            "7. *Resident sues under a **state** statute that copies a federal one (minus the interstate limit); claims federal-question jurisdiction.* (A) A state-law claim can support federal-question jurisdiction if it necessarily raises an actually disputed, substantial federal issue that can be heard without disrupting the federal-state balance. (B) This claim does not arise under federal law merely because the state statute copied federal wording.",
             "8. *In **state** court, the contractor demands a jury for a contract dispute; state rules grant a jury in contract cases.* (A) The Seventh Amendment isn't incorporated against the states. (B) State law provides for jury trials in contract disputes.",
-            "9. *The plaintiff moves to add, by **supplemental** pleading, an intentional tort the defendant committed **after** the original filing.* (A) The tort occurred after the original lawsuit was filed. (B) It is a timely supplemental pleading.",
-            "10. *Buyer's purchase order (offer); seller mails acceptance the same day; the next day, before the letter arrives, the buyer phones a revocation. Contract?* (A) The order was an irrevocable offer for a reasonable time. (B) The seller accepted by mailing before the buyer's attempted revocation."
+            "9. *The plaintiff moves, with reasonable notice, for leave to add by **supplemental** pleading an intentional tort the defendant committed **after** the original filing.* (A) Supplemental pleadings address events that happened after the original pleading. (B) The court may permit the supplemental pleading on just terms.",
+            "10. *Buyer's purchase order is an offer and contains no signed assurance that it will be held open; seller properly mails an acceptance the same day; the next day, before the letter arrives, the buyer phones a revocation. Contract?* (A) A merchant's signed offer to buy or sell goods can be irrevocable without consideration if it gives assurance it will be held open. (B) The seller accepted by mailing before the buyer's attempted revocation."
           ],
           "item_count": 10,
-          "key_md": "1. **B** — the motion is about service, not filing. (A) answers the wrong question.\n2. **A** — the issue is Congress's power over states; sovereign immunity (B) isn't in play.\n3. **A** — he invoked the Seventh Amendment in **state** court; the dispositive point is that it doesn't reach state courts at all. (B) is true but isn't the precise rebuttal to his specific demand.\n4. **B** — non-testifying/consulting-expert standard. (A) is the fact-work-product standard, the wrong protection.\n5. **B** — the claim is against the **mother**; her own negligence is the responsive basis. The child's negligence (A) doesn't establish it.\n6. **B** — different occurrences (pre-surgery disclosure vs surgical performance), so no relation-back. (A) is the right rule applied to the wrong facts.\n7. **B** — copied text is not a substantial, disputed federal issue. (A) invokes a Grable hook the facts don't support.\n8. **B** — the question is entitlement to a jury; state law grants it. (A) answers \"is there a *federal* right,\" not the question asked.\n9. **B** — Rule 15(d) is exactly for post-filing events. (A) is true, but it's the *trigger* for a supplemental pleading, not a bar.\n10. **B** — mailbox rule: acceptance is effective on dispatch, before the revocation. (A) is false on these facts — this order gives no signed firm-offer assurance, so it's revocable (a merchant-buyer's *signed assurance* could make it firm under §2-205, but that's not these facts).",
+          "key_md": "1. **B** — the motion is about service, not filing/timeliness. Rule 4(m) treats untimely service separately from timely commencement; absent good cause, the court may dismiss without prejudice or order service within a specified time.\n2. **A** — the issue is whether generally applicable federal law can regulate the city as an operator without commandeering state or local lawmaking/enforcement. Federal sovereign immunity is a real doctrine, but it does not answer whether the regulation is valid.\n3. **A** — he invoked the Seventh Amendment in **state** court; the dispositive point is that the federal Seventh Amendment civil-jury right does not bind state courts. (B) states a true federal-court distinction, but it is not the answer to a state-court Seventh Amendment demand.\n4. **B** — (A) states the ordinary fact-work-product standard; (B) is the special Rule 26(b)(4)(D) standard for retained trial-preparation experts not expected to testify and answers these facts.\n5. **B** — the claim is against the **mother**; her own negligence is the responsive basis. The child's negligence (A) doesn't establish it.\n6. **B** — Rule 15(c) uses the same conduct/transaction/occurrence test. (A) states the true rule; (B) applies it to these facts: disclosure before the May procedure and negligent performance during a different July procedure are different occurrences, so this amendment does not relate back.\n7. **B** — (A) states the Grable/Gunn embedded-federal-issue rule; (B) applies it. Copied statutory text, without a necessary and substantial disputed federal issue, does not create federal-question jurisdiction.\n8. **B** — the question is entitlement to a jury; state law grants it. (A) answers \"is there a *federal* right,\" not the question asked.\n9. **B** — Rule 15(d) is for post-pleading events, but supplementation is by court permission on just terms. (A) identifies the category; (B) answers what the court may do.\n10. **B** — mailbox rule: unless the offer provides otherwise, acceptance is effective on dispatch, before the revocation. (A) states a true firm-offer rule, but these facts expressly lack a signed assurance holding the offer open and do not turn on firm-offer irrevocability.",
           "task_type": "TRUE_VS_TRUE",
           "graded_items": [
             {
@@ -796,16 +796,16 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "Failure-to-serve motion; the lawyer forgot for four months.",
-              "prompt": "Both state real law. Which one answers the question asked?",
+              "stem": "Failure-to-serve motion; the complaint was filed before the limitations deadline, but the lawyer forgot to serve for four months and shows no good cause for the delay.",
+              "prompt": "Both choices are true or state a true rule. Which one answers the question asked?",
               "choices": [
                 {
                   "id": "A",
-                  "text": "Filing commenced the action and was timely."
+                  "text": "The complaint was filed before the limitations deadline and filing commenced the federal action."
                 },
                 {
                   "id": "B",
-                  "text": "No good cause was shown for the failure to serve."
+                  "text": "Service was not made within Rule 4(m)'s service period, so the court may dismiss without prejudice or order service within a specified time."
                 }
               ],
               "correct_choice_id": "B",
@@ -813,7 +813,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 "B": "SURVIVES",
                 "A": "TRUE_BUT_NOT_RESPONSIVE"
               },
-              "short_explanation": "the motion is about service, not filing. (A) answers the wrong question.",
+              "short_explanation": "the motion is about service, not filing/timeliness. Rule 4(m) treats untimely service separately from timely commencement; absent good cause, the court may dismiss without prejudice or order service within a specified time.",
               "say_the_break": "B answers the call; A is true but aimed elsewhere."
             },
             {
@@ -825,24 +825,24 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "Federal generally-applicable fleet regulation applied to a city; the city seeks an injunction.",
-              "prompt": "Both state real law. Which one answers the question asked?",
+              "stem": "A federal fleet regulation, otherwise within Congress's enumerated power, applies generally to public and private fleet operators, including a city as a fleet operator; it does not require the city to enact laws or administer a federal program. The city argues the rule is invalid under the Tenth Amendment.",
+              "prompt": "Both choices are true or state a true rule. Which one answers the question asked?",
               "choices": [
                 {
                   "id": "A",
-                  "text": "Valid under the commerce clause; no Tenth Amendment violation."
+                  "text": "A generally applicable federal regulation may regulate the city as a fleet operator without commandeering the city."
                 },
                 {
                   "id": "B",
-                  "text": "The federal government has sovereign immunity and can't be sued without consent."
+                  "text": "The United States generally cannot be sued for damages without its consent."
                 }
               ],
               "correct_choice_id": "A",
               "choice_statuses": {
                 "A": "SURVIVES",
-                "B": "NOT_TRUE"
+                "B": "TRUE_BUT_NOT_RESPONSIVE"
               },
-              "short_explanation": "the issue is Congress's power over states; sovereign immunity (B) isn't in play.",
+              "short_explanation": "the issue is whether generally applicable federal law can regulate the city as an operator without commandeering state or local lawmaking/enforcement. Federal sovereign immunity is a real doctrine, but it does not answer whether the regulation is valid.",
               "say_the_break": "A answers the call; B is true but aimed elsewhere."
             },
             {
@@ -854,8 +854,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "In **state** court, the employee demands a jury under the Seventh Amendment in a suit seeking an injunction.",
-              "prompt": "Both state real law. Which one answers the question asked?",
+              "stem": "In **state** court, the employee demands a jury under the Seventh Amendment in a legal damages claim.",
+              "prompt": "Both choices are true or state a true rule. Which one answers the question asked?",
               "choices": [
                 {
                   "id": "A",
@@ -863,15 +863,15 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 },
                 {
                   "id": "B",
-                  "text": "The Seventh Amendment reaches only suits at common law, and this is equity."
+                  "text": "In federal court, the Seventh Amendment preserves jury rights in suits at common law, not equitable claims."
                 }
               ],
               "correct_choice_id": "A",
               "choice_statuses": {
                 "A": "SURVIVES",
-                "B": "NOT_TRUE"
+                "B": "TRUE_BUT_NOT_RESPONSIVE"
               },
-              "short_explanation": "he invoked the Seventh Amendment in **state** court; the dispositive point is that it doesn't reach state courts at all. (B) is true but isn't the precise rebuttal to his specific demand.",
+              "short_explanation": "he invoked the Seventh Amendment in **state** court; the dispositive point is that the federal Seventh Amendment civil-jury right does not bind state courts. (B) states a true federal-court distinction, but it is not the answer to a state-court Seventh Amendment demand.",
               "say_the_break": "A answers the call; B is true but aimed elsewhere."
             },
             {
@@ -883,16 +883,16 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "Plaintiff seeks the opinions of an expert the defense retained but will not call.",
-              "prompt": "Both state real law. Which one answers the question asked?",
+              "stem": "Plaintiff seeks the opinions of an expert the defense retained in anticipation of litigation, used only for trial preparation, and does not expect to call at trial.",
+              "prompt": "Both choices are true or state a true rule. Which one answers the question asked?",
               "choices": [
                 {
                   "id": "A",
-                  "text": "Discoverable on substantial need and undue hardship."
+                  "text": "Ordinary fact work product, if otherwise discoverable, may be discovered if the party has substantial need and cannot without undue hardship obtain its substantial equivalent by other means."
                 },
                 {
                   "id": "B",
-                  "text": "Discoverable only on exceptional circumstances making the facts/opinions impracticable to obtain otherwise."
+                  "text": "Facts or opinions of an expert retained only for trial preparation and not expected to testify are discoverable only as provided in Rule 35(b) or on exceptional circumstances making it impracticable to obtain them by other means."
                 }
               ],
               "correct_choice_id": "B",
@@ -900,7 +900,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 "B": "SURVIVES",
                 "A": "TRUE_BUT_NOT_RESPONSIVE"
               },
-              "short_explanation": "non-testifying/consulting-expert standard. (A) is the fact-work-product standard, the wrong protection.",
+              "short_explanation": "(A) states the ordinary fact-work-product standard; (B) is the special Rule 26(b)(4)(D) standard for retained trial-preparation experts not expected to testify and answers these facts.",
               "say_the_break": "B answers the call; A is true but aimed elsewhere."
             },
             {
@@ -913,7 +913,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "source_status": "legacy_candidate",
               "enabled": true,
               "stem": "Shopper sues the under-supervising **mother**; the child was negligent.",
-              "prompt": "Both state real law. Which one answers the question asked?",
+              "prompt": "Both choices are true or state a true rule. Which one answers the question asked?",
               "choices": [
                 {
                   "id": "A",
@@ -941,16 +941,16 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "Amendment: original claim = failure to disclose an alternative method (informed consent); new claim = negligent surgical performance.",
-              "prompt": "Both state real law. Which one answers the question asked?",
+              "stem": "Amendment: original claim = failure to disclose an alternative method before a May procedure; new claim = negligent surgical performance during a different July procedure.",
+              "prompt": "Both choices are true or state a true rule. Which one answers the question asked?",
               "choices": [
                 {
                   "id": "A",
-                  "text": "The amendment relates back to the original complaint."
+                  "text": "An amendment can relate back when it arises from the same conduct, transaction, or occurrence as the original pleading."
                 },
                 {
                   "id": "B",
-                  "text": "The new claim didn't arise from the same event as the original."
+                  "text": "This new claim did not arise from the same conduct, transaction, or occurrence as the original claim."
                 }
               ],
               "correct_choice_id": "B",
@@ -958,7 +958,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 "B": "SURVIVES",
                 "A": "TRUE_BUT_NOT_RESPONSIVE"
               },
-              "short_explanation": "different occurrences (pre-surgery disclosure vs surgical performance), so no relation-back. (A) is the right rule applied to the wrong facts.",
+              "short_explanation": "Rule 15(c) uses the same conduct/transaction/occurrence test. (A) states the true rule; (B) applies it to these facts: disclosure before the May procedure and negligent performance during a different July procedure are different occurrences, so this amendment does not relate back.",
               "say_the_break": "B answers the call; A is true but aimed elsewhere."
             },
             {
@@ -971,15 +971,15 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "source_status": "legacy_candidate",
               "enabled": true,
               "stem": "Resident sues under a **state** statute that copies a federal one (minus the interstate limit); claims federal-question jurisdiction.",
-              "prompt": "Both state real law. Which one answers the question asked?",
+              "prompt": "Both choices are true or state a true rule. Which one answers the question asked?",
               "choices": [
                 {
                   "id": "A",
-                  "text": "The claim incorporates an essential, determinative element of federal law."
+                  "text": "A state-law claim can support federal-question jurisdiction if it necessarily raises an actually disputed, substantial federal issue that can be heard without disrupting the federal-state balance."
                 },
                 {
                   "id": "B",
-                  "text": "The claim does not concern a federal question."
+                  "text": "This claim does not arise under federal law merely because the state statute copied federal wording."
                 }
               ],
               "correct_choice_id": "B",
@@ -987,7 +987,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 "B": "SURVIVES",
                 "A": "TRUE_BUT_NOT_RESPONSIVE"
               },
-              "short_explanation": "copied text is not a substantial, disputed federal issue. (A) invokes a Grable hook the facts don't support.",
+              "short_explanation": "(A) states the Grable/Gunn embedded-federal-issue rule; (B) applies it. Copied statutory text, without a necessary and substantial disputed federal issue, does not create federal-question jurisdiction.",
               "say_the_break": "B answers the call; A is true but aimed elsewhere."
             },
             {
@@ -1000,7 +1000,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "source_status": "legacy_candidate",
               "enabled": true,
               "stem": "In **state** court, the contractor demands a jury for a contract dispute; state rules grant a jury in contract cases.",
-              "prompt": "Both state real law. Which one answers the question asked?",
+              "prompt": "Both choices are true or state a true rule. Which one answers the question asked?",
               "choices": [
                 {
                   "id": "A",
@@ -1028,16 +1028,16 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "The plaintiff moves to add, by **supplemental** pleading, an intentional tort the defendant committed **after** the original filing.",
-              "prompt": "Both state real law. Which one answers the question asked?",
+              "stem": "The plaintiff moves, with reasonable notice, for leave to add by **supplemental** pleading an intentional tort the defendant committed **after** the original filing.",
+              "prompt": "Both choices are true or state a true rule. Which one answers the question asked?",
               "choices": [
                 {
                   "id": "A",
-                  "text": "The tort occurred after the original lawsuit was filed."
+                  "text": "Supplemental pleadings address events that happened after the original pleading."
                 },
                 {
                   "id": "B",
-                  "text": "It is a timely supplemental pleading."
+                  "text": "The court may permit the supplemental pleading on just terms."
                 }
               ],
               "correct_choice_id": "B",
@@ -1045,7 +1045,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 "B": "SURVIVES",
                 "A": "TRUE_BUT_NOT_RESPONSIVE"
               },
-              "short_explanation": "Rule 15(d) is exactly for post-filing events. (A) is true, but it's the *trigger* for a supplemental pleading, not a bar.",
+              "short_explanation": "Rule 15(d) is for post-pleading events, but supplementation is by court permission on just terms. (A) identifies the category; (B) answers what the court may do.",
               "say_the_break": "B answers the call; A is true but aimed elsewhere."
             },
             {
@@ -1057,12 +1057,12 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "Buyer's purchase order (offer); seller mails acceptance the same day; the next day, before the letter arrives, the buyer phones a revocation. Contract?",
-              "prompt": "Both state real law. Which one answers the question asked?",
+              "stem": "Buyer's purchase order is an offer and contains no signed assurance that it will be held open; seller properly mails an acceptance the same day; the next day, before the letter arrives, the buyer phones a revocation. Contract?",
+              "prompt": "Both choices are true or state a true rule. Which one answers the question asked?",
               "choices": [
                 {
                   "id": "A",
-                  "text": "The order was an irrevocable offer for a reasonable time."
+                  "text": "A merchant's signed offer to buy or sell goods can be irrevocable without consideration if it gives assurance it will be held open."
                 },
                 {
                   "id": "B",
@@ -1072,9 +1072,9 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "correct_choice_id": "B",
               "choice_statuses": {
                 "B": "SURVIVES",
-                "A": "NOT_TRUE"
+                "A": "TRUE_BUT_NOT_RESPONSIVE"
               },
-              "short_explanation": "mailbox rule: acceptance is effective on dispatch, before the revocation. (A) is false on these facts — this order gives no signed firm-offer assurance, so it's revocable (a merchant-buyer's *signed assurance* could make it firm under §2-205, but that's not these facts).",
+              "short_explanation": "mailbox rule: unless the offer provides otherwise, acceptance is effective on dispatch, before the revocation. (A) states a true firm-offer rule, but these facts expressly lack a signed assurance holding the offer open and do not turn on firm-offer irrevocability.",
               "say_the_break": "B answers the call; A is true but aimed elsewhere."
             }
           ]
@@ -1084,19 +1084,19 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
           "title": "Mixed: keep or break? (Includes credited answers.)",
           "instructions_md": "Not every choice here is wrong. For each, classify: **[SURVIVES]** (true and responsive — this is the credited answer), **[NOT TRUE]**, or **[TRUE BUT NOT RESPONSIVE]**.",
           "items": [
-            "1. *Ad used the plaintiff's identity but not his name.* — \"For the defendant: appropriation requires using the plaintiff's name.\"",
-            "2. *Same ad.* — \"For the plaintiff: there are sufficient indicia of his identity to support liability.\"",
-            "3. *Failure-to-serve motion.* — \"Filing commenced the action and it was timely.\"",
-            "4. *President refuses to spend appropriated funds.* — \"He is obligated to spend the funds as Congress directed.\"",
-            "5. *First-degree murder = poison or premeditation; laxatives given to cause discomfort, idiosyncratic death.* — \"Guilty: both poison and premeditation.\"",
-            "6. *State sold its gas field by bid and chose a lower local bidder.* — \"For the state: it acted as a market participant.\"",
-            "7. *Federal generally-applicable regulation applied to states.* — \"Sovereign immunity bars suit without consent.\"",
-            "8. *Hiker struck by a limb while trespassing; natural termite-weakened condition.* — \"For the owner: no duty was breached to a trespasser.\"",
-            "9. *May a party join a renewed JMOL with a new-trial motion?* — \"Only one motion may be filed, not both.\"",
-            "10. *Residential-picketing ban with an exception for zoning-topic picketing.* — \"Challenge succeeds: the ordinance is content-based.\""
+            "1. *A commercial ad used the plaintiff's recognizable identity without consent but not his name.* — \"For the defendant: appropriation requires using the plaintiff's name.\"",
+            "2. *A commercial ad used the plaintiff's recognizable identity without consent but not his name.* — \"For the plaintiff: the ad used sufficient recognizable indicia of his identity without consent to support appropriation liability.\"",
+            "3. *The complaint was filed before the limitations deadline, but the defendant moves to dismiss because service was not completed on time.* — \"The complaint was filed before the limitations deadline and filing commenced the federal action.\"",
+            "4. *President refuses to spend funds Congress appropriated and directed to be spent.* — \"Absent a valid statutory basis for withholding, he is obligated to spend the funds as Congress directed.\"",
+            "5. *First-degree murder = poison or premeditation; ordinary nonlethal laxatives were given in a dose intended to cause discomfort, and death resulted from an idiosyncratic reaction.* — \"Guilty: both poison and premeditation.\"",
+            "6. *State sells natural gas from a gas field it owns by bid and chooses a lower local bidder, with no downstream resale, processing, or shipment restriction stated.* — \"For the state: it acted as a market participant.\"",
+            "7. *Federal regulation, otherwise within Congress's enumerated power, applies generally to public and private actors including states as regulated actors; it does not require states to enact or enforce a federal program.* — \"The United States generally cannot be sued for damages without its consent.\"",
+            "8. *Adult hiker struck by a limb while trespassing; natural tree condition weakened by termites.* — \"For the owner: no duty was breached to this trespasser on these facts.\"",
+            "9. *After preserving JMOL under Rule 50(a), may a party timely file a Rule 50(b) renewed JMOL that includes a new-trial request?* — \"Only one motion may be filed, not both.\"",
+            "10. *Residential-picketing ban with an exception for zoning-topic picketing; no compelling justification is shown for the topic exception.* — \"Challenge succeeds: the ordinance draws a content-based distinction.\""
           ],
           "item_count": 10,
-          "key_md": "1. **NOT TRUE** — indicia of identity suffice; no name required.\n2. **SURVIVES** — true and responsive (the appropriation claim stands).\n3. **TRUE BUT NOT RESPONSIVE** — answers filing, not service.\n4. **SURVIVES** — the anti-impoundment rule answers the question.\n5. **NOT TRUE** — laxatives aren't poison and intending discomfort isn't premeditation; neither predicate is met.\n6. **SURVIVES** — market-participant doctrine takes it outside the dormant commerce clause.\n7. **TRUE BUT NOT RESPONSIVE** — a real doctrine, but the issue is Congress's power over states.\n8. **SURVIVES** — limited duty to a trespasser resolves it.\n9. **NOT TRUE** — Rule 50(b) allows both.\n10. **SURVIVES** — the content-based exception triggers strict scrutiny; the challenge prevails.",
+          "key_md": "1. **NOT TRUE** — unauthorized commercial use of recognizable indicia of identity can suffice; no use of the plaintiff's legal name is required.\n2. **SURVIVES** — true and responsive: unauthorized commercial use of recognizable indicia of identity supports the appropriation claim on these facts.\n3. **TRUE BUT NOT RESPONSIVE** — the choice answers filing/timeliness, not service; service is a separate Rule 4(m) requirement after filing, generally within 90 days unless the court extends time.\n4. **SURVIVES** — the anti-impoundment rule answers the question: the President generally must spend funds Congress has directed to be spent unless lawful withholding is authorized.\n5. **NOT TRUE** — on these facts, the state has not established the poison-murder predicate, and intending discomfort is not premeditated intent to kill; neither first-degree predicate is met.\n6. **SURVIVES** — when the state sells its own commodity and selects its buyer, it is acting as a market participant rather than regulating the market. The market-participant doctrine permits this kind of preferential dealing in the state's own transaction; the facts do not add a downstream restraint, which would raise a different dormant-commerce issue.\n7. **TRUE BUT NOT RESPONSIVE** — federal sovereign immunity is a real doctrine, but the issue is Congress's power to regulate states as regulated actors without commandeering state lawmaking or enforcement.\n8. **SURVIVES** — the traditional limited duty to an adult trespasser resolves it; the facts involve a natural tree condition and do not indicate willful/wanton conduct or a known concealed artificial danger.\n9. **NOT TRUE** — after proper Rule 50(a) preservation and timely Rule 50(b) renewal, the renewed JMOL may include an alternative or joint new-trial request.\n10. **SURVIVES** — a residential-picketing ban can be valid when content neutral, but this ordinance singles out zoning-topic picketing. That content-based exception triggers strict scrutiny; absent a compelling, narrowly tailored justification, the challenge succeeds.",
           "task_type": "MIXED_CLASSIFICATION",
           "graded_items": [
             {
@@ -1108,12 +1108,12 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "Ad used the plaintiff's identity but not his name.",
+              "stem": "A commercial ad used the plaintiff's recognizable identity without consent but not his name.",
               "prompt": "Keep or break? Classify this choice.",
               "choice_text": "For the defendant: appropriation requires using the plaintiff's name.",
               "correct_status": "NOT_TRUE",
-              "short_explanation": "indicia of identity suffice; no name required.",
-              "say_the_break": "False — indicia of identity suffice"
+              "short_explanation": "unauthorized commercial use of recognizable indicia of identity can suffice; no use of the plaintiff's legal name is required.",
+              "say_the_break": "False — unauthorized commercial use of recognizable indicia of identity can suffice"
             },
             {
               "id": "L1-D15-I02",
@@ -1124,11 +1124,11 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "Same ad.",
+              "stem": "A commercial ad used the plaintiff's recognizable identity without consent but not his name.",
               "prompt": "Keep or break? Classify this choice.",
-              "choice_text": "For the plaintiff: there are sufficient indicia of his identity to support liability.",
+              "choice_text": "For the plaintiff: the ad used sufficient recognizable indicia of his identity without consent to support appropriation liability.",
               "correct_status": "SURVIVES",
-              "short_explanation": "true and responsive (the appropriation claim stands).",
+              "short_explanation": "true and responsive: unauthorized commercial use of recognizable indicia of identity supports the appropriation claim on these facts.",
               "say_the_break": "True and responsive."
             },
             {
@@ -1140,11 +1140,11 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "Failure-to-serve motion.",
+              "stem": "The complaint was filed before the limitations deadline, but the defendant moves to dismiss because service was not completed on time.",
               "prompt": "Keep or break? Classify this choice.",
-              "choice_text": "Filing commenced the action and it was timely.",
+              "choice_text": "The complaint was filed before the limitations deadline and filing commenced the federal action.",
               "correct_status": "TRUE_BUT_NOT_RESPONSIVE",
-              "short_explanation": "answers filing, not service.",
+              "short_explanation": "the choice answers filing/timeliness, not service; service is a separate Rule 4(m) requirement after filing, generally within 90 days unless the court extends time.",
               "say_the_break": "True, but wrong question."
             },
             {
@@ -1156,11 +1156,11 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "President refuses to spend appropriated funds.",
+              "stem": "President refuses to spend funds Congress appropriated and directed to be spent.",
               "prompt": "Keep or break? Classify this choice.",
-              "choice_text": "He is obligated to spend the funds as Congress directed.",
+              "choice_text": "Absent a valid statutory basis for withholding, he is obligated to spend the funds as Congress directed.",
               "correct_status": "SURVIVES",
-              "short_explanation": "the anti-impoundment rule answers the question.",
+              "short_explanation": "the anti-impoundment rule answers the question: the President generally must spend funds Congress has directed to be spent unless lawful withholding is authorized.",
               "say_the_break": "True and responsive."
             },
             {
@@ -1172,12 +1172,12 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "First-degree murder = poison or premeditation; laxatives given to cause discomfort, idiosyncratic death.",
+              "stem": "First-degree murder = poison or premeditation; ordinary nonlethal laxatives were given in a dose intended to cause discomfort, and death resulted from an idiosyncratic reaction.",
               "prompt": "Keep or break? Classify this choice.",
               "choice_text": "Guilty: both poison and premeditation.",
               "correct_status": "NOT_TRUE",
-              "short_explanation": "laxatives aren't poison and intending discomfort isn't premeditation; neither predicate is met.",
-              "say_the_break": "False — laxatives aren't poison and intending discomfort isn't premeditation"
+              "short_explanation": "on these facts, the state has not established the poison-murder predicate, and intending discomfort is not premeditated intent to kill; neither first-degree predicate is met.",
+              "say_the_break": "False — on these facts, the state has not established the poison-murder predicate, and intending discomfort is not premeditated intent to kill"
             },
             {
               "id": "L1-D15-I06",
@@ -1188,11 +1188,11 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "State sold its gas field by bid and chose a lower local bidder.",
+              "stem": "State sells natural gas from a gas field it owns by bid and chooses a lower local bidder, with no downstream resale, processing, or shipment restriction stated.",
               "prompt": "Keep or break? Classify this choice.",
               "choice_text": "For the state: it acted as a market participant.",
               "correct_status": "SURVIVES",
-              "short_explanation": "market-participant doctrine takes it outside the dormant commerce clause.",
+              "short_explanation": "when the state sells its own commodity and selects its buyer, it is acting as a market participant rather than regulating the market. The market-participant doctrine permits this kind of preferential dealing in the state's own transaction; the facts do not add a downstream restraint, which would raise a different dormant-commerce issue.",
               "say_the_break": "True and responsive."
             },
             {
@@ -1204,11 +1204,11 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "Federal generally-applicable regulation applied to states.",
+              "stem": "Federal regulation, otherwise within Congress's enumerated power, applies generally to public and private actors including states as regulated actors; it does not require states to enact or enforce a federal program.",
               "prompt": "Keep or break? Classify this choice.",
-              "choice_text": "Sovereign immunity bars suit without consent.",
+              "choice_text": "The United States generally cannot be sued for damages without its consent.",
               "correct_status": "TRUE_BUT_NOT_RESPONSIVE",
-              "short_explanation": "a real doctrine, but the issue is Congress's power over states.",
+              "short_explanation": "federal sovereign immunity is a real doctrine, but the issue is Congress's power to regulate states as regulated actors without commandeering state lawmaking or enforcement.",
               "say_the_break": "True, but wrong question."
             },
             {
@@ -1220,11 +1220,11 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "Hiker struck by a limb while trespassing; natural termite-weakened condition.",
+              "stem": "Adult hiker struck by a limb while trespassing; natural tree condition weakened by termites.",
               "prompt": "Keep or break? Classify this choice.",
-              "choice_text": "For the owner: no duty was breached to a trespasser.",
+              "choice_text": "For the owner: no duty was breached to this trespasser on these facts.",
               "correct_status": "SURVIVES",
-              "short_explanation": "limited duty to a trespasser resolves it.",
+              "short_explanation": "the traditional limited duty to an adult trespasser resolves it; the facts involve a natural tree condition and do not indicate willful/wanton conduct or a known concealed artificial danger.",
               "say_the_break": "True and responsive."
             },
             {
@@ -1236,12 +1236,12 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "May a party join a renewed JMOL with a new-trial motion?",
+              "stem": "After preserving JMOL under Rule 50(a), may a party timely file a Rule 50(b) renewed JMOL that includes a new-trial request?",
               "prompt": "Keep or break? Classify this choice.",
               "choice_text": "Only one motion may be filed, not both.",
               "correct_status": "NOT_TRUE",
-              "short_explanation": "Rule 50(b) allows both.",
-              "say_the_break": "False — Rule 50(b) allows both"
+              "short_explanation": "after proper Rule 50(a) preservation and timely Rule 50(b) renewal, the renewed JMOL may include an alternative or joint new-trial request.",
+              "say_the_break": "False — after proper Rule 50(a) preservation and timely Rule 50(b) renewal, the renewed JMOL may include an alternative or joint new-trial request"
             },
             {
               "id": "L1-D15-I10",
@@ -1252,11 +1252,11 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               "legal_review_status": "approved",
               "source_status": "legacy_candidate",
               "enabled": true,
-              "stem": "Residential-picketing ban with an exception for zoning-topic picketing.",
+              "stem": "Residential-picketing ban with an exception for zoning-topic picketing; no compelling justification is shown for the topic exception.",
               "prompt": "Keep or break? Classify this choice.",
-              "choice_text": "Challenge succeeds: the ordinance is content-based.",
+              "choice_text": "Challenge succeeds: the ordinance draws a content-based distinction.",
               "correct_status": "SURVIVES",
-              "short_explanation": "the content-based exception triggers strict scrutiny; the challenge prevails.",
+              "short_explanation": "a residential-picketing ban can be valid when content neutral, but this ordinance singles out zoning-topic picketing. That content-based exception triggers strict scrutiny; absent a compelling, narrowly tailored justification, the challenge succeeds.",
               "say_the_break": "True and responsive."
             }
           ]
