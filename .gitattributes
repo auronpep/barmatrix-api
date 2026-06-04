@@ -1,0 +1,6 @@
+# Enforce LF line endings so tsc builds are byte-reproducible across machines
+# (Windows autocrlf would otherwise bake CRLF into compiled dist/ output).
+* text=auto eol=lf
+*.ts text eol=lf
+*.js text eol=lf
+*.json text eol=lf
