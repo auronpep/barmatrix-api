@@ -1554,7 +1554,340 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. State sold its gas field by bid and chose a lower local bidder; the high bidder sues. A) compelling interest in cheaper gas; B) market participant; C) irrational, denied due process; D) discriminated against interstate commerce."
           ],
           "item_count": 10,
-          "key_md": "1. **1 → done.** D survives (A/B/C all false-law).\n2. **2 → Clash.** A and D (C false, B misfit). Axis: reliance.\n3. **1 → done.** C survives (A/B false, D misfit).\n4. **2 → Clash.** A and C (B misfit, D wrong-rationale). Axis: does §1367(b) bar supplemental jurisdiction in a diversity case here?\n5. **1 → done.** D survives (A wrong-element, B overclaim, C misfit).\n6. **2 → Clash.** C and D (A wrong-category, B half-truth). Axis: fact-work-product vs non-testifying-consultant protection.\n7. **1 → done.** A survives (B false, C misfit, D backwards).\n8. **2 → Clash.** A and D (B half-truth, C misfit). Axis: does the usage contradict the express term or explain it?\n9. **1 → done.** C survives (A misfit, B bait-doctrine, D backwards).\n10. **2 → Clash.** B and D (A misfit, C misfit). Axis: market participant vs regulator."
+          "key_md": "1. **1 → done.** D survives (A/B/C all false-law).\n2. **2 → Clash.** A and D (C false, B misfit). Axis: reliance.\n3. **1 → done.** C survives (A/B false, D misfit).\n4. **2 → Clash.** A and C (B misfit, D wrong-rationale). Axis: does §1367(b) bar supplemental jurisdiction in a diversity case here?\n5. **1 → done.** D survives (A wrong-element, B overclaim, C misfit).\n6. **2 → Clash.** C and D (A wrong-category, B half-truth). Axis: fact-work-product vs non-testifying-consultant protection.\n7. **1 → done.** A survives (B false, C misfit, D backwards).\n8. **2 → Clash.** A and D (B half-truth, C misfit). Axis: does the usage contradict the express term or explain it?\n9. **1 → done.** C survives (A misfit, B bait-doctrine, D backwards).\n10. **2 → Clash.** B and D (A misfit, C misfit). Axis: market participant vs regulator.",
+          "task_type": "COUNT_SELECT",
+          "graded_items": [
+            {
+              "id": "L2-D22-I01",
+              "drill_id": "2.2",
+              "sequence": 1,
+              "task_type": "COUNT_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "pending",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "A wholesaler \"assigns\" its sale contracts to a reputable miller; may the buyer reject the first delivery? A) requirements contracts can't be assigned; B) duties pass only by express promise; C) \"assignment\" transfers rights only; D) assignable absent disproportionate quantity change.",
+              "prompt": "Run the Cut. How many choices survive?",
+              "choices": [
+                {
+                  "id": "1",
+                  "text": "1"
+                },
+                {
+                  "id": "2",
+                  "text": "2"
+                },
+                {
+                  "id": "3",
+                  "text": "3"
+                },
+                {
+                  "id": "4",
+                  "text": "4"
+                }
+              ],
+              "correct_choice_id": "1",
+              "short_explanation": "D survives (A/B/C all false-law).",
+              "say_the_break": "1 survive — D survives (A/B/C all false-law)"
+            },
+            {
+              "id": "L2-D22-I02",
+              "drill_id": "2.2",
+              "sequence": 2,
+              "task_type": "COUNT_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "pending",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Repudiation, retraction after a substitute purchase — the worked example.)* A) retracted before performance; B) tender was a constructive condition; C) repudiation not retractable once communicated; D) buyer relied before retraction.",
+              "prompt": "Run the Cut. How many choices survive?",
+              "choices": [
+                {
+                  "id": "1",
+                  "text": "1"
+                },
+                {
+                  "id": "2",
+                  "text": "2"
+                },
+                {
+                  "id": "3",
+                  "text": "3"
+                },
+                {
+                  "id": "4",
+                  "text": "4"
+                }
+              ],
+              "correct_choice_id": "2",
+              "short_explanation": "A and D (C false, B misfit). Axis: reliance.",
+              "say_the_break": "2 survive — A and D (C false, B misfit). Axis: reliance"
+            },
+            {
+              "id": "L2-D22-I03",
+              "drill_id": "2.2",
+              "sequence": 3,
+              "task_type": "COUNT_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "pending",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "After a defense verdict (JMOL moved before submission), may she file renewed JMOL and a new-trial motion? A) new-trial only; B) only one; C) both; D) combine with relief from judgment.",
+              "prompt": "Run the Cut. How many choices survive?",
+              "choices": [
+                {
+                  "id": "1",
+                  "text": "1"
+                },
+                {
+                  "id": "2",
+                  "text": "2"
+                },
+                {
+                  "id": "3",
+                  "text": "3"
+                },
+                {
+                  "id": "4",
+                  "text": "4"
+                }
+              ],
+              "correct_choice_id": "1",
+              "short_explanation": "C survives (A/B false, D misfit).",
+              "say_the_break": "1 survive — C survives (A/B false, D misfit)"
+            },
+            {
+              "id": "L2-D22-I04",
+              "drill_id": "2.2",
+              "sequence": 4,
+              "task_type": "COUNT_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "pending",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Patient (State A) sues a State-B dentist and a State-A nurse; nurse moves to dismiss for no complete diversity. Grant? A) supplemental jurisdiction, same case/controversy; B) judicial economy; C) no complete diversity, no SMJ; D) the nurse claim isn't part of the same case/controversy.",
+              "prompt": "Run the Cut. How many choices survive?",
+              "choices": [
+                {
+                  "id": "1",
+                  "text": "1"
+                },
+                {
+                  "id": "2",
+                  "text": "2"
+                },
+                {
+                  "id": "3",
+                  "text": "3"
+                },
+                {
+                  "id": "4",
+                  "text": "4"
+                }
+              ],
+              "correct_choice_id": "2",
+              "short_explanation": "A and C (B misfit, D wrong-rationale). Axis: does §1367(b) bar supplemental jurisdiction in a diversity case here?",
+              "say_the_break": "2 survive — A and C (B misfit, D wrong-rationale). Axis: does §1367(b) bar supplemental jurisdiction in a diversity case here?"
+            },
+            {
+              "id": "L2-D22-I05",
+              "drill_id": "2.2",
+              "sequence": 5,
+              "task_type": "COUNT_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "pending",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Negligent child, suit against the under-supervising mother.)* A) the child was negligent; B) liable for any harm the child causes; C) assumed the risk; D) failed to adequately supervise.",
+              "prompt": "Run the Cut. How many choices survive?",
+              "choices": [
+                {
+                  "id": "1",
+                  "text": "1"
+                },
+                {
+                  "id": "2",
+                  "text": "2"
+                },
+                {
+                  "id": "3",
+                  "text": "3"
+                },
+                {
+                  "id": "4",
+                  "text": "4"
+                }
+              ],
+              "correct_choice_id": "1",
+              "short_explanation": "D survives (A wrong-element, B overclaim, C misfit).",
+              "say_the_break": "1 survive — D survives (A wrong-element, B overclaim, C misfit)"
+            },
+            {
+              "id": "L2-D22-I06",
+              "drill_id": "2.2",
+              "sequence": 6,
+              "task_type": "COUNT_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "pending",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Estate seeks to depose an expert the defense retained and won't call. A) full disclosure of qualifications/opinions/bases; B) nonprivileged and relevant; C) only on substantial need and undue hardship; D) only on exceptional circumstances, impracticable otherwise.",
+              "prompt": "Run the Cut. How many choices survive?",
+              "choices": [
+                {
+                  "id": "1",
+                  "text": "1"
+                },
+                {
+                  "id": "2",
+                  "text": "2"
+                },
+                {
+                  "id": "3",
+                  "text": "3"
+                },
+                {
+                  "id": "4",
+                  "text": "4"
+                }
+              ],
+              "correct_choice_id": "2",
+              "short_explanation": "C and D (A wrong-category, B half-truth). Axis: fact-work-product vs non-testifying-consultant protection.",
+              "say_the_break": "2 survive — C and D (A wrong-category, B half-truth). Axis: fact-work-product vs non-testifying-consultant protection"
+            },
+            {
+              "id": "L2-D22-I07",
+              "drill_id": "2.2",
+              "sequence": 7,
+              "task_type": "COUNT_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "pending",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Buyer wants out; recorded restrictive covenant; zoning bars her use.)* A) covenant renders title unmarketable; B) zoning clouds title; C) she'd get a warranty deed without exceptions; D) contract was silent on title.",
+              "prompt": "Run the Cut. How many choices survive?",
+              "choices": [
+                {
+                  "id": "1",
+                  "text": "1"
+                },
+                {
+                  "id": "2",
+                  "text": "2"
+                },
+                {
+                  "id": "3",
+                  "text": "3"
+                },
+                {
+                  "id": "4",
+                  "text": "4"
+                }
+              ],
+              "correct_choice_id": "1",
+              "short_explanation": "A survives (B false, C misfit, D backwards).",
+              "say_the_break": "1 survive — A survives (B false, C misfit, D backwards)"
+            },
+            {
+              "id": "L2-D22-I08",
+              "drill_id": "2.2",
+              "sequence": 8,
+              "task_type": "COUNT_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "pending",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Seller offers to prove a 5%-tolerance trade usage against a \"complete and exclusive\" 100,000-bushel contract. Admissible? A) inconsistent with the express language; B) the contract was totally integrated; C) shows substantial performance; D) explains/supplements by usage of trade.",
+              "prompt": "Run the Cut. How many choices survive?",
+              "choices": [
+                {
+                  "id": "1",
+                  "text": "1"
+                },
+                {
+                  "id": "2",
+                  "text": "2"
+                },
+                {
+                  "id": "3",
+                  "text": "3"
+                },
+                {
+                  "id": "4",
+                  "text": "4"
+                }
+              ],
+              "correct_choice_id": "2",
+              "short_explanation": "A and D (B half-truth, C misfit). Axis: does the usage contradict the express term or explain it?",
+              "say_the_break": "2 survive — A and D (B half-truth, C misfit). Axis: does the usage contradict the express term or explain it?"
+            },
+            {
+              "id": "L2-D22-I09",
+              "drill_id": "2.2",
+              "sequence": 9,
+              "task_type": "COUNT_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "pending",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Improperly secured corpse taken by vandals; mother's emotional distress.)* A) no threat to her safety; B) not extreme and outrageous; C) negligent failure to safeguard the body; D) no physical harm.",
+              "prompt": "Run the Cut. How many choices survive?",
+              "choices": [
+                {
+                  "id": "1",
+                  "text": "1"
+                },
+                {
+                  "id": "2",
+                  "text": "2"
+                },
+                {
+                  "id": "3",
+                  "text": "3"
+                },
+                {
+                  "id": "4",
+                  "text": "4"
+                }
+              ],
+              "correct_choice_id": "1",
+              "short_explanation": "C survives (A misfit, B bait-doctrine, D backwards).",
+              "say_the_break": "1 survive — C survives (A misfit, B bait-doctrine, D backwards)"
+            },
+            {
+              "id": "L2-D22-I10",
+              "drill_id": "2.2",
+              "sequence": 10,
+              "task_type": "COUNT_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "pending",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "State sold its gas field by bid and chose a lower local bidder; the high bidder sues. A) compelling interest in cheaper gas; B) market participant; C) irrational, denied due process; D) discriminated against interstate commerce.",
+              "prompt": "Run the Cut. How many choices survive?",
+              "choices": [
+                {
+                  "id": "1",
+                  "text": "1"
+                },
+                {
+                  "id": "2",
+                  "text": "2"
+                },
+                {
+                  "id": "3",
+                  "text": "3"
+                },
+                {
+                  "id": "4",
+                  "text": "4"
+                }
+              ],
+              "correct_choice_id": "2",
+              "short_explanation": "B and D (A misfit, C misfit). Axis: market participant vs regulator.",
+              "say_the_break": "2 survive — B and D (A misfit, C misfit). Axis: market participant vs regulator"
+            }
+          ]
         },
         {
           "id": "2.3",
@@ -14335,7 +14668,420 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. You've committed to a clean-cut answer but feel a vague unease."
           ],
           "item_count": 10,
-          "key_md": "1. Classify rule/standard and read the call (Frame).\n2. Re-run the Cut — you skipped a filter.\n3. Clash — name the axis.\n4. Recognize the fork; lean and flag.\n5. Read-check the call + key fact, then commit (~85%); move.\n6. Go to the stem for the splitting fact; resolve.\n7. Read the confidence band (~65%); commit or flag.\n8. Confirm the question from the stem before committing (question-ambiguity).\n9. Pin the purpose (negligence out; control/feasibility in) — BA-4.\n10. Do the one-beat read-check (call + dispositive fact); if it holds, commit (~85%) — don't re-litigate the doctrine the cut already settled."
+          "key_md": "1. Classify rule/standard and read the call (Frame).\n2. Re-run the Cut — you skipped a filter.\n3. Clash — name the axis.\n4. Recognize the fork; lean and flag.\n5. Read-check the call + key fact, then commit (~85%); move.\n6. Go to the stem for the splitting fact; resolve.\n7. Read the confidence band (~65%); commit or flag.\n8. Confirm the question from the stem before committing (question-ambiguity).\n9. Pin the purpose (negligence out; control/feasibility in) — BA-4.\n10. Do the one-beat read-check (call + dispositive fact); if it holds, commit (~85%) — don't re-litigate the doctrine the cut already settled.",
+          "task_type": "SEQUENCE_SELECT",
+          "graded_items": [
+            {
+              "id": "L14-D141-I01",
+              "drill_id": "14.1",
+              "sequence": 1,
+              "task_type": "SEQUENCE_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "pending",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "You've read the stem but haven't classified rule vs standard.",
+              "prompt": "What's the next move?",
+              "choices": [
+                {
+                  "id": "FRAME",
+                  "text": "Frame — classify rule/standard, read the call"
+                },
+                {
+                  "id": "CUT",
+                  "text": "Cut — re-run the filters"
+                },
+                {
+                  "id": "CLASH",
+                  "text": "Clash — name the axis / find the deciding fact"
+                },
+                {
+                  "id": "CALL",
+                  "text": "Call — read the confidence band"
+                },
+                {
+                  "id": "FLAG",
+                  "text": "Flag — lean and leave"
+                },
+                {
+                  "id": "COMMIT",
+                  "text": "Commit — read-check, then move"
+                }
+              ],
+              "correct_choice_id": "FRAME",
+              "short_explanation": "Classify rule/standard and read the call (Frame).",
+              "say_the_break": "FRAME — Classify rule/standard and read the call (Frame)"
+            },
+            {
+              "id": "L14-D141-I02",
+              "drill_id": "14.1",
+              "sequence": 2,
+              "task_type": "SEQUENCE_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "pending",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "You're torn among three answers.",
+              "prompt": "What's the next move?",
+              "choices": [
+                {
+                  "id": "FRAME",
+                  "text": "Frame — classify rule/standard, read the call"
+                },
+                {
+                  "id": "CUT",
+                  "text": "Cut — re-run the filters"
+                },
+                {
+                  "id": "CLASH",
+                  "text": "Clash — name the axis / find the deciding fact"
+                },
+                {
+                  "id": "CALL",
+                  "text": "Call — read the confidence band"
+                },
+                {
+                  "id": "FLAG",
+                  "text": "Flag — lean and leave"
+                },
+                {
+                  "id": "COMMIT",
+                  "text": "Commit — read-check, then move"
+                }
+              ],
+              "correct_choice_id": "CUT",
+              "short_explanation": "Re-run the Cut — you skipped a filter.",
+              "say_the_break": "CUT — Re-run the Cut — you skipped a filter"
+            },
+            {
+              "id": "L14-D141-I03",
+              "drill_id": "14.1",
+              "sequence": 3,
+              "task_type": "SEQUENCE_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "pending",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "You're down to exactly two responsive answers.",
+              "prompt": "What's the next move?",
+              "choices": [
+                {
+                  "id": "FRAME",
+                  "text": "Frame — classify rule/standard, read the call"
+                },
+                {
+                  "id": "CUT",
+                  "text": "Cut — re-run the filters"
+                },
+                {
+                  "id": "CLASH",
+                  "text": "Clash — name the axis / find the deciding fact"
+                },
+                {
+                  "id": "CALL",
+                  "text": "Call — read the confidence band"
+                },
+                {
+                  "id": "FLAG",
+                  "text": "Flag — lean and leave"
+                },
+                {
+                  "id": "COMMIT",
+                  "text": "Commit — read-check, then move"
+                }
+              ],
+              "correct_choice_id": "CLASH",
+              "short_explanation": "Clash — name the axis.",
+              "say_the_break": "CLASH — Clash — name the axis"
+            },
+            {
+              "id": "L14-D141-I04",
+              "drill_id": "14.1",
+              "sequence": 4,
+              "task_type": "SEQUENCE_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "pending",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "You've named the Clash axis but can't find a deciding fact, and the stem is silent on it.",
+              "prompt": "What's the next move?",
+              "choices": [
+                {
+                  "id": "FRAME",
+                  "text": "Frame — classify rule/standard, read the call"
+                },
+                {
+                  "id": "CUT",
+                  "text": "Cut — re-run the filters"
+                },
+                {
+                  "id": "CLASH",
+                  "text": "Clash — name the axis / find the deciding fact"
+                },
+                {
+                  "id": "CALL",
+                  "text": "Call — read the confidence band"
+                },
+                {
+                  "id": "FLAG",
+                  "text": "Flag — lean and leave"
+                },
+                {
+                  "id": "COMMIT",
+                  "text": "Commit — read-check, then move"
+                }
+              ],
+              "correct_choice_id": "FLAG",
+              "short_explanation": "Recognize the fork; lean and flag.",
+              "say_the_break": "FLAG — Recognize the fork"
+            },
+            {
+              "id": "L14-D141-I05",
+              "drill_id": "14.1",
+              "sequence": 5,
+              "task_type": "SEQUENCE_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "pending",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "You've cut to one answer and named all three breaks.",
+              "prompt": "What's the next move?",
+              "choices": [
+                {
+                  "id": "FRAME",
+                  "text": "Frame — classify rule/standard, read the call"
+                },
+                {
+                  "id": "CUT",
+                  "text": "Cut — re-run the filters"
+                },
+                {
+                  "id": "CLASH",
+                  "text": "Clash — name the axis / find the deciding fact"
+                },
+                {
+                  "id": "CALL",
+                  "text": "Call — read the confidence band"
+                },
+                {
+                  "id": "FLAG",
+                  "text": "Flag — lean and leave"
+                },
+                {
+                  "id": "COMMIT",
+                  "text": "Commit — read-check, then move"
+                }
+              ],
+              "correct_choice_id": "COMMIT",
+              "short_explanation": "Read-check the call + key fact, then commit (~85%); move.",
+              "say_the_break": "COMMIT — Read-check the call + key fact, then commit (~85%)"
+            },
+            {
+              "id": "L14-D141-I06",
+              "drill_id": "14.1",
+              "sequence": 6,
+              "task_type": "SEQUENCE_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "pending",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "Two answers survive and they're a matched pair on a single fact the stem provides.",
+              "prompt": "What's the next move?",
+              "choices": [
+                {
+                  "id": "FRAME",
+                  "text": "Frame — classify rule/standard, read the call"
+                },
+                {
+                  "id": "CUT",
+                  "text": "Cut — re-run the filters"
+                },
+                {
+                  "id": "CLASH",
+                  "text": "Clash — name the axis / find the deciding fact"
+                },
+                {
+                  "id": "CALL",
+                  "text": "Call — read the confidence band"
+                },
+                {
+                  "id": "FLAG",
+                  "text": "Flag — lean and leave"
+                },
+                {
+                  "id": "COMMIT",
+                  "text": "Commit — read-check, then move"
+                }
+              ],
+              "correct_choice_id": "CLASH",
+              "short_explanation": "Go to the stem for the splitting fact; resolve.",
+              "say_the_break": "CLASH — Go to the stem for the splitting fact"
+            },
+            {
+              "id": "L14-D141-I07",
+              "drill_id": "14.1",
+              "sequence": 7,
+              "task_type": "SEQUENCE_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "pending",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "You've broken a tie with one Call heuristic.",
+              "prompt": "What's the next move?",
+              "choices": [
+                {
+                  "id": "FRAME",
+                  "text": "Frame — classify rule/standard, read the call"
+                },
+                {
+                  "id": "CUT",
+                  "text": "Cut — re-run the filters"
+                },
+                {
+                  "id": "CLASH",
+                  "text": "Clash — name the axis / find the deciding fact"
+                },
+                {
+                  "id": "CALL",
+                  "text": "Call — read the confidence band"
+                },
+                {
+                  "id": "FLAG",
+                  "text": "Flag — lean and leave"
+                },
+                {
+                  "id": "COMMIT",
+                  "text": "Commit — read-check, then move"
+                }
+              ],
+              "correct_choice_id": "CALL",
+              "short_explanation": "Read the confidence band (~65%); commit or flag.",
+              "say_the_break": "CALL — Read the confidence band (~65%)"
+            },
+            {
+              "id": "L14-D141-I08",
+              "drill_id": "14.1",
+              "sequence": 8,
+              "task_type": "SEQUENCE_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "pending",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "You see an \"only-X/only-Y/both/neither\" answer set.",
+              "prompt": "What's the next move?",
+              "choices": [
+                {
+                  "id": "FRAME",
+                  "text": "Frame — classify rule/standard, read the call"
+                },
+                {
+                  "id": "CUT",
+                  "text": "Cut — re-run the filters"
+                },
+                {
+                  "id": "CLASH",
+                  "text": "Clash — name the axis / find the deciding fact"
+                },
+                {
+                  "id": "CALL",
+                  "text": "Call — read the confidence band"
+                },
+                {
+                  "id": "FLAG",
+                  "text": "Flag — lean and leave"
+                },
+                {
+                  "id": "COMMIT",
+                  "text": "Commit — read-check, then move"
+                }
+              ],
+              "correct_choice_id": "FRAME",
+              "short_explanation": "Confirm the question from the stem before committing (question-ambiguity).",
+              "say_the_break": "FRAME — Confirm the question from the stem before committing (question-ambiguity)"
+            },
+            {
+              "id": "L14-D141-I09",
+              "drill_id": "14.1",
+              "sequence": 9,
+              "task_type": "SEQUENCE_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "pending",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "A subsequent remedial measure is offered against the party who made it.",
+              "prompt": "What's the next move?",
+              "choices": [
+                {
+                  "id": "FRAME",
+                  "text": "Frame — classify rule/standard, read the call"
+                },
+                {
+                  "id": "CUT",
+                  "text": "Cut — re-run the filters"
+                },
+                {
+                  "id": "CLASH",
+                  "text": "Clash — name the axis / find the deciding fact"
+                },
+                {
+                  "id": "CALL",
+                  "text": "Call — read the confidence band"
+                },
+                {
+                  "id": "FLAG",
+                  "text": "Flag — lean and leave"
+                },
+                {
+                  "id": "COMMIT",
+                  "text": "Commit — read-check, then move"
+                }
+              ],
+              "correct_choice_id": "CUT",
+              "short_explanation": "Pin the purpose (negligence out; control/feasibility in) — BA-4.",
+              "say_the_break": "CUT — Pin the purpose (negligence out"
+            },
+            {
+              "id": "L14-D141-I10",
+              "drill_id": "14.1",
+              "sequence": 10,
+              "task_type": "SEQUENCE_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "pending",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "You've committed to a clean-cut answer but feel a vague unease.",
+              "prompt": "What's the next move?",
+              "choices": [
+                {
+                  "id": "FRAME",
+                  "text": "Frame — classify rule/standard, read the call"
+                },
+                {
+                  "id": "CUT",
+                  "text": "Cut — re-run the filters"
+                },
+                {
+                  "id": "CLASH",
+                  "text": "Clash — name the axis / find the deciding fact"
+                },
+                {
+                  "id": "CALL",
+                  "text": "Call — read the confidence band"
+                },
+                {
+                  "id": "FLAG",
+                  "text": "Flag — lean and leave"
+                },
+                {
+                  "id": "COMMIT",
+                  "text": "Commit — read-check, then move"
+                }
+              ],
+              "correct_choice_id": "COMMIT",
+              "short_explanation": "Do the one-beat read-check (call + dispositive fact); if it holds, commit (~85%) — don't re-litigate the doctrine the cut already settled.",
+              "say_the_break": "COMMIT — Do the one-beat read-check (call + dispositive fact)"
+            }
+          ]
         },
         {
           "id": "14.2",

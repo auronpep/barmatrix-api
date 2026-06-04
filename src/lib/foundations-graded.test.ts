@@ -17,6 +17,8 @@ function correctResponseFor(item: C3DrillItem): C3StudentResponse {
     case "TRUE_VS_TRUE":
     case "SURVIVOR_PICK":
     case "LABEL_SELECT":
+    case "COUNT_SELECT":
+    case "SEQUENCE_SELECT":
       return { selected_choice_id: item.correct_choice_id };
     case "CHOICE_CLASSIFICATION":
       return { selected_choice_statuses: item.choice_statuses };
@@ -35,12 +37,35 @@ function allGradedItems(): { lesson: number; drill: string; item: C3DrillItem }[
   return out;
 }
 
-test("exactly 20 drills are interactive (Phase 1 + Phase 2)", () => {
+test("exactly 51 drills are interactive (Phase 1 + 2 + 3 new task types)", () => {
   let graded = 0;
   for (const lesson of FOUNDATIONS_COURSE.lessons) {
     for (const drill of lesson.drills) if (drill.graded_items?.length) graded++;
   }
-  assert.equal(graded, 20);
+  // 49 (Phase 1+2, all approved/live) + 2 new-task-type drills (2.2 COUNT_SELECT,
+  // 14.1 SEQUENCE_SELECT — both "pending"/dark pending attorney sign-off).
+  assert.equal(graded, 51);
+});
+
+test("the 2 new-task-type drills (2.2, 14.1) ship pending (dark) until sign-off", () => {
+  const byId = new Map<string, { task_type?: string; pending: boolean }>();
+  for (const lesson of FOUNDATIONS_COURSE.lessons) {
+    for (const drill of lesson.drills) {
+      const items = drill.graded_items ?? [];
+      if (items.length) {
+        byId.set(drill.id, {
+          task_type: drill.task_type,
+          pending: items.every(
+            (it) => (it as C3DrillItem).legal_review_status === "pending",
+          ),
+        });
+      }
+    }
+  }
+  assert.equal(byId.get("2.2")?.task_type, "COUNT_SELECT");
+  assert.equal(byId.get("2.2")?.pending, true);
+  assert.equal(byId.get("14.1")?.task_type, "SEQUENCE_SELECT");
+  assert.equal(byId.get("14.1")?.pending, true);
 });
 
 test("every generated graded item round-trips (engine grades the key as correct)", () => {

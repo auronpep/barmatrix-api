@@ -211,3 +211,93 @@ test("toPublicItem drops every answer-bearing field", () => {
   assert.equal(pub.prompt, "Which answer responds to the call?");
   assert.ok(Array.isArray(pub.choices));
 });
+
+// ---- 9. COUNT_SELECT (Drill 2.2) — survivor count, graded by choice id ----
+
+const countSelect: C3DrillItem = {
+  id: "L2-D22-I02",
+  drill_id: "2.2",
+  sequence: 2,
+  task_type: "COUNT_SELECT",
+  stem: "Repudiation, retraction after a substitute purchase. A) … B) … C) … D) …",
+  prompt: "Run the Cut. How many choices survive?",
+  choices: [
+    { id: "1", text: "1" },
+    { id: "2", text: "2" },
+    { id: "3", text: "3" },
+    { id: "4", text: "4" },
+  ],
+  correct_choice_id: "2",
+  skill: "CUT",
+  short_explanation: "A and D survive (C false, B misfit). Axis: reliance.",
+  say_the_break: "2 survive — A and D.",
+  legal_review_status: "pending",
+  source_status: "legacy_candidate",
+  enabled: true,
+};
+
+test("COUNT_SELECT: correct when the picked count matches", () => {
+  const r = gradeC3Attempt(countSelect, { selected_choice_id: "2" });
+  assert.equal(r.correct, true);
+  assert.equal(r.correct_choice_id, "2");
+  assert.equal(r.explanation.verdict, "Survivors: 2.");
+  assert.equal(r.missed_filter, null);
+  assert.equal(r.missed_skill, null);
+});
+
+test("COUNT_SELECT: wrong count is not a filter break (skill is the review signal)", () => {
+  const r = gradeC3Attempt(countSelect, { selected_choice_id: "1" });
+  assert.equal(r.correct, false);
+  assert.equal(r.missed_filter, null);
+  assert.equal(r.missed_skill, "CUT");
+});
+
+// ---- 10. SEQUENCE_SELECT (Drill 14.1) — next workflow move, graded by step code ----
+
+const sequenceSelect: C3DrillItem = {
+  id: "L14-D141-I03",
+  drill_id: "14.1",
+  sequence: 3,
+  task_type: "SEQUENCE_SELECT",
+  stem: "You're down to exactly two responsive answers.",
+  prompt: "What's the next move?",
+  choices: [
+    { id: "FRAME", text: "Frame — classify rule/standard, read the call" },
+    { id: "CUT", text: "Cut — re-run the filters" },
+    { id: "CLASH", text: "Clash — name the axis / find the deciding fact" },
+    { id: "CALL", text: "Call — read the confidence band" },
+    { id: "FLAG", text: "Flag — lean and leave" },
+    { id: "COMMIT", text: "Commit — read-check, then move" },
+  ],
+  correct_choice_id: "CLASH",
+  skill: "CALL",
+  short_explanation: "Clash — name the axis.",
+  say_the_break: "CLASH — name the axis.",
+  legal_review_status: "pending",
+  source_status: "legacy_candidate",
+  enabled: true,
+};
+
+test("SEQUENCE_SELECT: correct when the picked step matches", () => {
+  const r = gradeC3Attempt(sequenceSelect, { selected_choice_id: "CLASH" });
+  assert.equal(r.correct, true);
+  assert.equal(r.explanation.verdict, "Next move: CLASH.");
+  assert.equal(r.missed_filter, null);
+});
+
+test("SEQUENCE_SELECT: wrong step reports the skill, not a filter break", () => {
+  const r = gradeC3Attempt(sequenceSelect, { selected_choice_id: "CUT" });
+  assert.equal(r.correct, false);
+  assert.equal(r.missed_filter, null);
+  assert.equal(r.missed_skill, "CALL");
+});
+
+test("toPublicItem strips the count/step answer but keeps the choices to render", () => {
+  for (const item of [countSelect, sequenceSelect]) {
+    const pub = toPublicItem(item) as Record<string, unknown>;
+    assert.equal("correct_choice_id" in pub, false);
+    assert.equal("short_explanation" in pub, false);
+    assert.equal("say_the_break" in pub, false);
+    assert.ok(Array.isArray(pub.choices));
+  }
+});

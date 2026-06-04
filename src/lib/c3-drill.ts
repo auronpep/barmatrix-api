@@ -32,8 +32,12 @@ export type C3TaskType =
   | "MIXED_CLASSIFICATION" // classify a choice incl. credited (Drill 1.5)
   | "CALL_CHECK" // pick the precise question being asked (guided demo)
   | "CHOICE_CLASSIFICATION" // classify every choice in a set
-  | "LABEL_SELECT"; // pick the correct label from a fixed set (e.g. Rule/Standard,
+  | "LABEL_SELECT" // pick the correct label from a fixed set (e.g. Rule/Standard,
   // Ear/Issue-Sense, name-the-mold). choices[] = the labels; correct_choice_id = the label.
+  | "COUNT_SELECT" // pick the survivor count after the Cut (Drill 2.2). choices[] =
+  // "1".."4"; correct_choice_id = the count. A pure choice-pick: the count IS the answer.
+  | "SEQUENCE_SELECT"; // pick the next workflow move (Drill 14.1). choices[] = the fixed
+  // Method steps (FRAME/CUT/CLASH/CALL/FLAG/COMMIT); correct_choice_id = the step code.
 
 /** The skill a miss implicates, for the review summary + future adaptive feed. */
 export type C3Skill = "EAR" | "ISSUE_SENSE" | "CUT" | "CLASH" | "CALL";
@@ -215,6 +219,10 @@ function isCorrect(item: C3DrillItem, response: C3StudentResponse): boolean {
     case "CALL_CHECK":
     case "TRUE_VS_TRUE":
     case "LABEL_SELECT":
+    // COUNT_SELECT (survivor count) and SEQUENCE_SELECT (next workflow move) are
+    // single-choice picks from a fixed option set — grade by choice id, like LABEL_SELECT.
+    case "COUNT_SELECT":
+    case "SEQUENCE_SELECT":
       return (
         response.selected_choice_id !== undefined &&
         response.selected_choice_id === item.correct_choice_id
@@ -251,9 +259,14 @@ function missedFilterFor(
   item: C3DrillItem,
   response: C3StudentResponse,
 ): C3MissedFilter | null {
-  // LABEL_SELECT is a labeling skill, not a filter break — the review signal is
-  // item.skill, not a missed filter.
-  if (item.task_type === "LABEL_SELECT") return null;
+  // LABEL_SELECT / COUNT_SELECT / SEQUENCE_SELECT are labeling/procedure skills,
+  // not a filter break — the review signal is item.skill, not a missed filter.
+  if (
+    item.task_type === "LABEL_SELECT" ||
+    item.task_type === "COUNT_SELECT" ||
+    item.task_type === "SEQUENCE_SELECT"
+  )
+    return null;
 
   // Single-status tasks: the break is whatever the correct status implicates.
   if (item.correct_status) return statusToMissedFilter(item.correct_status);
@@ -273,6 +286,12 @@ function missedFilterFor(
 function verdictLine(item: C3DrillItem): string {
   if (item.task_type === "LABEL_SELECT" && item.correct_choice_id) {
     return `Correct label: ${item.correct_choice_id}.`;
+  }
+  if (item.task_type === "COUNT_SELECT" && item.correct_choice_id) {
+    return `Survivors: ${item.correct_choice_id}.`;
+  }
+  if (item.task_type === "SEQUENCE_SELECT" && item.correct_choice_id) {
+    return `Next move: ${item.correct_choice_id}.`;
   }
   if (item.correct_status) return STATUS_LABEL[item.correct_status];
   if (item.correct_choice_id) {
