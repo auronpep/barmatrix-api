@@ -42,30 +42,30 @@ test("exactly 51 drills are interactive (Phase 1 + 2 + 3 new task types)", () =>
   for (const lesson of FOUNDATIONS_COURSE.lessons) {
     for (const drill of lesson.drills) if (drill.graded_items?.length) graded++;
   }
-  // 49 (Phase 1+2, all approved/live) + 2 new-task-type drills (2.2 COUNT_SELECT,
-  // 14.1 SEQUENCE_SELECT — both "pending"/dark pending attorney sign-off).
+  // 49 (Phase 1+2) + 2 new-task-type drills (2.2 COUNT_SELECT, 14.1 SEQUENCE_SELECT)
+  // — all 51 approved/live (attorney sign-off 2026-06-05).
   assert.equal(graded, 51);
 });
 
-test("the 2 new-task-type drills (2.2, 14.1) ship pending (dark) until sign-off", () => {
-  const byId = new Map<string, { task_type?: string; pending: boolean }>();
+test("the 2 new-task-type drills (2.2, 14.1) are approved + live (attorney sign-off 2026-06-05)", () => {
+  const byId = new Map<string, { task_type?: string; approved: boolean }>();
   for (const lesson of FOUNDATIONS_COURSE.lessons) {
     for (const drill of lesson.drills) {
       const items = drill.graded_items ?? [];
       if (items.length) {
         byId.set(drill.id, {
           task_type: drill.task_type,
-          pending: items.every(
-            (it) => (it as C3DrillItem).legal_review_status === "pending",
+          approved: items.every(
+            (it) => (it as C3DrillItem).legal_review_status === "approved",
           ),
         });
       }
     }
   }
   assert.equal(byId.get("2.2")?.task_type, "COUNT_SELECT");
-  assert.equal(byId.get("2.2")?.pending, true);
+  assert.equal(byId.get("2.2")?.approved, true);
   assert.equal(byId.get("14.1")?.task_type, "SEQUENCE_SELECT");
-  assert.equal(byId.get("14.1")?.pending, true);
+  assert.equal(byId.get("14.1")?.approved, true);
 });
 
 test("every generated graded item round-trips (engine grades the key as correct)", () => {
