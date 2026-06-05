@@ -59,6 +59,7 @@ import { registerAdminC3Routes } from "./routes/admin-c3.js";
 import { registerC3SubjectsRoutes } from "./routes/c3-subjects.js";
 import { registerCertificationRoutes } from "./routes/certification.js";
 import { registerPlacementDiagnosticRoutes } from "./routes/placement-diagnostic.js";
+import { registerWebinarLeadRoutes } from "./routes/webinar-leads.js";
 import {
   requireEnrollment,
   resolveOwnedBillingPortalCustomer,
@@ -548,6 +549,7 @@ registerAdminC3Routes(app);
 registerC3SubjectsRoutes(app);
 registerCertificationRoutes(app);
 registerPlacementDiagnosticRoutes(app);
+registerWebinarLeadRoutes(app);
 
 // ----- checkout -----
 const checkoutBody = z.object({
