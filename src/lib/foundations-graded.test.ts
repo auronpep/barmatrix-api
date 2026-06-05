@@ -43,16 +43,16 @@ function allGradedItems(): { lesson: number; drill: string; item: C3DrillItem }[
   return out;
 }
 
-test("exactly 61 drills are interactive (Phase 1 + 2 + new task types + finite conversions)", () => {
+test("exactly 67 drills are interactive (Phase 1 + 2 + new task types + finite conversions)", () => {
   let graded = 0;
   for (const lesson of FOUNDATIONS_COURSE.lessons) {
     for (const drill of lesson.drills) if (drill.graded_items?.length) graded++;
   }
-  // 49 (Phase 1+2) + 2 new-task-type drills (2.2 COUNT_SELECT, 14.1 SEQUENCE_SELECT)
-  // + 7 finite closed-vocab conversions (2.4, 3.5, 8.4, 9.3 / 9.4, 12.1, 13.3) + 3
-  // MULTI_SELECT full-workflow drills (2.5, 13.5, 14.5) — all 61 approved/live.
-  // 8.4 item 8 "DISPOSITIVE-ADJACENT" → DISPOSITIVE via gated override (key resolves it).
-  assert.equal(graded, 61);
+  // 49 (Phase 1+2) + 2 new-task-type (2.2 COUNT_SELECT, 14.1 SEQUENCE_SELECT) + 7 finite
+  // closed-vocab (2.4, 3.5, 8.4, 9.3 / 9.4, 12.1, 13.3) + 3 MULTI_SELECT (2.5, 13.5,
+  // 14.5) + 6 recognition-MCQ (6.4, 7.1, 7.2, 7.3, 9.2, 10.2 — emitted LABEL_SELECT
+  // with authored per-item choices) — all 67 approved/live.
+  assert.equal(graded, 67);
 });
 
 test("the 2 new-task-type drills (2.2, 14.1) are approved + live (attorney sign-off 2026-06-05)", () => {

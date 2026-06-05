@@ -8201,7 +8201,340 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. *(Strict liability, wild animal:)* \"The defendant kept a wild animal.\""
           ],
           "item_count": 10,
-          "key_md": "1. Missing **causation and damages.**\n2. Missing **harm.**\n3. Missing **that the risk materialized and caused injury.**\n4. Missing **intent and resulting harmful/offensive contact.**\n5. Missing **fault and damages.**\n6. Missing **that the interference was so serious as to warrant a forced sale (vs trespass to chattels).**\n7. Missing **that the interference was substantial and unreasonable.**\n8. Missing **that the plaintiff was in the protected class, the harm was the type the statute guards against, and causation/damages.**\n9. Missing **scienter, intent to induce reliance, justifiable reliance, and damages.**\n10. Missing **that the harm flowed from the animal's dangerous propensity (and causation).**"
+          "key_md": "1. Missing **causation and damages.**\n2. Missing **harm.**\n3. Missing **that the risk materialized and caused injury.**\n4. Missing **intent and resulting harmful/offensive contact.**\n5. Missing **fault and damages.**\n6. Missing **that the interference was so serious as to warrant a forced sale (vs trespass to chattels).**\n7. Missing **that the interference was substantial and unreasonable.**\n8. Missing **that the plaintiff was in the protected class, the harm was the type the statute guards against, and causation/damages.**\n9. Missing **scienter, intent to induce reliance, justifiable reliance, and damages.**\n10. Missing **that the harm flowed from the animal's dangerous propensity (and causation).**",
+          "task_type": "LABEL_SELECT",
+          "graded_items": [
+            {
+              "id": "L6-D64-I01",
+              "drill_id": "6.4",
+              "sequence": 1,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Negligence:)* \"The defendant owed and breached a duty.\"",
+              "prompt": "Name the missing element (the choice is a half-truth — always CUT it).",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Breach of that duty"
+                },
+                {
+                  "id": "B",
+                  "text": "Causation and damages"
+                },
+                {
+                  "id": "C",
+                  "text": "Duty of care"
+                },
+                {
+                  "id": "D",
+                  "text": "Foreseeability of the plaintiff"
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "Missing",
+              "say_the_break": "Causation and damages — Missing"
+            },
+            {
+              "id": "L6-D64-I02",
+              "drill_id": "6.4",
+              "sequence": 2,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Informed consent, no harm:)* \"The patient would have refused.\"",
+              "prompt": "Name the missing element (the choice is a half-truth — always CUT it).",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Causation"
+                },
+                {
+                  "id": "B",
+                  "text": "A physician-patient relationship"
+                },
+                {
+                  "id": "C",
+                  "text": "Harm (the patient suffered no injury)"
+                },
+                {
+                  "id": "D",
+                  "text": "Non-disclosure of a material risk"
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "Missing",
+              "say_the_break": "Harm (the patient suffered no injury) — Missing"
+            },
+            {
+              "id": "L6-D64-I03",
+              "drill_id": "6.4",
+              "sequence": 3,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Negligence, undisclosed risk that never materialized:)* \"A material risk was not disclosed.\"",
+              "prompt": "Name the missing element (the choice is a half-truth — always CUT it).",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Breach of the duty to disclose"
+                },
+                {
+                  "id": "B",
+                  "text": "That the risk was material"
+                },
+                {
+                  "id": "C",
+                  "text": "That the risk materialized and caused injury"
+                },
+                {
+                  "id": "D",
+                  "text": "Lack of the patient's informed consent"
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "Missing",
+              "say_the_break": "That the risk materialized and caused injury — Missing"
+            },
+            {
+              "id": "L6-D64-I04",
+              "drill_id": "6.4",
+              "sequence": 4,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Battery via a thing set in motion:)* \"The defendant set the object in motion.\"",
+              "prompt": "Name the missing element (the choice is a half-truth — always CUT it).",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Setting a force in motion"
+                },
+                {
+                  "id": "B",
+                  "text": "An act by the defendant"
+                },
+                {
+                  "id": "C",
+                  "text": "Intent and a resulting harmful or offensive contact"
+                },
+                {
+                  "id": "D",
+                  "text": "Apprehension of an imminent contact"
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "Missing",
+              "say_the_break": "Intent and a resulting harmful or offensive contact — Missing"
+            },
+            {
+              "id": "L6-D64-I05",
+              "drill_id": "6.4",
+              "sequence": 5,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Defamation, private figure:)* \"The statement was false and published.\"",
+              "prompt": "Name the missing element (the choice is a half-truth — always CUT it).",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Falsity of the statement"
+                },
+                {
+                  "id": "B",
+                  "text": "A defamatory meaning"
+                },
+                {
+                  "id": "C",
+                  "text": "Fault (at least negligence) and damages"
+                },
+                {
+                  "id": "D",
+                  "text": "Publication to a third party"
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "Missing",
+              "say_the_break": "Fault (at least negligence) and damages — Missing"
+            },
+            {
+              "id": "L6-D64-I06",
+              "drill_id": "6.4",
+              "sequence": 6,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Conversion:)* \"The defendant exercised dominion over the plaintiff's chattel.\"",
+              "prompt": "Name the missing element (the choice is a half-truth — always CUT it).",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Interference serious enough to warrant a forced sale (vs. trespass to chattels)"
+                },
+                {
+                  "id": "B",
+                  "text": "Interference with the chattel"
+                },
+                {
+                  "id": "C",
+                  "text": "An intentional act of dominion"
+                },
+                {
+                  "id": "D",
+                  "text": "The plaintiff's ownership or right to possess"
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "Missing",
+              "say_the_break": "Interference serious enough to warrant a forced sale (vs. trespass to chattels) — Missing"
+            },
+            {
+              "id": "L6-D64-I07",
+              "drill_id": "6.4",
+              "sequence": 7,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Nuisance:)* \"The defendant's use interfered with the plaintiff's enjoyment.\"",
+              "prompt": "Name the missing element (the choice is a half-truth — always CUT it).",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The plaintiff's possessory interest in the land"
+                },
+                {
+                  "id": "B",
+                  "text": "That the interference was substantial and unreasonable"
+                },
+                {
+                  "id": "C",
+                  "text": "An interference with use and enjoyment"
+                },
+                {
+                  "id": "D",
+                  "text": "The defendant's intentional conduct"
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "Missing",
+              "say_the_break": "That the interference was substantial and unreasonable — Missing"
+            },
+            {
+              "id": "L6-D64-I08",
+              "drill_id": "6.4",
+              "sequence": 8,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Negligence per se:)* \"The defendant violated a statute.\"",
+              "prompt": "Name the missing element (the choice is a half-truth — always CUT it).",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "That the statute imposed a specific duty"
+                },
+                {
+                  "id": "B",
+                  "text": "Violation of a statute"
+                },
+                {
+                  "id": "C",
+                  "text": "That plaintiff is in the protected class, the harm is the type the statute guards against, and causation/damages"
+                },
+                {
+                  "id": "D",
+                  "text": "A criminal penalty for the violation"
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "Missing",
+              "say_the_break": "That plaintiff is in the protected class, the harm is the type the statute guards against, and causation/damages — Missing"
+            },
+            {
+              "id": "L6-D64-I09",
+              "drill_id": "6.4",
+              "sequence": 9,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Fraud:)* \"The defendant made a false statement of material fact.\"",
+              "prompt": "Name the missing element (the choice is a half-truth — always CUT it).",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "A duty to disclose"
+                },
+                {
+                  "id": "B",
+                  "text": "Scienter, intent to induce reliance, justifiable reliance, and damages"
+                },
+                {
+                  "id": "C",
+                  "text": "Materiality of the statement"
+                },
+                {
+                  "id": "D",
+                  "text": "A false statement"
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "Missing",
+              "say_the_break": "Scienter, intent to induce reliance, justifiable reliance, and damages — Missing"
+            },
+            {
+              "id": "L6-D64-I10",
+              "drill_id": "6.4",
+              "sequence": 10,
+              "task_type": "LABEL_SELECT",
+              "skill": "EAR",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Strict liability, wild animal:)* \"The defendant kept a wild animal.\"",
+              "prompt": "Name the missing element (the choice is a half-truth — always CUT it).",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Keeping a wild animal"
+                },
+                {
+                  "id": "B",
+                  "text": "Negligence in confining the animal"
+                },
+                {
+                  "id": "C",
+                  "text": "That the harm flowed from the animal's dangerous propensity (and causation)"
+                },
+                {
+                  "id": "D",
+                  "text": "Ownership of the animal"
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "Missing",
+              "say_the_break": "That the harm flowed from the animal's dangerous propensity (and causation) — Missing"
+            }
+          ]
         },
         {
           "id": "6.5",
@@ -8616,7 +8949,340 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. A buyer wants out of a land contract after discovering a recorded restrictive covenant; the deed promised was a warranty deed without exceptions."
           ],
           "item_count": 10,
-          "key_md": "1. Should the motion to **dismiss for failure to serve** be granted? *Adjacent call:* was the complaint timely *filed*.\n2. Is the price increase **effective for that month's orders**? *Adjacent:* whether a firm offer needs consideration.\n3. Should the court **dismiss for lack of subject-matter jurisdiction**? *Adjacent:* whether the claims share a case/controversy.\n4. Will the **buyer prevail** (was the retraction effective)? *Adjacent:* whether tender was a condition.\n5. Should the **injunction issue** (is the statute constitutional as applied to states)? *Adjacent:* sovereign immunity.\n6. May the **U.S. Supreme Court exercise jurisdiction** to review? *Adjacent:* the scope of SCOTUS jurisdiction in the abstract.\n7. Should the court **grant the 12(b)(6) motion** (is the complaint sufficient)? *Adjacent:* the pre-Twombly \"facts constituting a cause of action.\"\n8. May the loser file a **renewed JMOL and a new-trial motion**? *Adjacent:* whether the two can be combined with other post-judgment motions.\n9. Will the shopper recover **against the mother** (her own negligence)? *Adjacent:* the child's negligence / vicarious liability.\n10. **Must the buyer purchase** (is title marketable)? *Adjacent:* the effect of zoning."
+          "key_md": "1. Should the motion to **dismiss for failure to serve** be granted? *Adjacent call:* was the complaint timely *filed*.\n2. Is the price increase **effective for that month's orders**? *Adjacent:* whether a firm offer needs consideration.\n3. Should the court **dismiss for lack of subject-matter jurisdiction**? *Adjacent:* whether the claims share a case/controversy.\n4. Will the **buyer prevail** (was the retraction effective)? *Adjacent:* whether tender was a condition.\n5. Should the **injunction issue** (is the statute constitutional as applied to states)? *Adjacent:* sovereign immunity.\n6. May the **U.S. Supreme Court exercise jurisdiction** to review? *Adjacent:* the scope of SCOTUS jurisdiction in the abstract.\n7. Should the court **grant the 12(b)(6) motion** (is the complaint sufficient)? *Adjacent:* the pre-Twombly \"facts constituting a cause of action.\"\n8. May the loser file a **renewed JMOL and a new-trial motion**? *Adjacent:* whether the two can be combined with other post-judgment motions.\n9. Will the shopper recover **against the mother** (her own negligence)? *Adjacent:* the child's negligence / vicarious liability.\n10. **Must the buyer purchase** (is title marketable)? *Adjacent:* the effect of zoning.",
+          "task_type": "LABEL_SELECT",
+          "graded_items": [
+            {
+              "id": "L7-D71-I01",
+              "drill_id": "7.1",
+              "sequence": 1,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "A lawyer filed on time but forgot to serve for four months; the defendant moves to dismiss for failure to serve.",
+              "prompt": "From the stem alone, what is the precise question being asked?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Should the motion to dismiss for failure to serve be granted?"
+                },
+                {
+                  "id": "B",
+                  "text": "Should the case be dismissed for lack of personal jurisdiction?"
+                },
+                {
+                  "id": "C",
+                  "text": "Was service technically defective in form?"
+                },
+                {
+                  "id": "D",
+                  "text": "Was the complaint timely filed?"
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "Should the motion to  be granted? *Adjacent call:* was the complaint timely *filed*.",
+              "say_the_break": "Should the motion to dismiss for failure to serve be granted? — Should the motion to  be granted? Adjacent call: was the complaint timely filed"
+            },
+            {
+              "id": "L7-D71-I02",
+              "drill_id": "7.1",
+              "sequence": 2,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "A merchant's firm-offer letter promises firm prices \"for the coming year\"; a month later it raises prices for the following month.",
+              "prompt": "From the stem alone, what is the precise question being asked?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Did the parties form a valid requirements contract?"
+                },
+                {
+                  "id": "B",
+                  "text": "Is the price increase effective for that month's orders?"
+                },
+                {
+                  "id": "C",
+                  "text": "Does a firm offer need consideration to stay open?"
+                },
+                {
+                  "id": "D",
+                  "text": "Was the firm offer properly revoked?"
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "Is the price increase ? *Adjacent:* whether a firm offer needs consideration.",
+              "say_the_break": "Is the price increase effective for that month's orders? — Is the price increase ? Adjacent: whether a firm offer needs consideration"
+            },
+            {
+              "id": "L7-D71-I03",
+              "drill_id": "7.1",
+              "sequence": 3,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "A patient (State A) sues a State-B dentist and a State-A nurse; the nurse moves to dismiss for lack of complete diversity.",
+              "prompt": "From the stem alone, what is the precise question being asked?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Should the court dismiss for improper venue?"
+                },
+                {
+                  "id": "B",
+                  "text": "Should the court dismiss for lack of subject-matter jurisdiction?"
+                },
+                {
+                  "id": "C",
+                  "text": "Was the non-diverse defendant fraudulently joined?"
+                },
+                {
+                  "id": "D",
+                  "text": "Do the claims share a common case or controversy?"
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "Should the court ? *Adjacent:* whether the claims share a case/controversy.",
+              "say_the_break": "Should the court dismiss for lack of subject-matter jurisdiction? — Should the court ? Adjacent: whether the claims share a case/controversy"
+            },
+            {
+              "id": "L7-D71-I04",
+              "drill_id": "7.1",
+              "sequence": 4,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "A seller repudiates a land contract; the buyer buys a substitute; the seller then retracts; the buyer sues.",
+              "prompt": "From the stem alone, what is the precise question being asked?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Did the buyer's substitute purchase breach the contract?"
+                },
+                {
+                  "id": "B",
+                  "text": "Was tender of performance a condition precedent?"
+                },
+                {
+                  "id": "C",
+                  "text": "Will the buyer prevail — was the retraction effective?"
+                },
+                {
+                  "id": "D",
+                  "text": "Was the seller's repudiation a material breach?"
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "Will the  (was the retraction effective)? *Adjacent:* whether tender was a condition.",
+              "say_the_break": "Will the buyer prevail — was the retraction effective? — Will the  (was the retraction effective)? Adjacent: whether tender was a condition"
+            },
+            {
+              "id": "L7-D71-I05",
+              "drill_id": "7.1",
+              "sequence": 5,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "A federal statute applies a generally-applicable fleet rule to a city; the city sues for an injunction.",
+              "prompt": "From the stem alone, what is the precise question being asked?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Does the statute exceed the commerce power on its face?"
+                },
+                {
+                  "id": "B",
+                  "text": "Should the injunction issue — is the statute constitutional as applied to the city?"
+                },
+                {
+                  "id": "C",
+                  "text": "Did the city have standing to sue?"
+                },
+                {
+                  "id": "D",
+                  "text": "Is the city protected by sovereign immunity?"
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "Should the  (is the statute constitutional as applied to states)? *Adjacent:* sovereign immunity.",
+              "say_the_break": "Should the injunction issue — is the statute constitutional as applied to the city? — Should the  (is the statute constitutional as applied to states)? Adjacent: sovereign immunity"
+            },
+            {
+              "id": "L7-D71-I06",
+              "drill_id": "7.1",
+              "sequence": 6,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "A state court strikes a law under both the federal and state due-process clauses; a party petitions the U.S. Supreme Court.",
+              "prompt": "From the stem alone, what is the precise question being asked?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Was the state law correctly struck down on the merits?"
+                },
+                {
+                  "id": "B",
+                  "text": "What is the scope of SCOTUS jurisdiction in the abstract?"
+                },
+                {
+                  "id": "C",
+                  "text": "May the U.S. Supreme Court exercise jurisdiction to review?"
+                },
+                {
+                  "id": "D",
+                  "text": "Should the Court grant certiorari as a discretionary matter?"
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "May the  to review? *Adjacent:* the scope of SCOTUS jurisdiction in the abstract.",
+              "say_the_break": "May the U.S. Supreme Court exercise jurisdiction to review? — May the  to review? Adjacent: the scope of SCOTUS jurisdiction in the abstract"
+            },
+            {
+              "id": "L7-D71-I07",
+              "drill_id": "7.1",
+              "sequence": 7,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "A writer sues for plagiarism; the defendant moves to dismiss, saying no facts show he received the manuscript.",
+              "prompt": "From the stem alone, what is the precise question being asked?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Should summary judgment be granted for the defendant?"
+                },
+                {
+                  "id": "B",
+                  "text": "Do the facts allege a pre-Twombly cause of action?"
+                },
+                {
+                  "id": "C",
+                  "text": "Should the 12(b)(6) motion be granted — is the complaint sufficient?"
+                },
+                {
+                  "id": "D",
+                  "text": "Has the plaintiff produced evidence of access?"
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "Should the court  (is the complaint sufficient)? *Adjacent:* the pre-Twombly \"facts constituting a cause of action.\"",
+              "say_the_break": "Should the 12(b)(6) motion be granted — is the complaint sufficient? — Should the court  (is the complaint sufficient)? Adjacent: the pre-Twombly \"facts constituting a cause of action.\""
+            },
+            {
+              "id": "L7-D71-I08",
+              "drill_id": "7.1",
+              "sequence": 8,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "After a defense verdict, the loser (who moved for JMOL pre-submission) wants post-verdict relief.",
+              "prompt": "From the stem alone, what is the precise question being asked?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "May the loser file a renewed JMOL and a motion for a new trial?"
+                },
+                {
+                  "id": "B",
+                  "text": "May the loser appeal the verdict directly?"
+                },
+                {
+                  "id": "C",
+                  "text": "Was the pre-submission JMOL motion properly preserved?"
+                },
+                {
+                  "id": "D",
+                  "text": "May a renewed JMOL be combined with other post-judgment motions?"
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "May the loser file a ? *Adjacent:* whether the two can be combined with other post-judgment motions.",
+              "say_the_break": "May the loser file a renewed JMOL and a motion for a new trial? — May the loser file a ? Adjacent: whether the two can be combined with other post-judgment motions"
+            },
+            {
+              "id": "L7-D71-I09",
+              "drill_id": "7.1",
+              "sequence": 9,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "A grocery cart pushed by a supervised child injures a shopper; the shopper sues the mother in negligence.",
+              "prompt": "From the stem alone, what is the precise question being asked?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Is the mother liable under respondeat superior?"
+                },
+                {
+                  "id": "B",
+                  "text": "Will the shopper recover against the mother for her own negligence?"
+                },
+                {
+                  "id": "C",
+                  "text": "Was the child negligent, making the mother vicariously liable?"
+                },
+                {
+                  "id": "D",
+                  "text": "Did the store breach a duty to the shopper?"
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "Will the shopper recover  (her own negligence)? *Adjacent:* the child's negligence / vicarious liability.",
+              "say_the_break": "Will the shopper recover against the mother for her own negligence? — Will the shopper recover  (her own negligence)? Adjacent: the child's negligence / vicarious liability"
+            },
+            {
+              "id": "L7-D71-I10",
+              "drill_id": "7.1",
+              "sequence": 10,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "A buyer wants out of a land contract after discovering a recorded restrictive covenant; the deed promised was a warranty deed without exceptions.",
+              "prompt": "From the stem alone, what is the precise question being asked?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "What is the effect of the zoning ordinance on use?"
+                },
+                {
+                  "id": "B",
+                  "text": "Must the buyer purchase — is title marketable?"
+                },
+                {
+                  "id": "C",
+                  "text": "Was the restrictive covenant properly recorded?"
+                },
+                {
+                  "id": "D",
+                  "text": "Did the warranty deed breach a present covenant?"
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "(is title marketable)? *Adjacent:* the effect of zoning.",
+              "say_the_break": "Must the buyer purchase — is title marketable? — (is title marketable)? Adjacent: the effect of zoning"
+            }
+          ]
         },
         {
           "id": "7.2",
@@ -8635,7 +9301,340 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. *(Supplemental pleading.)* The intentional tort occurred after the original complaint was filed."
           ],
           "item_count": 10,
-          "key_md": "1. The substitute purchase (June 5) preceded the retraction (June 10) → reliance.\n2. The nurse and plaintiff are both State A → no complete diversity.\n3. The substance was a laxative given for discomfort, with an idiosyncratic death → no poison, no premeditation.\n4. The judgment rests on an adequate and independent state ground.\n5. The two claims arise from different occurrences (disclosure vs performance).\n6. The state acted as a seller/owner → market participant.\n7. The entrant was a trespasser; the condition was natural.\n8. The professor (through his agent) solicited the statement → invited.\n9. The disputed month falls within the three-month firm-offer cap.\n10. The tort post-dates the filing → Rule 15(d) supplemental pleading."
+          "key_md": "1. The substitute purchase (June 5) preceded the retraction (June 10) → reliance.\n2. The nurse and plaintiff are both State A → no complete diversity.\n3. The substance was a laxative given for discomfort, with an idiosyncratic death → no poison, no premeditation.\n4. The judgment rests on an adequate and independent state ground.\n5. The two claims arise from different occurrences (disclosure vs performance).\n6. The state acted as a seller/owner → market participant.\n7. The entrant was a trespasser; the condition was natural.\n8. The professor (through his agent) solicited the statement → invited.\n9. The disputed month falls within the three-month firm-offer cap.\n10. The tort post-dates the filing → Rule 15(d) supplemental pleading.",
+          "task_type": "LABEL_SELECT",
+          "graded_items": [
+            {
+              "id": "L7-D72-I01",
+              "drill_id": "7.2",
+              "sequence": 1,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Repudiation, retraction.)* Seller repudiates June 1; buyer buys a substitute June 5; seller retracts June 10.",
+              "prompt": "From the stem alone, which one fact decides the outcome?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The seller repudiated on June 1"
+                },
+                {
+                  "id": "B",
+                  "text": "The seller retracted the repudiation on June 10"
+                },
+                {
+                  "id": "C",
+                  "text": "The contract was for the sale of goods"
+                },
+                {
+                  "id": "D",
+                  "text": "The substitute purchase (June 5) preceded the retraction (June 10) — reliance"
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "The substitute purchase (June 5) preceded the retraction (June 10) → reliance.",
+              "say_the_break": "The substitute purchase (June 5) preceded the retraction (June 10) — reliance — The substitute purchase (June 5) preceded the retraction (June 10) → reliance"
+            },
+            {
+              "id": "L7-D72-I02",
+              "drill_id": "7.2",
+              "sequence": 2,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Diversity + added defendant.)* Plaintiff State A; dentist State B; nurse State A; suit on diversity.",
+              "prompt": "From the stem alone, which one fact decides the outcome?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The dentist is a citizen of State B"
+                },
+                {
+                  "id": "B",
+                  "text": "The amount in controversy exceeds $75,000"
+                },
+                {
+                  "id": "C",
+                  "text": "The nurse and the plaintiff are both citizens of State A — no complete diversity"
+                },
+                {
+                  "id": "D",
+                  "text": "The plaintiff joined both defendants in one suit"
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "The nurse and plaintiff are both State A → no complete diversity.",
+              "say_the_break": "The nurse and the plaintiff are both citizens of State A — no complete diversity — The nurse and plaintiff are both State A → no complete diversity"
+            },
+            {
+              "id": "L7-D72-I03",
+              "drill_id": "7.2",
+              "sequence": 3,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(First-degree murder = poison or premeditation.)* Employee drops laxatives to cause discomfort; victim, on other medication, dies.",
+              "prompt": "From the stem alone, which one fact decides the outcome?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The defendant was the victim's employee"
+                },
+                {
+                  "id": "B",
+                  "text": "The victim was on other medication"
+                },
+                {
+                  "id": "C",
+                  "text": "The substance was administered secretly"
+                },
+                {
+                  "id": "D",
+                  "text": "A laxative given to cause discomfort with an idiosyncratic death — no poison, no premeditation"
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "The substance was a laxative given for discomfort, with an idiosyncratic death → no poison, no premeditation.",
+              "say_the_break": "A laxative given to cause discomfort with an idiosyncratic death — no poison, no premeditation — The substance was a laxative given for discomfort, with an idiosyncratic death → no poison, no premeditation"
+            },
+            {
+              "id": "L7-D72-I04",
+              "drill_id": "7.2",
+              "sequence": 4,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(SCOTUS review.)* The state court rested its judgment on both the federal *and* the state constitution.",
+              "prompt": "From the stem alone, which one fact decides the outcome?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The state court struck the law down"
+                },
+                {
+                  "id": "B",
+                  "text": "The judgment rests on an adequate and independent state ground"
+                },
+                {
+                  "id": "C",
+                  "text": "The losing party petitioned the U.S. Supreme Court"
+                },
+                {
+                  "id": "D",
+                  "text": "The state court also relied on the federal constitution"
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "The judgment rests on an adequate and independent state ground.",
+              "say_the_break": "The judgment rests on an adequate and independent state ground — The judgment rests on an adequate and independent state ground"
+            },
+            {
+              "id": "L7-D72-I05",
+              "drill_id": "7.2",
+              "sequence": 5,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Relation back.)* Original claim: failure to disclose an alternative method; new claim: negligent surgical performance.",
+              "prompt": "From the stem alone, which one fact decides the outcome?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The new claim alleges negligent surgical performance"
+                },
+                {
+                  "id": "B",
+                  "text": "The original claim was for failure to disclose an alternative"
+                },
+                {
+                  "id": "C",
+                  "text": "The two claims arise from different occurrences (non-disclosure vs. negligent performance)"
+                },
+                {
+                  "id": "D",
+                  "text": "The new claim was filed after the limitations period"
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "The two claims arise from different occurrences (disclosure vs performance).",
+              "say_the_break": "The two claims arise from different occurrences (non-disclosure vs. negligent performance) — The two claims arise from different occurrences (disclosure vs performance)"
+            },
+            {
+              "id": "L7-D72-I06",
+              "drill_id": "7.2",
+              "sequence": 6,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Dormant commerce.)* The state owned the gas field and chose a bidder by taking bids.",
+              "prompt": "From the stem alone, which one fact decides the outcome?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The state acted under a regulatory statute"
+                },
+                {
+                  "id": "B",
+                  "text": "The transaction involved interstate commerce"
+                },
+                {
+                  "id": "C",
+                  "text": "The state owned the gas field and chose a bidder by taking bids — market participant"
+                },
+                {
+                  "id": "D",
+                  "text": "The choice burdened out-of-state bidders"
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "The state acted as a seller/owner → market participant.",
+              "say_the_break": "The state owned the gas field and chose a bidder by taking bids — market participant — The state acted as a seller/owner → market participant"
+            },
+            {
+              "id": "L7-D72-I07",
+              "drill_id": "7.2",
+              "sequence": 7,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Premises liability.)* The injured entrant was on the land without permission or knowledge of the owner; the limb fell from a termite-weakened tree.",
+              "prompt": "From the stem alone, which one fact decides the outcome?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The entrant was a trespasser and the condition (the weakened tree) was natural"
+                },
+                {
+                  "id": "B",
+                  "text": "The tree stood on the owner's land"
+                },
+                {
+                  "id": "C",
+                  "text": "A limb fell and injured the entrant"
+                },
+                {
+                  "id": "D",
+                  "text": "The owner did not know the entrant was present"
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "The entrant was a trespasser; the condition was natural.",
+              "say_the_break": "The entrant was a trespasser and the condition (the weakened tree) was natural — The entrant was a trespasser"
+            },
+            {
+              "id": "L7-D72-I08",
+              "drill_id": "7.2",
+              "sequence": 8,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Defamation.)* The dean's statement was a response to a letter from the organization the professor asked to represent him.",
+              "prompt": "From the stem alone, which one fact decides the outcome?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The dean's statement was defamatory"
+                },
+                {
+                  "id": "B",
+                  "text": "The statement was published to the organization"
+                },
+                {
+                  "id": "C",
+                  "text": "The professor, through his agent, solicited the dean's statement — invited/consented"
+                },
+                {
+                  "id": "D",
+                  "text": "The professor was a public figure"
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "The professor (through his agent) solicited the statement → invited.",
+              "say_the_break": "The professor, through his agent, solicited the dean's statement — invited/consented — The professor (through his agent) solicited the statement → invited"
+            },
+            {
+              "id": "L7-D72-I09",
+              "drill_id": "7.2",
+              "sequence": 9,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Firm offer.)* The assurance covered \"the coming year,\" and the disputed orders fall in a month one month after the offer.",
+              "prompt": "From the stem alone, which one fact decides the outcome?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The disputed orders fall within the three-month firm-offer cap"
+                },
+                {
+                  "id": "B",
+                  "text": "The offeror was a merchant"
+                },
+                {
+                  "id": "C",
+                  "text": "The orders came one month after the offer"
+                },
+                {
+                  "id": "D",
+                  "text": "The assurance covered 'the coming year'"
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "The disputed month falls within the three-month firm-offer cap.",
+              "say_the_break": "The disputed orders fall within the three-month firm-offer cap — The disputed month falls within the three-month firm-offer cap"
+            },
+            {
+              "id": "L7-D72-I10",
+              "drill_id": "7.2",
+              "sequence": 10,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Supplemental pleading.)* The intentional tort occurred after the original complaint was filed.",
+              "prompt": "From the stem alone, which one fact decides the outcome?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The tort arose from the same transaction"
+                },
+                {
+                  "id": "B",
+                  "text": "The new claim is an intentional tort"
+                },
+                {
+                  "id": "C",
+                  "text": "The intentional tort occurred after the original complaint was filed — Rule 15(d)"
+                },
+                {
+                  "id": "D",
+                  "text": "The original complaint was already on file"
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "The tort post-dates the filing → Rule 15(d) supplemental pleading.",
+              "say_the_break": "The intentional tort occurred after the original complaint was filed — Rule 15(d) — The tort post-dates the filing → Rule 15(d) supplemental pleading"
+            }
+          ]
         },
         {
           "id": "7.3",
@@ -8654,7 +9653,340 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. *(Recorded restrictive covenant discovered; warranty deed promised; buyer wants out.)*"
           ],
           "item_count": 10,
-          "key_md": "1. **Granted** — forgetting isn't good cause for the service failure.\n2. **Not effective** — the month is within the three-month firm period.\n3. **Dismiss** — §1367(b) bars supplemental jurisdiction over the plaintiff's claim against the non-diverse co-defendant.\n4. **Buyer prevails** — reliance defeated the retraction.\n5. **No injunction** — valid generally-applicable regulation (Garcia).\n6. **No review** — adequate and independent state ground.\n7. **Deny** — the access fact is properly developed in discovery; the complaint is sufficient.\n8. **Not first degree (acquit of first degree)** — no poison in the deadly sense, no premeditation.\n9. **Recovers against the mother** — her own negligent supervision.\n10. **Need not purchase** — the covenant renders title unmarketable."
+          "key_md": "1. **Granted** — forgetting isn't good cause for the service failure.\n2. **Not effective** — the month is within the three-month firm period.\n3. **Dismiss** — §1367(b) bars supplemental jurisdiction over the plaintiff's claim against the non-diverse co-defendant.\n4. **Buyer prevails** — reliance defeated the retraction.\n5. **No injunction** — valid generally-applicable regulation (Garcia).\n6. **No review** — adequate and independent state ground.\n7. **Deny** — the access fact is properly developed in discovery; the complaint is sufficient.\n8. **Not first degree (acquit of first degree)** — no poison in the deadly sense, no premeditation.\n9. **Recovers against the mother** — her own negligent supervision.\n10. **Need not purchase** — the covenant renders title unmarketable.",
+          "task_type": "LABEL_SELECT",
+          "graded_items": [
+            {
+              "id": "L7-D73-I01",
+              "drill_id": "7.3",
+              "sequence": 1,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Service forgotten four months; motion to dismiss.)*",
+              "prompt": "From the stem alone, predict the credited outcome (and reason).",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Denied — four months is within the service rule"
+                },
+                {
+                  "id": "B",
+                  "text": "Granted — the complaint was filed too late"
+                },
+                {
+                  "id": "C",
+                  "text": "Denied — late service is always excused for good-faith error"
+                },
+                {
+                  "id": "D",
+                  "text": "Granted — forgetting isn't good cause for the failure to serve"
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "forgetting isn't good cause for the service failure.",
+              "say_the_break": "Granted — forgetting isn't good cause for the failure to serve — forgetting isn't good cause for the service failure"
+            },
+            {
+              "id": "L7-D73-I02",
+              "drill_id": "7.3",
+              "sequence": 2,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Firm-offer price raised for a month inside the year.)*",
+              "prompt": "From the stem alone, predict the credited outcome (and reason).",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Not effective — the month falls within the three-month firm period"
+                },
+                {
+                  "id": "B",
+                  "text": "Not effective — the offer was never communicated"
+                },
+                {
+                  "id": "C",
+                  "text": "Effective — the assurance bound the offeror for only one month"
+                },
+                {
+                  "id": "D",
+                  "text": "Effective — a firm offer needs consideration to stay open"
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "the month is within the three-month firm period.",
+              "say_the_break": "Not effective — the month falls within the three-month firm period — the month is within the three-month firm period"
+            },
+            {
+              "id": "L7-D73-I03",
+              "drill_id": "7.3",
+              "sequence": 3,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Nurse, non-diverse co-defendant, diversity suit; motion to dismiss.)*",
+              "prompt": "From the stem alone, predict the credited outcome (and reason).",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Retain — supplemental jurisdiction cures the diversity defect"
+                },
+                {
+                  "id": "B",
+                  "text": "Dismiss — the amount in controversy is not met"
+                },
+                {
+                  "id": "C",
+                  "text": "Retain — the claims share a common nucleus of fact"
+                },
+                {
+                  "id": "D",
+                  "text": "Dismiss — §1367(b) bars supplemental jurisdiction over the plaintiff's claim against the non-diverse co-defendant"
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "§1367(b) bars supplemental jurisdiction over the plaintiff's claim against the non-diverse co-defendant.",
+              "say_the_break": "Dismiss — §1367(b) bars supplemental jurisdiction over the plaintiff's claim against the non-diverse co-defendant — §1367(b) bars supplemental jurisdiction over the plaintiff's claim against the non-diverse co-defendant"
+            },
+            {
+              "id": "L7-D73-I04",
+              "drill_id": "7.3",
+              "sequence": 4,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Seller retracts after the buyer bought a substitute; buyer sues.)*",
+              "prompt": "From the stem alone, predict the credited outcome (and reason).",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Buyer prevails — tender was a condition precedent"
+                },
+                {
+                  "id": "B",
+                  "text": "Buyer prevails — reliance defeated the retraction"
+                },
+                {
+                  "id": "C",
+                  "text": "Seller prevails — a repudiation may always be retracted"
+                },
+                {
+                  "id": "D",
+                  "text": "Seller prevails — the buyer's cover purchase was a breach"
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "reliance defeated the retraction.",
+              "say_the_break": "Buyer prevails — reliance defeated the retraction — reliance defeated the retraction"
+            },
+            {
+              "id": "L7-D73-I05",
+              "drill_id": "7.3",
+              "sequence": 5,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Generally-applicable federal fleet rule applied to a city; injunction sought.)*",
+              "prompt": "From the stem alone, predict the credited outcome (and reason).",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "No injunction — the city lacks standing"
+                },
+                {
+                  "id": "B",
+                  "text": "Injunction issues — the city has sovereign immunity"
+                },
+                {
+                  "id": "C",
+                  "text": "Injunction issues — the statute commandeers the city"
+                },
+                {
+                  "id": "D",
+                  "text": "No injunction — a valid, generally-applicable regulation (Garcia)"
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "valid generally-applicable regulation (Garcia).",
+              "say_the_break": "No injunction — a valid, generally-applicable regulation (Garcia) — valid generally-applicable regulation (Garcia)"
+            },
+            {
+              "id": "L7-D73-I06",
+              "drill_id": "7.3",
+              "sequence": 6,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(State decision on both federal and state grounds; SCOTUS petition.)*",
+              "prompt": "From the stem alone, predict the credited outcome (and reason).",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Review granted — a federal question was decided"
+                },
+                {
+                  "id": "B",
+                  "text": "No review — adequate and independent state ground"
+                },
+                {
+                  "id": "C",
+                  "text": "No review — the petition was untimely"
+                },
+                {
+                  "id": "D",
+                  "text": "Review granted — the state ground was not independent"
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "adequate and independent state ground.",
+              "say_the_break": "No review — adequate and independent state ground — adequate and independent state ground"
+            },
+            {
+              "id": "L7-D73-I07",
+              "drill_id": "7.3",
+              "sequence": 7,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Plagiarism complaint; defendant says no facts show he received the manuscript.)*",
+              "prompt": "From the stem alone, predict the credited outcome (and reason).",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Deny — the access fact is developed in discovery; the complaint is sufficient"
+                },
+                {
+                  "id": "B",
+                  "text": "Grant — plagiarism requires pre-suit proof of copying"
+                },
+                {
+                  "id": "C",
+                  "text": "Grant — the complaint fails to plead access"
+                },
+                {
+                  "id": "D",
+                  "text": "Deny — the plaintiff has already proven access"
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "the access fact is properly developed in discovery; the complaint is sufficient.",
+              "say_the_break": "Deny — the access fact is developed in discovery; the complaint is sufficient — the access fact is properly developed in discovery"
+            },
+            {
+              "id": "L7-D73-I08",
+              "drill_id": "7.3",
+              "sequence": 8,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Laxatives to cause discomfort; idiosyncratic death; first-degree-murder charge.)*",
+              "prompt": "From the stem alone, predict the credited outcome (and reason).",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "First degree — the secret administration shows premeditation"
+                },
+                {
+                  "id": "B",
+                  "text": "Not guilty of any homicide — the death was a pure accident"
+                },
+                {
+                  "id": "C",
+                  "text": "First degree — any poisoning is first-degree murder"
+                },
+                {
+                  "id": "D",
+                  "text": "Not first degree — no poison in the deadly sense and no premeditation"
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "no poison in the deadly sense, no premeditation.",
+              "say_the_break": "Not first degree — no poison in the deadly sense and no premeditation — no poison in the deadly sense, no premeditation"
+            },
+            {
+              "id": "L7-D73-I09",
+              "drill_id": "7.3",
+              "sequence": 9,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Supervised child's cart injures a shopper; suit against the mother.)*",
+              "prompt": "From the stem alone, predict the credited outcome (and reason).",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "No recovery — a parent isn't liable for a child's torts"
+                },
+                {
+                  "id": "B",
+                  "text": "Recovers — the mother is vicariously liable for the child"
+                },
+                {
+                  "id": "C",
+                  "text": "Recovers against the mother — her own negligent supervision"
+                },
+                {
+                  "id": "D",
+                  "text": "No recovery — the child, not the mother, was negligent"
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "her own negligent supervision.",
+              "say_the_break": "Recovers against the mother — her own negligent supervision — her own negligent supervision"
+            },
+            {
+              "id": "L7-D73-I10",
+              "drill_id": "7.3",
+              "sequence": 10,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Recorded restrictive covenant discovered; warranty deed promised; buyer wants out.)*",
+              "prompt": "From the stem alone, predict the credited outcome (and reason).",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Must purchase — only zoning, not covenants, affects marketability"
+                },
+                {
+                  "id": "B",
+                  "text": "Need not purchase — the warranty deed was never delivered"
+                },
+                {
+                  "id": "C",
+                  "text": "Must purchase — a recorded covenant never clouds title"
+                },
+                {
+                  "id": "D",
+                  "text": "Need not purchase — the covenant renders title unmarketable"
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "the covenant renders title unmarketable.",
+              "say_the_break": "Need not purchase — the covenant renders title unmarketable — the covenant renders title unmarketable"
+            }
+          ]
         },
         {
           "id": "7.4",
@@ -10774,7 +12106,340 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. *(Source of jury right.)* State rules provide a jury in contract disputes; the demand is made in state court."
           ],
           "item_count": 10,
-          "key_md": "1. State was a party to a market transaction → participant.\n2. The exemption distinguishes by subject → content-based.\n3. The target is the mother's own conduct → direct (supervision).\n4. The events don't overlap → different occurrence.\n5. Reliance preceded the retraction → retraction ineffective.\n6. The judgment rests on an adequate, independent state ground → no review.\n7. The expert won't testify → consulting standard.\n8. Damages on a legal claim → jury right on the merits.\n9. No intent → NIED, not IIED.\n10. State law supplies the right → the source is state law."
+          "key_md": "1. State was a party to a market transaction → participant.\n2. The exemption distinguishes by subject → content-based.\n3. The target is the mother's own conduct → direct (supervision).\n4. The events don't overlap → different occurrence.\n5. Reliance preceded the retraction → retraction ineffective.\n6. The judgment rests on an adequate, independent state ground → no review.\n7. The expert won't testify → consulting standard.\n8. Damages on a legal claim → jury right on the merits.\n9. No intent → NIED, not IIED.\n10. State law supplies the right → the source is state law.",
+          "task_type": "LABEL_SELECT",
+          "graded_items": [
+            {
+              "id": "L9-D92-I01",
+              "drill_id": "9.2",
+              "sequence": 1,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Market participant vs regulator.)* The state owned the gas field and sold it by bid.",
+              "prompt": "Given the axis, which fact resolves it?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The state favored local bidders — discrimination"
+                },
+                {
+                  "id": "B",
+                  "text": "The state's action burdened interstate commerce — regulator"
+                },
+                {
+                  "id": "C",
+                  "text": "The state set the bidding rule by statute — regulator"
+                },
+                {
+                  "id": "D",
+                  "text": "The state was a party to a market transaction — participant"
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "State was a party to a market transaction → participant.",
+              "say_the_break": "The state was a party to a market transaction — participant — State was a party to a market transaction → participant"
+            },
+            {
+              "id": "L9-D92-I02",
+              "drill_id": "9.2",
+              "sequence": 2,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Content-based vs neutral.)* The picketing ban exempts picketing about zoning.",
+              "prompt": "Given the axis, which fact resolves it?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The ban applies to all picketers equally — neutral"
+                },
+                {
+                  "id": "B",
+                  "text": "The ban sets a neutral time, place, and manner — neutral"
+                },
+                {
+                  "id": "C",
+                  "text": "The ban targets conduct, not speech — neutral"
+                },
+                {
+                  "id": "D",
+                  "text": "The exemption distinguishes by subject (zoning topics) — content-based"
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "The exemption distinguishes by subject → content-based.",
+              "say_the_break": "The exemption distinguishes by subject (zoning topics) — content-based — The exemption distinguishes by subject → content-based"
+            },
+            {
+              "id": "L9-D92-I03",
+              "drill_id": "9.2",
+              "sequence": 3,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Direct vs vicarious.)* The claim is brought against the mother, not the child.",
+              "prompt": "Given the axis, which fact resolves it?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The child committed the tortious act — vicarious"
+                },
+                {
+                  "id": "B",
+                  "text": "The mother is sued for the child's negligence — vicarious"
+                },
+                {
+                  "id": "C",
+                  "text": "The claim rests on respondeat superior — vicarious"
+                },
+                {
+                  "id": "D",
+                  "text": "The target is the mother's own conduct (supervision) — direct"
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "The target is the mother's own conduct → direct (supervision).",
+              "say_the_break": "The target is the mother's own conduct (supervision) — direct — The target is the mother's own conduct → direct (supervision)"
+            },
+            {
+              "id": "L9-D92-I04",
+              "drill_id": "9.2",
+              "sequence": 4,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Same vs different occurrence.)* Original claim: failure to disclose an alternative; new claim: negligent performance.",
+              "prompt": "Given the axis, which fact resolves it?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The new claim relates back to the filing — same occurrence"
+                },
+                {
+                  "id": "B",
+                  "text": "Both claims involve the same surgery — same occurrence"
+                },
+                {
+                  "id": "C",
+                  "text": "The claims share the same defendant — same occurrence"
+                },
+                {
+                  "id": "D",
+                  "text": "The events don't overlap (disclosure vs. performance) — different occurrence"
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "The events don't overlap → different occurrence.",
+              "say_the_break": "The events don't overlap (disclosure vs. performance) — different occurrence — The events don't overlap → different occurrence"
+            },
+            {
+              "id": "L9-D92-I05",
+              "drill_id": "9.2",
+              "sequence": 5,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Retracted vs relied.)* Substitute bought June 5; retraction June 10.",
+              "prompt": "Given the axis, which fact resolves it?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "A repudiation may always be withdrawn — effective"
+                },
+                {
+                  "id": "B",
+                  "text": "The seller retracted before performance was due — effective"
+                },
+                {
+                  "id": "C",
+                  "text": "Reliance preceded the retraction — retraction ineffective"
+                },
+                {
+                  "id": "D",
+                  "text": "The buyer never accepted the repudiation — effective"
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "Reliance preceded the retraction → retraction ineffective.",
+              "say_the_break": "Reliance preceded the retraction — retraction ineffective — Reliance preceded the retraction → retraction ineffective"
+            },
+            {
+              "id": "L9-D92-I06",
+              "drill_id": "9.2",
+              "sequence": 6,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Independent state ground vs federal.)* The court struck the law under both the federal and state constitutions.",
+              "prompt": "Given the axis, which fact resolves it?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The judgment rests on an adequate, independent state ground — no review"
+                },
+                {
+                  "id": "B",
+                  "text": "The state ground was not adequate — review available"
+                },
+                {
+                  "id": "C",
+                  "text": "The state and federal grounds are intertwined — review available"
+                },
+                {
+                  "id": "D",
+                  "text": "The court decided a federal constitutional question — federal ground"
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "The judgment rests on an adequate, independent state ground → no review.",
+              "say_the_break": "The judgment rests on an adequate, independent state ground — no review — The judgment rests on an adequate, independent state ground → no review"
+            },
+            {
+              "id": "L9-D92-I07",
+              "drill_id": "9.2",
+              "sequence": 7,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Testifying vs consulting.)* The expert was retained for the defense and then not called.",
+              "prompt": "Given the axis, which fact resolves it?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The expert won't testify — consulting standard"
+                },
+                {
+                  "id": "B",
+                  "text": "The expert was retained for trial — testifying standard"
+                },
+                {
+                  "id": "C",
+                  "text": "The expert formed case opinions — testifying standard"
+                },
+                {
+                  "id": "D",
+                  "text": "The expert is the only source of the opinion — testifying standard"
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "The expert won't testify → consulting standard.",
+              "say_the_break": "The expert won't testify — consulting standard — The expert won't testify → consulting standard"
+            },
+            {
+              "id": "L9-D92-I08",
+              "drill_id": "9.2",
+              "sequence": 8,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Legal vs equitable.)* The plaintiff seeks compensatory damages on a product-defect claim.",
+              "prompt": "Given the axis, which fact resolves it?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Damages on a legal claim — jury right on the merits"
+                },
+                {
+                  "id": "B",
+                  "text": "The claim is for restitution — equitable, no jury"
+                },
+                {
+                  "id": "C",
+                  "text": "The remedy sought is specific performance — equitable, no jury"
+                },
+                {
+                  "id": "D",
+                  "text": "The plaintiff seeks an injunction — equitable, no jury"
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "Damages on a legal claim → jury right on the merits.",
+              "say_the_break": "Damages on a legal claim — jury right on the merits — Damages on a legal claim → jury right on the merits"
+            },
+            {
+              "id": "L9-D92-I09",
+              "drill_id": "9.2",
+              "sequence": 9,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(IIED vs NIED.)* The mausoleum *negligently* secured the body; there was no intent.",
+              "prompt": "Given the axis, which fact resolves it?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "No intent — NIED, not IIED"
+                },
+                {
+                  "id": "B",
+                  "text": "The defendant intended to cause distress — IIED"
+                },
+                {
+                  "id": "C",
+                  "text": "The conduct was extreme and outrageous — IIED"
+                },
+                {
+                  "id": "D",
+                  "text": "The plaintiff suffered severe emotional harm — IIED"
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "No intent → NIED, not IIED.",
+              "say_the_break": "No intent — NIED, not IIED — No intent → NIED, not IIED"
+            },
+            {
+              "id": "L9-D92-I10",
+              "drill_id": "9.2",
+              "sequence": 10,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Source of jury right.)* State rules provide a jury in contract disputes; the demand is made in state court.",
+              "prompt": "Given the axis, which fact resolves it?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "State law supplies the right — the source is state law"
+                },
+                {
+                  "id": "B",
+                  "text": "The claim is a common-law action — federal source"
+                },
+                {
+                  "id": "C",
+                  "text": "The demand was made in a court of law — federal source"
+                },
+                {
+                  "id": "D",
+                  "text": "The Seventh Amendment governs in state court — federal source"
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "State law supplies the right → the source is state law.",
+              "say_the_break": "State law supplies the right — the source is state law — State law supplies the right → the source is state law"
+            }
+          ]
         },
         {
           "id": "9.3",
@@ -11712,7 +13377,340 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. *(Acceptance vs revocation timing.)* The seller mailed acceptance on the 7th; the buyer phoned a revocation on the 8th."
           ],
           "item_count": 10,
-          "key_md": "1. Reliance preceded the retraction → retraction ineffective.\n2. The entrant went past a \"No Admittance\" sign → **trespasser**. The clerk's knowledge of a *concealed, highly dangerous* condition (the open shaft) the entrant doesn't know about triggers the **duty owed to a known/anticipated trespasser** — Restatement §337: warn of, or make safe, an artificial condition the possessor knows is concealed and likely to cause death or serious harm. (Not the licensee warn-duty; the entrant is a trespasser.)\n3. The events don't overlap → different occurrence.\n4. State law supplies the right → answer on state-law grounds.\n5. The month is within the three-month cap → still firm.\n6. The judgment rests on an adequate, independent state ground.\n7. The state was a market party → participant.\n8. Common-law jurisdiction + a feigning \"co-conspirator\" → no bilateral agreement.\n9. The expert won't testify → consulting-expert standard.\n10. Acceptance was effective on dispatch (the 7th), before the revocation (the 8th)."
+          "key_md": "1. Reliance preceded the retraction → retraction ineffective.\n2. The entrant went past a \"No Admittance\" sign → **trespasser**. The clerk's knowledge of a *concealed, highly dangerous* condition (the open shaft) the entrant doesn't know about triggers the **duty owed to a known/anticipated trespasser** — Restatement §337: warn of, or make safe, an artificial condition the possessor knows is concealed and likely to cause death or serious harm. (Not the licensee warn-duty; the entrant is a trespasser.)\n3. The events don't overlap → different occurrence.\n4. State law supplies the right → answer on state-law grounds.\n5. The month is within the three-month cap → still firm.\n6. The judgment rests on an adequate, independent state ground.\n7. The state was a market party → participant.\n8. Common-law jurisdiction + a feigning \"co-conspirator\" → no bilateral agreement.\n9. The expert won't testify → consulting-expert standard.\n10. Acceptance was effective on dispatch (the 7th), before the revocation (the 8th).",
+          "task_type": "LABEL_SELECT",
+          "graded_items": [
+            {
+              "id": "L10-D102-I01",
+              "drill_id": "10.2",
+              "sequence": 1,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Retracted vs relied.)* Substitute bought June 5; retraction June 10.",
+              "prompt": "Given the matched pair, which single fact picks the winner?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The seller communicated the retraction directly"
+                },
+                {
+                  "id": "B",
+                  "text": "The substitute purchase (June 5) preceded the retraction — reliance"
+                },
+                {
+                  "id": "C",
+                  "text": "The contract was for goods under the UCC"
+                },
+                {
+                  "id": "D",
+                  "text": "The retraction (June 10) came after the repudiation"
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "Reliance preceded the retraction → retraction ineffective.",
+              "say_the_break": "The substitute purchase (June 5) preceded the retraction — reliance — Reliance preceded the retraction → retraction ineffective"
+            },
+            {
+              "id": "L10-D102-I02",
+              "drill_id": "10.2",
+              "sequence": 2,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Entrant status quartet.)* The plaintiff went behind a \"No Admittance\" counter to get an item, after a clerk said nothing.",
+              "prompt": "Given the matched pair, which single fact picks the winner?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The clerk said nothing, so the entrant was a licensee"
+                },
+                {
+                  "id": "B",
+                  "text": "The entrant went past a 'No Admittance' sign — trespasser owed a duty as to a concealed, highly dangerous condition"
+                },
+                {
+                  "id": "C",
+                  "text": "The dangerous condition was open and obvious"
+                },
+                {
+                  "id": "D",
+                  "text": "The entrant entered for the store's benefit — invitee"
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "The entrant went past a \"No Admittance\" sign → . The clerk's knowledge of a *concealed, highly dangerous* condition (the open shaft) the entrant doesn't know about triggers the **duty owed to a known/anticipated trespasser** — Restatement §337: warn of, or make safe, an artificial condition the possessor knows is concealed and likely to cause death or serious harm. (Not the licensee warn-duty; the entrant is a trespasser.)",
+              "say_the_break": "The entrant went past a 'No Admittance' sign — trespasser owed a duty as to a concealed, highly dangerous condition — The entrant went past a \"No Admittance\" sign → . The clerk's knowledge of a concealed, highly dangerous condition (the open shaft) the entrant doesn't know about triggers the duty owed to a known/anticipated trespasser — Restatement §337: warn of, or make safe, an artificial condition the possessor knows is concealed and likely to cause death or serious harm. (Not the licensee warn-duty"
+            },
+            {
+              "id": "L10-D102-I03",
+              "drill_id": "10.2",
+              "sequence": 3,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Same vs different occurrence.)* Original: failure to disclose an alternative; new: negligent performance.",
+              "prompt": "Given the matched pair, which single fact picks the winner?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Both claims concern the same surgery — same occurrence"
+                },
+                {
+                  "id": "B",
+                  "text": "The new claim relates back to the filing — same occurrence"
+                },
+                {
+                  "id": "C",
+                  "text": "The defendant is the same in both claims"
+                },
+                {
+                  "id": "D",
+                  "text": "The events don't overlap (disclosure vs. performance) — different occurrence"
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "The events don't overlap → different occurrence.",
+              "say_the_break": "The events don't overlap (disclosure vs. performance) — different occurrence — The events don't overlap → different occurrence"
+            },
+            {
+              "id": "L10-D102-I04",
+              "drill_id": "10.2",
+              "sequence": 4,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Source of jury right.)* The demand is under the state's own rules, in state court.",
+              "prompt": "Given the matched pair, which single fact picks the winner?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "State law supplies the right — answer on state-law grounds"
+                },
+                {
+                  "id": "B",
+                  "text": "It is a contract action, which is always legal"
+                },
+                {
+                  "id": "C",
+                  "text": "It is in state court, so federal jury law controls"
+                },
+                {
+                  "id": "D",
+                  "text": "The demand invokes the Seventh Amendment — federal grounds"
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "State law supplies the right → answer on state-law grounds.",
+              "say_the_break": "State law supplies the right — answer on state-law grounds — State law supplies the right → answer on state-law grounds"
+            },
+            {
+              "id": "L10-D102-I05",
+              "drill_id": "10.2",
+              "sequence": 5,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Firm-offer duration.)* The disputed orders fall a month after a \"for the coming year\" assurance.",
+              "prompt": "Given the matched pair, which single fact picks the winner?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The assurance covered 'the coming year'"
+                },
+                {
+                  "id": "B",
+                  "text": "The offeror was a merchant"
+                },
+                {
+                  "id": "C",
+                  "text": "The orders came one month after the offer"
+                },
+                {
+                  "id": "D",
+                  "text": "The disputed month is within the three-month cap — still firm"
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "The month is within the three-month cap → still firm.",
+              "say_the_break": "The disputed month is within the three-month cap — still firm — The month is within the three-month cap → still firm"
+            },
+            {
+              "id": "L10-D102-I06",
+              "drill_id": "10.2",
+              "sequence": 6,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Independent state ground vs federal.)* The court struck the law under both the federal and the state constitutions.",
+              "prompt": "Given the matched pair, which single fact picks the winner?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The judgment rests on an adequate, independent state ground"
+                },
+                {
+                  "id": "B",
+                  "text": "The state ground was inadequate"
+                },
+                {
+                  "id": "C",
+                  "text": "The court also relied on the federal constitution"
+                },
+                {
+                  "id": "D",
+                  "text": "The state and federal grounds were intertwined"
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "The judgment rests on an adequate, independent state ground.",
+              "say_the_break": "The judgment rests on an adequate, independent state ground — The judgment rests on an adequate, independent state ground"
+            },
+            {
+              "id": "L10-D102-I07",
+              "drill_id": "10.2",
+              "sequence": 7,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Participant vs regulator.)* The state owned the field and sold it by bid.",
+              "prompt": "Given the matched pair, which single fact picks the winner?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The sale affected interstate commerce — regulator"
+                },
+                {
+                  "id": "B",
+                  "text": "The state was a market party (owned and sold the field) — participant"
+                },
+                {
+                  "id": "C",
+                  "text": "The bidding rule was set by statute — regulator"
+                },
+                {
+                  "id": "D",
+                  "text": "The state preferred in-state buyers — discrimination"
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "The state was a market party → participant.",
+              "say_the_break": "The state was a market party (owned and sold the field) — participant — The state was a market party → participant"
+            },
+            {
+              "id": "L10-D102-I08",
+              "drill_id": "10.2",
+              "sequence": 8,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Bilateral vs unilateral conspiracy.)* The only other \"conspirator\" was an undercover officer who never intended to agree, in a common-law jurisdiction.",
+              "prompt": "Given the matched pair, which single fact picks the winner?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "A common-law jurisdiction plus a feigning 'co-conspirator' — no bilateral agreement"
+                },
+                {
+                  "id": "B",
+                  "text": "The defendant intended to agree — conspiracy formed"
+                },
+                {
+                  "id": "C",
+                  "text": "The jurisdiction follows the unilateral (MPC) rule — guilty"
+                },
+                {
+                  "id": "D",
+                  "text": "An overt act was committed — conspiracy complete"
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "Common-law jurisdiction + a feigning \"co-conspirator\" → no bilateral agreement.",
+              "say_the_break": "A common-law jurisdiction plus a feigning 'co-conspirator' — no bilateral agreement — Common-law jurisdiction + a feigning \"co-conspirator\" → no bilateral agreement"
+            },
+            {
+              "id": "L10-D102-I09",
+              "drill_id": "10.2",
+              "sequence": 9,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Fact-WP vs consulting expert.)* The expert was retained for the defense and won't testify.",
+              "prompt": "Given the matched pair, which single fact picks the winner?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "The opinion is discoverable on a showing of need"
+                },
+                {
+                  "id": "B",
+                  "text": "The expert was retained for the defense — work product"
+                },
+                {
+                  "id": "C",
+                  "text": "The expert formed trial opinions — testifying standard"
+                },
+                {
+                  "id": "D",
+                  "text": "The expert won't testify — consulting-expert standard"
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "The expert won't testify → consulting-expert standard.",
+              "say_the_break": "The expert won't testify — consulting-expert standard — The expert won't testify → consulting-expert standard"
+            },
+            {
+              "id": "L10-D102-I10",
+              "drill_id": "10.2",
+              "sequence": 10,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Acceptance vs revocation timing.)* The seller mailed acceptance on the 7th; the buyer phoned a revocation on the 8th.",
+              "prompt": "Given the matched pair, which single fact picks the winner?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Acceptance was effective on dispatch (mailed the 7th), before the revocation (the 8th)"
+                },
+                {
+                  "id": "B",
+                  "text": "Acceptance is effective only on receipt by the offeror"
+                },
+                {
+                  "id": "C",
+                  "text": "The phoned revocation on the 8th was received first"
+                },
+                {
+                  "id": "D",
+                  "text": "A revocation is effective on dispatch under the mailbox rule"
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "Acceptance was effective on dispatch (the 7th), before the revocation (the 8th).",
+              "say_the_break": "Acceptance was effective on dispatch (mailed the 7th), before the revocation (the 8th) — Acceptance was effective on dispatch (the 7th), before the revocation (the 8th)"
+            }
+          ]
         },
         {
           "id": "10.3",
