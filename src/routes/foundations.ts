@@ -60,6 +60,8 @@ const attemptBody = z.object({
   // attempt BEFORE grading. Keep in sync with foundations_attempts.selected_choice_id.
   selected_choice_id: z.string().min(1).max(128).optional(),
   selected_choice_statuses: z.record(z.string().max(128), C3_STATUS).optional(),
+  // MULTI_SELECT (full-workflow drills): part_id -> chosen choice id, graded per part.
+  selected_parts: z.record(z.string().max(32), z.string().max(128)).optional(),
   attempt_number: z.number().int().min(1).max(50).default(1),
   time_ms: z.number().int().min(0).max(3_600_000).optional(),
   confidence: z.number().int().min(1).max(5).optional(),
@@ -149,6 +151,7 @@ export function registerFoundationsRoutes(app: Express): void {
         selected_status: body.selected_status,
         selected_choice_id: body.selected_choice_id,
         selected_choice_statuses: body.selected_choice_statuses,
+        selected_parts: body.selected_parts,
       };
       const grade = gradeC3Attempt(item, response);
 
@@ -172,9 +175,10 @@ export function registerFoundationsRoutes(app: Express): void {
             `INSERT INTO foundations_attempts
                (attempt_id, student_id, lesson_slug, drill_id, item_id, task_type,
                 selected_status, selected_choice_id, selected_choice_statuses,
+                selected_parts,
                 correct, attempt_number, time_ms, confidence,
                 missed_filter, missed_skill, reflection_text)
-             VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16)`,
+             VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17)`,
             [
               attemptId,
               resolution.student.student_id,
@@ -187,6 +191,7 @@ export function registerFoundationsRoutes(app: Express): void {
               body.selected_choice_statuses
                 ? JSON.stringify(body.selected_choice_statuses)
                 : null,
+              body.selected_parts ? JSON.stringify(body.selected_parts) : null,
               grade.correct ? 1 : 0,
               body.attempt_number,
               body.time_ms ?? null,

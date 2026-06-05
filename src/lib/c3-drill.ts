@@ -36,8 +36,11 @@ export type C3TaskType =
   // Ear/Issue-Sense, name-the-mold). choices[] = the labels; correct_choice_id = the label.
   | "COUNT_SELECT" // pick the survivor count after the Cut (Drill 2.2). choices[] =
   // "1".."4"; correct_choice_id = the count. A pure choice-pick: the count IS the answer.
-  | "SEQUENCE_SELECT"; // pick the next workflow move (Drill 14.1). choices[] = the fixed
+  | "SEQUENCE_SELECT" // pick the next workflow move (Drill 14.1). choices[] = the fixed
   // Method steps (FRAME/CUT/CLASH/CALL/FLAG/COMMIT); correct_choice_id = the step code.
+  | "MULTI_SELECT"; // run the full workflow: several finite sub-answers per item
+  // (Drills 2.5/13.5/14.5). parts[] = the independent sub-questions, each graded on its
+  // own correct_choice_id; per-part feedback returned in C3GradeResult.part_results.
 
 /** The skill a miss implicates, for the review summary + future adaptive feed. */
 export type C3Skill = "EAR" | "ISSUE_SENSE" | "CUT" | "CLASH" | "CALL";
@@ -58,6 +61,19 @@ export interface C3Choice {
   text: string;
 }
 
+/**
+ * One sub-question of a MULTI_SELECT item (the full-workflow drills). Each part
+ * is an independent finite pick — e.g. answer (A/B/C/D/FLAG), phase (CUT/CLASH/
+ * CALL), band (~50%..~90%), mechanism (CUT/ANCHOR/CLASH/CALL/FORK). Graded on
+ * its own correct_choice_id; the public item drops correct_choice_id per part.
+ */
+export interface C3DrillPart {
+  id: string;
+  prompt: string;
+  choices: C3Choice[];
+  correct_choice_id: string;
+}
+
 // ---- the gradeable item (server-side: carries the answer key) ----
 
 export interface C3DrillItem {
@@ -76,6 +92,8 @@ export interface C3DrillItem {
   correct_status?: C3Status;
   correct_choice_id?: string;
   choice_statuses?: Record<string, C3Status>;
+  /** MULTI_SELECT only: the per-item sub-questions, each independently graded. */
+  parts?: C3DrillPart[];
 
   skill: C3Skill;
   short_explanation: string;
@@ -92,6 +110,9 @@ export interface C3DrillItem {
  * field is dropped so the page source cannot leak the key. The grade endpoint
  * is the only place the answer + explanation come from.
  */
+/** A MULTI_SELECT part as shipped to the browser: the answer key is dropped. */
+export type C3DrillPartPublic = Omit<C3DrillPart, "correct_choice_id">;
+
 export type C3DrillItemPublic = Omit<
   C3DrillItem,
   | "correct_status"
@@ -100,7 +121,8 @@ export type C3DrillItemPublic = Omit<
   | "short_explanation"
   | "why_tempting"
   | "say_the_break"
->;
+  | "parts"
+> & { parts?: C3DrillPartPublic[] };
 
 export function toPublicItem(item: C3DrillItem): C3DrillItemPublic {
   const {
@@ -110,9 +132,15 @@ export function toPublicItem(item: C3DrillItem): C3DrillItemPublic {
     short_explanation: _se,
     why_tempting: _wt,
     say_the_break: _sb,
+    parts,
     ...pub
   } = item;
-  return pub;
+  return parts
+    ? {
+        ...pub,
+        parts: parts.map(({ correct_choice_id: _pc, ...part }) => part),
+      }
+    : pub;
 }
 
 // ---- grading ----
@@ -121,6 +149,15 @@ export interface C3StudentResponse {
   selected_status?: C3Status;
   selected_choice_id?: string;
   selected_choice_statuses?: Record<string, C3Status>;
+  /** MULTI_SELECT only: part_id -> chosen choice id. */
+  selected_parts?: Record<string, string>;
+}
+
+/** Per-part outcome for a MULTI_SELECT item (independent scoring + feedback). */
+export interface C3PartResult {
+  part_id: string;
+  correct: boolean;
+  correct_choice_id: string;
 }
 
 export interface C3Explanation {
@@ -138,6 +175,8 @@ export interface C3GradeResult {
   missed_filter: C3MissedFilter | null;
   missed_skill: C3Skill | null;
   explanation: C3Explanation;
+  /** MULTI_SELECT only: independent per-part correctness for student feedback. */
+  part_results?: C3PartResult[];
 }
 
 const STATUS_LABEL: Record<C3Status, string> = {
@@ -198,6 +237,15 @@ export function gradeC3Attempt(
     say_the_break: item.say_the_break,
   };
 
+  const part_results =
+    item.task_type === "MULTI_SELECT" && item.parts
+      ? item.parts.map((p) => ({
+          part_id: p.id,
+          correct: (response.selected_parts ?? {})[p.id] === p.correct_choice_id,
+          correct_choice_id: p.correct_choice_id,
+        }))
+      : undefined;
+
   return {
     correct,
     correct_status: item.correct_status,
@@ -206,6 +254,7 @@ export function gradeC3Attempt(
     missed_filter: correct ? null : missedFilterFor(item, response),
     missed_skill: correct ? null : item.skill,
     explanation,
+    part_results,
   };
 }
 
@@ -251,6 +300,15 @@ function isCorrect(item: C3DrillItem, response: C3StudentResponse): boolean {
         item.choice_statuses,
         response.selected_choice_statuses,
       );
+
+    case "MULTI_SELECT": {
+      // Item-level correct = every sub-part correct. Per-part outcomes are
+      // surfaced separately in part_results for independent feedback/analytics.
+      const parts = item.parts ?? [];
+      if (parts.length === 0) return false;
+      const sel = response.selected_parts ?? {};
+      return parts.every((p) => sel[p.id] === p.correct_choice_id);
+    }
   }
 }
 
@@ -264,7 +322,8 @@ function missedFilterFor(
   if (
     item.task_type === "LABEL_SELECT" ||
     item.task_type === "COUNT_SELECT" ||
-    item.task_type === "SEQUENCE_SELECT"
+    item.task_type === "SEQUENCE_SELECT" ||
+    item.task_type === "MULTI_SELECT"
   )
     return null;
 
@@ -292,6 +351,11 @@ function verdictLine(item: C3DrillItem): string {
   }
   if (item.task_type === "SEQUENCE_SELECT" && item.correct_choice_id) {
     return `Next move: ${item.correct_choice_id}.`;
+  }
+  if (item.task_type === "MULTI_SELECT" && item.parts) {
+    return item.parts
+      .map((p) => `${p.prompt} ${p.correct_choice_id}`)
+      .join("  ·  ");
   }
   if (item.correct_status) return STATUS_LABEL[item.correct_status];
   if (item.correct_choice_id) {

@@ -2197,7 +2197,590 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. *(Laxatives given for discomfort; idiosyncratic death; first-degree = poison or premeditation.)* A) only poison; B) only premeditation; C) both; D) No."
           ],
           "item_count": 10,
-          "key_md": "1. **D — CUT.** Three false-law cuts leave D.\n2. **D — CLASH.** A vs D on reliance; the substitute purchase before retraction decides it.\n3. **D — CUT.** A wrong-element, B overclaim, C misfit; D survives.\n4. **B — CLASH.** Market-participant fact takes it outside the dormant commerce clause.\n5. **B — CLASH.** Different-occurrence fact defeats relation-back (C is the wrong relation-back prong; cut at CUT).\n6. **C — CUT.** A misfit, B bait-doctrine, D backwards; C survives.\n7. **C — CLASH (by rule).** §1367(b) bars supplemental jurisdiction over a plaintiff's claim against a non-diverse co-defendant in diversity.\n8. **D — CLASH.** Content-based exception → strict scrutiny → challenge prevails.\n9. **A — CUT.** B false, C misfit, D backwards; A survives.\n10. **D — CLASH.** The facts negate both first-degree predicates.\n\nNotice the tally: every question resolved at CUT or CLASH; none needed CALL. That is the normal distribution. When Call starts feeling necessary on routine questions, suspect that you under-cut or under-clashed — not that the questions got harder."
+          "key_md": "1. **D — CUT.** Three false-law cuts leave D.\n2. **D — CLASH.** A vs D on reliance; the substitute purchase before retraction decides it.\n3. **D — CUT.** A wrong-element, B overclaim, C misfit; D survives.\n4. **B — CLASH.** Market-participant fact takes it outside the dormant commerce clause.\n5. **B — CLASH.** Different-occurrence fact defeats relation-back (C is the wrong relation-back prong; cut at CUT).\n6. **C — CUT.** A misfit, B bait-doctrine, D backwards; C survives.\n7. **C — CLASH (by rule).** §1367(b) bars supplemental jurisdiction over a plaintiff's claim against a non-diverse co-defendant in diversity.\n8. **D — CLASH.** Content-based exception → strict scrutiny → challenge prevails.\n9. **A — CUT.** B false, C misfit, D backwards; A survives.\n10. **D — CLASH.** The facts negate both first-degree predicates.\n\nNotice the tally: every question resolved at CUT or CLASH; none needed CALL. That is the normal distribution. When Call starts feeling necessary on routine questions, suspect that you under-cut or under-clashed — not that the questions got harder.",
+          "task_type": "MULTI_SELECT",
+          "graded_items": [
+            {
+              "id": "L2-D25-I01",
+              "drill_id": "2.5",
+              "sequence": 1,
+              "task_type": "MULTI_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Wholesaler assigns sale contracts to a reputable miller.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "can't assign;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "only by express promise;"
+                    },
+                    {
+                      "id": "C",
+                      "text": "rights only;"
+                    },
+                    {
+                      "id": "D",
+                      "text": "assignable absent disproportionate change."
+                    }
+                  ],
+                  "correct_choice_id": "D"
+                },
+                {
+                  "id": "phase",
+                  "prompt": "Decided at which phase?",
+                  "choices": [
+                    {
+                      "id": "CUT",
+                      "text": "CUT"
+                    },
+                    {
+                      "id": "CLASH",
+                      "text": "CLASH"
+                    },
+                    {
+                      "id": "CALL",
+                      "text": "CALL"
+                    }
+                  ],
+                  "correct_choice_id": "CUT"
+                }
+              ],
+              "short_explanation": "Three false-law cuts leave D.",
+              "say_the_break": "The answer: D  ·  Decided at which phase? CUT — Three false-law cuts leave D"
+            },
+            {
+              "id": "L2-D25-I02",
+              "drill_id": "2.5",
+              "sequence": 2,
+              "task_type": "MULTI_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Repudiation retracted after a substitute purchase.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "retracted before performance;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "constructive condition;"
+                    },
+                    {
+                      "id": "C",
+                      "text": "not retractable once communicated;"
+                    },
+                    {
+                      "id": "D",
+                      "text": "relied before retraction."
+                    }
+                  ],
+                  "correct_choice_id": "D"
+                },
+                {
+                  "id": "phase",
+                  "prompt": "Decided at which phase?",
+                  "choices": [
+                    {
+                      "id": "CUT",
+                      "text": "CUT"
+                    },
+                    {
+                      "id": "CLASH",
+                      "text": "CLASH"
+                    },
+                    {
+                      "id": "CALL",
+                      "text": "CALL"
+                    }
+                  ],
+                  "correct_choice_id": "CLASH"
+                }
+              ],
+              "short_explanation": "A vs D on reliance; the substitute purchase before retraction decides it.",
+              "say_the_break": "The answer: D  ·  Decided at which phase? CLASH — A vs D on reliance"
+            },
+            {
+              "id": "L2-D25-I03",
+              "drill_id": "2.5",
+              "sequence": 3,
+              "task_type": "MULTI_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Negligent child; suit against the mother.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "child negligent;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "liable for any harm;"
+                    },
+                    {
+                      "id": "C",
+                      "text": "assumed risk;"
+                    },
+                    {
+                      "id": "D",
+                      "text": "failed to supervise."
+                    }
+                  ],
+                  "correct_choice_id": "D"
+                },
+                {
+                  "id": "phase",
+                  "prompt": "Decided at which phase?",
+                  "choices": [
+                    {
+                      "id": "CUT",
+                      "text": "CUT"
+                    },
+                    {
+                      "id": "CLASH",
+                      "text": "CLASH"
+                    },
+                    {
+                      "id": "CALL",
+                      "text": "CALL"
+                    }
+                  ],
+                  "correct_choice_id": "CUT"
+                }
+              ],
+              "short_explanation": "A wrong-element, B overclaim, C misfit; D survives.",
+              "say_the_break": "The answer: D  ·  Decided at which phase? CUT — A wrong-element, B overclaim, C misfit"
+            },
+            {
+              "id": "L2-D25-I04",
+              "drill_id": "2.5",
+              "sequence": 4,
+              "task_type": "MULTI_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(State gas field sold by bid to a lower local bidder.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "compelling interest;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "market participant;"
+                    },
+                    {
+                      "id": "C",
+                      "text": "irrational/due process;"
+                    },
+                    {
+                      "id": "D",
+                      "text": "discriminated against commerce."
+                    }
+                  ],
+                  "correct_choice_id": "B"
+                },
+                {
+                  "id": "phase",
+                  "prompt": "Decided at which phase?",
+                  "choices": [
+                    {
+                      "id": "CUT",
+                      "text": "CUT"
+                    },
+                    {
+                      "id": "CLASH",
+                      "text": "CLASH"
+                    },
+                    {
+                      "id": "CALL",
+                      "text": "CALL"
+                    }
+                  ],
+                  "correct_choice_id": "CLASH"
+                }
+              ],
+              "short_explanation": "Market-participant fact takes it outside the dormant commerce clause.",
+              "say_the_break": "The answer: B  ·  Decided at which phase? CLASH — Market-participant fact takes it outside the dormant commerce clause"
+            },
+            {
+              "id": "L2-D25-I05",
+              "drill_id": "2.5",
+              "sequence": 5,
+              "task_type": "MULTI_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Informed-consent claim, then negligent-performance amendment.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "SOL expired the next day;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "different occurrence;"
+                    },
+                    {
+                      "id": "C",
+                      "text": "knew-or-should-have-known but for a mistake;"
+                    },
+                    {
+                      "id": "D",
+                      "text": "relates back."
+                    }
+                  ],
+                  "correct_choice_id": "B"
+                },
+                {
+                  "id": "phase",
+                  "prompt": "Decided at which phase?",
+                  "choices": [
+                    {
+                      "id": "CUT",
+                      "text": "CUT"
+                    },
+                    {
+                      "id": "CLASH",
+                      "text": "CLASH"
+                    },
+                    {
+                      "id": "CALL",
+                      "text": "CALL"
+                    }
+                  ],
+                  "correct_choice_id": "CLASH"
+                }
+              ],
+              "short_explanation": "Different-occurrence fact defeats relation-back (C is the wrong relation-back prong; cut at CUT).",
+              "say_the_break": "The answer: B  ·  Decided at which phase? CLASH — Different-occurrence fact defeats relation-back (C is the wrong relation-back prong"
+            },
+            {
+              "id": "L2-D25-I06",
+              "drill_id": "2.5",
+              "sequence": 6,
+              "task_type": "MULTI_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Improperly secured corpse; mother's distress.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "no threat to safety;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "not extreme/outrageous;"
+                    },
+                    {
+                      "id": "C",
+                      "text": "negligent failure to safeguard;"
+                    },
+                    {
+                      "id": "D",
+                      "text": "no physical harm."
+                    }
+                  ],
+                  "correct_choice_id": "C"
+                },
+                {
+                  "id": "phase",
+                  "prompt": "Decided at which phase?",
+                  "choices": [
+                    {
+                      "id": "CUT",
+                      "text": "CUT"
+                    },
+                    {
+                      "id": "CLASH",
+                      "text": "CLASH"
+                    },
+                    {
+                      "id": "CALL",
+                      "text": "CALL"
+                    }
+                  ],
+                  "correct_choice_id": "CUT"
+                }
+              ],
+              "short_explanation": "A misfit, B bait-doctrine, D backwards; C survives.",
+              "say_the_break": "The answer: C  ·  Decided at which phase? CUT — A misfit, B bait-doctrine, D backwards"
+            },
+            {
+              "id": "L2-D25-I07",
+              "drill_id": "2.5",
+              "sequence": 7,
+              "task_type": "MULTI_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Dentist + nurse; no complete diversity; supplemental jurisdiction argued.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "supplemental jurisdiction;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "judicial economy;"
+                    },
+                    {
+                      "id": "C",
+                      "text": "no complete diversity, no SMJ;"
+                    },
+                    {
+                      "id": "D",
+                      "text": "not the same case/controversy."
+                    }
+                  ],
+                  "correct_choice_id": "C"
+                },
+                {
+                  "id": "phase",
+                  "prompt": "Decided at which phase?",
+                  "choices": [
+                    {
+                      "id": "CUT",
+                      "text": "CUT"
+                    },
+                    {
+                      "id": "CLASH",
+                      "text": "CLASH"
+                    },
+                    {
+                      "id": "CALL",
+                      "text": "CALL"
+                    }
+                  ],
+                  "correct_choice_id": "CLASH"
+                }
+              ],
+              "short_explanation": "§1367(b) bars supplemental jurisdiction over a plaintiff's claim against a non-diverse co-defendant in diversity.",
+              "say_the_break": "The answer: C  ·  Decided at which phase? CLASH — §1367(b) bars supplemental jurisdiction over a plaintiff's claim against a non-diverse co-defendant in diversity"
+            },
+            {
+              "id": "L2-D25-I08",
+              "drill_id": "2.5",
+              "sequence": 8,
+              "task_type": "MULTI_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Residential-picketing ban exempting zoning topics.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "content-neutral;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "regulates conduct;"
+                    },
+                    {
+                      "id": "C",
+                      "text": "irrational discrimination;"
+                    },
+                    {
+                      "id": "D",
+                      "text": "content-based."
+                    }
+                  ],
+                  "correct_choice_id": "D"
+                },
+                {
+                  "id": "phase",
+                  "prompt": "Decided at which phase?",
+                  "choices": [
+                    {
+                      "id": "CUT",
+                      "text": "CUT"
+                    },
+                    {
+                      "id": "CLASH",
+                      "text": "CLASH"
+                    },
+                    {
+                      "id": "CALL",
+                      "text": "CALL"
+                    }
+                  ],
+                  "correct_choice_id": "CLASH"
+                }
+              ],
+              "short_explanation": "Content-based exception → strict scrutiny → challenge prevails.",
+              "say_the_break": "The answer: D  ·  Decided at which phase? CLASH — Content-based exception → strict scrutiny → challenge prevails"
+            },
+            {
+              "id": "L2-D25-I09",
+              "drill_id": "2.5",
+              "sequence": 9,
+              "task_type": "MULTI_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Buyer wants out; recorded restrictive covenant; zoning bars use.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "covenant unmarketable;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "zoning clouds title;"
+                    },
+                    {
+                      "id": "C",
+                      "text": "warranty deed without exceptions;"
+                    },
+                    {
+                      "id": "D",
+                      "text": "silent on title."
+                    }
+                  ],
+                  "correct_choice_id": "A"
+                },
+                {
+                  "id": "phase",
+                  "prompt": "Decided at which phase?",
+                  "choices": [
+                    {
+                      "id": "CUT",
+                      "text": "CUT"
+                    },
+                    {
+                      "id": "CLASH",
+                      "text": "CLASH"
+                    },
+                    {
+                      "id": "CALL",
+                      "text": "CALL"
+                    }
+                  ],
+                  "correct_choice_id": "CUT"
+                }
+              ],
+              "short_explanation": "B false, C misfit, D backwards; A survives.",
+              "say_the_break": "The answer: A  ·  Decided at which phase? CUT — B false, C misfit, D backwards"
+            },
+            {
+              "id": "L2-D25-I10",
+              "drill_id": "2.5",
+              "sequence": 10,
+              "task_type": "MULTI_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Laxatives given for discomfort; idiosyncratic death; first-degree = poison or premeditation.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "only poison;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "only premeditation;"
+                    },
+                    {
+                      "id": "C",
+                      "text": "both;"
+                    },
+                    {
+                      "id": "D",
+                      "text": "No."
+                    }
+                  ],
+                  "correct_choice_id": "D"
+                },
+                {
+                  "id": "phase",
+                  "prompt": "Decided at which phase?",
+                  "choices": [
+                    {
+                      "id": "CUT",
+                      "text": "CUT"
+                    },
+                    {
+                      "id": "CLASH",
+                      "text": "CLASH"
+                    },
+                    {
+                      "id": "CALL",
+                      "text": "CALL"
+                    }
+                  ],
+                  "correct_choice_id": "CLASH"
+                }
+              ],
+              "short_explanation": "The facts negate both first-degree predicates.\n\nNotice the tally: every question resolved at CUT or CLASH; none needed CALL. That is the normal distribution. When Call starts feeling necessary on routine questions, suspect that you under-cut or under-clashed — not that the questions got harder.",
+              "say_the_break": "The answer: D  ·  Decided at which phase? CLASH — The facts negate both first-degree predicates.\n\nNotice the tally: every question resolved at CUT or CLASH"
+            }
+          ]
         }
       ],
       "how_to_use_md": "Drill 2.1 is the skill-attribution check — if you can't reliably sort errors into Ear vs Issue-Sense, the rest of the course's two-track structure won't land, so get this near-automatic. Drills 2.2 and 2.3 train the control logic: count survivors, name the axis. Drill 2.5 is the rehearsal of the real motion — run all three phases and stay aware of which one is carrying the question. When the phase you're in always matches the survivor count without your thinking about it, you're ready for Lesson 3, which explains *why* some questions die instantly at the Cut and others fight you all the way to the Call: the difference between rules and standards.",
@@ -16353,7 +16936,1092 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. *(Prior inconsistent statement, not under oath, offered for its truth.)* A) substantive; B) inadmissible entirely; C) impeachment only; D) present sense impression."
           ],
           "item_count": 10,
-          "key_md": "1. **D** — clean Cut, named breaks — **~85% — read-check, then commit.**\n2. **B** — anchor (3-month cap) — **~90% — commit.**\n3. **FLAG** — fork with the fact withheld — **~50% — lean and flag.**\n4. **A** — Call (layer-fundamentalness, one heuristic) — **~70% — commit (moderate).**\n5. **C** — anchor (§1367(b)) — **~90% — commit.**\n6. **FLAG** — status withheld; **~50%** unless the stem hides a status fact — flag.\n7. **D** — Clash resolved by a clear fact — **~80% — commit.**\n8. **B** — anchor (corpse NIED) — **~90% — commit.**\n9. **FLAG** — question-ambiguous, unresolved — **~50% — flag.**\n10. **C** — anchor (801(d)(1)(A) needs an oath) — **~90% — commit.**"
+          "key_md": "1. **D** — clean Cut, named breaks — **~85% — read-check, then commit.**\n2. **B** — anchor (3-month cap) — **~90% — commit.**\n3. **FLAG** — fork with the fact withheld — **~50% — lean and flag.**\n4. **A** — Call (layer-fundamentalness, one heuristic) — **~70% — commit (moderate).**\n5. **C** — anchor (§1367(b)) — **~90% — commit.**\n6. **FLAG** — status withheld; **~50%** unless the stem hides a status fact — flag.\n7. **D** — Clash resolved by a clear fact — **~80% — commit.**\n8. **B** — anchor (corpse NIED) — **~90% — commit.**\n9. **FLAG** — question-ambiguous, unresolved — **~50% — flag.**\n10. **C** — anchor (801(d)(1)(A) needs an oath) — **~90% — commit.**",
+          "task_type": "MULTI_SELECT",
+          "graded_items": [
+            {
+              "id": "L13-D135-I01",
+              "drill_id": "13.5",
+              "sequence": 1,
+              "task_type": "MULTI_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Suit against the mother of a negligent child.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "child negligent;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "liable for any harm;"
+                    },
+                    {
+                      "id": "C",
+                      "text": "assumed risk;"
+                    },
+                    {
+                      "id": "D",
+                      "text": "failed to supervise."
+                    },
+                    {
+                      "id": "FLAG",
+                      "text": "Flag — coin/fork; lean and leave"
+                    }
+                  ],
+                  "correct_choice_id": "D"
+                },
+                {
+                  "id": "band",
+                  "prompt": "Confidence band:",
+                  "choices": [
+                    {
+                      "id": "~50%",
+                      "text": "~50%"
+                    },
+                    {
+                      "id": "~65%",
+                      "text": "~65%"
+                    },
+                    {
+                      "id": "~70%",
+                      "text": "~70%"
+                    },
+                    {
+                      "id": "~80%",
+                      "text": "~80%"
+                    },
+                    {
+                      "id": "~82%",
+                      "text": "~82%"
+                    },
+                    {
+                      "id": "~85%",
+                      "text": "~85%"
+                    },
+                    {
+                      "id": "~90%",
+                      "text": "~90%"
+                    }
+                  ],
+                  "correct_choice_id": "~85%"
+                },
+                {
+                  "id": "mechanism",
+                  "prompt": "Deciding mechanism:",
+                  "choices": [
+                    {
+                      "id": "CUT",
+                      "text": "Cut — false-law cuts decide it"
+                    },
+                    {
+                      "id": "ANCHOR",
+                      "text": "Anchor — a rule known cold"
+                    },
+                    {
+                      "id": "CLASH",
+                      "text": "Clash — a clear fact decides it"
+                    },
+                    {
+                      "id": "CALL",
+                      "text": "Call — a tiebreaker heuristic"
+                    },
+                    {
+                      "id": "FORK",
+                      "text": "Fork — the deciding fact is withheld"
+                    },
+                    {
+                      "id": "AMBIGUOUS",
+                      "text": "Ambiguous — the question itself is unresolved"
+                    }
+                  ],
+                  "correct_choice_id": "CUT"
+                }
+              ],
+              "short_explanation": "clean Cut, named breaks — **~85% — read-check, then commit.**",
+              "say_the_break": "The answer: D  ·  Confidence band: ~85%  ·  Deciding mechanism: CUT — clean Cut, named breaks — ~85% — read-check, then commit"
+            },
+            {
+              "id": "L13-D135-I02",
+              "drill_id": "13.5",
+              "sequence": 2,
+              "task_type": "MULTI_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Firm-offer assurance for the year; orders a month later.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "PE;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "firm for that month;"
+                    },
+                    {
+                      "id": "C",
+                      "text": "no consideration;"
+                    },
+                    {
+                      "id": "D",
+                      "text": "longer than three months."
+                    },
+                    {
+                      "id": "FLAG",
+                      "text": "Flag — coin/fork; lean and leave"
+                    }
+                  ],
+                  "correct_choice_id": "B"
+                },
+                {
+                  "id": "band",
+                  "prompt": "Confidence band:",
+                  "choices": [
+                    {
+                      "id": "~50%",
+                      "text": "~50%"
+                    },
+                    {
+                      "id": "~65%",
+                      "text": "~65%"
+                    },
+                    {
+                      "id": "~70%",
+                      "text": "~70%"
+                    },
+                    {
+                      "id": "~80%",
+                      "text": "~80%"
+                    },
+                    {
+                      "id": "~82%",
+                      "text": "~82%"
+                    },
+                    {
+                      "id": "~85%",
+                      "text": "~85%"
+                    },
+                    {
+                      "id": "~90%",
+                      "text": "~90%"
+                    }
+                  ],
+                  "correct_choice_id": "~90%"
+                },
+                {
+                  "id": "mechanism",
+                  "prompt": "Deciding mechanism:",
+                  "choices": [
+                    {
+                      "id": "CUT",
+                      "text": "Cut — false-law cuts decide it"
+                    },
+                    {
+                      "id": "ANCHOR",
+                      "text": "Anchor — a rule known cold"
+                    },
+                    {
+                      "id": "CLASH",
+                      "text": "Clash — a clear fact decides it"
+                    },
+                    {
+                      "id": "CALL",
+                      "text": "Call — a tiebreaker heuristic"
+                    },
+                    {
+                      "id": "FORK",
+                      "text": "Fork — the deciding fact is withheld"
+                    },
+                    {
+                      "id": "AMBIGUOUS",
+                      "text": "Ambiguous — the question itself is unresolved"
+                    }
+                  ],
+                  "correct_choice_id": "ANCHOR"
+                }
+              ],
+              "short_explanation": "anchor (3-month cap) — **~90% — commit.**",
+              "say_the_break": "The answer: B  ·  Confidence band: ~90%  ·  Deciding mechanism: ANCHOR — anchor (3-month cap) — ~90% — commit"
+            },
+            {
+              "id": "L13-D135-I03",
+              "drill_id": "13.5",
+              "sequence": 3,
+              "task_type": "MULTI_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Relation back; stem silent on whether the claims share an occurrence.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "different occurrence;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "relates back;"
+                    },
+                    {
+                      "id": "C",
+                      "text": "change-of-party prong;"
+                    },
+                    {
+                      "id": "D",
+                      "text": "SOL expired."
+                    },
+                    {
+                      "id": "FLAG",
+                      "text": "Flag — coin/fork; lean and leave"
+                    }
+                  ],
+                  "correct_choice_id": "FLAG"
+                },
+                {
+                  "id": "band",
+                  "prompt": "Confidence band:",
+                  "choices": [
+                    {
+                      "id": "~50%",
+                      "text": "~50%"
+                    },
+                    {
+                      "id": "~65%",
+                      "text": "~65%"
+                    },
+                    {
+                      "id": "~70%",
+                      "text": "~70%"
+                    },
+                    {
+                      "id": "~80%",
+                      "text": "~80%"
+                    },
+                    {
+                      "id": "~82%",
+                      "text": "~82%"
+                    },
+                    {
+                      "id": "~85%",
+                      "text": "~85%"
+                    },
+                    {
+                      "id": "~90%",
+                      "text": "~90%"
+                    }
+                  ],
+                  "correct_choice_id": "~50%"
+                },
+                {
+                  "id": "mechanism",
+                  "prompt": "Deciding mechanism:",
+                  "choices": [
+                    {
+                      "id": "CUT",
+                      "text": "Cut — false-law cuts decide it"
+                    },
+                    {
+                      "id": "ANCHOR",
+                      "text": "Anchor — a rule known cold"
+                    },
+                    {
+                      "id": "CLASH",
+                      "text": "Clash — a clear fact decides it"
+                    },
+                    {
+                      "id": "CALL",
+                      "text": "Call — a tiebreaker heuristic"
+                    },
+                    {
+                      "id": "FORK",
+                      "text": "Fork — the deciding fact is withheld"
+                    },
+                    {
+                      "id": "AMBIGUOUS",
+                      "text": "Ambiguous — the question itself is unresolved"
+                    }
+                  ],
+                  "correct_choice_id": "FORK"
+                }
+              ],
+              "short_explanation": "fork with the fact withheld — **~50% — lean and flag.**",
+              "say_the_break": "The answer: FLAG  ·  Confidence band: ~50%  ·  Deciding mechanism: FORK — fork with the fact withheld — ~50% — lean and flag"
+            },
+            {
+              "id": "L13-D135-I04",
+              "drill_id": "13.5",
+              "sequence": 4,
+              "task_type": "MULTI_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Two survivors: no contract formed vs immaterial breach; facts murky.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "no contract formed;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "breach immaterial."
+                    },
+                    {
+                      "id": "FLAG",
+                      "text": "Flag — coin/fork; lean and leave"
+                    }
+                  ],
+                  "correct_choice_id": "A"
+                },
+                {
+                  "id": "band",
+                  "prompt": "Confidence band:",
+                  "choices": [
+                    {
+                      "id": "~50%",
+                      "text": "~50%"
+                    },
+                    {
+                      "id": "~65%",
+                      "text": "~65%"
+                    },
+                    {
+                      "id": "~70%",
+                      "text": "~70%"
+                    },
+                    {
+                      "id": "~80%",
+                      "text": "~80%"
+                    },
+                    {
+                      "id": "~82%",
+                      "text": "~82%"
+                    },
+                    {
+                      "id": "~85%",
+                      "text": "~85%"
+                    },
+                    {
+                      "id": "~90%",
+                      "text": "~90%"
+                    }
+                  ],
+                  "correct_choice_id": "~70%"
+                },
+                {
+                  "id": "mechanism",
+                  "prompt": "Deciding mechanism:",
+                  "choices": [
+                    {
+                      "id": "CUT",
+                      "text": "Cut — false-law cuts decide it"
+                    },
+                    {
+                      "id": "ANCHOR",
+                      "text": "Anchor — a rule known cold"
+                    },
+                    {
+                      "id": "CLASH",
+                      "text": "Clash — a clear fact decides it"
+                    },
+                    {
+                      "id": "CALL",
+                      "text": "Call — a tiebreaker heuristic"
+                    },
+                    {
+                      "id": "FORK",
+                      "text": "Fork — the deciding fact is withheld"
+                    },
+                    {
+                      "id": "AMBIGUOUS",
+                      "text": "Ambiguous — the question itself is unresolved"
+                    }
+                  ],
+                  "correct_choice_id": "CALL"
+                }
+              ],
+              "short_explanation": "Call (layer-fundamentalness, one heuristic) — **~70% — commit (moderate).**",
+              "say_the_break": "The answer: A  ·  Confidence band: ~70%  ·  Deciding mechanism: CALL — Call (layer-fundamentalness, one heuristic) — ~70% — commit (moderate)"
+            },
+            {
+              "id": "L13-D135-I05",
+              "drill_id": "13.5",
+              "sequence": 5,
+              "task_type": "MULTI_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Diversity; non-diverse co-defendant added by the plaintiff.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "supplemental jurisdiction;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "judicial economy;"
+                    },
+                    {
+                      "id": "C",
+                      "text": "dismiss — no complete diversity;"
+                    },
+                    {
+                      "id": "D",
+                      "text": "not the same case/controversy."
+                    },
+                    {
+                      "id": "FLAG",
+                      "text": "Flag — coin/fork; lean and leave"
+                    }
+                  ],
+                  "correct_choice_id": "C"
+                },
+                {
+                  "id": "band",
+                  "prompt": "Confidence band:",
+                  "choices": [
+                    {
+                      "id": "~50%",
+                      "text": "~50%"
+                    },
+                    {
+                      "id": "~65%",
+                      "text": "~65%"
+                    },
+                    {
+                      "id": "~70%",
+                      "text": "~70%"
+                    },
+                    {
+                      "id": "~80%",
+                      "text": "~80%"
+                    },
+                    {
+                      "id": "~82%",
+                      "text": "~82%"
+                    },
+                    {
+                      "id": "~85%",
+                      "text": "~85%"
+                    },
+                    {
+                      "id": "~90%",
+                      "text": "~90%"
+                    }
+                  ],
+                  "correct_choice_id": "~90%"
+                },
+                {
+                  "id": "mechanism",
+                  "prompt": "Deciding mechanism:",
+                  "choices": [
+                    {
+                      "id": "CUT",
+                      "text": "Cut — false-law cuts decide it"
+                    },
+                    {
+                      "id": "ANCHOR",
+                      "text": "Anchor — a rule known cold"
+                    },
+                    {
+                      "id": "CLASH",
+                      "text": "Clash — a clear fact decides it"
+                    },
+                    {
+                      "id": "CALL",
+                      "text": "Call — a tiebreaker heuristic"
+                    },
+                    {
+                      "id": "FORK",
+                      "text": "Fork — the deciding fact is withheld"
+                    },
+                    {
+                      "id": "AMBIGUOUS",
+                      "text": "Ambiguous — the question itself is unresolved"
+                    }
+                  ],
+                  "correct_choice_id": "ANCHOR"
+                }
+              ],
+              "short_explanation": "anchor (§1367(b)) — **~90% — commit.**",
+              "say_the_break": "The answer: C  ·  Confidence band: ~90%  ·  Deciding mechanism: ANCHOR — anchor (§1367(b)) — ~90% — commit"
+            },
+            {
+              "id": "L13-D135-I06",
+              "drill_id": "13.5",
+              "sequence": 6,
+              "task_type": "MULTI_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Premises liability; stem doesn't state whether the entrant was permitted.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "trespasser — no duty;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "licensee — warn of known dangers;"
+                    },
+                    {
+                      "id": "C",
+                      "text": "invitee — reasonable care;"
+                    },
+                    {
+                      "id": "D",
+                      "text": "the duty depends on his status."
+                    },
+                    {
+                      "id": "FLAG",
+                      "text": "Flag — coin/fork; lean and leave"
+                    }
+                  ],
+                  "correct_choice_id": "FLAG"
+                },
+                {
+                  "id": "band",
+                  "prompt": "Confidence band:",
+                  "choices": [
+                    {
+                      "id": "~50%",
+                      "text": "~50%"
+                    },
+                    {
+                      "id": "~65%",
+                      "text": "~65%"
+                    },
+                    {
+                      "id": "~70%",
+                      "text": "~70%"
+                    },
+                    {
+                      "id": "~80%",
+                      "text": "~80%"
+                    },
+                    {
+                      "id": "~82%",
+                      "text": "~82%"
+                    },
+                    {
+                      "id": "~85%",
+                      "text": "~85%"
+                    },
+                    {
+                      "id": "~90%",
+                      "text": "~90%"
+                    }
+                  ],
+                  "correct_choice_id": "~50%"
+                },
+                {
+                  "id": "mechanism",
+                  "prompt": "Deciding mechanism:",
+                  "choices": [
+                    {
+                      "id": "CUT",
+                      "text": "Cut — false-law cuts decide it"
+                    },
+                    {
+                      "id": "ANCHOR",
+                      "text": "Anchor — a rule known cold"
+                    },
+                    {
+                      "id": "CLASH",
+                      "text": "Clash — a clear fact decides it"
+                    },
+                    {
+                      "id": "CALL",
+                      "text": "Call — a tiebreaker heuristic"
+                    },
+                    {
+                      "id": "FORK",
+                      "text": "Fork — the deciding fact is withheld"
+                    },
+                    {
+                      "id": "AMBIGUOUS",
+                      "text": "Ambiguous — the question itself is unresolved"
+                    }
+                  ],
+                  "correct_choice_id": "FORK"
+                }
+              ],
+              "short_explanation": "status withheld; **~50%** unless the stem hides a status fact — flag.",
+              "say_the_break": "The answer: FLAG  ·  Confidence band: ~50%  ·  Deciding mechanism: FORK — status withheld"
+            },
+            {
+              "id": "L13-D135-I07",
+              "drill_id": "13.5",
+              "sequence": 7,
+              "task_type": "MULTI_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Repudiation; substitute bought before the retraction.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "retracted before performance;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "constructive condition;"
+                    },
+                    {
+                      "id": "C",
+                      "text": "not retractable once communicated;"
+                    },
+                    {
+                      "id": "D",
+                      "text": "relied before retraction."
+                    },
+                    {
+                      "id": "FLAG",
+                      "text": "Flag — coin/fork; lean and leave"
+                    }
+                  ],
+                  "correct_choice_id": "D"
+                },
+                {
+                  "id": "band",
+                  "prompt": "Confidence band:",
+                  "choices": [
+                    {
+                      "id": "~50%",
+                      "text": "~50%"
+                    },
+                    {
+                      "id": "~65%",
+                      "text": "~65%"
+                    },
+                    {
+                      "id": "~70%",
+                      "text": "~70%"
+                    },
+                    {
+                      "id": "~80%",
+                      "text": "~80%"
+                    },
+                    {
+                      "id": "~82%",
+                      "text": "~82%"
+                    },
+                    {
+                      "id": "~85%",
+                      "text": "~85%"
+                    },
+                    {
+                      "id": "~90%",
+                      "text": "~90%"
+                    }
+                  ],
+                  "correct_choice_id": "~80%"
+                },
+                {
+                  "id": "mechanism",
+                  "prompt": "Deciding mechanism:",
+                  "choices": [
+                    {
+                      "id": "CUT",
+                      "text": "Cut — false-law cuts decide it"
+                    },
+                    {
+                      "id": "ANCHOR",
+                      "text": "Anchor — a rule known cold"
+                    },
+                    {
+                      "id": "CLASH",
+                      "text": "Clash — a clear fact decides it"
+                    },
+                    {
+                      "id": "CALL",
+                      "text": "Call — a tiebreaker heuristic"
+                    },
+                    {
+                      "id": "FORK",
+                      "text": "Fork — the deciding fact is withheld"
+                    },
+                    {
+                      "id": "AMBIGUOUS",
+                      "text": "Ambiguous — the question itself is unresolved"
+                    }
+                  ],
+                  "correct_choice_id": "CLASH"
+                }
+              ],
+              "short_explanation": "Clash resolved by a clear fact — **~80% — commit.**",
+              "say_the_break": "The answer: D  ·  Confidence band: ~80%  ·  Deciding mechanism: CLASH — Clash resolved by a clear fact — ~80% — commit"
+            },
+            {
+              "id": "L13-D135-I08",
+              "drill_id": "13.5",
+              "sequence": 8,
+              "task_type": "MULTI_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Negligently mishandled corpse; mother's distress, no physical harm.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "no recovery without physical harm;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "recovery — corpse NIED;"
+                    },
+                    {
+                      "id": "C",
+                      "text": "only if she witnessed it;"
+                    },
+                    {
+                      "id": "D",
+                      "text": "only on intent."
+                    },
+                    {
+                      "id": "FLAG",
+                      "text": "Flag — coin/fork; lean and leave"
+                    }
+                  ],
+                  "correct_choice_id": "B"
+                },
+                {
+                  "id": "band",
+                  "prompt": "Confidence band:",
+                  "choices": [
+                    {
+                      "id": "~50%",
+                      "text": "~50%"
+                    },
+                    {
+                      "id": "~65%",
+                      "text": "~65%"
+                    },
+                    {
+                      "id": "~70%",
+                      "text": "~70%"
+                    },
+                    {
+                      "id": "~80%",
+                      "text": "~80%"
+                    },
+                    {
+                      "id": "~82%",
+                      "text": "~82%"
+                    },
+                    {
+                      "id": "~85%",
+                      "text": "~85%"
+                    },
+                    {
+                      "id": "~90%",
+                      "text": "~90%"
+                    }
+                  ],
+                  "correct_choice_id": "~90%"
+                },
+                {
+                  "id": "mechanism",
+                  "prompt": "Deciding mechanism:",
+                  "choices": [
+                    {
+                      "id": "CUT",
+                      "text": "Cut — false-law cuts decide it"
+                    },
+                    {
+                      "id": "ANCHOR",
+                      "text": "Anchor — a rule known cold"
+                    },
+                    {
+                      "id": "CLASH",
+                      "text": "Clash — a clear fact decides it"
+                    },
+                    {
+                      "id": "CALL",
+                      "text": "Call — a tiebreaker heuristic"
+                    },
+                    {
+                      "id": "FORK",
+                      "text": "Fork — the deciding fact is withheld"
+                    },
+                    {
+                      "id": "AMBIGUOUS",
+                      "text": "Ambiguous — the question itself is unresolved"
+                    }
+                  ],
+                  "correct_choice_id": "ANCHOR"
+                }
+              ],
+              "short_explanation": "anchor (corpse NIED) — **~90% — commit.**",
+              "say_the_break": "The answer: B  ·  Confidence band: ~90%  ·  Deciding mechanism: ANCHOR — anchor (corpse NIED) — ~90% — commit"
+            },
+            {
+              "id": "L13-D135-I09",
+              "drill_id": "13.5",
+              "sequence": 9,
+              "task_type": "MULTI_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(\"Only-X/only-Y/both/neither\" jury set; the stem doesn't say which motion or court.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "both;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "only the merits;"
+                    },
+                    {
+                      "id": "C",
+                      "text": "only certification;"
+                    },
+                    {
+                      "id": "D",
+                      "text": "neither."
+                    },
+                    {
+                      "id": "FLAG",
+                      "text": "Flag — coin/fork; lean and leave"
+                    }
+                  ],
+                  "correct_choice_id": "FLAG"
+                },
+                {
+                  "id": "band",
+                  "prompt": "Confidence band:",
+                  "choices": [
+                    {
+                      "id": "~50%",
+                      "text": "~50%"
+                    },
+                    {
+                      "id": "~65%",
+                      "text": "~65%"
+                    },
+                    {
+                      "id": "~70%",
+                      "text": "~70%"
+                    },
+                    {
+                      "id": "~80%",
+                      "text": "~80%"
+                    },
+                    {
+                      "id": "~82%",
+                      "text": "~82%"
+                    },
+                    {
+                      "id": "~85%",
+                      "text": "~85%"
+                    },
+                    {
+                      "id": "~90%",
+                      "text": "~90%"
+                    }
+                  ],
+                  "correct_choice_id": "~50%"
+                },
+                {
+                  "id": "mechanism",
+                  "prompt": "Deciding mechanism:",
+                  "choices": [
+                    {
+                      "id": "CUT",
+                      "text": "Cut — false-law cuts decide it"
+                    },
+                    {
+                      "id": "ANCHOR",
+                      "text": "Anchor — a rule known cold"
+                    },
+                    {
+                      "id": "CLASH",
+                      "text": "Clash — a clear fact decides it"
+                    },
+                    {
+                      "id": "CALL",
+                      "text": "Call — a tiebreaker heuristic"
+                    },
+                    {
+                      "id": "FORK",
+                      "text": "Fork — the deciding fact is withheld"
+                    },
+                    {
+                      "id": "AMBIGUOUS",
+                      "text": "Ambiguous — the question itself is unresolved"
+                    }
+                  ],
+                  "correct_choice_id": "AMBIGUOUS"
+                }
+              ],
+              "short_explanation": "question-ambiguous, unresolved — **~50% — flag.**",
+              "say_the_break": "The answer: FLAG  ·  Confidence band: ~50%  ·  Deciding mechanism: AMBIGUOUS — question-ambiguous, unresolved — ~50% — flag"
+            },
+            {
+              "id": "L13-D135-I10",
+              "drill_id": "13.5",
+              "sequence": 10,
+              "task_type": "MULTI_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Prior inconsistent statement, not under oath, offered for its truth.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "substantive;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "inadmissible entirely;"
+                    },
+                    {
+                      "id": "C",
+                      "text": "impeachment only;"
+                    },
+                    {
+                      "id": "D",
+                      "text": "present sense impression."
+                    },
+                    {
+                      "id": "FLAG",
+                      "text": "Flag — coin/fork; lean and leave"
+                    }
+                  ],
+                  "correct_choice_id": "C"
+                },
+                {
+                  "id": "band",
+                  "prompt": "Confidence band:",
+                  "choices": [
+                    {
+                      "id": "~50%",
+                      "text": "~50%"
+                    },
+                    {
+                      "id": "~65%",
+                      "text": "~65%"
+                    },
+                    {
+                      "id": "~70%",
+                      "text": "~70%"
+                    },
+                    {
+                      "id": "~80%",
+                      "text": "~80%"
+                    },
+                    {
+                      "id": "~82%",
+                      "text": "~82%"
+                    },
+                    {
+                      "id": "~85%",
+                      "text": "~85%"
+                    },
+                    {
+                      "id": "~90%",
+                      "text": "~90%"
+                    }
+                  ],
+                  "correct_choice_id": "~90%"
+                },
+                {
+                  "id": "mechanism",
+                  "prompt": "Deciding mechanism:",
+                  "choices": [
+                    {
+                      "id": "CUT",
+                      "text": "Cut — false-law cuts decide it"
+                    },
+                    {
+                      "id": "ANCHOR",
+                      "text": "Anchor — a rule known cold"
+                    },
+                    {
+                      "id": "CLASH",
+                      "text": "Clash — a clear fact decides it"
+                    },
+                    {
+                      "id": "CALL",
+                      "text": "Call — a tiebreaker heuristic"
+                    },
+                    {
+                      "id": "FORK",
+                      "text": "Fork — the deciding fact is withheld"
+                    },
+                    {
+                      "id": "AMBIGUOUS",
+                      "text": "Ambiguous — the question itself is unresolved"
+                    }
+                  ],
+                  "correct_choice_id": "ANCHOR"
+                }
+              ],
+              "short_explanation": "anchor (801(d)(1)(A) needs an oath) — **~90% — commit.**",
+              "say_the_break": "The answer: C  ·  Confidence band: ~90%  ·  Deciding mechanism: ANCHOR — anchor (801(d)(1)(A) needs an oath) — ~90% — commit"
+            }
+          ]
         }
       ],
       "how_to_use_md": "The single highest-value habit in this lesson is the two-sided calibration correction in Drills 13.1 and 13.3: when you can name why each of the other three answers dies, the answer sits at roughly *eighty-five* percent — high enough to commit, not high enough to skip the one-beat check of the call and the dispositive fact, because about one clean cut in seven misses and the usual culprit is a misread, not bad doctrine. Don't re-litigate the law; do confirm the read, once. Drills 13.2 and 13.4 train the opposite discipline — recognizing a true coin fast and flagging it instead of mining it for a distinction the question withheld. Calibrated this way, your time flows to the questions where it changes outcomes, and away from the ones where it doesn't. Lesson 14 puts everything on the clock: the full workflow, sequenced to run efficiently under the ~1.8 minutes a question the exam gives you.",
@@ -17824,7 +19492,747 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. *(Comedian's supplemental pleading of an intentional tort committed after filing.)* A) business-tort SOL expired; B) the tort occurred after filing; C) relates back to the business tort; D) timely supplemental pleading."
           ],
           "item_count": 10,
-          "key_md": "1. **B** — confirm the question (jury scope); damages legal (jury), certification equitable (no jury) — ~82%.\n2. **FLAG** — fork, fact withheld — ~50%; lean per surrounding facts.\n3. **A** — Call (single heuristic — layer-fundamentalness) — ~70%.\n4. **FLAG** unless the stem hides a status fact — ~50%; if a status fact is present, resolve to that duty.\n5. **FLAG / lean B** — turns on the jurisdiction's rule (bilateral → B; unilateral → C); unstated → flag, lean common-law/B.\n6. **B** — anchor (embezzlement) — ~90%.\n7. **A** — framing (state court, Seventh-Amendment demand → non-incorporation) — ~82%.\n8. **D** — Clash (common issues → jury on them, Beacon Theatres); C overclaims — ~80%.\n9. **A** — anchor (clean factual impossibility: the victim's absence is a fortuity that doesn't excuse the attempt; guilty under both the traditional and the modern view) — ~85%. (The receiving-non-stolen-goods version is the *Jaffe* problem — a genuine legal-vs-factual split, a Clash, not an anchor — so it is deliberately not used here.)\n10. **D** — BA-2 (post-filing event → Rule 15(d) supplemental pleading; B is the trigger, not a bar) — ~85%."
+          "key_md": "1. **B** — confirm the question (jury scope); damages legal (jury), certification equitable (no jury) — ~82%.\n2. **FLAG** — fork, fact withheld — ~50%; lean per surrounding facts.\n3. **A** — Call (single heuristic — layer-fundamentalness) — ~70%.\n4. **FLAG** unless the stem hides a status fact — ~50%; if a status fact is present, resolve to that duty.\n5. **FLAG / lean B** — turns on the jurisdiction's rule (bilateral → B; unilateral → C); unstated → flag, lean common-law/B.\n6. **B** — anchor (embezzlement) — ~90%.\n7. **A** — framing (state court, Seventh-Amendment demand → non-incorporation) — ~82%.\n8. **D** — Clash (common issues → jury on them, Beacon Theatres); C overclaims — ~80%.\n9. **A** — anchor (clean factual impossibility: the victim's absence is a fortuity that doesn't excuse the attempt; guilty under both the traditional and the modern view) — ~85%. (The receiving-non-stolen-goods version is the *Jaffe* problem — a genuine legal-vs-factual split, a Clash, not an anchor — so it is deliberately not used here.)\n10. **D** — BA-2 (post-filing event → Rule 15(d) supplemental pleading; B is the trigger, not a bar) — ~85%.",
+          "task_type": "MULTI_SELECT",
+          "graded_items": [
+            {
+              "id": "L14-D145-I01",
+              "drill_id": "14.5",
+              "sequence": 1,
+              "task_type": "MULTI_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Class rep's jury demand; defendant moves to strike it; \"class actions are historically equitable.\")*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "jury on certification and merits;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "jury only on the merits;"
+                    },
+                    {
+                      "id": "C",
+                      "text": "jury only on certification;"
+                    },
+                    {
+                      "id": "D",
+                      "text": "no jury on either."
+                    },
+                    {
+                      "id": "FLAG",
+                      "text": "Flag — coin/fork; lean and leave"
+                    }
+                  ],
+                  "correct_choice_id": "B"
+                },
+                {
+                  "id": "band",
+                  "prompt": "Confidence band:",
+                  "choices": [
+                    {
+                      "id": "~50%",
+                      "text": "~50%"
+                    },
+                    {
+                      "id": "~65%",
+                      "text": "~65%"
+                    },
+                    {
+                      "id": "~70%",
+                      "text": "~70%"
+                    },
+                    {
+                      "id": "~80%",
+                      "text": "~80%"
+                    },
+                    {
+                      "id": "~82%",
+                      "text": "~82%"
+                    },
+                    {
+                      "id": "~85%",
+                      "text": "~85%"
+                    },
+                    {
+                      "id": "~90%",
+                      "text": "~90%"
+                    }
+                  ],
+                  "correct_choice_id": "~82%"
+                }
+              ],
+              "short_explanation": "confirm the question (jury scope); damages legal (jury), certification equitable (no jury) — ~82%.",
+              "say_the_break": "The answer: B  ·  Confidence band: ~82% — confirm the question (jury scope)"
+            },
+            {
+              "id": "L14-D145-I02",
+              "drill_id": "14.5",
+              "sequence": 2,
+              "task_type": "MULTI_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Relation back; the stem is silent on whether the claims share an occurrence.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "different occurrence;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "relates back;"
+                    },
+                    {
+                      "id": "C",
+                      "text": "change-of-party prong;"
+                    },
+                    {
+                      "id": "D",
+                      "text": "SOL expired."
+                    },
+                    {
+                      "id": "FLAG",
+                      "text": "Flag — coin/fork; lean and leave"
+                    }
+                  ],
+                  "correct_choice_id": "FLAG"
+                },
+                {
+                  "id": "band",
+                  "prompt": "Confidence band:",
+                  "choices": [
+                    {
+                      "id": "~50%",
+                      "text": "~50%"
+                    },
+                    {
+                      "id": "~65%",
+                      "text": "~65%"
+                    },
+                    {
+                      "id": "~70%",
+                      "text": "~70%"
+                    },
+                    {
+                      "id": "~80%",
+                      "text": "~80%"
+                    },
+                    {
+                      "id": "~82%",
+                      "text": "~82%"
+                    },
+                    {
+                      "id": "~85%",
+                      "text": "~85%"
+                    },
+                    {
+                      "id": "~90%",
+                      "text": "~90%"
+                    }
+                  ],
+                  "correct_choice_id": "~50%"
+                }
+              ],
+              "short_explanation": "fork, fact withheld — ~50%; lean per surrounding facts.",
+              "say_the_break": "The answer: FLAG  ·  Confidence band: ~50% — fork, fact withheld — ~50%"
+            },
+            {
+              "id": "L14-D145-I03",
+              "drill_id": "14.5",
+              "sequence": 3,
+              "task_type": "MULTI_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Two survivors: no contract formed vs immaterial breach; facts murky.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "no contract formed;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "breach immaterial."
+                    },
+                    {
+                      "id": "FLAG",
+                      "text": "Flag — coin/fork; lean and leave"
+                    }
+                  ],
+                  "correct_choice_id": "A"
+                },
+                {
+                  "id": "band",
+                  "prompt": "Confidence band:",
+                  "choices": [
+                    {
+                      "id": "~50%",
+                      "text": "~50%"
+                    },
+                    {
+                      "id": "~65%",
+                      "text": "~65%"
+                    },
+                    {
+                      "id": "~70%",
+                      "text": "~70%"
+                    },
+                    {
+                      "id": "~80%",
+                      "text": "~80%"
+                    },
+                    {
+                      "id": "~82%",
+                      "text": "~82%"
+                    },
+                    {
+                      "id": "~85%",
+                      "text": "~85%"
+                    },
+                    {
+                      "id": "~90%",
+                      "text": "~90%"
+                    }
+                  ],
+                  "correct_choice_id": "~70%"
+                }
+              ],
+              "short_explanation": "Call (single heuristic — layer-fundamentalness) — ~70%.",
+              "say_the_break": "The answer: A  ·  Confidence band: ~70% — Call (single heuristic — layer-fundamentalness) — ~70%"
+            },
+            {
+              "id": "L14-D145-I04",
+              "drill_id": "14.5",
+              "sequence": 4,
+              "task_type": "MULTI_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Premises liability; the stem doesn't state whether the entrant was permitted.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "trespasser — no duty;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "licensee — warn of known dangers;"
+                    },
+                    {
+                      "id": "C",
+                      "text": "invitee — reasonable care;"
+                    },
+                    {
+                      "id": "D",
+                      "text": "depends on status."
+                    },
+                    {
+                      "id": "FLAG",
+                      "text": "Flag — coin/fork; lean and leave"
+                    }
+                  ],
+                  "correct_choice_id": "FLAG"
+                },
+                {
+                  "id": "band",
+                  "prompt": "Confidence band:",
+                  "choices": [
+                    {
+                      "id": "~50%",
+                      "text": "~50%"
+                    },
+                    {
+                      "id": "~65%",
+                      "text": "~65%"
+                    },
+                    {
+                      "id": "~70%",
+                      "text": "~70%"
+                    },
+                    {
+                      "id": "~80%",
+                      "text": "~80%"
+                    },
+                    {
+                      "id": "~82%",
+                      "text": "~82%"
+                    },
+                    {
+                      "id": "~85%",
+                      "text": "~85%"
+                    },
+                    {
+                      "id": "~90%",
+                      "text": "~90%"
+                    }
+                  ],
+                  "correct_choice_id": "~50%"
+                }
+              ],
+              "short_explanation": "unless the stem hides a status fact — ~50%; if a status fact is present, resolve to that duty.",
+              "say_the_break": "The answer: FLAG  ·  Confidence band: ~50% — unless the stem hides a status fact — ~50%"
+            },
+            {
+              "id": "L14-D145-I05",
+              "drill_id": "14.5",
+              "sequence": 5,
+              "task_type": "MULTI_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Conspiracy; the only other \"conspirator\" feigned agreement; the jurisdiction's rule is unstated.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "guilty — bilateral met;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "not guilty — feigned agreement;"
+                    },
+                    {
+                      "id": "C",
+                      "text": "guilty — unilateral suffices;"
+                    },
+                    {
+                      "id": "D",
+                      "text": "not guilty — withdrawal."
+                    },
+                    {
+                      "id": "FLAG",
+                      "text": "Flag — coin/fork; lean and leave"
+                    }
+                  ],
+                  "correct_choice_id": "FLAG"
+                }
+              ],
+              "short_explanation": "turns on the jurisdiction's rule (bilateral → B; unilateral → C); unstated → flag, lean common-law/B.",
+              "say_the_break": "The answer: FLAG — turns on the jurisdiction's rule (bilateral → B"
+            },
+            {
+              "id": "L14-D145-I06",
+              "drill_id": "14.5",
+              "sequence": 6,
+              "task_type": "MULTI_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Embezzlement vs larceny; a teller lawfully holds bank funds, then converts them.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "larceny;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "embezzlement;"
+                    },
+                    {
+                      "id": "C",
+                      "text": "false pretenses;"
+                    },
+                    {
+                      "id": "D",
+                      "text": "no crime."
+                    },
+                    {
+                      "id": "FLAG",
+                      "text": "Flag — coin/fork; lean and leave"
+                    }
+                  ],
+                  "correct_choice_id": "B"
+                },
+                {
+                  "id": "band",
+                  "prompt": "Confidence band:",
+                  "choices": [
+                    {
+                      "id": "~50%",
+                      "text": "~50%"
+                    },
+                    {
+                      "id": "~65%",
+                      "text": "~65%"
+                    },
+                    {
+                      "id": "~70%",
+                      "text": "~70%"
+                    },
+                    {
+                      "id": "~80%",
+                      "text": "~80%"
+                    },
+                    {
+                      "id": "~82%",
+                      "text": "~82%"
+                    },
+                    {
+                      "id": "~85%",
+                      "text": "~85%"
+                    },
+                    {
+                      "id": "~90%",
+                      "text": "~90%"
+                    }
+                  ],
+                  "correct_choice_id": "~90%"
+                }
+              ],
+              "short_explanation": "anchor (embezzlement) — ~90%.",
+              "say_the_break": "The answer: B  ·  Confidence band: ~90% — anchor (embezzlement) — ~90%"
+            },
+            {
+              "id": "L14-D145-I07",
+              "drill_id": "14.5",
+              "sequence": 7,
+              "task_type": "MULTI_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Employee's jury demand under the Seventh Amendment, in state court, for an injunction.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "Seventh Amendment not incorporated;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "equity, no jury;"
+                    },
+                    {
+                      "id": "C",
+                      "text": "common-law contract suit;"
+                    },
+                    {
+                      "id": "D",
+                      "text": "de minimis value."
+                    },
+                    {
+                      "id": "FLAG",
+                      "text": "Flag — coin/fork; lean and leave"
+                    }
+                  ],
+                  "correct_choice_id": "A"
+                },
+                {
+                  "id": "band",
+                  "prompt": "Confidence band:",
+                  "choices": [
+                    {
+                      "id": "~50%",
+                      "text": "~50%"
+                    },
+                    {
+                      "id": "~65%",
+                      "text": "~65%"
+                    },
+                    {
+                      "id": "~70%",
+                      "text": "~70%"
+                    },
+                    {
+                      "id": "~80%",
+                      "text": "~80%"
+                    },
+                    {
+                      "id": "~82%",
+                      "text": "~82%"
+                    },
+                    {
+                      "id": "~85%",
+                      "text": "~85%"
+                    },
+                    {
+                      "id": "~90%",
+                      "text": "~90%"
+                    }
+                  ],
+                  "correct_choice_id": "~82%"
+                }
+              ],
+              "short_explanation": "framing (state court, Seventh-Amendment demand → non-incorporation) — ~82%.",
+              "say_the_break": "The answer: A  ·  Confidence band: ~82% — framing (state court, Seventh-Amendment demand → non-incorporation) — ~82%"
+            },
+            {
+              "id": "L14-D145-I08",
+              "drill_id": "14.5",
+              "sequence": 8,
+              "task_type": "MULTI_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Botanist's mixed legal and equitable claims with common issues; jury demand.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "essentially equitable, no jury;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "none bear exclusively on equity;"
+                    },
+                    {
+                      "id": "C",
+                      "text": "jury on every claim regardless;"
+                    },
+                    {
+                      "id": "D",
+                      "text": "jury on the common issues."
+                    },
+                    {
+                      "id": "FLAG",
+                      "text": "Flag — coin/fork; lean and leave"
+                    }
+                  ],
+                  "correct_choice_id": "D"
+                },
+                {
+                  "id": "band",
+                  "prompt": "Confidence band:",
+                  "choices": [
+                    {
+                      "id": "~50%",
+                      "text": "~50%"
+                    },
+                    {
+                      "id": "~65%",
+                      "text": "~65%"
+                    },
+                    {
+                      "id": "~70%",
+                      "text": "~70%"
+                    },
+                    {
+                      "id": "~80%",
+                      "text": "~80%"
+                    },
+                    {
+                      "id": "~82%",
+                      "text": "~82%"
+                    },
+                    {
+                      "id": "~85%",
+                      "text": "~85%"
+                    },
+                    {
+                      "id": "~90%",
+                      "text": "~90%"
+                    }
+                  ],
+                  "correct_choice_id": "~80%"
+                }
+              ],
+              "short_explanation": "Clash (common issues → jury on them, Beacon Theatres); C overclaims — ~80%.",
+              "say_the_break": "The answer: D  ·  Confidence band: ~80% — Clash (common issues → jury on them, Beacon Theatres)"
+            },
+            {
+              "id": "L14-D145-I09",
+              "drill_id": "14.5",
+              "sequence": 9,
+              "task_type": "MULTI_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Attempt; the defendant fired several shots into a bed believing his enemy was asleep in it, but the bed was empty.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "guilty — factual impossibility is no defense;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "not guilty — legal impossibility;"
+                    },
+                    {
+                      "id": "C",
+                      "text": "guilty — strict liability;"
+                    },
+                    {
+                      "id": "D",
+                      "text": "not guilty — withdrawal."
+                    },
+                    {
+                      "id": "FLAG",
+                      "text": "Flag — coin/fork; lean and leave"
+                    }
+                  ],
+                  "correct_choice_id": "A"
+                },
+                {
+                  "id": "band",
+                  "prompt": "Confidence band:",
+                  "choices": [
+                    {
+                      "id": "~50%",
+                      "text": "~50%"
+                    },
+                    {
+                      "id": "~65%",
+                      "text": "~65%"
+                    },
+                    {
+                      "id": "~70%",
+                      "text": "~70%"
+                    },
+                    {
+                      "id": "~80%",
+                      "text": "~80%"
+                    },
+                    {
+                      "id": "~82%",
+                      "text": "~82%"
+                    },
+                    {
+                      "id": "~85%",
+                      "text": "~85%"
+                    },
+                    {
+                      "id": "~90%",
+                      "text": "~90%"
+                    }
+                  ],
+                  "correct_choice_id": "~85%"
+                }
+              ],
+              "short_explanation": "anchor (clean factual impossibility: the victim's absence is a fortuity that doesn't excuse the attempt; guilty under both the traditional and the modern view) — ~85%. (The receiving-non-stolen-goods version is the *Jaffe* problem — a genuine legal-vs-factual split, a Clash, not an anchor — so it is deliberately not used here.)",
+              "say_the_break": "The answer: A  ·  Confidence band: ~85% — anchor (clean factual impossibility: the victim's absence is a fortuity that doesn't excuse the attempt"
+            },
+            {
+              "id": "L14-D145-I10",
+              "drill_id": "14.5",
+              "sequence": 10,
+              "task_type": "MULTI_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Comedian's supplemental pleading of an intentional tort committed after filing.)*",
+              "prompt": "Run the full workflow — give every output.",
+              "parts": [
+                {
+                  "id": "answer",
+                  "prompt": "The answer:",
+                  "choices": [
+                    {
+                      "id": "A",
+                      "text": "business-tort SOL expired;"
+                    },
+                    {
+                      "id": "B",
+                      "text": "the tort occurred after filing;"
+                    },
+                    {
+                      "id": "C",
+                      "text": "relates back to the business tort;"
+                    },
+                    {
+                      "id": "D",
+                      "text": "timely supplemental pleading."
+                    },
+                    {
+                      "id": "FLAG",
+                      "text": "Flag — coin/fork; lean and leave"
+                    }
+                  ],
+                  "correct_choice_id": "D"
+                },
+                {
+                  "id": "band",
+                  "prompt": "Confidence band:",
+                  "choices": [
+                    {
+                      "id": "~50%",
+                      "text": "~50%"
+                    },
+                    {
+                      "id": "~65%",
+                      "text": "~65%"
+                    },
+                    {
+                      "id": "~70%",
+                      "text": "~70%"
+                    },
+                    {
+                      "id": "~80%",
+                      "text": "~80%"
+                    },
+                    {
+                      "id": "~82%",
+                      "text": "~82%"
+                    },
+                    {
+                      "id": "~85%",
+                      "text": "~85%"
+                    },
+                    {
+                      "id": "~90%",
+                      "text": "~90%"
+                    }
+                  ],
+                  "correct_choice_id": "~85%"
+                }
+              ],
+              "short_explanation": "BA-2 (post-filing event → Rule 15(d) supplemental pleading; B is the trigger, not a bar) — ~85%.",
+              "say_the_break": "The answer: D  ·  Confidence band: ~85% — BA-2 (post-filing event → Rule 15(d) supplemental pleading"
+            }
+          ]
         }
       ],
       "how_to_use_md": "Drills 14.1 and 14.2 train the meta-skill the clock demands: knowing, at every moment, what the next move is and whether a question is worth your seconds. Drills 14.3 through 14.5 are full-length rehearsal at increasing difficulty — run them timed, and after each set, look only at your *misses* and name the phase that failed: a missed Cut (an un-heard mold), a missed Clash (a misread axis or an overlooked fact), a coin you tried to crack, or a clean answer you talked yourself out of. That diagnosis, repeated, is how the method becomes reflex.\n\nStepping back: you began this course with one idea — the credited answer is the one that is **true and responsive**, and every distractor breaks one of those filters. You built the **Ear** to catch the untrue (overclaim, falsity, distortion), and **Issue-Sense** to catch the unresponsive (misfit, bait-doctrine, wrong-element), with **prediction** as the habit that arms Issue-Sense. You learned to resolve two survivors at the **Clash** (axis, fact, matched pairs, forks), to break residual ties at the **Call** (the deck and the anchors), to read the **architectures** the exam builds traps around, and to **calibrate** honestly — committing hard on clean cuts, flagging coins fast. And now you run all of it in thirty seconds.\n\nThe method's whole claim is that most MBE questions are crackable by structure, that the structure is learnable, and that the small remainder which turn on a fact you weren't given or a rule you don't know are *identifiable as such* — so you spend your effort where it pays and flag where it doesn't. That's the C3 Method. The rest is repetition: drill the molds until you hear them, drill the anchors until you know them, and run the workflow until the thirty seconds is something you do, not something you think about.",

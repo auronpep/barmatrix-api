@@ -22,6 +22,12 @@ function correctResponseFor(item: C3DrillItem): C3StudentResponse {
       return { selected_choice_id: item.correct_choice_id };
     case "CHOICE_CLASSIFICATION":
       return { selected_choice_statuses: item.choice_statuses };
+    case "MULTI_SELECT":
+      return {
+        selected_parts: Object.fromEntries(
+          (item.parts ?? []).map((p) => [p.id, p.correct_choice_id]),
+        ),
+      };
   }
 }
 
@@ -37,15 +43,16 @@ function allGradedItems(): { lesson: number; drill: string; item: C3DrillItem }[
   return out;
 }
 
-test("exactly 57 drills are interactive (Phase 1 + 2 + new task types + finite conversions)", () => {
+test("exactly 60 drills are interactive (Phase 1 + 2 + new task types + finite conversions)", () => {
   let graded = 0;
   for (const lesson of FOUNDATIONS_COURSE.lessons) {
     for (const drill of lesson.drills) if (drill.graded_items?.length) graded++;
   }
   // 49 (Phase 1+2) + 2 new-task-type drills (2.2 COUNT_SELECT, 14.1 SEQUENCE_SELECT)
-  // + 6 finite closed-vocab conversions 2026-06-05 (2.4, 3.5, 9.3 SURVIVOR_PICK /
-  // 9.4, 12.1, 13.3 LABEL_SELECT) — all 57 approved/live (attorney cleared all).
-  assert.equal(graded, 57);
+  // + 6 finite closed-vocab conversions (2.4, 3.5, 9.3 SURVIVOR_PICK / 9.4, 12.1, 13.3
+  // LABEL_SELECT) + 3 MULTI_SELECT full-workflow drills (2.5, 13.5, 14.5) — all 60
+  // approved/live (attorney cleared all foundational items/drills).
+  assert.equal(graded, 60);
 });
 
 test("the 2 new-task-type drills (2.2, 14.1) are approved + live (attorney sign-off 2026-06-05)", () => {
