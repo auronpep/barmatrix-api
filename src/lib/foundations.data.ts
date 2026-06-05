@@ -8234,8 +8234,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "B",
-              "short_explanation": "Missing",
-              "say_the_break": "Causation and damages — Missing"
+              "short_explanation": "Missing causation and damages.",
+              "say_the_break": "Causation and damages."
             },
             {
               "id": "L6-D64-I02",
@@ -8267,8 +8267,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "C",
-              "short_explanation": "Missing",
-              "say_the_break": "Harm (the patient suffered no injury) — Missing"
+              "short_explanation": "Missing harm.",
+              "say_the_break": "Harm (the patient suffered no injury)."
             },
             {
               "id": "L6-D64-I03",
@@ -8300,8 +8300,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "C",
-              "short_explanation": "Missing",
-              "say_the_break": "That the risk materialized and caused injury — Missing"
+              "short_explanation": "Missing that the risk materialized and caused injury.",
+              "say_the_break": "That the risk materialized and caused injury."
             },
             {
               "id": "L6-D64-I04",
@@ -8333,8 +8333,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "C",
-              "short_explanation": "Missing",
-              "say_the_break": "Intent and a resulting harmful or offensive contact — Missing"
+              "short_explanation": "Missing intent and resulting harmful/offensive contact.",
+              "say_the_break": "Intent and a resulting harmful or offensive contact."
             },
             {
               "id": "L6-D64-I05",
@@ -8366,8 +8366,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "C",
-              "short_explanation": "Missing",
-              "say_the_break": "Fault (at least negligence) and damages — Missing"
+              "short_explanation": "Missing fault and damages.",
+              "say_the_break": "Fault (at least negligence) and damages."
             },
             {
               "id": "L6-D64-I06",
@@ -8399,8 +8399,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "A",
-              "short_explanation": "Missing",
-              "say_the_break": "Interference serious enough to warrant a forced sale (vs. trespass to chattels) — Missing"
+              "short_explanation": "Missing that the interference was so serious as to warrant a forced sale (vs trespass to chattels).",
+              "say_the_break": "Interference serious enough to warrant a forced sale (vs. trespass to chattels)."
             },
             {
               "id": "L6-D64-I07",
@@ -8432,8 +8432,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "B",
-              "short_explanation": "Missing",
-              "say_the_break": "That the interference was substantial and unreasonable — Missing"
+              "short_explanation": "Missing that the interference was substantial and unreasonable.",
+              "say_the_break": "That the interference was substantial and unreasonable."
             },
             {
               "id": "L6-D64-I08",
@@ -8465,8 +8465,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "C",
-              "short_explanation": "Missing",
-              "say_the_break": "That plaintiff is in the protected class, the harm is the type the statute guards against, and causation/damages — Missing"
+              "short_explanation": "Missing that the plaintiff was in the protected class, the harm was the type the statute guards against, and causation/damages.",
+              "say_the_break": "That plaintiff is in the protected class, the harm is the type the statute guards against, and causation/damages."
             },
             {
               "id": "L6-D64-I09",
@@ -8498,8 +8498,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "B",
-              "short_explanation": "Missing",
-              "say_the_break": "Scienter, intent to induce reliance, justifiable reliance, and damages — Missing"
+              "short_explanation": "Missing scienter, intent to induce reliance, justifiable reliance, and damages.",
+              "say_the_break": "Scienter, intent to induce reliance, justifiable reliance, and damages."
             },
             {
               "id": "L6-D64-I10",
@@ -8531,8 +8531,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "C",
-              "short_explanation": "Missing",
-              "say_the_break": "That the harm flowed from the animal's dangerous propensity (and causation) — Missing"
+              "short_explanation": "Missing that the harm flowed from the animal's dangerous propensity (and causation).",
+              "say_the_break": "That the harm flowed from the animal's dangerous propensity (and causation)."
             }
           ]
         },
@@ -8982,8 +8982,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "A",
-              "short_explanation": "Should the motion to  be granted? *Adjacent call:* was the complaint timely *filed*.",
-              "say_the_break": "Should the motion to dismiss for failure to serve be granted? — Should the motion to  be granted? Adjacent call: was the complaint timely filed"
+              "short_explanation": "Should the motion to dismiss for failure to serve be granted? Adjacent call: was the complaint timely filed.",
+              "say_the_break": "Should the motion to dismiss for failure to serve be granted?"
             },
             {
               "id": "L7-D71-I02",
@@ -9015,8 +9015,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "B",
-              "short_explanation": "Is the price increase ? *Adjacent:* whether a firm offer needs consideration.",
-              "say_the_break": "Is the price increase effective for that month's orders? — Is the price increase ? Adjacent: whether a firm offer needs consideration"
+              "short_explanation": "Is the price increase effective for that month's orders? Adjacent: whether a firm offer needs consideration.",
+              "say_the_break": "Is the price increase effective for that month's orders?"
             },
             {
               "id": "L7-D71-I03",
@@ -9048,8 +9048,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "B",
-              "short_explanation": "Should the court ? *Adjacent:* whether the claims share a case/controversy.",
-              "say_the_break": "Should the court dismiss for lack of subject-matter jurisdiction? — Should the court ? Adjacent: whether the claims share a case/controversy"
+              "short_explanation": "Should the court dismiss for lack of subject-matter jurisdiction? Adjacent: whether the claims share a case/controversy.",
+              "say_the_break": "Should the court dismiss for lack of subject-matter jurisdiction?"
             },
             {
               "id": "L7-D71-I04",
@@ -9081,8 +9081,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "C",
-              "short_explanation": "Will the  (was the retraction effective)? *Adjacent:* whether tender was a condition.",
-              "say_the_break": "Will the buyer prevail — was the retraction effective? — Will the  (was the retraction effective)? Adjacent: whether tender was a condition"
+              "short_explanation": "Will the buyer prevail (was the retraction effective)? Adjacent: whether tender was a condition.",
+              "say_the_break": "Will the buyer prevail — was the retraction effective?"
             },
             {
               "id": "L7-D71-I05",
@@ -9114,8 +9114,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "B",
-              "short_explanation": "Should the  (is the statute constitutional as applied to states)? *Adjacent:* sovereign immunity.",
-              "say_the_break": "Should the injunction issue — is the statute constitutional as applied to the city? — Should the  (is the statute constitutional as applied to states)? Adjacent: sovereign immunity"
+              "short_explanation": "Should the injunction issue (is the statute constitutional as applied to states)? Adjacent: sovereign immunity.",
+              "say_the_break": "Should the injunction issue — is the statute constitutional as applied to the city?"
             },
             {
               "id": "L7-D71-I06",
@@ -9147,8 +9147,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "C",
-              "short_explanation": "May the  to review? *Adjacent:* the scope of SCOTUS jurisdiction in the abstract.",
-              "say_the_break": "May the U.S. Supreme Court exercise jurisdiction to review? — May the  to review? Adjacent: the scope of SCOTUS jurisdiction in the abstract"
+              "short_explanation": "May the U.S. Supreme Court exercise jurisdiction to review? Adjacent: the scope of SCOTUS jurisdiction in the abstract.",
+              "say_the_break": "May the U.S. Supreme Court exercise jurisdiction to review?"
             },
             {
               "id": "L7-D71-I07",
@@ -9180,8 +9180,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "C",
-              "short_explanation": "Should the court  (is the complaint sufficient)? *Adjacent:* the pre-Twombly \"facts constituting a cause of action.\"",
-              "say_the_break": "Should the 12(b)(6) motion be granted — is the complaint sufficient? — Should the court  (is the complaint sufficient)? Adjacent: the pre-Twombly \"facts constituting a cause of action.\""
+              "short_explanation": "Should the court grant the 12(b)(6) motion (is the complaint sufficient)? Adjacent: the pre-Twombly \"facts constituting a cause of action.\"",
+              "say_the_break": "Should the 12(b)(6) motion be granted — is the complaint sufficient?"
             },
             {
               "id": "L7-D71-I08",
@@ -9213,8 +9213,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "A",
-              "short_explanation": "May the loser file a ? *Adjacent:* whether the two can be combined with other post-judgment motions.",
-              "say_the_break": "May the loser file a renewed JMOL and a motion for a new trial? — May the loser file a ? Adjacent: whether the two can be combined with other post-judgment motions"
+              "short_explanation": "May the loser file a renewed JMOL and a new-trial motion? Adjacent: whether the two can be combined with other post-judgment motions.",
+              "say_the_break": "May the loser file a renewed JMOL and a motion for a new trial?"
             },
             {
               "id": "L7-D71-I09",
@@ -9246,8 +9246,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "B",
-              "short_explanation": "Will the shopper recover  (her own negligence)? *Adjacent:* the child's negligence / vicarious liability.",
-              "say_the_break": "Will the shopper recover against the mother for her own negligence? — Will the shopper recover  (her own negligence)? Adjacent: the child's negligence / vicarious liability"
+              "short_explanation": "Will the shopper recover against the mother (her own negligence)? Adjacent: the child's negligence / vicarious liability.",
+              "say_the_break": "Will the shopper recover against the mother for her own negligence?"
             },
             {
               "id": "L7-D71-I10",
@@ -9279,8 +9279,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "B",
-              "short_explanation": "(is title marketable)? *Adjacent:* the effect of zoning.",
-              "say_the_break": "Must the buyer purchase — is title marketable? — (is title marketable)? Adjacent: the effect of zoning"
+              "short_explanation": "Must the buyer purchase (is title marketable)? Adjacent: the effect of zoning.",
+              "say_the_break": "Must the buyer purchase — is title marketable?"
             }
           ]
         },
@@ -9335,7 +9335,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "D",
               "short_explanation": "The substitute purchase (June 5) preceded the retraction (June 10) → reliance.",
-              "say_the_break": "The substitute purchase (June 5) preceded the retraction (June 10) — reliance — The substitute purchase (June 5) preceded the retraction (June 10) → reliance"
+              "say_the_break": "The substitute purchase (June 5) preceded the retraction (June 10) — reliance."
             },
             {
               "id": "L7-D72-I02",
@@ -9368,7 +9368,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "C",
               "short_explanation": "The nurse and plaintiff are both State A → no complete diversity.",
-              "say_the_break": "The nurse and the plaintiff are both citizens of State A — no complete diversity — The nurse and plaintiff are both State A → no complete diversity"
+              "say_the_break": "The nurse and the plaintiff are both citizens of State A — no complete diversity."
             },
             {
               "id": "L7-D72-I03",
@@ -9401,7 +9401,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "D",
               "short_explanation": "The substance was a laxative given for discomfort, with an idiosyncratic death → no poison, no premeditation.",
-              "say_the_break": "A laxative given to cause discomfort with an idiosyncratic death — no poison, no premeditation — The substance was a laxative given for discomfort, with an idiosyncratic death → no poison, no premeditation"
+              "say_the_break": "A laxative given to cause discomfort with an idiosyncratic death — no poison, no premeditation."
             },
             {
               "id": "L7-D72-I04",
@@ -9434,7 +9434,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "B",
               "short_explanation": "The judgment rests on an adequate and independent state ground.",
-              "say_the_break": "The judgment rests on an adequate and independent state ground — The judgment rests on an adequate and independent state ground"
+              "say_the_break": "The judgment rests on an adequate and independent state ground."
             },
             {
               "id": "L7-D72-I05",
@@ -9467,7 +9467,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "C",
               "short_explanation": "The two claims arise from different occurrences (disclosure vs performance).",
-              "say_the_break": "The two claims arise from different occurrences (non-disclosure vs. negligent performance) — The two claims arise from different occurrences (disclosure vs performance)"
+              "say_the_break": "The two claims arise from different occurrences (non-disclosure vs. negligent performance)."
             },
             {
               "id": "L7-D72-I06",
@@ -9500,7 +9500,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "C",
               "short_explanation": "The state acted as a seller/owner → market participant.",
-              "say_the_break": "The state owned the gas field and chose a bidder by taking bids — market participant — The state acted as a seller/owner → market participant"
+              "say_the_break": "The state owned the gas field and chose a bidder by taking bids — market participant."
             },
             {
               "id": "L7-D72-I07",
@@ -9533,7 +9533,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "A",
               "short_explanation": "The entrant was a trespasser; the condition was natural.",
-              "say_the_break": "The entrant was a trespasser and the condition (the weakened tree) was natural — The entrant was a trespasser"
+              "say_the_break": "The entrant was a trespasser and the condition (the weakened tree) was natural."
             },
             {
               "id": "L7-D72-I08",
@@ -9566,7 +9566,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "C",
               "short_explanation": "The professor (through his agent) solicited the statement → invited.",
-              "say_the_break": "The professor, through his agent, solicited the dean's statement — invited/consented — The professor (through his agent) solicited the statement → invited"
+              "say_the_break": "The professor, through his agent, solicited the dean's statement — invited/consented."
             },
             {
               "id": "L7-D72-I09",
@@ -9599,7 +9599,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "A",
               "short_explanation": "The disputed month falls within the three-month firm-offer cap.",
-              "say_the_break": "The disputed orders fall within the three-month firm-offer cap — The disputed month falls within the three-month firm-offer cap"
+              "say_the_break": "The disputed orders fall within the three-month firm-offer cap."
             },
             {
               "id": "L7-D72-I10",
@@ -9632,7 +9632,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "C",
               "short_explanation": "The tort post-dates the filing → Rule 15(d) supplemental pleading.",
-              "say_the_break": "The intentional tort occurred after the original complaint was filed — Rule 15(d) — The tort post-dates the filing → Rule 15(d) supplemental pleading"
+              "say_the_break": "The intentional tort occurred after the original complaint was filed — Rule 15(d)."
             }
           ]
         },
@@ -9686,8 +9686,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "D",
-              "short_explanation": "forgetting isn't good cause for the service failure.",
-              "say_the_break": "Granted — forgetting isn't good cause for the failure to serve — forgetting isn't good cause for the service failure"
+              "short_explanation": "Granted — forgetting isn't good cause for the service failure.",
+              "say_the_break": "Granted — forgetting isn't good cause for the failure to serve."
             },
             {
               "id": "L7-D73-I02",
@@ -9719,8 +9719,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "A",
-              "short_explanation": "the month is within the three-month firm period.",
-              "say_the_break": "Not effective — the month falls within the three-month firm period — the month is within the three-month firm period"
+              "short_explanation": "Not effective — the month is within the three-month firm period.",
+              "say_the_break": "Not effective — the month falls within the three-month firm period."
             },
             {
               "id": "L7-D73-I03",
@@ -9752,8 +9752,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "D",
-              "short_explanation": "§1367(b) bars supplemental jurisdiction over the plaintiff's claim against the non-diverse co-defendant.",
-              "say_the_break": "Dismiss — §1367(b) bars supplemental jurisdiction over the plaintiff's claim against the non-diverse co-defendant — §1367(b) bars supplemental jurisdiction over the plaintiff's claim against the non-diverse co-defendant"
+              "short_explanation": "Dismiss — §1367(b) bars supplemental jurisdiction over the plaintiff's claim against the non-diverse co-defendant.",
+              "say_the_break": "Dismiss — §1367(b) bars supplemental jurisdiction over the plaintiff's claim against the non-diverse co-defendant."
             },
             {
               "id": "L7-D73-I04",
@@ -9785,8 +9785,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "B",
-              "short_explanation": "reliance defeated the retraction.",
-              "say_the_break": "Buyer prevails — reliance defeated the retraction — reliance defeated the retraction"
+              "short_explanation": "Buyer prevails — reliance defeated the retraction.",
+              "say_the_break": "Buyer prevails — reliance defeated the retraction."
             },
             {
               "id": "L7-D73-I05",
@@ -9818,8 +9818,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "D",
-              "short_explanation": "valid generally-applicable regulation (Garcia).",
-              "say_the_break": "No injunction — a valid, generally-applicable regulation (Garcia) — valid generally-applicable regulation (Garcia)"
+              "short_explanation": "No injunction — valid generally-applicable regulation (Garcia).",
+              "say_the_break": "No injunction — a valid, generally-applicable regulation (Garcia)."
             },
             {
               "id": "L7-D73-I06",
@@ -9851,8 +9851,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "B",
-              "short_explanation": "adequate and independent state ground.",
-              "say_the_break": "No review — adequate and independent state ground — adequate and independent state ground"
+              "short_explanation": "No review — adequate and independent state ground.",
+              "say_the_break": "No review — adequate and independent state ground."
             },
             {
               "id": "L7-D73-I07",
@@ -9884,8 +9884,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "A",
-              "short_explanation": "the access fact is properly developed in discovery; the complaint is sufficient.",
-              "say_the_break": "Deny — the access fact is developed in discovery; the complaint is sufficient — the access fact is properly developed in discovery"
+              "short_explanation": "Deny — the access fact is properly developed in discovery; the complaint is sufficient.",
+              "say_the_break": "Deny — the access fact is developed in discovery; the complaint is sufficient."
             },
             {
               "id": "L7-D73-I08",
@@ -9917,8 +9917,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "D",
-              "short_explanation": "no poison in the deadly sense, no premeditation.",
-              "say_the_break": "Not first degree — no poison in the deadly sense and no premeditation — no poison in the deadly sense, no premeditation"
+              "short_explanation": "Not first degree (acquit of first degree) — no poison in the deadly sense, no premeditation.",
+              "say_the_break": "Not first degree — no poison in the deadly sense and no premeditation."
             },
             {
               "id": "L7-D73-I09",
@@ -9950,8 +9950,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "C",
-              "short_explanation": "her own negligent supervision.",
-              "say_the_break": "Recovers against the mother — her own negligent supervision — her own negligent supervision"
+              "short_explanation": "Recovers against the mother — her own negligent supervision.",
+              "say_the_break": "Recovers against the mother — her own negligent supervision."
             },
             {
               "id": "L7-D73-I10",
@@ -9983,8 +9983,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "D",
-              "short_explanation": "the covenant renders title unmarketable.",
-              "say_the_break": "Need not purchase — the covenant renders title unmarketable — the covenant renders title unmarketable"
+              "short_explanation": "Need not purchase — the covenant renders title unmarketable.",
+              "say_the_break": "Need not purchase — the covenant renders title unmarketable."
             }
           ]
         },
@@ -12140,7 +12140,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "D",
               "short_explanation": "State was a party to a market transaction → participant.",
-              "say_the_break": "The state was a party to a market transaction — participant — State was a party to a market transaction → participant"
+              "say_the_break": "The state was a party to a market transaction — participant."
             },
             {
               "id": "L9-D92-I02",
@@ -12173,7 +12173,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "D",
               "short_explanation": "The exemption distinguishes by subject → content-based.",
-              "say_the_break": "The exemption distinguishes by subject (zoning topics) — content-based — The exemption distinguishes by subject → content-based"
+              "say_the_break": "The exemption distinguishes by subject (zoning topics) — content-based."
             },
             {
               "id": "L9-D92-I03",
@@ -12206,7 +12206,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "D",
               "short_explanation": "The target is the mother's own conduct → direct (supervision).",
-              "say_the_break": "The target is the mother's own conduct (supervision) — direct — The target is the mother's own conduct → direct (supervision)"
+              "say_the_break": "The target is the mother's own conduct (supervision) — direct."
             },
             {
               "id": "L9-D92-I04",
@@ -12239,7 +12239,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "D",
               "short_explanation": "The events don't overlap → different occurrence.",
-              "say_the_break": "The events don't overlap (disclosure vs. performance) — different occurrence — The events don't overlap → different occurrence"
+              "say_the_break": "The events don't overlap (disclosure vs. performance) — different occurrence."
             },
             {
               "id": "L9-D92-I05",
@@ -12272,7 +12272,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "C",
               "short_explanation": "Reliance preceded the retraction → retraction ineffective.",
-              "say_the_break": "Reliance preceded the retraction — retraction ineffective — Reliance preceded the retraction → retraction ineffective"
+              "say_the_break": "Reliance preceded the retraction — retraction ineffective."
             },
             {
               "id": "L9-D92-I06",
@@ -12305,7 +12305,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "A",
               "short_explanation": "The judgment rests on an adequate, independent state ground → no review.",
-              "say_the_break": "The judgment rests on an adequate, independent state ground — no review — The judgment rests on an adequate, independent state ground → no review"
+              "say_the_break": "The judgment rests on an adequate, independent state ground — no review."
             },
             {
               "id": "L9-D92-I07",
@@ -12338,7 +12338,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "A",
               "short_explanation": "The expert won't testify → consulting standard.",
-              "say_the_break": "The expert won't testify — consulting standard — The expert won't testify → consulting standard"
+              "say_the_break": "The expert won't testify — consulting standard."
             },
             {
               "id": "L9-D92-I08",
@@ -12371,7 +12371,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "A",
               "short_explanation": "Damages on a legal claim → jury right on the merits.",
-              "say_the_break": "Damages on a legal claim — jury right on the merits — Damages on a legal claim → jury right on the merits"
+              "say_the_break": "Damages on a legal claim — jury right on the merits."
             },
             {
               "id": "L9-D92-I09",
@@ -12404,7 +12404,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "A",
               "short_explanation": "No intent → NIED, not IIED.",
-              "say_the_break": "No intent — NIED, not IIED — No intent → NIED, not IIED"
+              "say_the_break": "No intent — NIED, not IIED."
             },
             {
               "id": "L9-D92-I10",
@@ -12437,7 +12437,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "A",
               "short_explanation": "State law supplies the right → the source is state law.",
-              "say_the_break": "State law supplies the right — the source is state law — State law supplies the right → the source is state law"
+              "say_the_break": "State law supplies the right — the source is state law."
             }
           ]
         },
@@ -13411,7 +13411,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "B",
               "short_explanation": "Reliance preceded the retraction → retraction ineffective.",
-              "say_the_break": "The substitute purchase (June 5) preceded the retraction — reliance — Reliance preceded the retraction → retraction ineffective"
+              "say_the_break": "The substitute purchase (June 5) preceded the retraction — reliance."
             },
             {
               "id": "L10-D102-I02",
@@ -13443,8 +13443,8 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
                 }
               ],
               "correct_choice_id": "B",
-              "short_explanation": "The entrant went past a \"No Admittance\" sign → . The clerk's knowledge of a *concealed, highly dangerous* condition (the open shaft) the entrant doesn't know about triggers the **duty owed to a known/anticipated trespasser** — Restatement §337: warn of, or make safe, an artificial condition the possessor knows is concealed and likely to cause death or serious harm. (Not the licensee warn-duty; the entrant is a trespasser.)",
-              "say_the_break": "The entrant went past a 'No Admittance' sign — trespasser owed a duty as to a concealed, highly dangerous condition — The entrant went past a \"No Admittance\" sign → . The clerk's knowledge of a concealed, highly dangerous condition (the open shaft) the entrant doesn't know about triggers the duty owed to a known/anticipated trespasser — Restatement §337: warn of, or make safe, an artificial condition the possessor knows is concealed and likely to cause death or serious harm. (Not the licensee warn-duty"
+              "short_explanation": "The entrant went past a \"No Admittance\" sign → trespasser. The clerk's knowledge of a concealed, highly dangerous condition (the open shaft) the entrant doesn't know about triggers the duty owed to a known/anticipated trespasser — Restatement §337: warn of, or make safe, an artificial condition the possessor knows is concealed and likely to cause death or serious harm. (Not the licensee warn-duty; the entrant is a trespasser.)",
+              "say_the_break": "The entrant went past a 'No Admittance' sign — trespasser owed a duty as to a concealed, highly dangerous condition."
             },
             {
               "id": "L10-D102-I03",
@@ -13477,7 +13477,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "D",
               "short_explanation": "The events don't overlap → different occurrence.",
-              "say_the_break": "The events don't overlap (disclosure vs. performance) — different occurrence — The events don't overlap → different occurrence"
+              "say_the_break": "The events don't overlap (disclosure vs. performance) — different occurrence."
             },
             {
               "id": "L10-D102-I04",
@@ -13510,7 +13510,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "A",
               "short_explanation": "State law supplies the right → answer on state-law grounds.",
-              "say_the_break": "State law supplies the right — answer on state-law grounds — State law supplies the right → answer on state-law grounds"
+              "say_the_break": "State law supplies the right — answer on state-law grounds."
             },
             {
               "id": "L10-D102-I05",
@@ -13543,7 +13543,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "D",
               "short_explanation": "The month is within the three-month cap → still firm.",
-              "say_the_break": "The disputed month is within the three-month cap — still firm — The month is within the three-month cap → still firm"
+              "say_the_break": "The disputed month is within the three-month cap — still firm."
             },
             {
               "id": "L10-D102-I06",
@@ -13576,7 +13576,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "A",
               "short_explanation": "The judgment rests on an adequate, independent state ground.",
-              "say_the_break": "The judgment rests on an adequate, independent state ground — The judgment rests on an adequate, independent state ground"
+              "say_the_break": "The judgment rests on an adequate, independent state ground."
             },
             {
               "id": "L10-D102-I07",
@@ -13609,7 +13609,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "B",
               "short_explanation": "The state was a market party → participant.",
-              "say_the_break": "The state was a market party (owned and sold the field) — participant — The state was a market party → participant"
+              "say_the_break": "The state was a market party (owned and sold the field) — participant."
             },
             {
               "id": "L10-D102-I08",
@@ -13642,7 +13642,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "A",
               "short_explanation": "Common-law jurisdiction + a feigning \"co-conspirator\" → no bilateral agreement.",
-              "say_the_break": "A common-law jurisdiction plus a feigning 'co-conspirator' — no bilateral agreement — Common-law jurisdiction + a feigning \"co-conspirator\" → no bilateral agreement"
+              "say_the_break": "A common-law jurisdiction plus a feigning 'co-conspirator' — no bilateral agreement."
             },
             {
               "id": "L10-D102-I09",
@@ -13675,7 +13675,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "D",
               "short_explanation": "The expert won't testify → consulting-expert standard.",
-              "say_the_break": "The expert won't testify — consulting-expert standard — The expert won't testify → consulting-expert standard"
+              "say_the_break": "The expert won't testify — consulting-expert standard."
             },
             {
               "id": "L10-D102-I10",
@@ -13708,7 +13708,7 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
               ],
               "correct_choice_id": "A",
               "short_explanation": "Acceptance was effective on dispatch (the 7th), before the revocation (the 8th).",
-              "say_the_break": "Acceptance was effective on dispatch (mailed the 7th), before the revocation (the 8th) — Acceptance was effective on dispatch (the 7th), before the revocation (the 8th)"
+              "say_the_break": "Acceptance was effective on dispatch (mailed the 7th), before the revocation (the 8th)."
             }
           ]
         },
