@@ -10127,7 +10127,250 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. *(Defamation, private figure, fault disputed.)* \"The statement was published to a third party.\""
           ],
           "item_count": 10,
-          "key_md": "1. **WRONG-ELEMENT** — the contested element is the *mother's* breach (supervision).\n2. **WRONG-ELEMENT** — the contested element is *harm* (there is none).\n3. **WRONG-ELEMENT** — the contested element is whether the risk *materialized and caused harm*.\n4. **WRONG-ELEMENT** — the contested element is *actual malice*.\n5. **WRONG-ELEMENT** — the contested element is *proximate* cause.\n6. **DISPOSITIVE** — if defect/danger is the contested point. (If causation is the fight, treat as wrong-element; per the framing here, danger is contested → dispositive.)\n7. **WRONG-ELEMENT** — the contested element is *intent*.\n8. **DISPOSITIVE-ADJACENT** — intent-to-discomfort is exactly what negates premeditation/poison-as-deadly; treat as **dispositive** here (it resolves the contested predicate).\n9. **DISPOSITIVE** — the mother's own breach is the contested element.\n10. **WRONG-ELEMENT** — the contested element is *fault* as to falsity."
+          "key_md": "1. **WRONG-ELEMENT** — the contested element is the *mother's* breach (supervision).\n2. **WRONG-ELEMENT** — the contested element is *harm* (there is none).\n3. **WRONG-ELEMENT** — the contested element is whether the risk *materialized and caused harm*.\n4. **WRONG-ELEMENT** — the contested element is *actual malice*.\n5. **WRONG-ELEMENT** — the contested element is *proximate* cause.\n6. **DISPOSITIVE** — if defect/danger is the contested point. (If causation is the fight, treat as wrong-element; per the framing here, danger is contested → dispositive.)\n7. **WRONG-ELEMENT** — the contested element is *intent*.\n8. **DISPOSITIVE-ADJACENT** — intent-to-discomfort is exactly what negates premeditation/poison-as-deadly; treat as **dispositive** here (it resolves the contested predicate).\n9. **DISPOSITIVE** — the mother's own breach is the contested element.\n10. **WRONG-ELEMENT** — the contested element is *fault* as to falsity.",
+          "task_type": "LABEL_SELECT",
+          "graded_items": [
+            {
+              "id": "L8-D84-I01",
+              "drill_id": "8.4",
+              "sequence": 1,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Suit against the mother of a negligent child.)* \"The child was negligent.\"",
+              "choices": [
+                {
+                  "id": "DISPOSITIVE — the contested element",
+                  "text": "DISPOSITIVE — the contested element"
+                },
+                {
+                  "id": "WRONG-ELEMENT",
+                  "text": "WRONG-ELEMENT"
+                }
+              ],
+              "correct_choice_id": "WRONG-ELEMENT",
+              "short_explanation": "the contested element is the *mother's* breach (supervision).",
+              "say_the_break": "WRONG-ELEMENT — the contested element is the mother's breach (supervision)"
+            },
+            {
+              "id": "L8-D84-I02",
+              "drill_id": "8.4",
+              "sequence": 2,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Informed consent, no harm.)* \"The patient would have refused had he known.\"",
+              "choices": [
+                {
+                  "id": "DISPOSITIVE — the contested element",
+                  "text": "DISPOSITIVE — the contested element"
+                },
+                {
+                  "id": "WRONG-ELEMENT",
+                  "text": "WRONG-ELEMENT"
+                }
+              ],
+              "correct_choice_id": "WRONG-ELEMENT",
+              "short_explanation": "the contested element is *harm* (there is none).",
+              "say_the_break": "WRONG-ELEMENT — the contested element is harm (there is none)"
+            },
+            {
+              "id": "L8-D84-I03",
+              "drill_id": "8.4",
+              "sequence": 3,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Negligence, undisclosed risk that never materialized.)* \"The risk was material and undisclosed.\"",
+              "choices": [
+                {
+                  "id": "DISPOSITIVE — the contested element",
+                  "text": "DISPOSITIVE — the contested element"
+                },
+                {
+                  "id": "WRONG-ELEMENT",
+                  "text": "WRONG-ELEMENT"
+                }
+              ],
+              "correct_choice_id": "WRONG-ELEMENT",
+              "short_explanation": "the contested element is whether the risk *materialized and caused harm*.",
+              "say_the_break": "WRONG-ELEMENT — the contested element is whether the risk materialized and caused harm"
+            },
+            {
+              "id": "L8-D84-I04",
+              "drill_id": "8.4",
+              "sequence": 4,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Defamation, public figure.)* \"The statement was false.\"",
+              "choices": [
+                {
+                  "id": "DISPOSITIVE — the contested element",
+                  "text": "DISPOSITIVE — the contested element"
+                },
+                {
+                  "id": "WRONG-ELEMENT",
+                  "text": "WRONG-ELEMENT"
+                }
+              ],
+              "correct_choice_id": "WRONG-ELEMENT",
+              "short_explanation": "the contested element is *actual malice*.",
+              "say_the_break": "WRONG-ELEMENT — the contested element is actual malice"
+            },
+            {
+              "id": "L8-D84-I05",
+              "drill_id": "8.4",
+              "sequence": 5,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Negligence, proximate cause disputed.)* \"The defendant's act was a but-for cause.\"",
+              "choices": [
+                {
+                  "id": "DISPOSITIVE — the contested element",
+                  "text": "DISPOSITIVE — the contested element"
+                },
+                {
+                  "id": "WRONG-ELEMENT",
+                  "text": "WRONG-ELEMENT"
+                }
+              ],
+              "correct_choice_id": "WRONG-ELEMENT",
+              "short_explanation": "the contested element is *proximate* cause.",
+              "say_the_break": "WRONG-ELEMENT — the contested element is proximate cause"
+            },
+            {
+              "id": "L8-D84-I06",
+              "drill_id": "8.4",
+              "sequence": 6,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Strict products liability, defect causation disputed.)* \"The product was unreasonably dangerous.\"",
+              "choices": [
+                {
+                  "id": "DISPOSITIVE — the contested element",
+                  "text": "DISPOSITIVE — the contested element"
+                },
+                {
+                  "id": "WRONG-ELEMENT",
+                  "text": "WRONG-ELEMENT"
+                }
+              ],
+              "correct_choice_id": "DISPOSITIVE — the contested element",
+              "short_explanation": "if defect/danger is the contested point. (If causation is the fight, treat as wrong-element; per the framing here, danger is contested → dispositive.)",
+              "say_the_break": "DISPOSITIVE — the contested element — if defect/danger is the contested point. (If causation is the fight, treat as wrong-element"
+            },
+            {
+              "id": "L8-D84-I07",
+              "drill_id": "8.4",
+              "sequence": 7,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Battery, intent disputed.)* \"A harmful contact resulted.\"",
+              "choices": [
+                {
+                  "id": "DISPOSITIVE — the contested element",
+                  "text": "DISPOSITIVE — the contested element"
+                },
+                {
+                  "id": "WRONG-ELEMENT",
+                  "text": "WRONG-ELEMENT"
+                }
+              ],
+              "correct_choice_id": "WRONG-ELEMENT",
+              "short_explanation": "the contested element is *intent*.",
+              "say_the_break": "WRONG-ELEMENT — the contested element is intent"
+            },
+            {
+              "id": "L8-D84-I08",
+              "drill_id": "8.4",
+              "sequence": 8,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(First-degree murder = poison or premeditation; deadliness disputed.)* \"The defendant intended to cause discomfort.\"",
+              "choices": [
+                {
+                  "id": "DISPOSITIVE — the contested element",
+                  "text": "DISPOSITIVE — the contested element"
+                },
+                {
+                  "id": "WRONG-ELEMENT",
+                  "text": "WRONG-ELEMENT"
+                }
+              ],
+              "correct_choice_id": "DISPOSITIVE — the contested element",
+              "short_explanation": "intent-to-discomfort is exactly what negates premeditation/poison-as-deadly; treat as **dispositive** here (it resolves the contested predicate).",
+              "say_the_break": "DISPOSITIVE — the contested element — intent-to-discomfort is exactly what negates premeditation/poison-as-deadly"
+            },
+            {
+              "id": "L8-D84-I09",
+              "drill_id": "8.4",
+              "sequence": 9,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Negligent supervision claim against the mother.)* \"The mother failed to adequately supervise.\"",
+              "choices": [
+                {
+                  "id": "DISPOSITIVE — the contested element",
+                  "text": "DISPOSITIVE — the contested element"
+                },
+                {
+                  "id": "WRONG-ELEMENT",
+                  "text": "WRONG-ELEMENT"
+                }
+              ],
+              "correct_choice_id": "DISPOSITIVE — the contested element",
+              "short_explanation": "the mother's own breach is the contested element.",
+              "say_the_break": "DISPOSITIVE — the contested element — the mother's own breach is the contested element"
+            },
+            {
+              "id": "L8-D84-I10",
+              "drill_id": "8.4",
+              "sequence": 10,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Defamation, private figure, fault disputed.)* \"The statement was published to a third party.\"",
+              "choices": [
+                {
+                  "id": "DISPOSITIVE — the contested element",
+                  "text": "DISPOSITIVE — the contested element"
+                },
+                {
+                  "id": "WRONG-ELEMENT",
+                  "text": "WRONG-ELEMENT"
+                }
+              ],
+              "correct_choice_id": "WRONG-ELEMENT",
+              "short_explanation": "the contested element is *fault* as to falsity.",
+              "say_the_break": "WRONG-ELEMENT — the contested element is fault as to falsity"
+            }
+          ]
         },
         {
           "id": "8.5",
