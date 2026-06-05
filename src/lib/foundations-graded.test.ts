@@ -37,14 +37,15 @@ function allGradedItems(): { lesson: number; drill: string; item: C3DrillItem }[
   return out;
 }
 
-test("exactly 51 drills are interactive (Phase 1 + 2 + 3 new task types)", () => {
+test("exactly 57 drills are interactive (Phase 1 + 2 + new task types + finite conversions)", () => {
   let graded = 0;
   for (const lesson of FOUNDATIONS_COURSE.lessons) {
     for (const drill of lesson.drills) if (drill.graded_items?.length) graded++;
   }
   // 49 (Phase 1+2) + 2 new-task-type drills (2.2 COUNT_SELECT, 14.1 SEQUENCE_SELECT)
-  // — all 51 approved/live (attorney sign-off 2026-06-05).
-  assert.equal(graded, 51);
+  // + 6 finite closed-vocab conversions 2026-06-05 (2.4, 3.5, 9.3 SURVIVOR_PICK /
+  // 9.4, 12.1, 13.3 LABEL_SELECT) — all 57 approved/live (attorney cleared all).
+  assert.equal(graded, 57);
 });
 
 test("the 2 new-task-type drills (2.2, 14.1) are approved + live (attorney sign-off 2026-06-05)", () => {

@@ -1925,7 +1925,260 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. *(Hedged > absolute.)* A) the modification is enforceable; B) the modification is enforceable if supported by consideration or made in good faith under the UCC."
           ],
           "item_count": 10,
-          "key_md": "1. **A** — nothing triggers heightened review; default governs.\n2. **B** — the qualifier tracks Rule 403; the absolute overstates.\n3. **A** — standing is a threshold; the merits are never reached.\n4. **B** — ties the rule to these facts; the abstract recitation is the weaker twin.\n5. **A** — default civil burden; no heightened category triggered.\n6. **B** — the conditional states the actual doctrine.\n7. **A** — timeliness disposes of the appeal before the merits.\n8. **A** — names the operative exception rather than gesturing at \"exceptions.\"\n9. **A** — non-discriminatory burden → Pike balancing (the default), not strict scrutiny.\n10. **B** — the qualified statement tracks the real requirement."
+          "key_md": "1. **A** — nothing triggers heightened review; default governs.\n2. **B** — the qualifier tracks Rule 403; the absolute overstates.\n3. **A** — standing is a threshold; the merits are never reached.\n4. **B** — ties the rule to these facts; the abstract recitation is the weaker twin.\n5. **A** — default civil burden; no heightened category triggered.\n6. **B** — the conditional states the actual doctrine.\n7. **A** — timeliness disposes of the appeal before the merits.\n8. **A** — names the operative exception rather than gesturing at \"exceptions.\"\n9. **A** — non-discriminatory burden → Pike balancing (the default), not strict scrutiny.\n10. **B** — the qualified statement tracks the real requirement.",
+          "task_type": "SURVIVOR_PICK",
+          "graded_items": [
+            {
+              "id": "L2-D24-I01",
+              "drill_id": "2.4",
+              "sequence": 1,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Default tier > heightened.)* Economic regulation; no suspect class, no fundamental right.",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "upheld under rational basis;"
+                },
+                {
+                  "id": "B",
+                  "text": "struck under strict scrutiny."
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "nothing triggers heightened review; default governs.",
+              "say_the_break": "A survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L2-D24-I02",
+              "drill_id": "2.4",
+              "sequence": 2,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Hedged > absolute.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "the evidence is always admissible;"
+                },
+                {
+                  "id": "B",
+                  "text": "admissible unless its probative value is substantially outweighed by unfair prejudice."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "the qualifier tracks Rule 403; the absolute overstates.",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L2-D24-I03",
+              "drill_id": "2.4",
+              "sequence": 3,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Threshold > merits.)* Motion to dismiss on both lack of standing and weakness of the claim.",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "dismissed for lack of standing;"
+                },
+                {
+                  "id": "B",
+                  "text": "dismissed because the claim fails on the merits."
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "standing is a threshold; the merits are never reached.",
+              "say_the_break": "A survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L2-D24-I04",
+              "drill_id": "2.4",
+              "sequence": 4,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Fact-engaged > abstract.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "no liability — landowners owe limited duties to trespassers;"
+                },
+                {
+                  "id": "B",
+                  "text": "no liability — the owner had no reason to anticipate this trespasser here, and the condition was natural."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "ties the rule to these facts; the abstract recitation is the weaker twin.",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L2-D24-I05",
+              "drill_id": "2.4",
+              "sequence": 5,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Default tier > heightened.)* Burden in an ordinary civil claim, no special category.",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "preponderance of the evidence;"
+                },
+                {
+                  "id": "B",
+                  "text": "clear and convincing evidence."
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "default civil burden; no heightened category triggered.",
+              "say_the_break": "A survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L2-D24-I06",
+              "drill_id": "2.4",
+              "sequence": 6,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Hedged > absolute.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "the search was valid;"
+                },
+                {
+                  "id": "B",
+                  "text": "the search was valid if conducted incident to a lawful arrest."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "the conditional states the actual doctrine.",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L2-D24-I07",
+              "drill_id": "2.4",
+              "sequence": 7,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Threshold > merits.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "affirmed — the appeal was untimely and must be dismissed;"
+                },
+                {
+                  "id": "B",
+                  "text": "affirmed — the trial court's ruling was correct."
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "timeliness disposes of the appeal before the merits.",
+              "say_the_break": "A survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L2-D24-I08",
+              "drill_id": "2.4",
+              "sequence": 8,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Fact-engaged > abstract.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "admissible as an excited utterance;"
+                },
+                {
+                  "id": "B",
+                  "text": "admissible — hearsay exceptions exist for spontaneous statements."
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "names the operative exception rather than gesturing at \"exceptions.\"",
+              "say_the_break": "A survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L2-D24-I09",
+              "drill_id": "2.4",
+              "sequence": 9,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Default tier > heightened.)* A non-discriminatory state law incidentally burdens interstate commerce.",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "upheld unless the burden clearly exceeds the local benefits;"
+                },
+                {
+                  "id": "B",
+                  "text": "struck unless it survives strict scrutiny."
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "non-discriminatory burden → Pike balancing (the default), not strict scrutiny.",
+              "say_the_break": "A survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L2-D24-I10",
+              "drill_id": "2.4",
+              "sequence": 10,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Hedged > absolute.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "the modification is enforceable;"
+                },
+                {
+                  "id": "B",
+                  "text": "the modification is enforceable if supported by consideration or made in good faith under the UCC."
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "the qualified statement tracks the real requirement.",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            }
+          ]
         },
         {
           "id": "2.5",
@@ -3205,7 +3458,250 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. *(Was the officer's stop supported by reasonable suspicion?)* A) any hunch suffices; B) specific, articulable facts giving rise to reasonable suspicion; C) probable cause is always required to stop; D) no suspicion is ever required."
           ],
           "item_count": 10,
-          "key_md": "1. **RULE** (retractability rule) → **D** (reliance defeats the retraction).\n2. **STANDARD** → **B** (reasonable-owner gradient; A/C/D are absolutes).\n3. **RULE** (relation-back), applied via facts → **B** (different occurrence; C is the wrong prong).\n4. **STANDARD** → **B** (excited-utterance gradient; C/D add false requirements).\n5. **RULE-ish tier** → **D** (content-based exception triggers strict scrutiny).\n6. **STANDARD** → **B** (materiality; A/C/D are absolutes).\n7. **RULE** → **A** (covenant = encumbrance; zoning ≠ defect).\n8. **STANDARD** → **B** (foreseeable-zone; A/C/D are absolutes).\n9. **RULE** → **B** (within the cap).\n10. **STANDARD** → **B** (reasonable-suspicion gradient; A/C/D are absolutes)."
+          "key_md": "1. **RULE** (retractability rule) → **D** (reliance defeats the retraction).\n2. **STANDARD** → **B** (reasonable-owner gradient; A/C/D are absolutes).\n3. **RULE** (relation-back), applied via facts → **B** (different occurrence; C is the wrong prong).\n4. **STANDARD** → **B** (excited-utterance gradient; C/D add false requirements).\n5. **RULE-ish tier** → **D** (content-based exception triggers strict scrutiny).\n6. **STANDARD** → **B** (materiality; A/C/D are absolutes).\n7. **RULE** → **A** (covenant = encumbrance; zoning ≠ defect).\n8. **STANDARD** → **B** (foreseeable-zone; A/C/D are absolutes).\n9. **RULE** → **B** (within the cap).\n10. **STANDARD** → **B** (reasonable-suspicion gradient; A/C/D are absolutes).",
+          "task_type": "LABEL_SELECT",
+          "graded_items": [
+            {
+              "id": "L3-D35-I01",
+              "drill_id": "3.5",
+              "sequence": 1,
+              "task_type": "LABEL_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Repudiation retracted after the buyer bought a substitute.)* A) retracted before performance; B) constructive condition; C) not retractable once communicated; D) buyer relied before retraction.",
+              "choices": [
+                {
+                  "id": "RULE",
+                  "text": "RULE"
+                },
+                {
+                  "id": "STANDARD",
+                  "text": "STANDARD"
+                }
+              ],
+              "correct_choice_id": "RULE",
+              "short_explanation": "(retractability rule) → **D** (reliance defeats the retraction).",
+              "say_the_break": "RULE — (retractability rule) → D (reliance defeats the retraction)"
+            },
+            {
+              "id": "L3-D35-I02",
+              "drill_id": "3.5",
+              "sequence": 2,
+              "task_type": "LABEL_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Was the landowner's precaution reasonable given a foreseeable child intruder?)* A) strictly liable for all child injuries; B) liable if a reasonable owner would have guarded a known attractive hazard; C) never liable to trespassing children; D) liable for any injury on the land.",
+              "choices": [
+                {
+                  "id": "RULE",
+                  "text": "RULE"
+                },
+                {
+                  "id": "STANDARD",
+                  "text": "STANDARD"
+                }
+              ],
+              "correct_choice_id": "STANDARD",
+              "short_explanation": "→ **B** (reasonable-owner gradient; A/C/D are absolutes).",
+              "say_the_break": "STANDARD — → B (reasonable-owner gradient"
+            },
+            {
+              "id": "L3-D35-I03",
+              "drill_id": "3.5",
+              "sequence": 3,
+              "task_type": "LABEL_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Same-occurrence relation-back: informed-consent claim, then negligent-performance claim.)* A) SOL expired the next day; B) different occurrence; C) knew-or-should-have-known but for a mistake; D) relates back.",
+              "choices": [
+                {
+                  "id": "RULE",
+                  "text": "RULE"
+                },
+                {
+                  "id": "STANDARD",
+                  "text": "STANDARD"
+                }
+              ],
+              "correct_choice_id": "RULE",
+              "short_explanation": "(relation-back), applied via facts → **B** (different occurrence; C is the wrong prong).",
+              "say_the_break": "RULE — (relation-back), applied via facts → B (different occurrence"
+            },
+            {
+              "id": "L3-D35-I04",
+              "drill_id": "3.5",
+              "sequence": 4,
+              "task_type": "LABEL_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Excited utterance: statement made minutes after a startling event while still upset.)* A) inadmissible hearsay; B) admissible as an excited utterance; C) admissible only if the declarant is unavailable; D) admissible as a present sense impression only if contemporaneous.",
+              "choices": [
+                {
+                  "id": "RULE",
+                  "text": "RULE"
+                },
+                {
+                  "id": "STANDARD",
+                  "text": "STANDARD"
+                }
+              ],
+              "correct_choice_id": "STANDARD",
+              "short_explanation": "→ **B** (excited-utterance gradient; C/D add false requirements).",
+              "say_the_break": "STANDARD — → B (excited-utterance gradient"
+            },
+            {
+              "id": "L3-D35-I05",
+              "drill_id": "3.5",
+              "sequence": 5,
+              "task_type": "LABEL_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Content-based picketing ban with a zoning-topic exception.)* A) content-neutral; B) regulates conduct; C) irrational discrimination; D) content-based.",
+              "choices": [
+                {
+                  "id": "RULE",
+                  "text": "RULE"
+                },
+                {
+                  "id": "STANDARD",
+                  "text": "STANDARD"
+                }
+              ],
+              "correct_choice_id": "RULE",
+              "short_explanation": "→ **D** (content-based exception triggers strict scrutiny).",
+              "say_the_break": "RULE — → D (content-based exception triggers strict scrutiny)"
+            },
+            {
+              "id": "L3-D35-I06",
+              "drill_id": "3.5",
+              "sequence": 6,
+              "task_type": "LABEL_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Was the breach material, excusing the other party?)* A) any breach excuses performance; B) only a material breach excuses performance; C) no breach ever excuses performance; D) breach excuses performance only if willful.",
+              "choices": [
+                {
+                  "id": "RULE",
+                  "text": "RULE"
+                },
+                {
+                  "id": "STANDARD",
+                  "text": "STANDARD"
+                }
+              ],
+              "correct_choice_id": "STANDARD",
+              "short_explanation": "→ **B** (materiality; A/C/D are absolutes).",
+              "say_the_break": "STANDARD — → B (materiality"
+            },
+            {
+              "id": "L3-D35-I07",
+              "drill_id": "3.5",
+              "sequence": 7,
+              "task_type": "LABEL_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Marketable title: recorded covenant limiting use.)* A) covenant renders title unmarketable; B) zoning clouds title; C) warranty deed cures it; D) contract silent on title.",
+              "choices": [
+                {
+                  "id": "RULE",
+                  "text": "RULE"
+                },
+                {
+                  "id": "STANDARD",
+                  "text": "STANDARD"
+                }
+              ],
+              "correct_choice_id": "RULE",
+              "short_explanation": "→ **A** (covenant = encumbrance; zoning ≠ defect).",
+              "say_the_break": "RULE — → A (covenant = encumbrance"
+            },
+            {
+              "id": "L3-D35-I08",
+              "drill_id": "3.5",
+              "sequence": 8,
+              "task_type": "LABEL_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Foreseeable plaintiff: bystander injured by a negligently handled risk.)* A) liable to all persons however remote; B) liable to plaintiffs within the foreseeable zone of risk; C) liable only to those physically touched; D) never liable to bystanders.",
+              "choices": [
+                {
+                  "id": "RULE",
+                  "text": "RULE"
+                },
+                {
+                  "id": "STANDARD",
+                  "text": "STANDARD"
+                }
+              ],
+              "correct_choice_id": "STANDARD",
+              "short_explanation": "→ **B** (foreseeable-zone; A/C/D are absolutes).",
+              "say_the_break": "STANDARD — → B (foreseeable-zone"
+            },
+            {
+              "id": "L3-D35-I09",
+              "drill_id": "3.5",
+              "sequence": 9,
+              "task_type": "LABEL_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Firm offer cap, one-month assurance inside three months.)* A) PE; B) firm for that month; C) no consideration; D) exceeded three months.",
+              "choices": [
+                {
+                  "id": "RULE",
+                  "text": "RULE"
+                },
+                {
+                  "id": "STANDARD",
+                  "text": "STANDARD"
+                }
+              ],
+              "correct_choice_id": "RULE",
+              "short_explanation": "→ **B** (within the cap).",
+              "say_the_break": "RULE — → B (within the cap)"
+            },
+            {
+              "id": "L3-D35-I10",
+              "drill_id": "3.5",
+              "sequence": 10,
+              "task_type": "LABEL_SELECT",
+              "skill": "CUT",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "*(Was the officer's stop supported by reasonable suspicion?)* A) any hunch suffices; B) specific, articulable facts giving rise to reasonable suspicion; C) probable cause is always required to stop; D) no suspicion is ever required.",
+              "choices": [
+                {
+                  "id": "RULE",
+                  "text": "RULE"
+                },
+                {
+                  "id": "STANDARD",
+                  "text": "STANDARD"
+                }
+              ],
+              "correct_choice_id": "STANDARD",
+              "short_explanation": "→ **B** (reasonable-suspicion gradient; A/C/D are absolutes).",
+              "say_the_break": "STANDARD — → B (reasonable-suspicion gradient"
+            }
+          ]
         }
       ],
       "how_to_use_md": "Drill 3.1 is the reflex to build: rule or standard, decided in the first second. Drills 3.3 and 3.4 train the two different motions that follow — hear the absolute on a standard, recall the bright line on a rule, and flag honestly when the rule isn't there. Drill 3.5 fuses them. Once you classify before reading the facts and feel your tool snap into place, you're ready for Part II, which spends three lessons making the Ear — your weapon against standards, the larger share of the exam — fast and exact. Lesson 4 starts with the loudest tell: overclaim.",
@@ -9466,12 +9962,265 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "5. *(Repudiation; substitute bought before retraction.)* A) retracted before performance; D) relied before retraction. → ?",
             "6. *(State law struck on dual grounds; SCOTUS petition.)* A) independent state ground; C) federal-law interpretation. → ?",
             "7. *(Retained-but-uncalled expert.)* C) substantial need + undue hardship; D) exceptional circumstances. → ?",
-            "8. *(Product-defect damages claim; jury demand.)* \"no jury — equity\" vs \"jury — legal claim.\" → ?",
+            "8. *(Product-defect damages claim; jury demand.)* A) no jury — equity; B) jury — legal claim. → ?",
             "9. *(Negligently secured corpse; mother's distress.)* B) extreme and outrageous; C) negligent failure to safeguard. → ?",
             "10. *(Contractor's jury demand in state court; state rules grant juries in contract cases.)* B) Seventh Amendment not incorporated; D) state law provides the jury. → ?"
           ],
           "item_count": 10,
-          "key_md": "1. **B.** 2. **D.** 3. **D.** 4. **B.** 5. **D.** 6. **A.** 7. **D.** 8. **jury — legal claim.** 9. **C.** 10. **D.**"
+          "key_md": "1. **B.** 2. **D.** 3. **D.** 4. **B.** 5. **D.** 6. **A.** 7. **D.** 8. **B** — jury — legal claim. 9. **C.** 10. **D.**",
+          "task_type": "SURVIVOR_PICK",
+          "graded_items": [
+            {
+              "id": "L9-D93-I01",
+              "drill_id": "9.3",
+              "sequence": 1,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(State gas field, bids.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "B",
+                  "text": "market participant;"
+                },
+                {
+                  "id": "D",
+                  "text": "discriminated against commerce. → ?"
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L9-D93-I02",
+              "drill_id": "9.3",
+              "sequence": 2,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Picketing ban exempting zoning topics.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "content-neutral;"
+                },
+                {
+                  "id": "D",
+                  "text": "content-based. → ?"
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L9-D93-I03",
+              "drill_id": "9.3",
+              "sequence": 3,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Suit against the mother.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "B",
+                  "text": "liable for any harm;"
+                },
+                {
+                  "id": "D",
+                  "text": "failed to supervise. → ?"
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L9-D93-I04",
+              "drill_id": "9.3",
+              "sequence": 4,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Disclosure claim, then performance claim.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "B",
+                  "text": "different occurrence;"
+                },
+                {
+                  "id": "D",
+                  "text": "relates back. → ?"
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L9-D93-I05",
+              "drill_id": "9.3",
+              "sequence": 5,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Repudiation; substitute bought before retraction.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "retracted before performance;"
+                },
+                {
+                  "id": "D",
+                  "text": "relied before retraction. → ?"
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L9-D93-I06",
+              "drill_id": "9.3",
+              "sequence": 6,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(State law struck on dual grounds; SCOTUS petition.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "independent state ground;"
+                },
+                {
+                  "id": "C",
+                  "text": "federal-law interpretation. → ?"
+                }
+              ],
+              "correct_choice_id": "A",
+              "short_explanation": "",
+              "say_the_break": "A survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L9-D93-I07",
+              "drill_id": "9.3",
+              "sequence": 7,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Retained-but-uncalled expert.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "C",
+                  "text": "substantial need + undue hardship;"
+                },
+                {
+                  "id": "D",
+                  "text": "exceptional circumstances. → ?"
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L9-D93-I08",
+              "drill_id": "9.3",
+              "sequence": 8,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Product-defect damages claim; jury demand.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "no jury — equity;"
+                },
+                {
+                  "id": "B",
+                  "text": "jury — legal claim. → ?"
+                }
+              ],
+              "correct_choice_id": "B",
+              "short_explanation": "jury — legal claim.",
+              "say_the_break": "B survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L9-D93-I09",
+              "drill_id": "9.3",
+              "sequence": 9,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Negligently secured corpse; mother's distress.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "B",
+                  "text": "extreme and outrageous;"
+                },
+                {
+                  "id": "C",
+                  "text": "negligent failure to safeguard. → ?"
+                }
+              ],
+              "correct_choice_id": "C",
+              "short_explanation": "",
+              "say_the_break": "C survives both filters; name the break on the other three."
+            },
+            {
+              "id": "L9-D93-I10",
+              "drill_id": "9.3",
+              "sequence": 10,
+              "task_type": "SURVIVOR_PICK",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "stem": "*(Contractor's jury demand in state court; state rules grant juries in contract cases.)*",
+              "prompt": "Run the filters. Which choice survives both?",
+              "choices": [
+                {
+                  "id": "B",
+                  "text": "Seventh Amendment not incorporated;"
+                },
+                {
+                  "id": "D",
+                  "text": "state law provides the jury. → ?"
+                }
+              ],
+              "correct_choice_id": "D",
+              "short_explanation": "",
+              "say_the_break": "D survives both filters; name the break on the other three."
+            }
+          ]
         },
         {
           "id": "9.4",
@@ -9490,7 +10239,250 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. Whether a parol-evidence offer concerns a subsequent modification."
           ],
           "item_count": 10,
-          "key_md": "1. **FORK** — same-occurrence is factual.\n2. **CLEAN** — the three-month cap is a rule.\n3. **FORK** — sufficiency of *this* complaint is a judgment.\n4. **FORK** — depends on the facts and defenses.\n5. **CLEAN** — categorical (not incorporated).\n6. **FORK** — the entrant's status is a fact.\n7. **FORK** — timing and good-cause facts decide it.\n8. **CLEAN** — the rule answers it (certification only).\n9. **FORK** — substantiality is a fact-laden judgment.\n10. **CLEAN** — the PER's scope (no subsequent modifications) is a rule."
+          "key_md": "1. **FORK** — same-occurrence is factual.\n2. **CLEAN** — the three-month cap is a rule.\n3. **FORK** — sufficiency of *this* complaint is a judgment.\n4. **FORK** — depends on the facts and defenses.\n5. **CLEAN** — categorical (not incorporated).\n6. **FORK** — the entrant's status is a fact.\n7. **FORK** — timing and good-cause facts decide it.\n8. **CLEAN** — the rule answers it (certification only).\n9. **FORK** — substantiality is a fact-laden judgment.\n10. **CLEAN** — the PER's scope (no subsequent modifications) is a rule.",
+          "task_type": "LABEL_SELECT",
+          "graded_items": [
+            {
+              "id": "L9-D94-I01",
+              "drill_id": "9.4",
+              "sequence": 1,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "Whether a new claim \"relates back\" to the original complaint.",
+              "choices": [
+                {
+                  "id": "CLEAN — resolvable on the choices/rule",
+                  "text": "CLEAN — resolvable on the choices/rule"
+                },
+                {
+                  "id": "FORK — needs the dispositive fact; flag if absent",
+                  "text": "FORK — needs the dispositive fact; flag if absent"
+                }
+              ],
+              "correct_choice_id": "FORK — needs the dispositive fact; flag if absent",
+              "short_explanation": "same-occurrence is factual.",
+              "say_the_break": "FORK — needs the dispositive fact; flag if absent — same-occurrence is factual"
+            },
+            {
+              "id": "L9-D94-I02",
+              "drill_id": "9.4",
+              "sequence": 2,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "Whether a merchant's firm offer is still open after four months.",
+              "choices": [
+                {
+                  "id": "CLEAN — resolvable on the choices/rule",
+                  "text": "CLEAN — resolvable on the choices/rule"
+                },
+                {
+                  "id": "FORK — needs the dispositive fact; flag if absent",
+                  "text": "FORK — needs the dispositive fact; flag if absent"
+                }
+              ],
+              "correct_choice_id": "CLEAN — resolvable on the choices/rule",
+              "short_explanation": "the three-month cap is a rule.",
+              "say_the_break": "CLEAN — resolvable on the choices/rule — the three-month cap is a rule"
+            },
+            {
+              "id": "L9-D94-I03",
+              "drill_id": "9.4",
+              "sequence": 3,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "Whether a complaint survives a 12(b)(6) motion.",
+              "choices": [
+                {
+                  "id": "CLEAN — resolvable on the choices/rule",
+                  "text": "CLEAN — resolvable on the choices/rule"
+                },
+                {
+                  "id": "FORK — needs the dispositive fact; flag if absent",
+                  "text": "FORK — needs the dispositive fact; flag if absent"
+                }
+              ],
+              "correct_choice_id": "FORK — needs the dispositive fact; flag if absent",
+              "short_explanation": "sufficiency of *this* complaint is a judgment.",
+              "say_the_break": "FORK — needs the dispositive fact; flag if absent — sufficiency of this complaint is a judgment"
+            },
+            {
+              "id": "L9-D94-I04",
+              "drill_id": "9.4",
+              "sequence": 4,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "Whether a killing is first-degree murder.",
+              "choices": [
+                {
+                  "id": "CLEAN — resolvable on the choices/rule",
+                  "text": "CLEAN — resolvable on the choices/rule"
+                },
+                {
+                  "id": "FORK — needs the dispositive fact; flag if absent",
+                  "text": "FORK — needs the dispositive fact; flag if absent"
+                }
+              ],
+              "correct_choice_id": "FORK — needs the dispositive fact; flag if absent",
+              "short_explanation": "depends on the facts and defenses.",
+              "say_the_break": "FORK — needs the dispositive fact; flag if absent — depends on the facts and defenses"
+            },
+            {
+              "id": "L9-D94-I05",
+              "drill_id": "9.4",
+              "sequence": 5,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "Whether the Seventh Amendment is incorporated against the states.",
+              "choices": [
+                {
+                  "id": "CLEAN — resolvable on the choices/rule",
+                  "text": "CLEAN — resolvable on the choices/rule"
+                },
+                {
+                  "id": "FORK — needs the dispositive fact; flag if absent",
+                  "text": "FORK — needs the dispositive fact; flag if absent"
+                }
+              ],
+              "correct_choice_id": "CLEAN — resolvable on the choices/rule",
+              "short_explanation": "categorical (not incorporated).",
+              "say_the_break": "CLEAN — resolvable on the choices/rule — categorical (not incorporated)"
+            },
+            {
+              "id": "L9-D94-I06",
+              "drill_id": "9.4",
+              "sequence": 6,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "Whether an entrant was owed an invitee's duty.",
+              "choices": [
+                {
+                  "id": "CLEAN — resolvable on the choices/rule",
+                  "text": "CLEAN — resolvable on the choices/rule"
+                },
+                {
+                  "id": "FORK — needs the dispositive fact; flag if absent",
+                  "text": "FORK — needs the dispositive fact; flag if absent"
+                }
+              ],
+              "correct_choice_id": "FORK — needs the dispositive fact; flag if absent",
+              "short_explanation": "the entrant's status is a fact.",
+              "say_the_break": "FORK — needs the dispositive fact; flag if absent — the entrant's status is a fact"
+            },
+            {
+              "id": "L9-D94-I07",
+              "drill_id": "9.4",
+              "sequence": 7,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "Whether service was timely / the SOL was tolled.",
+              "choices": [
+                {
+                  "id": "CLEAN — resolvable on the choices/rule",
+                  "text": "CLEAN — resolvable on the choices/rule"
+                },
+                {
+                  "id": "FORK — needs the dispositive fact; flag if absent",
+                  "text": "FORK — needs the dispositive fact; flag if absent"
+                }
+              ],
+              "correct_choice_id": "FORK — needs the dispositive fact; flag if absent",
+              "short_explanation": "timing and good-cause facts decide it.",
+              "say_the_break": "FORK — needs the dispositive fact; flag if absent — timing and good-cause facts decide it"
+            },
+            {
+              "id": "L9-D94-I08",
+              "drill_id": "9.4",
+              "sequence": 8,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "Whether Rule 23(f) permits an interlocutory appeal of certification.",
+              "choices": [
+                {
+                  "id": "CLEAN — resolvable on the choices/rule",
+                  "text": "CLEAN — resolvable on the choices/rule"
+                },
+                {
+                  "id": "FORK — needs the dispositive fact; flag if absent",
+                  "text": "FORK — needs the dispositive fact; flag if absent"
+                }
+              ],
+              "correct_choice_id": "CLEAN — resolvable on the choices/rule",
+              "short_explanation": "the rule answers it (certification only).",
+              "say_the_break": "CLEAN — resolvable on the choices/rule — the rule answers it (certification only)"
+            },
+            {
+              "id": "L9-D94-I09",
+              "drill_id": "9.4",
+              "sequence": 9,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "Whether an embedded federal issue is \"substantial\" enough for jurisdiction.",
+              "choices": [
+                {
+                  "id": "CLEAN — resolvable on the choices/rule",
+                  "text": "CLEAN — resolvable on the choices/rule"
+                },
+                {
+                  "id": "FORK — needs the dispositive fact; flag if absent",
+                  "text": "FORK — needs the dispositive fact; flag if absent"
+                }
+              ],
+              "correct_choice_id": "FORK — needs the dispositive fact; flag if absent",
+              "short_explanation": "substantiality is a fact-laden judgment.",
+              "say_the_break": "FORK — needs the dispositive fact; flag if absent — substantiality is a fact-laden judgment"
+            },
+            {
+              "id": "L9-D94-I10",
+              "drill_id": "9.4",
+              "sequence": 10,
+              "task_type": "LABEL_SELECT",
+              "skill": "ISSUE_SENSE",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "Whether a parol-evidence offer concerns a subsequent modification.",
+              "choices": [
+                {
+                  "id": "CLEAN — resolvable on the choices/rule",
+                  "text": "CLEAN — resolvable on the choices/rule"
+                },
+                {
+                  "id": "FORK — needs the dispositive fact; flag if absent",
+                  "text": "FORK — needs the dispositive fact; flag if absent"
+                }
+              ],
+              "correct_choice_id": "CLEAN — resolvable on the choices/rule",
+              "short_explanation": "the PER's scope (no subsequent modifications) is a rule.",
+              "say_the_break": "CLEAN — resolvable on the choices/rule — the PER's scope (no subsequent modifications) is a rule"
+            }
+          ]
         },
         {
           "id": "9.5",
@@ -12397,7 +13389,490 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. \"Reversed for want of jurisdiction\" vs \"reversed because the ruling was wrong.\""
           ],
           "item_count": 10,
-          "key_md": "1. **Threshold > merits.**\n2. **Layer-fundamentalness.**\n3. **Positive > negative.**\n4. **Default-tier > heightened.**\n5. **Standard > uncommon.**\n6. **Broad-fit > narrow-fit.**\n7. **Hedged > absolute.**\n8. **Fact-engaged > abstract.**\n9. **Default-tier > heightened.**\n10. **Threshold > merits.**"
+          "key_md": "1. **Threshold > merits.**\n2. **Layer-fundamentalness.**\n3. **Positive > negative.**\n4. **Default-tier > heightened.**\n5. **Standard > uncommon.**\n6. **Broad-fit > narrow-fit.**\n7. **Hedged > absolute.**\n8. **Fact-engaged > abstract.**\n9. **Default-tier > heightened.**\n10. **Threshold > merits.**",
+          "task_type": "LABEL_SELECT",
+          "graded_items": [
+            {
+              "id": "L12-D121-I01",
+              "drill_id": "12.1",
+              "sequence": 1,
+              "task_type": "LABEL_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"Dismissed for lack of standing\" vs \"dismissed on the merits.\"",
+              "choices": [
+                {
+                  "id": "Threshold > merits",
+                  "text": "Threshold > merits"
+                },
+                {
+                  "id": "Layer-fundamentalness",
+                  "text": "Layer-fundamentalness"
+                },
+                {
+                  "id": "Positive > negative",
+                  "text": "Positive > negative"
+                },
+                {
+                  "id": "Default-tier > heightened",
+                  "text": "Default-tier > heightened"
+                },
+                {
+                  "id": "Standard > uncommon",
+                  "text": "Standard > uncommon"
+                },
+                {
+                  "id": "Broad-fit > narrow-fit",
+                  "text": "Broad-fit > narrow-fit"
+                },
+                {
+                  "id": "Hedged > absolute",
+                  "text": "Hedged > absolute"
+                },
+                {
+                  "id": "Fact-engaged > abstract",
+                  "text": "Fact-engaged > abstract"
+                }
+              ],
+              "correct_choice_id": "Threshold > merits",
+              "short_explanation": "",
+              "say_the_break": "Threshold > merits."
+            },
+            {
+              "id": "L12-D121-I02",
+              "drill_id": "12.1",
+              "sequence": 2,
+              "task_type": "LABEL_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"No contract formed\" vs \"the breach was immaterial.\"",
+              "choices": [
+                {
+                  "id": "Threshold > merits",
+                  "text": "Threshold > merits"
+                },
+                {
+                  "id": "Layer-fundamentalness",
+                  "text": "Layer-fundamentalness"
+                },
+                {
+                  "id": "Positive > negative",
+                  "text": "Positive > negative"
+                },
+                {
+                  "id": "Default-tier > heightened",
+                  "text": "Default-tier > heightened"
+                },
+                {
+                  "id": "Standard > uncommon",
+                  "text": "Standard > uncommon"
+                },
+                {
+                  "id": "Broad-fit > narrow-fit",
+                  "text": "Broad-fit > narrow-fit"
+                },
+                {
+                  "id": "Hedged > absolute",
+                  "text": "Hedged > absolute"
+                },
+                {
+                  "id": "Fact-engaged > abstract",
+                  "text": "Fact-engaged > abstract"
+                }
+              ],
+              "correct_choice_id": "Layer-fundamentalness",
+              "short_explanation": "",
+              "say_the_break": "Layer-fundamentalness."
+            },
+            {
+              "id": "L12-D121-I03",
+              "drill_id": "12.1",
+              "sequence": 3,
+              "task_type": "LABEL_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"Liable because she failed to supervise\" vs \"not liable because the child wasn't negligent.\"",
+              "choices": [
+                {
+                  "id": "Threshold > merits",
+                  "text": "Threshold > merits"
+                },
+                {
+                  "id": "Layer-fundamentalness",
+                  "text": "Layer-fundamentalness"
+                },
+                {
+                  "id": "Positive > negative",
+                  "text": "Positive > negative"
+                },
+                {
+                  "id": "Default-tier > heightened",
+                  "text": "Default-tier > heightened"
+                },
+                {
+                  "id": "Standard > uncommon",
+                  "text": "Standard > uncommon"
+                },
+                {
+                  "id": "Broad-fit > narrow-fit",
+                  "text": "Broad-fit > narrow-fit"
+                },
+                {
+                  "id": "Hedged > absolute",
+                  "text": "Hedged > absolute"
+                },
+                {
+                  "id": "Fact-engaged > abstract",
+                  "text": "Fact-engaged > abstract"
+                }
+              ],
+              "correct_choice_id": "Positive > negative",
+              "short_explanation": "",
+              "say_the_break": "Positive > negative."
+            },
+            {
+              "id": "L12-D121-I04",
+              "drill_id": "12.1",
+              "sequence": 4,
+              "task_type": "LABEL_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"Rational basis — upheld\" vs \"strict scrutiny — struck,\" no suspect class shown.",
+              "choices": [
+                {
+                  "id": "Threshold > merits",
+                  "text": "Threshold > merits"
+                },
+                {
+                  "id": "Layer-fundamentalness",
+                  "text": "Layer-fundamentalness"
+                },
+                {
+                  "id": "Positive > negative",
+                  "text": "Positive > negative"
+                },
+                {
+                  "id": "Default-tier > heightened",
+                  "text": "Default-tier > heightened"
+                },
+                {
+                  "id": "Standard > uncommon",
+                  "text": "Standard > uncommon"
+                },
+                {
+                  "id": "Broad-fit > narrow-fit",
+                  "text": "Broad-fit > narrow-fit"
+                },
+                {
+                  "id": "Hedged > absolute",
+                  "text": "Hedged > absolute"
+                },
+                {
+                  "id": "Fact-engaged > abstract",
+                  "text": "Fact-engaged > abstract"
+                }
+              ],
+              "correct_choice_id": "Default-tier > heightened",
+              "short_explanation": "",
+              "say_the_break": "Default-tier > heightened."
+            },
+            {
+              "id": "L12-D121-I05",
+              "drill_id": "12.1",
+              "sequence": 5,
+              "task_type": "LABEL_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"Admissible under the business-records exception\" vs \"admissible under a rarely-used residual exception.\"",
+              "choices": [
+                {
+                  "id": "Threshold > merits",
+                  "text": "Threshold > merits"
+                },
+                {
+                  "id": "Layer-fundamentalness",
+                  "text": "Layer-fundamentalness"
+                },
+                {
+                  "id": "Positive > negative",
+                  "text": "Positive > negative"
+                },
+                {
+                  "id": "Default-tier > heightened",
+                  "text": "Default-tier > heightened"
+                },
+                {
+                  "id": "Standard > uncommon",
+                  "text": "Standard > uncommon"
+                },
+                {
+                  "id": "Broad-fit > narrow-fit",
+                  "text": "Broad-fit > narrow-fit"
+                },
+                {
+                  "id": "Hedged > absolute",
+                  "text": "Hedged > absolute"
+                },
+                {
+                  "id": "Fact-engaged > abstract",
+                  "text": "Fact-engaged > abstract"
+                }
+              ],
+              "correct_choice_id": "Standard > uncommon",
+              "short_explanation": "",
+              "say_the_break": "Standard > uncommon."
+            },
+            {
+              "id": "L12-D121-I06",
+              "drill_id": "12.1",
+              "sequence": 6,
+              "task_type": "LABEL_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"The rationale that explains the entire fact pattern\" vs \"the rationale true of one detail.\"",
+              "choices": [
+                {
+                  "id": "Threshold > merits",
+                  "text": "Threshold > merits"
+                },
+                {
+                  "id": "Layer-fundamentalness",
+                  "text": "Layer-fundamentalness"
+                },
+                {
+                  "id": "Positive > negative",
+                  "text": "Positive > negative"
+                },
+                {
+                  "id": "Default-tier > heightened",
+                  "text": "Default-tier > heightened"
+                },
+                {
+                  "id": "Standard > uncommon",
+                  "text": "Standard > uncommon"
+                },
+                {
+                  "id": "Broad-fit > narrow-fit",
+                  "text": "Broad-fit > narrow-fit"
+                },
+                {
+                  "id": "Hedged > absolute",
+                  "text": "Hedged > absolute"
+                },
+                {
+                  "id": "Fact-engaged > abstract",
+                  "text": "Fact-engaged > abstract"
+                }
+              ],
+              "correct_choice_id": "Broad-fit > narrow-fit",
+              "short_explanation": "",
+              "say_the_break": "Broad-fit > narrow-fit."
+            },
+            {
+              "id": "L12-D121-I07",
+              "drill_id": "12.1",
+              "sequence": 7,
+              "task_type": "LABEL_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"Admissible unless unfairly prejudicial\" vs \"always admissible.\"",
+              "choices": [
+                {
+                  "id": "Threshold > merits",
+                  "text": "Threshold > merits"
+                },
+                {
+                  "id": "Layer-fundamentalness",
+                  "text": "Layer-fundamentalness"
+                },
+                {
+                  "id": "Positive > negative",
+                  "text": "Positive > negative"
+                },
+                {
+                  "id": "Default-tier > heightened",
+                  "text": "Default-tier > heightened"
+                },
+                {
+                  "id": "Standard > uncommon",
+                  "text": "Standard > uncommon"
+                },
+                {
+                  "id": "Broad-fit > narrow-fit",
+                  "text": "Broad-fit > narrow-fit"
+                },
+                {
+                  "id": "Hedged > absolute",
+                  "text": "Hedged > absolute"
+                },
+                {
+                  "id": "Fact-engaged > abstract",
+                  "text": "Fact-engaged > abstract"
+                }
+              ],
+              "correct_choice_id": "Hedged > absolute",
+              "short_explanation": "",
+              "say_the_break": "Hedged > absolute."
+            },
+            {
+              "id": "L12-D121-I08",
+              "drill_id": "12.1",
+              "sequence": 8,
+              "task_type": "LABEL_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"No liability — trespassers are owed no duty\" vs \"no liability — the owner had no reason to anticipate this entrant at this spot, and the condition was natural.\"",
+              "choices": [
+                {
+                  "id": "Threshold > merits",
+                  "text": "Threshold > merits"
+                },
+                {
+                  "id": "Layer-fundamentalness",
+                  "text": "Layer-fundamentalness"
+                },
+                {
+                  "id": "Positive > negative",
+                  "text": "Positive > negative"
+                },
+                {
+                  "id": "Default-tier > heightened",
+                  "text": "Default-tier > heightened"
+                },
+                {
+                  "id": "Standard > uncommon",
+                  "text": "Standard > uncommon"
+                },
+                {
+                  "id": "Broad-fit > narrow-fit",
+                  "text": "Broad-fit > narrow-fit"
+                },
+                {
+                  "id": "Hedged > absolute",
+                  "text": "Hedged > absolute"
+                },
+                {
+                  "id": "Fact-engaged > abstract",
+                  "text": "Fact-engaged > abstract"
+                }
+              ],
+              "correct_choice_id": "Fact-engaged > abstract",
+              "short_explanation": "",
+              "say_the_break": "Fact-engaged > abstract."
+            },
+            {
+              "id": "L12-D121-I09",
+              "drill_id": "12.1",
+              "sequence": 9,
+              "task_type": "LABEL_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"Preponderance\" vs \"clear and convincing,\" ordinary civil claim.",
+              "choices": [
+                {
+                  "id": "Threshold > merits",
+                  "text": "Threshold > merits"
+                },
+                {
+                  "id": "Layer-fundamentalness",
+                  "text": "Layer-fundamentalness"
+                },
+                {
+                  "id": "Positive > negative",
+                  "text": "Positive > negative"
+                },
+                {
+                  "id": "Default-tier > heightened",
+                  "text": "Default-tier > heightened"
+                },
+                {
+                  "id": "Standard > uncommon",
+                  "text": "Standard > uncommon"
+                },
+                {
+                  "id": "Broad-fit > narrow-fit",
+                  "text": "Broad-fit > narrow-fit"
+                },
+                {
+                  "id": "Hedged > absolute",
+                  "text": "Hedged > absolute"
+                },
+                {
+                  "id": "Fact-engaged > abstract",
+                  "text": "Fact-engaged > abstract"
+                }
+              ],
+              "correct_choice_id": "Default-tier > heightened",
+              "short_explanation": "",
+              "say_the_break": "Default-tier > heightened."
+            },
+            {
+              "id": "L12-D121-I10",
+              "drill_id": "12.1",
+              "sequence": 10,
+              "task_type": "LABEL_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "\"Reversed for want of jurisdiction\" vs \"reversed because the ruling was wrong.\"",
+              "choices": [
+                {
+                  "id": "Threshold > merits",
+                  "text": "Threshold > merits"
+                },
+                {
+                  "id": "Layer-fundamentalness",
+                  "text": "Layer-fundamentalness"
+                },
+                {
+                  "id": "Positive > negative",
+                  "text": "Positive > negative"
+                },
+                {
+                  "id": "Default-tier > heightened",
+                  "text": "Default-tier > heightened"
+                },
+                {
+                  "id": "Standard > uncommon",
+                  "text": "Standard > uncommon"
+                },
+                {
+                  "id": "Broad-fit > narrow-fit",
+                  "text": "Broad-fit > narrow-fit"
+                },
+                {
+                  "id": "Hedged > absolute",
+                  "text": "Hedged > absolute"
+                },
+                {
+                  "id": "Fact-engaged > abstract",
+                  "text": "Fact-engaged > abstract"
+                }
+              ],
+              "correct_choice_id": "Threshold > merits",
+              "short_explanation": "",
+              "say_the_break": "Threshold > merits."
+            }
+          ]
         },
         {
           "id": "12.2",
@@ -14354,7 +15829,250 @@ export const FOUNDATIONS_COURSE: FoundationsCourse = {
             "10. Cut to one with named breaks, then nearly switched to a true-but-off-question distractor; stated 55%."
           ],
           "item_count": 10,
-          "key_md": "1. **RAISE — to ~85%** (clean cut; commit after the one-beat read-check, don't inflate to 95%).\n2. **HOLD** — an un-named break is a real gap; it isn't a clean cut.\n3. **RAISE — to ~90%** (anchor known cold).\n4. **RAISE — to ~80%** (clash resolved by a clear fact).\n5. **HOLD** — ~65% is right for a single heuristic.\n6. **RAISE — to ~85%**; the named breaks earn the band, but confirm the read once (the feeling is sometimes a misread signal, not pure noise) before committing.\n7. **HOLD** — 50% is the honest band for a coin.\n8. **RAISE — to ~90%**; \"too easy\" is not evidence against an anchor you know.\n9. **HOLD** — averaged guesses deserve low confidence (and a flag).\n10. **RAISE — to ~85%**; the off-question distractor is exactly what a named-break cut already rejected — confirm the read, then commit."
+          "key_md": "1. **RAISE — to ~85%** (clean cut; commit after the one-beat read-check, don't inflate to 95%).\n2. **HOLD** — an un-named break is a real gap; it isn't a clean cut.\n3. **RAISE — to ~90%** (anchor known cold).\n4. **RAISE — to ~80%** (clash resolved by a clear fact).\n5. **HOLD** — ~65% is right for a single heuristic.\n6. **RAISE — to ~85%**; the named breaks earn the band, but confirm the read once (the feeling is sometimes a misread signal, not pure noise) before committing.\n7. **HOLD** — 50% is the honest band for a coin.\n8. **RAISE — to ~90%**; \"too easy\" is not evidence against an anchor you know.\n9. **HOLD** — averaged guesses deserve low confidence (and a flag).\n10. **RAISE — to ~85%**; the off-question distractor is exactly what a named-break cut already rejected — confirm the read, then commit.",
+          "task_type": "LABEL_SELECT",
+          "graded_items": [
+            {
+              "id": "L13-D133-I01",
+              "drill_id": "13.3",
+              "sequence": 1,
+              "task_type": "LABEL_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "Cut three on named molds, one survives; stated 65%.",
+              "choices": [
+                {
+                  "id": "RAISE — to the mechanism's band",
+                  "text": "RAISE — to the mechanism's band"
+                },
+                {
+                  "id": "HOLD — the doubt is real",
+                  "text": "HOLD — the doubt is real"
+                }
+              ],
+              "correct_choice_id": "RAISE — to the mechanism's band",
+              "short_explanation": "(clean cut; commit after the one-beat read-check, don't inflate to 95%).",
+              "say_the_break": "RAISE — to the mechanism's band — (clean cut"
+            },
+            {
+              "id": "L13-D133-I02",
+              "drill_id": "13.3",
+              "sequence": 2,
+              "task_type": "LABEL_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "Couldn't name why the third answer was wrong; stated 65%.",
+              "choices": [
+                {
+                  "id": "RAISE — to the mechanism's band",
+                  "text": "RAISE — to the mechanism's band"
+                },
+                {
+                  "id": "HOLD — the doubt is real",
+                  "text": "HOLD — the doubt is real"
+                }
+              ],
+              "correct_choice_id": "HOLD — the doubt is real",
+              "short_explanation": "an un-named break is a real gap; it isn't a clean cut.",
+              "say_the_break": "HOLD — the doubt is real — an un-named break is a real gap"
+            },
+            {
+              "id": "L13-D133-I03",
+              "drill_id": "13.3",
+              "sequence": 3,
+              "task_type": "LABEL_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "Anchor rule known cold; stated 70%.",
+              "choices": [
+                {
+                  "id": "RAISE — to the mechanism's band",
+                  "text": "RAISE — to the mechanism's band"
+                },
+                {
+                  "id": "HOLD — the doubt is real",
+                  "text": "HOLD — the doubt is real"
+                }
+              ],
+              "correct_choice_id": "RAISE — to the mechanism's band",
+              "short_explanation": "(anchor known cold).",
+              "say_the_break": "RAISE — to the mechanism's band — (anchor known cold)"
+            },
+            {
+              "id": "L13-D133-I04",
+              "drill_id": "13.3",
+              "sequence": 4,
+              "task_type": "LABEL_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "Clash resolved by a clear, unambiguous fact; stated 60%.",
+              "choices": [
+                {
+                  "id": "RAISE — to the mechanism's band",
+                  "text": "RAISE — to the mechanism's band"
+                },
+                {
+                  "id": "HOLD — the doubt is real",
+                  "text": "HOLD — the doubt is real"
+                }
+              ],
+              "correct_choice_id": "RAISE — to the mechanism's band",
+              "short_explanation": "(clash resolved by a clear fact).",
+              "say_the_break": "RAISE — to the mechanism's band — (clash resolved by a clear fact)"
+            },
+            {
+              "id": "L13-D133-I05",
+              "drill_id": "13.3",
+              "sequence": 5,
+              "task_type": "LABEL_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "Single Call heuristic, no deciding fact; stated 65%.",
+              "choices": [
+                {
+                  "id": "RAISE — to the mechanism's band",
+                  "text": "RAISE — to the mechanism's band"
+                },
+                {
+                  "id": "HOLD — the doubt is real",
+                  "text": "HOLD — the doubt is real"
+                }
+              ],
+              "correct_choice_id": "HOLD — the doubt is real",
+              "short_explanation": "~65% is right for a single heuristic.",
+              "say_the_break": "HOLD — the doubt is real — ~65% is right for a single heuristic"
+            },
+            {
+              "id": "L13-D133-I06",
+              "drill_id": "13.3",
+              "sequence": 6,
+              "task_type": "LABEL_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "Clean Cut with all breaks named, but \"felt unsure\"; stated 70%.",
+              "choices": [
+                {
+                  "id": "RAISE — to the mechanism's band",
+                  "text": "RAISE — to the mechanism's band"
+                },
+                {
+                  "id": "HOLD — the doubt is real",
+                  "text": "HOLD — the doubt is real"
+                }
+              ],
+              "correct_choice_id": "RAISE — to the mechanism's band",
+              "short_explanation": "; the named breaks earn the band, but confirm the read once (the feeling is sometimes a misread signal, not pure noise) before committing.",
+              "say_the_break": "RAISE — to the mechanism's band — "
+            },
+            {
+              "id": "L13-D133-I07",
+              "drill_id": "13.3",
+              "sequence": 7,
+              "task_type": "LABEL_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "Matched pair with the fact withheld; stated 50%.",
+              "choices": [
+                {
+                  "id": "RAISE — to the mechanism's band",
+                  "text": "RAISE — to the mechanism's band"
+                },
+                {
+                  "id": "HOLD — the doubt is real",
+                  "text": "HOLD — the doubt is real"
+                }
+              ],
+              "correct_choice_id": "HOLD — the doubt is real",
+              "short_explanation": "50% is the honest band for a coin.",
+              "say_the_break": "HOLD — the doubt is real — 50% is the honest band for a coin"
+            },
+            {
+              "id": "L13-D133-I08",
+              "drill_id": "13.3",
+              "sequence": 8,
+              "task_type": "LABEL_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "Anchor known cold, but the answer \"seemed too easy\"; stated 60%.",
+              "choices": [
+                {
+                  "id": "RAISE — to the mechanism's band",
+                  "text": "RAISE — to the mechanism's band"
+                },
+                {
+                  "id": "HOLD — the doubt is real",
+                  "text": "HOLD — the doubt is real"
+                }
+              ],
+              "correct_choice_id": "RAISE — to the mechanism's band",
+              "short_explanation": "; \"too easy\" is not evidence against an anchor you know.",
+              "say_the_break": "RAISE — to the mechanism's band — "
+            },
+            {
+              "id": "L13-D133-I09",
+              "drill_id": "13.3",
+              "sequence": 9,
+              "task_type": "LABEL_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "Two unrelated guesses averaged; stated 65%.",
+              "choices": [
+                {
+                  "id": "RAISE — to the mechanism's band",
+                  "text": "RAISE — to the mechanism's band"
+                },
+                {
+                  "id": "HOLD — the doubt is real",
+                  "text": "HOLD — the doubt is real"
+                }
+              ],
+              "correct_choice_id": "HOLD — the doubt is real",
+              "short_explanation": "averaged guesses deserve low confidence (and a flag).",
+              "say_the_break": "HOLD — the doubt is real — averaged guesses deserve low confidence (and a flag)"
+            },
+            {
+              "id": "L13-D133-I10",
+              "drill_id": "13.3",
+              "sequence": 10,
+              "task_type": "LABEL_SELECT",
+              "skill": "CALL",
+              "legal_review_status": "approved",
+              "source_status": "legacy_candidate",
+              "enabled": true,
+              "prompt": "Cut to one with named breaks, then nearly switched to a true-but-off-question distractor; stated 55%.",
+              "choices": [
+                {
+                  "id": "RAISE — to the mechanism's band",
+                  "text": "RAISE — to the mechanism's band"
+                },
+                {
+                  "id": "HOLD — the doubt is real",
+                  "text": "HOLD — the doubt is real"
+                }
+              ],
+              "correct_choice_id": "RAISE — to the mechanism's band",
+              "short_explanation": "; the off-question distractor is exactly what a named-break cut already rejected — confirm the read, then commit.",
+              "say_the_break": "RAISE — to the mechanism's band — "
+            }
+          ]
         },
         {
           "id": "13.4",
