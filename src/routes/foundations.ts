@@ -55,8 +55,11 @@ const attemptBody = z.object({
   drill_id: z.string().min(1).max(16),
   item_id: z.string().min(1).max(64),
   selected_status: C3_STATUS.optional(),
-  selected_choice_id: z.string().min(1).max(8).optional(),
-  selected_choice_statuses: z.record(z.string().max(8), C3_STATUS).optional(),
+  // LABEL_SELECT choices use the full label text as their id (up to ~64 chars,
+  // e.g. drill 10.4). The old max(8) silently 400'd every long-label LABEL_SELECT
+  // attempt BEFORE grading. Keep in sync with foundations_attempts.selected_choice_id.
+  selected_choice_id: z.string().min(1).max(128).optional(),
+  selected_choice_statuses: z.record(z.string().max(128), C3_STATUS).optional(),
   attempt_number: z.number().int().min(1).max(50).default(1),
   time_ms: z.number().int().min(0).max(3_600_000).optional(),
   confidence: z.number().int().min(1).max(5).optional(),
