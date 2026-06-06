@@ -18,6 +18,8 @@ import { getPool } from "../db.js";
 import { snakeToTitle, kebabToTitle } from "../lib/format.js";
 import { resolveClerkEmail } from "../lib/clerk-identity.js";
 import { fulfillCheckoutSession } from "../entitlement.js";
+import { claimDiagnosticForSession, collectClaimableDiagnosticIds } from "../lib/claim-diagnostic.js";
+import { routeFromSessionAttemptCounts } from "../lib/checkout-next-step.js";
 import { config } from "../config.js";
 
 const MAX_ZONES_PER_DIMENSION = 5;
@@ -113,6 +115,42 @@ function billingPortalCapability(row: EntitlementRow | undefined) {
       ? "manual_or_complimentary"
       : "stripe_customer_missing",
   };
+}
+
+// Best-effort post-checkout routing signal. Reads the diagnostic ids tied to a
+// checkout session (Stripe metadata id + email-matched leads), counts attempts
+// per diagnostic session, and decides foundations-vs-diagnostic. Any failure
+// degrades to "diagnostic" so a paying customer is never left without a next step.
+async function resolveCheckoutRouting(sessionId: string) {
+  const safeDefault = { diagnostic_completed: false, next_step: "diagnostic" as const };
+  try {
+    const stripe = new Stripe(config.stripe.secretKey);
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
+    const email =
+      session.customer_details?.email?.toLowerCase().trim() ?? null;
+    const metadataDiagnosticId = session.metadata?.diagnostic_id ?? null;
+
+    const pool = getPool();
+    const ids = await collectClaimableDiagnosticIds(
+      pool,
+      email,
+      metadataDiagnosticId,
+    );
+    if (ids.length === 0) return safeDefault;
+
+    const counts: number[] = [];
+    for (const id of ids) {
+      const { rows } = await pool.query<{ n: number | string }>(
+        "SELECT COUNT(*) AS n FROM student_attempts WHERE set_id = $1",
+        [id],
+      );
+      counts.push(Number(rows[0]?.n ?? 0));
+    }
+    return routeFromSessionAttemptCounts(counts);
+  } catch (err) {
+    console.error("[checkout status] routing resolve failed:", err);
+    return safeDefault;
+  }
 }
 
 export function registerMeRoutes(app: Express): void {
@@ -357,15 +395,23 @@ export function registerMeRoutes(app: Express): void {
         [sessionId],
       );
 
+      const routing = await resolveCheckoutRouting(sessionId);
+
       if (result.rows.length > 0) {
         const purchase = result.rows[0]!;
         res.json({
           fulfilled: true,
           purchaseId: purchase.purchase_id,
           status: purchase.entitlement_status,
+          diagnostic_completed: routing.diagnostic_completed,
+          next_step: routing.next_step,
         });
       } else {
-        res.json({ fulfilled: false });
+        res.json({
+          fulfilled: false,
+          diagnostic_completed: routing.diagnostic_completed,
+          next_step: routing.next_step,
+        });
       }
     } catch (err) {
       console.error("[checkout status] failed:", err);
@@ -414,6 +460,17 @@ export function registerMeRoutes(app: Express): void {
         session,
         subscriptionId: null,
       });
+
+      // Best-effort: claim the buyer's anonymous diagnostic onto the recovered
+      // student record (same as the webhook path). Never blocks recovery.
+      try {
+        await claimDiagnosticForSession({
+          session,
+          studentId: result.studentId,
+        });
+      } catch (err) {
+        console.error("[checkout recover] diagnostic claim failed:", err);
+      }
 
       res.json({
         status: result.status,
