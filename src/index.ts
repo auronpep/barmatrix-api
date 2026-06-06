@@ -67,6 +67,7 @@ import {
 import { recoverBillingCustomerFromCheckoutSession } from "./lib/billing-portal.js";
 import {
   computeDiagnosticResults,
+  extractDiagnosticAnchors,
   DIAGNOSTIC_LENGTH,
   type DiagnosticAttemptRow,
 } from "./lib/diagnostic.js";
@@ -191,6 +192,8 @@ interface DiagnosticAttemptQueryRow {
   subtopic: string | null;
   tension_point: string | null;
   selected_forensic_tags: unknown;
+  external_id: string | null;
+  metadata: string | null;
 }
 
 interface BodyParseError extends Error {
@@ -464,6 +467,7 @@ app.get("/api/diagnostic/:id/results", async (req: Request, res: Response) => {
     const { rows } = await getPool().query<DiagnosticAttemptQueryRow>(
       `SELECT a.correct, a.confidence, a.time_seconds,
               q.subject, q.subtopic, q.tension_point,
+              q.external_id, q.metadata,
               ac.forensic_tags AS selected_forensic_tags
          FROM student_attempts a
          JOIN questions q ON q.question_id = a.question_id
@@ -482,9 +486,11 @@ app.get("/api/diagnostic/:id/results", async (req: Request, res: Response) => {
       selected_forensic_tags: parseStringArray(r.selected_forensic_tags),
     }));
     const results = computeDiagnosticResults(attempts);
+    const anchors = extractDiagnosticAnchors(rows);
     res.json({
       diagnostic_id: id,
       ...results,
+      anchors,
       recommendation: shapeDiagnosticRecommendation(results),
     });
   } catch (err) {
@@ -525,6 +531,7 @@ const checkoutBody = z.object({
   payment_plan: z.enum(["pay_in_full", "two_pay_500_499"]),
   partner_id: z.string().uuid().nullable().optional(),
   referral_click_id: z.string().uuid().nullable().optional(),
+  diagnostic_id: z.string().uuid().nullable().optional(),
   success_url: z.string().url().optional(),
   cancel_url: z.string().url().optional(),
 });
@@ -539,6 +546,7 @@ app.post("/api/checkout/create-session", async (req, res) => {
     cohort_code: config.cohort.code,
     partner_id: parse.data.partner_id ?? "",
     referral_click_id: parse.data.referral_click_id ?? "",
+    diagnostic_id: parse.data.diagnostic_id ?? "",
     payment_plan: parse.data.payment_plan,
   };
 

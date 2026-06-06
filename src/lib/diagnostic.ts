@@ -44,6 +44,62 @@ export interface DiagnosticAttemptRow {
   selected_forensic_tags: string[];
 }
 
+// One reusable rule the diagnostic taker now owns — the "you learned this" win
+// moment (experience spec G5). Sourced from questions.metadata.anchor_card,
+// seeded per item. Theming lives only in example names, never the rule itself.
+export interface AnchorCard {
+  id: string;
+  title: string | null;
+  rule: string;
+  prompt: string | null;
+  source_tag: string;
+  subject: string;
+}
+
+/** Minimal row shape needed to surface an anchor: the question's JSON-TEXT
+ *  metadata (NEVER CAST AS JSON on MariaDB), external id, and subject. */
+export interface AnchorSourceRow {
+  metadata: string | null;
+  external_id: string | null;
+  subject: string | null;
+}
+
+// Pure: parse each answered question's metadata TEXT, pull anchor_card, and
+// build a deduped list of rules the user now owns. Drops cards with no rule
+// (null front+back) so the close only ever shows something concrete to keep.
+export function extractDiagnosticAnchors(rows: AnchorSourceRow[]): AnchorCard[] {
+  const out: AnchorCard[] = [];
+  const seen = new Set<string>();
+  for (const r of rows) {
+    if (!r.metadata) continue;
+    let meta: unknown;
+    try {
+      meta = JSON.parse(r.metadata);
+    } catch {
+      continue;
+    }
+    if (!meta || typeof meta !== "object") continue;
+    const card = (meta as Record<string, unknown>).anchor_card;
+    if (!card || typeof card !== "object") continue;
+    const c = card as Record<string, unknown>;
+    const id = typeof c.id === "string" ? c.id : "";
+    const back = typeof c.back === "string" ? c.back.trim() : "";
+    const front = typeof c.front === "string" ? c.front.trim() : "";
+    const rule = back || front;
+    if (!id || !rule || seen.has(id)) continue;
+    seen.add(id);
+    out.push({
+      id,
+      title: typeof c.title === "string" ? c.title : null,
+      rule,
+      prompt: front || null,
+      source_tag: r.external_id ?? "",
+      subject: r.subject ?? "",
+    });
+  }
+  return out;
+}
+
 export interface RedZoneEntry {
   tag: string;
   proficiency_score: number;
