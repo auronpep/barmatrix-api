@@ -55,6 +55,12 @@ export const config = {
   nodeEnv: optional("NODE_ENV", "development"),
   allowedOrigins: allowedOrigins(),
 
+  // Secret guarding internal job endpoints (e.g. the Day-1 trap-naming email
+  // batch). Empty by default = the endpoint is INERT (503s every call) until
+  // INTERNAL_JOB_SECRET is set in ~/secrets/barmatrix-api.env. Keeps the
+  // unattended email job from ever firing without an explicit go-live.
+  internalJobSecret: process.env.INTERNAL_JOB_SECRET ?? "",
+
   db: {
     host: optional("DATABASE_HOST", "localhost"),
     port: Number(optional("DATABASE_PORT", "3306")),

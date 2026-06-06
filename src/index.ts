@@ -61,6 +61,7 @@ import { registerCertificationRoutes } from "./routes/certification.js";
 import { registerPlacementDiagnosticRoutes } from "./routes/placement-diagnostic.js";
 import { registerWebinarLeadRoutes } from "./routes/webinar-leads.js";
 import { registerDiagnosticLeadRoutes } from "./routes/diagnostic-leads.js";
+import { registerTrapNamingJobRoutes } from "./routes/trap-naming-job.js";
 import {
   requireEnrollment,
   resolveOwnedBillingPortalCustomer,
@@ -526,6 +527,7 @@ registerCertificationRoutes(app);
 registerPlacementDiagnosticRoutes(app);
 registerWebinarLeadRoutes(app);
 registerDiagnosticLeadRoutes(app);
+registerTrapNamingJobRoutes(app);
 
 // ----- checkout -----
 const checkoutBody = z.object({

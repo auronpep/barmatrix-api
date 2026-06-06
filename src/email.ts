@@ -23,6 +23,11 @@ export interface TrapNamingEmailInput {
   fullName: string | null | undefined;
   trapNames: readonly (string | null | undefined)[] | null | undefined;
   doctrinalRule: string | null | undefined;
+  /** Subject area of the top trap, e.g. "Criminal Law" — rendered as "(on X)". */
+  trapSubject?: string | null;
+  /** CTA target; defaults to the live Day-2 Foundations lesson. */
+  nextStepUrl?: string | null;
+  nextStepLabel?: string | null;
 }
 
 export interface EnrollmentEmailPayload {
@@ -47,7 +52,11 @@ export type EnrollmentEmailResult =
   | { status: "sent"; id: string | null }
   | {
       status: "skipped";
-      reason: "missing_config" | "missing_recipient" | "duplicate_fulfillment";
+      reason:
+        | "missing_config"
+        | "missing_recipient"
+        | "duplicate_fulfillment"
+        | "missing_trap_or_rule";
     }
   | { status: "failed"; reason: "resend_error" };
 
@@ -118,6 +127,14 @@ export async function sendTrapNamingEmail(
   const recipient = normalizeEmail(input.to);
   if (!recipient) {
     return { status: "skipped", reason: "missing_recipient" };
+  }
+
+  // Copy spec: never send an email with empty placeholders. Require a real
+  // named trap AND a real owned rule, otherwise skip this recipient.
+  const hasTrap = (input.trapNames ?? []).some((t) => clean(t) !== null);
+  const hasRule = clean(input.doctrinalRule) !== null;
+  if (!hasTrap || !hasRule) {
+    return { status: "skipped", reason: "missing_trap_or_rule" };
   }
 
   return dispatchEmail(
@@ -534,31 +551,67 @@ export function buildTrapNamingPayload(
   recipient: string,
   config: EnrollmentEmailConfig,
 ): EnrollmentEmailPayload {
-  const accountUrl = `${config.frontendUrl}/account/`;
-  const salutation = clean(input.fullName) ?? "Hi there";
-  const trapNames = formatTrapNames(input.trapNames);
-  const doctrinalRule =
-    clean(input.doctrinalRule) ?? "the doctrinal rule assigned in your Day 1 review";
+  const firstName = clean(input.fullName);
+  const greeting = firstName ? `Hi ${firstName},` : "Hi there,";
+  const trapName = formatTrapNames(input.trapNames);
+  const trapSubject = clean(input.trapSubject);
+  const onSubject = trapSubject ? ` (on ${trapSubject})` : "";
+  const ruleOwned =
+    clean(input.doctrinalRule) ?? "the doctrinal rule you reviewed on Day 1";
+  const nextStepUrl =
+    clean(input.nextStepUrl) ??
+    `${stripTrailingSlash(config.frontendUrl)}/foundations/lesson-01`;
+  const nextStepLabel = clean(input.nextStepLabel) ?? "Start your Day-2 block";
 
-  // TODO(copy): replace with Worker C draft (docs/c3-enhancements/day1-trap-naming-email-copy.md)
-  const subject = "Day 1: name the trap, own the rule";
+  // Copy: docs/c3-enhancements/day1-trap-naming-email-copy.md (Worker C, A7).
+  // Christian theming is intentional and founder-mandated — one warm faith-touch
+  // in the open, one in the P.S. Trap explanation / "the tell" are omitted here
+  // because we don't yet have a per-trap explanation source; the email still
+  // names the trap, its subject, the rule owned, and the next step.
+  const subject = `The "${trapName}" trap — and the rule you own tonight`;
+
   const text =
-    `${salutation},\n\n` +
-    `Day 1 named the trap you fell for: ${trapNames}. ` +
-    `In Christ, we name the pattern so you can own the correction instead of repeating it.\n\n` +
-    `The doctrinal rule you now own: ${doctrinalRule}\n\n` +
-    `Return to your BarMatrix account: ${accountUrl}.\n\n` +
-    `Questions? Reply to this email or contact ${config.supportEmail}.`;
+    `${greeting}\n\n` +
+    `You showed up and did the hard thing today — you let the diagnostic see your real game tape. ` +
+    `That takes nerve, and we're glad you're here. God's given you the discipline to do this work; ` +
+    `our job is to point it at the right target.\n\n` +
+    `So here's what we saw.\n\n` +
+    `The trap that pulled you hardest: ${trapName}${onSubject}.\n\n` +
+    `It's one of the most common traps on the MBE — and it's not a knowledge gap. You knew the law. ` +
+    `The question was just built so the wrong answer felt more right than the correct one. ` +
+    `That's a pattern, and patterns can be beaten.\n\n` +
+    `The move: Cut the answers that are wrong on the law, put the last two in Clash, and make the ` +
+    `Call on the controlling distinction — not the gut.\n\n` +
+    `And here's the rule you now own:\n${ruleOwned}\n\n` +
+    `Keep that one. You didn't have it this morning. You do tonight.\n\n` +
+    `Tomorrow we turn this into a reflex — one short block, aimed straight at the trap you fell for today.\n\n` +
+    `${nextStepLabel}: ${nextStepUrl}\n\n` +
+    `You've got this. We're walking it with you.\n\n` +
+    `— The BarMatrix Team\n\n` +
+    `P.S. You're part of our founding cohort — early, and helping shape this. That means something to us. ` +
+    `Praying this is the cycle it finally clicks.`;
+
   const html =
-    `<p>${escapeHtml(salutation)},</p>` +
-    `<p>Day 1 named the trap you fell for: ${escapeHtml(
-      trapNames,
-    )}. In Christ, we name the pattern so you can own the correction instead of repeating it.</p>` +
-    `<p><strong>The doctrinal rule you now own:</strong> ${escapeHtml(
-      doctrinalRule,
-    )}</p>` +
-    `<p><a href="${escapeHtml(accountUrl)}">Return to your BarMatrix account</a>.</p>` +
-    `<p>Questions? Reply to this email or contact ${escapeHtml(config.supportEmail)}.</p>`;
+    `<p>${escapeHtml(greeting)}</p>` +
+    `<p>You showed up and did the hard thing today — you let the diagnostic see your real game tape. ` +
+    `That takes nerve, and we're glad you're here. God's given you the discipline to do this work; ` +
+    `our job is to point it at the right target.</p>` +
+    `<p>So here's what we saw.</p>` +
+    `<p><strong>The trap that pulled you hardest: ${escapeHtml(trapName)}${escapeHtml(onSubject)}.</strong></p>` +
+    `<p>It's one of the most common traps on the MBE — and it's not a knowledge gap. You knew the law. ` +
+    `The question was just built so the wrong answer felt more right than the correct one. ` +
+    `That's a pattern, and patterns can be beaten.</p>` +
+    `<p><strong>The move:</strong> Cut the answers that are wrong on the law, put the last two in Clash, ` +
+    `and make the Call on the controlling distinction — not the gut.</p>` +
+    `<p><strong>And here's the rule you now own:</strong></p>` +
+    `<blockquote>${escapeHtml(ruleOwned)}</blockquote>` +
+    `<p>Keep that one. You didn't have it this morning. You do tonight.</p>` +
+    `<p>Tomorrow we turn this into a reflex — one short block, aimed straight at the trap you fell for today.</p>` +
+    `<p><a href="${escapeHtml(nextStepUrl)}">${escapeHtml(nextStepLabel)} &rarr;</a></p>` +
+    `<p>You've got this. We're walking it with you.</p>` +
+    `<p>— The BarMatrix Team</p>` +
+    `<p><em>P.S. You're part of our founding cohort — early, and helping shape this. That means ` +
+    `something to us. Praying this is the cycle it finally clicks.</em></p>`;
 
   return {
     from: config.from,

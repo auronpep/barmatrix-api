@@ -209,31 +209,52 @@ describe("sendEnrollmentEmailForFulfillment", () => {
 });
 
 describe("buildTrapNamingPayload", () => {
-  it("builds the Day-1 trap-naming payload with trap names and owned rule", () => {
+  it("renders the trap, subject, owned rule, and a next-step CTA", () => {
     const config = resolveEnrollmentEmailConfig(configuredEnv());
     assert.ok(config);
 
     const payload = buildTrapNamingPayload(
       {
         to: null,
-        fullName: "Student <Example>",
-        trapNames: ["Element Drift", "Conclusion Leap"],
-        doctrinalRule: "Intent requires a voluntary act.",
+        fullName: "Sunny",
+        trapNames: ["Bait Doctrine"],
+        doctrinalRule: "A valid FRCP on point controls over a conflicting state rule.",
+        trapSubject: "Civil Procedure",
+        nextStepLabel: "Start your Day-2 block",
+        nextStepUrl: "https://barmatrix.app/foundations/lesson-01",
       },
       "student@example.com",
       config,
     );
 
-    assert.deepEqual(payload, {
-      from: "BarMatrix <access@barmatrix.app>",
-      to: ["student@example.com"],
-      replyTo: "help@barmatrix.app",
-      subject: "Day 1: name the trap, own the rule",
-      text:
-        "Student <Example>,\n\nDay 1 named the trap you fell for: Element Drift and Conclusion Leap. In Christ, we name the pattern so you can own the correction instead of repeating it.\n\nThe doctrinal rule you now own: Intent requires a voluntary act.\n\nReturn to your BarMatrix account: https://barmatrix.app/account/.\n\nQuestions? Reply to this email or contact support@barmatrix.app.",
-      html:
-        "<p>Student &lt;Example&gt;,</p><p>Day 1 named the trap you fell for: Element Drift and Conclusion Leap. In Christ, we name the pattern so you can own the correction instead of repeating it.</p><p><strong>The doctrinal rule you now own:</strong> Intent requires a voluntary act.</p><p><a href=\"https://barmatrix.app/account/\">Return to your BarMatrix account</a>.</p><p>Questions? Reply to this email or contact support@barmatrix.app.</p>",
-    });
+    assert.deepEqual(payload.to, ["student@example.com"]);
+    assert.equal(payload.from, "BarMatrix <access@barmatrix.app>");
+    assert.match(payload.subject, /Bait Doctrine/);
+    assert.match(payload.text, /Bait Doctrine \(on Civil Procedure\)/);
+    assert.match(payload.html, /Bait Doctrine \(on Civil Procedure\)/);
+    assert.match(payload.text, /A valid FRCP on point controls/);
+    assert.match(payload.html, /A valid FRCP on point controls/);
+    assert.match(payload.html, /href="https:\/\/barmatrix\.app\/foundations\/lesson-01"/);
+    assert.match(payload.text, /Start your Day-2 block/);
+    // founder-mandated faith touch is present
+    assert.match(payload.text, /founding cohort/);
+  });
+
+  it("greets generically without a name and defaults the CTA to the live Day-2 lesson", () => {
+    const config = resolveEnrollmentEmailConfig(configuredEnv());
+    assert.ok(config);
+    const payload = buildTrapNamingPayload(
+      {
+        to: null,
+        fullName: null,
+        trapNames: ["Wrong-Element"],
+        doctrinalRule: "Larceny requires intent at the time of taking.",
+      },
+      "x@example.com",
+      config,
+    );
+    assert.match(payload.text, /^Hi there,/);
+    assert.match(payload.html, /barmatrix\.app\/foundations\/lesson-01/);
   });
 });
 
@@ -255,6 +276,7 @@ describe("sendTrapNamingEmail", () => {
         fullName: "Student Example",
         trapNames: ["Element Drift"],
         doctrinalRule: "Use element-by-element analysis.",
+        trapSubject: "Torts",
       },
       {
         env: configuredEnv(),
@@ -266,9 +288,27 @@ describe("sendTrapNamingEmail", () => {
     assert.equal(sentPayloads.length, 1);
     const payload = sentPayloads[0] as { to: string[]; subject: string; text: string };
     assert.deepEqual(payload.to, ["student@example.com"]);
-    assert.equal(payload.subject, "Day 1: name the trap, own the rule");
+    assert.match(payload.subject, /Element Drift/);
     assert.match(payload.text, /Element Drift/);
     assert.match(payload.text, /Use element-by-element analysis/);
+  });
+
+  it("skips (never sends empty) when the trap or owned rule is missing", async () => {
+    let sends = 0;
+    const client: EnrollmentEmailClient = {
+      emails: {
+        send: async () => {
+          sends += 1;
+          return { data: { id: "x" }, error: null };
+        },
+      },
+    };
+    const result = await sendTrapNamingEmail(
+      { to: "student@example.com", fullName: "Student", trapNames: [], doctrinalRule: null },
+      { env: configuredEnv(), createClient: () => client },
+    );
+    assert.equal(result.status, "skipped");
+    assert.equal(sends, 0);
   });
 });
 
