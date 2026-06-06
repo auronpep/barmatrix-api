@@ -260,6 +260,6 @@ describe("ambassador diagnostic end-to-end contract", () => {
     assert.equal(results.top_trap_patterns[0]?.tag, "bait_doctrine");
     assert.equal(recommendation.level.level, 4);
     assert.equal(recommendation.next_step.primary_label, "Start The Method");
-    assert.equal(recommendation.next_step.href, "/foundations/lesson-1");
+    assert.equal(recommendation.next_step.href, "/foundations/lesson-01");
   });
 });

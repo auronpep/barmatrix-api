@@ -92,7 +92,7 @@ describe("ambassador diagnostic integration", () => {
     assert.equal(recommendation.level.level, 4);
     assert.equal(recommendation.top_leak?.tag, "bait_doctrine");
     assert.equal(recommendation.next_step.primary_label, "Start The Method");
-    assert.equal(recommendation.next_step.href, "/foundations/lesson-1");
+    assert.equal(recommendation.next_step.href, "/foundations/lesson-01");
   });
 
   it("generates idempotent MariaDB SQL without JSON casts", () => {
