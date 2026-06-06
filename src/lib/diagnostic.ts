@@ -310,7 +310,7 @@ export function computeDiagnosticResults(rows: DiagnosticAttemptRow[]): Diagnost
 // Trap-weighted question selection
 // ---------------------------------------------------------------------------
 
-export const DIAGNOSTIC_LENGTH = 12;
+export const DIAGNOSTIC_LENGTH = 20;
 // Candidate pool the route pulls (ordered by attractiveness DESC, RAND()). Big
 // enough that subject-spread has room to work and retakes vary, small enough to
 // keep the pick query cheap.

@@ -67,12 +67,13 @@ import {
 import { recoverBillingCustomerFromCheckoutSession } from "./lib/billing-portal.js";
 import {
   computeDiagnosticResults,
-  selectDiagnosticQuestionIds,
   DIAGNOSTIC_LENGTH,
-  DIAGNOSTIC_POOL_SIZE,
   type DiagnosticAttemptRow,
-  type DiagnosticCandidate,
 } from "./lib/diagnostic.js";
+import {
+  buildFixedDiagnosticQuestionSelection,
+  shapeDiagnosticRecommendation,
+} from "./lib/ambassador-diagnostic.js";
 
 // Production runs under LiteSpeed lsnode, which starts the entry file with
 // NODE_OPTIONS=--require <logger> and does NOT honor the package.json
@@ -179,17 +180,8 @@ interface CohortStatusRow {
   public_copy: string;
 }
 
-// n>=30 focus-group sample gate (SRC-0007 CLAIMS_SIGNOFF) — only questions with
-// a publishable distractor signal contribute attractiveness to selection.
-const DIAGNOSTIC_FOCUS_GROUP_MIN_SAMPLE = 30;
 const DIAGNOSTIC_ID_RE =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-
-interface DiagnosticCandidateRow {
-  question_id: string;
-  subject: string | null;
-  attractiveness: number | string | null;
-}
 
 interface DiagnosticAttemptQueryRow {
   correct: boolean | 0 | 1;
@@ -429,47 +421,18 @@ app.post("/api/diagnostic/start", async (req, res) => {
   // student creates an account.
   const diagnosticId = randomUUID();
 
-  // Pull a trap-weighted candidate pool, then pick the diagnostic set with
-  // subject spread. "Attractiveness" = the most-chosen WRONG distractor's
-  // focus-group pct (n>=30, correct letter excluded). Questions without that
-  // signal sort last via RAND(), so when no focus-group data exists selection
-  // degrades to a random pick — no regression from the prior behavior.
-  const seen = parse.data.seen_question_ids ?? [];
-  const seenExclusion =
-    seen.length > 0
-      ? `AND q.question_id NOT IN (${seen.map((_: string, i: number) => `$${i + 3}`).join(", ")})`
-      : "";
+  // Ambassador launch diagnostic: fixed 20-question set in DIAG order. These
+  // rows live at status='diagnostic' so they stay out of active practice pools.
   let questionIds: string[] = [];
   let bankLoaded = false;
   try {
-    const { rows } = await getPool().query<DiagnosticCandidateRow>(
-      `SELECT q.question_id, q.subject,
-              CASE
-                WHEN fg.sample_size >= $1 THEN GREATEST(
-                  CASE WHEN cc.letter = 'A' THEN -1 ELSE COALESCE(fg.pct_a, 0) END,
-                  CASE WHEN cc.letter = 'B' THEN -1 ELSE COALESCE(fg.pct_b, 0) END,
-                  CASE WHEN cc.letter = 'C' THEN -1 ELSE COALESCE(fg.pct_c, 0) END,
-                  CASE WHEN cc.letter = 'D' THEN -1 ELSE COALESCE(fg.pct_d, 0) END
-                )
-                ELSE 0
-              END AS attractiveness
-         FROM questions q
-         LEFT JOIN focus_group_response_data fg ON fg.question_id = q.question_id
-         LEFT JOIN answer_choices cc
-           ON cc.question_id = q.question_id AND cc.is_correct = 1
-        WHERE q.status = 'active'
-          ${seenExclusion}
-        ORDER BY attractiveness DESC, RAND()
-        LIMIT $2`,
-      [DIAGNOSTIC_FOCUS_GROUP_MIN_SAMPLE, DIAGNOSTIC_POOL_SIZE, ...seen],
+    const selection = buildFixedDiagnosticQuestionSelection();
+    const { rows } = await getPool().query<{ question_id: string }>(
+      selection.sql,
+      selection.values,
     );
-    const candidates: DiagnosticCandidate[] = rows.map((r) => ({
-      question_id: r.question_id,
-      subject: r.subject ?? null,
-      attractiveness: Number(r.attractiveness) || 0,
-    }));
-    questionIds = selectDiagnosticQuestionIds(candidates, DIAGNOSTIC_LENGTH);
-    bankLoaded = questionIds.length > 0;
+    questionIds = rows.map((row) => row.question_id);
+    bankLoaded = questionIds.length === DIAGNOSTIC_LENGTH;
   } catch (err) {
     console.error("[diagnostic start] question pick failed:", err);
     // Fall through with empty list; the response shape stays valid.
@@ -518,7 +481,12 @@ app.get("/api/diagnostic/:id/results", async (req: Request, res: Response) => {
       tension_point: r.tension_point,
       selected_forensic_tags: parseStringArray(r.selected_forensic_tags),
     }));
-    res.json({ diagnostic_id: id, ...computeDiagnosticResults(attempts) });
+    const results = computeDiagnosticResults(attempts);
+    res.json({
+      diagnostic_id: id,
+      ...results,
+      recommendation: shapeDiagnosticRecommendation(results),
+    });
   } catch (err) {
     console.error("[diagnostic results] failed:", err);
     Sentry.captureException(err, { tags: { area: "diagnostic_results" } });

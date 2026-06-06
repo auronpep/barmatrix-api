@@ -148,7 +148,7 @@ export function registerQuestionsRoutes(app: Express): void {
         `SELECT question_id, external_id, subject, topic, subtopic, tension_point,
                 fact_pattern, question_stem, call_of_question
            FROM questions
-          WHERE question_id = $1 AND status = 'active'
+          WHERE question_id = $1 AND status IN ('active', 'diagnostic')
           LIMIT 1`,
         [id],
       );

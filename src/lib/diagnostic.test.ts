@@ -7,6 +7,12 @@ import {
   type DiagnosticAttemptRow,
   type DiagnosticCandidate,
 } from "./diagnostic.js";
+import {
+  buildFixedDiagnosticQuestionSelection,
+  loadAmbassadorDiagnosticSources,
+  shapeDiagnosticRecommendation,
+  toDiagnosticAttemptRow,
+} from "./ambassador-diagnostic.js";
 
 // --- helpers ---------------------------------------------------------------
 
@@ -226,5 +232,34 @@ describe("selectDiagnosticQuestionIds", () => {
       candidate("z", "S1", 0),
     ];
     assert.deepEqual(selectDiagnosticQuestionIds(pool, 2), ["x", "y"]);
+  });
+});
+
+describe("ambassador diagnostic end-to-end contract", () => {
+  it("starts with the fixed 20 ids, computes red zones, and returns a recommendation", () => {
+    const selection = buildFixedDiagnosticQuestionSelection();
+    assert.match(selection.sql, /q\.status = 'diagnostic'/);
+    assert.equal(selection.values.length, 40);
+
+    const questions = loadAmbassadorDiagnosticSources();
+    const attempts = [
+      toDiagnosticAttemptRow(questions[0]!, "C", 5),
+      toDiagnosticAttemptRow(questions[1]!, "C", 4),
+      toDiagnosticAttemptRow(questions[2]!, "B", 5),
+      ...questions.slice(3).map((question) =>
+        toDiagnosticAttemptRow(question, question.correct_answer, 3),
+      ),
+    ];
+
+    const results = computeDiagnosticResults(attempts);
+    const recommendation = shapeDiagnosticRecommendation(results);
+
+    assert.equal(results.answered, 20);
+    assert.equal(results.summary.correct, 17);
+    assert.ok(results.top_trap_patterns.length >= 1);
+    assert.equal(results.top_trap_patterns[0]?.tag, "bait_doctrine");
+    assert.equal(recommendation.level.level, 4);
+    assert.equal(recommendation.next_step.primary_label, "Start The Method");
+    assert.equal(recommendation.next_step.href, "/foundations/lesson-1");
   });
 });
