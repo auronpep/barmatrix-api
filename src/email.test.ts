@@ -2,11 +2,13 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import type Stripe from "stripe";
 import {
+  buildTrapNamingPayload,
   resolveEnrollmentEmailConfig,
   sendEnrollmentEmail,
   sendEnrollmentEmailForFulfillment,
   sendInstallmentReceiptForInvoice,
   sendPaymentFailedEmail,
+  sendTrapNamingEmail,
   sendPaymentFailedEmailForInvoice,
   sendUpcomingPaymentEmailForInvoice,
   type BillingInvoice,
@@ -203,6 +205,70 @@ describe("sendEnrollmentEmailForFulfillment", () => {
         },
       ],
     ]);
+  });
+});
+
+describe("buildTrapNamingPayload", () => {
+  it("builds the Day-1 trap-naming payload with trap names and owned rule", () => {
+    const config = resolveEnrollmentEmailConfig(configuredEnv());
+    assert.ok(config);
+
+    const payload = buildTrapNamingPayload(
+      {
+        to: null,
+        fullName: "Student <Example>",
+        trapNames: ["Element Drift", "Conclusion Leap"],
+        doctrinalRule: "Intent requires a voluntary act.",
+      },
+      "student@example.com",
+      config,
+    );
+
+    assert.deepEqual(payload, {
+      from: "BarMatrix <access@barmatrix.app>",
+      to: ["student@example.com"],
+      replyTo: "help@barmatrix.app",
+      subject: "Day 1: name the trap, own the rule",
+      text:
+        "Student <Example>,\n\nDay 1 named the trap you fell for: Element Drift and Conclusion Leap. In Christ, we name the pattern so you can own the correction instead of repeating it.\n\nThe doctrinal rule you now own: Intent requires a voluntary act.\n\nReturn to your BarMatrix account: https://barmatrix.app/account/.\n\nQuestions? Reply to this email or contact support@barmatrix.app.",
+      html:
+        "<p>Student &lt;Example&gt;,</p><p>Day 1 named the trap you fell for: Element Drift and Conclusion Leap. In Christ, we name the pattern so you can own the correction instead of repeating it.</p><p><strong>The doctrinal rule you now own:</strong> Intent requires a voluntary act.</p><p><a href=\"https://barmatrix.app/account/\">Return to your BarMatrix account</a>.</p><p>Questions? Reply to this email or contact support@barmatrix.app.</p>",
+    });
+  });
+});
+
+describe("sendTrapNamingEmail", () => {
+  it("sends the trap-naming email through the configured Resend client", async () => {
+    const sentPayloads: unknown[] = [];
+    const client: EnrollmentEmailClient = {
+      emails: {
+        send: async (payload) => {
+          sentPayloads.push(payload);
+          return { data: { id: "email_trap" }, error: null };
+        },
+      },
+    };
+
+    const result = await sendTrapNamingEmail(
+      {
+        to: " Student@Example.com ",
+        fullName: "Student Example",
+        trapNames: ["Element Drift"],
+        doctrinalRule: "Use element-by-element analysis.",
+      },
+      {
+        env: configuredEnv(),
+        createClient: () => client,
+      },
+    );
+
+    assert.deepEqual(result, { status: "sent", id: "email_trap" });
+    assert.equal(sentPayloads.length, 1);
+    const payload = sentPayloads[0] as { to: string[]; subject: string; text: string };
+    assert.deepEqual(payload.to, ["student@example.com"]);
+    assert.equal(payload.subject, "Day 1: name the trap, own the rule");
+    assert.match(payload.text, /Element Drift/);
+    assert.match(payload.text, /Use element-by-element analysis/);
   });
 });
 

@@ -18,6 +18,13 @@ export interface EnrollmentEmailInput {
   purchaseId?: string;
 }
 
+export interface TrapNamingEmailInput {
+  to: string | null | undefined;
+  fullName: string | null | undefined;
+  trapNames: readonly (string | null | undefined)[] | null | undefined;
+  doctrinalRule: string | null | undefined;
+}
+
 export interface EnrollmentEmailPayload {
   from: string;
   to: string[];
@@ -94,6 +101,27 @@ export async function sendEnrollmentEmail(
 
   return dispatchEmail(
     buildEnrollmentEmailPayload(input, recipient, config),
+    config,
+    options.createClient,
+  );
+}
+
+export async function sendTrapNamingEmail(
+  input: TrapNamingEmailInput,
+  options: SendEnrollmentEmailOptions = {},
+): Promise<EnrollmentEmailResult> {
+  const config = resolveEnrollmentEmailConfig(options.env);
+  if (!config) {
+    return { status: "skipped", reason: "missing_config" };
+  }
+
+  const recipient = normalizeEmail(input.to);
+  if (!recipient) {
+    return { status: "skipped", reason: "missing_recipient" };
+  }
+
+  return dispatchEmail(
+    buildTrapNamingPayload(input, recipient, config),
     config,
     options.createClient,
   );
@@ -499,6 +527,67 @@ function buildUpcomingPaymentPayload(
     text,
     html,
   };
+}
+
+export function buildTrapNamingPayload(
+  input: TrapNamingEmailInput,
+  recipient: string,
+  config: EnrollmentEmailConfig,
+): EnrollmentEmailPayload {
+  const accountUrl = `${config.frontendUrl}/account/`;
+  const salutation = clean(input.fullName) ?? "Hi there";
+  const trapNames = formatTrapNames(input.trapNames);
+  const doctrinalRule =
+    clean(input.doctrinalRule) ?? "the doctrinal rule assigned in your Day 1 review";
+
+  // TODO(copy): replace with Worker C draft (docs/c3-enhancements/day1-trap-naming-email-copy.md)
+  const subject = "Day 1: name the trap, own the rule";
+  const text =
+    `${salutation},\n\n` +
+    `Day 1 named the trap you fell for: ${trapNames}. ` +
+    `In Christ, we name the pattern so you can own the correction instead of repeating it.\n\n` +
+    `The doctrinal rule you now own: ${doctrinalRule}\n\n` +
+    `Return to your BarMatrix account: ${accountUrl}.\n\n` +
+    `Questions? Reply to this email or contact ${config.supportEmail}.`;
+  const html =
+    `<p>${escapeHtml(salutation)},</p>` +
+    `<p>Day 1 named the trap you fell for: ${escapeHtml(
+      trapNames,
+    )}. In Christ, we name the pattern so you can own the correction instead of repeating it.</p>` +
+    `<p><strong>The doctrinal rule you now own:</strong> ${escapeHtml(
+      doctrinalRule,
+    )}</p>` +
+    `<p><a href="${escapeHtml(accountUrl)}">Return to your BarMatrix account</a>.</p>` +
+    `<p>Questions? Reply to this email or contact ${escapeHtml(config.supportEmail)}.</p>`;
+
+  return {
+    from: config.from,
+    to: [recipient],
+    replyTo: config.replyTo,
+    subject,
+    text,
+    html,
+  };
+}
+
+function formatTrapNames(
+  values: readonly (string | null | undefined)[] | null | undefined,
+): string {
+  const names = (values ?? [])
+    .map(clean)
+    .filter((value): value is string => value !== null);
+
+  if (names.length === 0) {
+    return "your Day 1 cognitive trap";
+  }
+  if (names.length === 1) {
+    return names[0]!;
+  }
+  if (names.length === 2) {
+    return `${names[0]!} and ${names[1]!}`;
+  }
+
+  return `${names.slice(0, -1).join(", ")}, and ${names[names.length - 1]!}`;
 }
 
 function formatAmount(
