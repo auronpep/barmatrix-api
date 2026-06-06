@@ -727,7 +727,7 @@ export function shapeDiagnosticRecommendation(results: DiagnosticResults): Diagn
     top_leak: topLeak,
     next_step: {
       primary_label: "Start The Method",
-      href: "/foundations/lesson-1",
+      href: "/foundations/lesson-01",
       copy: `Your top leak is ${leak}. Start with The Method, Lesson 1.`,
     },
   };
