@@ -187,6 +187,7 @@ const DIAGNOSTIC_ID_RE =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 interface DiagnosticAttemptQueryRow {
+  question_id: string;
   correct: boolean | 0 | 1;
   confidence: number | null;
   time_seconds: number | null;
@@ -466,8 +467,15 @@ app.get("/api/diagnostic/:id/results", async (req: Request, res: Response) => {
     return;
   }
   try {
+    // Dedupe to the LATEST attempt per question_id within this diagnostic
+    // session. A student may submit a question more than once (double-submit,
+    // retry, page-replay). Counting every row inflates `answered` and skews
+    // the red-zone aggregation. The correlated MAX(attempted_at) subquery
+    // keeps exactly one row per question — the most-recent outcome — and is
+    // safe on MariaDB (no CAST AS JSON, no window functions required).
     const { rows } = await getPool().query<DiagnosticAttemptQueryRow>(
-      `SELECT a.correct, a.confidence, a.time_seconds,
+      `SELECT a.question_id,
+              a.correct, a.confidence, a.time_seconds,
               q.subject, q.subtopic, q.tension_point,
               q.external_id, q.metadata,
               ac.forensic_tags AS selected_forensic_tags
@@ -475,6 +483,12 @@ app.get("/api/diagnostic/:id/results", async (req: Request, res: Response) => {
          JOIN questions q ON q.question_id = a.question_id
          LEFT JOIN answer_choices ac ON ac.choice_id = a.selected_choice_id
         WHERE a.set_id = $1
+          AND a.attempted_at = (
+            SELECT MAX(a2.attempted_at)
+              FROM student_attempts a2
+             WHERE a2.set_id = $1
+               AND a2.question_id = a.question_id
+          )
         ORDER BY a.attempted_at ASC`,
       [id],
     );

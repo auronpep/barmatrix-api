@@ -3,9 +3,11 @@ import { describe, it } from "node:test";
 
 import {
   computeDiagnosticResults,
+  dedupeAttemptsByLatest,
   selectDiagnosticQuestionIds,
   type DiagnosticAttemptRow,
   type DiagnosticCandidate,
+  type RawDiagnosticAttemptRow,
 } from "./diagnostic.js";
 import {
   buildFixedDiagnosticQuestionSelection,
@@ -15,6 +17,25 @@ import {
 } from "./ambassador-diagnostic.js";
 
 // --- helpers ---------------------------------------------------------------
+
+function rawAttempt(
+  question_id: string,
+  attempted_at: string,
+  overrides: Partial<DiagnosticAttemptRow> = {},
+): RawDiagnosticAttemptRow {
+  return {
+    question_id,
+    attempted_at,
+    correct: false,
+    confidence: 3,
+    time_seconds: 30,
+    subject: "Evidence",
+    subtopic: "Hearsay",
+    tension_point: "effect_on_listener",
+    selected_forensic_tags: [],
+    ...overrides,
+  };
+}
 
 function attempt(overrides: Partial<DiagnosticAttemptRow> = {}): DiagnosticAttemptRow {
   return {
@@ -261,5 +282,61 @@ describe("ambassador diagnostic end-to-end contract", () => {
     assert.equal(recommendation.level.level, 4);
     assert.equal(recommendation.next_step.primary_label, "Start The Method");
     assert.equal(recommendation.next_step.href, "/foundations/lesson-01");
+  });
+});
+
+// --- dedupeAttemptsByLatest ------------------------------------------------
+// Validates the contract that mirrors the SQL-level MAX(attempted_at) dedupe
+// in the diagnostic results query. Without this dedupe, a 20-question session
+// with re-submitted answers returns answered > 20 (the P1 bug).
+
+describe("dedupeAttemptsByLatest", () => {
+  it("returns one row per question_id, keeping the latest attempted_at", () => {
+    const rows = [
+      rawAttempt("q1", "2026-01-01T10:00:00Z", { correct: false }),
+      rawAttempt("q1", "2026-01-01T10:01:00Z", { correct: true }), // retry — keep this
+      rawAttempt("q2", "2026-01-01T10:02:00Z", { correct: false }),
+    ];
+    const deduped = dedupeAttemptsByLatest(rows);
+    assert.equal(deduped.length, 2);
+    const q1 = deduped.find((r) => r.question_id === "q1");
+    assert.ok(q1);
+    assert.equal(q1.correct, true, "latest attempt (correct=true) must win over earlier miss");
+    assert.equal(q1.attempted_at, "2026-01-01T10:01:00Z");
+  });
+
+  it("with no duplicates, returns all rows unchanged", () => {
+    const rows = [
+      rawAttempt("q1", "2026-01-01T10:00:00Z"),
+      rawAttempt("q2", "2026-01-01T10:01:00Z"),
+      rawAttempt("q3", "2026-01-01T10:02:00Z"),
+    ];
+    const deduped = dedupeAttemptsByLatest(rows);
+    assert.equal(deduped.length, 3);
+  });
+
+  it("prevents answered inflation: 20q session with 3 re-submits stays at 20", () => {
+    // Simulate a 20-question diagnostic session where q1, q2, q3 were answered twice.
+    const base = Array.from({ length: 20 }, (_, i) =>
+      rawAttempt(`q${i + 1}`, `2026-01-01T10:${String(i).padStart(2, "0")}:00Z`, {
+        correct: i % 2 === 0,
+      }),
+    );
+    // Add re-submits for q1, q2, q3 with later timestamps
+    const resubmits = [
+      rawAttempt("q1", "2026-01-01T10:30:00Z", { correct: true }),
+      rawAttempt("q2", "2026-01-01T10:31:00Z", { correct: false }),
+      rawAttempt("q3", "2026-01-01T10:32:00Z", { correct: true }),
+    ];
+    const allRows = [...base, ...resubmits]; // 23 raw rows
+    assert.equal(allRows.length, 23, "raw rows include the re-submits");
+    const deduped = dedupeAttemptsByLatest(allRows);
+    assert.equal(deduped.length, 20, "answered must be 20 after dedupe, not 23");
+    const results = computeDiagnosticResults(deduped);
+    assert.equal(results.answered, 20, "computeDiagnosticResults.answered must equal 20");
+  });
+
+  it("handles an empty input", () => {
+    assert.deepEqual(dedupeAttemptsByLatest([]), []);
   });
 });

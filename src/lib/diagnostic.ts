@@ -44,6 +44,41 @@ export interface DiagnosticAttemptRow {
   selected_forensic_tags: string[];
 }
 
+/**
+ * Raw attempt row that includes the question identity and timestamp needed to
+ * deduplicate multiple submissions for the same question within one session.
+ * Used only by the route-layer SQL query and the unit test for the dedupe
+ * contract — the pure aggregation layer (computeDiagnosticResults) operates on
+ * already-deduped DiagnosticAttemptRow objects.
+ */
+export interface RawDiagnosticAttemptRow extends DiagnosticAttemptRow {
+  question_id: string;
+  /** ISO-8601 timestamp or a value comparable with > / < (string sort safe). */
+  attempted_at: string;
+}
+
+/**
+ * Dedupe raw attempt rows to ONE row per question_id, keeping the LATEST
+ * attempt (highest attempted_at). This mirrors the correlated
+ * MAX(attempted_at) subquery in the diagnostic results SQL query and serves as
+ * the documented contract for that query. A student may double-submit or retry;
+ * without deduplication `answered` inflates and red-zone aggregation skews.
+ *
+ * Pure: no IO, safe to unit test without a database connection.
+ */
+export function dedupeAttemptsByLatest(
+  rows: RawDiagnosticAttemptRow[],
+): RawDiagnosticAttemptRow[] {
+  const latest = new Map<string, RawDiagnosticAttemptRow>();
+  for (const row of rows) {
+    const existing = latest.get(row.question_id);
+    if (!existing || row.attempted_at > existing.attempted_at) {
+      latest.set(row.question_id, row);
+    }
+  }
+  return [...latest.values()];
+}
+
 // One reusable rule the diagnostic taker now owns — the "you learned this" win
 // moment (experience spec G5). Sourced from questions.metadata.anchor_card,
 // seeded per item. Theming lives only in example names, never the rule itself.
