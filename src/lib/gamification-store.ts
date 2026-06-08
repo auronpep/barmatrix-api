@@ -11,7 +11,13 @@ import {
   type BadgeSlug,
 } from "./gamification.js";
 
-export type XpSourceType = "boot_camp_day" | "boot_camp_mastery";
+export type XpSourceType =
+  | "boot_camp_day"
+  | "boot_camp_mastery"
+  | "day_plan_step"
+  | "day_plan_main_item"
+  | "day_plan_complete"
+  | "catchup_step_complete";
 
 export interface GamificationGrant {
   xp_earned: number;

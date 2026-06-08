@@ -45,6 +45,7 @@ import {
   type StripeEventAuditCompletion,
 } from "./lib/stripe-event-audit.js";
 import { registerMeRoutes } from "./routes/me.js";
+import { registerMeDayPlanRoutes } from "./routes/me-day-plan.js";
 import { registerMeRedZonesRoutes } from "./routes/me-red-zones.js";
 import { registerMeGamificationRoutes } from "./routes/me-gamification.js";
 import { registerMeTrapsRoutes } from "./routes/me-traps.js";
@@ -525,6 +526,7 @@ registerAttemptsRoutes(app);
 registerRedZonesRoutes(app);
 registerKnowledgeRoutes(app);
 registerMeRoutes(app);
+registerMeDayPlanRoutes(app);
 registerMeRedZonesRoutes(app);
 registerMeGamificationRoutes(app);
 registerMeTrapsRoutes(app);

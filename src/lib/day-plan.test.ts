@@ -1,0 +1,168 @@
+import assert from "node:assert/strict";
+import { describe, it } from "node:test";
+
+import {
+  DAY_GUIDED_PLANS,
+  DAY1_PLAN,
+  buildDayPlanSummaries,
+  buildLeadMePath,
+  catchupCandidatesForRollover,
+  contentRefKey,
+  programDayKey,
+  validateDayPlanManifest,
+  type CatchupBankItem,
+} from "./day-plan.js";
+
+describe("J7 Day 1 manifest", () => {
+  it("is an approved five-milestone, fifty-step guided path", () => {
+    const errors = validateDayPlanManifest(DAY1_PLAN);
+
+    assert.deepEqual(errors, []);
+    assert.equal(DAY1_PLAN.approved, true);
+    assert.equal(DAY1_PLAN.main_items.length, 5);
+    assert.equal(DAY1_PLAN.steps.length, 50);
+    assert.deepEqual(
+      DAY1_PLAN.main_items.map((item) => item.selectable),
+      [false, false, false, false, false],
+    );
+  });
+
+  it("uses the 3 AM local rollover boundary", () => {
+    assert.equal(
+      programDayKey(new Date("2026-06-08T09:59:00.000Z"), "America/Los_Angeles"),
+      "2026-06-07",
+    );
+    assert.equal(
+      programDayKey(new Date("2026-06-08T10:00:00.000Z"), "America/Los_Angeles"),
+      "2026-06-08",
+    );
+  });
+
+  it("selects only unfinished daily micro-tasks for rollover", () => {
+    const completed = new Set(DAY1_PLAN.steps.slice(0, 3).map((step) => step.step_id));
+    const existing = new Set([contentRefKey(DAY1_PLAN.steps[4]!.content_ref)]);
+
+    const missed = catchupCandidatesForRollover({
+      manifest: DAY1_PLAN,
+      originalDayKey: "2026-06-07",
+      completedStepIds: completed,
+      existingCatchupContentRefs: existing,
+      missedAt: new Date("2026-06-08T10:00:00.000Z"),
+    });
+
+    assert.equal(missed[0]?.original_step_id, DAY1_PLAN.steps[3]?.step_id);
+    assert.ok(!missed.some((item) => item.original_step_id === DAY1_PLAN.steps[4]?.step_id));
+    assert.ok(!missed.some((item) => completed.has(item.original_step_id)));
+  });
+});
+
+describe("J7 three-day guided path", () => {
+  it("exposes the first three Criminal Law/Procedure guided-day manifests", () => {
+    assert.deepEqual(
+      DAY_GUIDED_PLANS.map((manifest) => manifest.day_index),
+      [1, 2, 3],
+    );
+
+    for (const manifest of DAY_GUIDED_PLANS) {
+      assert.deepEqual(validateDayPlanManifest(manifest), []);
+      assert.equal(manifest.approved, true);
+      assert.equal(manifest.approved_at, "2026-06-08");
+      assert.equal(manifest.main_items.length, 5);
+      assert.equal(manifest.steps.length, 50);
+      assert.deepEqual(
+        manifest.main_items.map((item) => item.selectable),
+        [false, false, false, false, false],
+      );
+    }
+  });
+
+  it("builds three non-selectable day cards without exposing alternate task choices", () => {
+    const cards = buildDayPlanSummaries({
+      manifests: DAY_GUIDED_PLANS,
+      activePlanKey: DAY1_PLAN.plan_key,
+      completedPlanKeys: new Set<string>(),
+    });
+
+    assert.deepEqual(
+      cards.map((card) => card.day_index),
+      [1, 2, 3],
+    );
+    assert.deepEqual(
+      cards.map((card) => card.status),
+      ["active", "locked", "locked"],
+    );
+    assert.deepEqual(
+      cards.map((card) => card.approved),
+      [true, true, true],
+    );
+    assert.deepEqual(
+      cards.map((card) => card.selectable),
+      [false, false, false],
+    );
+    assert.deepEqual(
+      cards.map((card) => [card.milestone_count, card.step_count]),
+      [
+        [5, 50],
+        [5, 50],
+        [5, 50],
+      ],
+    );
+  });
+});
+
+describe("Lead Me catchup injection", () => {
+  it("adds oldest non-duplicate catchup tasks only after completed milestones", () => {
+    const completedDaily = new Set(
+      DAY1_PLAN.steps
+        .filter((step) => step.main_item_id === "diagnostic-a")
+        .map((step) => step.step_id),
+    );
+    const duplicateOfToday = DAY1_PLAN.steps.find(
+      (step) => step.main_item_id === "foundations-c3",
+    )!;
+    const catchup: CatchupBankItem[] = [
+      item("catchup-1", "2026-06-05", "oldest", { type: "reflection", id: "oldest" }),
+      item("catchup-2", "2026-06-06", "duplicate", duplicateOfToday.content_ref),
+      item("catchup-3", "2026-06-06", "second", { type: "reflection", id: "second" }),
+      item("catchup-4", "2026-06-06", "third", { type: "reflection", id: "third" }),
+    ];
+
+    const path = buildLeadMePath({
+      manifest: DAY1_PLAN,
+      completedDailyStepIds: completedDaily,
+      completedCatchupIds: new Set(),
+      catchupBank: catchup,
+    });
+
+    const injected = path.steps.filter((step) => step.source === "catchup");
+    assert.deepEqual(
+      injected.map((step) => step.step_id),
+      ["catchup-1", "catchup-3"],
+    );
+    assert.equal(path.catchup.pending_count, 4);
+    assert.equal(path.catchup.injected_count, 2);
+    assert.equal(path.current_step?.step_id, "catchup-1");
+  });
+});
+
+function item(
+  catchupId: string,
+  originalDayKey: string,
+  title: string,
+  contentRef: CatchupBankItem["content_ref"],
+): CatchupBankItem {
+  return {
+    catchup_id: catchupId,
+    student_id: "student-1",
+    original_day_key: originalDayKey,
+    original_step_id: `step-${catchupId}`,
+    main_item_id: "diagnostic-a",
+    title,
+    prompt: "Recovered task",
+    kind: "micro_reflection",
+    content_ref: contentRef,
+    action: { label: "Complete" },
+    xp: 5,
+    missed_at: "2026-06-08T10:00:00.000Z",
+  };
+}
