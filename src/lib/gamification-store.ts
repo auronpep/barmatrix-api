@@ -11,7 +11,10 @@ import {
   type BadgeSlug,
 } from "./gamification.js";
 
-export type XpSourceType = "boot_camp_day" | "boot_camp_mastery";
+export type XpSourceType =
+  | "boot_camp_day"
+  | "boot_camp_mastery"
+  | "path_step"; // J7 guided "lead me" path — one event per completed step
 
 export interface GamificationGrant {
   xp_earned: number;

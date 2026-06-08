@@ -18,7 +18,8 @@ export type BadgeSlug =
   | "camp-complete"
   | "mastery-ace"
   | "streak-3"
-  | "streak-7";
+  | "streak-7"
+  | "path-day1-complete";
 
 export interface BadgeMeta {
   label: string;
@@ -61,6 +62,11 @@ export const BADGE_CATALOG: Record<BadgeSlug, BadgeMeta> = {
     label: "Unstoppable",
     description: "Practiced seven days in a row.",
     emoji: "⚡",
+  },
+  "path-day1-complete": {
+    label: "Day 1 Cleared",
+    description: "Completed your first full day on the guided path.",
+    emoji: "🚀",
   },
 };
 
