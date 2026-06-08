@@ -6,7 +6,7 @@
 // day is a redeploy, not a migration.
 //
 // Orders use 10-spacing so new steps can be inserted without a full renumber.
-// 26 steps authored so far (target: ~50). Microcopy is first-draft pending a
+// 50 steps authored (Day 1 complete). Microcopy is first-draft pending a
 // barmatrix-context voice pass before go-live.
 //
 // TASK TAXONOMY (5 micro-task types):
@@ -394,10 +394,361 @@ export const PATH_STEPS: PathStep[] = [
     target: { kind: "mini_drill", drill_id: "d1-answer-intelligence" },
     completion_rule: { kind: "self_declared" },
   },
+  // ─── Inchoate Crimes: Attempt ───────────────────────────────────────────
+  {
+    id: "d1.s27",
+    day: 1,
+    order: 270,
+    kind: "micro_read",
+    is_milestone: false,
+    depends_on: [],
+    title: "Attempt: the 4-part formula",
+    microcopy:
+      "Attempt = (1) specific intent to commit the target crime + (2) substantial step beyond preparation. Two rules you must know cold: FACTUAL impossibility — gun out of range, victim not actually scared — is NEVER a defense. LEGAL impossibility — what you intended would not be a crime even if completed — IS a defense. (Q#639: burning your own building = legal impossibility.)",
+    xp: 5,
+    target: { kind: "inline" },
+    completion_rule: { kind: "self_declared" },
+  },
+  {
+    id: "d1.s28",
+    day: 1,
+    order: 280,
+    kind: "reflect",
+    is_milestone: false,
+    depends_on: [],
+    title: "Can you attempt a strict liability crime?",
+    microcopy:
+      "Think through it: the completed crime needs no intent — so does the attempt? (Answer: yes, attempt ALWAYS requires specific intent, even if the underlying crime is strict liability. Q#700 — 47% wrong.)",
+    xp: 5,
+    target: { kind: "inline" },
+    completion_rule: { kind: "self_declared" },
+  },
+  {
+    id: "d1.s29",
+    day: 1,
+    order: 290,
+    kind: "mini_drill",
+    is_milestone: false,
+    depends_on: [],
+    title: "Attempt traps — 4 scenarios",
+    microcopy:
+      "Factual impossibility, strict liability + attempt, the compliance-reason test, and legal impossibility. The four most-missed attempt patterns.",
+    xp: 15,
+    target: { kind: "mini_drill", drill_id: "d1-attempt-traps" },
+    completion_rule: { kind: "self_declared" },
+  },
+
+  // ─── Inchoate Crimes: Conspiracy ─────────────────────────────────────────
+  {
+    id: "d1.s30",
+    day: 1,
+    order: 300,
+    kind: "micro_read",
+    is_milestone: false,
+    depends_on: [],
+    title: "Conspiracy: common law vs. MPC — the divide",
+    microcopy:
+      "Common law = BILATERAL agreement required. Both parties must genuinely intend to agree. Undercover officer → no real intent → NO conspiracy. MPC = UNILATERAL. YOUR genuine agreement is enough. Undercover officer → YES conspiracy. Conspiracy NEVER merges into the completed crime — you can be convicted of both.",
+    xp: 5,
+    target: { kind: "inline" },
+    completion_rule: { kind: "self_declared" },
+  },
+  {
+    id: "d1.s31",
+    day: 1,
+    order: 310,
+    kind: "reflect",
+    is_milestone: false,
+    depends_on: [],
+    title: "Common law + undercover officer = ?",
+    microcopy:
+      "Say the rule out loud: if the question says 'common law jurisdiction' and the other party is an undercover officer — is there a conspiracy? (Answer: NO. Bilateral agreement required. The officer had no real intent.)",
+    xp: 5,
+    target: { kind: "inline" },
+    completion_rule: { kind: "self_declared" },
+  },
+  {
+    id: "d1.s32",
+    day: 1,
+    order: 320,
+    kind: "mini_drill",
+    is_milestone: false,
+    depends_on: [],
+    title: "Conspiracy: CL vs. MPC — 4 scenarios",
+    microcopy:
+      "Four conspiracy problems. The jurisdiction changes everything: bilateral vs. unilateral, undercover officers, diplomatic immunity, and protected class members.",
+    xp: 15,
+    target: { kind: "mini_drill", drill_id: "d1-conspiracy-traps" },
+    completion_rule: { kind: "self_declared" },
+  },
+
+  // ─── Theft Crimes ─────────────────────────────────────────────────────────
+  {
+    id: "d1.s33",
+    day: 1,
+    order: 330,
+    kind: "micro_read",
+    is_milestone: false,
+    depends_on: [],
+    title: "The 5 theft crimes — one grid",
+    microcopy:
+      "Larceny = trespassory taking, no consent. Larceny by trick = consent to POSSESSION through fraud. False pretenses = consent to TITLE through fraud about a past/present fact (future promise ≠ false pretenses). Embezzlement = lawfully had possession, then converted. Robbery = larceny + force/intimidation from person. Borrowed money + failure to repay = civil debt, not a crime.",
+    xp: 5,
+    target: { kind: "inline" },
+    completion_rule: { kind: "self_declared" },
+  },
+  {
+    id: "d1.s34",
+    day: 1,
+    order: 340,
+    kind: "mini_drill",
+    is_milestone: false,
+    depends_on: [],
+    title: "Theft crime classification — 4 scenarios",
+    microcopy:
+      "Larceny by trick vs. false pretenses vs. embezzlement vs. no crime. The possession-vs-title line and the future-promise trap.",
+    xp: 15,
+    target: { kind: "mini_drill", drill_id: "d1-theft-classification" },
+    completion_rule: { kind: "self_declared" },
+  },
+  {
+    id: "d1.s35",
+    day: 1,
+    order: 350,
+    kind: "micro_read",
+    is_milestone: false,
+    depends_on: [],
+    title: "Burglary: 4 traps the MBE loves",
+    microcopy:
+      "Trap 1: Vacant/abandoned = NOT a common law dwelling = no burglary. Trap 2: Lawful entry (business hours, open door) = no breaking = no burglary. Trap 3: Intent must exist AT the moment of entry. Trap 4: 'Only burglary' is almost always wrong — if the underlying felony wasn't completed, add attempted larceny.",
+    xp: 5,
+    target: { kind: "inline" },
+    completion_rule: { kind: "self_declared" },
+  },
+  {
+    id: "d1.s36",
+    day: 1,
+    order: 360,
+    kind: "reflect",
+    is_milestone: false,
+    depends_on: [],
+    title: "Burglary in a vacant building — what's the answer?",
+    microcopy:
+      "Common law jurisdiction. Defendant broke into a building vacant for 3 months. Burglary or no burglary? (Answer: NO burglary at common law — vacant = not a dwelling. Might be attempted larceny but not burglary.)",
+    xp: 5,
+    target: { kind: "inline" },
+    completion_rule: { kind: "self_declared" },
+  },
+  {
+    id: "d1.s37",
+    day: 1,
+    order: 370,
+    kind: "mini_drill",
+    is_milestone: false,
+    depends_on: [],
+    title: "Burglary traps — 3 scenarios",
+    microcopy:
+      "Vacant building, lawful entry, and the 'only burglary' verdict. The three traps tested most on the MBE.",
+    xp: 15,
+    target: { kind: "mini_drill", drill_id: "d1-burglary-traps" },
+    completion_rule: { kind: "self_declared" },
+  },
+
+  // ─── Accomplice & Accessory ───────────────────────────────────────────────
+  {
+    id: "d1.s38",
+    day: 1,
+    order: 380,
+    kind: "micro_read",
+    is_milestone: false,
+    depends_on: [],
+    title: "Accomplice liability: PURPOSE, not presence",
+    microcopy:
+      "Two elements required: (1) assistance or encouragement + (2) PURPOSE that the crime be committed. Mere presence — even knowing presence — is NEVER enough. Gang members who watch a murder are not accomplices. For accessory after the fact: passive silence = no crime; active concealment (lying to police, harboring, hiding) = crime. Principal need NOT be convicted first.",
+    xp: 5,
+    target: { kind: "inline" },
+    completion_rule: { kind: "self_declared" },
+  },
+  {
+    id: "d1.s39",
+    day: 1,
+    order: 390,
+    kind: "mini_drill",
+    is_milestone: false,
+    depends_on: [],
+    title: "Accomplice traps — 3 scenarios",
+    microcopy:
+      "Mere presence, accessory timing, and foreseeable co-conspirator crimes. Three of the most commonly wrong accomplice answers.",
+    xp: 15,
+    target: { kind: "mini_drill", drill_id: "d1-accomplice-traps" },
+    completion_rule: { kind: "self_declared" },
+  },
+  {
+    id: "d1.s40",
+    day: 1,
+    order: 400,
+    kind: "reflect",
+    is_milestone: false,
+    depends_on: [],
+    title: "Bystander vs. accessory after the fact",
+    microcopy:
+      "Someone witnesses a crime and stays silent — that's usually fine (no duty to report). Someone witnesses a crime and THEN lies to police to protect the offender — that's accessory after the fact. The MBE always hides a lie in the facts. Find the lie.",
+    xp: 5,
+    target: { kind: "inline" },
+    completion_rule: { kind: "self_declared" },
+  },
+
+  // ─── Defenses ────────────────────────────────────────────────────────────
+  {
+    id: "d1.s41",
+    day: 1,
+    order: 410,
+    kind: "micro_read",
+    is_milestone: false,
+    depends_on: [],
+    title: "Defenses quick reference",
+    microcopy:
+      "Self-defense: objective reasonable belief; initial aggressor can't claim it. Intoxication: majority = specific intent crimes only; NEVER recklessness (sober objective standard). Duress: NEVER intentional murder — no exception. Mistake of fact: specific intent (even unreasonable); general intent (reasonable only); strict liability (never). Attorney advice = mistake of LAW = almost never a defense.",
+    xp: 5,
+    target: { kind: "inline" },
+    completion_rule: { kind: "self_declared" },
+  },
+  {
+    id: "d1.s42",
+    day: 1,
+    order: 420,
+    kind: "reflect",
+    is_milestone: false,
+    depends_on: [],
+    title: "Two defenses that NEVER work for intentional murder",
+    microcopy:
+      "Name them. (Answer: duress and necessity — both are absolute bars to intentional murder. No exception, any jurisdiction. Q#624: 26% got it wrong by choosing duress.)",
+    xp: 5,
+    target: { kind: "inline" },
+    completion_rule: { kind: "self_declared" },
+  },
+  {
+    id: "d1.s43",
+    day: 1,
+    order: 430,
+    kind: "mini_drill",
+    is_milestone: false,
+    depends_on: [],
+    title: "Defense scenarios — 4 cases",
+    microcopy:
+      "Intoxication and murder degrees, strict liability mistake of fact, duress and murder, and attorney advice as a defense. Four defense applications from real MBE questions.",
+    xp: 15,
+    target: { kind: "mini_drill", drill_id: "d1-defenses-scenarios" },
+    completion_rule: { kind: "self_declared" },
+  },
+  {
+    id: "d1.s44",
+    day: 1,
+    order: 440,
+    kind: "mini_drill",
+    is_milestone: false,
+    depends_on: [],
+    title: "Intoxication traps — 3 scenarios",
+    microcopy:
+      "Three ways the intoxication defense goes wrong: recklessness (never applies), MPC knowingly (does apply), and malice crimes (never applies).",
+    xp: 15,
+    target: { kind: "mini_drill", drill_id: "d1-intoxication-traps" },
+    completion_rule: { kind: "self_declared" },
+  },
+  {
+    id: "d1.s45",
+    day: 1,
+    order: 450,
+    kind: "celebrate",
+    is_milestone: false,
+    depends_on: [],
+    title: "Inchoate through Defenses cleared",
+    microcopy:
+      "Attempt, conspiracy, theft crimes, accomplice liability, and defenses — all covered. Two sections left: merger and the final answer intelligence sweep.",
+    xp: 10,
+    target: { kind: "inline" },
+    completion_rule: { kind: "self_declared" },
+  },
+
+  // ─── Merger Doctrine ──────────────────────────────────────────────────────
+  {
+    id: "d1.s46",
+    day: 1,
+    order: 460,
+    kind: "micro_read",
+    is_milestone: false,
+    depends_on: [],
+    title: "Merger: the one exception everyone forgets",
+    microcopy:
+      "Merges: battery → robbery; larceny → robbery; attempt → completed crime; solicitation → completed crime; assault with deadly weapon → homicide (can't be felony murder predicate). Does NOT merge: CONSPIRACY. Conspiracy never merges into the completed crime. You can be convicted of conspiracy AND the target crime. This is the most tested merger rule on the MBE.",
+    xp: 5,
+    target: { kind: "inline" },
+    completion_rule: { kind: "self_declared" },
+  },
+  {
+    id: "d1.s47",
+    day: 1,
+    order: 470,
+    kind: "mini_drill",
+    is_milestone: false,
+    depends_on: [],
+    title: "Merger traps — 4 scenarios",
+    microcopy:
+      "Robbery + battery, felony murder + assault merger, conspiracy never merging, and the burglary + attempted larceny package deal. The four merger issues the MBE returns to constantly.",
+    xp: 15,
+    target: { kind: "mini_drill", drill_id: "d1-merger-traps" },
+    completion_rule: { kind: "self_declared" },
+  },
+  {
+    id: "d1.s48",
+    day: 1,
+    order: 480,
+    kind: "reflect",
+    is_milestone: false,
+    depends_on: [],
+    title: "Conspiracy + completed crime: one conviction or two?",
+    microcopy:
+      "Say it explicitly: if a defendant is convicted of both conspiracy to commit robbery AND the completed robbery, does one merge into the other? (Answer: NO. Conspiracy never merges. Two separate convictions stand.)",
+    xp: 5,
+    target: { kind: "inline" },
+    completion_rule: { kind: "self_declared" },
+  },
+
+  // ─── Final Answer Intelligence Sweep ──────────────────────────────────────
+  {
+    id: "d1.s49",
+    day: 1,
+    order: 490,
+    kind: "micro_read",
+    is_milestone: false,
+    depends_on: [],
+    title: "Answer intelligence: 5 eliminate-on-sight patterns",
+    microcopy:
+      "Before reading explanations, eliminate these: (1) 'Not guilty — no intent to kill' on a murder charge. (2) 'Duress/necessity' defense to intentional murder. (3) 'Involuntary manslaughter' when facts show conscious disregard. (4) 'Robbery AND battery' — battery merges. (5) 'Principal must be convicted first' — accessory liability is independent. See these → eliminate → move on.",
+    xp: 5,
+    target: { kind: "inline" },
+    completion_rule: { kind: "self_declared" },
+  },
+  {
+    id: "d1.s50",
+    day: 1,
+    order: 500,
+    kind: "mini_drill",
+    is_milestone: false,
+    depends_on: [],
+    title: "Final answer intelligence sweep — 4 scenarios",
+    microcopy:
+      "Four more eliminate-on-sight patterns. Identify the trap answer in each and commit it to memory.",
+    xp: 15,
+    target: { kind: "mini_drill", drill_id: "d1-final-answer-intelligence" },
+    completion_rule: { kind: "self_declared" },
+  },
+
+  // ─── Pre-Quiz 2 Setup ────────────────────────────────────────────────────
   {
     id: "d1.s14",
     day: 1,
-    order: 240,
+    order: 510,
     kind: "micro_read",
     is_milestone: false,
     depends_on: [],
@@ -413,7 +764,7 @@ export const PATH_STEPS: PathStep[] = [
   {
     id: "d1.s15",
     day: 1,
-    order: 250,
+    order: 520,
     kind: "quiz_set",
     is_milestone: true,
     depends_on: [],
@@ -434,13 +785,13 @@ export const PATH_STEPS: PathStep[] = [
   {
     id: "d1.s16",
     day: 1,
-    order: 260,
+    order: 530,
     kind: "celebrate",
     is_milestone: false,
     depends_on: [],
     title: "Day 1 complete",
     microcopy:
-      "Diagnostic, the Method, the cards, the doctrine, a second pass. That's a full repair loop. Day 2 picks up tomorrow.",
+      "Diagnostic, the Method, the cards, the doctrine, a second pass — and the full Criminal Law sweep. That's a complete repair loop. Day 2 picks up tomorrow.",
     xp: 20,
     target: { kind: "inline" },
     completion_rule: { kind: "self_declared" },
