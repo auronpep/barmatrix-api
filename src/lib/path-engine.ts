@@ -17,7 +17,8 @@ export type PathStepKind =
   | "doctrinal_lesson"
   | "micro_read"
   | "reflect"
-  | "celebrate";
+  | "celebrate"
+  | "mini_drill"; // 3-5 question interactive drill (charge_picker or trap_spotter sub-type)
 
 // What the server checks to validate that a step is actually done. `self_declared`
 // has no external signal — it is completed only by an explicit POST .../complete
@@ -35,6 +36,7 @@ export type PathStepTarget =
   | { kind: "quiz"; set_id: string; question_ids: string[] }
   | { kind: "flashcard"; deck_id: string }
   | { kind: "doctrinal"; slug: string }
+  | { kind: "mini_drill"; drill_id: string }
   | { kind: "inline" };
 
 export interface PathStep {

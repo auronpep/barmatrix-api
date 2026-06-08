@@ -5,10 +5,18 @@
 // XP, ordering, dependencies, and completion rules live here. Reordering/adding a
 // day is a redeploy, not a migration.
 //
-// FIRST CUT — Day 1 is a lean ~16-step slice that wires all 5 milestone items end
-// to end. Expand each day toward the ~50-micro-task target in Phase 4 (founder
-// tuning). Microcopy is first-draft pending a barmatrix-context voice pass before
-// go-live.
+// Orders use 10-spacing so new steps can be inserted without a full renumber.
+// 26 steps authored so far (target: ~50). Microcopy is first-draft pending a
+// barmatrix-context voice pass before go-live.
+//
+// TASK TAXONOMY (5 micro-task types):
+//   micro_read    — short inline rule read; student taps "Got it →"
+//   reflect       — rule recall prompt; student answers mentally, taps "Got it →"
+//   mini_drill    — 3-5 question interactive drill served from /api/study/mini-drill/:id
+//                   sub-types: charge_picker (fact → charge) | trap_spotter (find the wrong answer)
+//   quiz_set      — curated question-bank set (attorney-gated milestones)
+//   celebrate     — milestone celebration; student taps "Keep going →"
+//   (foundations_lesson, flashcard_deck, doctrinal_lesson — live milestone items)
 //
 // Gating: items 1, 4, 5 are attorney_gated. Quiz sets carry empty question_ids
 // until the founder delivers the hand-picked IDs (the engine treats an empty quiz
@@ -35,10 +43,11 @@ export const CRIMINAL_DOCTRINAL_SLUG = "criminal-law-day1";
 const CURATED_SET_SIZE = 10;
 
 export const PATH_STEPS: PathStep[] = [
+  // ─── Welcome ────────────────────────────────────────────────────────────
   {
     id: "d1.s01",
     day: 1,
-    order: 1,
+    order: 10,
     kind: "celebrate",
     is_milestone: false,
     depends_on: [],
@@ -52,7 +61,7 @@ export const PATH_STEPS: PathStep[] = [
   {
     id: "d1.s02",
     day: 1,
-    order: 2,
+    order: 20,
     kind: "micro_read",
     is_milestone: false,
     depends_on: [],
@@ -63,10 +72,70 @@ export const PATH_STEPS: PathStep[] = [
     target: { kind: "inline" },
     completion_rule: { kind: "self_declared" },
   },
+
+  // ─── Pre-Quiz Warmup: Homicide Malice Quartet ───────────────────────────
+  {
+    id: "d1.s17",
+    day: 1,
+    order: 30,
+    kind: "micro_read",
+    is_milestone: false,
+    depends_on: [],
+    title: "The 4 roads to murder",
+    microcopy:
+      "Murder doesn't require intent to kill. Malice = ANY ONE of: (1) intent to kill, (2) intent to cause serious bodily harm, (3) depraved heart — conscious disregard of extreme risk, (4) felony murder during a BARRK felony. One theory is enough.",
+    xp: 5,
+    target: { kind: "inline" },
+    completion_rule: { kind: "self_declared" },
+  },
+  {
+    id: "d1.s18",
+    day: 1,
+    order: 40,
+    kind: "reflect",
+    is_milestone: false,
+    depends_on: [],
+    title: "Recall the malice quartet",
+    microcopy:
+      "Without looking — name all four types of malice aforethought. Say them out loud or write them down. Ready when you've got them.",
+    xp: 5,
+    target: { kind: "inline" },
+    completion_rule: { kind: "self_declared" },
+  },
+  {
+    id: "d1.s19",
+    day: 1,
+    order: 50,
+    kind: "mini_drill",
+    is_milestone: false,
+    depends_on: [],
+    title: "Homicide degree drill — 4 scenarios",
+    microcopy:
+      "Four fact patterns. Pick the most serious provable charge for each. The degree tree in action.",
+    xp: 15,
+    target: { kind: "mini_drill", drill_id: "d1-homicide-degree" },
+    completion_rule: { kind: "self_declared" },
+  },
+  {
+    id: "d1.s20",
+    day: 1,
+    order: 60,
+    kind: "micro_read",
+    is_milestone: false,
+    depends_on: [],
+    title: "The depraved heart line — memorize this",
+    microcopy:
+      "Conscious disregard of a high risk to human life = depraved heart = MURDER (2nd degree). Criminal negligence without conscious disregard = involuntary manslaughter. These are not the same. The MBE tests this distinction constantly.",
+    xp: 5,
+    target: { kind: "inline" },
+    completion_rule: { kind: "self_declared" },
+  },
+
+  // ─── Milestone 1: Criminal Quiz Set #1 ──────────────────────────────────
   {
     id: "d1.s03",
     day: 1,
-    order: 3,
+    order: 70,
     kind: "quiz_set",
     is_milestone: true,
     depends_on: [],
@@ -82,10 +151,40 @@ export const PATH_STEPS: PathStep[] = [
       required: CURATED_SET_SIZE,
     },
   },
+
+  // ─── Post-Quiz 1: Trap Awareness ────────────────────────────────────────
+  {
+    id: "d1.s21",
+    day: 1,
+    order: 80,
+    kind: "mini_drill",
+    is_milestone: false,
+    depends_on: [],
+    title: "Trap spotter: homicide edition — 3 traps",
+    microcopy:
+      "Three scenarios. One answer choice in each is a classic MBE trap. Identify it and learn the rule that kills it.",
+    xp: 15,
+    target: { kind: "mini_drill", drill_id: "d1-trap-spotter-homicide" },
+    completion_rule: { kind: "self_declared" },
+  },
+  {
+    id: "d1.s22",
+    day: 1,
+    order: 90,
+    kind: "micro_read",
+    is_milestone: false,
+    depends_on: [],
+    title: "Felony murder: the BARRK crimes",
+    microcopy:
+      "Felony murder = unintended killing during a BARRK felony (Burglary, Arson, Rape, Robbery, Kidnapping). Key trap: assault with a deadly weapon MERGES into the homicide — it cannot be the predicate felony. Only independent felonies qualify.",
+    xp: 5,
+    target: { kind: "inline" },
+    completion_rule: { kind: "self_declared" },
+  },
   {
     id: "d1.s04",
     day: 1,
-    order: 4,
+    order: 100,
     kind: "micro_read",
     is_milestone: false,
     depends_on: [],
@@ -99,7 +198,7 @@ export const PATH_STEPS: PathStep[] = [
   {
     id: "d1.s05",
     day: 1,
-    order: 5,
+    order: 110,
     kind: "reflect",
     is_milestone: false,
     depends_on: [],
@@ -110,10 +209,12 @@ export const PATH_STEPS: PathStep[] = [
     target: { kind: "inline" },
     completion_rule: { kind: "self_declared" },
   },
+
+  // ─── Milestone 2: Foundations / The Method ──────────────────────────────
   {
     id: "d1.s06",
     day: 1,
-    order: 6,
+    order: 120,
     kind: "foundations_lesson",
     is_milestone: true,
     depends_on: [],
@@ -130,7 +231,7 @@ export const PATH_STEPS: PathStep[] = [
   {
     id: "d1.s07",
     day: 1,
-    order: 7,
+    order: 130,
     kind: "celebrate",
     is_milestone: false,
     depends_on: [],
@@ -141,10 +242,12 @@ export const PATH_STEPS: PathStep[] = [
     target: { kind: "inline" },
     completion_rule: { kind: "self_declared" },
   },
+
+  // ─── Milestone 3: Flashcards ─────────────────────────────────────────────
   {
     id: "d1.s08",
     day: 1,
-    order: 8,
+    order: 140,
     kind: "micro_read",
     is_milestone: false,
     depends_on: [],
@@ -158,7 +261,7 @@ export const PATH_STEPS: PathStep[] = [
   {
     id: "d1.s09",
     day: 1,
-    order: 9,
+    order: 150,
     kind: "flashcard_deck",
     is_milestone: true,
     depends_on: [],
@@ -176,7 +279,7 @@ export const PATH_STEPS: PathStep[] = [
   {
     id: "d1.s10",
     day: 1,
-    order: 10,
+    order: 160,
     kind: "celebrate",
     is_milestone: false,
     depends_on: [],
@@ -186,10 +289,42 @@ export const PATH_STEPS: PathStep[] = [
     target: { kind: "inline" },
     completion_rule: { kind: "self_declared" },
   },
+
+  // ─── Post-Flashcards: Provocation Mastery ───────────────────────────────
+  {
+    id: "d1.s23",
+    day: 1,
+    order: 170,
+    kind: "mini_drill",
+    is_milestone: false,
+    depends_on: [],
+    title: "Murder or voluntary manslaughter? — 3 scenarios",
+    microcopy:
+      "Three fact patterns involving killings during or after provocation. The four provocation requirements in practice.",
+    xp: 15,
+    target: { kind: "mini_drill", drill_id: "d1-voluntary-manslaughter" },
+    completion_rule: { kind: "self_declared" },
+  },
+  {
+    id: "d1.s24",
+    day: 1,
+    order: 180,
+    kind: "reflect",
+    is_milestone: false,
+    depends_on: [],
+    title: "State the 4 provocation requirements",
+    microcopy:
+      "Say the four elements that convert murder to voluntary manslaughter. Focus on the one that fails most: cooling time.",
+    xp: 5,
+    target: { kind: "inline" },
+    completion_rule: { kind: "self_declared" },
+  },
+
+  // ─── Milestone 4: Doctrinal Lesson ──────────────────────────────────────
   {
     id: "d1.s11",
     day: 1,
-    order: 11,
+    order: 190,
     kind: "micro_read",
     is_milestone: false,
     depends_on: [],
@@ -203,7 +338,7 @@ export const PATH_STEPS: PathStep[] = [
   {
     id: "d1.s12",
     day: 1,
-    order: 12,
+    order: 200,
     kind: "doctrinal_lesson",
     is_milestone: true,
     depends_on: [],
@@ -218,7 +353,7 @@ export const PATH_STEPS: PathStep[] = [
   {
     id: "d1.s13",
     day: 1,
-    order: 13,
+    order: 210,
     kind: "reflect",
     is_milestone: false,
     depends_on: [],
@@ -229,10 +364,40 @@ export const PATH_STEPS: PathStep[] = [
     target: { kind: "inline" },
     completion_rule: { kind: "self_declared" },
   },
+
+  // ─── Pre-Quiz 2: Causation + Answer Intelligence ─────────────────────────
+  {
+    id: "d1.s25",
+    day: 1,
+    order: 220,
+    kind: "micro_read",
+    is_milestone: false,
+    depends_on: [],
+    title: "Causation: what breaks the chain",
+    microcopy:
+      "Victim refuses medical care → DOES NOT break chain. Third-party negligence → DOES NOT break chain. Foreseeable consequences stay on the defendant. Suicide after defendant's acts → usually DOES break chain (not foreseeable). Keep asking: was this a foreseeable result?",
+    xp: 5,
+    target: { kind: "inline" },
+    completion_rule: { kind: "self_declared" },
+  },
+  {
+    id: "d1.s26",
+    day: 1,
+    order: 230,
+    kind: "mini_drill",
+    is_milestone: false,
+    depends_on: [],
+    title: "Answer intelligence — 4 eliminate-on-sight choices",
+    microcopy:
+      "Four answer choices the MBE puts in front of you. These are almost always wrong. Learn to spot and kill them on contact.",
+    xp: 15,
+    target: { kind: "mini_drill", drill_id: "d1-answer-intelligence" },
+    completion_rule: { kind: "self_declared" },
+  },
   {
     id: "d1.s14",
     day: 1,
-    order: 14,
+    order: 240,
     kind: "micro_read",
     is_milestone: false,
     depends_on: [],
@@ -243,10 +408,12 @@ export const PATH_STEPS: PathStep[] = [
     target: { kind: "inline" },
     completion_rule: { kind: "self_declared" },
   },
+
+  // ─── Milestone 5: Criminal Quiz Set #2 ──────────────────────────────────
   {
     id: "d1.s15",
     day: 1,
-    order: 15,
+    order: 250,
     kind: "quiz_set",
     is_milestone: true,
     depends_on: [],
@@ -262,10 +429,12 @@ export const PATH_STEPS: PathStep[] = [
       required: CURATED_SET_SIZE,
     },
   },
+
+  // ─── Day Complete ─────────────────────────────────────────────────────────
   {
     id: "d1.s16",
     day: 1,
-    order: 16,
+    order: 260,
     kind: "celebrate",
     is_milestone: false,
     depends_on: [],
