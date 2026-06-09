@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import type { Server } from "node:http";
 import { describe, it, before, after } from "node:test";
 import type { Express } from "express";
+import { randomUUID } from "node:crypto";
 
 // Set up environment before importing db
 process.env.DATABASE_HOST = "127.0.0.1";
@@ -22,11 +23,9 @@ process.env.SUCCESS_URL = "https://barmatrix.app/account/?welcome=1";
 process.env.CANCEL_URL = "https://barmatrix.app/pricing/";
 process.env.NODE_ENV = "test";
 
-import { randomUUID } from "node:crypto";
-import express from "express";
-import { getPool } from "../db.js";
-import { registerMeRedZonesRoutes } from "./me-red-zones.js";
-
+const express = (await import("express")).default;
+const { getPool } = await import("../db.js");
+const { registerMeRedZonesRoutes } = await import("./me-red-zones.js");
 
 describe("GET /api/me/red-zones/zone integration tests", () => {
   let app: Express;
