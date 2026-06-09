@@ -97,6 +97,9 @@ test("BADGE_CATALOG covers every slug the evaluators can emit", () => {
     "mastery-ace",
     "streak-3",
     "streak-7",
+    "path-day1-complete",
+    "guided-day",
+    "catchup-clear",
   ] as const) {
     assert.ok(BADGE_CATALOG[slug], `missing catalog entry for ${slug}`);
   }

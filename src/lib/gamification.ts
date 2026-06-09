@@ -19,7 +19,9 @@ export type BadgeSlug =
   | "mastery-ace"
   | "streak-3"
   | "streak-7"
-  | "path-day1-complete";
+  | "path-day1-complete"
+  | "guided-day"
+  | "catchup-clear";
 
 export interface BadgeMeta {
   label: string;
@@ -67,6 +69,16 @@ export const BADGE_CATALOG: Record<BadgeSlug, BadgeMeta> = {
     label: "Day 1 Cleared",
     description: "Completed your first full day on the guided path.",
     emoji: "🚀",
+  },
+  "guided-day": {
+    label: "Guided Day Complete",
+    description: "Completed a full Lead Me day.",
+    emoji: "🧭",
+  },
+  "catchup-clear": {
+    label: "Catchup Cleared",
+    description: "Completed a missed micro-task from the catchup bank.",
+    emoji: "✅",
   },
 };
 
