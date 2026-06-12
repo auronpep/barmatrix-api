@@ -1,5 +1,10 @@
 import type Stripe from "stripe";
 import { Resend } from "resend";
+import {
+  createCheckoutAccessInvitation,
+  type CheckoutAccessInvitationInput,
+  type ClerkAccessInvitationResult,
+} from "./clerk-access.js";
 
 type Env = NodeJS.ProcessEnv | Record<string, string | undefined>;
 
@@ -16,6 +21,7 @@ export interface EnrollmentEmailInput {
   fullName: string | null | undefined;
   checkoutSessionId: string;
   purchaseId?: string;
+  accountAccessUrl?: string | null;
 }
 
 export interface TrapNamingEmailInput {
@@ -68,10 +74,14 @@ interface SendEnrollmentEmailOptions {
 interface CheckoutFulfillmentResult {
   status: "fulfilled" | "duplicate";
   purchaseId?: string;
+  studentId?: string;
 }
 
 interface FulfillmentEmailOptions {
   sendEmail?: (input: EnrollmentEmailInput) => Promise<EnrollmentEmailResult>;
+  createAccessInvitation?: (
+    input: CheckoutAccessInvitationInput,
+  ) => Promise<ClerkAccessInvitationResult>;
   logger?: Pick<typeof console, "log" | "warn" | "error">;
 }
 
@@ -156,7 +166,44 @@ export async function sendEnrollmentEmailForFulfillment(
   }
 
   const sendEmail = options.sendEmail ?? sendEnrollmentEmail;
+  const createAccessInvitation =
+    options.createAccessInvitation ?? createCheckoutAccessInvitation;
   const logger = options.logger ?? console;
+  let accessUrl: string | null = null;
+
+  const accessResult = await createAccessInvitation({
+    to: input.session.customer_details?.email,
+    fullName: input.session.customer_details?.name,
+    checkoutSessionId: input.session.id,
+    purchaseId: input.fulfillment.purchaseId,
+    studentId: input.fulfillment.studentId,
+  }).catch((): ClerkAccessInvitationResult => ({
+    status: "failed",
+    reason: "clerk_error",
+  }));
+
+  const context = {
+    checkoutSessionId: input.session.id,
+    purchaseId: input.fulfillment.purchaseId,
+  };
+  if (accessResult.status === "sent") {
+    accessUrl = accessResult.invitationUrl;
+    logger.log("[clerk] checkout access invitation sent", {
+      ...context,
+      invitationId: accessResult.invitationId,
+    });
+  } else if (accessResult.status === "failed") {
+    logger.error("[clerk] checkout access invitation failed", {
+      ...context,
+      reason: accessResult.reason,
+    });
+  } else {
+    logger.warn("[clerk] checkout access invitation skipped", {
+      ...context,
+      reason: accessResult.reason,
+    });
+  }
+
   let result: EnrollmentEmailResult;
   try {
     result = await sendEmail({
@@ -164,15 +211,12 @@ export async function sendEnrollmentEmailForFulfillment(
       fullName: input.session.customer_details?.name,
       checkoutSessionId: input.session.id,
       purchaseId: input.fulfillment.purchaseId,
+      accountAccessUrl: accessUrl,
     });
   } catch {
     result = { status: "failed", reason: "resend_error" };
   }
 
-  const context = {
-    checkoutSessionId: input.session.id,
-    purchaseId: input.fulfillment.purchaseId,
-  };
   if (result.status === "sent") {
     logger.log("[email] enrollment email sent", {
       ...context,
@@ -660,7 +704,9 @@ function buildEnrollmentEmailPayload(
   recipient: string,
   config: EnrollmentEmailConfig,
 ): EnrollmentEmailPayload {
-  const accessUrl = `${config.frontendUrl}/account/`;
+  const accessUrl =
+    clean(input.accountAccessUrl) ??
+    `${config.frontendUrl}/sign-up?after=dashboard&source=enrollment_email`;
   const salutation = clean(input.fullName) ?? "Welcome to BarMatrix";
   const text =
     `${salutation},\n\n` +

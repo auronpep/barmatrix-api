@@ -1,5 +1,27 @@
 # Ambassador Launch Production Checklist
 
+# Checkout Clerk Access Repair - 2026-06-12
+
+## Plan
+
+- [x] Isolate the work from the dirty main checkout in a clean worktree.
+- [x] Confirm current checkout fulfillment, enrollment email, and Clerk SDK shapes.
+- [x] Add a failing test for creating a Clerk invitation after a fulfilled Stripe checkout.
+- [x] Implement best-effort Clerk invitation creation without rolling back paid fulfillment.
+- [x] Wire the enrollment email to prefer the Clerk invitation URL when available.
+- [x] Run focused tests, typecheck, build, and deploy dry run.
+- [x] Deploy only after verifying the target and deployment scope are safe.
+
+## Review
+
+- Root cause: Stripe Checkout with a 100% coupon can complete with only an email address; the webhook fulfilled DB enrollment and sent a Resend email, but no Clerk invitation/account creation happened.
+- Added `src/clerk-access.ts` to create a Clerk invitation with `notify: true`, `ignoreExisting: true`, and a `/sign-up?after=dashboard` redirect for newly fulfilled checkout emails.
+- Updated enrollment email handling to create the Clerk invitation before sending the access email and to use Clerk's invitation URL when available.
+- Focused tests pass: `npx tsx --test src/clerk-access.test.ts src/email.test.ts src/checkout.test.ts`.
+- `npm run typecheck`, `npm run build`, and `DRY_RUN=1 scripts/deploy.sh` pass.
+- Production deploy via `scripts/deploy.sh` passed on 2026-06-12 with API health HTTP 200 and rollback snapshot `~/domains/barmatrix.app/nodejs/dist.bak-20260612-153550`.
+- Sent a one-time Clerk invitation for the already-completed `votewood@icloud.com` checkout from the live Hostinger runtime.
+
 ## Plan
 
 - [x] Preserve uncommitted work with `git stash push -u -m sentry-eaddrinuse-wip`.
