@@ -1,164 +1,592 @@
 {
   "generated_at_source": "run `git log -1` in barmatrix-api for the generation commit",
-  "source_count": 106,
-  "pass_count": 106,
+  "source_count": 180,
+  "pass_count": 180,
   "quarantine_count": 0,
   "subjects": {
-    "CIVIL_PROCEDURE": 14,
-    "CONSTITUTIONAL_LAW": 14,
-    "CONTRACTS": 19,
-    "CRIMINAL_LAW": 17,
-    "EVIDENCE": 10,
+    "CIVIL_PROCEDURE": 31,
+    "CONSTITUTIONAL_LAW": 19,
+    "CONTRACTS": 52,
+    "CRIMINAL_LAW": 19,
+    "EVIDENCE": 9,
     "REAL_PROPERTY": 9,
-    "TORTS": 23
+    "TORTS": 41
   },
   "quarantined": [],
   "warnings": [
     {
-      "source_file": "CQ17026.md",
-      "qid": "17026_manger_prop_bundles",
+      "source_file": "CQ14375.md",
+      "qid": "14375_nativity_star_rig",
       "warnings": [
-        "B2 student case study header not found",
-        "dominant trap not named",
-        "outline_code 52040300 is unverified (no outline map exists) — stored as metadata only"
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
       ]
     },
     {
-      "source_file": "CQ17045.md",
-      "qid": "17045_scripture_banner_cloth",
+      "source_file": "CQ14379.md",
+      "qid": "14379_psalm_lightshow",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ14391.md",
+      "qid": "14391_noble_fir_nativity",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ14394.md",
+      "qid": "14394_lydia_puppet_stage",
+      "warnings": [
+        "B1 YAML required sanitization (unquoted ': ' scalars)"
+      ]
+    },
+    {
+      "source_file": "CQ14396.md",
+      "qid": "14396_easter_handbell_plan",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ14400.md",
+      "qid": "14400_mechanical_camel",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ14406.md",
+      "qid": "14406_advent_lanterns",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ14409.md",
+      "qid": "14409_sunken_ark_hall",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ14412.md",
+      "qid": "14412_gospel_puzzle_invoice",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ14437.md",
+      "qid": "14437_lydias_verse_card_boxes",
+      "warnings": [
+        "B1 YAML required sanitization (unquoted ': ' scalars)",
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ14447.md",
+      "qid": "14447_jericho_trumpet_deposit",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ14457.md",
+      "qid": "14457_advent_kits_requirements",
+      "warnings": [
+        "Pass-1 transform report header not found (older header wording)",
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ14460.md",
+      "qid": "14460_fish_loaves_mosaic",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ14463.md",
+      "qid": "14463_calligraphy_supplies",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ14467.md",
+      "qid": "14467_psalm_tutor_installments",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ14477.md",
+      "qid": "14477_advent_mugs",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ14492.md",
+      "qid": "14492_psalm_lantern_kits",
+      "warnings": [
+        "B1 YAML required sanitization (unquoted ': ' scalars)",
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ14493.md",
+      "qid": "14493_ark_stage",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ14506.md",
+      "qid": "14506_lydia_rooftop_loft",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ14510.md",
+      "qid": "14510_ark_puppet_stage",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ14511.md",
+      "qid": "14511_worship_studio_delay",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ14523.md",
+      "qid": "14523_psalm_calligraphy_stipend",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ14525.md",
+      "qid": "14525_jonah_fish_escape",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ14530.md",
+      "qid": "14530_lantern_courtyard",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ16127.md",
+      "qid": "16127_stewardship_bomb",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ17018.md",
+      "qid": "17018_youth_dodgeball_consent",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ17027.md",
+      "qid": "17027_heritage_plow_fraud",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ17111.md",
+      "qid": "17111_parish_newsletter_republication",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ17114.md",
+      "qid": "17114_farmstand_excessive_fine",
+      "warnings": [
+        "B1 YAML required sanitization (unquoted ': ' scalars)",
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ17117.md",
+      "qid": "17117_day_school_playground_jmol",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ17163.md",
+      "qid": "17163_permit_fee_ledger",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ17179.md",
+      "qid": "17179_potluck_lot_rear_end",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ17225.md",
+      "qid": "17225_midnight_utility_fraud",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ17236.md",
+      "qid": "17236_wellness_visit_revocation",
+      "warnings": [
+        "B1 YAML required orphan-child repair",
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ17264.md",
+      "qid": "17264_prayer_parcel_trip",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ17289.md",
+      "qid": "17289_foundation_paneling",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ17406.md",
+      "qid": "17406_oak_choir_stall",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ17412.md",
+      "qid": "17412_seminary_faculty_apartment",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ17443.md",
+      "qid": "17443_devotional_auto_renew",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ17521.md",
+      "qid": "17521_christian_wedding_cake",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ17574.md",
+      "qid": "17574_christian_podcast_school_board",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ17583.md",
+      "qid": "17583_bookshop_securities_followup",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ17630.md",
+      "qid": "17630_blown_bible_orchard",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ17680.md",
+      "qid": "17680_ministry_housing_permit",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ17704.md",
+      "qid": "17704_fender_shepherd",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ17709.md",
+      "qid": "17709_tutoring_tithe",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ17711.md",
+      "qid": "17711_mercy_clinic_zoning",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ17728.md",
+      "qid": "17728_illuminated_manuscript",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ17857.md",
+      "qid": "17857_living_nativity_carver",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ17859.md",
+      "qid": "17859_olive_branch_ornament",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ17913.md",
+      "qid": "17913_summit_klaxon",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ17956.md",
+      "qid": "17956_stewards_heavyheart",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ17996.md",
+      "qid": "17996_shepherding_call",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ18077.md",
+      "qid": "18077_maranatha_meadow",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ18111.md",
+      "qid": "18111_camp_stipend_forgery",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ18135.md",
+      "qid": "18135_mountain_lodge_looseboard",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ18179.md",
+      "qid": "18179_campfire_rim_warning",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ18182.md",
+      "qid": "18182_bookstore_mandamus",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ18196.md",
+      "qid": "18196_riverstone_citizenship",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ18197.md",
+      "qid": "18197_athletics_bus_collision",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ18240.md",
+      "qid": "18240_family_table_refund",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ18287.md",
+      "qid": "18287_manger_cradle_collapse",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ18298.md",
+      "qid": "18298_fellowship_hall_grab",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ18438.md",
+      "qid": "18438_hannah_david_medicaid",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ18457.md",
+      "qid": "18457_lydia_book_club",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ18477.md",
+      "qid": "18477_church_craft_fair_quilt",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ18488.md",
+      "qid": "18488_youth_retreat_trailer",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ18586.md",
+      "qid": "18586_hymnsong_records",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ18592.md",
+      "qid": "18592_shiloh_campground",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ18669.md",
+      "qid": "18669_mary_negligence_survival",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ18676.md",
+      "qid": "18676_mary_wellness_appropriation",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ18747.md",
+      "qid": "18747_vintage_bible_embezzlement",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ18784.md",
+      "qid": "18784_fellowship_lot_used_car",
       "warnings": [
         "stem recovered from Pass-1 markdown (absent in B1 YAML)",
-        "outline_code 32020801 is unverified (no outline map exists) — stored as metadata only"
-      ]
-    },
-    {
-      "source_file": "CQ17058.md",
-      "qid": "17058_advent_honey_parcel",
-      "warnings": [
-        "B2 student case study header not found",
-        "dominant trap not named",
-        "outline_code 84040201 is unverified (no outline map exists) — stored as metadata only"
-      ]
-    },
-    {
-      "source_file": "CQ17084.md",
-      "qid": "17084_five_loaves_bank_records",
-      "warnings": [
-        "B2 student case study header not found",
-        "dominant trap not named",
-        "outline_code 75070200 is unverified (no outline map exists) — stored as metadata only"
-      ]
-    },
-    {
-      "source_file": "CQ17110.md",
-      "qid": "17110_sticker_press_guaranty",
-      "warnings": [
         "dominant trap not named"
       ]
     },
     {
-      "source_file": "CQ17151.md",
-      "qid": "17151_carol_program",
+      "source_file": "CQ18811.md",
+      "qid": "18811_elevator_access_class",
       "warnings": [
-        "B2 student case study header not found",
-        "outline_code 72060101 is unverified (no outline map exists) — stored as metadata only"
-      ]
-    },
-    {
-      "source_file": "CQ17167.md",
-      "qid": "17167_manger_lights_portal",
-      "warnings": [
-        "dominant trap not named",
-        "outline_code 42010104 is unverified (no outline map exists) — stored as metadata only"
-      ]
-    },
-    {
-      "source_file": "CQ19177.md",
-      "qid": "19177_manna_wagon_disposal",
-      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)",
         "dominant trap not named"
       ]
     },
     {
-      "source_file": "CQ19194.md",
-      "qid": "19194_loaves_pages",
+      "source_file": "CQ18843.md",
+      "qid": "18843_patio_pressure_washer",
       "warnings": [
-        "B2 student case study header not found",
-        "outline_code 44040305 is unverified (no outline map exists) — stored as metadata only"
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
       ]
     },
     {
-      "source_file": "CQ19213.md",
-      "qid": "19213_road_to_emmaus_breezeway",
+      "source_file": "CQ18890.md",
+      "qid": "18890_hanna_erie_threshold",
       "warnings": [
-        "B2 student case study header not found",
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ18900.md",
+      "qid": "18900_wedding_garden_spill",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ18914.md",
+      "qid": "18914_rare_bible_provenance",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ18974.md",
+      "qid": "18974_subscription_meal_kit_23f",
+      "warnings": [
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
+      ]
+    },
+    {
+      "source_file": "CQ18982.md",
+      "qid": "18982_homeschool_coop_month",
+      "warnings": [
         "B1 YAML required sanitization (unquoted ': ' scalars)",
-        "dominant trap not named"
-      ]
-    },
-    {
-      "source_file": "CQ19228.md",
-      "qid": "19228_prayer_card_study_bible",
-      "warnings": [
-        "dominant trap not named",
-        "outline_code 35030202 is unverified (no outline map exists) — stored as metadata only"
-      ]
-    },
-    {
-      "source_file": "CQ19263.md",
-      "qid": "19263_chapel_handbells",
-      "warnings": [
-        "dominant trap not named",
-        "outline_code 73030300 is unverified (no outline map exists) — stored as metadata only"
-      ]
-    },
-    {
-      "source_file": "CQ19266.md",
-      "qid": "19266_carol_banquet_jmol",
-      "warnings": [
-        "dominant trap not named",
-        "outline_code 92080201 is unverified (no outline map exists) — stored as metadata only"
-      ]
-    },
-    {
-      "source_file": "CQ19286.md",
-      "qid": "19286_five_loaves_press",
-      "warnings": [
-        "B2 student case study header not found",
-        "dominant trap not named",
-        "outline_code 95070407 is unverified (no outline map exists) — stored as metadata only"
-      ]
-    },
-    {
-      "source_file": "CQ19336.md",
-      "qid": "19336_nativity_warehouse_rescue",
-      "warnings": [
-        "dominant trap not named",
-        "outline_code 72060203 is unverified (no outline map exists) — stored as metadata only"
-      ]
-    },
-    {
-      "source_file": "CQ19379.md",
-      "qid": "19379_hymn_candle_invoice_van",
-      "warnings": [
-        "dominant trap not named",
-        "outline_code 35030202 is unverified (no outline map exists) — stored as metadata only"
-      ]
-    },
-    {
-      "source_file": "CQ19386.md",
-      "qid": "19386_scripture_audio_cap",
-      "warnings": [
-        "dominant trap not named",
-        "outline_code 53070100 is unverified (no outline map exists) — stored as metadata only"
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
       ]
     },
     {
       "source_file": "CQ19430.md",
       "qid": "19430_harp_instructor_olive_grove",
       "warnings": [
-        "dominant trap not named",
-        "outline_code 84040201 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
@@ -179,17 +607,14 @@
       "source_file": "CQ19499.md",
       "qid": "19499_jericho_chariot_night",
       "warnings": [
-        "stem recovered from Pass-1 markdown (absent in B1 YAML)",
-        "dominant trap not named",
-        "outline_code 71040200 is unverified (no outline map exists) — stored as metadata only"
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
       ]
     },
     {
       "source_file": "CQ19502.md",
       "qid": "19502_manna_festival_finals_tax",
       "warnings": [
-        "dominant trap not named",
-        "outline_code 42010101 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
@@ -197,47 +622,35 @@
       "qid": "19554_road_to_damascus_cashbox",
       "warnings": [
         "B2 student case study header not found",
-        "dominant trap not named",
-        "outline_code 73030100 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
       "source_file": "CQ19607.md",
       "qid": "19607_cana_hills_bethany_flats",
       "warnings": [
-        "B2 student case study header not found",
-        "outline_code 44040305 is unverified (no outline map exists) — stored as metadata only"
+        "B2 student case study header not found"
       ]
     },
     {
       "source_file": "CQ19721.md",
       "qid": "19721_jonah_whale_float",
       "warnings": [
-        "dominant trap not named",
-        "outline_code 92080104 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
       "source_file": "CQ19793.md",
       "qid": "19793_dove_candle_ledgers",
       "warnings": [
-        "B2 student case study header not found",
-        "outline_code 93110101 is unverified (no outline map exists) — stored as metadata only"
-      ]
-    },
-    {
-      "source_file": "CQ19840.md",
-      "qid": "19840_red_sea_bridge_bolts",
-      "warnings": [
-        "outline_code 95070405 is unverified (no outline map exists) — stored as metadata only"
+        "B2 student case study header not found"
       ]
     },
     {
       "source_file": "CQ19904.md",
       "qid": "19904_psalm_orchard_foreclosure_notice",
       "warnings": [
-        "B2 student case study header not found",
-        "outline_code 83050603 is unverified (no outline map exists) — stored as metadata only"
+        "B2 student case study header not found"
       ]
     },
     {
@@ -245,8 +658,7 @@
       "qid": "20004_dove_tokens_manna_game",
       "warnings": [
         "B2 student case study header not found",
-        "dominant trap not named",
-        "outline_code 55020203 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
@@ -267,16 +679,7 @@
       "source_file": "CQ20123.md",
       "qid": "20123_prayer_card_threat_writers",
       "warnings": [
-        "dominant trap not named",
-        "outline_code 62050402 is unverified (no outline map exists) — stored as metadata only"
-      ]
-    },
-    {
-      "source_file": "CQ20127.md",
-      "qid": "20127_jericho_trumpet",
-      "warnings": [
-        "dominant trap not named",
-        "outline_code 75080101 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
@@ -284,16 +687,7 @@
       "qid": "20153_lampstand_labs",
       "warnings": [
         "B2 student case study header not found",
-        "dominant trap not named",
-        "outline_code 44040501 is unverified (no outline map exists) — stored as metadata only"
-      ]
-    },
-    {
-      "source_file": "CQ20186.md",
-      "qid": "20186_road_to_emmaus_royalty_ledgers",
-      "warnings": [
-        "dominant trap not named",
-        "outline_code 42010105 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
@@ -308,9 +702,7 @@
       "source_file": "CQ20231.md",
       "qid": "20231_crown_above_caesars",
       "warnings": [
-        "B2 student case study header not found",
-        "dominant trap not named",
-        "outline_code 44040501 is unverified (no outline map exists) — stored as metadata only"
+        "B2 student case study header not found"
       ]
     },
     {
@@ -318,8 +710,7 @@
       "qid": "20258_psalter_pressure",
       "warnings": [
         "stem recovered from Pass-1 markdown (absent in B1 YAML)",
-        "dominant trap not named",
-        "outline_code 75080101 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
@@ -327,16 +718,14 @@
       "qid": "20271_lantern_handbell_evening",
       "warnings": [
         "B2 student case study header not found",
-        "dominant trap not named",
-        "outline_code 51060101 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
       "source_file": "CQ20291.md",
       "qid": "20291_nativity_prop_rental_freeze",
       "warnings": [
-        "dominant trap not named",
-        "outline_code 93110100 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
@@ -344,75 +733,49 @@
       "qid": "20307_bethany_banners_transcript",
       "warnings": [
         "B2 student case study header not found",
-        "stem recovered from Pass-1 markdown (absent in B1 YAML)",
-        "dominant trap not named",
-        "outline_code 33040202 is unverified (no outline map exists) — stored as metadata only"
-      ]
-    },
-    {
-      "source_file": "CQ20310.md",
-      "qid": "20310_psalms_wax_lamp",
-      "warnings": [
-        "dominant trap not named",
-        "outline_code 61020301 is unverified (no outline map exists) — stored as metadata only"
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
       ]
     },
     {
       "source_file": "CQ20312.md",
       "qid": "20312_loaves_fishes_retreat",
       "warnings": [
-        "dominant trap not named",
-        "outline_code 82010103 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
       "source_file": "CQ20313.md",
       "qid": "20313_bethlehem_olivewood_crosses",
       "warnings": [
-        "B2 student case study header not found",
-        "dominant trap not named"
-      ]
-    },
-    {
-      "source_file": "CQ20328.md",
-      "qid": "20328_bethlehem_star_drop",
-      "warnings": [
-        "dominant trap not named",
-        "outline_code 61020304 is unverified (no outline map exists) — stored as metadata only"
+        "B2 student case study header not found"
       ]
     },
     {
       "source_file": "CQ20351.md",
       "qid": "20351_red_sea_mini_golf",
       "warnings": [
-        "B2 student case study header not found",
-        "dominant trap not named",
-        "outline_code 54030600 is unverified (no outline map exists) — stored as metadata only"
+        "B2 student case study header not found"
       ]
     },
     {
       "source_file": "CQ20353.md",
       "qid": "20353_baptism_tank_burst",
       "warnings": [
-        "dominant trap not named",
-        "outline_code 94010300 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
       "source_file": "CQ20370.md",
       "qid": "20370_dove_mug_notice",
       "warnings": [
-        "dominant trap not named",
-        "outline_code 56050402 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
       "source_file": "CQ20387.md",
       "qid": "20387_psalms_chess_indictment",
       "warnings": [
-        "B2 student case study header not found",
-        "dominant trap not named",
-        "outline_code 75100000 is unverified (no outline map exists) — stored as metadata only"
+        "B2 student case study header not found"
       ]
     },
     {
@@ -427,8 +790,7 @@
       "qid": "20423_galilee_props_bias",
       "warnings": [
         "B2 student case study header not found",
-        "dominant trap not named",
-        "outline_code 31010505 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
@@ -443,16 +805,14 @@
       "source_file": "CQ20461.md",
       "qid": "20461_lydia_beeswax_requirements",
       "warnings": [
-        "B2 student case study header not found",
-        "outline_code 55020203 is unverified (no outline map exists) — stored as metadata only"
+        "B2 student case study header not found"
       ]
     },
     {
       "source_file": "CQ20476.md",
       "qid": "20476_road_to_bethlehem_sash",
       "warnings": [
-        "B2 student case study header not found",
-        "outline_code 75070202 is unverified (no outline map exists) — stored as metadata only"
+        "B2 student case study header not found"
       ]
     },
     {
@@ -466,34 +826,28 @@
       "source_file": "CQ20496.md",
       "qid": "20496_loaves_prop_cart",
       "warnings": [
-        "stem recovered from Pass-1 markdown (absent in B1 YAML)",
-        "dominant trap not named",
-        "outline_code 61020500 is unverified (no outline map exists) — stored as metadata only"
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
       ]
     },
     {
       "source_file": "CQ20516.md",
       "qid": "20516_manna_games_duress",
       "warnings": [
-        "B2 student case study header not found",
-        "outline_code 72060206 is unverified (no outline map exists) — stored as metadata only"
+        "B2 student case study header not found"
       ]
     },
     {
       "source_file": "CQ20523.md",
       "qid": "20523_easter_stage_guaranty",
       "warnings": [
-        "dominant trap not named",
-        "outline_code 54030400 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
       "source_file": "CQ20542.md",
       "qid": "20542_praise_festival_cashbox",
       "warnings": [
-        "B2 student case study header not found",
-        "dominant trap not named",
-        "outline_code 75090400 is unverified (no outline map exists) — stored as metadata only"
+        "B2 student case study header not found"
       ]
     },
     {
@@ -505,41 +859,11 @@
       ]
     },
     {
-      "source_file": "CQ20556.md",
-      "qid": "20556_mustard_seed_puppet_caravan",
-      "warnings": [
-        "outline_code 56050403 is unverified (no outline map exists) — stored as metadata only"
-      ]
-    },
-    {
       "source_file": "CQ20565.md",
       "qid": "20565_purple_gear_hymnbook_tote",
       "warnings": [
         "B2 student case study header not found",
-        "dominant trap not named",
-        "outline_code 32020200 is unverified (no outline map exists) — stored as metadata only"
-      ]
-    },
-    {
-      "source_file": "CQ20567.md",
-      "qid": "20567_psalm_panels_venue",
-      "warnings": [
-        "outline_code 96060100 is unverified (no outline map exists) — stored as metadata only"
-      ]
-    },
-    {
-      "source_file": "CQ20569.md",
-      "qid": "20569_ark_float",
-      "warnings": [
-        "outline_code 56050102 is unverified (no outline map exists) — stored as metadata only"
-      ]
-    },
-    {
-      "source_file": "CQ20586.md",
-      "qid": "20586_psalms_hormone_use",
-      "warnings": [
-        "dominant trap not named",
-        "outline_code 44040305 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
@@ -547,8 +871,7 @@
       "qid": "20594_daniels_whale_float",
       "warnings": [
         "stem recovered from Pass-1 markdown (absent in B1 YAML)",
-        "dominant trap not named",
-        "outline_code 61020102 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
@@ -557,8 +880,7 @@
       "warnings": [
         "B2 student case study header not found",
         "stem recovered from Pass-1 markdown (absent in B1 YAML)",
-        "dominant trap not named",
-        "outline_code 72060103 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
@@ -566,20 +888,6 @@
       "qid": "20598_write_it_on_your_heart",
       "warnings": [
         "stem recovered from Pass-1 markdown (absent in B1 YAML)"
-      ]
-    },
-    {
-      "source_file": "CQ20599.md",
-      "qid": "20599_advent_handbell_integration",
-      "warnings": [
-        "dominant trap not named"
-      ]
-    },
-    {
-      "source_file": "CQ20602.md",
-      "qid": "20602_davids_harp_projector",
-      "warnings": [
-        "dominant trap not named"
       ]
     },
     {
@@ -594,8 +902,7 @@
       "qid": "20605_scripture_quiz_whisper",
       "warnings": [
         "stem recovered from Pass-1 markdown (absent in B1 YAML)",
-        "dominant trap not named",
-        "outline_code 62050402 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
@@ -603,16 +910,14 @@
       "qid": "20606_lydia_festival_venue",
       "warnings": [
         "stem recovered from Pass-1 markdown (absent in B1 YAML)",
-        "dominant trap not named",
-        "outline_code 94050100 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
       "source_file": "CQ20627.md",
       "qid": "20627_ruth_hymn_poster_contract",
       "warnings": [
-        "dominant trap not named",
-        "outline_code 94010100 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
@@ -621,17 +926,14 @@
       "warnings": [
         "B2 student case study header not found",
         "stem recovered from Pass-1 markdown (absent in B1 YAML)",
-        "dominant trap not named",
-        "outline_code 41030300 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
       "source_file": "CQ20649.md",
       "qid": "20649_christmas_pageant_platform",
       "warnings": [
-        "B2 student case study header not found",
-        "dominant trap not named",
-        "outline_code 61020201 is unverified (no outline map exists) — stored as metadata only"
+        "B2 student case study header not found"
       ]
     },
     {
@@ -639,24 +941,21 @@
       "qid": "20654_nativity_ornaments_volition",
       "warnings": [
         "B2 student case study header not found",
-        "stem recovered from Pass-1 markdown (absent in B1 YAML)",
-        "outline_code 72060101 is unverified (no outline map exists) — stored as metadata only"
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
       ]
     },
     {
       "source_file": "CQ20690.md",
       "qid": "20690_bethlehem_star_drone",
       "warnings": [
-        "dominant trap not named",
-        "outline_code 94020201 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
       "source_file": "CQ20714.md",
       "qid": "20714_prayer_robotics_kits",
       "warnings": [
-        "B2 student case study header not found",
-        "dominant trap not named"
+        "B2 student case study header not found"
       ]
     },
     {
@@ -672,16 +971,14 @@
       "qid": "20725_emmaus_laser_cutter",
       "warnings": [
         "B2 student case study header not found",
-        "dominant trap not named",
-        "outline_code 62050200 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
       "source_file": "CQ20727.md",
       "qid": "20727_easter_garden_blast_hose",
       "warnings": [
-        "dominant trap not named",
-        "outline_code 63040100 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
@@ -689,16 +986,14 @@
       "qid": "20728_star_stable_stall",
       "warnings": [
         "stem recovered from Pass-1 markdown (absent in B1 YAML)",
-        "dominant trap not named",
-        "outline_code 82010404 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
       "source_file": "CQ20729.md",
       "qid": "20729_courtyard_stormwater",
       "warnings": [
-        "dominant trap not named",
-        "outline_code 81020801 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
@@ -706,24 +1001,21 @@
       "qid": "20730_shepherd_sling_fair",
       "warnings": [
         "B2 student case study header not found",
-        "dominant trap not named",
-        "outline_code 64010102 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
       "source_file": "CQ20733.md",
       "qid": "20733_galilee_trails_death_notice",
       "warnings": [
-        "dominant trap not named",
-        "outline_code 61020203 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
       "source_file": "CQ20735.md",
       "qid": "20735_bethlehem_donkey_blower",
       "warnings": [
-        "dominant trap not named",
-        "outline_code 62050102 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
@@ -746,25 +1038,21 @@
       "source_file": "CQ20760.md",
       "qid": "20760_rubber_stamp_mail_fraud",
       "warnings": [
-        "dominant trap not named",
-        "outline_code 31010300 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
       "source_file": "CQ20805.md",
       "qid": "20805_psalm_lanterns_confirmation",
       "warnings": [
-        "B2 student case study header not found",
-        "dominant trap not named",
-        "outline_code 54030400 is unverified (no outline map exists) — stored as metadata only"
+        "B2 student case study header not found"
       ]
     },
     {
       "source_file": "CQ20808.md",
       "qid": "20808_jericho_press",
       "warnings": [
-        "stem recovered from Pass-1 markdown (absent in B1 YAML)",
-        "outline_code 55020204 is unverified (no outline map exists) — stored as metadata only"
+        "stem recovered from Pass-1 markdown (absent in B1 YAML)"
       ]
     },
     {
@@ -776,34 +1064,17 @@
       ]
     },
     {
-      "source_file": "CQ21711.md",
-      "qid": "21711_foam_whale_nativity_attachment",
-      "warnings": [
-        "dominant trap not named",
-        "outline_code 94020302 is unverified (no outline map exists) — stored as metadata only"
-      ]
-    },
-    {
       "source_file": "CQ21752.md",
       "qid": "21752_olive_oil_ramp",
       "warnings": [
-        "dominant trap not named",
-        "outline_code 62060101 is unverified (no outline map exists) — stored as metadata only"
-      ]
-    },
-    {
-      "source_file": "CQ21848.md",
-      "qid": "21848_manna_house_family_integrity",
-      "warnings": [
-        "outline_code 44040202 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
       "source_file": "CQ21867.md",
       "qid": "21867_psalm_puzzle_booth",
       "warnings": [
-        "dominant trap not named",
-        "outline_code 74020102 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
@@ -811,324 +1082,1855 @@
       "qid": "21869_tiny_house_hymn_sheet",
       "warnings": [
         "B2 student case study header not found",
-        "dominant trap not named",
-        "outline_code 75070201 is unverified (no outline map exists) — stored as metadata only"
+        "dominant trap not named"
       ]
     },
     {
       "source_file": "CQ21872.md",
       "qid": "21872_scripturequest_price_gate",
       "warnings": [
-        "B2 student case study header not found",
-        "outline_code 41030402 is unverified (no outline map exists) — stored as metadata only"
+        "B2 student case study header not found"
       ]
     },
     {
       "source_file": "CQ21879.md",
       "qid": "21879_noahs_ark_puppet_set",
       "warnings": [
-        "B2 student case study header not found",
-        "dominant trap not named",
-        "outline_code 55020101 is unverified (no outline map exists) — stored as metadata only"
+        "B2 student case study header not found"
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "source_file": "CQ14375.md",
+      "qid": "14375_nativity_star_rig",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14379.md",
+      "qid": "14379_psalm_lightshow",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14382.md",
+      "qid": "14382_bethlehem_lanterns",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14391.md",
+      "qid": "14391_noble_fir_nativity",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14394.md",
+      "qid": "14394_lydia_puppet_stage",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14396.md",
+      "qid": "14396_easter_handbell_plan",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14397.md",
+      "qid": "14397_fish_keychains",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14400.md",
+      "qid": "14400_mechanical_camel",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14406.md",
+      "qid": "14406_advent_lanterns",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14409.md",
+      "qid": "14409_sunken_ark_hall",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14412.md",
+      "qid": "14412_gospel_puzzle_invoice",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14418.md",
+      "qid": "14418_jericho_lamp_credit",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14424.md",
+      "qid": "14424_christmas_pageant_lantern_bid",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14430.md",
+      "qid": "14430_psalm_room_option",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14434.md",
+      "qid": "14434_crossed_handbells",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14437.md",
+      "qid": "14437_lydias_verse_card_boxes",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14438.md",
+      "qid": "14438_nativity_ornament_kits",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14447.md",
+      "qid": "14447_jericho_trumpet_deposit",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14451.md",
+      "qid": "14451_psalm_trail_quitclaim",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14457.md",
+      "qid": "14457_advent_kits_requirements",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14458.md",
+      "qid": "14458_verse_wristbands",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14460.md",
+      "qid": "14460_fish_loaves_mosaic",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14462.md",
+      "qid": "14462_mustard_seed_carts",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14463.md",
+      "qid": "14463_calligraphy_supplies",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14467.md",
+      "qid": "14467_psalm_tutor_installments",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14477.md",
+      "qid": "14477_advent_mugs",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14492.md",
+      "qid": "14492_psalm_lantern_kits",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14493.md",
+      "qid": "14493_ark_stage",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14506.md",
+      "qid": "14506_lydia_rooftop_loft",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14510.md",
+      "qid": "14510_ark_puppet_stage",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14511.md",
+      "qid": "14511_worship_studio_delay",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14521.md",
+      "qid": "14521_sea_of_galilee_lantern_walk",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14523.md",
+      "qid": "14523_psalm_calligraphy_stipend",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14525.md",
+      "qid": "14525_jonah_fish_escape",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14530.md",
+      "qid": "14530_lantern_courtyard",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
+      ]
+    },
+    {
+      "source_file": "CQ14546.md",
+      "qid": "14546_koine_tutor",
+      "notes": [
+        "selection_percentages.A is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.B is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.C is inherited from the original question's measured row — kept out of focus_group_response_data",
+        "selection_percentages.D is inherited from the original question's measured row — kept out of focus_group_response_data"
       ]
     }
   ],
   "passed": [
     {
-      "source_file": "CQ14621.md",
-      "qid": "14621_manna_cafe_bookmaker",
-      "subject": "CRIMINAL_LAW",
-      "correct": "A",
-      "difficulty_band": "2",
-      "tension_axis": "violation_vs_remedy: unlawful evidence before grand jury vs dismissal of indictment",
-      "dominant_trap": "C",
-      "gold_keys": [
-        "GK-CRIMINAL-GRAND-JURY-REMEDY-01",
-        "GK-CRIMINAL-UNDERCOVER-NONCUSTODIAL-01"
-      ],
-      "silver_keys": [
-        "SK-CRIMINAL-GRAND-JURY-REMEDY-01"
-      ],
-      "drill_seed_count": 4
-    },
-    {
-      "source_file": "CQ17026.md",
-      "qid": "17026_manger_prop_bundles",
+      "source_file": "CQ14375.md",
+      "qid": "14375_nativity_star_rig",
       "subject": "CONTRACTS",
-      "correct": "C",
-      "difficulty_band": "core diagnostic",
-      "tension_axis": "UCC agreement-source hierarchy: private course of dealing versus general trade usage versus default gap-fillers.",
-      "dominant_trap": null,
-      "gold_keys": [
-        "GK-CONTRACTS-MANGER-BUNDLES-01",
-        "GK-CONTRACTS-MANGER-BUNDLES-02"
-      ],
-      "silver_keys": [
-        "SK-CONTRACTS-MANGER-BUNDLES-01"
-      ],
-      "drill_seed_count": 3
-    },
-    {
-      "source_file": "CQ17045.md",
-      "qid": "17045_scripture_banner_cloth",
-      "subject": "EVIDENCE",
       "correct": "B",
-      "difficulty_band": "medium-hard",
-      "tension_axis": null,
+      "difficulty_band": "medium",
+      "tension_axis": "signed-writing condition versus oral request plus performed extras",
       "dominant_trap": "A",
       "gold_keys": [
-        "GK-EVIDENCE-TRADE-TERMS-01",
-        "GK-EVIDENCE-OPINION-01"
+        "GK-CONTRACTS-NATIVITY-STAR-RIG-01"
       ],
       "silver_keys": [
-        "SK-EVIDENCE-PURPOSE-LABEL-01"
+        "SK-CONTRACTS-NATIVITY-STAR-RIG-01"
       ],
       "drill_seed_count": 3
     },
     {
-      "source_file": "CQ17058.md",
-      "qid": "17058_advent_honey_parcel",
-      "subject": "REAL_PROPERTY",
-      "correct": "B",
-      "difficulty_band": "discriminator",
-      "tension_axis": "deed validity at delivery vs downstream recording/consideration/custody facts",
-      "dominant_trap": null,
-      "gold_keys": [
-        "GK-REAL_PROPERTY-BLANK-GRANTEE-01"
-      ],
-      "silver_keys": [
-        "SK-REAL_PROPERTY-DEED-GATE-01"
-      ],
-      "drill_seed_count": 4
-    },
-    {
-      "source_file": "CQ17084.md",
-      "qid": "17084_five_loaves_bank_records",
-      "subject": "CRIMINAL_LAW",
-      "correct": "B",
-      "difficulty_band": "medium-hard anchor",
-      "tension_axis": "Fourth Amendment protected interest in bank records vs no protected interest under third-party doctrine",
-      "dominant_trap": null,
-      "gold_keys": [
-        "GK-CRIMINAL-BANK-THIRD-PARTY-01"
-      ],
-      "silver_keys": [
-        "SK-CRIMINAL-SUPPRESSION-THRESHOLD-01"
-      ],
-      "drill_seed_count": 3
-    },
-    {
-      "source_file": "CQ17110.md",
-      "qid": "17110_sticker_press_guaranty",
+      "source_file": "CQ14379.md",
+      "qid": "14379_psalm_lightshow",
       "subject": "CONTRACTS",
-      "correct": "D",
-      "difficulty_band": "core",
-      "tension_axis": "performance before death vs notice/death trap",
-      "dominant_trap": null,
+      "correct": "C",
+      "difficulty_band": "not_supplied",
+      "tension_axis": "interpret_ambiguity_vs_add_or_contradict_terms",
+      "dominant_trap": "A",
       "gold_keys": [
-        "GK-CONTRACTS-PERFORMANCE-GUARANTY-01"
+        "GK-CONTRACTS-AMBIGUITY-PER-01"
       ],
       "silver_keys": [
-        "SK-CONTRACTS-STICKER-PRESS-01"
+        "SK-CONTRACTS-PSALM-LIGHTSHOW-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ14382.md",
+      "qid": "14382_bethlehem_lanterns",
+      "subject": "CONTRACTS",
+      "correct": "B",
+      "difficulty_band": "medium",
+      "tension_axis": "objective trade usage vs prior oral exclusivity statement",
+      "dominant_trap": "D",
+      "gold_keys": [
+        "GK-CONTRACTS-TRADE-USAGE-01"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-TRADE-USAGE-01"
       ],
       "drill_seed_count": 4
     },
     {
-      "source_file": "CQ17151.md",
-      "qid": "17151_carol_program",
-      "subject": "CRIMINAL_LAW",
+      "source_file": "CQ14391.md",
+      "qid": "14391_noble_fir_nativity",
+      "subject": "CONTRACTS",
+      "correct": "A",
+      "difficulty_band": "medium",
+      "tension_axis": "mutual mistake versus supervening impracticability as the framed discharge theory on supervening-illegality facts",
+      "dominant_trap": "D",
+      "gold_keys": [
+        "GK-CONTRACTS-NOBLE-FIR-NATIVITY-01"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-NOBLE-FIR-NATIVITY-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ14394.md",
+      "qid": "14394_lydia_puppet_stage",
+      "subject": "CONTRACTS",
       "correct": "B",
-      "difficulty_band": "medium-hard",
-      "tension_axis": "general intent vs specific intent defense scope",
+      "difficulty_band": "medium",
+      "tension_axis": "defense to Paul’s oral guaranty versus defects in Lydia’s loan",
       "dominant_trap": "C",
       "gold_keys": [
-        "GK-CRIMINAL-GENERAL-INTENT-INTOX-01"
+        "GK-CONTRACTS-LYDIA-PUPPET-01",
+        "GK-CONTRACTS-LYDIA-PUPPET-02"
       ],
       "silver_keys": [
-        "SK-CRIMINAL-GENERAL-INTENT-INTOX-01"
+        "SK-CONTRACTS-LYDIA-PUPPET-01"
       ],
-      "drill_seed_count": 4
+      "drill_seed_count": 3
     },
     {
-      "source_file": "CQ17167.md",
-      "qid": "17167_manger_lights_portal",
-      "subject": "CONSTITUTIONAL_LAW",
-      "correct": "A",
-      "difficulty_band": "medium-hard",
-      "tension_axis": null,
-      "dominant_trap": null,
-      "gold_keys": [
-        "GK-CONLAW-MANGER-LIGHTS-01",
-        "GK-CONLAW-MANGER-LIGHTS-02"
-      ],
-      "silver_keys": [
-        "SK-CONLAW-MANGER-LIGHTS-01"
-      ],
-      "drill_seed_count": 4
-    },
-    {
-      "source_file": "CQ17173.md",
-      "qid": "17173_road_to_emmaus_puzzle_quest",
+      "source_file": "CQ14396.md",
+      "qid": "14396_easter_handbell_plan",
       "subject": "CONTRACTS",
-      "correct": "C",
-      "difficulty_band": "core diagnostic",
-      "tension_axis": null,
-      "dominant_trap": "D",
-      "gold_keys": [
-        "GK-CONTRACTS-BARGAIN-PRICE-01"
-      ],
-      "silver_keys": [
-        "SK-CONTRACTS-REMEDY-MENU-01"
-      ],
-      "drill_seed_count": 4
-    },
-    {
-      "source_file": "CQ19177.md",
-      "qid": "19177_manna_wagon_disposal",
-      "subject": "CONSTITUTIONAL_LAW",
       "correct": "B",
-      "difficulty_band": "medium-hard anchor",
-      "tension_axis": "specific Property Clause source vs wrong constitutional labels",
-      "dominant_trap": null,
+      "difficulty_band": "medium",
+      "tension_axis": "statutory-violation forfeiture vs protected-class enforcement",
+      "dominant_trap": "A",
       "gold_keys": [
-        "GK-CONLAW-PROPERTY-DISPOSE-01",
-        "GK-CONLAW-ATTAINDER-PUNISHMENT-02",
-        "GK-CONLAW-FOURTEENTH-STATE-03",
-        "GK-CONLAW-NO-GENERAL-POLICE-04"
+        "GK-CONTRACTS-PROTECTED-STATUTE-01"
       ],
       "silver_keys": [
-        "SK-CONLAW-MANNA-WAGONS-01"
+        "SK-CONTRACTS-PROTECTED-STATUTE-01"
       ],
-      "drill_seed_count": 4
+      "drill_seed_count": 3
     },
     {
-      "source_file": "CQ19194.md",
-      "qid": "19194_loaves_pages",
-      "subject": "CONSTITUTIONAL_LAW",
+      "source_file": "CQ14397.md",
+      "qid": "14397_fish_keychains",
+      "subject": "CONTRACTS",
       "correct": "D",
-      "difficulty_band": "hard",
-      "tension_axis": "Equal-protection classification purpose vs benefit-entitlement frame",
-      "dominant_trap": "B",
-      "gold_keys": [
-        "GK-CONLAW-WINDSOR-DOMA-01",
-        "GK-CONLAW-WINDSOR-SCRUTINY-02"
-      ],
-      "silver_keys": [
-        "SK-CONLAW-BENEFIT-FRAME-01"
-      ],
-      "drill_seed_count": 3
-    },
-    {
-      "source_file": "CQ19213.md",
-      "qid": "19213_road_to_emmaus_breezeway",
-      "subject": "TORTS",
-      "correct": "C",
-      "difficulty_band": "medium_high",
+      "difficulty_band": "medium",
       "tension_axis": null,
-      "dominant_trap": null,
+      "dominant_trap": "C",
       "gold_keys": [
-        "GK-TORTS-THIRD-PARTY-SECURITY-01"
+        "GK-CONTRACTS-FISH-KEYCHAINS-01",
+        "GK-CONTRACTS-FISH-KEYCHAINS-02"
       ],
       "silver_keys": [
-        "SK-TORTS-SECURITY-CALL-01"
+        "SK-CONTRACTS-FISH-KEYCHAINS-01"
       ],
       "drill_seed_count": 3
     },
     {
-      "source_file": "CQ19228.md",
-      "qid": "19228_prayer_card_study_bible",
-      "subject": "EVIDENCE",
-      "correct": "C",
-      "difficulty_band": "core diagnostic",
-      "tension_axis": "communication substance and confidentiality vs medium/refusal traps",
-      "dominant_trap": null,
-      "gold_keys": [
-        "GK-EVIDENCE-MARITAL-WRITTEN-COMMUNICATION-01"
-      ],
-      "silver_keys": [
-        "SK-EVIDENCE-PRAYER-CARD-01"
-      ],
-      "drill_seed_count": 3
-    },
-    {
-      "source_file": "CQ19250.md",
-      "qid": "19250_scripture_card_printer",
+      "source_file": "CQ14400.md",
+      "qid": "14400_mechanical_camel",
       "subject": "CONTRACTS",
-      "correct": "B",
-      "difficulty_band": "trap repair",
-      "tension_axis": "objective commercial performance vs subjective personal dislike",
-      "dominant_trap": "D",
-      "gold_keys": [
-        "GK-CONTRACTS-SATISFACTION-COMMERCIAL-01"
-      ],
-      "silver_keys": [
-        "SK-CONTRACTS-SATISFACTION-COMMERCIAL-01"
-      ],
-      "drill_seed_count": 3
-    },
-    {
-      "source_file": "CQ19263.md",
-      "qid": "19263_chapel_handbells",
-      "subject": "CRIMINAL_LAW",
-      "correct": "B",
-      "difficulty_band": "hard anchor-assisted taxonomy",
-      "tension_axis": "What passed because of the deception: ownership/title, possession only, or lawful custody?",
-      "dominant_trap": null,
-      "gold_keys": [
-        "GK-CRIMINAL-TITLE-PRESENT-FACT-01"
-      ],
-      "silver_keys": [
-        "SK-CRIMINAL-TITLE-AXIS-01"
-      ],
-      "drill_seed_count": 3
-    },
-    {
-      "source_file": "CQ19266.md",
-      "qid": "19266_carol_banquet_jmol",
-      "subject": "CIVIL_PROCEDURE",
       "correct": "C",
       "difficulty_band": "medium",
       "tension_axis": null,
-      "dominant_trap": null,
+      "dominant_trap": "A",
       "gold_keys": [
-        "GK-CIVIL_PROCEDURE-JMOL-STANDARD-01"
+        "GK-CONTRACTS-MECHANICAL-CAMEL-01"
       ],
       "silver_keys": [
-        "SK-CIVIL_PROCEDURE-JMOL-PROCEDURAL-LENS-01"
+        "SK-CONTRACTS-MECHANICAL-CAMEL-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ14406.md",
+      "qid": "14406_advent_lanterns",
+      "subject": "CONTRACTS",
+      "correct": "C",
+      "difficulty_band": "medium",
+      "tension_axis": "formation first vs option-label shortcut",
+      "dominant_trap": "B",
+      "gold_keys": [
+        "GK-CONTRACTS-ILLUSORY-CANCEL-01"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-ILLUSORY-CANCEL-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ14409.md",
+      "qid": "14409_sunken_ark_hall",
+      "subject": "CONTRACTS",
+      "correct": "B",
+      "difficulty_band": "source_not_supplied",
+      "tension_axis": null,
+      "dominant_trap": "A",
+      "gold_keys": [
+        "GK-CONTRACTS-SUNKEN-ARK-01"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-SUNKEN-ARK-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ14412.md",
+      "qid": "14412_gospel_puzzle_invoice",
+      "subject": "CONTRACTS",
+      "correct": "B",
+      "difficulty_band": "medium",
+      "tension_axis": "support direction for consideration",
+      "dominant_trap": "C",
+      "gold_keys": [
+        "GK-CONTRACTS-GOSPEL-PUZZLE-INVOICE-01"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-GOSPEL-PUZZLE-INVOICE-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ14418.md",
+      "qid": "14418_jericho_lamp_credit",
+      "subject": "CONTRACTS",
+      "correct": "B",
+      "difficulty_band": "35_percent_correct",
+      "tension_axis": null,
+      "dominant_trap": "A",
+      "gold_keys": [
+        "GK-CONTRACTS-NOTICE-PERFORMANCE-01",
+        "GK-CONTRACTS-UNILATERAL-CREDIT-01",
+        "GK-CONTRACTS-SURETYSHIP-WRITING-01",
+        "GK-CONTRACTS-CONSIDERATION-PERFORMANCE-01"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-NEGATIVE-STEM-01",
+        "SK-CONTRACTS-ANSWER-ARRAY-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ14424.md",
+      "qid": "14424_christmas_pageant_lantern_bid",
+      "subject": "CONTRACTS",
+      "correct": "C",
+      "difficulty_band": "medium",
+      "tension_axis": "Does the added fact supply lock-in reliance before acceptance, or only collateral cleanup after revocation?",
+      "dominant_trap": "B",
+      "gold_keys": [
+        "GK-CONTRACTS-SUB_BID_LOCKIN-01"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-SUB_BID_LOCKIN-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ14430.md",
+      "qid": "14430_psalm_room_option",
+      "subject": "CONTRACTS",
+      "correct": "B",
+      "difficulty_band": "not_supplied",
+      "tension_axis": "Was Timothy's power of acceptance terminated before Daniel received acceptance?",
+      "dominant_trap": "A",
+      "gold_keys": [
+        "GK-CONTRACTS-PSALM-ROOM-01",
+        "GK-CONTRACTS-PSALM-ROOM-02"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-PSALM-ROOM-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ14434.md",
+      "qid": "14434_crossed_handbells",
+      "subject": "CONTRACTS",
+      "correct": "C",
+      "difficulty_band": "medium",
+      "tension_axis": null,
+      "dominant_trap": "A",
+      "gold_keys": [
+        "GK-CONTRACTS-CROSSED-HANDBELLS-01"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-CROSSED-HANDBELLS-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ14437.md",
+      "qid": "14437_lydias_verse_card_boxes",
+      "subject": "CONTRACTS",
+      "correct": "C",
+      "difficulty_band": "medium",
+      "tension_axis": "revocable-but-open versus revoked-or-lapsed",
+      "dominant_trap": "D",
+      "gold_keys": [
+        "GK-CONTRACTS-FIRM-CAP-01"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-FIRM-CAP-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ14438.md",
+      "qid": "14438_nativity_ornament_kits",
+      "subject": "CONTRACTS",
+      "correct": "C",
+      "difficulty_band": "medium",
+      "tension_axis": "temporary cancellation right versus binding promise after the cutoff",
+      "dominant_trap": "B",
+      "gold_keys": [
+        "GK-CONTRACTS-ILLUSORY-CUTOFF-01"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-ILLUSORY-CUTOFF-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ14447.md",
+      "qid": "14447_jericho_trumpet_deposit",
+      "subject": "CONTRACTS",
+      "correct": "B",
+      "difficulty_band": "not_supplied",
+      "tension_axis": null,
+      "dominant_trap": "C",
+      "gold_keys": [
+        "GK-CONTRACTS-PROMISSORY-ESTOPPEL-GIFT-01"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-JERICHO-TRUMPET-01"
       ],
       "drill_seed_count": 4
     },
     {
-      "source_file": "CQ19286.md",
-      "qid": "19286_five_loaves_press",
+      "source_file": "CQ14451.md",
+      "qid": "14451_psalm_trail_quitclaim",
+      "subject": "CONTRACTS",
+      "correct": "D",
+      "difficulty_band": "medium",
+      "tension_axis": "consideration from a doubtful quitclaim versus later worthlessness",
+      "dominant_trap": "B",
+      "gold_keys": [
+        "GK-CONTRACTS-PSALM-01"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-PSALM-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ14457.md",
+      "qid": "14457_advent_kits_requirements",
+      "subject": "CONTRACTS",
+      "correct": "C",
+      "difficulty_band": "medium",
+      "tension_axis": "formed requirements contract versus formation-stage avoidance",
+      "dominant_trap": "A",
+      "gold_keys": [
+        "GK-CONTRACTS-ADVENT-KITS-01"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-ADVENT-KITS-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ14458.md",
+      "qid": "14458_verse_wristbands",
+      "subject": "CONTRACTS",
+      "correct": "D",
+      "difficulty_band": "medium",
+      "tension_axis": "specific exclusive-dealing best-efforts duty versus generic risk-allocation reason",
+      "dominant_trap": "B",
+      "gold_keys": [
+        "GK-CONTRACTS-VERSE-WRISTBANDS-01"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-VERSE-WRISTBANDS-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ14460.md",
+      "qid": "14460_fish_loaves_mosaic",
+      "subject": "CONTRACTS",
+      "correct": "B",
+      "difficulty_band": "not_supplied",
+      "tension_axis": "waiver of condition vs alternative remedy labels",
+      "dominant_trap": "C",
+      "gold_keys": [
+        "GK-CONTRACTS-WAIVER-CONDITION-01"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-WAIVER-CONDITION-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ14462.md",
+      "qid": "14462_mustard_seed_carts",
+      "subject": "CONTRACTS",
+      "correct": "C",
+      "difficulty_band": "medium",
+      "tension_axis": "condition occurred vs condition waived",
+      "dominant_trap": "B",
+      "gold_keys": [
+        "GK-CONTRACTS-CONDITION-WAIVER-01"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-WHOSE-DUTY-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ14463.md",
+      "qid": "14463_calligraphy_supplies",
+      "subject": "CONTRACTS",
+      "correct": "B",
+      "difficulty_band": "not_supplied; source_percent_correct=39",
+      "tension_axis": "third-party-beneficiary status versus contract-level failed-condition defense",
+      "dominant_trap": "C",
+      "gold_keys": [
+        "GK-CONTRACTS-CALLIGRAPHY-SUPPLIES-01"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-CALLIGRAPHY-SUPPLIES-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ14467.md",
+      "qid": "14467_psalm_tutor_installments",
+      "subject": "CONTRACTS",
+      "correct": "C",
+      "difficulty_band": "medium",
+      "tension_axis": "matured installments only versus full-balance acceleration",
+      "dominant_trap": "A",
+      "gold_keys": [
+        "GK-CONTRACTS-PSALM-TUTOR-INSTALLMENTS-01"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-PSALM-TUTOR-INSTALLMENTS-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ14477.md",
+      "qid": "14477_advent_mugs",
+      "subject": "CONTRACTS",
+      "correct": "B",
+      "difficulty_band": "not_supplied_in_source_row",
+      "tension_axis": "fatal deadline / express condition versus late specification with no material effect",
+      "dominant_trap": "D",
+      "gold_keys": [
+        "GK-CONTRACTS-ADVENT-MUGS-01"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-ADVENT-MUGS-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ14492.md",
+      "qid": "14492_psalm_lantern_kits",
+      "subject": "CONTRACTS",
+      "correct": "B",
+      "difficulty_band": "medium",
+      "tension_axis": null,
+      "dominant_trap": "A",
+      "gold_keys": [
+        "GK-CONTRACTS-PSALM-LANTERN-KITS-01"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-PSALM-LANTERN-KITS-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ14493.md",
+      "qid": "14493_ark_stage",
+      "subject": "CONTRACTS",
+      "correct": "B",
+      "difficulty_band": "medium",
+      "tension_axis": null,
+      "dominant_trap": "D",
+      "gold_keys": [
+        "GK-CONTRACTS-ARK-STAGE-01"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-ARK-STAGE-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ14506.md",
+      "qid": "14506_lydia_rooftop_loft",
+      "subject": "CONTRACTS",
+      "correct": "D",
+      "difficulty_band": "not_supplied",
+      "tension_axis": "date breach versus time-not-essential partial delay",
+      "dominant_trap": "C gives right result through wrong excuse frame.",
+      "gold_keys": [
+        "GK-CONTRACTS-LYDIA-ROOFTOP-01",
+        "GK-CONTRACTS-LYDIA-ROOFTOP-02"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-LYDIA-ROOFTOP-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ14510.md",
+      "qid": "14510_ark_puppet_stage",
+      "subject": "CONTRACTS",
+      "correct": "B",
+      "difficulty_band": "medium",
+      "tension_axis": null,
+      "dominant_trap": "C",
+      "gold_keys": [
+        "GK-CONTRACTS-PRICE-ACTION-01",
+        "GK-CONTRACTS-LOST-VOLUME-02"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-NEGATIVE-REMEDY-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ14511.md",
+      "qid": "14511_worship_studio_delay",
+      "subject": "CONTRACTS",
+      "correct": "B",
+      "difficulty_band": "medium",
+      "tension_axis": "fair rental value only versus rental value plus unforeseeable trailer cost",
+      "dominant_trap": "C",
+      "gold_keys": [
+        "GK-CONTRACTS-WORSHIP-STUDIO-01"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-WORSHIP-STUDIO-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ14521.md",
+      "qid": "14521_sea_of_galilee_lantern_walk",
+      "subject": "CONTRACTS",
+      "correct": "B",
+      "difficulty_band": "medium",
+      "tension_axis": null,
+      "dominant_trap": "A",
+      "gold_keys": [
+        "GK-CONTRACTS-BREACHER-RESTITUTION-CAP-01"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-DOLLAR-OUTCOME-ARRAY-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ14523.md",
+      "qid": "14523_psalm_calligraphy_stipend",
+      "subject": "CONTRACTS",
+      "correct": "C",
+      "difficulty_band": "source row: 30% correct; no difficulty label supplied",
+      "tension_axis": "Does the reason answer remedy adequacy, or does it answer a nearby burden/no-loss/money-label question?",
+      "dominant_trap": "D",
+      "gold_keys": [
+        "GK-CONTRACTS-PSALM-CALLIGRAPHY-STIPEND-01"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-PSALM-CALLIGRAPHY-STIPEND-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ14525.md",
+      "qid": "14525_jonah_fish_escape",
+      "subject": "CONTRACTS",
+      "correct": "B",
+      "difficulty_band": "medium",
+      "tension_axis": "per_se_new_business_bar_vs_reasonable_certainty_proof",
+      "dominant_trap": "C",
+      "gold_keys": [
+        "GK-CONTRACTS-NEW-BIZ-LOST-PROFITS-01"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-OUTCOME-REASON-01"
+      ],
+      "drill_seed_count": 4
+    },
+    {
+      "source_file": "CQ14530.md",
+      "qid": "14530_lantern_courtyard",
+      "subject": "CONTRACTS",
+      "correct": "B",
+      "difficulty_band": "medium",
+      "tension_axis": null,
+      "dominant_trap": "C",
+      "gold_keys": [
+        "GK-CONTRACTS-LANTERN-01"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-LANTERN-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ14546.md",
+      "qid": "14546_koine_tutor",
+      "subject": "CONTRACTS",
+      "correct": "C",
+      "difficulty_band": "not_supplied",
+      "tension_axis": "provider intent versus provider identification/awareness",
+      "dominant_trap": "A",
+      "gold_keys": [
+        "GK-CONTRACTS-KOINE-TUTOR-01",
+        "GK-CONTRACTS-KOINE-TUTOR-02"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-KOINE-TUTOR-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ16127.md",
+      "qid": "16127_stewardship_bomb",
+      "subject": "CRIMINAL_LAW",
+      "correct": "C",
+      "difficulty_band": "medium",
+      "tension_axis": "conspiracy merges with arson versus conspiracy stacks with arson under the non-merger rule and Wharton's Rule scope",
+      "dominant_trap": "A",
+      "gold_keys": [
+        "GK-CRIMINAL-STEWARDSHIP-BOMB-01"
+      ],
+      "silver_keys": [
+        "SK-CRIMINAL-STEWARDSHIP-BOMB-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ17018.md",
+      "qid": "17018_youth_dodgeball_consent",
+      "subject": "TORTS",
+      "correct": "C",
+      "difficulty_band": "medium",
+      "tension_axis": "yes because within scope versus yes because no intent",
+      "dominant_trap": "D",
+      "gold_keys": [],
+      "silver_keys": [
+        "SK-TORTS-DODGEBALL-CONSENT-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ17027.md",
+      "qid": "17027_heritage_plow_fraud",
       "subject": "CIVIL_PROCEDURE",
       "correct": "C",
-      "difficulty_band": "medium_high",
-      "tension_axis": "prejudice-only curative measures vs intent-based severe sanctions",
-      "dominant_trap": null,
+      "difficulty_band": "medium",
+      "tension_axis": "federal procedural rule versus substantive state right on the burden of proof for reliance",
+      "dominant_trap": "A",
       "gold_keys": [
-        "GK-CIVIL_PROCEDURE-LOST-ESI-01"
+        "GK-CIVPRO-HERITAGE-PLOW-FRAUD-01"
       ],
       "silver_keys": [
-        "SK-CIVIL_PROCEDURE-LOST-ESI-01"
+        "SK-CIVPRO-HERITAGE-PLOW-FRAUD-01"
       ],
-      "drill_seed_count": 4
+      "drill_seed_count": 3
     },
     {
-      "source_file": "CQ19336.md",
-      "qid": "19336_nativity_warehouse_rescue",
-      "subject": "CRIMINAL_LAW",
-      "correct": "B",
-      "difficulty_band": "medium_high_anchor_dependent",
-      "tension_axis": "majority reasonable appearance versus alter-ego actual rights",
-      "dominant_trap": null,
+      "source_file": "CQ17111.md",
+      "qid": "17111_parish_newsletter_republication",
+      "subject": "TORTS",
+      "correct": "C",
+      "difficulty_band": "medium",
+      "tension_axis": "attribution as a defense to republication versus republication as itself a publication",
+      "dominant_trap": "A",
       "gold_keys": [
-        "GK-CRIM-DEFENSE-OTHERS-01"
+        "GK-TORTS-PARISH-NEWSLETTER-REPUBLICATION-01"
       ],
       "silver_keys": [
-        "SK-CRIM-DEFENSE-OTHERS-01"
+        "SK-TORTS-PARISH-NEWSLETTER-REPUBLICATION-01"
       ],
-      "drill_seed_count": 4
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ17114.md",
+      "qid": "17114_farmstand_excessive_fine",
+      "subject": "CONSTITUTIONAL_LAW",
+      "correct": "C",
+      "difficulty_band": "medium",
+      "tension_axis": "federal-only incorporation theory versus incorporation of the Excessive Fines Clause through the Fourteenth Amendment",
+      "dominant_trap": "A",
+      "gold_keys": [
+        "GK-CONLAW-FARMSTAND-EXCESSIVE-FINE-01"
+      ],
+      "silver_keys": [
+        "SK-CONLAW-FARMSTAND-EXCESSIVE-FINE-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ17117.md",
+      "qid": "17117_day_school_playground_jmol",
+      "subject": "CIVIL_PROCEDURE",
+      "correct": "B",
+      "difficulty_band": "medium",
+      "tension_axis": "unlimited preservation of Rule 50(b) grounds versus renewal-not-invention rule",
+      "dominant_trap": "A",
+      "gold_keys": [
+        "GK-CIVPRO-DAY-SCHOOL-PLAYGROUND-JMOL-01"
+      ],
+      "silver_keys": [
+        "SK-CIVPRO-DAY-SCHOOL-PLAYGROUND-JMOL-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ17163.md",
+      "qid": "17163_permit_fee_ledger",
+      "subject": "CONSTITUTIONAL_LAW",
+      "correct": "C",
+      "difficulty_band": "medium",
+      "tension_axis": "every property loss vs negligence-rule",
+      "dominant_trap": "D",
+      "gold_keys": [
+        "GK-CONSTITUTIONAL-LAW-PERMIT-FEE-LEDGER-01"
+      ],
+      "silver_keys": [
+        "SK-CONSTITUTIONAL-LAW-PERMIT-FEE-LEDGER-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ17179.md",
+      "qid": "17179_potluck_lot_rear_end",
+      "subject": "CIVIL_PROCEDURE",
+      "correct": "A",
+      "difficulty_band": "medium",
+      "tension_axis": "co-party label (crossclaim) versus opposing-party label (counterclaim) versus non-party label (impleader)",
+      "dominant_trap": "C",
+      "gold_keys": [
+        "GK-CIVPRO-POTLUCK-LOT-01"
+      ],
+      "silver_keys": [
+        "SK-CIVPRO-POTLUCK-LOT-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ17225.md",
+      "qid": "17225_midnight_utility_fraud",
+      "subject": "CRIMINAL_LAW",
+      "correct": "D",
+      "difficulty_band": "medium",
+      "tension_axis": "physical-force-only breaking versus constructive breaking (fraud, threat, trick)",
+      "dominant_trap": "A",
+      "gold_keys": [
+        "GK-CRIMINAL-MIDNIGHT-UTILITY-01"
+      ],
+      "silver_keys": [
+        "SK-CRIMINAL-MIDNIGHT-UTILITY-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ17236.md",
+      "qid": "17236_wellness_visit_revocation",
+      "subject": "TORTS",
+      "correct": "C",
+      "difficulty_band": "medium",
+      "tension_axis": "operative-consent defense versus categorical-form defense versus categorical-no-defense",
+      "dominant_trap": "A",
+      "gold_keys": [
+        "GK-TORTS-WELLNESS-VISIT-01"
+      ],
+      "silver_keys": [
+        "SK-TORTS-WELLNESS-VISIT-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ17264.md",
+      "qid": "17264_prayer_parcel_trip",
+      "subject": "TORTS",
+      "correct": "A",
+      "difficulty_band": "medium",
+      "tension_axis": "limited duty (unknown trespasser + natural condition) versus invitee inspection duty versus warn-every-natural-condition versus strict liability",
+      "dominant_trap": "B",
+      "gold_keys": [
+        "GK-TORTS-PRAYER-PARCEL-01"
+      ],
+      "silver_keys": [
+        "SK-TORTS-PRAYER-PARCEL-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ17289.md",
+      "qid": "17289_foundation_paneling",
+      "subject": "TORTS",
+      "correct": "B",
+      "difficulty_band": "medium",
+      "tension_axis": "every defect vs element-by-element",
+      "dominant_trap": "C",
+      "gold_keys": [
+        "GK-TORTS-FOUNDATION-PANELING-01"
+      ],
+      "silver_keys": [
+        "SK-TORTS-FOUNDATION-PANELING-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ17406.md",
+      "qid": "17406_oak_choir_stall",
+      "subject": "CIVIL_PROCEDURE",
+      "correct": "A",
+      "difficulty_band": "medium",
+      "tension_axis": "broad all-12(b)-waived rule versus precise Rule 12(h)(2) preservation of 12(b)(6)",
+      "dominant_trap": "D",
+      "gold_keys": [
+        "GK-CIVPRO-OAK-CHOIR-STALL-01"
+      ],
+      "silver_keys": [
+        "SK-CIVPRO-OAK-CHOIR-STALL-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ17412.md",
+      "qid": "17412_seminary_faculty_apartment",
+      "subject": "CIVIL_PROCEDURE",
+      "correct": "A",
+      "difficulty_band": "medium",
+      "tension_axis": "residence (Massachusetts) versus domicile (Texas)",
+      "dominant_trap": "B",
+      "gold_keys": [
+        "GK-CIVPRO-SEMINARY-FACULTY-APARTMENT-01"
+      ],
+      "silver_keys": [
+        "SK-CIVPRO-SEMINARY-FACULTY-APARTMENT-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ17443.md",
+      "qid": "17443_devotional_auto_renew",
+      "subject": "CIVIL_PROCEDURE",
+      "correct": "B",
+      "difficulty_band": "medium",
+      "tension_axis": "adequacy subsumed by personal injury versus adequacy as a separate Rule 23(a) prong",
+      "dominant_trap": "A",
+      "gold_keys": [
+        "GK-CIVPRO-DEVOTIONAL-AUTO-RENEW-01"
+      ],
+      "silver_keys": [
+        "SK-CIVPRO-DEVOTIONAL-AUTO-RENEW-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ17521.md",
+      "qid": "17521_christian_wedding_cake",
+      "subject": "CONTRACTS",
+      "correct": "C",
+      "difficulty_band": "medium",
+      "tension_axis": "mailed-acceptance versus properly-dispatched-acceptance as the testable element of the mailbox rule",
+      "dominant_trap": "A",
+      "gold_keys": [
+        "GK-CONTRACTS-CHRISTIAN-WEDDING-CAKE-01"
+      ],
+      "silver_keys": [
+        "SK-CONTRACTS-CHRISTIAN-WEDDING-CAKE-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ17574.md",
+      "qid": "17574_christian_podcast_school_board",
+      "subject": "CONSTITUTIONAL_LAW",
+      "correct": "B",
+      "difficulty_band": "medium",
+      "tension_axis": "prior restraint versus red-herring First Amendment doctrines (commercial speech, not the institutional press) on a prior-restraint item with ad-revenue and medium red herrings",
+      "dominant_trap": "C",
+      "gold_keys": [
+        "GK-CONSTITUTIONAL-LAW-CHRISTIAN-PODCAST-01"
+      ],
+      "silver_keys": [
+        "SK-CONSTITUTIONAL-LAW-CHRISTIAN-PODCAST-01",
+        "SK-CONSTITUTIONAL-LAW-CHRISTIAN-PODCAST-02"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ17583.md",
+      "qid": "17583_bookshop_securities_followup",
+      "subject": "CIVIL_PROCEDURE",
+      "correct": "A",
+      "difficulty_band": "medium",
+      "tension_axis": "Erie-fallacy vs. federal-question preclusion source",
+      "dominant_trap": "B",
+      "gold_keys": [
+        "GK-CIVPRO-BOOKSHOP-SECURITIES-FOLLOWUP-01"
+      ],
+      "silver_keys": [
+        "SK-CIVPRO-BOOKSHOP-SECURITIES-FOLLOWUP-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ17630.md",
+      "qid": "17630_blown_bible_orchard",
+      "subject": "TORTS",
+      "correct": "A",
+      "difficulty_band": "medium",
+      "tension_axis": "causation split between spill-caused and removal-caused damage",
+      "dominant_trap": "B",
+      "gold_keys": [
+        "GK-TORTS-BLOWN-BIBLE-ORCHARD-01"
+      ],
+      "silver_keys": [
+        "SK-TORTS-BLOWN-BIBLE-ORCHARD-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ17680.md",
+      "qid": "17680_ministry_housing_permit",
+      "subject": "CONSTITUTIONAL_LAW",
+      "correct": "A",
+      "difficulty_band": "medium",
+      "tension_axis": "animus-to-tier-escalation vs. rational-basis-with-bite",
+      "dominant_trap": "B",
+      "gold_keys": [
+        "GK-CONLAW-MINISTRY-HOUSING-PERMIT-01"
+      ],
+      "silver_keys": [
+        "SK-CONLAW-MINISTRY-HOUSING-PERMIT-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ17704.md",
+      "qid": "17704_fender_shepherd",
+      "subject": "CIVIL_PROCEDURE",
+      "correct": "C",
+      "difficulty_band": "medium",
+      "tension_axis": "rendering-state preclusion law (§ 1738) vs federal common law of preclusion when the prior judgment is state-court and the second court is federal",
+      "dominant_trap": "D",
+      "gold_keys": [
+        "GK-CIVPRO-FENDER-SHEPHERD-01"
+      ],
+      "silver_keys": [],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ17709.md",
+      "qid": "17709_tutoring_tithe",
+      "subject": "CIVIL_PROCEDURE",
+      "correct": "D",
+      "difficulty_band": "medium",
+      "tension_axis": "single-plaintiff aggregation (relatedness irrelevant) vs unrelated-cannot-aggregate when one plaintiff sues one defendant on multiple claims",
+      "dominant_trap": "A",
+      "gold_keys": [],
+      "silver_keys": [
+        "SK-CIVPRO-TUTORING-TITHE-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ17711.md",
+      "qid": "17711_mercy_clinic_zoning",
+      "subject": "CIVIL_PROCEDURE",
+      "correct": "A",
+      "difficulty_band": "medium",
+      "tension_axis": "untimeliness + prejudice versus mandatory intervention because of public importance",
+      "dominant_trap": "B",
+      "gold_keys": [],
+      "silver_keys": [
+        "SK-CIVPRO-MERCY-CLINIC-ZONING-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ17728.md",
+      "qid": "17728_illuminated_manuscript",
+      "subject": "CONSTITUTIONAL_LAW",
+      "correct": "B",
+      "difficulty_band": "medium",
+      "tension_axis": "channels-of-commerce power reaches the channels themselves versus stolen goods are outside the Commerce Clause reach because of dirty chain of title",
+      "dominant_trap": "D",
+      "gold_keys": [
+        "GK-CONLAW-ILLUMINATED-MANUSCRIPT-01"
+      ],
+      "silver_keys": [],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ17857.md",
+      "qid": "17857_living_nativity_carver",
+      "subject": "TORTS",
+      "correct": "A",
+      "difficulty_band": "medium",
+      "tension_axis": "lawful truthful price competition (privileged) vs. improper means (required for liability)",
+      "dominant_trap": "B",
+      "gold_keys": [
+        "GK-TORTS-LIVING-NATIVITY-CARVER-01"
+      ],
+      "silver_keys": [
+        "SK-TORTS-LIVING-NATIVITY-CARVER-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ17859.md",
+      "qid": "17859_olive_branch_ornament",
+      "subject": "CRIMINAL_LAW",
+      "correct": "C",
+      "difficulty_band": "medium",
+      "tension_axis": "asportation minimum (any movement suffices) vs. premises removal / sale element",
+      "dominant_trap": "A",
+      "gold_keys": [
+        "GK-CRIMINAL-OLIVE-BRANCH-ORNAMENT-01"
+      ],
+      "silver_keys": [
+        "SK-CRIMINAL-OLIVE-BRANCH-ORNAMENT-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ17913.md",
+      "qid": "17913_summit_klaxon",
+      "subject": "CIVIL_PROCEDURE",
+      "correct": "C",
+      "difficulty_band": "medium",
+      "tension_axis": "contract clause is self-executing (B) vs. forum's choice rules apply first under Klaxon (C)",
+      "dominant_trap": "B",
+      "gold_keys": [
+        "GK-CIVPRO-SUMMIT-KLAXON-01"
+      ],
+      "silver_keys": [
+        "SK-CIVPRO-SUMMIT-KLAXON-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ17956.md",
+      "qid": "17956_stewards_heavyheart",
+      "subject": "TORTS",
+      "correct": "A",
+      "difficulty_band": "medium",
+      "tension_axis": "favorable-termination element missing (threshold) vs. secondary defects (overclaim, categorical overstatement, wrong tort frame)",
+      "dominant_trap": "C",
+      "gold_keys": [
+        "GK-TORTS-STEWARDS-HEAVYHEART-01"
+      ],
+      "silver_keys": [
+        "SK-TORTS-STEWARDS-HEAVYHEART-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ17996.md",
+      "qid": "17996_shepherding_call",
+      "subject": "EVIDENCE",
+      "correct": "C",
+      "difficulty_band": "medium",
+      "tension_axis": "trigger-missing (FRE 608(a) 'after attack' gate) vs. secondary defects (always-bolster overclaim, opinion-never-admissible overclaim, testifying-alone missing trigger)",
+      "dominant_trap": "A",
+      "gold_keys": [
+        "GK-EVIDENCE-SHEPHERDING-CALL-01"
+      ],
+      "silver_keys": [
+        "SK-EVIDENCE-SHEPHERDING-CALL-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ18077.md",
+      "qid": "18077_maranatha_meadow",
+      "subject": "REAL_PROPERTY",
+      "correct": "C",
+      "difficulty_band": "calibration",
+      "tension_axis": "executory (cutting-short) vs. remainder (natural termination); shifting (third party) vs. springing (grantor) vs. grantor-retained",
+      "dominant_trap": "A",
+      "gold_keys": [
+        "GK-REAL-PROPERTY-MARANATHA-MEADOW-01"
+      ],
+      "silver_keys": [
+        "SK-REAL-PROPERTY-MARANATHA-MEADOW-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ18111.md",
+      "qid": "18111_camp_stipend_forgery",
+      "subject": "CRIMINAL_LAW",
+      "correct": "A",
+      "difficulty_band": "medium",
+      "tension_axis": "no actual loss means no forgery (B) vs. false making with intent is the actus reus (A)",
+      "dominant_trap": "B",
+      "gold_keys": [
+        "GK-CRIMINAL-CAMP-STIPEND-01"
+      ],
+      "silver_keys": [
+        "SK-CRIMINAL-CAMP-STIPEND-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ18135.md",
+      "qid": "18135_mountain_lodge_looseboard",
+      "subject": "TORTS",
+      "correct": "B",
+      "difficulty_band": "medium",
+      "tension_axis": "invitee reasonable-care-including-inspection duty versus licensee warn-only-of-known-hazards rule for a paying attendee at a ticketed event",
+      "dominant_trap": "C",
+      "gold_keys": [
+        "GK-TORTS-MOUNTAIN-LODGE-LOOSEBOARD-01"
+      ],
+      "silver_keys": [
+        "SK-TORTS-MOUNTAIN-LODGE-LOOSEBOARD-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ18179.md",
+      "qid": "18179_campfire_rim_warning",
+      "subject": "TORTS",
+      "correct": "D",
+      "difficulty_band": "medium",
+      "tension_axis": "tiered-absolute 'always warn' intuition versus open-and-obvious non-duty rule",
+      "dominant_trap": "C",
+      "gold_keys": [
+        "GK-TORTS-CAMPFIRE-RIM-WARNING-01"
+      ],
+      "silver_keys": [
+        "SK-TORTS-CAMPFIRE-RIM-WARNING-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ18182.md",
+      "qid": "18182_bookstore_mandamus",
+      "subject": "CIVIL_PROCEDURE",
+      "correct": "D",
+      "difficulty_band": "medium",
+      "tension_axis": "tiered-absolute 'mandamus is available whenever' intuition versus clear-and-indisputable-right + no-adequate-alternative-means standard",
+      "dominant_trap": "C",
+      "gold_keys": [
+        "GK-CIVIL_PROCEDURE-BOOKSTORE-MANDAMUS-01"
+      ],
+      "silver_keys": [
+        "SK-CIVIL_PROCEDURE-BOOKSTORE-MANDAMUS-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ18196.md",
+      "qid": "18196_riverstone_citizenship",
+      "subject": "CIVIL_PROCEDURE",
+      "correct": "A",
+      "difficulty_band": "medium",
+      "tension_axis": "incorporation-only intuition versus dual-citizenship rule",
+      "dominant_trap": "B",
+      "gold_keys": [
+        "GK-CIVIL_PROCEDURE-RIVERSTONE-CITIZENSHIP-01"
+      ],
+      "silver_keys": [
+        "SK-CIVIL_PROCEDURE-RIVERSTONE-CITIZENSHIP-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ18197.md",
+      "qid": "18197_athletics_bus_collision",
+      "subject": "TORTS",
+      "correct": "B",
+      "difficulty_band": "medium",
+      "tension_axis": "joint and several liability lets the plaintiff collect 100% from any one defendant versus proportional liability (50% split) based on the defendants' inter-se contribution",
+      "dominant_trap": "A",
+      "gold_keys": [
+        "GK-TORTS-ATHLETICS-BUS-COLLISION-01"
+      ],
+      "silver_keys": [
+        "SK-TORTS-ATHLETICS-BUS-COLLISION-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ18240.md",
+      "qid": "18240_family_table_refund",
+      "subject": "CIVIL_PROCEDURE",
+      "correct": "A",
+      "difficulty_band": "medium",
+      "tension_axis": "legal-certainty test (statute or contract cap required) versus probability-of-recovery test (defendant's discovery prediction)",
+      "dominant_trap": "C",
+      "gold_keys": [
+        "GK-CIVPRO-FAMILY-TABLE-01"
+      ],
+      "silver_keys": [
+        "SK-CIVPRO-FAMILY-TABLE-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ18287.md",
+      "qid": "18287_manger_cradle_collapse",
+      "subject": "TORTS",
+      "correct": "A",
+      "difficulty_band": "medium",
+      "tension_axis": "res ipsa clearly applies (never unless the maker was negligent) versus res ipsa is unavailable because the plaintiff's own post-rental alterations are a plausible alternative cause",
+      "dominant_trap": "C",
+      "gold_keys": [
+        "GK-TORTS-MANGER-CRADLE-COLLAPSE-01"
+      ],
+      "silver_keys": [
+        "SK-TORTS-MANGER-CRADLE-COLLAPSE-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ18298.md",
+      "qid": "18298_fellowship_hall_grab",
+      "subject": "TORTS",
+      "correct": "A",
+      "difficulty_band": "medium",
+      "tension_axis": "bystander wins on transferred intent versus bystander loses because she did not apprehend contact with herself",
+      "dominant_trap": "C",
+      "gold_keys": [
+        "GK-TORTS-FELLOWSHIP-HALL-GRAB-01"
+      ],
+      "silver_keys": [
+        "SK-TORTS-FELLOWSHIP-HALL-GRAB-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ18438.md",
+      "qid": "18438_hannah_david_medicaid",
+      "subject": "CONSTITUTIONAL_LAW",
+      "correct": "D",
+      "difficulty_band": "medium",
+      "tension_axis": "rational basis applies (public benefits are always discretionary) versus strict scrutiny applies (right to interstate travel is burdened)",
+      "dominant_trap": "A",
+      "gold_keys": [
+        "GK-CONSTITUTIONAL-LAW-HANNAH-DAVID-MEDICAID-01"
+      ],
+      "silver_keys": [
+        "SK-CONSTITUTIONAL-LAW-HANNAH-DAVID-MEDICAID-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ18457.md",
+      "qid": "18457_lydia_book_club",
+      "subject": "CONSTITUTIONAL_LAW",
+      "correct": "C",
+      "difficulty_band": "medium",
+      "tension_axis": "strict scrutiny applies because the club uses race or ethnicity versus the constitutional claim fails at the state-action threshold before any scrutiny tier is reached",
+      "dominant_trap": "A",
+      "gold_keys": [
+        "GK-CONSTITUTIONAL-LAW-LYDIA-BOOK-CLUB-01"
+      ],
+      "silver_keys": [
+        "SK-CONSTITUTIONAL-LAW-LYDIA-BOOK-CLUB-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ18477.md",
+      "qid": "18477_church_craft_fair_quilt",
+      "subject": "CRIMINAL_LAW",
+      "correct": "B",
+      "difficulty_band": "medium",
+      "tension_axis": "fact-of-receipt makes the buyer guilty (stolen-before-purchase rule) versus receipt-time knowledge is the dispositive element (no receipt-time knowledge, no offense)",
+      "dominant_trap": "A",
+      "gold_keys": [
+        "GK-CRIMINAL-CHURCH-CRAFT-FAIR-QUILT-01"
+      ],
+      "silver_keys": [
+        "SK-CRIMINAL-CHURCH-CRAFT-FAIR-QUILT-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ18488.md",
+      "qid": "18488_youth_retreat_trailer",
+      "subject": "CIVIL_PROCEDURE",
+      "correct": "A",
+      "difficulty_band": "medium",
+      "tension_axis": "John Doe pleading plus post-limitations identification versus Rule 15(c) notice and identity-mistake requirements",
+      "dominant_trap": "D",
+      "gold_keys": [
+        "GK-CIVIL_PROCEDURE-YOUTH-RETREAT-TRAILER-01"
+      ],
+      "silver_keys": [
+        "SK-CIVIL_PROCEDURE-YOUTH-RETREAT-TRAILER-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ18586.md",
+      "qid": "18586_hymnsong_records",
+      "subject": "CONSTITUTIONAL_LAW",
+      "correct": "A",
+      "difficulty_band": "medium",
+      "tension_axis": "interstate burden triggers Article IV P&I versus Article IV P&I requires a natural-person citizen plaintiff",
+      "dominant_trap": "B",
+      "gold_keys": [
+        "GK-CONSTITUTIONAL_LAW-HYMNSONG-RECORDS-01"
+      ],
+      "silver_keys": [
+        "SK-CONSTITUTIONAL_LAW-HYMNSONG-RECORDS-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ18592.md",
+      "qid": "18592_shiloh_campground",
+      "subject": "TORTS",
+      "correct": "A",
+      "difficulty_band": "medium",
+      "tension_axis": "complete defense because there first versus factor only, especially after a substantial expansion",
+      "dominant_trap": "B",
+      "gold_keys": [
+        "GK-TORTS-SHILOH-CAMPGROUND-01"
+      ],
+      "silver_keys": [
+        "SK-TORTS-SHILOH-CAMPGROUND-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ18669.md",
+      "qid": "18669_mary_negligence_survival",
+      "subject": "CIVIL_PROCEDURE",
+      "correct": "C",
+      "difficulty_band": "medium",
+      "tension_axis": "merits-preference intuition versus Erie command; substantive survival versus procedural diversity",
+      "dominant_trap": "A",
+      "gold_keys": [
+        "GK-CIVIL_PROCEDURE-MARY-NEGLIGENCE-SURVIVAL-01"
+      ],
+      "silver_keys": [
+        "SK-CIVIL_PROCEDURE-MARY-NEGLIGENCE-SURVIVAL-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ18676.md",
+      "qid": "18676_mary_wellness_appropriation",
+      "subject": "TORTS",
+      "correct": "B",
+      "difficulty_band": "medium",
+      "tension_axis": "permanent and unlimited consent versus limited-by-scope consent; appropriation versus false light or flattering-photo theories",
+      "dominant_trap": "A",
+      "gold_keys": [
+        "GK-TORTS-MARY-WELLNESS-APPROPRIATION-01"
+      ],
+      "silver_keys": [
+        "SK-TORTS-MARY-WELLNESS-APPROPRIATION-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ18747.md",
+      "qid": "18747_vintage_bible_embezzlement",
+      "subject": "CRIMINAL_LAW",
+      "correct": "C",
+      "difficulty_band": "medium",
+      "tension_axis": "colloquial 'every wrongful taking is larceny' versus the lawful-possession re-routing to embezzlement",
+      "dominant_trap": "A",
+      "gold_keys": [
+        "GK-CRIMINAL-VINTAGE-BIBLE-EMBEZZLEMENT-01"
+      ],
+      "silver_keys": [
+        "SK-CRIMINAL-VINTAGE-BIBLE-EMBEZZLEMENT-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ18784.md",
+      "qid": "18784_fellowship_lot_used_car",
+      "subject": "TORTS",
+      "correct": "C",
+      "difficulty_band": "core (carried from source row; not separately scored)",
+      "tension_axis": null,
+      "dominant_trap": null,
+      "gold_keys": [
+        "GK-TORTS-FRAUD-RELIANCE-01"
+      ],
+      "silver_keys": [
+        "SK-TORTS-FRAUD-OVERCLAIM-01"
+      ],
+      "drill_seed_count": 2
+    },
+    {
+      "source_file": "CQ18811.md",
+      "qid": "18811_elevator_access_class",
+      "subject": "CIVIL_PROCEDURE",
+      "correct": "C",
+      "difficulty_band": "core (carried from source row; not separately scored)",
+      "tension_axis": null,
+      "dominant_trap": null,
+      "gold_keys": [
+        "GK-CIVPRO-RULE23-23B2-01"
+      ],
+      "silver_keys": [
+        "SK-CIVPRO-RULE23-1-1-1-0-01"
+      ],
+      "drill_seed_count": 2
+    },
+    {
+      "source_file": "CQ18843.md",
+      "qid": "18843_patio_pressure_washer",
+      "subject": "CRIMINAL_LAW",
+      "correct": "A",
+      "difficulty_band": "core (carried from source row; not separately scored)",
+      "tension_axis": "Intent-to-permanently-deprive element vs. the temporary-use-and-return fact pattern.",
+      "dominant_trap": "C",
+      "gold_keys": [
+        "GK-CRIMINAL-LARCENY-INTENT-01"
+      ],
+      "silver_keys": [
+        "SK-CRIMINAL-LARCENY-INTENT-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ18890.md",
+      "qid": "18890_hanna_erie_threshold",
+      "subject": "CIVIL_PROCEDURE",
+      "correct": "A",
+      "difficulty_band": "core (carried from source row; not separately scored)",
+      "tension_axis": "Federal-directive threshold (Hanna first-step) vs. the outcome-determinative test (Guaranty Trust).",
+      "dominant_trap": "B",
+      "gold_keys": [
+        "GK-CIVPRO-ERIE-HANNA-01"
+      ],
+      "silver_keys": [
+        "SK-CIVPRO-ERIE-HANNA-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ18900.md",
+      "qid": "18900_wedding_garden_spill",
+      "subject": "TORTS",
+      "correct": "A",
+      "difficulty_band": "core",
+      "tension_axis": null,
+      "dominant_trap": "B",
+      "gold_keys": [
+        "GK-TORTS-WEDDING-GARDEN-SPILL-01"
+      ],
+      "silver_keys": [
+        "SK-TORTS-WEDDING-GARDEN-SPILL-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ18914.md",
+      "qid": "18914_rare_bible_provenance",
+      "subject": "TORTS",
+      "correct": "A",
+      "difficulty_band": "core",
+      "tension_axis": null,
+      "dominant_trap": "C",
+      "gold_keys": [
+        "GK-TORTS-RARE-BIBLE-PROVENANCE-01"
+      ],
+      "silver_keys": [
+        "SK-TORTS-RARE-BIBLE-PROVENANCE-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ18974.md",
+      "qid": "18974_subscription_meal_kit_23f",
+      "subject": "CIVIL_PROCEDURE",
+      "correct": "C",
+      "difficulty_band": "medium",
+      "tension_axis": "importance-as-of-right jurisdiction versus permission-based Rule 23(f) review",
+      "dominant_trap": "B",
+      "gold_keys": [],
+      "silver_keys": [
+        "SK-CIVIL_PROCEDURE-SUBSCRIPTION-MEAL-KIT-23F-01"
+      ],
+      "drill_seed_count": 3
+    },
+    {
+      "source_file": "CQ18982.md",
+      "qid": "18982_homeschool_coop_month",
+      "subject": "TORTS",
+      "correct": "C",
+      "difficulty_band": "medium",
+      "tension_axis": "any-inaccuracy myth versus substantial-truth doctrine (gist or sting)",
+      "dominant_trap": "D",
+      "gold_keys": [
+        "GK-TORTS-HOMESCHOOL-COOP-MONTH-01"
+      ],
+      "silver_keys": [],
+      "drill_seed_count": 3
     },
     {
       "source_file": "CQ19379.md",
@@ -1137,7 +2939,7 @@
       "correct": "B",
       "difficulty_band": "discriminator",
       "tension_axis": "adverse spousal testimonial privilege vs confidential marital communications privilege",
-      "dominant_trap": null,
+      "dominant_trap": "C",
       "gold_keys": [
         "GK-EVIDENCE-SPOUSAL-01"
       ],
@@ -1169,7 +2971,7 @@
       "correct": "A",
       "difficulty_band": "core diagnostic",
       "tension_axis": "same-contract cap travels with intended-beneficiary right vs nonparty escape from the cap",
-      "dominant_trap": null,
+      "dominant_trap": "D",
       "gold_keys": [
         "GK-CONTRACTS-TPB-CAP-01"
       ],
@@ -1234,7 +3036,7 @@
       "correct": "C",
       "difficulty_band": "medium-high",
       "tension_axis": "minimum required participants vs extra participants",
-      "dominant_trap": null,
+      "dominant_trap": "D",
       "gold_keys": [
         "GK-CRIMINAL-WHARTON-EXTRA-PARTY-01"
       ],
@@ -1445,7 +3247,7 @@
       "correct": "D",
       "difficulty_band": "hard",
       "tension_axis": "violation layer vs remedy layer; statement evidence vs physical evidence",
-      "dominant_trap": null,
+      "dominant_trap": "B",
       "gold_keys": [
         "GK-CRIM-MIRANDA-FRUIT-01"
       ],
@@ -1479,7 +3281,7 @@
       "correct": "D",
       "difficulty_band": "high",
       "tension_axis": "automatic outcome vs calibrated review",
-      "dominant_trap": null,
+      "dominant_trap": "C",
       "gold_keys": [
         "GK-CONSTITUTIONAL_LAW-MAZARS-PRESIDENTIAL-01"
       ],
@@ -1511,7 +3313,7 @@
       "correct": "C",
       "difficulty_band": "moderate-anchor",
       "tension_axis": "belief-as-such punishment vs conduct regulation",
-      "dominant_trap": null,
+      "dominant_trap": "B",
       "gold_keys": [
         "GK-CONLAW-BELIEF-CONDUCT-01"
       ],
@@ -1593,7 +3395,7 @@
       "correct": "A",
       "difficulty_band": "hard",
       "tension_axis": null,
-      "dominant_trap": null,
+      "dominant_trap": "No measured dominant trap supplied; former-testimony answer is treated as the highest-risk trap by structure.",
       "gold_keys": [
         "GK-EVIDENCE-DOUBLE-HEARSAY-01",
         "GK-EVIDENCE-FORMER-TESTIMONY-01"
@@ -1610,7 +3412,7 @@
       "correct": "A",
       "difficulty_band": "medium-high",
       "tension_axis": "later-installation use: breach proof vs limited feasibility use",
-      "dominant_trap": null,
+      "dominant_trap": "later fix equals conclusive prior negligence",
       "gold_keys": [
         "GK-TORTS-LATER-REPAIR-01"
       ],
@@ -1642,7 +3444,7 @@
       "correct": "C",
       "difficulty_band": "discriminator",
       "tension_axis": "compliance advice versus furthering fraud",
-      "dominant_trap": null,
+      "dominant_trap": "B",
       "gold_keys": [
         "GK-EVIDENCE-CRIME-FRAUD-01",
         "GK-EVIDENCE-WORKPRODUCT-DISTINCTION-01"
@@ -1659,7 +3461,7 @@
       "correct": "D",
       "difficulty_band": "medium-hard",
       "tension_axis": "precise defect proof required vs res ipsa inference without direct defect proof",
-      "dominant_trap": null,
+      "dominant_trap": "precise-defect requirement",
       "gold_keys": [
         "GK-TORTS-RES-IPSA-INFERENCE-01",
         "GK-TORTS-RES-IPSA-CONTROL-01"
@@ -1676,7 +3478,7 @@
       "correct": "D",
       "difficulty_band": "trap repair",
       "tension_axis": "mutual-mistake fact vs contractual risk allocation",
-      "dominant_trap": null,
+      "dominant_trap": "C",
       "gold_keys": [
         "GK-CONTRACTS-AS-IS-MISTAKE-01"
       ],
@@ -1724,7 +3526,7 @@
       "correct": "D",
       "difficulty_band": "hard",
       "tension_axis": "violation versus remedy",
-      "dominant_trap": null,
+      "dominant_trap": "C",
       "gold_keys": [
         "GK-CRIMINAL-ARREST-REMEDY-01"
       ],
@@ -1837,7 +3639,7 @@
       "correct": "C",
       "difficulty_band": "medium_hard",
       "tension_axis": "Who paid?",
-      "dominant_trap": null,
+      "dominant_trap": "D",
       "gold_keys": [
         "GK-TORTS-COLLATERAL-SOURCE-01"
       ],
@@ -1886,7 +3688,7 @@
       "correct": "B",
       "difficulty_band": "hard",
       "tension_axis": "same-offense substance versus different label",
-      "dominant_trap": null,
+      "dominant_trap": "D",
       "gold_keys": [
         "GK-CRIMINAL-MASSIAH-SAME-OFFENSE-01",
         "GK-CRIMINAL-MASSIAH-CUSTODY-01"
@@ -1984,7 +3786,7 @@
       "correct": "C",
       "difficulty_band": "medium_high",
       "tension_axis": null,
-      "dominant_trap": null,
+      "dominant_trap": "D",
       "gold_keys": [
         "GK-CONSTITUTIONAL_LAW-MEDICAL-USE-01"
       ],
@@ -2049,7 +3851,7 @@
       "correct": "A",
       "difficulty_band": "trap repair",
       "tension_axis": "complete-and-exclusive integration vs mere non-contradiction",
-      "dominant_trap": null,
+      "dominant_trap": "B",
       "gold_keys": [
         "GK-CONTRACTS-COMPLETE-INTEGRATION-01"
       ],
@@ -2065,7 +3867,7 @@
       "correct": "B",
       "difficulty_band": "trap repair",
       "tension_axis": "Barred defect/warning purpose versus general relevance/feasibility/negligence-only drift.",
-      "dominant_trap": null,
+      "dominant_trap": "No measured pick rates supplied; likely diagnostic trap is negligence-only Rule 407 scope.",
       "gold_keys": [
         "GK-EVIDENCE-RULE407-PURPOSE-01"
       ],
@@ -2162,7 +3964,7 @@
       "correct": "C",
       "difficulty_band": "medium-hard",
       "tension_axis": "defendant no-breach/foreseeability vs plaintiff avoidability vs other-cause blame",
-      "dominant_trap": null,
+      "dominant_trap": "B",
       "gold_keys": [
         "GK-TORTS-FORESEEABLE-RISK-01",
         "GK-TORTS-CONTRIB-AVOIDABILITY-01"
@@ -2212,7 +4014,7 @@
       "correct": "D",
       "difficulty_band": "3",
       "tension_axis": "Is this a general taxpayer grievance, or the narrow spending-power/Establishment-Clause exception?",
-      "dominant_trap": null,
+      "dominant_trap": "B",
       "gold_keys": [
         "GK-CONSTITUTIONAL_LAW-FLAST_SPENDING-01"
       ],
@@ -2403,7 +4205,7 @@
       "correct": "C",
       "difficulty_band": "trap repair",
       "tension_axis": "timely oral objection versus required written objection",
-      "dominant_trap": null,
+      "dominant_trap": "D",
       "gold_keys": [
         "GK-CONTRACTS-MERCHANT-CONFIRMATION-01"
       ],
@@ -2451,7 +4253,7 @@
       "correct": "B",
       "difficulty_band": "medium-hard",
       "tension_axis": "court power over defendant vs plaintiff/property/collection lures",
-      "dominant_trap": null,
+      "dominant_trap": "D",
       "gold_keys": [
         "GK-CIVIL_PROCEDURE-QIR-01"
       ],
@@ -2547,7 +4349,7 @@
       "correct": "C",
       "difficulty_band": "medium-hard",
       "tension_axis": "offer vs acceptance by required performance",
-      "dominant_trap": null,
+      "dominant_trap": "acceptance-family trap; measured rates unavailable",
       "gold_keys": [
         "GK-CONTRACTS-MODE-ACCEPTANCE-01"
       ],

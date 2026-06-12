@@ -1,15 +1,15 @@
 [
   {
-    "id": "RP-REMED-BLANK-GRANTEE-GATE",
+    "id": "RC-REAL-PROPERTY-EXECUTORY-INTEREST-01",
     "type": "ANCHOR",
-    "title": "Blank grantee gate",
-    "signal": "The stem says the grantee line was blank when the deed was delivered.",
-    "student_move": "Freeze the validity gate before considering recording or consideration.",
-    "tiny_rule": "No grantee at delivery plus no authority to fill means no title passes to the later filler.",
-    "trap": "Signature or recording feels complete.",
+    "title": "Shifting executory interest — cutting-short axis in a third party",
+    "signal": "A conveyance 'to A and his heirs, but if [third person] meets a condition, then to [third person] and his heirs' — fee simple subject to an executory limitation with a contingent shifting executory interest in a third party.",
+    "student_move": "Run the axis check: (1) does the future interest cut short a prior estate? (yes -> executory, not remainder). (2) is the future interest in the grantor or a third party? (third party -> shifting, not springing). Combine: shifting executory interest.",
+    "tiny_rule": "Cutting-short + third party = shifting executory interest. Cutting-short + grantor = springing executory interest. No cutting-short + life estate = remainder.",
+    "trap": "The dominant trap is to call it a 'vested remainder subject to open' because there is no life estate to support a remainder. The threshold defect is that the future interest is executory, not a remainder.",
     "confidence": "ANCHOR_ASSISTED",
     "example_qids": [
-      "17058_advent_honey_parcel"
+      "18077_maranatha_meadow"
     ]
   },
   {

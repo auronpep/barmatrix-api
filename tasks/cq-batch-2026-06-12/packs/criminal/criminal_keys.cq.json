@@ -1,134 +1,170 @@
 [
   {
-    "id": "GK-CRIMINAL-GRAND-JURY-REMEDY-01",
+    "id": "GK-CRIMINAL-STEWARDSHIP-BOMB-01",
     "kind": "gold",
-    "statement": "A facially valid indictment is not dismissed merely because the grand jury heard hearsay or evidence traceable to an unlawful search; those defects point to trial suppression, not automatic indictment dismissal.",
-    "type": "distinction",
-    "trigger": "Motion to dismiss an indictment based on what the grand jury heard.",
-    "authority": "Costello v. United States; United States v. Calandra; United States v. Blue.",
+    "statement": "Conspiracy does not merge with the substantive offense. Wharton's Rule (the only true no-stack exception) applies only to crimes that by definition require two persons (bigamy, adultery, incest, dueling). Arson is not a Wharton's Rule crime, so both conspiracy and arson stand.",
+    "type": "rule",
+    "trigger": "two-person group agrees to commit arson and succeeds; jurisdiction's arson statute covers non-dwellings; call is concurrent conviction",
+    "authority": "Model Penal Code §§ 5.03, 221.1, 1.07(4); Iannelli v. United States, 420 U.S. 770 (1975)",
     "last_minute_review": true,
     "example_qids": [
-      "14621_manna_cafe_bookmaker"
+      "16127_stewardship_bomb"
     ]
   },
   {
-    "id": "GK-CRIMINAL-UNDERCOVER-NONCUSTODIAL-01",
-    "kind": "gold",
-    "statement": "A suspect’s voluntary conversation with someone he does not know is an agent is not custodial police interrogation for Miranda purposes.",
-    "type": "distinction",
-    "trigger": "Undercover social conversation before indictment or custody.",
-    "authority": "Illinois v. Perkins.",
-    "last_minute_review": true,
-    "example_qids": [
-      "14621_manna_cafe_bookmaker"
-    ]
-  },
-  {
-    "id": "SK-CRIMINAL-GRAND-JURY-REMEDY-01",
+    "id": "SK-CRIMINAL-STEWARDSHIP-BOMB-01",
     "kind": "silver",
-    "statement": "When the call asks to dismiss an indictment, do not stop at 'the government violated a right.' Ask whether dismissal is the remedy.",
+    "statement": "When the call asks 'of which of the following crimes may the defendant be properly convicted,' check whether both inchoate and substantive elements are present. If yes, both stack unless Wharton's Rule applies.",
     "type": "call_focus",
-    "trigger": "Motion to dismiss indictment + answers naming unlawful search, hearsay, or counsel violation.",
+    "trigger": "stem describes a group agreement plus a completed substantive crime; the call is concurrent conviction",
     "authority": null,
     "last_minute_review": true,
     "example_qids": [
-      "14621_manna_cafe_bookmaker"
+      "16127_stewardship_bomb"
     ]
   },
   {
-    "id": "GK-CRIMINAL-BANK-THIRD-PARTY-01",
+    "id": "GK-CRIMINAL-MIDNIGHT-UTILITY-01",
     "kind": "gold",
-    "statement": "Bank account records are the bank's business records. A customer generally has no Fourth Amendment privacy interest in information voluntarily conveyed to the bank in ordinary transactions.",
-    "type": "constitutional_principle",
-    "trigger": "Government obtains checks, deposit slips, account statements, or bank records from the bank.",
-    "authority": "United States v. Miller, 425 U.S. 435 (1976); Smith v. Maryland, 442 U.S. 735 (1979).",
+    "statement": "At common law, the breaking element of burglary is satisfied by constructive breaking — entry obtained by fraud, threat, or trick — even without physical damage to the dwelling.",
+    "type": "rule",
+    "trigger": "false-pretenses entry with intent to commit a felony at the moment of entry",
+    "authority": "Common-law burglary doctrine; see LaFave, Substantive Criminal Law § 21.1(c); Model Penal Code § 221.1",
     "last_minute_review": true,
     "example_qids": [
-      "17084_five_loaves_bank_records"
+      "17225_midnight_utility_fraud"
     ]
   },
   {
-    "id": "SK-CRIMINAL-SUPPRESSION-THRESHOLD-01",
+    "id": "SK-CRIMINAL-MIDNIGHT-UTILITY-01",
     "kind": "silver",
-    "statement": "On a suppression call, first ask whether this defendant has a Fourth Amendment interest in the record. If no protected interest exists, warrant and subpoena phrasing is bait.",
+    "statement": "On a burglary question, the entry need not be by force — fraud, threat, or trick all count.",
+    "type": "trap_spotting",
+    "trigger": "entry obtained by deception, threat, or trick at night with felonious intent",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "17225_midnight_utility_fraud"
+    ]
+  },
+  {
+    "id": "GK-CRIMINAL-OLIVE-BRANCH-ORNAMENT-01",
+    "kind": "gold",
+    "statement": "Asportation in larceny is satisfied by even minimal movement of the property; the property need not leave the building and the act of sale is not an element.",
+    "type": "rule",
+    "trigger": "small item, two steps toward the exit, stopped before leaving the building",
+    "authority": "Common-law larceny five-element formulation; Model Penal Code § 223.2 (where the jurisdiction has adopted it)",
+    "last_minute_review": true,
+    "example_qids": [
+      "17859_olive_branch_ornament"
+    ]
+  },
+  {
+    "id": "SK-CRIMINAL-OLIVE-BRANCH-ORNAMENT-01",
+    "kind": "silver",
+    "statement": "When a stem gives a 'small item, two steps, stopped before exit' pattern, lock the call to the asportation minimum and cut the 'must leave the building' and 'must have sold it' distractors first.",
     "type": "call_focus",
-    "trigger": "The call asks whether to suppress records obtained from someone else.",
+    "trigger": "small item, two steps toward the exit, stopped before leaving the building",
     "authority": null,
     "last_minute_review": true,
     "example_qids": [
-      "17084_five_loaves_bank_records"
+      "17859_olive_branch_ornament"
     ]
   },
   {
-    "id": "GK-CRIMINAL-GENERAL-INTENT-INTOX-01",
+    "id": "GK-CRIMINAL-CAMP-STIPEND-01",
     "kind": "gold",
-    "statement": "Voluntary intoxication may matter for a specific-intent element, but it is not a defense to a general-intent crime. General-intent battery requires intent to make the offensive contact, not a further objective.",
-    "type": "distinction",
-    "trigger": "Stem says the offense requires intentional contact but no further purpose or objective.",
-    "authority": "Cornell Wex intoxication; CALCRIM No. 3426; People v. Hood / People v. Atkins line of authority",
+    "statement": "Forgery is complete when the defendant falsely makes a writing with apparent legal efficacy with intent to defraud; the victim need not actually lose money, and the forger need not successfully utter the document. The 'false making' is the actus reus.",
+    "type": "rule",
+    "trigger": "writing falsely made and signed without authority with intent to defraud",
+    "authority": "Model Penal Code Section 241.1; common-law forgery (apparent legal efficacy test); state forgery statutes tracking the same elements",
     "last_minute_review": true,
     "example_qids": [
-      "17151_carol_program"
+      "18111_camp_stipend_forgery"
     ]
   },
   {
-    "id": "SK-CRIMINAL-GENERAL-INTENT-INTOX-01",
+    "id": "SK-CRIMINAL-CAMP-STIPEND-01",
     "kind": "silver",
-    "statement": "When two answers reach the same outcome, test the reason against the stem before keeping it. A right result with a reason the stem contradicts is still a cut.",
+    "statement": "When the call asks 'has the defendant committed forgery,' ask whether the false making has occurred. Loss and successful uttering are not elements of forgery.",
+    "type": "call",
+    "trigger": "question about forgery / uttering / false writing",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "18111_camp_stipend_forgery"
+    ]
+  },
+  {
+    "id": "GK-CRIMINAL-CHURCH-CRAFT-FAIR-QUILT-01",
+    "kind": "gold",
+    "statement": "Receiving stolen property requires that the defendant know or believe the property was stolen at the time she received control of it. The fact that the property was stolen before the defendant received it is necessary but not sufficient; the common-law and modern-statutory offense also requires knowledge or belief at the time of receipt. Later knowledge does not retroactively supply the missing mens rea.",
+    "type": "rule",
+    "trigger": "buyer purchases property at a normal price from a person she has known and trusted for years; nothing suggests the property is stolen; the seller confesses or the buyer learns the truth later; the buyer promptly returns the property",
+    "authority": "Model Penal Code § 223.6; Wayne R. LaFave, Substantive Criminal Law § 19.6 (3d ed.)",
+    "last_minute_review": true,
+    "example_qids": [
+      "18477_church_craft_fair_quilt"
+    ]
+  },
+  {
+    "id": "SK-CRIMINAL-CHURCH-CRAFT-FAIR-QUILT-01",
+    "kind": "silver",
+    "statement": "When the call is 'guilty of receiving stolen property?' with a prompt-return fact pattern, the first move is to test whether the defendant had knowledge or belief at the moment of receipt. If not, the offense fails on the mens rea element and the rest of the analysis is unnecessary.",
+    "type": "call_focus",
+    "trigger": "stem describes a buyer who paid a normal price, saw no red flags, learned the truth later, and promptly returned the property",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "18477_church_craft_fair_quilt"
+    ]
+  },
+  {
+    "id": "GK-CRIMINAL-VINTAGE-BIBLE-EMBEZZLEMENT-01",
+    "kind": "gold",
+    "statement": "The lawful possession at the outset re-routes the offense from larceny to embezzlement; the conversion of entrusted property is the embezzlement element, and the larceny trespassory-taking requirement is not met.",
+    "type": "distinction",
+    "trigger": "owner entrusts property to repair/restoration shop, shop lawfully accepts, shop then sells to a third party and keeps the proceeds",
+    "authority": "Common-law embezzlement doctrine; Restatement (Third) of Restitution and Unjust Enrichment; Model Penal Code § 223.4",
+    "last_minute_review": true,
+    "example_qids": [
+      "18747_vintage_bible_embezzlement"
+    ]
+  },
+  {
+    "id": "SK-CRIMINAL-VINTAGE-BIBLE-EMBEZZLEMENT-01",
+    "kind": "silver",
+    "statement": "When the call asks for the 'best' theft offense, do not stop at the colloquial 'theft = larceny' answer — check the manner in which the defendant first came into possession.",
     "type": "answer_array",
-    "trigger": "One No answer says strict liability while the stem says intentional contact.",
+    "trigger": "entrustment plus later sale-to-third-party fact pattern",
     "authority": null,
     "last_minute_review": true,
     "example_qids": [
-      "17151_carol_program"
+      "18747_vintage_bible_embezzlement"
     ]
   },
   {
-    "id": "GK-CRIMINAL-TITLE-PRESENT-FACT-01",
+    "id": "GK-CRIMINAL-LARCENY-INTENT-01",
     "kind": "gold",
-    "statement": "False pretenses is the theft lane for title or ownership obtained by a knowingly false present or past fact. Larceny by trick is possession-only deception; embezzlement is lawful possession followed by conversion.",
-    "type": "distinction",
-    "trigger": "deception plus bill of sale/title/ownership transfer",
-    "authority": "Cornell Wex false pretenses and larceny-by-trick entries; official BarMatrix explanation.",
+    "statement": "Unauthorized borrowing is not common-law larceny unless the borrower's intended use creates a substantial risk of permanent loss or otherwise shows intent to permanently deprive.",
+    "type": "rule",
+    "trigger": "When the stem shows a defined short-term use and an actual return plan (no permanent-loss risk), the intent-to-permanently-deprive element fails, and the larceny claim fails with it.",
+    "authority": "Perkins & Boyce, Criminal Law 305-06 (3d ed. 1982); cf. Model Penal Code § 223.0(1), § 223.1.",
     "last_minute_review": true,
     "example_qids": [
-      "19263_chapel_handbells"
+      "18843_patio_pressure_washer"
     ]
   },
   {
-    "id": "SK-CRIMINAL-TITLE-AXIS-01",
+    "id": "SK-CRIMINAL-LARCENY-INTENT-01",
     "kind": "silver",
-    "statement": "In a theft-taxonomy array, ask what moved first: title/ownership, possession only, or lawful custody. That axis picks the crime before the bad-check fact distracts you.",
-    "type": "answer_array",
-    "trigger": "multiple property-crime labels in the answer choices",
+    "statement": "On a larceny question, look for the intent-to-permanently-deprive anchor before locking any 'Yes' answer. The 'Yes' answer that omits the intent element is the one to suspect.",
+    "type": "call_focus",
+    "trigger": "A larceny call with a defined short-term use and an actual return plan.",
     "authority": null,
     "last_minute_review": true,
     "example_qids": [
-      "19263_chapel_handbells"
-    ]
-  },
-  {
-    "id": "GK-CRIM-DEFENSE-OTHERS-01",
-    "kind": "gold",
-    "statement": "Majority defense of others is judged by the intervener’s reasonable belief. A reasonable mistake about who was entitled to use force does not forfeit the defense.",
-    "type": "distinction",
-    "trigger": "Stem says majority rule and gives both hidden actual facts and reasonable apparent facts.",
-    "authority": "Model Penal Code § 3.05(1)(b)-(c); representative reasonable-belief statutes; modern majority rule summaries.",
-    "last_minute_review": true,
-    "example_qids": [
-      "19336_nativity_warehouse_rescue"
-    ]
-  },
-  {
-    "id": "SK-CRIM-DEFENSE-OTHERS-01",
-    "kind": "silver",
-    "statement": "When a defense-of-others stem gives hidden actual facts and apparent reasonable facts, name the axis before choosing: actual-rights rule or reasonable-appearance rule.",
-    "type": "clash",
-    "trigger": "Call says majority rule; one choice uses actual facts and one uses reasonable belief.",
-    "authority": null,
-    "last_minute_review": true,
-    "example_qids": [
-      "19336_nativity_warehouse_rescue"
+      "18843_patio_pressure_washer"
     ]
   },
   {

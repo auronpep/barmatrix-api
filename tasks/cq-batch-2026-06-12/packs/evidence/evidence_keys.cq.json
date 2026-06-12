@@ -1,62 +1,26 @@
 [
   {
-    "id": "GK-EVIDENCE-TRADE-TERMS-01",
+    "id": "GK-EVIDENCE-SHEPHERDING-CALL-01",
     "kind": "gold",
-    "statement": "Trade terminology or usage evidence may be admitted to explain the trade meaning of a contract term. The reason is the trade-meaning function, not an express agreement by the parties.",
+    "statement": "Under FRE 608(a), a witness's character for truthfulness may be supported by reputation or opinion evidence only after that character has been attacked. The defendant's mere testimony in her own defense is not, by itself, an attack on her own character for truthfulness.",
     "type": "rule",
-    "trigger": "A contract phrase is explained by someone familiar with the relevant wholesale trade.",
-    "authority": "UCC 1-303(c)-(d); Restatement (Second) of Contracts 222.",
+    "trigger": "criminal defendant testifies in own defense; defense offers a long-acquaintance opinion that the defendant is honest; no prior attack on character is in the record",
+    "authority": "Fed. R. Evid. 608(a); United States v. Manso-Portes, 838 F.2d 889 (7th Cir. 1988)",
     "last_minute_review": true,
     "example_qids": [
-      "17045_scripture_banner_cloth"
+      "17996_shepherding_call"
     ]
   },
   {
-    "id": "GK-EVIDENCE-OPINION-01",
-    "kind": "gold",
-    "statement": "Opinion form alone does not exclude qualified specialized-knowledge testimony.",
-    "type": "rule",
-    "trigger": "An answer says to exclude testimony simply because it is an opinion.",
-    "authority": "FRE 702; FRE 704.",
-    "last_minute_review": true,
-    "example_qids": [
-      "17045_scripture_banner_cloth"
-    ]
-  },
-  {
-    "id": "SK-EVIDENCE-PURPOSE-LABEL-01",
+    "id": "SK-EVIDENCE-SHEPHERDING-CALL-01",
     "kind": "silver",
-    "statement": "On an admissibility call, first name what the testimony is offered to prove. Pick the answer that labels that use, not the answer that repeats a tempting background fact.",
-    "type": "call_focus",
-    "trigger": "Three choices say admitted, but for different reasons.",
-    "authority": null,
-    "last_minute_review": true,
-    "example_qids": [
-      "17045_scripture_banner_cloth"
-    ]
-  },
-  {
-    "id": "GK-EVIDENCE-MARITAL-WRITTEN-COMMUNICATION-01",
-    "kind": "gold",
-    "statement": "Marital communications privilege protects a confidential communication between spouses during marriage; the communication can be written or electronic, not only spoken.",
+    "statement": "FRE 608(a) authorizes opinion (and reputation) evidence on truthfulness; the gate is 'after attack,' not 'no opinion.' When the offered evidence is opinion on truthfulness, the discrimination is the attack trigger, not the form.",
     "type": "distinction",
-    "trigger": "private written message between spouses during marriage",
-    "authority": "FRE 501; SEC v. Lavin; Wolfle v. United States; Trammel v. United States",
-    "last_minute_review": true,
-    "example_qids": [
-      "19228_prayer_card_study_bible"
-    ]
-  },
-  {
-    "id": "SK-EVIDENCE-PRAYER-CARD-01",
-    "kind": "silver",
-    "statement": "When privilege answers fight over spoken words, document format, and refusal to testify, ask what object the privilege protects.",
-    "type": "answer_array",
-    "trigger": "one answer says document; one says spoken; one says spouse refuses",
+    "trigger": "the offered evidence is opinion on truthfulness; no prior attack is in the record",
     "authority": null,
     "last_minute_review": true,
     "example_qids": [
-      "19228_prayer_card_study_bible"
+      "17996_shepherding_call"
     ]
   },
   {

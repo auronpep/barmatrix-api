@@ -3,11 +3,9 @@
     "id": "DRILL-CQ-EVIDENCE-F01",
     "title": "Trap mold: bait_doctrine",
     "skill": "Trap recognition",
-    "task": "Across 9 questions, identify which choice carries the \"bait_doctrine\" mold before solving.",
+    "task": "Across 7 questions, identify which choice carries the \"bait_doctrine\" mold before solving.",
     "trap_family": "bait_doctrine",
     "qid_pool": [
-      "17045_scripture_banner_cloth",
-      "19228_prayer_card_study_bible",
       "19379_hymn_candle_invoice_van",
       "20307_bethany_banners_transcript",
       "20313_bethlehem_olivewood_crosses",
@@ -17,43 +15,16 @@
       "20760_rubber_stamp_mail_fraud"
     ],
     "cards": [],
-    "pass_criterion": "Identify the trap choice in 8/9 questions."
+    "pass_criterion": "Identify the trap choice in 6/7 questions."
   },
   {
     "id": "DRILL-CQ-EVIDENCE-F02",
-    "title": "Trap mold: fabricated_rule",
-    "skill": "Trap recognition",
-    "task": "Across 3 questions, identify which choice carries the \"fabricated_rule\" mold before solving.",
-    "trap_family": "fabricated_rule",
-    "qid_pool": [
-      "19228_prayer_card_study_bible",
-      "20404_acts_axes_cash_loads",
-      "20423_galilee_props_bias"
-    ],
-    "cards": [],
-    "pass_criterion": "Identify the trap choice in 2/3 questions."
-  },
-  {
-    "id": "DRILL-CQ-EVIDENCE-F03",
-    "title": "Trap mold: flat_misstatement",
-    "skill": "Trap recognition",
-    "task": "Across 3 questions, identify which choice carries the \"flat_misstatement\" mold before solving.",
-    "trap_family": "flat_misstatement",
-    "qid_pool": [
-      "17045_scripture_banner_cloth",
-      "19228_prayer_card_study_bible",
-      "20602_davids_harp_projector"
-    ],
-    "cards": [],
-    "pass_criterion": "Identify the trap choice in 2/3 questions."
-  },
-  {
-    "id": "DRILL-CQ-EVIDENCE-F04",
     "title": "Trap mold: tiered_absolute",
     "skill": "Trap recognition",
-    "task": "Across 7 questions, identify which choice carries the \"tiered_absolute\" mold before solving.",
+    "task": "Across 8 questions, identify which choice carries the \"tiered_absolute\" mold before solving.",
     "trap_family": "tiered_absolute",
     "qid_pool": [
+      "17996_shepherding_call",
       "19379_hymn_candle_invoice_van",
       "20313_bethlehem_olivewood_crosses",
       "20404_acts_axes_cash_loads",
@@ -63,6 +34,6 @@
       "20760_rubber_stamp_mail_fraud"
     ],
     "cards": [],
-    "pass_criterion": "Identify the trap choice in 6/7 questions."
+    "pass_criterion": "Identify the trap choice in 7/8 questions."
   }
 ]

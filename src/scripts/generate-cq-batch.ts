@@ -7,8 +7,9 @@
 //   all    — qa + sql + packs
 //
 // Follows the ambassador-diagnostic pattern: deterministic UUIDs, ON DUPLICATE KEY UPDATE,
-// never touches a database. Focus-group rows are NOT emitted: all batch pick rates are
-// provenance "predicted", and focus_group_response_data holds measured rates only.
+// never touches a database. Focus-group rows are NOT emitted: batch pick rates are
+// provenance "predicted" or "inherited" (carried from the original question's measured
+// row via the letter map), and focus_group_response_data holds measured rates only.
 
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
@@ -17,6 +18,7 @@ import { parse as parseYaml } from "yaml";
 
 const DEFAULT_SOURCE_DIR = "C:/CCG/Finished";
 const DEFAULT_OUT_DIR = "C:/barmatrix-api/tasks/cq-batch-2026-06-12";
+const OUTLINE_MAP_PATH = "C:/CCG/OUTLINE_CODES_COMPLETE.md";
 
 const LETTERS = ["A", "B", "C", "D"] as const;
 type Letter = (typeof LETTERS)[number];
@@ -76,7 +78,8 @@ interface CqQuestion {
   subject_dir: string;
   topic: string | null;
   subtopic: string | null;
-  outline_code: string | null; // UNVERIFIED — no outline map exists; never trust for navigation
+  outline_code: string | null;
+  outline_code_verified: boolean; // true only when the code appears in OUTLINE_CODES_COMPLETE.md
   tension_axis: string | null;
   splitting_fact: string | null;
   deciding_phase: string | null;
@@ -99,6 +102,7 @@ interface CqQuestion {
   misconception_tags: string[];
   drill_seeds: CqDrillSeed[];
   warnings: string[];
+  notes: string[];
 }
 
 interface ParseFailure {
@@ -166,19 +170,75 @@ function deepString(value: unknown, keys: string[], depth = 0): string | null {
   return null;
 }
 
+/** The dominant-trap field drifted across emitter generations: answer_array.dominant_trap
+ *  (mapping with choice / new_choice / pedagogical, or a bare value), frontmatter/doc-level
+ *  dominant_trap, dominant_trap_candidate, analytics_hooks.dominant_trap_choice, or
+ *  predicted_dominant_trap. dominant_trap_status / dominant_trap_note are prose explaining
+ *  that no measured trap was supplied — deliberately NOT treated as a name. */
+function findDominantTrap(value: unknown, depth = 0): string | null {
+  if (depth > 6) return null;
+  const record = rec(value);
+  if (!record) return null;
+  const keys = ["dominant_trap", "dominant_trap_candidate", "dominant_trap_choice", "predicted_dominant_trap"];
+  for (const key of keys) {
+    const raw = record[key];
+    const direct = str(raw);
+    if (direct) return direct;
+    const inner = rec(raw);
+    const choice = str(inner?.choice) ?? str(inner?.new_choice) ?? str(inner?.pedagogical);
+    if (choice) return choice;
+  }
+  for (const child of Object.values(record)) {
+    const found = findDominantTrap(child, depth + 1);
+    if (found) return found;
+  }
+  return null;
+}
+
 /** Some emitter generations leave unquoted scalars containing ": ", which the YAML
  *  spec reads as a nested compact mapping. Quote those values and retry. */
 function sanitizeYaml(source: string): string {
   return source
     .split("\n")
     .map((line) => {
-      const match = line.match(/^(\s*[A-Za-z_][A-Za-z0-9_]*:)\s+([^"'|>#\n].*: .*)$/);
+      // stray trailing comma after a closing quote (JSON habit): - "...", / key: "...",
+      const trailingComma = line.match(/^(\s*(?:- |[A-Za-z_][A-Za-z0-9_]*: )".*"),\s*$/);
+      if (trailingComma) return trailingComma[1] as string;
+      // trailing text after a closed quote: key: "..." (note) — re-quote whole value
+      const afterQuote = line.match(/^(\s*(?:- )?[A-Za-z_][A-Za-z0-9_]*:)\s+"(.*)"(\s+\S.*)$/);
+      if (afterQuote) {
+        const value = `${afterQuote[2]}${afterQuote[3]}`;
+        return `${afterQuote[1]} "${value.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
+      }
+      // unquoted scalar containing ": " (compact-mapping error), incl. list items
+      const match = line.match(/^(\s*(?:- )?[A-Za-z_][A-Za-z0-9_]*:)\s+([^"'|>#\n].*: .*)$/);
       if (!match) return line;
       const value = (match[2] ?? "").trim();
       if (/^[\d.]+$/.test(value)) return line;
       return `${match[1]} "${value.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
     })
     .join("\n");
+}
+
+/** Repair "key: scalar" lines that are followed by a deeper-indented child mapping
+ *  (invalid YAML): move the scalar into a `_value` child. Last-resort pass. */
+function repairOrphanChildren(source: string): string {
+  const lines = source.split("\n");
+  const out: string[] = [];
+  for (let i = 0; i < lines.length; i += 1) {
+    const line = lines[i] as string;
+    const match = line.match(/^(\s*)([A-Za-z_][A-Za-z0-9_]*):\s+(\S.*)$/);
+    const next = lines[i + 1] ?? "";
+    const indent = match ? (match[1] as string).length : 0;
+    const nextIndent = next.match(/^\s*/)?.[0].length ?? 0;
+    if (match && next.trim().length > 0 && nextIndent > indent && /^\s*[A-Za-z_-]/.test(next) && next.includes(":")) {
+      out.push(`${match[1]}${match[2]}:`);
+      out.push(`${match[1]}  _value: ${match[3]}`);
+    } else {
+      out.push(line);
+    }
+  }
+  return out.join("\n");
 }
 
 /** Extract a Pass-1 markdown section body by header text (e.g. "Final question",
@@ -198,6 +258,25 @@ function slugify(value: string): string {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "")
     .slice(0, 120);
+}
+
+/** Valid 8-digit outline codes from OUTLINE_CODES_COMPLETE.md (catalog lines look like
+ *  "        52040300  Gap-Fillers, Interpretation, and the Parol Evidence Rule > Parol Evidence Rule").
+ *  Returns null when the map file is absent so callers can fall back to "unverified". */
+let outlineCodesCache: Set<string> | null | undefined;
+function outlineCodes(): Set<string> | null {
+  if (outlineCodesCache !== undefined) return outlineCodesCache;
+  if (!existsSync(OUTLINE_MAP_PATH)) {
+    outlineCodesCache = null;
+    return null;
+  }
+  const codes = new Set<string>();
+  for (const line of readFileSync(OUTLINE_MAP_PATH, "utf8").split("\n")) {
+    const match = line.match(/^\s*(\d{8})\s+\S/);
+    if (match) codes.add(match[1] as string);
+  }
+  outlineCodesCache = codes.size > 0 ? codes : null;
+  return outlineCodesCache;
 }
 
 function normalizeSubject(value: string | null): string | null {
@@ -296,10 +375,11 @@ function parseKeys(value: unknown): CqKey[] {
 function parseCqFile(markdown: string, sourceFile: string): CqQuestion {
   const reasons: string[] = [];
   const warnings: string[] = [];
+  const notes: string[] = [];
   const { yaml, jsons } = extractFences(markdown);
 
-  if (!/^##?\s*[AB1]?\)?\s*PASS-1 TRANSFORM REPORT/im.test(markdown) && !/PASS-1 TRANSFORM REPORT/i.test(markdown)) {
-    reasons.push("missing Pass-1 transform report header");
+  if (!/PASS-1 TRANSFORM REPORT/i.test(markdown)) {
+    warnings.push("Pass-1 transform report header not found (older header wording)");
   }
   if (!yaml) reasons.push("missing B1 question YAML block");
 
@@ -319,10 +399,15 @@ function parseCqFile(markdown: string, sourceFile: string): CqQuestion {
     try {
       doc = (parseYaml(sanitizeYaml(yaml as string), { uniqueKeys: false }) ?? {}) as JsonRecord;
       warnings.push("B1 YAML required sanitization (unquoted ': ' scalars)");
-    } catch (err) {
-      throw new QuarantineError(sourceFile, [
-        `B1 YAML failed to parse: ${err instanceof Error ? err.message.split("\n")[0] : String(err)}`,
-      ]);
+    } catch {
+      try {
+        doc = (parseYaml(repairOrphanChildren(sanitizeYaml(yaml as string)), { uniqueKeys: false }) ?? {}) as JsonRecord;
+        warnings.push("B1 YAML required orphan-child repair");
+      } catch (err) {
+        throw new QuarantineError(sourceFile, [
+          `B1 YAML failed to parse: ${err instanceof Error ? err.message.split("\n")[0] : String(err)}`,
+        ]);
+      }
     }
   }
 
@@ -388,7 +473,6 @@ function parseCqFile(markdown: string, sourceFile: string): CqQuestion {
   const routing = rec(doc.c3_routing);
   const walkthroughs = rec(doc.choice_walkthroughs);
   const residual = rec(doc.residual_answer);
-  const answerArray = rec(doc.answer_array);
   const analyticsHooks = rec(doc.analytics_hooks);
 
   const b3Distractors = new Map<string, JsonRecord>();
@@ -412,22 +496,37 @@ function parseCqFile(markdown: string, sourceFile: string): CqQuestion {
     if (record && choice) b5Paths.set(choice, record);
   }
 
-  // dominant trap: prefer B1 answer_array.dominant_trap.choice
-  const dominantTrap = str(rec(answerArray?.dominant_trap)?.choice);
+  const dominantTrap = findDominantTrap(doc);
   if (!dominantTrap) warnings.push("dominant trap not named");
 
-  // measured pick rates must not exist in this batch — verify honesty
+  // pick-rate honesty: measured rates must not exist in this batch. "inherited" rates
+  // (carried from the original question's measured row via the letter map) are allowed
+  // but stay out of focus_group_response_data — informational note, not a warning.
   const pcts = rec(row.selection_percentages);
   for (const letter of LETTERS) {
     const cell = rec(pcts?.[letter]);
-    if (cell && cell.value !== null && cell.value !== undefined && str(cell.provenance) !== "predicted") {
+    if (!cell || cell.value === null || cell.value === undefined) continue;
+    const cellProvenance = str(cell.provenance);
+    if (cellProvenance === "predicted") continue;
+    if (cellProvenance === "inherited") {
+      notes.push(`selection_percentages.${letter} is inherited from the original question's measured row — kept out of focus_group_response_data`);
+    } else {
       warnings.push(`selection_percentages.${letter} claims a non-predicted measured rate — review before any focus-group load`);
     }
   }
 
-  const outlineCode = str(row.outline_code);
+  // some emitter generations put outline_code only in analytics_hooks / silver-key maps
+  const outlineCode = str(row.outline_code) ?? deepString(doc, ["outline_code"]);
+  let outlineCodeVerified = false;
   if (outlineCode && outlineCode !== "00000000") {
-    warnings.push(`outline_code ${outlineCode} is unverified (no outline map exists) — stored as metadata only`);
+    const validCodes = outlineCodes();
+    if (!validCodes) {
+      warnings.push(`outline_code ${outlineCode} is unverified (outline map not found at ${OUTLINE_MAP_PATH}) — stored as metadata only`);
+    } else if (validCodes.has(outlineCode)) {
+      outlineCodeVerified = true;
+    } else {
+      warnings.push(`outline_code ${outlineCode} not found in ${path.basename(OUTLINE_MAP_PATH)} — stored as metadata only`);
+    }
   }
 
   const choices: CqChoice[] = LETTERS.map((letter) => {
@@ -512,6 +611,7 @@ function parseCqFile(markdown: string, sourceFile: string): CqQuestion {
     topic: str(row.topic),
     subtopic: str(row.subtopic),
     outline_code: outlineCode,
+    outline_code_verified: outlineCodeVerified,
     tension_axis: str(routing?.tension_axis) ?? str(tension?.axis),
     splitting_fact: str(tension?.splitting_fact),
     deciding_phase: str(routing?.deciding_phase),
@@ -534,6 +634,7 @@ function parseCqFile(markdown: string, sourceFile: string): CqQuestion {
     misconception_tags: strArr(trapTags?.misconception_tags),
     drill_seeds: drillSeeds,
     warnings,
+    notes,
   };
 }
 
@@ -596,6 +697,9 @@ function writeQaReport(batch: BatchResult, outDir: string): void {
   const warningRows = batch.passed
     .filter((question) => question.warnings.length > 0)
     .map((question) => ({ source_file: question.source_file, qid: question.qid, warnings: question.warnings }));
+  const noteRows = batch.passed
+    .filter((question) => question.notes.length > 0)
+    .map((question) => ({ source_file: question.source_file, qid: question.qid, notes: question.notes }));
 
   const report = {
     generated_at_source: "run `git log -1` in barmatrix-api for the generation commit",
@@ -605,6 +709,7 @@ function writeQaReport(batch: BatchResult, outDir: string): void {
     subjects: Object.fromEntries([...bySubject.entries()].sort()),
     quarantined: batch.quarantined,
     warnings: warningRows,
+    notes: noteRows,
     passed: batch.passed.map((question) => ({
       source_file: question.source_file,
       qid: question.qid,
@@ -641,6 +746,12 @@ function writeQaReport(batch: BatchResult, outDir: string): void {
       ? ["(none)"]
       : warningRows.map((row) => `- **${row.source_file}** (${row.qid}): ${row.warnings.join("; ")}`)),
     "",
+    "## Informational notes (PASS files)",
+    "",
+    ...(noteRows.length === 0
+      ? ["(none)"]
+      : noteRows.map((row) => `- **${row.source_file}** (${row.qid}): ${row.notes.join("; ")}`)),
+    "",
   ];
   writeFileSync(path.join(outDir, "qa-report.md"), lines.join("\n"), "utf8");
 }
@@ -652,7 +763,7 @@ function questionMetadata(question: CqQuestion): JsonRecord {
     variant_slug: question.variant_slug,
     batch: "cq-2026-06-12",
     outline_code: question.outline_code,
-    outline_code_verified: false,
+    outline_code_verified: question.outline_code_verified,
     difficulty_band: question.difficulty_band,
     deciding_phase: question.deciding_phase,
     confidence: question.confidence,

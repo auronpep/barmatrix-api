@@ -3,9 +3,14 @@
     "id": "DRILL-CQ-TORTS-F01",
     "title": "Trap mold: bait_doctrine",
     "skill": "Trap recognition",
-    "task": "Across 8 questions, identify which choice carries the \"bait_doctrine\" mold before solving.",
+    "task": "Across 13 questions, identify which choice carries the \"bait_doctrine\" mold before solving.",
     "trap_family": "bait_doctrine",
     "qid_pool": [
+      "17630_blown_bible_orchard",
+      "17956_stewards_heavyheart",
+      "18135_mountain_lodge_looseboard",
+      "18197_athletics_bus_collision",
+      "18298_fellowship_hall_grab",
       "20439_floating_star_driveway",
       "20496_loaves_prop_cart",
       "20546_jericho_wall_studio",
@@ -16,7 +21,7 @@
       "20733_galilee_trails_death_notice"
     ],
     "cards": [],
-    "pass_criterion": "Identify the trap choice in 7/8 questions."
+    "pass_criterion": "Identify the trap choice in 12/13 questions."
   },
   {
     "id": "DRILL-CQ-TORTS-F02",
@@ -36,25 +41,36 @@
     "id": "DRILL-CQ-TORTS-F03",
     "title": "Trap mold: extreme_of_range",
     "skill": "Trap recognition",
-    "task": "Across 4 questions, identify which choice carries the \"extreme_of_range\" mold before solving.",
+    "task": "Across 11 questions, identify which choice carries the \"extreme_of_range\" mold before solving.",
     "trap_family": "extreme_of_range",
     "qid_pool": [
+      "17236_wellness_visit_revocation",
+      "17264_prayer_parcel_trip",
+      "17857_living_nativity_carver",
+      "17956_stewards_heavyheart",
+      "18135_mountain_lodge_looseboard",
+      "18592_shiloh_campground",
+      "18900_wedding_garden_spill",
       "20310_psalms_wax_lamp",
       "20328_bethlehem_star_drop",
       "20735_bethlehem_donkey_blower",
       "21752_olive_oil_ramp"
     ],
     "cards": [],
-    "pass_criterion": "Identify the trap choice in 3/4 questions."
+    "pass_criterion": "Identify the trap choice in 10/11 questions."
   },
   {
     "id": "DRILL-CQ-TORTS-F04",
     "title": "Trap mold: fabricated_rule",
     "skill": "Trap recognition",
-    "task": "Across 6 questions, identify which choice carries the \"fabricated_rule\" mold before solving.",
+    "task": "Across 10 questions, identify which choice carries the \"fabricated_rule\" mold before solving.",
     "trap_family": "fabricated_rule",
     "qid_pool": [
-      "19213_road_to_emmaus_breezeway",
+      "17111_parish_newsletter_republication",
+      "18197_athletics_bus_collision",
+      "18287_manger_cradle_collapse",
+      "18298_fellowship_hall_grab",
+      "18982_homeschool_coop_month",
       "19448_praise_night_tshirt_cannon",
       "20328_bethlehem_star_drop",
       "20598_write_it_on_your_heart",
@@ -62,46 +78,72 @@
       "21752_olive_oil_ramp"
     ],
     "cards": [],
-    "pass_criterion": "Identify the trap choice in 5/6 questions."
+    "pass_criterion": "Identify the trap choice in 9/10 questions."
   },
   {
     "id": "DRILL-CQ-TORTS-F05",
     "title": "Trap mold: flat_misstatement",
     "skill": "Trap recognition",
-    "task": "Across 4 questions, identify which choice carries the \"flat_misstatement\" mold before solving.",
+    "task": "Across 10 questions, identify which choice carries the \"flat_misstatement\" mold before solving.",
     "trap_family": "flat_misstatement",
     "qid_pool": [
+      "17018_youth_dodgeball_consent",
+      "17236_wellness_visit_revocation",
+      "17264_prayer_parcel_trip",
+      "17289_foundation_paneling",
+      "18179_campfire_rim_warning",
+      "18914_rare_bible_provenance",
       "20123_prayer_card_threat_writers",
       "20605_scripture_quiz_whisper",
       "20717_ruths_hymn_recording_procedure",
       "20725_emmaus_laser_cutter"
     ],
     "cards": [],
-    "pass_criterion": "Identify the trap choice in 3/4 questions."
+    "pass_criterion": "Identify the trap choice in 9/10 questions."
   },
   {
     "id": "DRILL-CQ-TORTS-F06",
     "title": "Trap mold: misfit",
     "skill": "Trap recognition",
-    "task": "Across 4 questions, identify which choice carries the \"misfit\" mold before solving.",
+    "task": "Across 14 questions, identify which choice carries the \"misfit\" mold before solving.",
     "trap_family": "misfit",
     "qid_pool": [
+      "17111_parish_newsletter_republication",
+      "17264_prayer_parcel_trip",
+      "18135_mountain_lodge_looseboard",
+      "18197_athletics_bus_collision",
+      "18287_manger_cradle_collapse",
+      "18592_shiloh_campground",
+      "18676_mary_wellness_appropriation",
+      "18784_fellowship_lot_used_car",
+      "18900_wedding_garden_spill",
+      "18914_rare_bible_provenance",
       "20024_loaves_fishes_crate_count",
       "20123_prayer_card_threat_writers",
       "20594_daniels_whale_float",
       "20730_shepherd_sling_fair"
     ],
     "cards": [],
-    "pass_criterion": "Identify the trap choice in 3/4 questions."
+    "pass_criterion": "Identify the trap choice in 13/14 questions."
   },
   {
     "id": "DRILL-CQ-TORTS-F07",
     "title": "Trap mold: tiered_absolute",
     "skill": "Trap recognition",
-    "task": "Across 12 questions, identify which choice carries the \"tiered_absolute\" mold before solving.",
+    "task": "Across 22 questions, identify which choice carries the \"tiered_absolute\" mold before solving.",
     "trap_family": "tiered_absolute",
     "qid_pool": [
-      "19213_road_to_emmaus_breezeway",
+      "17018_youth_dodgeball_consent",
+      "17236_wellness_visit_revocation",
+      "17289_foundation_paneling",
+      "17857_living_nativity_carver",
+      "17956_stewards_heavyheart",
+      "18179_campfire_rim_warning",
+      "18287_manger_cradle_collapse",
+      "18592_shiloh_campground",
+      "18676_mary_wellness_appropriation",
+      "18784_fellowship_lot_used_car",
+      "18900_wedding_garden_spill",
       "19434_hymn_hands_stimulator",
       "19448_praise_night_tshirt_cannon",
       "20024_loaves_fishes_crate_count",
@@ -115,16 +157,18 @@
       "21752_olive_oil_ramp"
     ],
     "cards": [],
-    "pass_criterion": "Identify the trap choice in 11/12 questions."
+    "pass_criterion": "Identify the trap choice in 21/22 questions."
   },
   {
     "id": "DRILL-CQ-TORTS-F08",
     "title": "Trap mold: wrong_element",
     "skill": "Trap recognition",
-    "task": "Across 17 questions, identify which choice carries the \"wrong_element\" mold before solving.",
+    "task": "Across 19 questions, identify which choice carries the \"wrong_element\" mold before solving.",
     "trap_family": "wrong_element",
     "qid_pool": [
-      "19213_road_to_emmaus_breezeway",
+      "17018_youth_dodgeball_consent",
+      "17289_foundation_paneling",
+      "18179_campfire_rim_warning",
       "19434_hymn_hands_stimulator",
       "20024_loaves_fishes_crate_count",
       "20123_prayer_card_threat_writers",
@@ -143,16 +187,40 @@
       "20744_bethlehem_loading_lane"
     ],
     "cards": [],
-    "pass_criterion": "Identify the trap choice in 16/17 questions."
+    "pass_criterion": "Identify the trap choice in 18/19 questions."
   },
   {
     "id": "DRILL-CQ-TORTS-C01",
+    "title": "Topic circuit: Economic torts",
+    "skill": "Mixed-call endurance",
+    "task": "Timed circuit across 5 Economic torts questions; predict the call before reading choices.",
+    "topic": "Economic torts",
+    "qid_pool": [
+      "17289_foundation_paneling",
+      "17857_living_nativity_carver",
+      "17956_stewards_heavyheart",
+      "18784_fellowship_lot_used_car",
+      "18914_rare_bible_provenance"
+    ],
+    "cards": [
+      "RC-TORTS-FRAUD-CONCEALMENT-MISSTATEMENT-01",
+      "RC-TORTS-PROSPECTIVE-PRIVILEGE-01",
+      "RC-TORTS-MALICIOUS-PROSECUTION-FAVORABLE-TERMINATION-01",
+      "RC-TORTS-FRAUD-AS-IS-01",
+      "RC-TORTS-FRAUD-JUSTIFIABLE-RELIANCE-01"
+    ],
+    "pass_criterion": "4/5 correct with calls predicted."
+  },
+  {
+    "id": "DRILL-CQ-TORTS-C02",
     "title": "Topic circuit: Negligence",
     "skill": "Mixed-call endurance",
-    "task": "Timed circuit across 10 Negligence questions; predict the call before reading choices.",
+    "task": "Timed circuit across 12 Negligence questions; predict the call before reading choices.",
     "topic": "Negligence",
     "qid_pool": [
-      "19213_road_to_emmaus_breezeway",
+      "17264_prayer_parcel_trip",
+      "18135_mountain_lodge_looseboard",
+      "18287_manger_cradle_collapse",
       "19448_praise_night_tshirt_cannon",
       "20310_psalms_wax_lamp",
       "20328_bethlehem_star_drop",
@@ -164,7 +232,9 @@
       "20744_bethlehem_loading_lane"
     ],
     "cards": [
-      "RC-TORTS-SECURITY-DUTY-01",
+      "RC-TORTS-ENTRANT-CATEGORIES-01",
+      "RC-TORTS-INVITEE-DUTY-01",
+      "RC-TORTS-RES-IPSA-ALTERATION-01",
       "RC-TORTS-NE-001",
       "REM-TORTS-SRM-01",
       "RC-TORTS-RES-IPSA-01",
@@ -175,6 +245,26 @@
       "REM-TORTS-20649-01",
       "TOR-FORESEEABILITY-TARGET-01"
     ],
-    "pass_criterion": "8/10 correct with calls predicted."
+    "pass_criterion": "9/12 correct with calls predicted."
+  },
+  {
+    "id": "DRILL-CQ-TORTS-C03",
+    "title": "Topic circuit: Privacy",
+    "skill": "Mixed-call endurance",
+    "task": "Timed circuit across 4 Privacy questions; predict the call before reading choices.",
+    "topic": "Privacy",
+    "qid_pool": [
+      "18676_mary_wellness_appropriation",
+      "20123_prayer_card_threat_writers",
+      "20598_write_it_on_your_heart",
+      "20605_scripture_quiz_whisper"
+    ],
+    "cards": [
+      "RC-TORTS-APPROPRIATION-SCOPE-01",
+      "REM-TORTS-FALSE-LIGHT-FAULT-01",
+      "REM-TORTS-APPROPRIATION-IDENTITY-01",
+      "TOR-ANCHOR-FALSE-LIGHT-PUBLICITY"
+    ],
+    "pass_criterion": "3/4 correct with calls predicted."
   }
 ]

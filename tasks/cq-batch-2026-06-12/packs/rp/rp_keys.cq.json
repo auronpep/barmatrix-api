@@ -1,26 +1,26 @@
 [
   {
-    "id": "GK-REAL_PROPERTY-BLANK-GRANTEE-01",
+    "id": "GK-REAL-PROPERTY-MARANATHA-MEADOW-01",
     "kind": "gold",
-    "statement": "A deed must identify an existing or ascertainable grantee when delivered. A later unauthorized insertion plus recording does not supply that missing validity gate.",
-    "type": "threshold",
-    "trigger": "signed deed, blank grantee line, no authority to complete, later self-insertion",
-    "authority": "Cornell LII Wex, Deed; Alan White, Deeds and Recording Acts; Sanders v. Kirk; Tumansky v. Woodruff.",
+    "statement": "A remainder follows a life estate (or other estate of years); an executory interest follows a fee simple and cuts short the prior estate. A future interest in a third party that cuts short a prior grantee's estate is a shifting executory interest.",
+    "type": "distinction",
+    "trigger": "fee simple subject to an executory limitation in the first grantee; cutting-shifting condition in favor of a third party who has not yet satisfied the condition",
+    "authority": "Restatement (Third) of Property: future-interest classification",
     "last_minute_review": true,
     "example_qids": [
-      "17058_advent_honey_parcel"
+      "18077_maranatha_meadow"
     ]
   },
   {
-    "id": "SK-REAL_PROPERTY-DEED-GATE-01",
+    "id": "SK-REAL-PROPERTY-MARANATHA-MEADOW-01",
     "kind": "silver",
-    "statement": "Run the deed-validity gate before downstream facts. Signature, custody, recording, and consideration matter only after the instrument can operate as a deed.",
-    "type": "call_focus",
-    "trigger": "answer choices offer signed/recorded/no-consideration reasons while the stem flags a blank grantee",
+    "statement": "Read the original deed for the source of the future interest; if the original deed creates the executory interest, no later deed is required. The dispositive instrument is the original conveyance.",
+    "type": "cut",
+    "trigger": "the cutting-shifting language is in the original deed; the question is whether the future interest exists",
     "authority": null,
     "last_minute_review": true,
     "example_qids": [
-      "17058_advent_honey_parcel"
+      "18077_maranatha_meadow"
     ]
   },
   {

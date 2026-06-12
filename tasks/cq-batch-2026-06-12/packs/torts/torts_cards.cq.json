@@ -1,15 +1,249 @@
 [
   {
-    "id": "RC-TORTS-SECURITY-DUTY-01",
+    "id": "RC-TORTS-SPORT-CONSENT-01",
     "type": "ANCHOR",
-    "title": "Customer status is not guard-duty by itself",
-    "signal": "A business customer is attacked by an unknown stranger, and the answer says duty exists merely because the person was a customer.",
-    "student_move": "Ask what specific duty is claimed. If it is guards/security, look for prior similar danger, created risk, imminent danger, or comparable notice.",
-    "tiny_rule": "Status opens the premises-duty lane; foreseeability triggers the security-guard duty.",
-    "trap": "Treating invitee/customer status as automatic insurance against crime.",
+    "title": "Consent to contact-sport contacts",
+    "signal": "Player is injured during a contact sport by a customary, in-bounds contact.",
+    "student_move": "Cut the injury-defeats-consent myth and the absolute 'never' overclaim; in a CLASH of two 'yes' answers, pick the one that names consent to scope-of-play contacts.",
+    "tiny_rule": "A participant in a contact sport impliedly consents to bodily contacts that are customary and within the ordinary rules of the game.",
+    "trap": "The absolute 'never covers intentional contact' sounds like a clean rule.",
+    "confidence": "HEURISTIC_STRUCTURAL",
+    "example_qids": [
+      "17018_youth_dodgeball_consent"
+    ]
+  },
+  {
+    "id": "RC-TORTS-REPUBLICATION-ATTRIBUTION-01",
+    "type": "ANCHOR",
+    "title": "Republication and attribution",
+    "signal": "An editor or host republishes a defamatory accusation to a wider audience under attribution to the original source.",
+    "student_move": "Cut the medium-based and joinder defenses on the answer text. Then use the Gold Key to kill the attribution-as-defense trap.",
+    "tiny_rule": "Attribution is not a defense to republication; the republisher is on the hook for the defamatory sting.",
+    "trap": "Saying 'a caller said' or 'a parent said' feels protective; it does not insulate the republisher.",
     "confidence": "ANCHOR_ASSISTED",
     "example_qids": [
-      "19213_road_to_emmaus_breezeway"
+      "17111_parish_newsletter_republication"
+    ]
+  },
+  {
+    "id": "RC-TORTS-CONSENT-REVOCATION-01",
+    "type": "ANCHOR",
+    "title": "Consent to medical contact — revocation before contact",
+    "signal": "A patient signs a consent form, then clearly revokes consent before the contact. The doctor proceeds anyway. Battery suit follows.",
+    "student_move": "Cut minor-injection with the Silver Key; cut written-consent-cannot-be-withdrawn with the Gold Key; cut consent-never-a-defense with the foundational rule.",
+    "tiny_rule": "A signed consent is a present license; the patient can revoke it at any time before the contact.",
+    "trap": "The signed form looks like a contract; consent is not a contract — it is a present license.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "17236_wellness_visit_revocation"
+    ]
+  },
+  {
+    "id": "RC-TORTS-ENTRANT-CATEGORIES-01",
+    "type": "ANCHOR",
+    "title": "Traditional entrant categories — unknown trespasser / natural condition",
+    "signal": "An entrant ignores posted no-entry signs, crosses onto a remote parcel, and is injured by a naturally fallen branch on an unmaintained footpath. The landowner did not know of the entrant.",
+    "student_move": "Cut full-invitee-inspection-duty and warn-every-natural-condition with the Gold Key; cut strict-liability with the Silver Key.",
+    "tiny_rule": "Unknown trespasser + natural condition on remote land = limited duty.",
+    "trap": "The student fuses any on-land injury with the highest duty; the categories track the owner's invitation and the hazard type.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "17264_prayer_parcel_trip"
+    ]
+  },
+  {
+    "id": "RC-TORTS-FRAUD-CONCEALMENT-MISSTATEMENT-01",
+    "type": "ANCHOR",
+    "title": "Concealment plus misstatement is fraud",
+    "signal": "A seller knew of a material defect, covered it up, and made an affirmative misstatement to a buyer who relied and suffered damages.",
+    "student_move": "Cut the overclaim (every defect is fraud), the wrong-element economic-loss bar, and the mislabel that fraud can never be concealment. The fraud elements are satisfied.",
+    "tiny_rule": "Active concealment plus an affirmative misstatement is actionable fraud.",
+    "trap": "The overclaim that every property defect is fraud is the dominant trap; the mislabel that fraud can never be concealment is the second trap.",
+    "confidence": "HARD_STRUCTURAL",
+    "example_qids": [
+      "17289_foundation_paneling"
+    ]
+  },
+  {
+    "id": "RC-TORTS-CHATTEL-RETRIEVAL-01",
+    "type": "ANCHOR",
+    "title": "Chattel retrieval — qualified privilege + damages measure",
+    "signal": "A chattel lands on a landowner's land through no fault of the actor; the actor enters to retrieve; damage from entry; hauling not abnormally dangerous.",
+    "student_move": "Cut under-compensation and full-privilege misreads. Apply the Gold Key: spill-caused damage is not recoverable; removal-caused damage is.",
+    "tiny_rule": "Qualified privilege protects the entry, not the damage the entry itself causes.",
+    "trap": "Treating the spill as the entry-caused event and stacking all downstream damage onto the actor (the spill-causation overreach).",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "17630_blown_bible_orchard"
+    ]
+  },
+  {
+    "id": "RC-TORTS-PROSPECTIVE-PRIVILEGE-01",
+    "type": "ANCHOR",
+    "title": "Prospective advantage vs. competition privilege",
+    "signal": "No signed renewal; competitor quotes a truthful lower price; long-time supplier sues the competitor.",
+    "student_move": "Cut the 'any lost deal' and 'privilege only for existing contracts' answers on visible defects; the privilege answer is residual.",
+    "tiny_rule": "Truthful price competition is privileged competition for prospective business; improper means are required for liability.",
+    "trap": "Long-time relationship feels protective, but the privilege is the deciding line on these facts.",
+    "confidence": "HARD_STRUCTURAL",
+    "example_qids": [
+      "17857_living_nativity_carver"
+    ]
+  },
+  {
+    "id": "RC-TORTS-MALICIOUS-PROSECUTION-FAVORABLE-TERMINATION-01",
+    "type": "ANCHOR",
+    "title": "Malicious prosecution — favorable-termination threshold",
+    "signal": "A plaintiff sues for malicious prosecution while the underlying proceeding is still pending, even though malice and lack of probable cause are alleged.",
+    "student_move": "Apply the threshold check: has the prior proceeding terminated in a manner affirming the plaintiff's innocence of the charge or wrong? If not, the claim is not available.",
+    "tiny_rule": "Favorable termination is a threshold element; a pending underlying suit is fatal to malicious prosecution.",
+    "trap": "Spite or lack of probable cause is a strong showing on one element, but it cannot substitute for a missing element on another.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "17956_stewards_heavyheart"
+    ]
+  },
+  {
+    "id": "RC-TORTS-INVITEE-DUTY-01",
+    "type": "ANCHOR",
+    "title": "Invitee vs licensee duty — invitees get the inspection duty",
+    "signal": "Possessor invites the public onto the premises for a paid event; entrant is injured; call asks what duty the possessor owed.",
+    "student_move": "Classify the entrant first. If the entrant paid admission (or otherwise entered for a purpose that benefits the possessor) → invitee → reasonable care including inspection. If the entrant entered for the entrant's own purpose with permission → licensee → warn only of known hazards.",
+    "tiny_rule": "Invitees get the inspection duty; the 'warn only of known' rule is the licensee standard.",
+    "trap": "The dominant trap is the invitee-vs-licensee conflation. Many students half-remember that 'landowners only have to warn' and pick the narrower licensee rule for paying invitees.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "18135_mountain_lodge_looseboard"
+    ]
+  },
+  {
+    "id": "RC-TORTS-OBVIOUS-DANGER-01",
+    "type": "ANCHOR",
+    "title": "Open and obvious danger — failure to warn does not arise",
+    "signal": "An ordinary product, an ordinary-use risk, and a plaintiff sues for failure to warn of that exact risk.",
+    "student_move": "Cut the consequence-instead-of-cause and the categorical-exclusion distractors first. Then apply the Gold Key: open-and-obvious risks never trigger the duty to warn.",
+    "tiny_rule": "Open and obvious = no duty to warn.",
+    "trap": "The dominant trap is the 'every dangerous product needs a warning' claim (tiered absolute). It is engineered to look like the safe default; the doctrine carves out the obvious risks.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "18179_campfire_rim_warning"
+    ]
+  },
+  {
+    "id": "RC-TORTS-JOINT-AND-SEVERAL-01",
+    "type": "ANCHOR",
+    "title": "Joint and several liability — plaintiff collects 100% from any one defendant; contribution is inter-se",
+    "signal": "Multiple defendants held jointly and severally liable; plaintiff free of fault; call asks what portion the plaintiff may collect from one defendant.",
+    "student_move": "Distinguish the plaintiff's collection right from the defendants' inter-se contribution problem. The plaintiff may collect 100% from any one defendant; the defendants' inter-se contribution claim is a separate question.",
+    "tiny_rule": "Joint and several = plaintiff collects 100% from any one defendant; the proportional split is the defendants' inter-se problem, not the plaintiff's.",
+    "trap": "The dominant trap is the proportional-liability / contribution confusion. Many students half-remember that 'multiple defendants means a proportional split' and apply the defendants' inter-se rule to the plaintiff's collection right.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "18197_athletics_bus_collision"
+    ]
+  },
+  {
+    "id": "RC-TORTS-RES-IPSA-ALTERATION-01",
+    "type": "ANCHOR",
+    "title": "Res ipsa and the third-prong plaintiff-contribution test",
+    "signal": "The plaintiff has materially altered the instrumentality after leaving the defendant's control, and the cause of the accident is undetermined between the defendant's defect and the plaintiff's alteration.",
+    "student_move": "Apply the third prong of the res ipsa test: a post-rental plaintiff alteration is a plausible alternative cause wholly attributable to the plaintiff, and the inference collapses.",
+    "tiny_rule": "Res ipsa is unavailable when the plaintiff's own post-receipt conduct is a plausible alternative cause.",
+    "trap": "The 'never unless the maker was negligent' wording is the dominant trap; carved wooden items can and do fail when a renter drills into the structural base.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "18287_manger_cradle_collapse"
+    ]
+  },
+  {
+    "id": "RC-TORTS-ASSAULT-THIRD-PARTY-01",
+    "type": "ANCHOR",
+    "title": "Assault — plaintiff-side apprehension and the transferred-intent scope",
+    "signal": "A bystander (the plaintiff) sues an attacker for assault over harm the attacker directed at a third party; the attacker never threatened the bystander.",
+    "student_move": "Apply the assault elements: the plaintiff must apprehend imminent contact with HERSELF. The transferred-intent doctrine does not supply a missing plaintiff-side apprehension.",
+    "tiny_rule": "Transferred intent does not apply to assault.",
+    "trap": "The transferred-intent doctrine is a real doctrine; the trap is the doctrinal misapplication, not the doctrine's existence. Also: 'awareness of fright' is not 'apprehension of contact with self.'",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "18298_fellowship_hall_grab"
+    ]
+  },
+  {
+    "id": "RC-TORTS-COMING-TO-NUISANCE-01",
+    "type": "ANCHOR",
+    "title": "Coming to the nuisance is a factor, not a defense",
+    "signal": "Defendant argues 'coming to the nuisance' after a substantial expansion of the activity following the plaintiff's move-in.",
+    "student_move": "Cut the complete-defense overclaim. The doctrine is a reasonableness factor, not a complete defense. An *expansion* after the plaintiff's arrival cuts strongly against the 'was there first' intuition.",
+    "tiny_rule": "Coming to the nuisance is a factor, not a complete defense; an expansion of the activity after the plaintiff moved in makes the doctrine weakest.",
+    "trap": "The 'was there first' intuition pulls toward the complete-defense overclaim.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "18592_shiloh_campground"
+    ]
+  },
+  {
+    "id": "RC-TORTS-APPROPRIATION-SCOPE-01",
+    "type": "ANCHOR",
+    "title": "Appropriation and scope of consent",
+    "signal": "A person licenses a photo for a limited use, and the licensee later uses the photo for a different medium and a later time period.",
+    "student_move": "Compare the original license's scope to the later use on each scope dimension (time, medium, purpose). If any dimension is exceeded, the use is unauthorized and the appropriation claim survives.",
+    "tiny_rule": "A license to use a likeness is limited by its scope; use outside the agreed scope can support an appropriation claim.",
+    "trap": "The 'once-consented-always-consented' intuition pulls toward 'permanent and unlimited.' The 'flattering photo' intuition is irrelevant. The 'false fact' theory belongs to a different privacy tort.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "18676_mary_wellness_appropriation"
+    ]
+  },
+  {
+    "id": "RC-TORTS-FRAUD-AS-IS-01",
+    "type": "ANCHOR",
+    "title": "AS-IS / obvious writing kills justifiable reliance",
+    "signal": "Oral assurance + signed contradictory writing in obvious form (bold type, above signature)",
+    "student_move": "Spot the visible writing. Cut all 'fraud applies' / 'reliance presumed' overclaim distractors. Lock the 'justifiable reliance defeated by obvious writing' answer.",
+    "tiny_rule": "Justifiable reliance requires the reliance to be reasonable in light of plainly visible contradictory information the plaintiff signed.",
+    "trap": "The contract-integration misframe (parol evidence lane) and the broad-absolute 'fraud never applies' overclaim.",
+    "confidence": "HARD_STRUCTURAL",
+    "example_qids": [
+      "18784_fellowship_lot_used_car"
+    ]
+  },
+  {
+    "id": "RC-TORTS-LOST-WAGES-PARASITIC-01",
+    "type": "ANCHOR",
+    "title": "Lost wages are parasitic damages when they flow from a tort-caused physical injury",
+    "signal": "Negligence claim, plaintiff has a physical injury, plaintiff seeks lost wages or lost self-employed contract income, defendant invokes 'pure economic loss.'",
+    "student_move": "Cut the 'all financial loss is pure economic loss' overclaim, the nominal-only remedy, and the contract-theory frame. Apply the Gold Key: financial harm that flows from a tort-caused physical injury is recoverable parasitic damages.",
+    "tiny_rule": "Lost wages are parasitic on a tort-caused physical injury; the standalone pure economic loss bar does not apply when the plaintiff has a physical injury.",
+    "trap": "The dominant trap is treating 'pure economic loss' as an absolute bar to financial recovery in negligence. The bar is a no-physical-injury bar; once a physical injury is present, the financial harm rides in on the personal-injury claim.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "18900_wedding_garden_spill"
+    ]
+  },
+  {
+    "id": "RC-TORTS-FRAUD-JUSTIFIABLE-RELIANCE-01",
+    "type": "ANCHOR",
+    "title": "Fraud requires justifiable reliance; reliance is defeated by ignoring an obvious contradiction",
+    "signal": "Fraud suit, pre-sale written document plainly contradicts the oral assurance, plaintiff did not read the document.",
+    "student_move": "Cut the private-law contract trope (oral overrides written), the no-reliance-element misstatement, and the fact/opinion confusion. Apply the Gold Key: ignoring an obvious, plainly-worded contradiction can defeat justifiable reliance as a matter of law.",
+    "tiny_rule": "Justifiable reliance is a flexible reasonableness standard; reliance on an obvious written contradiction of an oral assurance is not justified.",
+    "trap": "The dominant trap is the fact/opinion confusion: the student treats a verifiable historical fact (page replacement) as if it were a value judgment or connoisseur's opinion. The other strong trap is the private-law contract trope (oral overrides written).",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "18914_rare_bible_provenance"
+    ]
+  },
+  {
+    "id": "RC-TORTS-DEFAMATION-SUBSTANTIAL-TRUTH-01",
+    "type": "ANCHOR",
+    "title": "Defamation requires falsity; substantial truth tolerates minor inaccuracies",
+    "signal": "A private publication misstates a date (month) of an otherwise-true defamatory fact (license revocation, criminal charge, professional sanction, etc.); the plaintiff sues based only on the wrong date. The call is the best defense.",
+    "student_move": "Identify the defamatory sting. If the sting is true — even if a minor detail (month, day, year) is wrong — substantial truth is the defense. The 'any mistake defeats truth' framing is the any-inaccuracy myth.",
+    "tiny_rule": "A statement is not defamatory if the gist or sting is substantially true, even if minor details are inaccurate.",
+    "trap": "The any-inaccuracy myth is the dominant trap. Many students half-remember that 'defamation requires truth' and reason that any mistake (even a one-month error) makes the statement false.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "18982_homeschool_coop_month"
     ]
   },
   {

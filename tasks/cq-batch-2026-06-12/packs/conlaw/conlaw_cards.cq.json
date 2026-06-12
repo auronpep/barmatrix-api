@@ -1,41 +1,106 @@
 [
   {
-    "id": "REM-CONLAW-NP-01",
+    "id": "RC-CONLAW-INCORPORATION-EXCESSIVE-FINES-01",
     "type": "ANCHOR",
-    "title": "Necessary means useful, not indispensable",
-    "signal": "The stem says Congress could have used another method.",
-    "student_move": "Reject indispensability language; check for enumerated-power connection.",
-    "tiny_rule": "Useful/proper means plus enumerated-power hook survives.",
-    "trap": "Turning necessary into only possible.",
+    "title": "Incorporation of the Excessive Fines Clause",
+    "signal": "A state or local government actor seeks a grossly disproportionate forfeiture for a minor violation; the defendant invokes the Eighth Amendment Excessive Fines Clause through the Fourteenth Amendment; the government moves to dismiss on a federal-only theory.",
+    "student_move": "Cut the procedural-due-process misdirection and the automatic-win overclaim on the answer text. Then use the Gold Key to kill the federal-only trap.",
+    "tiny_rule": "The Excessive Fines Clause is incorporated against the states (and their political subdivisions) through the Fourteenth Amendment Due Process Clause.",
+    "trap": "Some Bill of Rights provisions were historically treated as federal-only; the Excessive Fines Clause is not one of them. Timbs v. Indiana (2019) squarely held that it is incorporated.",
     "confidence": "ANCHOR_ASSISTED",
     "example_qids": [
-      "17167_manger_lights_portal"
+      "17114_farmstand_excessive_fine"
     ]
   },
   {
-    "id": "CONLAW-REMEDY-PROPERTY-SOURCE-01",
+    "id": "RC-CONSTITUTIONAL-LAW-NEGLIGENT-LOSS-01",
     "type": "ANCHOR",
-    "title": "Property Clause source match",
-    "signal": "Congress disposes of property belonging to the United States.",
-    "student_move": "Name the actor, object, and action; match them to the specific power source.",
-    "tiny_rule": "Federal property + dispose/sell = Property Clause.",
-    "trap": "Policy/fairness answers distract from the source of power.",
-    "confidence": "PURE_ANCHOR",
+    "title": "Negligent loss by a state actor is not a due process violation",
+    "signal": "A due process claim under § 1983, sole allegation is a state employee's negligence, the loss is small property.",
+    "student_move": "Cut the overclaim (every loss is a violation), the wrong-frame level of review (strict scrutiny), and the wrong-party trap (clerk's hearing). The negligence rule is the residual answer.",
+    "tiny_rule": "Negligence is not a constitutional deprivation; the Due Process Clause targets deliberate or reckless state action.",
+    "trap": "The overclaim that every property loss is a due process violation is the dominant trap; the proper remedy is a state tort claim, not § 1983.",
+    "confidence": "HARD_STRUCTURAL",
     "example_qids": [
-      "19177_manna_wagon_disposal"
+      "17163_permit_fee_ledger"
     ]
   },
   {
-    "id": "REM-CONLAW-WINDSOR-BARE-ANIMUS",
+    "id": "RC-CONSTITUTIONAL-LAW-PRIOR-RESTRAINT-01",
     "type": "ANCHOR",
-    "title": "Federal benefits + state-law same-sex marriage",
-    "signal": "Federal law refuses to recognize a same-sex spouse whom state law recognizes.",
-    "student_move": "Lock the Equal Protection call; avoid both strict-scrutiny overpromotion and benefits-entitlement wrong frame.",
-    "tiny_rule": "Bare animus/equal-dignity injury is not a legitimate interest.",
-    "trap": "Rational-basis deference plus tradition language.",
-    "confidence": "PURE_ANCHOR",
+    "title": "Prior restraint — advance approval orders and red-herring doctrines",
+    "signal": "A government court order entered before trial in a defamation case requires a private speaker to obtain advance approval from a government official (or a private party under a government order) before publishing any future speech about that official.",
+    "student_move": "Apply the Gold Key: any advance-approval requirement imposed by a government order is a prior restraint. Do not be lured by red-herring facts (medium, ad revenue) toward the commercial-speech or 'not the institutional press' doctrines. Apply Silver Key #1 to cut the commercial-speech answer. Apply Silver Key #2 to cut the 'not the institutional press' answer.",
+    "tiny_rule": "A court order requiring advance approval for speech is a prior restraint, regardless of medium or revenue model.",
+    "trap": "The dominant trap is the commercial-speech answer (the ad-revenue fact is salient). The secondary trap is the 'not the institutional press' answer (the medium is salient). The weakest trap is the rational-basis answer (level-of-scrutiny mismatch).",
+    "confidence": "ANCHOR_ASSISTED",
     "example_qids": [
-      "19194_loaves_pages"
+      "17574_christian_podcast_school_board"
+    ]
+  },
+  {
+    "id": "RC-CONLAW-RATIONAL-BASIS-WITH-BITE-01",
+    "type": "ANCHOR",
+    "title": "Rational basis with bite — animus toward a group",
+    "signal": "Government actor denies a routine permit; animus on the face of the hearing record; no legitimate interest articulated.",
+    "student_move": "Cut tiered-absolute and colloquialism answers. Apply the Gold Key: animus is not a legitimate interest; the discriminator can lose at rational basis without strict scrutiny being triggered.",
+    "tiny_rule": "Animus toward a group is not a legitimate government interest, even under rational basis review.",
+    "trap": "Reaching for a tier-escalation argument (strict scrutiny) that does not exist.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "17680_ministry_housing_permit"
+    ]
+  },
+  {
+    "id": "RC-CONLAW-CHANNELS-OF-COMMERCE-01",
+    "type": "ANCHOR",
+    "title": "Channels-of-commerce power — the channels, not the goods",
+    "signal": "A federal statute targets the act of shipping stolen property across state lines; the defendant argues the in-state taking is outside federal reach.",
+    "student_move": "Identify the regulated act (the use of a channel), then apply the channels-of-commerce power. The in-state origin of the taking is not a defense.",
+    "tiny_rule": "The channels-of-commerce power reaches the channels themselves; the inquiry is whether the statute regulates the use of a channel, not whether the goods are commercially clean.",
+    "trap": "The 'stolen goods are outside commerce' overreach (D) feels right because stolen goods have a dirty chain of title. The channels power is about the channel, not the goods.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "17728_illuminated_manuscript"
+    ]
+  },
+  {
+    "id": "RC-CONSTITUTIONAL-LAW-RIGHT-TO-TRAVEL-01",
+    "type": "ANCHOR",
+    "title": "Right to interstate travel and durational-residency rules",
+    "signal": "A state durational-residency classification disadvantages new residents in a public benefit (welfare, Medicaid, food assistance, in-state tuition, voting, bar admission).",
+    "student_move": "Apply the right-to-travel doctrine: the right to be treated equally to other residents once the traveler has established residence is a fundamental right. Durational-residency rules that burden that right trigger strict scrutiny.",
+    "tiny_rule": "Public-benefit rules can still burden fundamental rights; durational-residency rules that disadvantage new residents trigger strict scrutiny.",
+    "trap": "The 'public benefits are always discretionary' framing is the dominant trap; the right to travel is a fundamental right, and the discretionary-benefits reasoning collapses when the eligibility rule operates as a penalty on the exercise of a constitutional right.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "18438_hannah_david_medicaid"
+    ]
+  },
+  {
+    "id": "RC-CONSTITUTIONAL-LAW-STATE-ACTION-01",
+    "type": "ANCHOR",
+    "title": "State-action threshold in Equal Protection challenges to private actors",
+    "signal": "A constitutional claim (Equal Protection or Due Process) is filed against a private actor with no government funding or public-function role.",
+    "student_move": "Run the state-action threshold first. The Equal Protection Clause is, by its terms, a constraint on government action. The scrutiny tier is reached only after state action is established.",
+    "tiny_rule": "The threshold problem is state action; the scrutiny tier is reached only after state action is established.",
+    "trap": "The strict-scrutiny framing is the dominant trap; the student skips the threshold problem and goes straight to the scrutiny tier. The 'Constitution bans all private discrimination' overclaim and the 'rational-basis-deference' framing are also wrong levels of analysis.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "18457_lydia_book_club"
+    ]
+  },
+  {
+    "id": "RC-CONSTITUTIONAL_LAW-A4PI-PERSON-CLASS-01",
+    "type": "ANCHOR",
+    "title": "Article IV P&I person-class threshold",
+    "signal": "A non-natural-person entity (corporation, LLC, partnership) sues under only Article IV Privileges and Immunities.",
+    "student_move": "Cut the merits. The clause's text and case law require a natural-person citizen of another state; a corporation is not a citizen. The case is resolved at the threshold.",
+    "tiny_rule": "Article IV P&I protects only natural-person citizens of other states.",
+    "trap": "The student bridges from 'interstate burden' to 'Article IV applies' or jumps to a 'fundamental burden' merits theory. Both miss the person-class threshold.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "18586_hymnsong_records"
     ]
   },
   {

@@ -1,28 +1,249 @@
 [
   {
-    "id": "CIV-REM-JMOL-EVIDENCE-GATE-01",
+    "id": "RC-CIVPRO-ERIE-BURDEN-01",
     "type": "ANCHOR",
-    "title": "JMOL = evidence gate, not moral gate",
-    "signal": "Party rests; motion targets one element.",
-    "student_move": "Ask whether the record contains evidence a reasonable jury could use on that element.",
-    "tiny_rule": "No evidence on an essential element means no legally sufficient jury basis.",
-    "trap": "Bad faith, sympathy, or jury-autopilot standards.",
+    "title": "Erie and the burden of proof on a state-law claim",
+    "signal": "Diversity suit on a state-law claim; the state has attached a heightened burden to a claim element; the plaintiff argues a federal procedural rule should override.",
+    "student_move": "Cut the 'no burden' misframe and the 'party preference' misframe on the answer text. Then use the Gold Key to kill the 'all burdens are federal procedural' trap.",
+    "tiny_rule": "Burden of proof on a state-law claim element follows the state right into federal court.",
+    "trap": "Federal-court setting cues the student to reach for a federal procedural rule; Erie's substantive/procedural allocation is the deciding move.",
     "confidence": "ANCHOR_ASSISTED",
     "example_qids": [
-      "19266_carol_banquet_jmol"
+      "17027_heritage_plow_fraud"
     ]
   },
   {
-    "id": "REM-CIVIL_PROCEDURE-LOST-ESI-01",
+    "id": "RC-CIVPRO-RULE50-RENEWAL-01",
     "type": "ANCHOR",
-    "title": "Lost ESI sanction ladder",
-    "signal": "ESI lost after preservation duty, prejudice shown, no intent.",
-    "student_move": "Choose cure-the-prejudice measures; cut adverse inference and case-ending sanctions.",
-    "tiny_rule": "Prejudice cures; intent punishes.",
-    "trap": "Treating lost evidence as automatically unfavorable.",
+    "title": "Rule 50(b) is a renewal, not a new motion",
+    "signal": "A defendant files a Rule 50(b) motion on a new ground not raised in the pre-verdict Rule 50(a) motion.",
+    "student_move": "Cut the plaintiff-only availability and importance-priority misframes on the answer text. Then use the Gold Key to kill the unlimited-preservation trap.",
+    "tiny_rule": "Rule 50(b) renews, rather than invents, a Rule 50(a) legal-sufficiency challenge.",
+    "trap": "Filing a Rule 50(a) motion does not preserve every possible Rule 50(b) ground; the post-verdict motion is limited to grounds fairly raised pre-verdict.",
     "confidence": "ANCHOR_ASSISTED",
     "example_qids": [
-      "19286_five_loaves_press"
+      "17117_day_school_playground_jmol"
+    ]
+  },
+  {
+    "id": "RC-CIVPRO-COUNTERCROSS-01",
+    "type": "ANCHOR",
+    "title": "Counterclaim vs Crossclaim vs Impleader",
+    "signal": "One defendant in a multi-defendant suit asserts a claim against another defendant; the caption shows the same side of the 'v.'.",
+    "student_move": "Check the caption's party alignment first. Same-side defendants = co-parties = crossclaim. Opposite sides = counterclaim. Non-party = impleader (Rule 14).",
+    "tiny_rule": "Crossclaim = co-party; counterclaim = opposing party.",
+    "trap": "Counterclaim is the everyday word; students reach for it on any defendant-asserted claim.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "17179_potluck_lot_rear_end"
+    ]
+  },
+  {
+    "id": "RC-CIVPRO-RULE12H-PRESERVATION-01",
+    "type": "ANCHOR",
+    "title": "Rule 12(h) — the (h)(1) vs (h)(2) waiver split",
+    "signal": "A defendant omits a Rule 12 defense from the answer and later tries to raise it; the call is whether the defense is preserved.",
+    "student_move": "Map the precise defense to the precise Rule 12(h) subsection. 12(b)(2)–(5) and 12(b)(7) are waived under (h)(1); 12(b)(6) and the related defenses are preserved under (h)(2). Subject-matter jurisdiction is a separate non-waivable category under (h)(3).",
+    "tiny_rule": "Rule 12(h)(2) preserves 12(b)(6) for any later stage, including a Rule 12(c) motion after the pleadings close.",
+    "trap": "The dominant trap treats 12(b)(6) like 12(b)(2) and reads the rule as 'include it or lose it.'",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "17406_oak_choir_stall"
+    ]
+  },
+  {
+    "id": "RC-CIVPRO-DOMICILE-DIVERSITY-01",
+    "type": "ANCHOR",
+    "title": "Diversity citizenship = domicile (physical presence + intent to remain indefinitely)",
+    "signal": "A person has a clear permanent-home state, accepts a fixed-term temporary stay in another state, and plans to return.",
+    "student_move": "Translate the citizenship question to a domicile question. Test the two-element definition (physical presence + intent to remain indefinitely). Apply the sticky-domicile rule: a person keeps her existing domicile until acquiring a new one.",
+    "tiny_rule": "Domicile requires physical presence AND intent to remain indefinitely. A fixed-term temporary stay does not change domicile.",
+    "trap": "The dominant trap treats residence as if it were domicile. A related trap invents dual citizenship or a no-state edge case.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "17412_seminary_faculty_apartment"
+    ]
+  },
+  {
+    "id": "RC-CIVPRO-RULE23A-PRONGS-01",
+    "type": "ANCHOR",
+    "title": "Rule 23(a) — all four prongs required; adequacy is separate from typicality and personal injury",
+    "signal": "A class-certification inquiry where the defendant argues the court must analyze whether the named plaintiff and class counsel can fairly protect absent class members.",
+    "student_move": "Count the prongs. Rule 23(a) has four: numerosity, commonality, typicality, adequacy. All four must be found. Adequacy is a separate prong, distinct from typicality and from the named plaintiff's personal injury. Then check Rule 23(b) for a category.",
+    "tiny_rule": "Rule 23(a) requires all four prongs; adequacy is separate from typicality and personal injury. Rule 23(b) further requires one of three categories.",
+    "trap": "The dominant trap treats adequacy as if it were subsumed by the named plaintiff's personal injury. The two-prong-miss trap counts only numerosity and commonality.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "17443_devotional_auto_renew"
+    ]
+  },
+  {
+    "id": "RC-CIVPRO-FED-QUESTION-PRECLUSION-01",
+    "type": "ANCHOR",
+    "title": "Federal-question preclusion source",
+    "signal": "The prior judgment was a federal-question judgment; the second action is also federal; the call asks which preclusion law governs.",
+    "student_move": "Cut wrong-frame answers (plaintiff preference, same-judge). Apply the Gold Key: federal-question judgments get federal common-law preclusion.",
+    "tiny_rule": "Source of the prior judgment controls: federal-question → federal common law; state-law → rendering state preclusion law.",
+    "trap": "The Erie-fallacy answer ('all preclusion is state law') imports Erie into a federal-question case.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "17583_bookshop_securities_followup"
+    ]
+  },
+  {
+    "id": "RC-CIVPRO-SOURCE-OF-PRECLUSION-01",
+    "type": "ANCHOR",
+    "title": "Source of preclusion law — state-court vs federal-court judgment",
+    "signal": "A prior judgment is invoked for preclusion in a different court system. Ask: was the prior judgment state-court or federal-court?",
+    "student_move": "State-court judgment → § 1738 / Semtek → rendering state's preclusion law. Federal-court judgment → federal common law of preclusion. The second court's character is irrelevant; only the prior judgment's character matters.",
+    "tiny_rule": "For a state-court judgment, the rendering state's preclusion law applies (28 U.S.C. § 1738). For a federal-court judgment, federal common law of preclusion applies.",
+    "trap": "The dominant trap is the federal-court-second-suit → federal-law-always assumption. The 'second court is federal' hook is a red herring when the prior judgment is state-court.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "17704_fender_shepherd"
+    ]
+  },
+  {
+    "id": "RC-CIVPRO-AGGREGATION-AMOUNT-01",
+    "type": "ANCHOR",
+    "title": "Aggregation for the amount in controversy",
+    "signal": "A single plaintiff sues a single defendant in federal court on multiple claims. Question asks whether the amount in controversy is satisfied.",
+    "student_move": "Run the 'one plaintiff vs one defendant' check. If yes, aggregate all claims, related or unrelated, against the single defendant. The 'unrelated' qualifier is a red herring when one plaintiff sues one defendant. Confirm diversity and that the aggregated sum exceeds $75,000.",
+    "tiny_rule": "A single plaintiff may aggregate all claims — related or unrelated — against a single defendant to meet the amount-in-controversy requirement under 28 U.S.C. § 1332.",
+    "trap": "The dominant trap is the 'unrelated claims can never be aggregated' rule. Relatedness IS required for multiple plaintiffs aggregating against a single defendant, but NOT for a single plaintiff aggregating against a single defendant.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "17709_tutoring_tithe"
+    ]
+  },
+  {
+    "id": "RC-CIVPRO-RULE-24-TIMELINESS-01",
+    "type": "ANCHOR",
+    "title": "Rule 24 timeliness + prejudice",
+    "signal": "A non-party that knew of the case from the start waits until the eve of trial to move to intervene to raise arguments it could have raised earlier, and existing parties object on prejudice grounds.",
+    "student_move": "Run the Rule 24 timeliness factors first (how far the case has progressed, the movant's reason for the delay, the prejudice to existing parties). Do not be drawn into the public-importance argument; the public interest is not a magic override of Rule 24's timeliness gate.",
+    "tiny_rule": "When the movant knew of the case from day 1, the eve-of-trial intervention is denied on untimeliness and prejudice to existing parties.",
+    "trap": "The public-importance overreach (B) feels right because zoning IS public. It is not a magic override.",
+    "confidence": "HARD_STRUCTURAL",
+    "example_qids": [
+      "17711_mercy_clinic_zoning"
+    ]
+  },
+  {
+    "id": "RC-CIVPRO-KLAXON-CHOICE-CLAUSE-01",
+    "type": "ANCHOR",
+    "title": "Klaxon - forum's choice rules govern the choice-of-law clause",
+    "signal": "A federal diversity contract suit has a choice-of-law clause naming a non-forum state's law. The court must decide whether to honor the clause.",
+    "student_move": "Cut federal common law (Erie) and plaintiff preference (party preference is not the rule of decision). Then use the Gold Key to defeat the auto-enforce trap: the contract clause is not self-executing - Klaxon sends the court to the forum's choice rules first.",
+    "tiny_rule": "In federal diversity, a contractual choice-of-law clause is not self-executing; the forum state's choice-of-law rules apply first.",
+    "trap": "The contract names a state's law, so the contract must control. Wrong - Klaxon is the rule of decision.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "17913_summit_klaxon"
+    ]
+  },
+  {
+    "id": "RC-CIVIL_PROCEDURE-MANDAMUS-STANDARD-01",
+    "type": "ANCHOR",
+    "title": "Mandamus — clear and indisputable right + no adequate alternative means",
+    "signal": "A defendant seeks a writ of mandamus to challenge an ordinary interlocutory ruling on weak grounds (litigation expense, likely legal error).",
+    "student_move": "Cut the consequence-instead-of-cause and the categorical-abolition distractors first. Then apply the Gold Key: the writ is reserved for extraordinary causes; the eventual final-judgment appeal is an adequate alternative means.",
+    "tiny_rule": "Mandamus = clear-and-indisputable-right AND no-adequate-alternative-means. Ordinary legal error does not clear the bar.",
+    "trap": "The dominant trap is the 'mandamus is available whenever a party thinks an interlocutory ruling is wrong' claim (tiered absolute). It is engineered to look like the safe default; the doctrine narrows the writ to extraordinary circumstances.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "18182_bookstore_mandamus"
+    ]
+  },
+  {
+    "id": "RC-CIVIL_PROCEDURE-CORPORATE-CITIZENSHIP-01",
+    "type": "ANCHOR",
+    "title": "Corporate citizenship — dual citizenship for § 1332",
+    "signal": "A corporate defendant is incorporated in one state and has its nerve center in the plaintiff's home state; amount in controversy exceeds $75,000; claim is state-law.",
+    "student_move": "Cut the state-law-claim framing and the one-citizenship misstatement first. Then apply the Gold Key: corporate citizenship is dual, and the principal place of business is also a citizenship.",
+    "tiny_rule": "Corporation = state of incorporation + state of nerve center (PPB). Both must differ from every plaintiff's citizenship for complete diversity.",
+    "trap": "The dominant trap is the 'incorporation is the only citizenship' half-truth. It sounds correct on its face and is the most attractive wrong answer for students who half-remember the incorporation rule.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "18196_riverstone_citizenship"
+    ]
+  },
+  {
+    "id": "RC-CIVPRO-AMOUNT-CERTAINTY-01",
+    "type": "ANCHOR",
+    "title": "Amount in controversy — legal certainty, not probability",
+    "signal": "Diverse parties, good-faith pleading above the $75,000 threshold, defendant argues discovery will show lower damages, no statute or contract caps recovery below the threshold. The call is whether the court will dismiss for lack of amount in controversy.",
+    "student_move": "Check the legal-certainty test. If no statute or contract makes it legally impossible to recover more than the threshold, the good-faith pleading controls and the court will not dismiss. A defendant's prediction of low recovery is a fact, not a legal bar.",
+    "tiny_rule": "A good-faith allegation of damages in excess of the amount-in-controversy threshold controls unless it appears to a legal certainty that the plaintiff cannot recover more than that amount.",
+    "trap": "The probability-vs-certainty trap is the dominant misconception. Many students substitute 'discovery will probably show lower damages' for a legal cap and walk into the dismissal answer.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "18240_family_table_refund"
+    ]
+  },
+  {
+    "id": "RC-CIVIL_PROCEDURE-RULE15C-NOTICE-01",
+    "type": "ANCHOR",
+    "title": "Rule 15(c) party-change relation back",
+    "signal": "John Doe pleading + no service within Rule 4(m) + post-limitations identification + Rule 15(c) motion to substitute",
+    "student_move": "Cut the two 'yes' overclaims (D, B) and the immutability overclaim (C); the residual is the answer that names both required failures.",
+    "tiny_rule": "Rule 15(c) needs both timely notice and a shown identity mistake.",
+    "trap": "John Doe pleadings exist to bridge the unknown-defendant gap, but they do not by themselves satisfy the identity-mistake element.",
+    "confidence": "HARD_STRUCTURAL",
+    "example_qids": [
+      "18488_youth_retreat_trailer"
+    ]
+  },
+  {
+    "id": "RC-CIVIL_PROCEDURE-ERIE-SURVIVAL-01",
+    "type": "ANCHOR",
+    "title": "Erie and survival of state claims",
+    "signal": "A state-law plaintiff dies during a federal diversity suit; the forum state's survival statute says the claim does not survive.",
+    "student_move": "Apply Erie. The survival of a state-created claim is a substantive question; the forum state's no-survival rule governs. The merits-preference intuition does not override the Erie command.",
+    "tiny_rule": "Under Erie, the survival of a state-created claim is substantive; the forum state's survival statute governs.",
+    "trap": "The merits-preference intuition pulls toward 'always continue.' The citizenship-mismatch intuition pulls toward 'dismiss if diversity destroyed.' Both miss the Erie analysis.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "18669_mary_negligence_survival"
+    ]
+  },
+  {
+    "id": "RC-CIVPRO-RULE23-23B2-01",
+    "type": "ANCHOR",
+    "title": "Rule 23(b)(2) — single defendant, single conduct, single injunction",
+    "signal": "One defendant + one uniform conduct or policy + one injunctive remedy + no individualized damages",
+    "student_move": "Spot the 1-1-1-0 pattern. Default to Rule 23(b)(2). Cut 23(b)(3) overclaim ('every class action') on the word. Cut 23(b)(1) on the mandatory-class fit. Cut 'no class can be certified' on the True & Responsive axiom.",
+    "tiny_rule": "Rule 23(b)(2) applies when the defendant has acted or refused to act on grounds generally applicable to the class, making final injunctive or declaratory relief appropriate for the class as a whole.",
+    "trap": "The 23(b)(3) default ('every class action needs predominance') and the 23(b)(1) misframe.",
+    "confidence": "HARD_STRUCTURAL",
+    "example_qids": [
+      "18811_elevator_access_class"
+    ]
+  },
+  {
+    "id": "RC-CIVPRO-ERIE-HANNA-01",
+    "type": "ANCHOR",
+    "title": "Erie sequence — Hanna first-step (federal-directive threshold)",
+    "signal": "Diversity action; a Federal Rule directly on point; an over-simplified Erie framing",
+    "student_move": "Lock the federal-directive threshold on the visible stem fact (a Federal Rule directly on point). Cut B (outcome-test-only) on the universal-quantifier marker 'every.' Cut C (state-only) on the overclaim marker 'always.' Cut D (federal-only) on the overclaim marker 'always.'",
+    "tiny_rule": "Under Hanna, the Erie sequence begins with the federal-directive threshold; the outcome test runs only if no valid federal directive directly controls.",
+    "trap": "The 'Erie is the outcome test' shortcut and the state-only / federal-only cliches.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "18890_hanna_erie_threshold"
+    ]
+  },
+  {
+    "id": "RC-CIVIL_PROCEDURE-RULE-23F-INTERLOCUTORY-01",
+    "type": "ANCHOR",
+    "title": "Class-certification orders are not appealable as of right; the route is Rule 23(f)",
+    "signal": "A district court grants or denies class certification; the losing party files an immediate notice of appeal. The call is the appellate route.",
+    "student_move": "When the call asks 'what is the appellate route' for a non-final class-certification order, the answer is a Rule 23(f) petition for permission to appeal — never an as-of-right appeal. Importance of the issue does not change the route.",
+    "tiny_rule": "A class-certification order is not appealable as of right; the route is a Rule 23(f) discretionary petition.",
+    "trap": "Importance-as-jurisdiction bait. Many students accept the importance argument and pick 'automatic appeal as of right.' The final-judgment rule is the default, and Rule 23(f) is permission-based, not as-of-right.",
+    "confidence": "HARD_STRUCTURAL",
+    "example_qids": [
+      "18974_subscription_meal_kit_23f"
     ]
   },
   {

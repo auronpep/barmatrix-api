@@ -3,9 +3,10 @@
     "id": "DRILL-CQ-RP-F01",
     "title": "Trap mold: fabricated_rule",
     "skill": "Trap recognition",
-    "task": "Across 5 questions, identify which choice carries the \"fabricated_rule\" mold before solving.",
+    "task": "Across 6 questions, identify which choice carries the \"fabricated_rule\" mold before solving.",
     "trap_family": "fabricated_rule",
     "qid_pool": [
+      "18077_maranatha_meadow",
       "19381_shepherd_olive_press_deed",
       "19430_harp_instructor_olive_grove",
       "20213_mercy_pool_reliction",
@@ -13,7 +14,7 @@
       "20729_courtyard_stormwater"
     ],
     "cards": [],
-    "pass_criterion": "Identify the trap choice in 4/5 questions."
+    "pass_criterion": "Identify the trap choice in 5/6 questions."
   },
   {
     "id": "DRILL-CQ-RP-F02",
@@ -36,32 +37,12 @@
     "task": "Across 4 questions, identify which choice carries the \"wrong_element\" mold before solving.",
     "trap_family": "wrong_element",
     "qid_pool": [
-      "17058_advent_honey_parcel",
+      "18077_maranatha_meadow",
       "19904_psalm_orchard_foreclosure_notice",
       "20728_star_stable_stall",
       "20729_courtyard_stormwater"
     ],
     "cards": [],
     "pass_criterion": "Identify the trap choice in 3/4 questions."
-  },
-  {
-    "id": "DRILL-CQ-RP-C01",
-    "title": "Topic circuit: Conveyance by Deed — Requirements for Valid Deed",
-    "skill": "Mixed-call endurance",
-    "task": "Timed circuit across 4 Conveyance by Deed — Requirements for Valid Deed questions; predict the call before reading choices.",
-    "topic": "Conveyance by Deed — Requirements for Valid Deed",
-    "qid_pool": [
-      "17058_advent_honey_parcel",
-      "19381_shepherd_olive_press_deed",
-      "19430_harp_instructor_olive_grove",
-      "20493_fish_mark_picnic_lot"
-    ],
-    "cards": [
-      "RP-REMED-BLANK-GRANTEE-GATE",
-      "RP-ANCHOR-RECORDING-VALIDITY-01",
-      "RP-DEED-ROLE-GRANTEE-01",
-      "RP-ANCHOR-01"
-    ],
-    "pass_criterion": "3/4 correct with calls predicted."
   }
 ]

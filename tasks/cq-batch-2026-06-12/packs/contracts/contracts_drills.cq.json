@@ -3,25 +3,48 @@
     "id": "DRILL-CQ-CONTRACTS-F01",
     "title": "Trap mold: backwards",
     "skill": "Trap recognition",
-    "task": "Across 4 questions, identify which choice carries the \"backwards\" mold before solving.",
+    "task": "Across 7 questions, identify which choice carries the \"backwards\" mold before solving.",
     "trap_family": "backwards",
     "qid_pool": [
-      "17026_manger_prop_bundles",
-      "17110_sticker_press_guaranty",
+      "14391_noble_fir_nativity",
+      "14412_gospel_puzzle_invoice",
+      "14438_nativity_ornament_kits",
+      "14451_psalm_trail_quitclaim",
+      "14493_ark_stage",
       "19386_scripture_audio_cap",
       "20004_dove_tokens_manna_game"
     ],
     "cards": [],
-    "pass_criterion": "Identify the trap choice in 3/4 questions."
+    "pass_criterion": "Identify the trap choice in 6/7 questions."
   },
   {
     "id": "DRILL-CQ-CONTRACTS-F02",
     "title": "Trap mold: bait_doctrine",
     "skill": "Trap recognition",
-    "task": "Across 8 questions, identify which choice carries the \"bait_doctrine\" mold before solving.",
+    "task": "Across 28 questions, identify which choice carries the \"bait_doctrine\" mold before solving.",
     "trap_family": "bait_doctrine",
     "qid_pool": [
-      "19250_scripture_card_printer",
+      "14375_nativity_star_rig",
+      "14379_psalm_lightshow",
+      "14382_bethlehem_lanterns",
+      "14391_noble_fir_nativity",
+      "14394_lydia_puppet_stage",
+      "14396_easter_handbell_plan",
+      "14397_fish_keychains",
+      "14406_advent_lanterns",
+      "14434_crossed_handbells",
+      "14438_nativity_ornament_kits",
+      "14451_psalm_trail_quitclaim",
+      "14457_advent_kits_requirements",
+      "14458_verse_wristbands",
+      "14460_fish_loaves_mosaic",
+      "14462_mustard_seed_carts",
+      "14492_psalm_lantern_kits",
+      "14493_ark_stage",
+      "14506_lydia_rooftop_loft",
+      "14521_sea_of_galilee_lantern_walk",
+      "14525_jonah_fish_escape",
+      "14546_koine_tutor",
       "19386_scripture_audio_cap",
       "20004_dove_tokens_manna_game",
       "20461_lydia_beeswax_requirements",
@@ -31,30 +54,39 @@
       "20808_jericho_press"
     ],
     "cards": [],
-    "pass_criterion": "Identify the trap choice in 7/8 questions."
+    "pass_criterion": "Identify the trap choice in 27/28 questions."
   },
   {
     "id": "DRILL-CQ-CONTRACTS-F03",
     "title": "Trap mold: extreme_of_range",
     "skill": "Trap recognition",
-    "task": "Across 3 questions, identify which choice carries the \"extreme_of_range\" mold before solving.",
+    "task": "Across 6 questions, identify which choice carries the \"extreme_of_range\" mold before solving.",
     "trap_family": "extreme_of_range",
     "qid_pool": [
-      "17026_manger_prop_bundles",
+      "14409_sunken_ark_hall",
+      "14437_lydias_verse_card_boxes",
+      "14467_psalm_tutor_installments",
+      "14492_psalm_lantern_kits",
       "20004_dove_tokens_manna_game",
       "20100_fish_and_loaves_keychains"
     ],
     "cards": [],
-    "pass_criterion": "Identify the trap choice in 2/3 questions."
+    "pass_criterion": "Identify the trap choice in 5/6 questions."
   },
   {
     "id": "DRILL-CQ-CONTRACTS-F04",
     "title": "Trap mold: fabricated_rule",
     "skill": "Trap recognition",
-    "task": "Across 8 questions, identify which choice carries the \"fabricated_rule\" mold before solving.",
+    "task": "Across 14 questions, identify which choice carries the \"fabricated_rule\" mold before solving.",
     "trap_family": "fabricated_rule",
     "qid_pool": [
-      "17173_road_to_emmaus_puzzle_quest",
+      "14434_crossed_handbells",
+      "14447_jericho_trumpet_deposit",
+      "14457_advent_kits_requirements",
+      "14458_verse_wristbands",
+      "14467_psalm_tutor_installments",
+      "14477_advent_mugs",
+      "14530_lantern_courtyard",
       "20100_fish_and_loaves_keychains",
       "20271_lantern_handbell_evening",
       "20351_red_sea_mini_golf",
@@ -64,33 +96,77 @@
       "20805_psalm_lanterns_confirmation"
     ],
     "cards": [],
-    "pass_criterion": "Identify the trap choice in 7/8 questions."
+    "pass_criterion": "Identify the trap choice in 13/14 questions."
   },
   {
     "id": "DRILL-CQ-CONTRACTS-F05",
     "title": "Trap mold: flat_misstatement",
     "skill": "Trap recognition",
-    "task": "Across 4 questions, identify which choice carries the \"flat_misstatement\" mold before solving.",
+    "task": "Across 14 questions, identify which choice carries the \"flat_misstatement\" mold before solving.",
     "trap_family": "flat_misstatement",
     "qid_pool": [
-      "19250_scripture_card_printer",
+      "14397_fish_keychains",
+      "14406_advent_lanterns",
+      "14412_gospel_puzzle_invoice",
+      "14430_psalm_room_option",
+      "14434_crossed_handbells",
+      "14437_lydias_verse_card_boxes",
+      "14451_psalm_trail_quitclaim",
+      "14477_advent_mugs",
+      "14506_lydia_rooftop_loft",
+      "14525_jonah_fish_escape",
+      "17521_christian_wedding_cake",
       "20599_advent_handbell_integration",
       "20805_psalm_lanterns_confirmation",
       "21879_noahs_ark_puppet_set"
     ],
     "cards": [],
-    "pass_criterion": "Identify the trap choice in 3/4 questions."
+    "pass_criterion": "Identify the trap choice in 13/14 questions."
   },
   {
     "id": "DRILL-CQ-CONTRACTS-F06",
+    "title": "Trap mold: half_truth",
+    "skill": "Trap recognition",
+    "task": "Across 3 questions, identify which choice carries the \"half_truth\" mold before solving.",
+    "trap_family": "half_truth",
+    "qid_pool": [
+      "14396_easter_handbell_plan",
+      "14409_sunken_ark_hall",
+      "20370_dove_mug_notice"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 2/3 questions."
+  },
+  {
+    "id": "DRILL-CQ-CONTRACTS-F07",
+    "title": "Trap mold: misfit",
+    "skill": "Trap recognition",
+    "task": "Across 7 questions, identify which choice carries the \"misfit\" mold before solving.",
+    "trap_family": "misfit",
+    "qid_pool": [
+      "14375_nativity_star_rig",
+      "14396_easter_handbell_plan",
+      "14430_psalm_room_option",
+      "14463_calligraphy_supplies",
+      "14511_worship_studio_delay",
+      "17521_christian_wedding_cake",
+      "20599_advent_handbell_integration"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 6/7 questions."
+  },
+  {
+    "id": "DRILL-CQ-CONTRACTS-F08",
     "title": "Trap mold: tiered_absolute",
     "skill": "Trap recognition",
-    "task": "Across 10 questions, identify which choice carries the \"tiered_absolute\" mold before solving.",
+    "task": "Across 12 questions, identify which choice carries the \"tiered_absolute\" mold before solving.",
     "trap_family": "tiered_absolute",
     "qid_pool": [
-      "17110_sticker_press_guaranty",
-      "17173_road_to_emmaus_puzzle_quest",
-      "19250_scripture_card_printer",
+      "14379_psalm_lightshow",
+      "14447_jericho_trumpet_deposit",
+      "14523_psalm_calligraphy_stipend",
+      "14525_jonah_fish_escape",
+      "14530_lantern_courtyard",
       "19386_scripture_audio_cap",
       "20100_fish_and_loaves_keychains",
       "20351_red_sea_mini_golf",
@@ -100,16 +176,40 @@
       "20805_psalm_lanterns_confirmation"
     ],
     "cards": [],
-    "pass_criterion": "Identify the trap choice in 9/10 questions."
+    "pass_criterion": "Identify the trap choice in 11/12 questions."
   },
   {
-    "id": "DRILL-CQ-CONTRACTS-F07",
+    "id": "DRILL-CQ-CONTRACTS-F09",
     "title": "Trap mold: wrong_element",
     "skill": "Trap recognition",
-    "task": "Across 8 questions, identify which choice carries the \"wrong_element\" mold before solving.",
+    "task": "Across 32 questions, identify which choice carries the \"wrong_element\" mold before solving.",
     "trap_family": "wrong_element",
     "qid_pool": [
-      "17173_road_to_emmaus_puzzle_quest",
+      "14375_nativity_star_rig",
+      "14379_psalm_lightshow",
+      "14382_bethlehem_lanterns",
+      "14391_noble_fir_nativity",
+      "14394_lydia_puppet_stage",
+      "14397_fish_keychains",
+      "14400_mechanical_camel",
+      "14406_advent_lanterns",
+      "14409_sunken_ark_hall",
+      "14412_gospel_puzzle_invoice",
+      "14418_jericho_lamp_credit",
+      "14424_christmas_pageant_lantern_bid",
+      "14430_psalm_room_option",
+      "14437_lydias_verse_card_boxes",
+      "14462_mustard_seed_carts",
+      "14463_calligraphy_supplies",
+      "14493_ark_stage",
+      "14506_lydia_rooftop_loft",
+      "14510_ark_puppet_stage",
+      "14511_worship_studio_delay",
+      "14521_sea_of_galilee_lantern_walk",
+      "14523_psalm_calligraphy_stipend",
+      "14530_lantern_courtyard",
+      "14546_koine_tutor",
+      "17521_christian_wedding_cake",
       "20271_lantern_handbell_evening",
       "20351_red_sea_mini_golf",
       "20370_dove_mug_notice",
@@ -119,6 +219,126 @@
       "20808_jericho_press"
     ],
     "cards": [],
-    "pass_criterion": "Identify the trap choice in 7/8 questions."
+    "pass_criterion": "Identify the trap choice in 31/32 questions."
+  },
+  {
+    "id": "DRILL-CQ-CONTRACTS-C01",
+    "title": "Topic circuit: Defenses to Enforceability",
+    "skill": "Mixed-call endurance",
+    "task": "Timed circuit across 5 Defenses to Enforceability questions; predict the call before reading choices.",
+    "topic": "Defenses to Enforceability",
+    "qid_pool": [
+      "14391_noble_fir_nativity",
+      "14394_lydia_puppet_stage",
+      "14396_easter_handbell_plan",
+      "14397_fish_keychains",
+      "14400_mechanical_camel"
+    ],
+    "cards": [
+      "RC-CONTRACTS-SUPERVENING-ILLEGALITY-01",
+      "CONTRACTS-SOF-SURETY-MAIN-PURPOSE",
+      "REM-CONTRACTS-PROTECTED-STATUTE-01",
+      "CONTRACTS-SOF-OPEN-PRICE-01",
+      "GK-CONTRACTS-MECHANICAL-CAMEL-01"
+    ],
+    "pass_criterion": "4/5 correct with calls predicted."
+  },
+  {
+    "id": "DRILL-CQ-CONTRACTS-C02",
+    "title": "Topic circuit: Formation of Contracts",
+    "skill": "Mixed-call endurance",
+    "task": "Timed circuit across 13 Formation of Contracts questions; predict the call before reading choices.",
+    "topic": "Formation of Contracts",
+    "qid_pool": [
+      "14406_advent_lanterns",
+      "14409_sunken_ark_hall",
+      "14412_gospel_puzzle_invoice",
+      "14418_jericho_lamp_credit",
+      "14424_christmas_pageant_lantern_bid",
+      "14430_psalm_room_option",
+      "14434_crossed_handbells",
+      "14437_lydias_verse_card_boxes",
+      "14438_nativity_ornament_kits",
+      "14447_jericho_trumpet_deposit",
+      "14451_psalm_trail_quitclaim",
+      "17521_christian_wedding_cake",
+      "21879_noahs_ark_puppet_set"
+    ],
+    "cards": [
+      "GK-CONTRACTS-ILLUSORY-CANCEL-01",
+      "REM-CONTRACTS-RISK-BUCKET-01",
+      "CONTRACTS-ANCHOR-PREEXISTING-DUTY-01",
+      "REM-CONTRACTS-NEGATIVE-NOTICE-01",
+      "REM-CONTRACTS-SUB_BID_LOCKIN-01",
+      "CON-FORM-OPTION-REVOCATION-01",
+      "CON-REM-CROSSED-FORMATION-01",
+      "CON-FORM-FIRM-CAP-REVOCABLE-NOT-REVOKED",
+      "REM-CONTRACTS-ILLUSORY-CUTOFF-01",
+      "REM-CONTRACTS-PE-GIFT-GATES-01",
+      "CON-REMEDY-PSALM-QUITCLAIM",
+      "RC-CONTRACTS-MAILBOX-RULE-01",
+      "REM-CONTRACTS-OFFER-ACCEPTANCE-MODE-01"
+    ],
+    "pass_criterion": "10/13 correct with calls predicted."
+  },
+  {
+    "id": "DRILL-CQ-CONTRACTS-C03",
+    "title": "Topic circuit: Performance, Breach, and Discharge",
+    "skill": "Mixed-call endurance",
+    "task": "Timed circuit across 10 Performance, Breach, and Discharge questions; predict the call before reading choices.",
+    "topic": "Performance, Breach, and Discharge",
+    "qid_pool": [
+      "14457_advent_kits_requirements",
+      "14458_verse_wristbands",
+      "14460_fish_loaves_mosaic",
+      "14462_mustard_seed_carts",
+      "14463_calligraphy_supplies",
+      "14467_psalm_tutor_installments",
+      "14477_advent_mugs",
+      "14492_psalm_lantern_kits",
+      "14493_ark_stage",
+      "20556_mustard_seed_puppet_caravan"
+    ],
+    "cards": [
+      "REM-CONTRACTS-REQ-01",
+      "CON-GK-OUTPUT-EXCLUSIVE-BEST-EFFORTS",
+      "CONTRACTS-CALL-14460",
+      "CON-REM-WAIVE-PROTECTED-CONDITION",
+      "REM-CONTRACTS-TPB-CONDITION-01",
+      "CONTRACTS-REMEDY-INSTALLMENT-AMOUNT-LADDER",
+      "REM-CONTRACTS-SPECIFICATION-01",
+      "REM-CONTRACTS-INSTALLMENT-CURE",
+      "CON-REPUDIATION-ACT-01",
+      "CONTRACTS-ANCHOR-PI-01"
+    ],
+    "pass_criterion": "8/10 correct with calls predicted."
+  },
+  {
+    "id": "DRILL-CQ-CONTRACTS-C04",
+    "title": "Topic circuit: Remedies",
+    "skill": "Mixed-call endurance",
+    "task": "Timed circuit across 8 Remedies questions; predict the call before reading choices.",
+    "topic": "Remedies",
+    "qid_pool": [
+      "14506_lydia_rooftop_loft",
+      "14510_ark_puppet_stage",
+      "14511_worship_studio_delay",
+      "14521_sea_of_galilee_lantern_walk",
+      "14523_psalm_calligraphy_stipend",
+      "14525_jonah_fish_escape",
+      "14530_lantern_courtyard",
+      "20737_jonahs_whale_lyre"
+    ],
+    "cards": [
+      "RC-CONTRACTS-LAND-SP-14506",
+      "REM-CONTRACTS-SELLER-PRICE-01",
+      "RC-CONTRACTS-DELAY-DAMAGES-01",
+      "REMED-CONTRACTS-REMEDY-CAP-01",
+      "REM-CONTRACTS-SPECIFIC-PERFORMANCE-MONEY-01",
+      "REM-CONTRACTS-NEW-BIZ-LOST-PROFITS",
+      "REMEDY-OBJECT-51060101",
+      "REM-CONTRACTS-SP-UNIQUE-GOODS-01"
+    ],
+    "pass_criterion": "6/8 correct with calls predicted."
   }
 ]

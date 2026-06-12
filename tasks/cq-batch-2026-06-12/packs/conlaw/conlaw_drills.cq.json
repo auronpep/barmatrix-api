@@ -1,72 +1,97 @@
 [
   {
     "id": "DRILL-CQ-CONLAW-F01",
-    "title": "Trap mold: bait_doctrine",
+    "title": "Trap mold: backwards",
     "skill": "Trap recognition",
-    "task": "Across 4 questions, identify which choice carries the \"bait_doctrine\" mold before solving.",
-    "trap_family": "bait_doctrine",
+    "task": "Across 4 questions, identify which choice carries the \"backwards\" mold before solving.",
+    "trap_family": "backwards",
     "qid_pool": [
-      "19177_manna_wagon_disposal",
-      "19502_manna_festival_finals_tax",
-      "20231_crown_above_caesars",
-      "21848_manna_house_family_integrity"
+      "17680_ministry_housing_permit",
+      "17728_illuminated_manuscript",
+      "19982_manna_warehouse",
+      "20714_prayer_robotics_kits"
     ],
     "cards": [],
     "pass_criterion": "Identify the trap choice in 3/4 questions."
   },
   {
     "id": "DRILL-CQ-CONLAW-F02",
-    "title": "Trap mold: fabricated_rule",
+    "title": "Trap mold: bait_doctrine",
     "skill": "Trap recognition",
-    "task": "Across 3 questions, identify which choice carries the \"fabricated_rule\" mold before solving.",
-    "trap_family": "fabricated_rule",
+    "task": "Across 7 questions, identify which choice carries the \"bait_doctrine\" mold before solving.",
+    "trap_family": "bait_doctrine",
     "qid_pool": [
+      "17574_christian_podcast_school_board",
+      "17728_illuminated_manuscript",
+      "18438_hannah_david_medicaid",
+      "18457_lydia_book_club",
       "19502_manna_festival_finals_tax",
-      "19982_manna_warehouse",
-      "20186_road_to_emmaus_royalty_ledgers"
+      "20231_crown_above_caesars",
+      "21848_manna_house_family_integrity"
     ],
     "cards": [],
-    "pass_criterion": "Identify the trap choice in 2/3 questions."
+    "pass_criterion": "Identify the trap choice in 6/7 questions."
   },
   {
     "id": "DRILL-CQ-CONLAW-F03",
-    "title": "Trap mold: flat_misstatement",
+    "title": "Trap mold: fabricated_rule",
     "skill": "Trap recognition",
-    "task": "Across 5 questions, identify which choice carries the \"flat_misstatement\" mold before solving.",
-    "trap_family": "flat_misstatement",
+    "task": "Across 5 questions, identify which choice carries the \"fabricated_rule\" mold before solving.",
+    "trap_family": "fabricated_rule",
     "qid_pool": [
-      "17167_manger_lights_portal",
-      "19177_manna_wagon_disposal",
-      "19194_loaves_pages",
-      "19607_cana_hills_bethany_flats",
-      "20153_lampstand_labs"
+      "17114_farmstand_excessive_fine",
+      "17728_illuminated_manuscript",
+      "19502_manna_festival_finals_tax",
+      "19982_manna_warehouse",
+      "20186_road_to_emmaus_royalty_ledgers"
     ],
     "cards": [],
     "pass_criterion": "Identify the trap choice in 4/5 questions."
   },
   {
     "id": "DRILL-CQ-CONLAW-F04",
-    "title": "Trap mold: misfit",
+    "title": "Trap mold: flat_misstatement",
     "skill": "Trap recognition",
-    "task": "Across 4 questions, identify which choice carries the \"misfit\" mold before solving.",
-    "trap_family": "misfit",
+    "task": "Across 4 questions, identify which choice carries the \"flat_misstatement\" mold before solving.",
+    "trap_family": "flat_misstatement",
     "qid_pool": [
-      "19194_loaves_pages",
-      "20638_advent_rescue_beacons",
-      "21848_manna_house_family_integrity",
-      "21872_scripturequest_price_gate"
+      "18438_hannah_david_medicaid",
+      "18586_hymnsong_records",
+      "19607_cana_hills_bethany_flats",
+      "20153_lampstand_labs"
     ],
     "cards": [],
     "pass_criterion": "Identify the trap choice in 3/4 questions."
   },
   {
     "id": "DRILL-CQ-CONLAW-F05",
+    "title": "Trap mold: misfit",
+    "skill": "Trap recognition",
+    "task": "Across 6 questions, identify which choice carries the \"misfit\" mold before solving.",
+    "trap_family": "misfit",
+    "qid_pool": [
+      "17114_farmstand_excessive_fine",
+      "17163_permit_fee_ledger",
+      "17574_christian_podcast_school_board",
+      "20638_advent_rescue_beacons",
+      "21848_manna_house_family_integrity",
+      "21872_scripturequest_price_gate"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 5/6 questions."
+  },
+  {
+    "id": "DRILL-CQ-CONLAW-F06",
     "title": "Trap mold: tiered_absolute",
     "skill": "Trap recognition",
-    "task": "Across 9 questions, identify which choice carries the \"tiered_absolute\" mold before solving.",
+    "task": "Across 13 questions, identify which choice carries the \"tiered_absolute\" mold before solving.",
     "trap_family": "tiered_absolute",
     "qid_pool": [
-      "17167_manger_lights_portal",
+      "17114_farmstand_excessive_fine",
+      "17163_permit_fee_ledger",
+      "17680_ministry_housing_permit",
+      "18457_lydia_book_club",
+      "18586_hymnsong_records",
       "19982_manna_warehouse",
       "20153_lampstand_labs",
       "20186_road_to_emmaus_royalty_ledgers",
@@ -77,20 +102,28 @@
       "21872_scripturequest_price_gate"
     ],
     "cards": [],
-    "pass_criterion": "Identify the trap choice in 8/9 questions."
+    "pass_criterion": "Identify the trap choice in 12/13 questions."
   },
   {
-    "id": "DRILL-CQ-CONLAW-F06",
-    "title": "Trap mold: wrong_element",
-    "skill": "Trap recognition",
-    "task": "Across 3 questions, identify which choice carries the \"wrong_element\" mold before solving.",
-    "trap_family": "wrong_element",
+    "id": "DRILL-CQ-CONLAW-C01",
+    "title": "Topic circuit: Equal Protection",
+    "skill": "Mixed-call endurance",
+    "task": "Timed circuit across 5 Equal Protection questions; predict the call before reading choices.",
+    "topic": "Equal Protection",
     "qid_pool": [
-      "19177_manna_wagon_disposal",
-      "20638_advent_rescue_beacons",
-      "20714_prayer_robotics_kits"
+      "17680_ministry_housing_permit",
+      "18438_hannah_david_medicaid",
+      "18457_lydia_book_club",
+      "19607_cana_hills_bethany_flats",
+      "20586_psalms_hormone_use"
     ],
-    "cards": [],
-    "pass_criterion": "Identify the trap choice in 2/3 questions."
+    "cards": [
+      "RC-CONLAW-RATIONAL-BASIS-WITH-BITE-01",
+      "RC-CONSTITUTIONAL-LAW-RIGHT-TO-TRAVEL-01",
+      "RC-CONSTITUTIONAL-LAW-STATE-ACTION-01",
+      "REM-CONLAW-TIER-TRIGGER-01",
+      "REM-CONLAW-CLASSIFICATION-FIRST-20586"
+    ],
+    "pass_criterion": "4/5 correct with calls predicted."
   }
 ]

@@ -1,54 +1,483 @@
 [
   {
-    "id": "CONTRACTS-REMEDY-COURSE-DEALING-01",
+    "id": "RC-CONTRACTS-NOM-EXTRAS-01",
     "type": "ANCHOR",
-    "title": "Course of dealing before defaults",
-    "signal": "Undefined UCC term + prior same-party transactions.",
-    "student_move": "Do not jump straight to trade usage or gap-fillers.",
-    "tiny_rule": "Same-party course of dealing can explain the phrase; general usage and defaults do not automatically override it.",
-    "trap": "Source-order reversal.",
+    "title": "Signed-writing clause vs requested extras",
+    "signal": "The buyer orally asks for extras, gets them, then refuses to pay only because no signed writing exists.",
+    "student_move": "Cut timing and consideration doctrines; then use the Gold Key to kill the condition defense.",
+    "tiny_rule": "Requested-and-performed extras can defeat a signed-writing-only defense.",
+    "trap": "The condition label feels exact because the writing clause really exists.",
     "confidence": "ANCHOR_ASSISTED",
     "example_qids": [
-      "17026_manger_prop_bundles"
+      "14375_nativity_star_rig"
     ]
   },
   {
-    "id": "CON-FORM-GUARANTY-PERFORMANCE-01",
+    "id": "REM-CONTRACTS-PER-AMBIGUITY-01",
     "type": "ANCHOR",
-    "title": "Performance accepts the guaranty offer.",
-    "signal": "If you extend credit, I guarantee payment.",
-    "student_move": "Find whether the credit was extended before death or revocation.",
-    "tiny_rule": "Requested credit extension can accept.",
-    "trap": "Treating later notice as formation.",
+    "title": "Purpose Gate for Parol Evidence",
+    "signal": "Complete integration plus outside negotiations.",
+    "student_move": "Ask what the evidence is being used to do.",
+    "tiny_rule": "Interpret ambiguity can come in; add or contradict terms cannot.",
+    "trap": "four-corners absolutism",
     "confidence": "ANCHOR_ASSISTED",
     "example_qids": [
-      "17110_sticker_press_guaranty"
+      "14379_psalm_lightshow"
     ]
   },
   {
-    "id": "REM-CONTRACTS-REMEDY-MENU-01",
+    "id": "RC-CONTRACTS-TRADE-USAGE-SOURCE",
     "type": "ANCHOR",
-    "title": "Bargain price beats reasonable-value bait",
-    "signal": "Full performance + agreed price + higher reasonable value.",
-    "student_move": "Start with the bargain number before considering reliance or restitution labels.",
-    "tiny_rule": "If the contract price is fixed and fully earned, recover that price.",
-    "trap": "Picking the higher market value or the spread.",
+    "title": "Source of the missing term",
+    "signal": "Written goods contract is silent; choices offer trade practice, oral words, business harm, and competitor conduct.",
+    "student_move": "Cut actor/effect facts; clash the two source facts.",
+    "tiny_rule": "Trade usage can be a UCC source of meaning; prior oral contradiction is not the same source.",
+    "trap": "Direct word-match to 'exclusive.'",
     "confidence": "ANCHOR_ASSISTED",
     "example_qids": [
-      "17173_road_to_emmaus_puzzle_quest"
+      "14382_bethlehem_lanterns"
     ]
   },
   {
-    "id": "REM-CONTRACTS-SATISFACTION-OBJECT-01",
+    "id": "RC-CONTRACTS-SUPERVENING-ILLEGALITY-01",
     "type": "ANCHOR",
-    "title": "Satisfaction About What?",
-    "signal": "A party says 'I was not satisfied' after a measurable performance condition was met.",
-    "student_move": "Underline the object of satisfaction, then compare it to the facts.",
-    "tiny_rule": "Commercial/mechanical satisfaction is objective; personal taste is subjective.",
-    "trap": "honest-dislike wrong frame",
+    "title": "Supervening illegality — mistake vs impracticability",
+    "signal": "A federal criminal statute takes effect between offer and acceptance, unknown to both parties, and the contract performance has become illegal.",
+    "student_move": "Resolve formation first (revocation needs receipt; rejection needs receipt; acceptance is dispatch). Then apply the Gold Key: the NCBE framed key is mutual mistake; impracticability is co-credited.",
+    "tiny_rule": "When a supervening criminal statute triggers, both mutual mistake and supervening impracticability may discharge; the NCBE's framed key is mutual mistake.",
+    "trap": "The dominant trap is the most-picked answer (impracticability). It is doctrinally true; the discrimination is which framing the NCBE key picks.",
     "confidence": "ANCHOR_ASSISTED",
     "example_qids": [
-      "19250_scripture_card_printer"
+      "14391_noble_fir_nativity"
+    ]
+  },
+  {
+    "id": "CONTRACTS-SOF-SURETY-MAIN-PURPOSE",
+    "type": "ANCHOR",
+    "title": "Suretyship main-purpose gate",
+    "signal": "If the borrower does not pay, I will.",
+    "student_move": "Ask whether the guarantor was mainly seeking personal economic advantage.",
+    "tiny_rule": "No self-benefit means oral guaranty stays in the writing-required bucket.",
+    "trap": "no-consideration dominant trap and one-year bait",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "14394_lydia_puppet_stage"
+    ]
+  },
+  {
+    "id": "REM-CONTRACTS-PROTECTED-STATUTE-01",
+    "type": "ANCHOR",
+    "title": "Protected-class statute beats violation-alone forfeiture",
+    "signal": "The drafter invokes its own statutory omission against the protected buyer.",
+    "student_move": "Cut wrong-frame answers first, then use the Gold Key on the violation-alone answer.",
+    "tiny_rule": "The protected party may enforce when nonenforcement would frustrate the protective statute.",
+    "trap": "Every statutory violation voids the deal.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "14396_easter_handbell_plan"
+    ]
+  },
+  {
+    "id": "CONTRACTS-SOF-OPEN-PRICE-01",
+    "type": "ANCHOR",
+    "title": "Formation is not enforceability",
+    "signal": "Oral goods deal over $500 with no writing and a missing price term.",
+    "student_move": "Check the writing gate before rewarding the open-price rule.",
+    "tiny_rule": "Open price can be filled, but the UCC writing gate still blocks enforcement unless an exception applies.",
+    "trap": "Yes because open price does not defeat contract formation.",
+    "confidence": "PURE_ANCHOR",
+    "example_qids": [
+      "14397_fish_keychains"
+    ]
+  },
+  {
+    "id": "GK-CONTRACTS-MECHANICAL-CAMEL-01",
+    "type": "ANCHOR",
+    "title": "Mistake rescission: hidden main-use fact, no assumed risk",
+    "signal": "A buyer wants rescission after a new fact appears.",
+    "student_move": "Check direction, purpose, and risk.",
+    "tiny_rule": "Hidden main-use defect can support rescission; known risks, side uses, and hidden upside do not.",
+    "trap": "Treating any surprising post-sale fact as enough.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "14400_mechanical_camel"
+    ]
+  },
+  {
+    "id": "GK-CONTRACTS-ILLUSORY-CANCEL-01",
+    "type": "ANCHOR",
+    "title": "One-sided cancellation before performance",
+    "signal": "A purchase order says one side may cancel at any time before the performance window.",
+    "student_move": "Do not label it as an option first; ask whether that party made a real commitment.",
+    "tiny_rule": "Unrestricted cancellation before performance makes that side’s promise illusory.",
+    "trap": "Treating the one-sided escape hatch as a formed option contract.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "14406_advent_lanterns"
+    ]
+  },
+  {
+    "id": "REM-CONTRACTS-RISK-BUCKET-01",
+    "type": "ANCHOR",
+    "title": "Risk bucket beats surprise",
+    "signal": "Specialist contractor, fixed price, required excavation, no testing, and moderate cost increase.",
+    "student_move": "Ask who carried the risk before asking whether the surprise was mutual or expensive.",
+    "tiny_rule": "Unknown subsurface conditions usually stay with the specialist contractor when the contractor had the chance to test and priced the job anyway.",
+    "trap": "Mutual-mistake and impracticability answers that omit assumption of risk.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "14409_sunken_ark_hall"
+    ]
+  },
+  {
+    "id": "CONTRACTS-ANCHOR-PREEXISTING-DUTY-01",
+    "type": "ANCHOR",
+    "title": "Same debt later is not new consideration",
+    "signal": "fixed and undisputed debt already due",
+    "student_move": "Ask what new thing the debtor gave for the creditor’s no-suit promise.",
+    "tiny_rule": null,
+    "trap": "bargain language hides the missing new exchange",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "14412_gospel_puzzle_invoice"
+    ]
+  },
+  {
+    "id": "REM-CONTRACTS-NEGATIVE-NOTICE-01",
+    "type": "ANCHOR",
+    "title": "NOT accurate + performance notice",
+    "signal": "A negative call asks for the inaccurate statement in a unilateral credit-guaranty setup.",
+    "student_move": "Invert the call first, then test the notice phrase against the performance-acceptance anchor.",
+    "tiny_rule": "Performance can accept a unilateral offer, but notice can still matter when the offeror otherwise lacks a reliable way to learn that performance occurred.",
+    "trap": "Picking an accurate contract rule because it sounds familiar.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "14418_jericho_lamp_credit"
+    ]
+  },
+  {
+    "id": "REM-CONTRACTS-SUB_BID_LOCKIN-01",
+    "type": "ANCHOR",
+    "title": "Sub-bid recovery needs lock-in reliance",
+    "signal": "Low sub-bid used in prime bid, then revoked before award.",
+    "student_move": "Find the fact that shows the general contractor was locked into the prime bid.",
+    "tiny_rule": "Lock-in beats mitigation.",
+    "trap": null,
+    "confidence": null,
+    "example_qids": [
+      "14424_christmas_pageant_lantern_bid"
+    ]
+  },
+  {
+    "id": "CON-FORM-OPTION-REVOCATION-01",
+    "type": "ANCHOR",
+    "title": "Revocable is not revoked",
+    "signal": "Unpaid option consideration plus later acceptance attempt",
+    "student_move": "Separate option status from offer status.",
+    "tiny_rule": "No option means the offer can be revoked; it does not mean the offer already ended.",
+    "trap": "Treating failed irrevocability as automatic revocation.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "14430_psalm_room_option"
+    ]
+  },
+  {
+    "id": "CON-REM-CROSSED-FORMATION-01",
+    "type": "ANCHOR",
+    "title": "Crossed writings: preserve the uncertainty",
+    "signal": "Two matching writings cross and the call asks whether a contract already exists.",
+    "student_move": "Do not force a clean acceptance story; ask whether the answer preserves the uncertain formation moment.",
+    "tiny_rule": "Article 2 can recognize agreement even when no exact formation moment is identified.",
+    "trap": "Treating identical cross-offers as an offer followed by acceptance.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "14434_crossed_handbells"
+    ]
+  },
+  {
+    "id": "CON-FORM-FIRM-CAP-REVOCABLE-NOT-REVOKED",
+    "type": "ANCHOR",
+    "title": "Revocable is not revoked",
+    "signal": "Merchant signed assurance longer than three months; acceptance after month three; no revocation fact.",
+    "student_move": "Ask whether the seller actually revoked or whether the answer only says the offer became revocable.",
+    "tiny_rule": "The firm-offer cap ends irrevocability only.",
+    "trap": "Treating the cap as lapse.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "14437_lydias_verse_card_boxes"
+    ]
+  },
+  {
+    "id": "REM-CONTRACTS-ILLUSORY-CUTOFF-01",
+    "type": "ANCHOR",
+    "title": "Cancellation-window cutoff",
+    "signal": "The buyer can cancel only before a named date and then does not cancel.",
+    "student_move": "Mark the cancellation deadline, then ask what legal status exists after that date.",
+    "tiny_rule": "A freely cancelable promise may stop being illusory when the cancellation window closes unused.",
+    "trap": "Calling the missed deadline an option or a condition subsequent.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "14438_nativity_ornament_kits"
+    ]
+  },
+  {
+    "id": "REM-CONTRACTS-PE-GIFT-GATES-01",
+    "type": "ANCHOR",
+    "title": "Promissory Estoppel Gate List",
+    "signal": null,
+    "student_move": "When reliance appears after a future gift promise, cut broad no-gift and invented-extra-gate answers.",
+    "tiny_rule": "Gift promise plus reliance can be enforceable only if enforcement is needed to avoid injustice.",
+    "trap": null,
+    "confidence": null,
+    "example_qids": [
+      "14447_jericho_trumpet_deposit"
+    ]
+  },
+  {
+    "id": "CON-REMEDY-PSALM-QUITCLAIM",
+    "type": "ANCHOR",
+    "title": null,
+    "signal": null,
+    "student_move": null,
+    "tiny_rule": null,
+    "trap": null,
+    "confidence": null,
+    "example_qids": [
+      "14451_psalm_trail_quitclaim"
+    ]
+  },
+  {
+    "id": "REM-CONTRACTS-REQ-01",
+    "type": "ANCHOR",
+    "title": "Requirements contracts are not blanks",
+    "signal": "all needs, all requirements, all output, exclusive supply",
+    "student_move": "Treat all-requirements language as the quantity term, then ask whether the disputed act breaks an actual contract term.",
+    "tiny_rule": "All requirements is enough; good faith polices quantity.",
+    "trap": "minimum-quantity myth and offer-revocation wrong frame",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "14457_advent_kits_requirements"
+    ]
+  },
+  {
+    "id": "CON-GK-OUTPUT-EXCLUSIVE-BEST-EFFORTS",
+    "type": "ANCHOR",
+    "title": "Exclusive output deal supplies best efforts",
+    "signal": "Seller output plus buyer exclusivity in goods.",
+    "student_move": "Do not demand an express buy-all sentence; ask whether exclusivity supplies the action promise.",
+    "tiny_rule": "Exclusive dealing imposes best efforts to supply and promote unless otherwise agreed.",
+    "trap": "Same-result market-risk answer and no-mutuality answer.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "14458_verse_wristbands"
+    ]
+  },
+  {
+    "id": "CONTRACTS-CALL-14460",
+    "type": "ANCHOR",
+    "title": "Contract lane before backup remedy lane",
+    "signal": "The call says breach of contract and the stem gives a signed writing.",
+    "student_move": "Cut promissory estoppel and unjust enrichment unless the contract lane is blocked.",
+    "tiny_rule": "Use waiver when the protected party gives up a failed condition and the other side relies.",
+    "trap": "Choosing the fairest-sounding payment theory instead of the contract concept.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "14460_fish_loaves_mosaic"
+    ]
+  },
+  {
+    "id": "CON-REM-WAIVE-PROTECTED-CONDITION",
+    "type": "ANCHOR",
+    "title": "Protected condition waiver",
+    "signal": "One side says its own commitment depends on approval, but later wants to proceed anyway.",
+    "student_move": "Ask whose protection the condition serves before treating nonoccurrence as a defense.",
+    "tiny_rule": "The protected side can waive its own condition.",
+    "trap": "Treating nonoccurrence as automatically fatal.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "14462_mustard_seed_carts"
+    ]
+  },
+  {
+    "id": "REM-CONTRACTS-TPB-CONDITION-01",
+    "type": "ANCHOR",
+    "title": "Beneficiary status does not beat a failed condition",
+    "signal": "A nonparty sues on a promised benefit, but the stem emphasizes the promisee’s earlier failed performance.",
+    "student_move": "Name the status-vs-defense axis before choosing the status answer.",
+    "tiny_rule": "Third-party beneficiary rights remain subject to contract-level failed conditions and uncured material breaches.",
+    "trap": "Picking the beneficiary label as if it ends the case.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "14463_calligraphy_supplies"
+    ]
+  },
+  {
+    "id": "CONTRACTS-REMEDY-INSTALLMENT-AMOUNT-LADDER",
+    "type": "ANCHOR",
+    "title": "Installment amount ladder",
+    "signal": "The answer choices offer nothing, matured installments, and full balance.",
+    "student_move": "Lock the date in the call and count what has matured before considering full-balance remedies.",
+    "tiny_rule": "Due installments are collectible now; unmatured installments need an acceleration trigger.",
+    "trap": "Upgrading a few missed payments into the whole balance.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "14467_psalm_tutor_installments"
+    ]
+  },
+  {
+    "id": "REM-CONTRACTS-SPECIFICATION-01",
+    "type": "ANCHOR",
+    "title": "Late specification is not automatically fatal",
+    "signal": "goods sale leaves assortment or performance particulars for later",
+    "student_move": "Ask whether the late choice materially affected the other party’s performance.",
+    "tiny_rule": "No material effect means no refusal to perform.",
+    "trap": "deadline language treated as an express condition",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "14477_advent_mugs"
+    ]
+  },
+  {
+    "id": "REM-CONTRACTS-INSTALLMENT-CURE",
+    "type": "ANCHOR",
+    "title": "Installment Cure Beats Perfect Tender",
+    "signal": "Goods due in separate dated lots plus prompt replacement promise.",
+    "student_move": "Do not run ordinary perfect tender; run the installment matrix.",
+    "tiny_rule": "A curable nonconforming installment with assurance must be accepted; canceling the whole contract requires substantial impairment of the whole.",
+    "trap": "ordinary perfect-tender partial rejection",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "14492_psalm_lantern_kits"
+    ]
+  },
+  {
+    "id": "CON-REPUDIATION-ACT-01",
+    "type": "ANCHOR",
+    "title": "Act-as-repudiation vs self-created impossibility",
+    "signal": "Promisor transfers the promised specific item before the date for performance.",
+    "student_move": "Treat the transfer as the breach trigger, then cut excuses and tender-blame answers.",
+    "tiny_rule": "Own-act inability is repudiation, not impossibility excuse.",
+    "trap": "Impossibility language and tender language both distract from the seller's prior transfer.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "14493_ark_stage"
+    ]
+  },
+  {
+    "id": "RC-CONTRACTS-LAND-SP-14506",
+    "type": "ANCHOR",
+    "title": "Land-sale late tender: date breach is not automatic walkaway",
+    "signal": null,
+    "student_move": "Clash missed date against time-not-essential; then apply land-specific performance anchor.",
+    "tiny_rule": null,
+    "trap": null,
+    "confidence": null,
+    "example_qids": [
+      "14506_lydia_rooftop_loft"
+    ]
+  },
+  {
+    "id": "REM-CONTRACTS-SELLER-PRICE-01",
+    "type": "ANCHOR",
+    "title": "Seller remedies: price is the exception",
+    "signal": "Buyer rejects and returns conforming goods.",
+    "student_move": "On a NOT-proper-measure call, separate price actions from damages formulas.",
+    "tiny_rule": "Price requires acceptance, loss/damage after risk passed, or inability to resell.",
+    "trap": "Treating contract price as ordinary expectation damages.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "14510_ark_puppet_stage"
+    ]
+  },
+  {
+    "id": "RC-CONTRACTS-DELAY-DAMAGES-01",
+    "type": "ANCHOR",
+    "title": "Delay in real-property possession — foreseeability of special costs",
+    "signal": "Seller delays delivering possession; buyer wants both fair rental value and a special cost the seller did not know about.",
+    "student_move": "Cut the wrong-frame and contradiction choices first; then use the Gold Key to strip any unforeseeable special cost from the additive choice.",
+    "tiny_rule": "Fair rental value for the delay is recoverable; special costs are recoverable only if the seller knew of the buyer's particular needs at contracting.",
+    "trap": "The additive choice packages the right base amount with a sympathetic extra cost.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "14511_worship_studio_delay"
+    ]
+  },
+  {
+    "id": "REMED-CONTRACTS-REMEDY-CAP-01",
+    "type": "ANCHOR",
+    "title": "Breacher restitution cap versus completion overrun",
+    "signal": "Breaching performer sues for reasonable value and the nonbreaching party paid a replacement to finish.",
+    "student_move": "Anchor the contract price first, then subtract amounts already paid and reasonable completion cost.",
+    "tiny_rule": "The nonbreaching party should not pay more than the contract price for the promised completed performance.",
+    "trap": "Netting unpaid reasonable value to the breacher.",
+    "confidence": "PURE_ANCHOR",
+    "example_qids": [
+      "14521_sea_of_galilee_lantern_walk"
+    ]
+  },
+  {
+    "id": "REM-CONTRACTS-SPECIFIC-PERFORMANCE-MONEY-01",
+    "type": "ANCHOR",
+    "title": "Money promise is not an automatic no-SP answer",
+    "signal": "Answer says a court will not specifically enforce a promise to pay money.",
+    "student_move": "Treat the categorical no as suspect and ask whether damages are adequate.",
+    "tiny_rule": "Specific performance turns on adequacy, not on a blanket money/non-money label.",
+    "trap": "Confusing personal-service refusal with money-payment promises.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "14523_psalm_calligraphy_stipend"
+    ]
+  },
+  {
+    "id": "REM-CONTRACTS-NEW-BIZ-LOST-PROFITS",
+    "type": "ANCHOR",
+    "title": "New business is not automatic no",
+    "signal": null,
+    "student_move": "When an answer or instruction says new-business profits are never recoverable, replace never with proved with reasonable certainty.",
+    "tiny_rule": null,
+    "trap": "dominant trap C",
+    "confidence": null,
+    "example_qids": [
+      "14525_jonah_fish_escape"
+    ]
+  },
+  {
+    "id": "REMEDY-OBJECT-51060101",
+    "type": "ANCHOR",
+    "title": "Remedy object before formula",
+    "signal": "A remedies call follows a dense formation or option setup.",
+    "student_move": "Name what the winner lost before calculating.",
+    "tiny_rule": "If buyer wins on the land bargain, use fair market value of the property minus contract price.",
+    "trap": "Students price the wrong object or treat specific performance's unavailability as nominal-only.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "14530_lantern_courtyard"
+    ]
+  },
+  {
+    "id": "CON-TPB-01",
+    "type": "ANCHOR",
+    "title": "Future provider beneficiary",
+    "signal": "pay whoever provides the item or service",
+    "student_move": "Separate provider-intent from provider-knowledge.",
+    "tiny_rule": "Intent creates beneficiary status; knowledge/reliance affects other issues.",
+    "trap": "unnamed/unaware provider",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "14546_koine_tutor"
+    ]
+  },
+  {
+    "id": "RC-CONTRACTS-MAILBOX-RULE-01",
+    "type": "ANCHOR",
+    "title": "Mailbox rule — proper dispatch and postal loss",
+    "signal": "A mailed acceptance is lost or delayed; the question is whether a contract was formed.",
+    "student_move": "Apply the Gold Key: the mailbox rule applies only when the acceptance is properly dispatched (correct address + correct postage). If the acceptance was properly dispatched, the rule applies; the post office's loss is irrelevant (Silver Key). If the acceptance was misaddressed or unstamped, the rule does not apply.",
+    "tiny_rule": "Mailbox rule = acceptance effective on dispatch ONLY when properly dispatched (correct address + correct postage).",
+    "trap": "The dominant trap is 'Yes, because the offeree mailed the acceptance' — it omits the properly dispatched element. The secondary trap is 'No, because the mail was lost' — it reverses the mailbox rule's allocation of postal risk.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "17521_christian_wedding_cake"
     ]
   },
   {

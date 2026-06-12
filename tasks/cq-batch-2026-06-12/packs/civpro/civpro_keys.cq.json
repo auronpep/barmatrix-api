@@ -1,50 +1,410 @@
 [
   {
-    "id": "GK-CIVIL_PROCEDURE-JMOL-STANDARD-01",
+    "id": "GK-CIVPRO-HERITAGE-PLOW-FRAUD-01",
     "kind": "gold",
-    "statement": "JMOL asks whether, after a party has been fully heard on an issue, a reasonable jury would have a legally sufficient evidentiary basis to find for that party on that issue.",
-    "type": "threshold",
-    "trigger": "Party rests; opponent moves for JMOL on a specific element.",
-    "authority": "Fed. R. Civ. P. 50(a)(1)",
+    "statement": "In a diversity case, the burden of proof on a state-law claim element or defense follows the substantive state right into federal court; federal procedural rules do not override that allocation.",
+    "type": "rule",
+    "trigger": "diversity suit on a state-law claim, plaintiff invokes federal procedural rule to override a state burden allocation",
+    "authority": "Erie Railroad Co. v. Tompkins, 304 U.S. 64 (1938); Guaranty Trust Co. v. York, 326 U.S. 99 (1945)",
     "last_minute_review": true,
     "example_qids": [
-      "19266_carol_banquet_jmol"
+      "17027_heritage_plow_fraud"
     ]
   },
   {
-    "id": "SK-CIVIL_PROCEDURE-JMOL-PROCEDURAL-LENS-01",
+    "id": "SK-CIVPRO-HERITAGE-PLOW-FRAUD-01",
     "kind": "silver",
-    "statement": "On a JMOL motion, stay on trial evidence for the targeted element; do not drift to sympathy, filing conduct, or automatic jury submission.",
-    "type": "trap_spotting",
-    "trigger": "Call asks what standard the court should apply to JMOL.",
+    "statement": "When a call asks which burden applies to a specific claim element in a diversity case, test each answer against the specific element and the specific body of law, not against abstract labels about burdens in general.",
+    "type": "call_focus",
+    "trigger": "four short procedural-posture labels in a diversity case; one is the state-burden answer",
     "authority": null,
     "last_minute_review": true,
     "example_qids": [
-      "19266_carol_banquet_jmol"
+      "17027_heritage_plow_fraud"
     ]
   },
   {
-    "id": "GK-CIVIL_PROCEDURE-LOST-ESI-01",
+    "id": "GK-CIVPRO-DAY-SCHOOL-PLAYGROUND-JMOL-01",
     "kind": "gold",
-    "statement": "Lost ESI has a sanction ladder: prejudice without intent allows only curative measures no greater than necessary; adverse inference, presumption, dismissal, or default requires intent to deprive.",
+    "statement": "A Rule 50(b) motion renews, rather than invents, a Rule 50(a) legal-sufficiency challenge; the post-verdict motion is limited to grounds fairly raised in the pre-verdict Rule 50(a) motion.",
+    "type": "rule",
+    "trigger": "defendant files a Rule 50(b) motion on a new ground not raised in the pre-verdict Rule 50(a) motion",
+    "authority": "Unitherm Food Systems, Inc. v. Swift-Eckrich, Inc., 546 U.S. 394, 404 (2006); Federal Rule of Civil Procedure 50(b)",
+    "last_minute_review": true,
+    "example_qids": [
+      "17117_day_school_playground_jmol"
+    ]
+  },
+  {
+    "id": "SK-CIVPRO-DAY-SCHOOL-PLAYGROUND-JMOL-01",
+    "kind": "silver",
+    "statement": "When the call asks whether the court may grant a renewed Rule 50(b) motion on a new ground, test the new ground against the pre-verdict 50(a) record, not against the doctrinal strength of the new ground.",
+    "type": "call_focus",
+    "trigger": "four answer choices that each name a different procedural theory (unlimited preservation, importance priority, plaintiff-only availability, correct preservation)",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "17117_day_school_playground_jmol"
+    ]
+  },
+  {
+    "id": "GK-CIVPRO-POTLUCK-LOT-01",
+    "kind": "gold",
+    "statement": "A crossclaim runs against a co-party; a counterclaim runs against an opposing party. Co-defendants on the same side of the caption are co-parties, so the labeled claim between them is a crossclaim under FRCP 13(g).",
     "type": "distinction",
-    "trigger": "lost ESI + prejudice + no deliberate deprivation",
-    "authority": "Fed. R. Civ. P. 37(e)(1)-(2)",
+    "trigger": "one defendant asserts a claim against a co-defendant in the same suit",
+    "authority": "Federal Rule of Civil Procedure 13(a), 13(g)",
     "last_minute_review": true,
     "example_qids": [
-      "19286_five_loaves_press"
+      "17179_potluck_lot_rear_end"
     ]
   },
   {
-    "id": "SK-CIVIL_PROCEDURE-LOST-ESI-01",
+    "id": "SK-CIVPRO-POTLUCK-LOT-01",
     "kind": "silver",
-    "statement": "Read the choices by sanction severity keyed to mental state: no intent in the stem pushes you away from unfavorable-presumption and case-ending answers.",
-    "type": "answer_array",
-    "trigger": "one answer cures prejudice; two answers punish as if intent existed",
+    "statement": "When the second defendant is already named in the caption, do not reach for impleader — impleader exists precisely to pull a *non-party* in.",
+    "type": "trap_spotting",
+    "trigger": "defendant names a non-plaintiff, but the non-plaintiff is already a co-defendant",
     "authority": null,
     "last_minute_review": true,
     "example_qids": [
-      "19286_five_loaves_press"
+      "17179_potluck_lot_rear_end"
+    ]
+  },
+  {
+    "id": "GK-CIVPRO-OAK-CHOIR-STALL-01",
+    "kind": "gold",
+    "statement": "Rule 12(h)(2) preserves the Rule 12(b)(6) failure-to-state-a-claim defense for any later pleading, motion, or at trial — including a Rule 12(c) motion for judgment on the pleadings after the pleadings close.",
+    "type": "rule",
+    "trigger": "defendant answers without 12(b)(6) and later moves for judgment on the pleadings under Rule 12(c)",
+    "authority": "Federal Rule of Civil Procedure 12(h)(2)",
+    "last_minute_review": true,
+    "example_qids": [
+      "17406_oak_choir_stall"
+    ]
+  },
+  {
+    "id": "SK-CIVPRO-OAK-CHOIR-STALL-01",
+    "kind": "silver",
+    "statement": "When the call is 'is the defense waived by omission,' map the precise defense to the precise Rule 12(h) subsection before saying 'waived.' Rule 12(h)(1) waives 12(b)(2)–(5) and 12(b)(7); Rule 12(h)(2) preserves 12(b)(6) and a small list of other defenses; Rule 12(h)(3) addresses 12(b)(1) (subject-matter jurisdiction), which is never waived.",
+    "type": "cut",
+    "trigger": "defendant omits a Rule 12(b) defense from the answer; call is whether the defense is preserved",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "17406_oak_choir_stall"
+    ]
+  },
+  {
+    "id": "GK-CIVPRO-SEMINARY-FACULTY-APARTMENT-01",
+    "kind": "gold",
+    "statement": "A natural person's state citizenship for diversity purposes is the state of domicile, defined as physical presence coupled with intent to remain indefinitely. A fixed-term temporary stay does not change domicile; a person keeps her existing domicile until she acquires a new one in a different state.",
+    "type": "rule",
+    "trigger": "person with clear permanent-home state + fixed-term temporary stay in another state + clear intent to return",
+    "authority": "28 U.S.C. § 1332(a)(1); Stifel v. Hopkins, 477 U.S. 407 (1986)",
+    "last_minute_review": true,
+    "example_qids": [
+      "17412_seminary_faculty_apartment"
+    ]
+  },
+  {
+    "id": "SK-CIVPRO-SEMINARY-FACULTY-APARTMENT-01",
+    "kind": "silver",
+    "statement": "When the call is 'for diversity purposes, what is her citizenship,' translate the question to 'where is her domicile' and test the two-element definition (physical presence + intent to remain indefinitely) before picking.",
+    "type": "call_focus",
+    "trigger": "call asks for state citizenship in a diversity-jurisdiction fact pattern",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "17412_seminary_faculty_apartment"
+    ]
+  },
+  {
+    "id": "GK-CIVPRO-DEVOTIONAL-AUTO-RENEW-01",
+    "kind": "gold",
+    "statement": "Adequacy of representation is a separate Rule 23(a) prong, distinct from typicality and from the named plaintiff's personal injury. The named plaintiff and class counsel must fairly protect the interests of absent class members; that is a separate inquiry the court must find in addition to numerosity, commonality, and typicality.",
+    "type": "rule",
+    "trigger": "defendant argues that the court must analyze whether the named plaintiff and class counsel can fairly protect absent class members; call is which statement best describes the certification inquiry",
+    "authority": "Federal Rule of Civil Procedure 23(a)(4)",
+    "last_minute_review": true,
+    "example_qids": [
+      "17443_devotional_auto_renew"
+    ]
+  },
+  {
+    "id": "SK-CIVPRO-DEVOTIONAL-AUTO-RENEW-01",
+    "kind": "silver",
+    "statement": "When the call is 'which statement best describes the certification inquiry,' count the prongs. Rule 23(a) has four: numerosity, commonality, typicality, adequacy. All four must be found. Rule 23(b) further requires one of three categories.",
+    "type": "cut",
+    "trigger": "open-ended 'which statement best describes the certification inquiry' call",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "17443_devotional_auto_renew"
+    ]
+  },
+  {
+    "id": "GK-CIVPRO-BOOKSHOP-SECURITIES-FOLLOWUP-01",
+    "kind": "gold",
+    "statement": "The preclusion law that governs a federal-court judgment tracks the source of the substantive claim that produced the judgment: federal-question judgments get federal common-law preclusion; state-law judgments get the preclusion law of the rendering state.",
+    "type": "rule",
+    "trigger": "prior judgment was a federal-question judgment; second action is also federal; call asks which preclusion law governs",
+    "authority": "Semtek International Inc. v. Lockheed Martin Corp., 531 U.S. 497 (2001)",
+    "last_minute_review": true,
+    "example_qids": [
+      "17583_bookshop_securities_followup"
+    ]
+  },
+  {
+    "id": "SK-CIVPRO-BOOKSHOP-SECURITIES-FOLLOWUP-01",
+    "kind": "silver",
+    "statement": "When the call asks which preclusion law governs the earlier judgment, ask first: what was the source of the prior judgment — federal question or state law? Then match: federal question → federal common law; state law → rendering state preclusion law. The Erie posture of either case is a separate question.",
+    "type": "call_focus",
+    "trigger": "call asks 'which preclusion law governs the earlier judgment'",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "17583_bookshop_securities_followup"
+    ]
+  },
+  {
+    "id": "GK-CIVPRO-FENDER-SHEPHERD-01",
+    "kind": "gold",
+    "statement": "For a state-court judgment, the source of preclusion law is the rendering state under 28 U.S.C. § 1738 and Semtek; federal common law of preclusion controls only federal-court judgments.",
+    "type": "rule",
+    "trigger": "prior judgment is state-court; second court is federal (or vice versa)",
+    "authority": "28 U.S.C. § 1738; Semtek International Inc. v. Lockheed Martin Corp., 531 U.S. 497 (2001)",
+    "last_minute_review": true,
+    "example_qids": [
+      "17704_fender_shepherd"
+    ]
+  },
+  {
+    "id": "SK-CIVPRO-TUTORING-TITHE-01",
+    "kind": "silver",
+    "statement": "A single plaintiff may aggregate all claims — related or unrelated — against a single defendant to meet the amount-in-controversy requirement under 28 U.S.C. § 1332; the 'unrelated' qualifier is a red herring when one plaintiff sues one defendant.",
+    "type": "distinction",
+    "trigger": "stem describes a single plaintiff suing a single defendant on multiple claims in federal court",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "17709_tutoring_tithe"
+    ]
+  },
+  {
+    "id": "SK-CIVPRO-MERCY-CLINIC-ZONING-01",
+    "kind": "silver",
+    "statement": "When the movant knew of the case from day 1, run the Rule 24 timeliness factors first; the public-importance choice is a misstatement of the mandatory-intervention rule (Rule 24(a)(2) requires impairment of a legally protected interest, not a general public concern).",
+    "type": "trap_spotting",
+    "trigger": "movant knew of the case from the start; the proposed intervention would reopen discovery and delay trial; the 'intervention is required' framing is on the table",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "17711_mercy_clinic_zoning"
+    ]
+  },
+  {
+    "id": "GK-CIVPRO-SUMMIT-KLAXON-01",
+    "kind": "gold",
+    "statement": "A federal diversity court must apply the forum state's choice-of-law rules (Klaxon) to determine whether a contractual choice-of-law clause is enforceable, even when the contract names the chosen state's law. The contract clause is not self-executing.",
+    "type": "rule",
+    "trigger": "federal diversity case with a contractual choice-of-law clause naming a non-forum state",
+    "authority": "Klaxon Co. v. Stentor Electric Mfg. Co., 313 U.S. 487 (1941); Erie R.R. v. Tompkins, 304 U.S. 64 (1938); 28 U.S.C. § 1652; Restatement (Second) of Conflict of Laws § 187(2)",
+    "last_minute_review": true,
+    "example_qids": [
+      "17913_summit_klaxon"
+    ]
+  },
+  {
+    "id": "SK-CIVPRO-SUMMIT-KLAXON-01",
+    "kind": "silver",
+    "statement": "When the call asks how a federal court should decide a choice-of-law question in diversity, the test is the forum-state choice-of-law rules, not the contract's choice-of-law clause, not federal common law, and not party preference.",
+    "type": "clash",
+    "trigger": "federal diversity case involving a contractual choice-of-law clause",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "17913_summit_klaxon"
+    ]
+  },
+  {
+    "id": "GK-CIVIL_PROCEDURE-BOOKSTORE-MANDAMUS-01",
+    "kind": "gold",
+    "statement": "Mandamus is an extraordinary writ. It requires the petitioner to show a clear and indisputable right to the relief sought AND the absence of any adequate alternative means of relief. The writ is not a substitute for an appeal; ordinary legal error in denying a routine motion does not clear the standard.",
+    "type": "rule",
+    "trigger": "ordinary interlocutory ruling; defendant seeks mandamus on weak grounds (expense, likely error)",
+    "authority": "All Writs Act, 28 U.S.C. § 1651(a); Roche v. Evaporated Milk Ass'n, 319 U.S. 21, 26 (1943); Bankers Life & Casualty Co. v. Holland, 346 U.S. 379 (1953)",
+    "last_minute_review": true,
+    "example_qids": [
+      "18182_bookstore_mandamus"
+    ]
+  },
+  {
+    "id": "SK-CIVIL_PROCEDURE-BOOKSTORE-MANDAMUS-01",
+    "kind": "silver",
+    "statement": "When the call asks whether mandamus is available for an ordinary interlocutory ruling, run the 'clear and indisputable right' check first. Ordinary legal error in denying a routine motion does not clear the bar; the eventual final-judgment appeal is an adequate alternative means.",
+    "type": "call_focus",
+    "trigger": "stem describes an ordinary interlocutory ruling and a defendant seeking mandamus on weak grounds",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "18182_bookstore_mandamus"
+    ]
+  },
+  {
+    "id": "GK-CIVIL_PROCEDURE-RIVERSTONE-CITIZENSHIP-01",
+    "kind": "gold",
+    "statement": "A corporation is a citizen of BOTH its state of incorporation AND the state of its principal place of business (nerve center) for purposes of 28 U.S.C. § 1332. The plaintiff and the corporation cannot both be citizens of the same state for complete diversity to be present.",
+    "type": "rule",
+    "trigger": "corporate defendant with dual-citizenship structure; plaintiff shares one of the corporate citizenships",
+    "authority": "28 U.S.C. § 1332(c)(1); Hertz Corp. v. Friend, 559 U.S. 77 (2010)",
+    "last_minute_review": true,
+    "example_qids": [
+      "18196_riverstone_citizenship"
+    ]
+  },
+  {
+    "id": "SK-CIVIL_PROCEDURE-RIVERSTONE-CITIZENSHIP-01",
+    "kind": "silver",
+    "statement": "When the call asks whether complete diversity is present, run the dual-citizenship check on the corporate defendant first. If the corporation's nerve center is in the plaintiff's home state, diversity is destroyed — regardless of the state of incorporation.",
+    "type": "call_focus",
+    "trigger": "stem describes a corporate defendant with a dual-citizenship structure and a plaintiff sharing one of the corporate citizenships",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "18196_riverstone_citizenship"
+    ]
+  },
+  {
+    "id": "GK-CIVPRO-FAMILY-TABLE-01",
+    "kind": "gold",
+    "statement": "Under the legal-certainty test, a federal court will not dismiss for lack of amount in controversy unless it appears to a legal certainty that the plaintiff cannot recover more than the statutory threshold. A defendant's prediction that discovery will reduce actual recovery is a factual probability, not a legal bar.",
+    "type": "rule",
+    "trigger": "diverse parties, good-faith pleading above the threshold, defendant argues discovery will show lower damages, no statute or contract caps recovery below the threshold",
+    "authority": "St. Paul Mercury Indemnity Co. v. Red Cab Co., 303 U.S. 283 (1938); 28 U.S.C. § 1332(a)",
+    "last_minute_review": true,
+    "example_qids": [
+      "18240_family_table_refund"
+    ]
+  },
+  {
+    "id": "SK-CIVPRO-FAMILY-TABLE-01",
+    "kind": "silver",
+    "statement": "A defendant's contention that the plaintiff's damages are lower than pleaded does not itself defeat the amount in controversy. Contested damages go to the merits, not to subject-matter jurisdiction.",
+    "type": "misfit",
+    "trigger": "defendant's motion to dismiss asserts that discovery will show lower damages (or otherwise disputes the pleaded amount)",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "18240_family_table_refund"
+    ]
+  },
+  {
+    "id": "GK-CIVIL_PROCEDURE-YOUTH-RETREAT-TRAILER-01",
+    "kind": "gold",
+    "statement": "Rule 15(c) party-change relation back requires both timely notice within the Rule 4(m) period and a shown Rule 15(c) identity mistake; a John Doe pleading plus a lack of identified defendant is not, by itself, the required mistake.",
+    "type": "rule",
+    "trigger": "John Doe pleading + no service within Rule 4(m) + post-limitations identification + Rule 15(c) motion",
+    "authority": "Fed. R. Civ. P. 15(c)(1)(C); 1991 amendment Advisory Committee Notes",
+    "last_minute_review": true,
+    "example_qids": [
+      "18488_youth_retreat_trailer"
+    ]
+  },
+  {
+    "id": "SK-CIVIL_PROCEDURE-YOUTH-RETREAT-TRAILER-01",
+    "kind": "silver",
+    "statement": "Read the call to the named party (here, the real driver), then cut the 'yes' overclaims and the immutability overclaim before reaching for a doctrine label.",
+    "type": "call_focus",
+    "trigger": "John Doe pleading + post-limitations identification + Rule 15(c) motion",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "18488_youth_retreat_trailer"
+    ]
+  },
+  {
+    "id": "GK-CIVIL_PROCEDURE-MARY-NEGLIGENCE-SURVIVAL-01",
+    "kind": "gold",
+    "statement": "Under Erie, a federal diversity court applies state substantive law. The survival of a state-created claim is a substantive question for Erie purposes, so the forum state's survival statute — including a no-survival rule — governs.",
+    "type": "rule",
+    "trigger": "state-law plaintiff dies during federal diversity litigation; forum-state survival statute says the claim does not survive",
+    "authority": "Erie R.R. Co. v. Tompkins, 304 U.S. 64 (1938); Klaxon Co. v. Stentor Electric Manufacturing Co., 313 U.S. 487 (1941); Wheeling Steel Corp. v. Fox, 298 U.S. 193 (1936)",
+    "last_minute_review": true,
+    "example_qids": [
+      "18669_mary_negligence_survival"
+    ]
+  },
+  {
+    "id": "SK-CIVIL_PROCEDURE-MARY-NEGLIGENCE-SURVIVAL-01",
+    "kind": "silver",
+    "statement": "When the call asks 'what should the federal court do?' in a diversity case involving a state-law claim, the answer is the Erie command, not a merits-preference or diversity-impact analysis.",
+    "type": "call_focus",
+    "trigger": "federal court, diversity jurisdiction, state-law claim, plaintiff dies during litigation",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "18669_mary_negligence_survival"
+    ]
+  },
+  {
+    "id": "GK-CIVPRO-RULE23-23B2-01",
+    "kind": "gold",
+    "statement": "Rule 23(b)(2) is the natural fit when a class claim targets a single defendant for a single uniform policy or course of conduct and seeks a single injunctive or declaratory remedy that would provide classwide relief — no predominance, no superiority, no opt-out.",
+    "type": "rule",
+    "trigger": "When the stem has one defendant, one uniform conduct, one injunctive remedy, and no individualized damages, ask 'is this a Rule 23(b)(2) case?' first, before defaulting to Rule 23(b)(3).",
+    "authority": "Federal Rule of Civil Procedure 23(b)(2); Wal-Mart Stores, Inc. v. Dukes, 564 U.S. 338 (2011) (cohesion test for Rule 23(b)(2) classes).",
+    "last_minute_review": true,
+    "example_qids": [
+      "18811_elevator_access_class"
+    ]
+  },
+  {
+    "id": "SK-CIVPRO-RULE23-1-1-1-0-01",
+    "kind": "silver",
+    "statement": "When a Rule 23 call has a 1-1-1-0 pattern (one defendant + one uniform conduct + one injunctive remedy + no individualized damages), default to Rule 23(b)(2) before reaching for Rule 23(b)(3). The 1-1-1-0 pattern is the textbook Rule 23(b)(2) shape.",
+    "type": "answer_array",
+    "trigger": "A class claim with one defendant, one conduct, one injunction, no damages.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "18811_elevator_access_class"
+    ]
+  },
+  {
+    "id": "GK-CIVPRO-ERIE-HANNA-01",
+    "kind": "gold",
+    "statement": "Under Hanna v. Plumer, the first step in any Erie analysis is to ask whether a valid Federal Rule of Civil Procedure or valid federal statute directly controls the issue; if it does, the federal directive applies, and the outcome-determinative test does not come into play.",
+    "type": "rule",
+    "trigger": "When the stem names a specific Federal Rule directly on point (e.g., FRE 801 hearsay), lock the federal-directive threshold first; do not reach for the outcome test.",
+    "authority": "Hanna v. Plumer, 380 U.S. 460 (1965); Erie Railroad Co. v. Tompkins, 304 U.S. 64 (1938); cf. Guaranty Trust Co. v. York, 326 U.S. 99 (1945); Byrd v. Blue Ridge Rural Electric Cooperative, 356 U.S. 525 (1958); Rules Enabling Act, 28 U.S.C. § 2072.",
+    "last_minute_review": true,
+    "example_qids": [
+      "18890_hanna_erie_threshold"
+    ]
+  },
+  {
+    "id": "SK-CIVPRO-ERIE-HANNA-01",
+    "kind": "silver",
+    "statement": "When the stem names a specific Federal Rule directly on point, lock the federal-directive threshold first; do not reach for the outcome test.",
+    "type": "call_focus",
+    "trigger": "A diversity case with a Federal Rule directly on point.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "18890_hanna_erie_threshold"
+    ]
+  },
+  {
+    "id": "SK-CIVIL_PROCEDURE-SUBSCRIPTION-MEAL-KIT-23F-01",
+    "kind": "silver",
+    "statement": "When the call asks 'what is the appellate route' for a non-final order, scan for a permission-based statute or rule (Rule 23(f), 28 U.S.C. § 1292(b), mandamus, collateral order). The default is no interlocutory appeal as of right.",
+    "type": "cut",
+    "trigger": "defendant files an immediate notice of appeal from a non-final class-certification order and argues that the importance of the question entitles it to appeal as of right",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "18974_subscription_meal_kit_23f"
     ]
   },
   {

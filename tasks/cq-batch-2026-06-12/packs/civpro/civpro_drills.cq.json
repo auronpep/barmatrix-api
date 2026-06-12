@@ -1,70 +1,115 @@
 [
   {
     "id": "DRILL-CQ-CIVPRO-F01",
-    "title": "Trap mold: backwards",
-    "skill": "Trap recognition",
-    "task": "Across 3 questions, identify which choice carries the \"backwards\" mold before solving.",
-    "trap_family": "backwards",
-    "qid_pool": [
-      "19286_five_loaves_press",
-      "20627_ruth_hymn_poster_contract",
-      "20811_illuminated_psalms_solvent"
-    ],
-    "cards": [],
-    "pass_criterion": "Identify the trap choice in 2/3 questions."
-  },
-  {
-    "id": "DRILL-CQ-CIVPRO-F02",
     "title": "Trap mold: bait_doctrine",
     "skill": "Trap recognition",
-    "task": "Across 3 questions, identify which choice carries the \"bait_doctrine\" mold before solving.",
+    "task": "Across 6 questions, identify which choice carries the \"bait_doctrine\" mold before solving.",
     "trap_family": "bait_doctrine",
     "qid_pool": [
+      "17179_potluck_lot_rear_end",
+      "17583_bookshop_securities_followup",
+      "17711_mercy_clinic_zoning",
       "19721_jonah_whale_float",
       "19840_red_sea_bridge_bolts",
       "20567_psalm_panels_venue"
     ],
     "cards": [],
-    "pass_criterion": "Identify the trap choice in 2/3 questions."
+    "pass_criterion": "Identify the trap choice in 5/6 questions."
   },
   {
-    "id": "DRILL-CQ-CIVPRO-F03",
+    "id": "DRILL-CQ-CIVPRO-F02",
     "title": "Trap mold: fabricated_rule",
     "skill": "Trap recognition",
-    "task": "Across 4 questions, identify which choice carries the \"fabricated_rule\" mold before solving.",
+    "task": "Across 8 questions, identify which choice carries the \"fabricated_rule\" mold before solving.",
     "trap_family": "fabricated_rule",
     "qid_pool": [
-      "19266_carol_banquet_jmol",
-      "19286_five_loaves_press",
+      "17027_heritage_plow_fraud",
+      "17412_seminary_faculty_apartment",
+      "17704_fender_shepherd",
+      "17709_tutoring_tithe",
+      "18240_family_table_refund",
+      "18974_subscription_meal_kit_23f",
       "19721_jonah_whale_float",
       "20690_bethlehem_star_drone"
     ],
     "cards": [],
-    "pass_criterion": "Identify the trap choice in 3/4 questions."
+    "pass_criterion": "Identify the trap choice in 7/8 questions."
+  },
+  {
+    "id": "DRILL-CQ-CIVPRO-F03",
+    "title": "Trap mold: flat_misstatement",
+    "skill": "Trap recognition",
+    "task": "Across 9 questions, identify which choice carries the \"flat_misstatement\" mold before solving.",
+    "trap_family": "flat_misstatement",
+    "qid_pool": [
+      "17027_heritage_plow_fraud",
+      "17406_oak_choir_stall",
+      "17412_seminary_faculty_apartment",
+      "17913_summit_klaxon",
+      "18182_bookstore_mandamus",
+      "18196_riverstone_citizenship",
+      "18488_youth_retreat_trailer",
+      "20247_bible_memory_kit",
+      "20606_lydia_festival_venue"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 8/9 questions."
   },
   {
     "id": "DRILL-CQ-CIVPRO-F04",
-    "title": "Trap mold: misfit",
+    "title": "Trap mold: half_truth",
     "skill": "Trap recognition",
-    "task": "Across 3 questions, identify which choice carries the \"misfit\" mold before solving.",
-    "trap_family": "misfit",
+    "task": "Across 3 questions, identify which choice carries the \"half_truth\" mold before solving.",
+    "trap_family": "half_truth",
     "qid_pool": [
-      "20353_baptism_tank_burst",
-      "20690_bethlehem_star_drone",
-      "20811_illuminated_psalms_solvent"
+      "18196_riverstone_citizenship",
+      "18811_elevator_access_class",
+      "19793_dove_candle_ledgers"
     ],
     "cards": [],
     "pass_criterion": "Identify the trap choice in 2/3 questions."
   },
   {
     "id": "DRILL-CQ-CIVPRO-F05",
+    "title": "Trap mold: misfit",
+    "skill": "Trap recognition",
+    "task": "Across 13 questions, identify which choice carries the \"misfit\" mold before solving.",
+    "trap_family": "misfit",
+    "qid_pool": [
+      "17027_heritage_plow_fraud",
+      "17117_day_school_playground_jmol",
+      "17179_potluck_lot_rear_end",
+      "17583_bookshop_securities_followup",
+      "17711_mercy_clinic_zoning",
+      "17913_summit_klaxon",
+      "18196_riverstone_citizenship",
+      "18240_family_table_refund",
+      "18669_mary_negligence_survival",
+      "18811_elevator_access_class",
+      "20353_baptism_tank_burst",
+      "20690_bethlehem_star_drone",
+      "20811_illuminated_psalms_solvent"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 12/13 questions."
+  },
+  {
+    "id": "DRILL-CQ-CIVPRO-F06",
     "title": "Trap mold: tiered_absolute",
     "skill": "Trap recognition",
-    "task": "Across 10 questions, identify which choice carries the \"tiered_absolute\" mold before solving.",
+    "task": "Across 18 questions, identify which choice carries the \"tiered_absolute\" mold before solving.",
     "trap_family": "tiered_absolute",
     "qid_pool": [
-      "19266_carol_banquet_jmol",
-      "19286_five_loaves_press",
+      "17117_day_school_playground_jmol",
+      "17406_oak_choir_stall",
+      "17443_devotional_auto_renew",
+      "17704_fender_shepherd",
+      "17709_tutoring_tithe",
+      "18182_bookstore_mandamus",
+      "18488_youth_retreat_trailer",
+      "18669_mary_negligence_survival",
+      "18811_elevator_access_class",
+      "18890_hanna_erie_threshold",
       "19793_dove_candle_ledgers",
       "19840_red_sea_bridge_bolts",
       "20247_bible_memory_kit",
@@ -75,15 +120,18 @@
       "21711_foam_whale_nativity_attachment"
     ],
     "cards": [],
-    "pass_criterion": "Identify the trap choice in 9/10 questions."
+    "pass_criterion": "Identify the trap choice in 17/18 questions."
   },
   {
-    "id": "DRILL-CQ-CIVPRO-F06",
+    "id": "DRILL-CQ-CIVPRO-F07",
     "title": "Trap mold: wrong_element",
     "skill": "Trap recognition",
-    "task": "Across 5 questions, identify which choice carries the \"wrong_element\" mold before solving.",
+    "task": "Across 8 questions, identify which choice carries the \"wrong_element\" mold before solving.",
     "trap_family": "wrong_element",
     "qid_pool": [
+      "17443_devotional_auto_renew",
+      "17709_tutoring_tithe",
+      "18182_bookstore_mandamus",
       "19721_jonah_whale_float",
       "20247_bible_memory_kit",
       "20606_lydia_festival_venue",
@@ -91,6 +139,74 @@
       "21711_foam_whale_nativity_attachment"
     ],
     "cards": [],
-    "pass_criterion": "Identify the trap choice in 4/5 questions."
+    "pass_criterion": "Identify the trap choice in 7/8 questions."
+  },
+  {
+    "id": "DRILL-CQ-CIVPRO-C01",
+    "title": "Topic circuit: Appeals and Finality",
+    "skill": "Mixed-call endurance",
+    "task": "Timed circuit across 5 Appeals and Finality questions; predict the call before reading choices.",
+    "topic": "Appeals and Finality",
+    "qid_pool": [
+      "18182_bookstore_mandamus",
+      "18974_subscription_meal_kit_23f",
+      "19793_dove_candle_ledgers",
+      "20247_bible_memory_kit",
+      "20291_nativity_prop_rental_freeze"
+    ],
+    "cards": [
+      "RC-CIVIL_PROCEDURE-MANDAMUS-STANDARD-01",
+      "RC-CIVIL_PROCEDURE-RULE-23F-INTERLOCUTORY-01",
+      "RC-CIVIL_PROCEDURE-COLLATERAL-ORDER-NARROWNESS-01",
+      "CIV-REM-54B-CERT-GATE",
+      "CIV-REM-20291-FUNCTIONAL-INJUNCTION"
+    ],
+    "pass_criterion": "4/5 correct with calls predicted."
+  },
+  {
+    "id": "DRILL-CQ-CIVPRO-C02",
+    "title": "Topic circuit: Erie Doctrine and Choice of Law",
+    "skill": "Mixed-call endurance",
+    "task": "Timed circuit across 5 Erie Doctrine and Choice of Law questions; predict the call before reading choices.",
+    "topic": "Erie Doctrine and Choice of Law",
+    "qid_pool": [
+      "17027_heritage_plow_fraud",
+      "17913_summit_klaxon",
+      "18669_mary_negligence_survival",
+      "18890_hanna_erie_threshold",
+      "20567_psalm_panels_venue"
+    ],
+    "cards": [
+      "RC-CIVPRO-ERIE-BURDEN-01",
+      "RC-CIVPRO-KLAXON-CHOICE-CLAUSE-01",
+      "RC-CIVIL_PROCEDURE-ERIE-SURVIVAL-01",
+      "RC-CIVPRO-ERIE-HANNA-01",
+      "CIV-REM-ERIE-FED-STATUTE-01"
+    ],
+    "pass_criterion": "4/5 correct with calls predicted."
+  },
+  {
+    "id": "DRILL-CQ-CIVPRO-C03",
+    "title": "Topic circuit: Subject Matter Jurisdiction",
+    "skill": "Mixed-call endurance",
+    "task": "Timed circuit across 6 Subject Matter Jurisdiction questions; predict the call before reading choices.",
+    "topic": "Subject Matter Jurisdiction",
+    "qid_pool": [
+      "17412_seminary_faculty_apartment",
+      "17709_tutoring_tithe",
+      "18196_riverstone_citizenship",
+      "18240_family_table_refund",
+      "20353_baptism_tank_burst",
+      "20627_ruth_hymn_poster_contract"
+    ],
+    "cards": [
+      "RC-CIVPRO-DOMICILE-DIVERSITY-01",
+      "RC-CIVPRO-AGGREGATION-AMOUNT-01",
+      "RC-CIVIL_PROCEDURE-CORPORATE-CITIZENSHIP-01",
+      "RC-CIVPRO-AMOUNT-CERTAINTY-01",
+      "CIV-REM-20353-DEFENDANT-COUNTERCLAIM",
+      "REM-CIV-DIVERSITY-FILING-SNAPSHOT"
+    ],
+    "pass_criterion": "5/6 correct with calls predicted."
   }
 ]

@@ -1,28 +1,15 @@
 [
   {
-    "id": "EVI-ANCHOR-TRADE-TERMS-01",
+    "id": "RC-EVIDENCE-FRE-608A-ATTACK-TRIGGER-01",
     "type": "ANCHOR",
-    "title": "Trade term, not craft expertise",
-    "signal": "A contract phrase is explained by a witness familiar with the trade’s vocabulary.",
-    "student_move": "Name the testimony purpose before evaluating expert labels.",
-    "tiny_rule": "Trade-term testimony explains trade meaning.",
-    "trap": "Choosing the witness’s end-use expertise or the parties’ stipulation as the reason.",
+    "title": "FRE 608(a) — bolstering gated by 'after attack'",
+    "signal": "A party offers reputation or opinion evidence on a witness's character for truthfulness, but no prior attack on that character appears in the record.",
+    "student_move": "Apply the trigger check: has the witness's character for truthfulness been attacked (e.g., by prior inconsistent statement, bias, conviction of crime, reputation, or contradiction)? If not, the bolstering opinion is not admissible under 608(a).",
+    "tiny_rule": "FRE 608(a) authorizes opinion/reputation evidence on truthfulness only after an attack; mere testimony is not an attack.",
+    "trap": "The dominant trap is to assume bolstering is always permitted when the witness has taken the stand. It is not — the trigger must be met first.",
     "confidence": "ANCHOR_ASSISTED",
     "example_qids": [
-      "17045_scripture_banner_cloth"
-    ]
-  },
-  {
-    "id": "EVI-PRIV-OBJECT-NOT-MEDIUM-01",
-    "type": "ANCHOR",
-    "title": "Privilege Object, Not Medium",
-    "signal": "The answer says a writing, text, card, email, or document is not a communication.",
-    "student_move": "Ask whether the object contains a confidential spouse-to-spouse communication.",
-    "tiny_rule": "Written can still be communication.",
-    "trap": "format/object confusion",
-    "confidence": "ANCHOR_ASSISTED",
-    "example_qids": [
-      "19228_prayer_card_study_bible"
+      "17996_shepherding_call"
     ]
   },
   {

@@ -1,26 +1,434 @@
 [
   {
-    "id": "GK-TORTS-THIRD-PARTY-SECURITY-01",
-    "kind": "gold",
-    "statement": "A business is not an insurer against random third-party crime. Customer status matters, but guard/security duty needs a foreseeability trigger such as prior similar incidents, created risk, imminent danger, or comparable notice.",
-    "type": "distinction",
-    "trigger": "A customer is attacked by an unknown third party and sues for missing security guards.",
-    "authority": "Restatement (Second) of Torts § 344 cmt. f; Restatement (Second) of Torts § 314A business-invitee principles, lawyer-confirmation only.",
-    "last_minute_review": true,
-    "example_qids": [
-      "19213_road_to_emmaus_breezeway"
-    ]
-  },
-  {
-    "id": "SK-TORTS-SECURITY-CALL-01",
+    "id": "SK-TORTS-DODGEBALL-CONSENT-01",
     "kind": "silver",
-    "statement": "Lock the exact duty before reading the choices: the question is not whether Esther was a customer, but whether these facts triggered a guard-duty against a random third-party attack.",
+    "statement": "When two 'yes' choices remain in a consent-to-sport question, pick the one that names the actual defense — consent to contacts within the ordinary scope of the sport — rather than a missing-intent theory.",
     "type": "call_focus",
-    "trigger": "A choice says duty exists merely because the plaintiff bought or completed something at the business.",
+    "trigger": "one yes choice cites scope of play; the other yes choice cites lack of intent",
     "authority": null,
     "last_minute_review": true,
     "example_qids": [
-      "19213_road_to_emmaus_breezeway"
+      "17018_youth_dodgeball_consent"
+    ]
+  },
+  {
+    "id": "GK-TORTS-PARISH-NEWSLETTER-REPUBLICATION-01",
+    "kind": "gold",
+    "statement": "Attribution is not a defense to republication; repeating a defamatory charge to a new audience is itself a publication, and the republisher is liable as a publisher even when the source is named.",
+    "type": "rule",
+    "trigger": "republisher names the original source and asks whether attribution insulates the republisher",
+    "authority": "Restatement (Second) of Torts § 578",
+    "last_minute_review": true,
+    "example_qids": [
+      "17111_parish_newsletter_republication"
+    ]
+  },
+  {
+    "id": "SK-TORTS-PARISH-NEWSLETTER-REPUBLICATION-01",
+    "kind": "silver",
+    "statement": "When the call asks whether a repeater is a publisher of a defamatory statement, test each named defense against the publication element specifically, not against the editor's intent or the medium used.",
+    "type": "call_focus",
+    "trigger": "four answer choices that each name a different defense (medium, joinder, attribution, correct republication theory)",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "17111_parish_newsletter_republication"
+    ]
+  },
+  {
+    "id": "GK-TORTS-WELLNESS-VISIT-01",
+    "kind": "gold",
+    "statement": "A signed consent form is a present license that the patient may revoke at any time before the contact occurs, regardless of the form. Revocation does not require written notice or any particular magic words.",
+    "type": "rule",
+    "trigger": "clear pre-contact revocation of a signed medical/cosmetic consent",
+    "authority": "Restatement (Second) of Torts § 892A; Mohr v. Williams, 95 Minn. 261 (1905)",
+    "last_minute_review": true,
+    "example_qids": [
+      "17236_wellness_visit_revocation"
+    ]
+  },
+  {
+    "id": "SK-TORTS-WELLNESS-VISIT-01",
+    "kind": "silver",
+    "statement": "Battery does not require serious injury; an unauthorized harmful or offensive contact is enough — even a minor cosmetic injection.",
+    "type": "trap_spotting",
+    "trigger": "battery claim with a minor-magnitude contact",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "17236_wellness_visit_revocation"
+    ]
+  },
+  {
+    "id": "GK-TORTS-PRAYER-PARCEL-01",
+    "kind": "gold",
+    "statement": "Under traditional entrant categories, the duty owed to an unknown trespasser is narrow and is not the invitee inspection duty. The categories track what the landowner *knows* and what the hazard *is*; an unknown trespasser injured by a natural condition receives only the floor-level duty (refrain from willful and wanton conduct).",
+    "type": "rule",
+    "trigger": "unknown trespasser injured by a natural condition on remote land, with no-entry signs posted",
+    "authority": "Restatement (Second) of Torts § 333–339; Prosser & Keeton, Torts § 57–60",
+    "last_minute_review": true,
+    "example_qids": [
+      "17264_prayer_parcel_trip"
+    ]
+  },
+  {
+    "id": "SK-TORTS-PRAYER-PARCEL-01",
+    "kind": "silver",
+    "statement": "Warning signs are evidence of reasonable care, not a basis for strict liability. Premises liability to trespassers is fault-based, not strict.",
+    "type": "trap_spotting",
+    "trigger": "warning-signs-are-evidence-of-care inference in a premises-liability claim",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "17264_prayer_parcel_trip"
+    ]
+  },
+  {
+    "id": "GK-TORTS-FOUNDATION-PANELING-01",
+    "kind": "gold",
+    "statement": "Active concealment of a known material defect, combined with an affirmative misstatement, is actionable fraud; it is not the case that fraud can never be based on concealment, nor that every property defect is fraud.",
+    "type": "rule",
+    "trigger": "seller's known material defect + active concealment + affirmative misstatement + buyer's reliance",
+    "authority": "Restatement (Second) of Torts §§ 525, 527, 549",
+    "last_minute_review": true,
+    "example_qids": [
+      "17289_foundation_paneling"
+    ]
+  },
+  {
+    "id": "SK-TORTS-FOUNDATION-PANELING-01",
+    "kind": "silver",
+    "statement": "Economic damages are exactly what fraud is designed to compensate; do not import the negligence-bar-on-pure-economic-loss rule into fraud.",
+    "type": "call_focus",
+    "trigger": "fraud call that mentions the buyer's economic damages",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "17289_foundation_paneling"
+    ]
+  },
+  {
+    "id": "GK-TORTS-BLOWN-BIBLE-ORCHARD-01",
+    "kind": "gold",
+    "statement": "When a chattel lands on a landowner's land through no fault of the actor, the actor has a qualified privilege to enter to retrieve the chattel, but the privilege protects only the entry — it does not shield the actor from liability for actual damage caused by the entry and removal.",
+    "type": "rule",
+    "trigger": "chattel on landowner's land; actor enters to retrieve; damage from entry; hauling not abnormally dangerous; no fault",
+    "authority": "Restatement (Second) of Torts §§ 77, 79",
+    "last_minute_review": true,
+    "example_qids": [
+      "17630_blown_bible_orchard"
+    ]
+  },
+  {
+    "id": "SK-TORTS-BLOWN-BIBLE-ORCHARD-01",
+    "kind": "silver",
+    "statement": "When a chattel-retrieval case has both spill-caused and removal-caused damage, split the causation: spill-caused damage is not recoverable absent an abnormally dangerous activity; removal-caused damage is recoverable because the entry is a volitional act.",
+    "type": "call_focus",
+    "trigger": "stem distinguishes between spill-caused and removal-caused damage",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "17630_blown_bible_orchard"
+    ]
+  },
+  {
+    "id": "GK-TORTS-LIVING-NATIVITY-CARVER-01",
+    "kind": "gold",
+    "statement": "Competition for prospective business through truthful pricing is privileged; liability for interference with prospective economic advantage requires improper means, not lawful price competition.",
+    "type": "rule",
+    "trigger": "no signed renewal plus truthful lower price by a competitor",
+    "authority": "Restatement (Second) of Torts § 768; Restatement (Third) of Torts: Liability for Economic Harm § 4",
+    "last_minute_review": true,
+    "example_qids": [
+      "17857_living_nativity_carver"
+    ]
+  },
+  {
+    "id": "SK-TORTS-LIVING-NATIVITY-CARVER-01",
+    "kind": "silver",
+    "statement": "When a stem pairs 'no signed renewal' with 'truthful lower price,' the privilege line is the deciding axis — cut the 'tortious because lost a deal' answers first.",
+    "type": "call_focus",
+    "trigger": "no signed renewal plus truthful lower price by a competitor",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "17857_living_nativity_carver"
+    ]
+  },
+  {
+    "id": "GK-TORTS-STEWARDS-HEAVYHEART-01",
+    "kind": "gold",
+    "statement": "Favorable termination of the prior proceeding is a threshold element of malicious prosecution. A pending underlying suit is fatal to the claim, regardless of how strong the malice or lack-of-probable-cause showing would otherwise be.",
+    "type": "threshold",
+    "trigger": "underlying suit is still pending; the plaintiff sues for malicious prosecution alleging malice and lack of probable cause",
+    "authority": "Restatement (Second) of Torts §§ 674, 681",
+    "last_minute_review": true,
+    "example_qids": [
+      "17956_stewards_heavyheart"
+    ]
+  },
+  {
+    "id": "SK-TORTS-STEWARDS-HEAVYHEART-01",
+    "kind": "silver",
+    "statement": "When the call asks for the 'strongest' problem, pick the threshold-missing-element answer, not a categorical-rule answer. The threshold element controls the analysis; categorical overstatements, overclaim, and wrong-tort-frame distractors name real but secondary defects.",
+    "type": "call_focus",
+    "trigger": "the call asks for the 'strongest' problem; one choice targets a threshold/missing-element defect and the others target secondary defects",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "17956_stewards_heavyheart"
+    ]
+  },
+  {
+    "id": "GK-TORTS-MOUNTAIN-LODGE-LOOSEBOARD-01",
+    "kind": "gold",
+    "statement": "Invitees get the inspection duty; the 'warn only of known' rule is the licensee standard, not the invitee standard. A paying attendee at a ticketed event is an invitee, and the duty that follows is the broader reasonable-care-including-inspection rule.",
+    "type": "rule",
+    "trigger": "possessor invites the public onto the premises for a paid event; entrant is injured; call asks what duty the possessor owed",
+    "authority": "Restatement (Second) of Torts §§ 332 (invitee), 343 (duty to invitees); §§ 330, 341 (licensees — narrower rule)",
+    "last_minute_review": true,
+    "example_qids": [
+      "18135_mountain_lodge_looseboard"
+    ]
+  },
+  {
+    "id": "SK-TORTS-MOUNTAIN-LODGE-LOOSEBOARD-01",
+    "kind": "silver",
+    "statement": "When the call asks 'what duty did the possessor owe,' first classify the entrant (invitee / licensee / trespasser), then match the duty to the entrant's status.",
+    "type": "call_focus",
+    "trigger": "possessor invites the public onto the premises; entrant is injured; call is the duty question",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "18135_mountain_lodge_looseboard"
+    ]
+  },
+  {
+    "id": "GK-TORTS-CAMPFIRE-RIM-WARNING-01",
+    "kind": "gold",
+    "statement": "A manufacturer has no duty to warn of dangers that are open, obvious, and commonly understood by ordinary users of an ordinary product. The doctrine operates as a non-duty rule, not as an affirmative defense: the duty never arises for risks a reasonable user can plainly perceive.",
+    "type": "rule",
+    "trigger": "ordinary product, ordinary-use risk, plaintiff sues for failure to warn",
+    "authority": "Restatement (Second) of Torts § 402A, cmt. j; Restatement (Third) of Torts: Products Liability § 2, cmt. f",
+    "last_minute_review": true,
+    "example_qids": [
+      "18179_campfire_rim_warning"
+    ]
+  },
+  {
+    "id": "SK-TORTS-CAMPFIRE-RIM-WARNING-01",
+    "kind": "silver",
+    "statement": "Run the open-and-obvious check on the SPECIFIC risk the plaintiff claims was undisclosed. The duty to warn fails when the very risk the plaintiff names is the risk any ordinary user would plainly perceive.",
+    "type": "call_focus",
+    "trigger": "stem names a specific risk in the failure-to-warn allegation",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "18179_campfire_rim_warning"
+    ]
+  },
+  {
+    "id": "GK-TORTS-ATHLETICS-BUS-COLLISION-01",
+    "kind": "gold",
+    "statement": "Joint and several liability lets the plaintiff collect 100% of damages from any one defendant. The proportional split between defendants is the inter-se contribution problem, not the plaintiff's problem.",
+    "type": "rule",
+    "trigger": "multiple defendants held jointly and severally liable; plaintiff free of fault; call asks what portion the plaintiff may collect from one defendant",
+    "authority": "Restatement (Third) of Torts: Apportionment of Liability §§ 1, 4; Uniform Contribution Among Tortfeasors Act (UCATA)",
+    "last_minute_review": true,
+    "example_qids": [
+      "18197_athletics_bus_collision"
+    ]
+  },
+  {
+    "id": "SK-TORTS-ATHLETICS-BUS-COLLISION-01",
+    "kind": "silver",
+    "statement": "When the call asks 'what portion can the plaintiff collect from one defendant' and the stem says 'jointly and severally liable,' the answer is 100%.",
+    "type": "call_focus",
+    "trigger": "multiple defendants held jointly and severally liable; plaintiff free of fault; call is the plaintiff's collection right",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "18197_athletics_bus_collision"
+    ]
+  },
+  {
+    "id": "GK-TORTS-MANGER-CRADLE-COLLAPSE-01",
+    "kind": "gold",
+    "statement": "Res ipsa is an evidentiary inference of negligence that requires the absence of voluntary action or contribution by the plaintiff; a post-rental plaintiff alteration is a plausible alternative cause that defeats the inference.",
+    "type": "rule",
+    "trigger": "rental of a physical item + post-rental plaintiff alteration + undetermined-cause collapse",
+    "authority": "Restatement (Second) of Torts § 328D (third element and cmt. e)",
+    "last_minute_review": true,
+    "example_qids": [
+      "18287_manger_cradle_collapse"
+    ]
+  },
+  {
+    "id": "SK-TORTS-MANGER-CRADLE-COLLAPSE-01",
+    "kind": "silver",
+    "statement": "When the call asks for a res ipsa analysis, the third-prong plaintiff-contribution test is the deciding axis; do not pivot to strict-liability or statutory-violation frames.",
+    "type": "call_focus",
+    "trigger": "call asks for 'best res ipsa analysis' and one of the choices proposes a strict-liability or statutory-violation answer",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "18287_manger_cradle_collapse"
+    ]
+  },
+  {
+    "id": "GK-TORTS-FELLOWSHIP-HALL-GRAB-01",
+    "kind": "gold",
+    "statement": "The transferred-intent doctrine applies to battery (and certain other intentional torts against the person) when the defendant intends to commit a tort against one person but commits a different tort against a different person; it does not apply to assault — the assault plaintiff must be the person put in apprehension of contact with herself.",
+    "type": "rule",
+    "trigger": "bystander claims assault over harm to a third party and the defendant never threatened the bystander",
+    "authority": "Restatement (Second) of Torts §§ 16, 21",
+    "last_minute_review": true,
+    "example_qids": [
+      "18298_fellowship_hall_grab"
+    ]
+  },
+  {
+    "id": "SK-TORTS-FELLOWSHIP-HALL-GRAB-01",
+    "kind": "silver",
+    "statement": "When a bystander claims assault over harm to a third party, the deciding axis is whether the bystander apprehended contact with HERSELF, not whether she perceived injury to the third party or whether the defendant was aware his conduct would frighten her.",
+    "type": "call_focus",
+    "trigger": "stem describes violence directed at a third party, with the bystander claiming assault",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "18298_fellowship_hall_grab"
+    ]
+  },
+  {
+    "id": "GK-TORTS-SHILOH-CAMPGROUND-01",
+    "kind": "gold",
+    "statement": "Coming to the nuisance is a reasonableness factor, not a complete defense. An *expansion* of the activity after the plaintiff moved in cuts strongly against the 'was there first' intuition.",
+    "type": "rule",
+    "trigger": "defendant argues 'coming to the nuisance' after a substantial expansion of the activity following the plaintiff's move-in",
+    "authority": "Restatement (Second) of Torts §§ 826, 833(1); Spano v. Perini & Sons, 250 N.E.2d 31 (N.Y. 1969)",
+    "last_minute_review": true,
+    "example_qids": [
+      "18592_shiloh_campground"
+    ]
+  },
+  {
+    "id": "SK-TORTS-SHILOH-CAMPGROUND-01",
+    "kind": "silver",
+    "statement": "When the defendant's activity has *expanded* after the plaintiff moved in, the 'coming to the nuisance' argument is at its weakest as a complete defense.",
+    "type": "call_focus",
+    "trigger": "defendant argues 'coming to the nuisance' after a substantial expansion of the activity following the plaintiff's move-in",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "18592_shiloh_campground"
+    ]
+  },
+  {
+    "id": "GK-TORTS-MARY-WELLNESS-APPROPRIATION-01",
+    "kind": "gold",
+    "statement": "A license to use a likeness is limited by its scope — time, medium, and purpose — and use outside the agreed scope can support an appropriation claim.",
+    "type": "rule",
+    "trigger": "licensee uses a photo for a different medium or later time period than the original license authorized",
+    "authority": "Restatement (Second) of Torts §§ 652C, 652E, 652F",
+    "last_minute_review": true,
+    "example_qids": [
+      "18676_mary_wellness_appropriation"
+    ]
+  },
+  {
+    "id": "SK-TORTS-MARY-WELLNESS-APPROPRIATION-01",
+    "kind": "silver",
+    "statement": "When the call asks 'Can the licensee rely on the original license?' compare the original license's scope to the later use on each scope dimension (time, medium, purpose).",
+    "type": "call_focus",
+    "trigger": "licensee uses a photo for a different medium or later time period than the original license authorized",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "18676_mary_wellness_appropriation"
+    ]
+  },
+  {
+    "id": "GK-TORTS-FRAUD-RELIANCE-01",
+    "kind": "gold",
+    "statement": "A plaintiff cannot justifiably rely on an oral assurance that is plainly contradicted by a written term the plaintiff signed, where the writing is in obvious form (here, bold type above the signature line).",
+    "type": "distinction",
+    "trigger": "When the stem has a signed writing that flatly contradicts an alleged oral representation, and the plaintiff sues in tort based on the oral representation, ask first whether the reliance element can survive the obviousness of the writing.",
+    "authority": "Restatement (Second) of Torts §§ 525, 537A, 541 (1977); Holcomb v. Hoffman, 695 N.W.2d 65 (Wis. 2005) (oral assurances contradicted by unambiguous integration clause are not justifiably relied upon).",
+    "last_minute_review": true,
+    "example_qids": [
+      "18784_fellowship_lot_used_car"
+    ]
+  },
+  {
+    "id": "SK-TORTS-FRAUD-OVERCLAIM-01",
+    "kind": "silver",
+    "statement": "When a wrong answer carries a universal-quantifier ('never,' 'always,' 'presumed'), it is a tiered_absolute overclaim — the kind of phrasing that loses to a single counterexample. Cut it on the word, then look for the element-based residual.",
+    "type": "trap_spotting",
+    "trigger": "Any fraud call with a 'never' or 'presumed' distractor.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "18784_fellowship_lot_used_car"
+    ]
+  },
+  {
+    "id": "GK-TORTS-WEDDING-GARDEN-SPILL-01",
+    "kind": "gold",
+    "statement": "Economic damages that flow from a tort-caused physical injury are recoverable; they are not standalone pure economic loss.",
+    "type": "rule",
+    "trigger": "negligence suit with a physical injury and a request for lost wages or lost self-employed contract income",
+    "authority": "Restatement (Second) of Torts § 924; McDougald v. Perry, 146 So. 2d 408 (Fla. Dist. Ct. App. 1962); Robins Dry Dock & Repair Co. v. Flint, 275 U.S. 303 (1927)",
+    "last_minute_review": true,
+    "example_qids": [
+      "18900_wedding_garden_spill"
+    ]
+  },
+  {
+    "id": "SK-TORTS-WEDDING-GARDEN-SPILL-01",
+    "kind": "silver",
+    "statement": "When the defendant's argument uses the phrase 'pure economic loss,' check whether the plaintiff also has a physical injury — if yes, the bar does not apply and the financial harm rides in on the personal-injury claim.",
+    "type": "call_focus",
+    "trigger": "defendant in a negligence suit invokes 'pure economic loss' as a defense to a lost-wage claim",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "18900_wedding_garden_spill"
+    ]
+  },
+  {
+    "id": "GK-TORTS-RARE-BIBLE-PROVENANCE-01",
+    "kind": "gold",
+    "statement": "Justifiable reliance is defeated when the plaintiff ignores an obvious, plainly-worded contradiction in materials provided before the transaction.",
+    "type": "rule",
+    "trigger": "fraud suit, pre-sale written document plainly contradicts the oral assurance, plaintiff did not read the document",
+    "authority": "Restatement (Second) of Torts § 525; § 545A and comments; Prosser & Keeton, The Law of Torts § 108",
+    "last_minute_review": true,
+    "example_qids": [
+      "18914_rare_bible_provenance"
+    ]
+  },
+  {
+    "id": "SK-TORTS-RARE-BIBLE-PROVENANCE-01",
+    "kind": "silver",
+    "statement": "Lock the call to the seller's strongest defense — that is the lack-of-reliance defense, not the opinion defense or the no-reliance defense.",
+    "type": "call_focus",
+    "trigger": "the call asks 'what is the seller's strongest defense' in a fraud suit where the buyer ignored a pre-sale written contradiction",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "18914_rare_bible_provenance"
+    ]
+  },
+  {
+    "id": "GK-TORTS-HOMESCHOOL-COOP-MONTH-01",
+    "kind": "gold",
+    "statement": "Defamation requires falsity, but a statement is not false if the gist or sting is substantially true. Minor inaccuracies that do not change the gist or sting (such as a wrong month) are tolerated.",
+    "type": "rule",
+    "trigger": "private publication misstates a date (month) of an otherwise-true defamatory fact; the plaintiff sues based only on the wrong date",
+    "authority": "Milkovich v. Lorain Journal Co., 497 U.S. 1, 19-20 (1990); Masson v. New Yorker Magazine, Inc., 501 U.S. 496, 513-17 (1991)",
+    "last_minute_review": true,
+    "example_qids": [
+      "18982_homeschool_coop_month"
     ]
   },
   {

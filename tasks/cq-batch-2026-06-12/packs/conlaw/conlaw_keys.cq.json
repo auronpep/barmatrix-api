@@ -1,134 +1,194 @@
 [
   {
-    "id": "GK-CONLAW-MANGER-LIGHTS-01",
+    "id": "GK-CONLAW-FARMSTAND-EXCESSIVE-FINE-01",
     "kind": "gold",
-    "statement": "Necessary and Proper does not mean absolutely indispensable; Congress may use appropriate means connected to executing an enumerated power.",
-    "type": "distinction",
-    "trigger": "challenger says Congress could have used another administrative method",
-    "authority": "McCulloch v. Maryland; United States v. Darby; United States v. Comstock",
-    "last_minute_review": true,
-    "example_qids": [
-      "17167_manger_lights_portal"
-    ]
-  },
-  {
-    "id": "GK-CONLAW-MANGER-LIGHTS-02",
-    "kind": "gold",
-    "statement": "The Necessary and Proper Clause is not freestanding; the means must execute an enumerated or otherwise vested federal power.",
-    "type": "threshold",
-    "trigger": "answer says valid even with no enumerated-power connection",
-    "authority": "Kinsella v. United States ex rel. Singleton",
-    "last_minute_review": true,
-    "example_qids": [
-      "17167_manger_lights_portal"
-    ]
-  },
-  {
-    "id": "SK-CONLAW-MANGER-LIGHTS-01",
-    "kind": "silver",
-    "statement": "In a 2-valid/2-invalid constitutional array, do not stop at the result word; read the reason after it and keep the answer that preserves both required links.",
-    "type": "answer_array",
-    "trigger": "two answers say valid and two say invalid",
-    "authority": null,
-    "last_minute_review": true,
-    "example_qids": [
-      "17167_manger_lights_portal"
-    ]
-  },
-  {
-    "id": "GK-CONLAW-PROPERTY-DISPOSE-01",
-    "kind": "gold",
-    "statement": "When Congress sells or otherwise disposes of property belonging to the United States, the Property Clause is the power source.",
+    "statement": "The Excessive Fines Clause of the Eighth Amendment is incorporated against the states (and their political subdivisions) through the Fourteenth Amendment Due Process Clause; the federal-only incorporation theory fails.",
     "type": "constitutional_principle",
-    "trigger": "Congress + federal property + sell/dispose",
-    "authority": "U.S. Const. art. IV, § 3, cl. 2",
+    "trigger": "state or local government actor seeks a grossly disproportionate forfeiture; defendant invokes the Eighth Amendment Excessive Fines Clause through the Fourteenth Amendment; government moves to dismiss on a federal-only theory",
+    "authority": "Timbs v. Indiana, 586 U.S. 365 (2019)",
     "last_minute_review": true,
     "example_qids": [
-      "19177_manna_wagon_disposal"
+      "17114_farmstand_excessive_fine"
     ]
   },
   {
-    "id": "GK-CONLAW-ATTAINDER-PUNISHMENT-02",
-    "kind": "gold",
-    "statement": "A bill of attainder requires legislative punishment of an identified person or group without judicial trial.",
-    "type": "threshold",
-    "trigger": "Answer says bill of attainder but stem gives no punishment",
-    "authority": "Nixon v. Administrator of General Services, 433 U.S. 425",
-    "last_minute_review": true,
-    "example_qids": [
-      "19177_manna_wagon_disposal"
-    ]
-  },
-  {
-    "id": "GK-CONLAW-FOURTEENTH-STATE-03",
-    "kind": "gold",
-    "statement": "The Fourteenth Amendment Equal Protection Clause is the state-action source; do not use it as the direct source for Congress.",
-    "type": "distinction",
-    "trigger": "Congress/federal actor + Fourteenth Amendment answer",
-    "authority": "U.S. Const. amend. XIV, § 1",
-    "last_minute_review": true,
-    "example_qids": [
-      "19177_manna_wagon_disposal"
-    ]
-  },
-  {
-    "id": "GK-CONLAW-NO-GENERAL-POLICE-04",
-    "kind": "gold",
-    "statement": "Congress has enumerated powers, not a general police power; find the specific federal power that fits.",
-    "type": "constitutional_principle",
-    "trigger": "Answer says general police powers of Congress",
-    "authority": "United States v. Lopez, 514 U.S. 549",
-    "last_minute_review": true,
-    "example_qids": [
-      "19177_manna_wagon_disposal"
-    ]
-  },
-  {
-    "id": "SK-CONLAW-MANNA-WAGONS-01",
+    "id": "SK-CONLAW-FARMSTAND-EXCESSIVE-FINE-01",
     "kind": "silver",
-    "statement": "For a Con Law source-choice array, match actor + object + action before debating policy.",
-    "type": "answer_array",
-    "trigger": "Congress + federal property + sale",
-    "authority": null,
-    "last_minute_review": true,
-    "example_qids": [
-      "19177_manna_wagon_disposal"
-    ]
-  },
-  {
-    "id": "GK-CONLAW-WINDSOR-DOMA-01",
-    "kind": "gold",
-    "statement": "When a federal marriage-recognition law denies federal benefits to same-sex spouses who are lawfully married under state law for the purpose/effect of marking those marriages as lesser, it fails Fifth Amendment equal-protection principles; bare animus is not a legitimate interest.",
-    "type": "constitutional_principle",
-    "trigger": "Federal definition of spouse/marriage excludes state-law same-sex spouses from federal benefits.",
-    "authority": "United States v. Windsor, 570 U.S. 744 (2013); Romer v. Evans, 517 U.S. 620 (1996).",
-    "last_minute_review": true,
-    "example_qids": [
-      "19194_loaves_pages"
-    ]
-  },
-  {
-    "id": "GK-CONLAW-WINDSOR-SCRUTINY-02",
-    "kind": "gold",
-    "statement": "Do not turn Windsor into a strict-scrutiny/suspect-classification answer; Windsor invalidated DOMA without expressly making sexual orientation a suspect classification.",
-    "type": "distinction",
-    "trigger": "Answer says sexual orientation is a suspect classification under Windsor-style facts.",
-    "authority": "United States v. Windsor, 570 U.S. 744 (2013).",
-    "last_minute_review": true,
-    "example_qids": [
-      "19194_loaves_pages"
-    ]
-  },
-  {
-    "id": "SK-CONLAW-BENEFIT-FRAME-01",
-    "kind": "silver",
-    "statement": "When the call is Equal Protection, do not answer whether the benefit exists as a free-standing right; answer whether the government may draw this line.",
+    "statement": "When the call asks for the best incorporation route, test each named theory against the incorporation question specifically, not against the merits of the proportionality test.",
     "type": "call_focus",
-    "trigger": "Answer talks about Congress’s benefits power or no constitutional right to a benefit.",
+    "trigger": "four answer choices that each name a different constitutional theory (federal-only, automatic-win, correct incorporation, procedural due process)",
     "authority": null,
     "last_minute_review": true,
     "example_qids": [
-      "19194_loaves_pages"
+      "17114_farmstand_excessive_fine"
+    ]
+  },
+  {
+    "id": "GK-CONSTITUTIONAL-LAW-PERMIT-FEE-LEDGER-01",
+    "kind": "gold",
+    "statement": "Mere negligent loss of property by a state official is not a substantive due process violation; the clause targets deliberate or reckless deprivations, not carelessness.",
+    "type": "rule",
+    "trigger": "due process claim against a state actor, sole allegation is negligence",
+    "authority": "County of Sacramento v. Lewis, 523 U.S. 833 (1998); Parratt v. Taylor, 451 U.S. 527 (1981); Hudson v. Palmer, 468 U.S. 517 (1984)",
+    "last_minute_review": true,
+    "example_qids": [
+      "17163_permit_fee_ledger"
+    ]
+  },
+  {
+    "id": "SK-CONSTITUTIONAL-LAW-PERMIT-FEE-LEDGER-01",
+    "kind": "silver",
+    "statement": "On a constitutional item, the government actor stays a government actor; never swap in a church or private actor, and never reframe the call to the defendant's process.",
+    "type": "call_focus",
+    "trigger": "constitutional claim where a Christian flavor could tempt a private-actor or church-actor rewrite",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "17163_permit_fee_ledger"
+    ]
+  },
+  {
+    "id": "GK-CONSTITUTIONAL-LAW-CHRISTIAN-PODCAST-01",
+    "kind": "gold",
+    "statement": "A court order that requires a speaker to obtain advance approval from a government official (or a private party acting under a government order) before publication is a prior restraint, regardless of the speaker's medium or whether the speech generates ad revenue.",
+    "type": "constitutional_principle",
+    "trigger": "stem describes a court order requiring advance approval for speech AND the speech generates ad revenue",
+    "authority": "Near v. Minnesota, 283 U.S. 697 (1931); New York Times Co. v. United States, 403 U.S. 713 (1971)",
+    "last_minute_review": true,
+    "example_qids": [
+      "17574_christian_podcast_school_board"
+    ]
+  },
+  {
+    "id": "SK-CONSTITUTIONAL-LAW-CHRISTIAN-PODCAST-01",
+    "kind": "silver",
+    "statement": "Ad revenue does NOT convert political or civic commentary about public officials into commercial speech; commercial speech is speech that does no more than propose a commercial transaction, not political or civic commentary that happens to be monetized.",
+    "type": "cut",
+    "trigger": "stem describes a speaker who earns ad revenue and is speaking about a public official",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "17574_christian_podcast_school_board"
+    ]
+  },
+  {
+    "id": "SK-CONSTITUTIONAL-LAW-CHRISTIAN-PODCAST-02",
+    "kind": "silver",
+    "statement": "The First Amendment protects all speakers, not just institutional newspapers; the medium (podcast, blog, newsletter) does not determine whether the prior-restraint doctrine applies.",
+    "type": "trap_spotting",
+    "trigger": "stem describes a non-newspaper speaker (blogger, podcaster, YouTuber, newsletter writer) facing a court order",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "17574_christian_podcast_school_board"
+    ]
+  },
+  {
+    "id": "GK-CONLAW-MINISTRY-HOUSING-PERMIT-01",
+    "kind": "gold",
+    "statement": "Even under rational basis review, a government action based only on bare animus toward an unpopular group lacks a legitimate government interest; the discriminator can lose at rational basis without the court elevating the level of scrutiny.",
+    "type": "rule",
+    "trigger": "government actor denies a routine permit; animus on the face of the hearing record; no legitimate interest articulated; group is not a suspect or quasi-suspect class",
+    "authority": "Cleburne v. Cleburne Living Center, 473 U.S. 432 (1985); U.S. Department of Agriculture v. Moreno, 413 U.S. 528 (1973); Romer v. Evans, 517 U.S. 620 (1996)",
+    "last_minute_review": true,
+    "example_qids": [
+      "17680_ministry_housing_permit"
+    ]
+  },
+  {
+    "id": "SK-CONLAW-MINISTRY-HOUSING-PERMIT-01",
+    "kind": "silver",
+    "statement": "When the call asks for the strongest argument, look for the doctrinal move that wins on the actual record (here, animus on the face of the hearing record) rather than the move that escalates the level of scrutiny (strict scrutiny does not apply because the group is not a suspect class).",
+    "type": "call_focus",
+    "trigger": "open 'strongest argument' call on a permit-denial record with animus and no legitimate interest",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "17680_ministry_housing_permit"
+    ]
+  },
+  {
+    "id": "GK-CONLAW-ILLUMINATED-MANUSCRIPT-01",
+    "kind": "gold",
+    "statement": "Congress's commerce power reaches the channels of interstate commerce themselves, including the power to keep harmful or stolen goods from moving through those channels; the power does not depend on the commercial character of the underlying goods.",
+    "type": "rule",
+    "trigger": "federal statute targets the use of a channel; defendant argues the in-state origin of the taking is outside federal reach",
+    "authority": "U.S. Const. art. I, § 8, cl. 3; Heart of Atlanta Motel, Inc. v. United States, 379 U.S. 241 (1964); Gibbons v. Ogden, 22 U.S. (9 Wheat.) 1 (1824); cf. United States v. Lopez, 514 U.S. 549, 558-559 (1995); National Stolen Property Act, 18 U.S.C. § 2314",
+    "last_minute_review": true,
+    "example_qids": [
+      "17728_illuminated_manuscript"
+    ]
+  },
+  {
+    "id": "GK-CONSTITUTIONAL-LAW-HANNAH-DAVID-MEDICAID-01",
+    "kind": "gold",
+    "statement": "Durational-residency rules that disadvantage new residents because they recently moved trigger strict scrutiny under Equal Protection because they burden the fundamental right to interstate travel.",
+    "type": "rule",
+    "trigger": "state durational-residency classification disadvantaging new residents in a public benefit",
+    "authority": "Shapiro v. Thompson, 394 U.S. 618 (1969); Memorial Hospital v. Maricopa County, 415 U.S. 250 (1974); Saenz v. Roe, 526 U.S. 489 (1999)",
+    "last_minute_review": true,
+    "example_qids": [
+      "18438_hannah_david_medicaid"
+    ]
+  },
+  {
+    "id": "SK-CONSTITUTIONAL-LAW-HANNAH-DAVID-MEDICAID-01",
+    "kind": "silver",
+    "statement": "The constitutional right at issue is INTERSTATE travel, not international travel; public-benefit rules can still burden fundamental rights.",
+    "type": "distinction",
+    "trigger": "state durational-residency classification disadvantaging new residents in a public benefit",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "18438_hannah_david_medicaid"
+    ]
+  },
+  {
+    "id": "GK-CONSTITUTIONAL-LAW-LYDIA-BOOK-CLUB-01",
+    "kind": "gold",
+    "statement": "The Equal Protection Clause is, by its terms, a constraint on government action; the threshold problem is state action, and the scrutiny tier is reached only after state action is established.",
+    "type": "rule",
+    "trigger": "constitutional claim (Equal Protection or Due Process) filed against a private actor with no government funding or public-function role",
+    "authority": "The Civil Rights Cases, 109 U.S. 3 (1883); Burton v. Wilmington Parking Authority, 365 U.S. 715 (1961); Jackson v. Metropolitan Edison Co., 419 U.S. 345 (1974); Brentwood Academy v. Tennessee Secondary School Athletic Association, 531 U.S. 288 (2001)",
+    "last_minute_review": true,
+    "example_qids": [
+      "18457_lydia_book_club"
+    ]
+  },
+  {
+    "id": "SK-CONSTITUTIONAL-LAW-LYDIA-BOOK-CLUB-01",
+    "kind": "silver",
+    "statement": "When a constitutional claim against a private actor is filed, run the state-action threshold first; do not skip to the scrutiny tier.",
+    "type": "threshold_check",
+    "trigger": "constitutional claim (Equal Protection or Due Process) filed against a private actor",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "18457_lydia_book_club"
+    ]
+  },
+  {
+    "id": "GK-CONSTITUTIONAL_LAW-HYMNSONG-RECORDS-01",
+    "kind": "gold",
+    "statement": "Article IV Privileges and Immunities protects only the natural-person citizens of other states. A corporation is not a citizen for that clause, so a corporate plaintiff cannot use Article IV P&I to challenge a state's higher regulatory fee.",
+    "type": "rule",
+    "trigger": "out-of-state non-natural-person entity challenges a higher state fee under Article IV P&I",
+    "authority": "Article IV, Section 2, U.S. Constitution; Paul v. Virginia, 75 U.S. (8 Wall.) 168 (1869); United Building & Construction Trades Council v. Mayor of Camden, 465 U.S. 208 (1984)",
+    "last_minute_review": true,
+    "example_qids": [
+      "18586_hymnsong_records"
+    ]
+  },
+  {
+    "id": "SK-CONSTITUTIONAL_LAW-HYMNSONG-RECORDS-01",
+    "kind": "silver",
+    "statement": "When a constitutional claim names a 'person-class' threshold, check the person-class first — the merits never get reached if the plaintiff is outside the protected class.",
+    "type": "call_focus",
+    "trigger": "a non-natural-person entity sues under a clause that protects only natural-person citizens",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "18586_hymnsong_records"
     ]
   },
   {

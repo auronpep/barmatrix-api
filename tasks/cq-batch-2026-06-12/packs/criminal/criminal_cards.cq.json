@@ -1,67 +1,93 @@
 [
   {
-    "id": "REM-CRIMINAL-BA2-GRAND-JURY-01",
+    "id": "RC-CRIMINAL-CONSPIRACY-MERGER-01",
     "type": "ANCHOR",
-    "title": "Violation is not remedy",
-    "signal": "A choice proves police misconduct, but the call asks whether the indictment is dismissed.",
-    "student_move": "Separate the wrong from the remedy. Then apply the grand-jury Gold Key.",
-    "tiny_rule": "Grand jury taint usually does not dismiss a facially valid indictment.",
-    "trap": "Unlawful search = automatic dismissal.",
+    "title": "Conspiracy and the substantive offense — no merger; Wharton's Rule scope",
+    "signal": "Two or more persons agree to commit a substantive crime and succeed; the call is whether they can be convicted of both.",
+    "student_move": "Check Wharton's Rule first. If the substantive crime is one that by definition requires two persons (bigamy, adultery, incest, dueling), conspiracy merges and only the substantive stands. Otherwise, both stack.",
+    "tiny_rule": "Conspiracy and the substantive offense are separate crimes; arson is not a Wharton's Rule crime.",
+    "trap": "The merger myth is the dominant trap. Many students half-remember that 'conspiracy merges' and walk into the but-not-both answer.",
     "confidence": "ANCHOR_ASSISTED",
     "example_qids": [
-      "14621_manna_cafe_bookmaker"
+      "16127_stewardship_bomb"
     ]
   },
   {
-    "id": "CRIM-REM-BANK-THIRD-PARTY-01",
+    "id": "RC-CRIMINAL-BURGLARY-BREAKING-01",
     "type": "ANCHOR",
-    "title": "Bank records: interest first, process second",
-    "signal": "Agents obtain account records from a bank.",
-    "student_move": "Ask whether the defendant has a Fourth Amendment interest before arguing warrant, subpoena, or suppression.",
-    "tiny_rule": "Miller bank records are bank business records; no Fourth Amendment suppression right belongs to the depositor.",
-    "trap": "Treating personal finance privacy as Fourth Amendment privacy.",
-    "confidence": "PURE_ANCHOR",
-    "example_qids": [
-      "17084_five_loaves_bank_records"
-    ]
-  },
-  {
-    "id": "REM-CRIM-INTOX-GENERAL-INTENT-01",
-    "type": "ANCHOR",
-    "title": "Voluntary intoxication: specific-intent only",
-    "signal": "The stem says no further purpose or objective.",
-    "student_move": "Classify the offense before applying intoxication.",
-    "tiny_rule": "Voluntary intoxication does not excuse general intent.",
-    "trap": "Treating drunkenness, blackout, or no memory as a universal intent defense.",
-    "confidence": "PURE_ANCHOR",
-    "example_qids": [
-      "17151_carol_program"
-    ]
-  },
-  {
-    "id": "CRIM-02",
-    "type": "ANCHOR",
-    "title": "Property-crime taxonomy: title, possession, custody",
-    "signal": "Choices name larceny by trick, embezzlement, and false pretenses.",
-    "student_move": "Find what the victim transferred.",
-    "tiny_rule": "Title/ownership by deceit = false pretenses; possession-only by deceit = larceny by trick; lawful custody then conversion = embezzlement.",
-    "trap": "Students stop at the visible lie instead of classifying the transfer.",
+    "title": "Breaking element — constructive breaking by fraud",
+    "signal": "Entry obtained by a false-pretenses pretext (utility worker, repair person, fellow church member) at night, with intent to commit a felony at the moment of entry.",
+    "student_move": "Cut physical-damage and voluntary-opening rationales with the Gold Key; cut intent-after-entry with the timing rule.",
+    "tiny_rule": "Constructive breaking includes fraud-induced entry; consent procured by fraud is not effective consent.",
+    "trap": "The everyday conception of 'breaking' fuses it with physical force; the common-law rule is broader.",
     "confidence": "ANCHOR_ASSISTED",
     "example_qids": [
-      "19263_chapel_handbells"
+      "17225_midnight_utility_fraud"
     ]
   },
   {
-    "id": "CRIM-ANCHOR-DEFENSE-OTHERS-01",
+    "id": "RC-CRIMINAL-ASPORTATION-MINIMUM-01",
     "type": "ANCHOR",
-    "title": "Defense of others: reasonable appearance beats hidden truth",
-    "signal": "Intervener reasonably but mistakenly protects the apparent victim.",
-    "student_move": "Do not ask who was actually entitled to self-defense until you know the rule frame.",
-    "tiny_rule": "Majority rule = reasonable belief; alter ego = actual rights.",
-    "trap": "Hidden-truth answer feels precise but answers the wrong rule frame.",
-    "confidence": "PURE_ANCHOR",
+    "title": "Asportation minimum vs. removal / sale",
+    "signal": "Customer slips a small item from an open display, takes a few steps, and is stopped before leaving the building.",
+    "student_move": "Cut 'must leave the building' and 'stopped before she sold' on visible defects; the slight-movement answer is residual.",
+    "tiny_rule": "Asportation is satisfied by even minimal movement; the property need not leave the building and sale is not an element.",
+    "trap": "Conflating asportation with a successful shoplifting exit, or looking for a sale element that does not exist.",
+    "confidence": "HARD_STRUCTURAL",
     "example_qids": [
-      "19336_nativity_warehouse_rescue"
+      "17859_olive_branch_ornament"
+    ]
+  },
+  {
+    "id": "RC-CRIMINAL-FORGERY-FALSE-MAKING-01",
+    "type": "ANCHOR",
+    "title": "Forgery - false making is the actus reus",
+    "signal": "A finder of unused checks fills in a check, signs the owner's name without authority, and plans to cash it. The owner has not actually lost money, and the check has not been cashed.",
+    "student_move": "Cut tiered-absolute overclaims (checks have apparent legal efficacy) and wrong-element traps (uttering is not the actus reus of forgery). Then apply the Gold Key: the victim's actual loss is not an element of forgery; the false making is the actus reus.",
+    "tiny_rule": "Forgery is complete at the false making of a writing with apparent legal efficacy and intent to defraud; loss and successful uttering are not elements.",
+    "trap": "The lay intuition 'no harm, no foul' is wrong. The victim need not actually lose money, and the forger need not successfully utter the document.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "18111_camp_stipend_forgery"
+    ]
+  },
+  {
+    "id": "RC-CRIMINAL-RECEIPT-TIME-KNOWLEDGE-01",
+    "type": "ANCHOR",
+    "title": "Receiving stolen property — receipt-time knowledge is the dispositive element",
+    "signal": "Buyer purchases property at a normal price from a trusted seller; nothing suggests the property is stolen; the buyer learns the truth later; the buyer promptly returns the property. The call is whether the buyer is guilty of receiving stolen property.",
+    "student_move": "Test whether the defendant had knowledge or belief that the property was stolen at the moment of receipt. If not, the offense fails on the mens rea element and the rest of the analysis is unnecessary. Later knowledge does not retroactively supply the missing mens rea. The fact that the property was stolen before the defendant received it is necessary but not sufficient.",
+    "tiny_rule": "Receiving stolen property requires that the defendant know or believe the property was stolen at the time she received control of it; later knowledge does not retroactively supply the receipt-time mens rea.",
+    "trap": "The stolen-before-purchase trap is the dominant misconception. Many students reason that because the property was stolen, anyone who received it must be guilty. The error is that the offense also requires knowledge or belief at the time of receipt — a good-faith purchaser is not guilty.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "18477_church_craft_fair_quilt"
+    ]
+  },
+  {
+    "id": "RC-CRIMINAL-EMBEZZLEMENT-LAWFUL-POSSESSION-01",
+    "type": "ANCHOR",
+    "title": "Embezzlement vs larceny vs false pretenses",
+    "signal": "owner entrusts property to a repair/restoration shop, shop lawfully accepts, shop then sells to a third party and keeps the proceeds",
+    "student_move": "Cut the colloquial-larceny overclaim (A) and the consent-coverage overclaim (B) and the false-pretenses misfit (D); the residual is embezzlement (C).",
+    "tiny_rule": "Lawful possession at the outset re-routes the offense from larceny to embezzlement.",
+    "trap": "Everyday English treats 'theft' as a synonym for larceny, but the theft-offense distinction turns on the manner in which the defendant first came into possession.",
+    "confidence": "HARD_STRUCTURAL",
+    "example_qids": [
+      "18747_vintage_bible_embezzlement"
+    ]
+  },
+  {
+    "id": "RC-CRIMINAL-LARCENY-TEMPORARY-01",
+    "type": "ANCHOR",
+    "title": "Larceny — temporary-use and return is not larceny",
+    "signal": "Taking of another's personal property without permission, defined short-term use, actual return plan, police stop before return",
+    "student_move": "Lock the intent-to-permanently-deprive element on the temporary-use-and-return fact pattern. Cut C (any unauthorized use) on the universal-quantifier marker. Cut D (asportation) on the missing-intent element. Cut B (power tools not personal property) on the obvious-chattel counterexample.",
+    "tiny_rule": "Larceny requires the intent to permanently deprive; short, safe, return-planned borrowing is not larceny.",
+    "trap": "The 'any unauthorized use' shortcut that fuses trespass with the common-law definition.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "18843_patio_pressure_washer"
     ]
   },
   {

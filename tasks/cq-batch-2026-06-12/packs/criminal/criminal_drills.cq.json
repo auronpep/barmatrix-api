@@ -6,8 +6,8 @@
     "task": "Across 9 questions, identify which choice carries the \"bait_doctrine\" mold before solving.",
     "trap_family": "bait_doctrine",
     "qid_pool": [
-      "19263_chapel_handbells",
-      "19336_nativity_warehouse_rescue",
+      "16127_stewardship_bomb",
+      "18747_vintage_bible_embezzlement",
       "19499_jericho_chariot_night",
       "19554_road_to_damascus_cashbox",
       "20258_psalter_pressure",
@@ -23,18 +23,16 @@
     "id": "DRILL-CQ-CRIMINAL-F02",
     "title": "Trap mold: fabricated_rule",
     "skill": "Trap recognition",
-    "task": "Across 6 questions, identify which choice carries the \"fabricated_rule\" mold before solving.",
+    "task": "Across 4 questions, identify which choice carries the \"fabricated_rule\" mold before solving.",
     "trap_family": "fabricated_rule",
     "qid_pool": [
-      "17084_five_loaves_bank_records",
-      "17151_carol_program",
-      "19336_nativity_warehouse_rescue",
+      "18477_church_craft_fair_quilt",
       "20258_psalter_pressure",
       "20387_psalms_chess_indictment",
       "21867_psalm_puzzle_booth"
     ],
     "cards": [],
-    "pass_criterion": "Identify the trap choice in 5/6 questions."
+    "pass_criterion": "Identify the trap choice in 3/4 questions."
   },
   {
     "id": "DRILL-CQ-CRIMINAL-F03",
@@ -43,8 +41,8 @@
     "task": "Across 4 questions, identify which choice carries the \"flat_misstatement\" mold before solving.",
     "trap_family": "flat_misstatement",
     "qid_pool": [
-      "14621_manna_cafe_bookmaker",
-      "17084_five_loaves_bank_records",
+      "17225_midnight_utility_fraud",
+      "18747_vintage_bible_embezzlement",
       "20654_nativity_ornaments_volition",
       "21869_tiny_house_hymn_sheet"
     ],
@@ -55,10 +53,13 @@
     "id": "DRILL-CQ-CRIMINAL-F04",
     "title": "Trap mold: tiered_absolute",
     "skill": "Trap recognition",
-    "task": "Across 11 questions, identify which choice carries the \"tiered_absolute\" mold before solving.",
+    "task": "Across 14 questions, identify which choice carries the \"tiered_absolute\" mold before solving.",
     "trap_family": "tiered_absolute",
     "qid_pool": [
-      "17151_carol_program",
+      "17859_olive_branch_ornament",
+      "18111_camp_stipend_forgery",
+      "18747_vintage_bible_embezzlement",
+      "18843_patio_pressure_washer",
       "19499_jericho_chariot_night",
       "19554_road_to_damascus_cashbox",
       "20127_jericho_trumpet",
@@ -71,17 +72,19 @@
       "21869_tiny_house_hymn_sheet"
     ],
     "cards": [],
-    "pass_criterion": "Identify the trap choice in 10/11 questions."
+    "pass_criterion": "Identify the trap choice in 13/14 questions."
   },
   {
     "id": "DRILL-CQ-CRIMINAL-F05",
     "title": "Trap mold: wrong_element",
     "skill": "Trap recognition",
-    "task": "Across 9 questions, identify which choice carries the \"wrong_element\" mold before solving.",
+    "task": "Across 11 questions, identify which choice carries the \"wrong_element\" mold before solving.",
     "trap_family": "wrong_element",
     "qid_pool": [
-      "14621_manna_cafe_bookmaker",
-      "19263_chapel_handbells",
+      "17225_midnight_utility_fraud",
+      "17859_olive_branch_ornament",
+      "18111_camp_stipend_forgery",
+      "18843_patio_pressure_washer",
       "19499_jericho_chariot_night",
       "19554_road_to_damascus_cashbox",
       "20476_road_to_bethlehem_sash",
@@ -91,28 +94,32 @@
       "21869_tiny_house_hymn_sheet"
     ],
     "cards": [],
-    "pass_criterion": "Identify the trap choice in 8/9 questions."
+    "pass_criterion": "Identify the trap choice in 10/11 questions."
   },
   {
     "id": "DRILL-CQ-CRIMINAL-C01",
-    "title": "Topic circuit: Defenses",
+    "title": "Topic circuit: Property Crimes",
     "skill": "Mixed-call endurance",
-    "task": "Timed circuit across 5 Defenses questions; predict the call before reading choices.",
-    "topic": "Defenses",
+    "task": "Timed circuit across 7 Property Crimes questions; predict the call before reading choices.",
+    "topic": "Property Crimes",
     "qid_pool": [
-      "17151_carol_program",
-      "19336_nativity_warehouse_rescue",
-      "20516_manna_games_duress",
-      "20597_olivewood_nativity_craft_swap",
-      "20654_nativity_ornaments_volition"
+      "17225_midnight_utility_fraud",
+      "17859_olive_branch_ornament",
+      "18111_camp_stipend_forgery",
+      "18477_church_craft_fair_quilt",
+      "18747_vintage_bible_embezzlement",
+      "18843_patio_pressure_washer",
+      "19554_road_to_damascus_cashbox"
     ],
     "cards": [
-      "REM-CRIM-INTOX-GENERAL-INTENT-01",
-      "CRIM-ANCHOR-DEFENSE-OTHERS-01",
-      "REM-CRIM-DURESS-IMMINENCE",
-      "CRIM-REM-MISTAKE-FACT-LAW-01",
-      "CRIM-ANCHOR-INSANITY-01"
+      "RC-CRIMINAL-BURGLARY-BREAKING-01",
+      "RC-CRIMINAL-ASPORTATION-MINIMUM-01",
+      "RC-CRIMINAL-FORGERY-FALSE-MAKING-01",
+      "RC-CRIMINAL-RECEIPT-TIME-KNOWLEDGE-01",
+      "RC-CRIMINAL-EMBEZZLEMENT-LAWFUL-POSSESSION-01",
+      "RC-CRIMINAL-LARCENY-TEMPORARY-01",
+      "RC-CRIM-CUSTODY-POSSESSION-01"
     ],
-    "pass_criterion": "4/5 correct with calls predicted."
+    "pass_criterion": "6/7 correct with calls predicted."
   }
 ]

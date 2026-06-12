@@ -4,7 +4,7 @@
   "batch": "cq-2026-06-12",
   "question_count": 9,
   "qids": [
-    "17058_advent_honey_parcel",
+    "18077_maranatha_meadow",
     "19381_shepherd_olive_press_deed",
     "19430_harp_instructor_olive_grove",
     "19904_psalm_orchard_foreclosure_notice",
@@ -16,7 +16,7 @@
   ],
   "cards": 9,
   "keys": 19,
-  "drills": 4,
-  "microdrills": 28,
+  "drills": 3,
+  "microdrills": 27,
   "note": "ADDITIVE to the existing subject pack — file names are suffixed .cq.json to avoid colliding with the legacy pack; merge is a deliberate API-side step."
 }
