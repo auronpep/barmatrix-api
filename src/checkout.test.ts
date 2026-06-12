@@ -89,6 +89,22 @@ describe("checkout session params", () => {
     assert.equal(params.mode, "payment");
     assert.equal(params.customer_creation, "always");
     assert.deepEqual(params.line_items, [{ price: "price_full", quantity: 1 }]);
+    assert.deepEqual(params.custom_fields, [
+      {
+        key: "first_name",
+        label: { type: "custom", custom: "First name" },
+        optional: false,
+        type: "text",
+        text: { maximum_length: 80, minimum_length: 1 },
+      },
+      {
+        key: "last_name",
+        label: { type: "custom", custom: "Last name" },
+        optional: false,
+        type: "text",
+        text: { maximum_length: 80, minimum_length: 1 },
+      },
+    ]);
     assert.equal(params.success_url, "https://barmatrix.app/checkout/success");
     assert.equal(params.cancel_url, "https://barmatrix.app/pricing");
   });
@@ -106,6 +122,11 @@ describe("checkout session params", () => {
     assert.equal(params.mode, "payment");
     assert.equal(params.customer_creation, "always");
     assert.deepEqual(params.line_items, [{ price: "price_two", quantity: 1 }]);
+    assert.equal(params.custom_fields?.length, 2);
+    assert.equal(params.custom_fields?.[0]?.key, "first_name");
+    assert.equal(params.custom_fields?.[0]?.optional, false);
+    assert.equal(params.custom_fields?.[1]?.key, "last_name");
+    assert.equal(params.custom_fields?.[1]?.optional, false);
     assert.deepEqual(params.payment_intent_data, {
       setup_future_usage: "off_session",
       metadata: { ...metadata, payment_plan: "two_pay_500_499" },

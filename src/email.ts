@@ -1,9 +1,9 @@
 import type Stripe from "stripe";
 import { Resend } from "resend";
 import {
-  createCheckoutAccessInvitation,
-  type CheckoutAccessInvitationInput,
-  type ClerkAccessInvitationResult,
+  createCheckoutAccessLink,
+  type CheckoutAccessLinkInput,
+  type ClerkAccessLinkResult,
 } from "./clerk-access.js";
 
 type Env = NodeJS.ProcessEnv | Record<string, string | undefined>;
@@ -79,9 +79,9 @@ interface CheckoutFulfillmentResult {
 
 interface FulfillmentEmailOptions {
   sendEmail?: (input: EnrollmentEmailInput) => Promise<EnrollmentEmailResult>;
-  createAccessInvitation?: (
-    input: CheckoutAccessInvitationInput,
-  ) => Promise<ClerkAccessInvitationResult>;
+  createAccessLink?: (
+    input: CheckoutAccessLinkInput,
+  ) => Promise<ClerkAccessLinkResult>;
   logger?: Pick<typeof console, "log" | "warn" | "error">;
 }
 
@@ -166,18 +166,20 @@ export async function sendEnrollmentEmailForFulfillment(
   }
 
   const sendEmail = options.sendEmail ?? sendEnrollmentEmail;
-  const createAccessInvitation =
-    options.createAccessInvitation ?? createCheckoutAccessInvitation;
+  const createAccessLink = options.createAccessLink ?? createCheckoutAccessLink;
   const logger = options.logger ?? console;
   let accessUrl: string | null = null;
+  const profile = checkoutCustomerProfile(input.session);
 
-  const accessResult = await createAccessInvitation({
+  const accessResult = await createAccessLink({
     to: input.session.customer_details?.email,
-    fullName: input.session.customer_details?.name,
+    firstName: profile.firstName,
+    lastName: profile.lastName,
+    fullName: profile.fullName,
     checkoutSessionId: input.session.id,
     purchaseId: input.fulfillment.purchaseId,
     studentId: input.fulfillment.studentId,
-  }).catch((): ClerkAccessInvitationResult => ({
+  }).catch((): ClerkAccessLinkResult => ({
     status: "failed",
     reason: "clerk_error",
   }));
@@ -187,18 +189,18 @@ export async function sendEnrollmentEmailForFulfillment(
     purchaseId: input.fulfillment.purchaseId,
   };
   if (accessResult.status === "sent") {
-    accessUrl = accessResult.invitationUrl;
-    logger.log("[clerk] checkout access invitation sent", {
+    accessUrl = accessResult.accessUrl;
+    logger.log("[clerk] checkout access link sent", {
       ...context,
-      invitationId: accessResult.invitationId,
+      userId: accessResult.userId,
     });
   } else if (accessResult.status === "failed") {
-    logger.error("[clerk] checkout access invitation failed", {
+    logger.error("[clerk] checkout access link failed", {
       ...context,
       reason: accessResult.reason,
     });
   } else {
-    logger.warn("[clerk] checkout access invitation skipped", {
+    logger.warn("[clerk] checkout access link skipped", {
       ...context,
       reason: accessResult.reason,
     });
@@ -208,7 +210,7 @@ export async function sendEnrollmentEmailForFulfillment(
   try {
     result = await sendEmail({
       to: input.session.customer_details?.email,
-      fullName: input.session.customer_details?.name,
+      fullName: profile.fullName,
       checkoutSessionId: input.session.id,
       purchaseId: input.fulfillment.purchaseId,
       accountAccessUrl: accessUrl,
@@ -235,6 +237,28 @@ export async function sendEnrollmentEmailForFulfillment(
   }
 
   return result;
+}
+
+function checkoutCustomerProfile(session: Stripe.Checkout.Session): {
+  firstName: string | null;
+  lastName: string | null;
+  fullName: string | null;
+} {
+  const firstName = checkoutCustomTextValue(session, "first_name");
+  const lastName = checkoutCustomTextValue(session, "last_name");
+  const customFullName =
+    firstName || lastName ? [firstName, lastName].filter(Boolean).join(" ") : null;
+  const fullName = customFullName || clean(session.customer_details?.name);
+
+  return { firstName, lastName, fullName };
+}
+
+function checkoutCustomTextValue(
+  session: Stripe.Checkout.Session,
+  key: string,
+): string | null {
+  const field = session.custom_fields?.find((item) => item.key === key);
+  return clean(field?.text?.value ?? null);
 }
 
 // ---------------------------------------------------------------------------

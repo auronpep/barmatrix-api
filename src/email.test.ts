@@ -97,7 +97,7 @@ describe("sendEnrollmentEmail", () => {
         fullName: "Student Example",
         checkoutSessionId: "cs_test_123",
         purchaseId: "purchase_123",
-        accountAccessUrl: "https://accounts.barmatrix.app/invitations/accept?token=abc",
+        accountAccessUrl: "https://accounts.barmatrix.app/sign-in/token/abc",
       },
       {
         env: configuredEnv(),
@@ -113,13 +113,13 @@ describe("sendEnrollmentEmail", () => {
       replyTo: "help@barmatrix.app",
       subject: "Your BarMatrix access is ready",
       text:
-        "Student Example,\n\nYour BarMatrix enrollment is active. Access your account at https://accounts.barmatrix.app/invitations/accept?token=abc.\n\nQuestions? Reply to this email or contact support@barmatrix.app.",
+        "Student Example,\n\nYour BarMatrix enrollment is active. Access your account at https://accounts.barmatrix.app/sign-in/token/abc.\n\nQuestions? Reply to this email or contact support@barmatrix.app.",
       html:
-        "<p>Student Example,</p><p>Your BarMatrix enrollment is active.</p><p><a href=\"https://accounts.barmatrix.app/invitations/accept?token=abc\">Access your account</a></p><p>Questions? Reply to this email or contact support@barmatrix.app.</p>",
+        "<p>Student Example,</p><p>Your BarMatrix enrollment is active.</p><p><a href=\"https://accounts.barmatrix.app/sign-in/token/abc\">Access your account</a></p><p>Questions? Reply to this email or contact support@barmatrix.app.</p>",
     });
   });
 
-  it("falls back to the sign-up path when no account invitation URL is available", async () => {
+  it("falls back to the sign-up path when no account access URL is available", async () => {
     const sentPayloads: unknown[] = [];
     const client: EnrollmentEmailClient = {
       emails: {
@@ -178,8 +178,20 @@ describe("sendEnrollmentEmailForFulfillment", () => {
     id: "cs_test_123",
     customer_details: {
       email: " Student@Example.com ",
-      name: "Student Example",
+      name: null,
     },
+    custom_fields: [
+      {
+        key: "first_name",
+        type: "text",
+        text: { value: "Student" },
+      },
+      {
+        key: "last_name",
+        type: "text",
+        text: { value: "Example" },
+      },
+    ],
   } as Stripe.Checkout.Session;
 
   it("does not send on duplicate checkout fulfillment replay", async () => {
@@ -195,9 +207,9 @@ describe("sendEnrollmentEmailForFulfillment", () => {
           called = true;
           return { status: "sent", id: "email_123" };
         },
-        createAccessInvitation: async () => {
+        createAccessLink: async () => {
           called = true;
-          return { status: "sent", invitationId: "inv_123", invitationUrl: null };
+          return { status: "sent", userId: "user_123", accessUrl: null };
         },
       },
     );
@@ -209,7 +221,7 @@ describe("sendEnrollmentEmailForFulfillment", () => {
     assert.equal(called, false);
   });
 
-  it("creates a Clerk access invitation before sending enrollment email", async () => {
+  it("creates a Clerk access link before sending enrollment email", async () => {
     const accessInputs: unknown[] = [];
     const emailInputs: unknown[] = [];
 
@@ -223,12 +235,12 @@ describe("sendEnrollmentEmailForFulfillment", () => {
         },
       },
       {
-        createAccessInvitation: async (input) => {
+        createAccessLink: async (input) => {
           accessInputs.push(input);
           return {
             status: "sent",
-            invitationId: "inv_123",
-            invitationUrl: "https://accounts.barmatrix.app/invitations/accept?token=abc",
+            userId: "user_123",
+            accessUrl: "https://accounts.barmatrix.app/sign-in/token/abc",
           };
         },
         sendEmail: async (input) => {
@@ -247,6 +259,8 @@ describe("sendEnrollmentEmailForFulfillment", () => {
     assert.deepEqual(accessInputs, [
       {
         to: " Student@Example.com ",
+        firstName: "Student",
+        lastName: "Example",
         fullName: "Student Example",
         checkoutSessionId: "cs_test_123",
         purchaseId: "purchase_123",
@@ -259,7 +273,7 @@ describe("sendEnrollmentEmailForFulfillment", () => {
         fullName: "Student Example",
         checkoutSessionId: "cs_test_123",
         purchaseId: "purchase_123",
-        accountAccessUrl: "https://accounts.barmatrix.app/invitations/accept?token=abc",
+        accountAccessUrl: "https://accounts.barmatrix.app/sign-in/token/abc",
       },
     ]);
   });
@@ -273,7 +287,7 @@ describe("sendEnrollmentEmailForFulfillment", () => {
         fulfillment: { status: "fulfilled", purchaseId: "purchase_123" },
       },
       {
-        createAccessInvitation: async () => ({
+        createAccessLink: async () => ({
           status: "skipped",
           reason: "missing_config",
         }),
