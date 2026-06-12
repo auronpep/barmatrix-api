@@ -64,6 +64,10 @@ export const attemptBody = z.object({
   interaction_log: z.unknown().optional(),
 });
 
+export const forensicsDwellBody = z.object({
+  dwell_ms: z.number().int().min(0).max(86_400_000),
+});
+
 interface QuestionForAttempt {
   question_id: string;
   subject: string;
@@ -457,6 +461,40 @@ export function registerAttemptsRoutes(app: Express): void {
       });
     } catch (err) {
       console.error("[forensics get] failed:", err);
+      res.status(500).json({ error: "internal server error" });
+    }
+  });
+
+  // Fire-and-forget dwell report. Arrives after the attempt POST because the
+  // forensics panel opens after submit (spec §4). Absent dwell = skipped
+  // forensics, which is itself signal — so failures here return errors but
+  // clients treat the call as best-effort.
+  app.patch("/api/attempts/:id/forensics-dwell", async (req: Request, res: Response) => {
+    const id = req.params.id;
+    if (typeof id !== "string" || !UUID_RE.test(id)) {
+      res.status(400).json({ error: "invalid attempt id" });
+      return;
+    }
+    const parse = forensicsDwellBody.safeParse(req.body);
+    if (!parse.success) {
+      res.status(400).json({ error: parse.error.flatten() });
+      return;
+    }
+    try {
+      const pool = getPool();
+      const { rowCount } = await pool.query(
+        `UPDATE student_attempts
+            SET metadata = JSON_SET(metadata, '$.forensics_dwell_ms', $1)
+          WHERE attempt_id = $2`,
+        [parse.data.dwell_ms, id],
+      );
+      if (rowCount === 0) {
+        res.status(404).json({ error: "attempt not found" });
+        return;
+      }
+      res.status(204).end();
+    } catch (err) {
+      console.error("[attempts dwell] failed:", err);
       res.status(500).json({ error: "internal server error" });
     }
   });

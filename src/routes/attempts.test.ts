@@ -20,7 +20,7 @@ process.env.FRONTEND_URL = "https://barmatrix.app";
 process.env.SUCCESS_URL = "https://barmatrix.app/account/?welcome=1";
 process.env.CANCEL_URL = "https://barmatrix.app/pricing/";
 
-const { findSelectedChoiceForAttempt, listQuestionC3MoldCodesForAttempt, attemptBody, buildAttemptMetadata } =
+const { findSelectedChoiceForAttempt, listQuestionC3MoldCodesForAttempt, attemptBody, buildAttemptMetadata, forensicsDwellBody } =
   await import("./attempts.js");
 
 class ScriptedChoiceClient implements Pick<DbClient, "query"> {
@@ -185,5 +185,21 @@ describe("attemptBody with interaction_log", () => {
       interaction_log: [{ t: 0, ev: "bogus" }],
     });
     assert.equal(r.success, true); // bad telemetry must NOT 400 the attempt
+  });
+});
+
+describe("forensicsDwellBody", () => {
+  it("accepts a sane dwell", () => {
+    assert.equal(forensicsDwellBody.safeParse({ dwell_ms: 21500 }).success, true);
+  });
+  it("rejects negative and non-integer dwell", () => {
+    assert.equal(forensicsDwellBody.safeParse({ dwell_ms: -1 }).success, false);
+    assert.equal(forensicsDwellBody.safeParse({ dwell_ms: 1.5 }).success, false);
+  });
+  it("rejects dwell over 24h (garbage clock guard)", () => {
+    assert.equal(
+      forensicsDwellBody.safeParse({ dwell_ms: 86_400_001 }).success,
+      false,
+    );
   });
 });
