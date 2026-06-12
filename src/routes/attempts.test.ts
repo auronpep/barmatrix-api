@@ -20,7 +20,7 @@ process.env.FRONTEND_URL = "https://barmatrix.app";
 process.env.SUCCESS_URL = "https://barmatrix.app/account/?welcome=1";
 process.env.CANCEL_URL = "https://barmatrix.app/pricing/";
 
-const { findSelectedChoiceForAttempt, listQuestionC3MoldCodesForAttempt, attemptBody } =
+const { findSelectedChoiceForAttempt, listQuestionC3MoldCodesForAttempt, attemptBody, buildAttemptMetadata } =
   await import("./attempts.js");
 
 class ScriptedChoiceClient implements Pick<DbClient, "query"> {
@@ -124,5 +124,66 @@ describe("attemptBody.flagged", () => {
 
   it("rejects a non-boolean flag", () => {
     assert.equal(attemptBody.safeParse({ ...base, flagged: "yes" }).success, false);
+  });
+});
+
+describe("buildAttemptMetadata", () => {
+  const base = { anonymous: false };
+
+  it("embeds a valid log plus derived telemetry", () => {
+    const meta = buildAttemptMetadata(base, [
+      { t: 0, ev: "shown" },
+      { t: 1000, ev: "select", letter: "B" },
+      { t: 2000, ev: "submit", letter: "A" },
+    ], "B");
+    assert.equal(meta.interaction_log?.length, 3);
+    assert.equal(meta.telemetry?.answer_changes, 0);
+    assert.equal(meta.telemetry?.switched_off_correct, true);
+    assert.equal(meta.anonymous, false);
+  });
+
+  it("drops a malformed log without throwing (attempt is sacred)", () => {
+    const meta = buildAttemptMetadata(base, [{ t: 5, ev: "bogus" }], "A");
+    assert.equal(meta.interaction_log, undefined);
+    assert.equal(meta.telemetry, undefined);
+    assert.equal(meta.anonymous, false);
+  });
+
+  it("drops an absent log silently", () => {
+    const meta = buildAttemptMetadata(base, undefined, "A");
+    assert.equal(meta.interaction_log, undefined);
+  });
+
+  it("computes telemetry for many scroll events", () => {
+    const huge = Array.from({ length: 199 }, (_, i) => ({
+      t: i * 1000,
+      ev: "scroll_stem" as const,
+    }));
+    const meta = buildAttemptMetadata(base, huge, "A");
+    assert.equal(meta.telemetry?.stem_rereads, 199);
+    assert.equal(meta.interaction_log?.length, 199);
+  });
+});
+
+describe("attemptBody with interaction_log", () => {
+  it("still accepts a legacy payload without the field", () => {
+    const r = attemptBody.safeParse({
+      question_id: "123e4567-e89b-12d3-a456-426614174000",
+      selected_letter: "A",
+      confidence: 3,
+      time_seconds: 10,
+    });
+    assert.equal(r.success, true);
+  });
+
+  it("passes interaction_log through as unknown (validated later, never rejects)", () => {
+    const r = attemptBody.safeParse({
+      question_id: "123e4567-e89b-12d3-a456-426614174000",
+      selected_letter: "A",
+      confidence: 3,
+      time_seconds: 10,
+      interaction_log: [{ t: 0, ev: "bogus" }],
+    });
+    assert.equal(r.success, true); // bad telemetry must NOT 400 the attempt
   });
 });

@@ -24,6 +24,13 @@ import {
   findOrCreateStudentByEmail,
 } from "../lib/clerk-identity.js";
 import { fresh, applySuccess, applyLapse, type MoldSrs } from "../lib/c3-srs.js";
+import {
+  interactionLogSchema,
+  summarizeInteractionLog,
+  MAX_LOG_BYTES,
+  type InteractionEvent,
+  type TelemetrySummary,
+} from "../lib/attempt-telemetry.js";
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 // Per SRC-0007 CLAIMS_SIGNOFF: never publish focus-group data below n=30.
@@ -51,6 +58,10 @@ export const attemptBody = z.object({
   time_seconds: z.number().int().min(0),
   platform: z.enum(["web", "ios", "android"]).default("web"),
   set_id: z.string().min(1).max(128).optional(),
+  // Behavioral micro-signal stream (spec 2026-06-12). Deliberately z.unknown():
+  // malformed telemetry must never 400 the attempt; it is validated separately
+  // in buildAttemptMetadata and dropped on failure.
+  interaction_log: z.unknown().optional(),
 });
 
 interface QuestionForAttempt {
@@ -131,6 +142,31 @@ export async function listQuestionC3MoldCodesForAttempt(
     if (isMissingC3MoldColumn(err)) return [];
     throw err;
   }
+}
+
+export interface AttemptMetadata {
+  [key: string]: unknown;
+  interaction_log?: InteractionEvent[];
+  telemetry?: TelemetrySummary;
+}
+
+export function buildAttemptMetadata(
+  base: Record<string, unknown>,
+  rawLog: unknown,
+  correctLetter: "A" | "B" | "C" | "D" | null,
+): AttemptMetadata {
+  if (rawLog === undefined || rawLog === null) return { ...base };
+  const parsed = interactionLogSchema.safeParse(rawLog);
+  if (!parsed.success) {
+    console.warn("[attempts post] dropped malformed interaction_log");
+    return { ...base };
+  }
+  const telemetry = summarizeInteractionLog(parsed.data, correctLetter);
+  if (JSON.stringify(parsed.data).length > MAX_LOG_BYTES) {
+    console.warn("[attempts post] interaction_log over byte cap; kept summary only");
+    return { ...base, telemetry };
+  }
+  return { ...base, interaction_log: parsed.data, telemetry };
 }
 
 export function registerAttemptsRoutes(app: Express): void {
@@ -237,7 +273,13 @@ export function registerAttemptsRoutes(app: Express): void {
           body.time_seconds,
           body.platform,
           setId,
-          isAnonymous ? JSON.stringify({ anonymous: true }) : JSON.stringify({}),
+          JSON.stringify(
+            buildAttemptMetadata(
+              isAnonymous ? { anonymous: true } : {},
+              body.interaction_log,
+              correctAnswer,
+            ),
+          ),
         ],
       );
 
