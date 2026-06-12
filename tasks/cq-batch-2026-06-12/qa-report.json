@@ -163,7 +163,7 @@
     },
     {
       "source_file": "CQ19434.md",
-      "qid": "19434",
+      "qid": "19434_hymn_hands_stimulator",
       "warnings": [
         "stem recovered from Pass-1 markdown (absent in B1 YAML)"
       ]
@@ -473,7 +473,7 @@
     },
     {
       "source_file": "CQ20516.md",
-      "qid": "CR-100",
+      "qid": "20516_manna_games_duress",
       "warnings": [
         "B2 student case study header not found",
         "outline_code 72060206 is unverified (no outline map exists) — stored as metadata only"
@@ -645,7 +645,7 @@
     },
     {
       "source_file": "CQ20690.md",
-      "qid": "20690",
+      "qid": "20690_bethlehem_star_drone",
       "warnings": [
         "dominant trap not named",
         "outline_code 94020201 is unverified (no outline map exists) — stored as metadata only"
@@ -678,7 +678,7 @@
     },
     {
       "source_file": "CQ20727.md",
-      "qid": "20727",
+      "qid": "20727_easter_garden_blast_hose",
       "warnings": [
         "dominant trap not named",
         "outline_code 63040100 is unverified (no outline map exists) — stored as metadata only"
@@ -1197,7 +1197,7 @@
     },
     {
       "source_file": "CQ19434.md",
-      "qid": "19434",
+      "qid": "19434_hymn_hands_stimulator",
       "subject": "TORTS",
       "correct": "D",
       "difficulty_band": "medium_high_anchor",
@@ -1848,7 +1848,7 @@
     },
     {
       "source_file": "CQ20516.md",
-      "qid": "CR-100",
+      "qid": "20516_manna_games_duress",
       "subject": "CRIMINAL_LAW",
       "correct": "B",
       "difficulty_band": "medium_high",
@@ -2190,7 +2190,7 @@
     },
     {
       "source_file": "CQ20690.md",
-      "qid": "20690",
+      "qid": "20690_bethlehem_star_drone",
       "subject": "CIVIL_PROCEDURE",
       "correct": "B",
       "difficulty_band": "medium-hard",
@@ -2256,7 +2256,7 @@
     },
     {
       "source_file": "CQ20727.md",
-      "qid": "20727",
+      "qid": "20727_easter_garden_blast_hose",
       "subject": "TORTS",
       "correct": "A",
       "difficulty_band": "medium_high",

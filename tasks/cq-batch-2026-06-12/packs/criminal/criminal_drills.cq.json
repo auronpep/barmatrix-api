@@ -65,10 +65,10 @@
       "20258_psalter_pressure",
       "20387_psalms_chess_indictment",
       "20476_road_to_bethlehem_sash",
+      "20516_manna_games_duress",
       "20542_praise_festival_cashbox",
       "21867_psalm_puzzle_booth",
-      "21869_tiny_house_hymn_sheet",
-      "CR-100"
+      "21869_tiny_house_hymn_sheet"
     ],
     "cards": [],
     "pass_criterion": "Identify the trap choice in 10/11 questions."
@@ -85,10 +85,10 @@
       "19499_jericho_chariot_night",
       "19554_road_to_damascus_cashbox",
       "20476_road_to_bethlehem_sash",
+      "20516_manna_games_duress",
       "20654_nativity_ornaments_volition",
       "21867_psalm_puzzle_booth",
-      "21869_tiny_house_hymn_sheet",
-      "CR-100"
+      "21869_tiny_house_hymn_sheet"
     ],
     "cards": [],
     "pass_criterion": "Identify the trap choice in 8/9 questions."
@@ -102,9 +102,9 @@
     "qid_pool": [
       "17151_carol_program",
       "19336_nativity_warehouse_rescue",
+      "20516_manna_games_duress",
       "20597_olivewood_nativity_craft_swap",
-      "20654_nativity_ornaments_volition",
-      "CR-100"
+      "20654_nativity_ornaments_volition"
     ],
     "cards": [
       "REM-CRIM-INTOX-GENERAL-INTENT-01",

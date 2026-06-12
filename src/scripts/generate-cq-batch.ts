@@ -332,12 +332,23 @@ function parseCqFile(markdown: string, sourceFile: string): CqQuestion {
   if (!row) throw new QuarantineError(sourceFile, ["B1 YAML missing barmatrix_row"]);
   const c3 = rec(c3Annotation!.c3);
 
-  const qid =
+  // canonical qid is "<source-number>_<variant_slug>"; internal_id values like
+  // "CR-100" are NOT unique across the bank and must never become external_id
+  const provenanceEarly = rec(doc.transform_provenance);
+  let qid =
     str(row.qid) ??
     str(row.question_id) ??
-    str(row.internal_id) ??
+    str(row.original_qid) ??
     str(doc.question_id) ??
-    deepString(row, ["qid", "question_id", "internal_id"]);
+    deepString(row, ["qid", "question_id", "original_qid"]);
+  if (qid && !/^\d{4,}_/.test(qid)) {
+    const num =
+      str(provenanceEarly?.transformed_from)?.match(/\d{4,}/)?.[0] ??
+      qid.match(/\d{4,}/)?.[0] ??
+      sourceFile.match(/\d{4,}/)?.[0];
+    const slug = str(provenanceEarly?.variant_slug);
+    if (num) qid = slug ? `${num}_${slug}` : num;
+  }
   const subject = normalizeSubject(str(row.subject) ?? deepString(doc, ["subject"]));
   const call = str(row.call) ?? deepString(row, ["call", "call_of_question"]);
 
@@ -696,10 +707,12 @@ function buildSql(questions: CqQuestion[]): string {
 
   const tagRows = questions.flatMap((question) => {
     const rows: string[] = [];
+    // resolve question_id by external_id (like answer_choices) so a pre-existing
+    // row with the same external_id can never break the FK
     const push = (dimension: string, value: string, metadata: JsonRecord = {}) => {
       rows.push(
         [
-          sqlString(stableUuid(`cq-batch-question:${question.qid}`)),
+          `(SELECT question_id FROM questions WHERE external_id = ${sqlString(question.qid)})`,
           sqlString(dimension),
           sqlString(value.slice(0, 255)),
           sqlJson(metadata),

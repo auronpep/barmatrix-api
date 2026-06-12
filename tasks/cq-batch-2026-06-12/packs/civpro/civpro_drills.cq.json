@@ -37,7 +37,7 @@
       "19266_carol_banquet_jmol",
       "19286_five_loaves_press",
       "19721_jonah_whale_float",
-      "20690"
+      "20690_bethlehem_star_drone"
     ],
     "cards": [],
     "pass_criterion": "Identify the trap choice in 3/4 questions."
@@ -50,7 +50,7 @@
     "trap_family": "misfit",
     "qid_pool": [
       "20353_baptism_tank_burst",
-      "20690",
+      "20690_bethlehem_star_drone",
       "20811_illuminated_psalms_solvent"
     ],
     "cards": [],
@@ -71,7 +71,7 @@
       "20291_nativity_prop_rental_freeze",
       "20353_baptism_tank_burst",
       "20627_ruth_hymn_poster_contract",
-      "20690",
+      "20690_bethlehem_star_drone",
       "21711_foam_whale_nativity_attachment"
     ],
     "cards": [],

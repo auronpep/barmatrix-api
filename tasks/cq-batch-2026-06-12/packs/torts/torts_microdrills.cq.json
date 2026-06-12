@@ -30,8 +30,8 @@
     "subject": "TORTS"
   },
   {
-    "id": "MICRO-19434-1",
-    "source_qid": "19434",
+    "id": "MICRO-19434_hymn_hands_stimulator-1",
+    "source_qid": "19434_hymn_hands_stimulator",
     "drill_type": "CUT",
     "target_skill": "wrong_element",
     "prompt": "Failure-to-warn claim. The answer says the plaintiff suffered the exact risk listed in the warning. What filter breaks?",
@@ -40,8 +40,8 @@
     "subject": "TORTS"
   },
   {
-    "id": "MICRO-19434-2",
-    "source_qid": "19434",
+    "id": "MICRO-19434_hymn_hands_stimulator-2",
+    "source_qid": "19434_hymn_hands_stimulator",
     "drill_type": "CUT",
     "target_skill": "overclaim",
     "prompt": "An answer says prescription products are exempt from all products liability claims. What mold?",
@@ -50,8 +50,8 @@
     "subject": "TORTS"
   },
   {
-    "id": "MICRO-19434-3",
-    "source_qid": "19434",
+    "id": "MICRO-19434_hymn_hands_stimulator-3",
+    "source_qid": "19434_hymn_hands_stimulator",
     "drill_type": "ANCHOR",
     "target_skill": "learned intermediary",
     "prompt": "Prescription-only product, adequate warning to prescribing physician, no direct patient warning. What Gold Key?",
@@ -60,8 +60,8 @@
     "subject": "TORTS"
   },
   {
-    "id": "MICRO-19434-4",
-    "source_qid": "19434",
+    "id": "MICRO-19434_hymn_hands_stimulator-4",
+    "source_qid": "19434_hymn_hands_stimulator",
     "drill_type": "PREDICT",
     "target_skill": "call lock",
     "prompt": "A patient sues for failure to warn after the doctor received and discussed a warning. What is the precise call?",
@@ -600,8 +600,8 @@
     "subject": "TORTS"
   },
   {
-    "id": "MICRO-20727-1",
-    "source_qid": "20727",
+    "id": "MICRO-20727_easter_garden_blast_hose-1",
+    "source_qid": "20727_easter_garden_blast_hose",
     "drill_type": "CUT",
     "target_skill": "wrong_element",
     "prompt": "A fireworks company is preparing a show. Before any fireworks are armed, a visitor is hurt by a collapsing picnic table. Strict liability?",
@@ -610,8 +610,8 @@
     "subject": "TORTS"
   },
   {
-    "id": "MICRO-20727-2",
-    "source_qid": "20727",
+    "id": "MICRO-20727_easter_garden_blast_hose-2",
+    "source_qid": "20727_easter_garden_blast_hose",
     "drill_type": "EAR",
     "target_skill": "tiered_absolute",
     "prompt": "Strict liability never applies before the dangerous activity begins.",
@@ -620,8 +620,8 @@
     "subject": "TORTS"
   },
   {
-    "id": "MICRO-20727-3",
-    "source_qid": "20727",
+    "id": "MICRO-20727_easter_garden_blast_hose-3",
+    "source_qid": "20727_easter_garden_blast_hose",
     "drill_type": "answer_array",
     "target_skill": "2-yes / 2-no reason read",
     "prompt": "Two answers say yes, two say no. One yes proves activity danger; one no proves no special-risk injury. Which reason controls?",
@@ -630,8 +630,8 @@
     "subject": "TORTS"
   },
   {
-    "id": "MICRO-20727-4",
-    "source_qid": "20727",
+    "id": "MICRO-20727_easter_garden_blast_hose-4",
+    "source_qid": "20727_easter_garden_blast_hose",
     "drill_type": "Gold Key recall",
     "target_skill": "special-risk limitation",
     "prompt": "State the tiny rule for abnormally dangerous activity strict liability.",

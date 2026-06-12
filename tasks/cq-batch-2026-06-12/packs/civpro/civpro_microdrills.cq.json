@@ -410,8 +410,8 @@
     "subject": "CIVIL_PROCEDURE"
   },
   {
-    "id": "MICRO-20690-1",
-    "source_qid": "20690",
+    "id": "MICRO-20690_bethlehem_star_drone-1",
+    "source_qid": "20690_bethlehem_star_drone",
     "drill_type": "cut",
     "target_skill": "wrong_frame",
     "prompt": "The call asks whether a late personal-jurisdiction motion should be granted. A choice says the plaintiff must establish supplemental jurisdiction. Cut or keep?",
@@ -420,8 +420,8 @@
     "subject": "CIVIL_PROCEDURE"
   },
   {
-    "id": "MICRO-20690-2",
-    "source_qid": "20690",
+    "id": "MICRO-20690_bethlehem_star_drone-2",
+    "source_qid": "20690_bethlehem_star_drone",
     "drill_type": "anchor",
     "target_skill": "Rule 12 waiver",
     "prompt": "A defendant knew all personal-jurisdiction facts and answered without raising PJ. What happens to the PJ defense?",
@@ -430,8 +430,8 @@
     "subject": "CIVIL_PROCEDURE"
   },
   {
-    "id": "MICRO-20690-3",
-    "source_qid": "20690",
+    "id": "MICRO-20690_bethlehem_star_drone-3",
+    "source_qid": "20690_bethlehem_star_drone",
     "drill_type": "anchor",
     "target_skill": "amended complaint no revival",
     "prompt": "Plaintiff later amends only to add damages from the same transaction against the same defendant. Does that automatically revive waived PJ?",
@@ -440,8 +440,8 @@
     "subject": "CIVIL_PROCEDURE"
   },
   {
-    "id": "MICRO-20690-4",
-    "source_qid": "20690",
+    "id": "MICRO-20690_bethlehem_star_drone-4",
+    "source_qid": "20690_bethlehem_star_drone",
     "drill_type": "trap_spotting",
     "target_skill": "absolute words",
     "prompt": "A choice says every amended complaint restarts all Rule 12 defenses. What is the C3 tell?",

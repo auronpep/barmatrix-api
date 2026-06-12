@@ -36,7 +36,7 @@ Files scanned: 106  ·  PASS: 106  ·  QUARANTINE: 0
 - **CQ19379.md** (19379_hymn_candle_invoice_van): dominant trap not named; outline_code 35030202 is unverified (no outline map exists) — stored as metadata only
 - **CQ19386.md** (19386_scripture_audio_cap): dominant trap not named; outline_code 53070100 is unverified (no outline map exists) — stored as metadata only
 - **CQ19430.md** (19430_harp_instructor_olive_grove): dominant trap not named; outline_code 84040201 is unverified (no outline map exists) — stored as metadata only
-- **CQ19434.md** (19434): stem recovered from Pass-1 markdown (absent in B1 YAML)
+- **CQ19434.md** (19434_hymn_hands_stimulator): stem recovered from Pass-1 markdown (absent in B1 YAML)
 - **CQ19448.md** (19448_praise_night_tshirt_cannon): dominant trap not named
 - **CQ19499.md** (19499_jericho_chariot_night): stem recovered from Pass-1 markdown (absent in B1 YAML); dominant trap not named; outline_code 71040200 is unverified (no outline map exists) — stored as metadata only
 - **CQ19502.md** (19502_manna_festival_finals_tax): dominant trap not named; outline_code 42010101 is unverified (no outline map exists) — stored as metadata only
@@ -74,7 +74,7 @@ Files scanned: 106  ·  PASS: 106  ·  QUARANTINE: 0
 - **CQ20476.md** (20476_road_to_bethlehem_sash): B2 student case study header not found; outline_code 75070202 is unverified (no outline map exists) — stored as metadata only
 - **CQ20493.md** (20493_fish_mark_picnic_lot): dominant trap not named
 - **CQ20496.md** (20496_loaves_prop_cart): stem recovered from Pass-1 markdown (absent in B1 YAML); dominant trap not named; outline_code 61020500 is unverified (no outline map exists) — stored as metadata only
-- **CQ20516.md** (CR-100): B2 student case study header not found; outline_code 72060206 is unverified (no outline map exists) — stored as metadata only
+- **CQ20516.md** (20516_manna_games_duress): B2 student case study header not found; outline_code 72060206 is unverified (no outline map exists) — stored as metadata only
 - **CQ20523.md** (20523_easter_stage_guaranty): dominant trap not named; outline_code 54030400 is unverified (no outline map exists) — stored as metadata only
 - **CQ20542.md** (20542_praise_festival_cashbox): B2 student case study header not found; dominant trap not named; outline_code 75090400 is unverified (no outline map exists) — stored as metadata only
 - **CQ20546.md** (20546_jericho_wall_studio): stem recovered from Pass-1 markdown (absent in B1 YAML); dominant trap not named
@@ -95,11 +95,11 @@ Files scanned: 106  ·  PASS: 106  ·  QUARANTINE: 0
 - **CQ20638.md** (20638_advent_rescue_beacons): B2 student case study header not found; stem recovered from Pass-1 markdown (absent in B1 YAML); dominant trap not named; outline_code 41030300 is unverified (no outline map exists) — stored as metadata only
 - **CQ20649.md** (20649_christmas_pageant_platform): B2 student case study header not found; dominant trap not named; outline_code 61020201 is unverified (no outline map exists) — stored as metadata only
 - **CQ20654.md** (20654_nativity_ornaments_volition): B2 student case study header not found; stem recovered from Pass-1 markdown (absent in B1 YAML); outline_code 72060101 is unverified (no outline map exists) — stored as metadata only
-- **CQ20690.md** (20690): dominant trap not named; outline_code 94020201 is unverified (no outline map exists) — stored as metadata only
+- **CQ20690.md** (20690_bethlehem_star_drone): dominant trap not named; outline_code 94020201 is unverified (no outline map exists) — stored as metadata only
 - **CQ20714.md** (20714_prayer_robotics_kits): B2 student case study header not found; dominant trap not named
 - **CQ20717.md** (20717_ruths_hymn_recording_procedure): B2 student case study header not found; dominant trap not named
 - **CQ20725.md** (20725_emmaus_laser_cutter): B2 student case study header not found; dominant trap not named; outline_code 62050200 is unverified (no outline map exists) — stored as metadata only
-- **CQ20727.md** (20727): dominant trap not named; outline_code 63040100 is unverified (no outline map exists) — stored as metadata only
+- **CQ20727.md** (20727_easter_garden_blast_hose): dominant trap not named; outline_code 63040100 is unverified (no outline map exists) — stored as metadata only
 - **CQ20728.md** (20728_star_stable_stall): stem recovered from Pass-1 markdown (absent in B1 YAML); dominant trap not named; outline_code 82010404 is unverified (no outline map exists) — stored as metadata only
 - **CQ20729.md** (20729_courtyard_stormwater): dominant trap not named; outline_code 81020801 is unverified (no outline map exists) — stored as metadata only
 - **CQ20730.md** (20730_shepherd_sling_fair): B2 student case study header not found; dominant trap not named; outline_code 64010102 is unverified (no outline map exists) — stored as metadata only

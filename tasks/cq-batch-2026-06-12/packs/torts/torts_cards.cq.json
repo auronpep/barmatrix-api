@@ -22,7 +22,7 @@
     "trap": "Wrong-element answer on failure-to-warn claims.",
     "confidence": "ANCHOR_ASSISTED",
     "example_qids": [
-      "19434"
+      "19434_hymn_hands_stimulator"
     ]
   },
   {
@@ -230,7 +230,7 @@
     "trap": "Picking the dangerous-activity label.",
     "confidence": "ANCHOR_ASSISTED",
     "example_qids": [
-      "20727"
+      "20727_easter_garden_blast_hose"
     ]
   },
   {

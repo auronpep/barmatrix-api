@@ -410,8 +410,8 @@
     "subject": "CRIMINAL_LAW"
   },
   {
-    "id": "MICRO-CR-100-1",
-    "source_qid": "CR-100",
+    "id": "MICRO-20516_manna_games_duress-1",
+    "source_qid": "20516_manna_games_duress",
     "drill_type": "Gold Key recall",
     "target_skill": "duress threshold",
     "prompt": "A defendant steals after a threatener far away promises to hurt a sibling next week. Does duress succeed?",
@@ -420,8 +420,8 @@
     "subject": "CRIMINAL_LAW"
   },
   {
-    "id": "MICRO-CR-100-2",
-    "source_qid": "CR-100",
+    "id": "MICRO-20516_manna_games_duress-2",
+    "source_qid": "20516_manna_games_duress",
     "drill_type": "wrong_element cut",
     "target_skill": "partial defense elements",
     "prompt": "Choice says: 'Yes, because the threat was to a close family member.' Cut or keep?",
@@ -430,8 +430,8 @@
     "subject": "CRIMINAL_LAW"
   },
   {
-    "id": "MICRO-CR-100-3",
-    "source_qid": "CR-100",
+    "id": "MICRO-20516_manna_games_duress-3",
+    "source_qid": "20516_manna_games_duress",
     "drill_type": "tiered_absolute cut",
     "target_skill": "scope overclaim",
     "prompt": "Choice says: 'No, because duress is only for violent crimes.' Cut or keep?",
