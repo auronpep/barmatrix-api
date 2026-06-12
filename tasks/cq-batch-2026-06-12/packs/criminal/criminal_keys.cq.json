@@ -1,0 +1,482 @@
+[
+  {
+    "id": "GK-CRIMINAL-GRAND-JURY-REMEDY-01",
+    "kind": "gold",
+    "statement": "A facially valid indictment is not dismissed merely because the grand jury heard hearsay or evidence traceable to an unlawful search; those defects point to trial suppression, not automatic indictment dismissal.",
+    "type": "distinction",
+    "trigger": "Motion to dismiss an indictment based on what the grand jury heard.",
+    "authority": "Costello v. United States; United States v. Calandra; United States v. Blue.",
+    "last_minute_review": true,
+    "example_qids": [
+      "14621_manna_cafe_bookmaker"
+    ]
+  },
+  {
+    "id": "GK-CRIMINAL-UNDERCOVER-NONCUSTODIAL-01",
+    "kind": "gold",
+    "statement": "A suspect’s voluntary conversation with someone he does not know is an agent is not custodial police interrogation for Miranda purposes.",
+    "type": "distinction",
+    "trigger": "Undercover social conversation before indictment or custody.",
+    "authority": "Illinois v. Perkins.",
+    "last_minute_review": true,
+    "example_qids": [
+      "14621_manna_cafe_bookmaker"
+    ]
+  },
+  {
+    "id": "SK-CRIMINAL-GRAND-JURY-REMEDY-01",
+    "kind": "silver",
+    "statement": "When the call asks to dismiss an indictment, do not stop at 'the government violated a right.' Ask whether dismissal is the remedy.",
+    "type": "call_focus",
+    "trigger": "Motion to dismiss indictment + answers naming unlawful search, hearsay, or counsel violation.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "14621_manna_cafe_bookmaker"
+    ]
+  },
+  {
+    "id": "GK-CRIMINAL-BANK-THIRD-PARTY-01",
+    "kind": "gold",
+    "statement": "Bank account records are the bank's business records. A customer generally has no Fourth Amendment privacy interest in information voluntarily conveyed to the bank in ordinary transactions.",
+    "type": "constitutional_principle",
+    "trigger": "Government obtains checks, deposit slips, account statements, or bank records from the bank.",
+    "authority": "United States v. Miller, 425 U.S. 435 (1976); Smith v. Maryland, 442 U.S. 735 (1979).",
+    "last_minute_review": true,
+    "example_qids": [
+      "17084_five_loaves_bank_records"
+    ]
+  },
+  {
+    "id": "SK-CRIMINAL-SUPPRESSION-THRESHOLD-01",
+    "kind": "silver",
+    "statement": "On a suppression call, first ask whether this defendant has a Fourth Amendment interest in the record. If no protected interest exists, warrant and subpoena phrasing is bait.",
+    "type": "call_focus",
+    "trigger": "The call asks whether to suppress records obtained from someone else.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "17084_five_loaves_bank_records"
+    ]
+  },
+  {
+    "id": "GK-CRIMINAL-GENERAL-INTENT-INTOX-01",
+    "kind": "gold",
+    "statement": "Voluntary intoxication may matter for a specific-intent element, but it is not a defense to a general-intent crime. General-intent battery requires intent to make the offensive contact, not a further objective.",
+    "type": "distinction",
+    "trigger": "Stem says the offense requires intentional contact but no further purpose or objective.",
+    "authority": "Cornell Wex intoxication; CALCRIM No. 3426; People v. Hood / People v. Atkins line of authority",
+    "last_minute_review": true,
+    "example_qids": [
+      "17151_carol_program"
+    ]
+  },
+  {
+    "id": "SK-CRIMINAL-GENERAL-INTENT-INTOX-01",
+    "kind": "silver",
+    "statement": "When two answers reach the same outcome, test the reason against the stem before keeping it. A right result with a reason the stem contradicts is still a cut.",
+    "type": "answer_array",
+    "trigger": "One No answer says strict liability while the stem says intentional contact.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "17151_carol_program"
+    ]
+  },
+  {
+    "id": "GK-CRIMINAL-TITLE-PRESENT-FACT-01",
+    "kind": "gold",
+    "statement": "False pretenses is the theft lane for title or ownership obtained by a knowingly false present or past fact. Larceny by trick is possession-only deception; embezzlement is lawful possession followed by conversion.",
+    "type": "distinction",
+    "trigger": "deception plus bill of sale/title/ownership transfer",
+    "authority": "Cornell Wex false pretenses and larceny-by-trick entries; official BarMatrix explanation.",
+    "last_minute_review": true,
+    "example_qids": [
+      "19263_chapel_handbells"
+    ]
+  },
+  {
+    "id": "SK-CRIMINAL-TITLE-AXIS-01",
+    "kind": "silver",
+    "statement": "In a theft-taxonomy array, ask what moved first: title/ownership, possession only, or lawful custody. That axis picks the crime before the bad-check fact distracts you.",
+    "type": "answer_array",
+    "trigger": "multiple property-crime labels in the answer choices",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "19263_chapel_handbells"
+    ]
+  },
+  {
+    "id": "GK-CRIM-DEFENSE-OTHERS-01",
+    "kind": "gold",
+    "statement": "Majority defense of others is judged by the intervener’s reasonable belief. A reasonable mistake about who was entitled to use force does not forfeit the defense.",
+    "type": "distinction",
+    "trigger": "Stem says majority rule and gives both hidden actual facts and reasonable apparent facts.",
+    "authority": "Model Penal Code § 3.05(1)(b)-(c); representative reasonable-belief statutes; modern majority rule summaries.",
+    "last_minute_review": true,
+    "example_qids": [
+      "19336_nativity_warehouse_rescue"
+    ]
+  },
+  {
+    "id": "SK-CRIM-DEFENSE-OTHERS-01",
+    "kind": "silver",
+    "statement": "When a defense-of-others stem gives hidden actual facts and apparent reasonable facts, name the axis before choosing: actual-rights rule or reasonable-appearance rule.",
+    "type": "clash",
+    "trigger": "Call says majority rule; one choice uses actual facts and one uses reasonable belief.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "19336_nativity_warehouse_rescue"
+    ]
+  },
+  {
+    "id": "GK-CRIMINAL-WHARTON-EXTRA-PARTY-01",
+    "kind": "gold",
+    "statement": "Wharton’s Rule can bar conspiracy only when the target offense already requires the same minimum parties. If extra people beyond that minimum join the agreement, the conspiracy charge survives.",
+    "type": "exception",
+    "trigger": "two-person target offense plus organizers or other extra participants",
+    "authority": "Iannelli v. United States, 420 U.S. 770 (1975)",
+    "last_minute_review": true,
+    "example_qids": [
+      "19499_jericho_chariot_night"
+    ]
+  },
+  {
+    "id": "SK-CRIMINAL-WHARTON-COUNT-01",
+    "kind": "silver",
+    "statement": "When Wharton’s Rule appears, count twice: how many people the target offense needs, then how many people joined the plan.",
+    "type": "clash",
+    "trigger": "a two-party offense with extra planners, sellers, organizers, or facilitators",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "19499_jericho_chariot_night"
+    ]
+  },
+  {
+    "id": "GK-CRIM-CUSTODY-POSSESSION-01",
+    "kind": "gold",
+    "statement": "A low-level worker who merely handles the owner’s cash usually has custody, not lawful possession. If the worker pockets it intending to keep it, the common-law classification is larceny.",
+    "type": "distinction",
+    "trigger": "Worker is authorized to collect or handle money for the owner, then secretly pockets it.",
+    "authority": "Lawyer-confirmation only: common-law larceny and embezzlement authorities.",
+    "last_minute_review": true,
+    "example_qids": [
+      "19554_road_to_damascus_cashbox"
+    ]
+  },
+  {
+    "id": "SK-CRIM-THEFT-CLASSIFICATION-01",
+    "kind": "silver",
+    "statement": "On a theft-classification array, do not start with the job title. Sort the property path: custody, lawful possession, title, or no offense.",
+    "type": "answer_array",
+    "trigger": "The answer choices are competing common-law theft labels.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "19554_road_to_damascus_cashbox"
+    ]
+  },
+  {
+    "id": "GK-CRIM-MIRANDA-FRUIT-01",
+    "kind": "gold",
+    "statement": "A voluntary unwarned statement is generally kept out of the prosecution's case-in-chief, but physical evidence discovered from that statement need not be suppressed.",
+    "type": "exception",
+    "trigger": "The prosecution offers a physical object found through a voluntary unwarned statement.",
+    "authority": "United States v. Patane, 542 U.S. 630 (2004)",
+    "last_minute_review": true,
+    "example_qids": [
+      "20127_jericho_trumpet"
+    ]
+  },
+  {
+    "id": "SK-CRIM-MIRANDA-REMEDY-LAYER-01",
+    "kind": "silver",
+    "statement": "Separate the warning violation from the suppression remedy: first ask what evidence the prosecution is offering.",
+    "type": "call_focus",
+    "trigger": "The call says 'suppressed as fruit' and the prosecution offers only a physical object.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20127_jericho_trumpet"
+    ]
+  },
+  {
+    "id": "GK-CRIMINAL-PSALTER-PRESSURE-01",
+    "kind": "gold",
+    "statement": "A confession produced by coercive police threats or conditions that overbear the suspect’s will is involuntary and cannot be used in the prosecution’s case-in-chief.",
+    "type": "rule",
+    "trigger": "Warnings plus threats against family plus deprivation",
+    "authority": "Lynumn v. Illinois; Colorado v. Connelly; Mincey v. Arizona",
+    "last_minute_review": true,
+    "example_qids": [
+      "20258_psalter_pressure"
+    ]
+  },
+  {
+    "id": "GK-CRIMINAL-MIRANDA-SEPARATE-02",
+    "kind": "gold",
+    "statement": "Miranda waiver and due-process voluntariness are separate gates; warnings or a waiver form do not cure a coerced confession.",
+    "type": "distinction",
+    "trigger": "The stem gives warnings, then pressure facts",
+    "authority": "Mincey v. Arizona; North Carolina v. Butler",
+    "last_minute_review": true,
+    "example_qids": [
+      "20258_psalter_pressure"
+    ]
+  },
+  {
+    "id": "SK-CRIMINAL-PSALTER-PRESSURE-01",
+    "kind": "silver",
+    "statement": "When a stem gives one clean procedure fact and then piles on pressure facts, do not stop at the procedure fact; the answer must account for the pressure facts.",
+    "type": "trap_spotting",
+    "trigger": "Warnings appear before coercion facts",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20258_psalter_pressure"
+    ]
+  },
+  {
+    "id": "SK-CRIMINAL-PSALTER-PRESSURE-02",
+    "kind": "silver",
+    "statement": "In a yes/no answer set, a no answer with the wrong reason still gets cut; match both the result and the reason.",
+    "type": "answer_array",
+    "trigger": "Two no answers appear",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20258_psalter_pressure"
+    ]
+  },
+  {
+    "id": "GK-CRIMINAL-ARREST-REMEDY-01",
+    "kind": "gold",
+    "statement": "An unlawful arrest is not itself a prosecution-ending defect. The remedy targets evidence obtained through the illegality; charges supported by untainted evidence are not dismissed merely because the arrest was bad.",
+    "type": "rule",
+    "trigger": "unlawful arrest + no arrest-derived evidence + motion to dismiss",
+    "authority": "United States v. Crews, Gerstein v. Pugh, Frisbie v. Collins.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20387_psalms_chess_indictment"
+    ]
+  },
+  {
+    "id": "SK-CRIMINAL-ARREST-REMEDY-01",
+    "kind": "silver",
+    "statement": "Lock the remedy before applying Fourth Amendment exceptions. If the call asks for dismissal and the stem gives no arrest-produced evidence, suppression exceptions are side streets.",
+    "type": "call_focus",
+    "trigger": "motion to dismiss solely because arrest was unlawful",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20387_psalms_chess_indictment"
+    ]
+  },
+  {
+    "id": "GK-CRIMINAL-PLAIN-FEEL-01",
+    "kind": "gold",
+    "statement": "Plain feel works only when the contraband identity is immediately apparent during the lawful weapons frisk. If the officer must squeeze, roll, rub, or otherwise manipulate a nonweapon item to identify it, the frisk has become a new search.",
+    "type": "distinction",
+    "trigger": "Lawful frisk + nonweapon object + extra manipulation before identification",
+    "authority": "Minnesota v. Dickerson, 508 U.S. 366 (1993); Terry v. Ohio, 392 U.S. 1 (1968)",
+    "last_minute_review": true,
+    "example_qids": [
+      "20476_road_to_bethlehem_sash"
+    ]
+  },
+  {
+    "id": "SK-CRIMINAL-PLAIN-FEEL-01",
+    "kind": "silver",
+    "statement": "When two choices both say the seizure is invalid, ask which one names the first unlawful move. Here, the first unlawful move is the extra manipulation, not the later hand-in-pocket act.",
+    "type": "clash",
+    "trigger": "Two 'No' answers with different defect rationales",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20476_road_to_bethlehem_sash"
+    ]
+  },
+  {
+    "id": "GK-CRIMINAL-DURESS-IMMINENCE-01",
+    "kind": "gold",
+    "statement": "Common-law duress needs an imminent human threat of death or serious bodily harm, directed at the defendant or a close family member, with no reasonable legal alternative.",
+    "type": "threshold",
+    "trigger": "Threat scheduled for later, threatener absent, time to seek help.",
+    "authority": "Common-law duress; United States v. Bailey and federal duress formulations.",
+    "last_minute_review": true,
+    "example_qids": [
+      "CR-100"
+    ]
+  },
+  {
+    "id": "GK-CRIMINAL-DURESS-SCOPE-02",
+    "kind": "gold",
+    "statement": "Duress is not a violent-crime-only defense; theft is not excluded if the duress elements are met.",
+    "type": "exception",
+    "trigger": "Answer says duress is only for violent crimes.",
+    "authority": "Common-law duress scope; homicide limitation.",
+    "last_minute_review": true,
+    "example_qids": [
+      "CR-100"
+    ]
+  },
+  {
+    "id": "SK-CRIMINAL-DURESS-ARRAY-01",
+    "kind": "silver",
+    "statement": "When two Yes answers each name one sympathetic fact and a No answer names a missing threshold, treat the array as an element-completion test.",
+    "type": "answer_array",
+    "trigger": "Defense-success call with multiple partial-element answers.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "CR-100"
+    ]
+  },
+  {
+    "id": "GK-CRIMINAL-MASSIAH-SAME-OFFENSE-01",
+    "kind": "gold",
+    "statement": "After formal charge, the Sixth Amendment bars deliberate elicitation about the charged offense without counsel or waiver; a lesser-included or same-Blockburger relabeling stays inside the charged offense.",
+    "type": "distinction",
+    "trigger": "indictment/counsel appointed + police ask about a renamed version of the same incident",
+    "authority": "Massiah; Fellers; McNeil; Texas v. Cobb; Brown v. Ohio",
+    "last_minute_review": true,
+    "example_qids": [
+      "20542_praise_festival_cashbox"
+    ]
+  },
+  {
+    "id": "GK-CRIMINAL-MASSIAH-CUSTODY-01",
+    "kind": "gold",
+    "statement": "Sixth Amendment post-charge deliberate elicitation is not the same test as Fifth Amendment custodial interrogation.",
+    "type": "distinction",
+    "trigger": "Sixth Amendment call + post-indictment questioning",
+    "authority": "Fellers; Massiah",
+    "last_minute_review": true,
+    "example_qids": [
+      "20542_praise_festival_cashbox"
+    ]
+  },
+  {
+    "id": "SK-CRIMINAL-LABEL-VS-SUBSTANCE-01",
+    "kind": "silver",
+    "statement": "When the choices fight over crime labels, go back to the stem and ask whether the officers are really asking about the same charged event in a smaller costume.",
+    "type": "clash",
+    "trigger": "charged armed robbery followed by police asking about unarmed theft from the same event",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20542_praise_festival_cashbox"
+    ]
+  },
+  {
+    "id": "GK-CRIMINAL-MISTAKE-FACT-LAW-01",
+    "kind": "gold",
+    "statement": "For a specific intent crime, an honest mistake of fact can negate the required specific intent even if the mistake is unreasonable.",
+    "type": "distinction",
+    "trigger": "The stem says specific intent and the defendant honestly thinks the property is abandoned or free.",
+    "authority": "Morissette v. United States; DOJ Justice Manual larceny formulation; Cornell Wex mistake-of-fact summary.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20597_olivewood_nativity_craft_swap"
+    ]
+  },
+  {
+    "id": "GK-CRIMINAL-MISTAKE-FACT-LAW-02",
+    "kind": "gold",
+    "statement": "Mistake of law generally does not excuse criminal conduct; sincerity alone is not enough.",
+    "type": "exception",
+    "trigger": "The defendant knows the object belongs to someone but misunderstands whether taking it is legal.",
+    "authority": "Cheek v. United States; Justia mistake-of-law summary.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20597_olivewood_nativity_craft_swap"
+    ]
+  },
+  {
+    "id": "SK-CRIMINAL-FACT-LAW-MATRIX-01",
+    "kind": "silver",
+    "statement": "Read the answer array as two switches: Stephen's mistake is about a fact; Mary's mistake is about the law. The credited answer must split them, not treat both defendants the same.",
+    "type": "answer_array",
+    "trigger": "Two scenarios plus choices that say both guilty, both not guilty, and two split answers.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20597_olivewood_nativity_craft_swap"
+    ]
+  },
+  {
+    "id": "GK-CRIMINAL-IRRESISTIBLE-IMPULSE-01",
+    "kind": "gold",
+    "statement": "M'Naghten is cognition: did the defendant know the nature or wrongfulness of the act? Irresistible impulse is volition: the defendant may know wrong but still be excused if mental disease prevents control.",
+    "type": "distinction",
+    "trigger": "The stem says the jurisdiction uses M'Naghten plus irresistible impulse and gives both knowledge-of-wrongfulness and inability-to-conform facts.",
+    "authority": "M'Naghten's Case; Model Penal Code section 4.01 conform-conduct analogue; Cornell Wex summaries.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20654_nativity_ornaments_volition"
+    ]
+  },
+  {
+    "id": "SK-CRIMINAL-IRRESISTIBLE-IMPULSE-01",
+    "kind": "silver",
+    "statement": "Read the array as three buckets: diagnosis alone, cognition, and volition. When the stem gives both 'knows wrong' and 'cannot conform,' the answer must choose the volition bucket.",
+    "type": "answer_array",
+    "trigger": "Choices separately mention mental disease, knew wrong, M'Naghten, and irresistible impulse.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20654_nativity_ornaments_volition"
+    ]
+  },
+  {
+    "id": "GK-CRIM-MISDEMEANOR-MANSLAUGHTER-01",
+    "kind": "gold",
+    "statement": "Misdemeanor manslaughter still needs actual and proximate causation. A misdemeanor that merely happens before a death is not enough.",
+    "type": "threshold",
+    "trigger": "unlawful act followed by a separate death mechanism",
+    "authority": "MPC §2.03; People v. Penny; Logan/Ceasar line reflected in Oklahoma jury-instruction commentary",
+    "last_minute_review": true,
+    "example_qids": [
+      "21867_psalm_puzzle_booth"
+    ]
+  },
+  {
+    "id": "SK-CRIM-MISDEMEANOR-MANSLAUGHTER-01",
+    "kind": "silver",
+    "statement": "When the array gives you a misdemeanor-label answer and a cause-link answer, lock the cause link before debating the label.",
+    "type": "cut",
+    "trigger": "one choice says the misdemeanor happened; another choice says the misdemeanor did not cause the death",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "21867_psalm_puzzle_booth"
+    ]
+  },
+  {
+    "id": "GK-CRIM-THIRD-PARTY-HOME-01",
+    "kind": "gold",
+    "statement": "An arrest warrant lets police seize the named suspect; it does not by itself authorize entry into someone else’s home. For a third party’s home, look for a search warrant for that home, consent, or exigency.",
+    "type": "distinction",
+    "trigger": "arrest warrant + suspect located in a third party's home",
+    "authority": "Steagald v. United States, 451 U.S. 204 (1981); Payton v. New York, 445 U.S. 573 (1980)",
+    "last_minute_review": true,
+    "example_qids": [
+      "21869_tiny_house_hymn_sheet"
+    ]
+  },
+  {
+    "id": "SK-CRIM-ENTRY-FIRST-01",
+    "kind": "silver",
+    "statement": "When the call asks whether entry into a home was lawful, decide the door before the room. A bedroom, prayer nook, or living room fact cannot supply authority to cross the threshold.",
+    "type": "cut",
+    "trigger": "answer turns on where the suspect was found after entry",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "21869_tiny_house_hymn_sheet"
+    ]
+  }
+]

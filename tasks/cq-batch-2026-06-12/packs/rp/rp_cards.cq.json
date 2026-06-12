@@ -1,0 +1,119 @@
+[
+  {
+    "id": "RP-REMED-BLANK-GRANTEE-GATE",
+    "type": "ANCHOR",
+    "title": "Blank grantee gate",
+    "signal": "The stem says the grantee line was blank when the deed was delivered.",
+    "student_move": "Freeze the validity gate before considering recording or consideration.",
+    "tiny_rule": "No grantee at delivery plus no authority to fill means no title passes to the later filler.",
+    "trap": "Signature or recording feels complete.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "17058_advent_honey_parcel"
+    ]
+  },
+  {
+    "id": "RP-ANCHOR-RECORDING-VALIDITY-01",
+    "type": "ANCHOR",
+    "title": "Recording vs Validity",
+    "signal": "Valid deed delivered and accepted, but not recorded.",
+    "student_move": "Ask: original parties or outsider priority?",
+    "tiny_rule": "No outsider: recording is not required for title to pass between grantor and grantee.",
+    "trap": "Treating the recorder’s office as the title-transfer event.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "19381_shepherd_olive_press_deed"
+    ]
+  },
+  {
+    "id": "RP-DEED-ROLE-GRANTEE-01",
+    "type": "ANCHOR",
+    "title": "Role Description as Grantee",
+    "signal": "Deed conveys to “the [role holder] of [organization].”",
+    "student_move": "Ask whether one person fit that role at delivery.",
+    "tiny_rule": "Role description is enough if it identifies one person at delivery.",
+    "trap": "Do not require the personal name or grantee signature.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "19430_harp_instructor_olive_grove"
+    ]
+  },
+  {
+    "id": "REM-RP-FORECLOSURE-NOTICE-01",
+    "type": "ANCHOR",
+    "title": "Foreclosure: bring interest holders into court",
+    "signal": "Foreclosure request + life estate/remainder + no notice/service",
+    "student_move": "Cut every sale-scope answer until the service threshold is satisfied.",
+    "tiny_rule": "No notice to affected estate holders, no sale order.",
+    "trap": "Choosing the estate that can be sold instead of the process answer.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "19904_psalm_orchard_foreclosure_notice"
+    ]
+  },
+  {
+    "id": "RP-ANCHOR-RELICTION-01",
+    "type": "ANCHOR",
+    "title": "Reliction: gradual water retreat adds land to the adjoining parcel",
+    "signal": "Water naturally and gradually recedes, exposing dry land.",
+    "student_move": "Ask which parcel touches the exposed strip.",
+    "tiny_rule": "Gradual natural reliction generally gives exposed land to the adjoining littoral owner.",
+    "trap": "Public-forever or far-side-owner answers.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20213_mercy_pool_reliction"
+    ]
+  },
+  {
+    "id": "RP-REM-LIFE-ENCUMBRANCE-01",
+    "type": "ANCHOR",
+    "title": "Life tenant pays interest; remainderman pays principal",
+    "signal": "life tenant + remainderman + mortgage/encumbrance",
+    "student_move": "Name the two payment components before choosing.",
+    "tiny_rule": "Interest is current-use cost; principal is future-equity cost.",
+    "trap": "Choosing whoever seems more morally responsible for the whole mortgage.",
+    "confidence": "PURE_ANCHOR",
+    "example_qids": [
+      "20312_loaves_fishes_retreat"
+    ]
+  },
+  {
+    "id": "RP-ANCHOR-01",
+    "type": "ANCHOR",
+    "title": "Minimal Deed Formalities",
+    "signal": "Informal writing, present transfer words, no money, no notarization, no recording.",
+    "student_move": "Ask whether the writing hits the minimum transfer elements before adding extra gates.",
+    "tiny_rule": "Writing + parties + land + present transfer + grantor authentication + delivery + acceptance is enough between the parties.",
+    "trap": "Contract or courthouse instincts add requirements the tested rule does not require.",
+    "confidence": "PURE_ANCHOR",
+    "example_qids": [
+      "20493_fish_mark_picnic_lot"
+    ]
+  },
+  {
+    "id": "REMED-RP-LEASE-WAIVER-01",
+    "type": "ANCHOR",
+    "title": "Original Clause vs Later Conduct",
+    "signal": "Lease restricts assignment, but landlord accepts rent from assignee.",
+    "student_move": "Do not stop at the restriction. Check whether the landlord later acted like the transfer was accepted.",
+    "tiny_rule": "Known breach + rent accepted without objection can waive forfeiture.",
+    "trap": "Choosing the original clause after the landlord's later conduct changes the result.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20728_star_stable_stall"
+    ]
+  },
+  {
+    "id": "RP-ANCHOR-TAKING-LEASE-01",
+    "type": "ANCHOR",
+    "title": "Whole taking of leased premises",
+    "signal": "Entire leased parcel is condemned during an unexpired term.",
+    "student_move": "Ask for both consequences: rent and award.",
+    "tiny_rule": "Whole taking = leasehold gone; future rent gone; leasehold value claim remains.",
+    "trap": "Picking only the rent half or only the award half.",
+    "confidence": "PURE_ANCHOR",
+    "example_qids": [
+      "20729_courtyard_stormwater"
+    ]
+  }
+]

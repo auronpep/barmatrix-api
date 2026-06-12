@@ -1,0 +1,22 @@
+{
+  "subject_dir": "rp",
+  "subject": "REAL_PROPERTY",
+  "batch": "cq-2026-06-12",
+  "question_count": 9,
+  "qids": [
+    "17058_advent_honey_parcel",
+    "19381_shepherd_olive_press_deed",
+    "19430_harp_instructor_olive_grove",
+    "19904_psalm_orchard_foreclosure_notice",
+    "20213_mercy_pool_reliction",
+    "20312_loaves_fishes_retreat",
+    "20493_fish_mark_picnic_lot",
+    "20728_star_stable_stall",
+    "20729_courtyard_stormwater"
+  ],
+  "cards": 9,
+  "keys": 19,
+  "drills": 4,
+  "microdrills": 28,
+  "note": "ADDITIVE to the existing subject pack — file names are suffixed .cq.json to avoid colliding with the legacy pack; merge is a deliberate API-side step."
+}

@@ -1,0 +1,532 @@
+[
+  {
+    "id": "MICRO-19266_carol_banquet_jmol-1",
+    "source_qid": "19266_carol_banquet_jmol",
+    "drill_type": "CUT",
+    "target_skill": "procedural_frame",
+    "prompt": "A plaintiff rests with no evidence on causation. Defendant moves for JMOL. Cut an answer saying JMOL turns on plaintiff bad faith.",
+    "answer": "Cut as fabricated_rule / procedural_frame.",
+    "tension_slug": null,
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-19266_carol_banquet_jmol-2",
+    "source_qid": "19266_carol_banquet_jmol",
+    "drill_type": "CUT",
+    "target_skill": "overclaim",
+    "prompt": "A choice says JMOL must be denied automatically because all civil trials go to the jury. What is the mold?",
+    "answer": "tiered_absolute.",
+    "tension_slug": null,
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-19266_carol_banquet_jmol-3",
+    "source_qid": "19266_carol_banquet_jmol",
+    "drill_type": "anchor",
+    "target_skill": "Rule 50 standard",
+    "prompt": "State the JMOL standard after a party has been fully heard on an issue.",
+    "answer": "Whether a reasonable jury would have a legally sufficient evidentiary basis to find for that party on that issue.",
+    "tension_slug": null,
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-19266_carol_banquet_jmol-4",
+    "source_qid": "19266_carol_banquet_jmol",
+    "drill_type": "trap_spotting",
+    "target_skill": "sympathy vs evidence",
+    "prompt": "A judge thinks the plaintiff is sympathetic, but the record has no evidence on an element. Does sympathy supply a jury basis?",
+    "answer": "No.",
+    "tension_slug": null,
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-19286_five_loaves_press-1",
+    "source_qid": "19286_five_loaves_press",
+    "drill_type": "Gold Key recall",
+    "target_skill": "Rule 37(e) sanction ladder",
+    "prompt": "Lost ESI, prejudice, no intent. What sanction lane?",
+    "answer": "Measures no greater than necessary to cure prejudice.",
+    "tension_slug": "prejudice-only-curative-measures-vs-intent-based-severe-sanctions",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-19286_five_loaves_press-2",
+    "source_qid": "19286_five_loaves_press",
+    "drill_type": "Overclaim cut",
+    "target_skill": "tiered_absolute",
+    "prompt": "The court must enter default whenever any ESI is lost.",
+    "answer": "Cut: automatic case-ending sanction overclaim.",
+    "tension_slug": "prejudice-only-curative-measures-vs-intent-based-severe-sanctions",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-19286_five_loaves_press-3",
+    "source_qid": "19286_five_loaves_press",
+    "drill_type": "Answer-array read",
+    "target_skill": "sanction severity keyed to mental state",
+    "prompt": "One answer cures prejudice; two impose severe punishment. The stem says no intent. Which way should you lean?",
+    "answer": "Cure prejudice.",
+    "tension_slug": "prejudice-only-curative-measures-vs-intent-based-severe-sanctions",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-19286_five_loaves_press-4",
+    "source_qid": "19286_five_loaves_press",
+    "drill_type": "Fabricated-rule cut",
+    "target_skill": "broad discovery exclusion",
+    "prompt": "The court may do nothing because ESI is not discoverable.",
+    "answer": "Cut: fabricated categorical exclusion.",
+    "tension_slug": "prejudice-only-curative-measures-vs-intent-based-severe-sanctions",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-19721_jonah_whale_float-1",
+    "source_qid": "19721_jonah_whale_float",
+    "drill_type": "CUT",
+    "target_skill": "same outcome wrong reason",
+    "prompt": "A motion should be granted. One answer grants on the wrong jurisdictional reason; another grants on failure to state a claim. Which survives?",
+    "answer": "The answer with the correct motion ground survives.",
+    "tension_slug": "claim-sufficiency-vs-amount-in-controversy-notice-pleading-distractions",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-19721_jonah_whale_float-2",
+    "source_qid": "19721_jonah_whale_float",
+    "drill_type": "Gold Key recall",
+    "target_skill": "false imprisonment intent",
+    "prompt": "Complaint says false imprisonment but pleads accidental or negligent confinement. Does it state false imprisonment?",
+    "answer": "No. False imprisonment requires intentional confinement.",
+    "tension_slug": "claim-sufficiency-vs-amount-in-controversy-notice-pleading-distractions",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-19721_jonah_whale_float-3",
+    "source_qid": "19721_jonah_whale_float",
+    "drill_type": "Issue-Sense",
+    "target_skill": "notice pleading lure",
+    "prompt": "Complaint gives notice but pleads facts defeating one element. Is notice enough?",
+    "answer": "No. Notice does not cure facts that defeat the claim.",
+    "tension_slug": "claim-sufficiency-vs-amount-in-controversy-notice-pleading-distractions",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-19721_jonah_whale_float-4",
+    "source_qid": "19721_jonah_whale_float",
+    "drill_type": "Anchor contrast",
+    "target_skill": "amount-in-controversy legal-certainty rule",
+    "prompt": "Is federal amount in controversy defeated merely because recovery over $75,000 is unlikely?",
+    "answer": "No. The likely recovery is not the standard.",
+    "tension_slug": "claim-sufficiency-vs-amount-in-controversy-notice-pleading-distractions",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-19793_dove_candle_ledgers-1",
+    "source_qid": "19793_dove_candle_ledgers",
+    "drill_type": "CUT",
+    "target_skill": "overclaim absolutes",
+    "prompt": "Classify: 'An expensive discovery order automatically qualifies as a collateral order.'",
+    "answer": "NOT_TRUE; tiered_absolute; cost is not automatic appealability.",
+    "tension_slug": "review-now-vs-review-after-final-judgment",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-19793_dove_candle_ledgers-2",
+    "source_qid": "19793_dove_candle_ledgers",
+    "drill_type": "anchor",
+    "target_skill": "collateral order narrowness",
+    "prompt": "A party must produce ordinary nonprivileged records and wants immediate appeal because production is costly. Appeal now?",
+    "answer": "No. Ordinary discovery waits for final judgment.",
+    "tension_slug": "review-now-vs-review-after-final-judgment",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-19793_dove_candle_ledgers-3",
+    "source_qid": "19793_dove_candle_ledgers",
+    "drill_type": "answer_array",
+    "target_skill": "review now vs review later",
+    "prompt": "Two choices say yes-now, two choices say no-now. What axis should you name?",
+    "answer": "Review now vs review after final judgment.",
+    "tension_slug": "review-now-vs-review-after-final-judgment",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-19793_dove_candle_ledgers-4",
+    "source_qid": "19793_dove_candle_ledgers",
+    "drill_type": "recovery",
+    "target_skill": "one-prong bait",
+    "prompt": "Why is 'separate from the merits' not enough?",
+    "answer": "It is only one collateral-order requirement.",
+    "tension_slug": "review-now-vs-review-after-final-judgment",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-19840_red_sea_bridge_bolts-1",
+    "source_qid": "19840_red_sea_bridge_bolts",
+    "drill_type": "CUT",
+    "target_skill": "Overclaim detection",
+    "prompt": "A choice says every fact discussed with counsel becomes privileged. Name the mold.",
+    "answer": "tiered_absolute",
+    "tension_slug": "fact-itself-vs-communication-about-the-fact",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-19840_red_sea_bridge_bolts-2",
+    "source_qid": "19840_red_sea_bridge_bolts",
+    "drill_type": "ISSUE_SENSE",
+    "target_skill": "Wrong-frame detection",
+    "prompt": "A privilege choice turns on whether the lawyer later repeated the fact in court, but the stem asks whether the fact was privileged in the first place. Cut or keep?",
+    "answer": "Cut as NOT_RESPONSIVE / bait_doctrine.",
+    "tension_slug": "fact-itself-vs-communication-about-the-fact",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-19840_red_sea_bridge_bolts-3",
+    "source_qid": "19840_red_sea_bridge_bolts",
+    "drill_type": "ANCHOR",
+    "target_skill": "Underlying facts rule",
+    "prompt": "A client tells a lawyer the name of a witness. Can the client refuse to disclose the witness's name solely for that reason?",
+    "answer": "No. The fact is not privileged merely because it was communicated to counsel.",
+    "tension_slug": "fact-itself-vs-communication-about-the-fact",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-19840_red_sea_bridge_bolts-4",
+    "source_qid": "19840_red_sea_bridge_bolts",
+    "drill_type": "CALIBRATION",
+    "target_skill": "Residual after three named cuts",
+    "prompt": "You cut every-fact, never-civil, and wrong-frame waiver. What confidence band?",
+    "answer": "ANCHOR_ASSISTED high; commit after read-check.",
+    "tension_slug": "fact-itself-vs-communication-about-the-fact",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20247_bible_memory_kit-1",
+    "source_qid": "20247_bible_memory_kit",
+    "drill_type": "cut",
+    "target_skill": "overclaim detection",
+    "prompt": "Rule 54(b) applies automatically in every multi-party case.",
+    "answer": "CUT: tiered_absolute.",
+    "tension_slug": "partial-dismissal-alone-vs-rule-54-b-certification-gate",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20247_bible_memory_kit-2",
+    "source_qid": "20247_bible_memory_kit",
+    "drill_type": "anchor",
+    "target_skill": "Rule 54(b) certification",
+    "prompt": "A multi-party civil case dismisses one defendant; claims remain; no no-just-reason finding. Immediate appeal?",
+    "answer": "No.",
+    "tension_slug": "partial-dismissal-alone-vs-rule-54-b-certification-gate",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20247_bible_memory_kit-3",
+    "source_qid": "20247_bible_memory_kit",
+    "drill_type": "issue_sense",
+    "target_skill": "wrong-element procedural answer",
+    "prompt": "Yes, because one defendant is fully dismissed.",
+    "answer": "CUT: true fact, incomplete Rule 54(b) gate.",
+    "tension_slug": "partial-dismissal-alone-vs-rule-54-b-certification-gate",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20291_nativity_prop_rental_freeze-1",
+    "source_qid": "20291_nativity_prop_rental_freeze",
+    "drill_type": "cut",
+    "target_skill": "overclaim scan",
+    "prompt": "An order is called a scheduling order. One answer says every scheduling order is immediately appealable. What is the cut?",
+    "answer": "tiered_absolute; every is too broad.",
+    "tension_slug": "caption-label-vs-practical-command",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20291_nativity_prop_rental_freeze-2",
+    "source_qid": "20291_nativity_prop_rental_freeze",
+    "drill_type": "anchor",
+    "target_skill": "functional injunction",
+    "prompt": "A district court labels an order a protocol but tells a party not to sell inventory until trial. What Gold Key applies?",
+    "answer": "Function beats label for injunction appealability.",
+    "tension_slug": "caption-label-vs-practical-command",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20291_nativity_prop_rental_freeze-3",
+    "source_qid": "20291_nativity_prop_rental_freeze",
+    "drill_type": "trap_spotting",
+    "target_skill": "caption vs command",
+    "prompt": "The caption says protocol; the text says do not rent. Which fact controls the student move?",
+    "answer": "The command controls the navigation move.",
+    "tension_slug": "caption-label-vs-practical-command",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20291_nativity_prop_rental_freeze-4",
+    "source_qid": "20291_nativity_prop_rental_freeze",
+    "drill_type": "calibration",
+    "target_skill": "anchor-assisted cut",
+    "prompt": "You cut every, only, and never, but two cuts use a Gold Key. What confidence bucket?",
+    "answer": "ANCHOR_ASSISTED.",
+    "tension_slug": "caption-label-vs-practical-command",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20353_baptism_tank_burst-1",
+    "source_qid": "20353_baptism_tank_burst",
+    "drill_type": "CUT",
+    "target_skill": "tiered_absolute",
+    "prompt": "A diversity anchor claim is for $110,000. The defendant asserts a $12,000 same-incident counterclaim. Cut: 'No, each claim must independently exceed $75,000.'",
+    "answer": "CUT as tiered_absolute after Gold Key.",
+    "tension_slug": null,
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20353_baptism_tank_burst-2",
+    "source_qid": "20353_baptism_tank_burst",
+    "drill_type": "CUT",
+    "target_skill": "misfit",
+    "prompt": "A counterclaim arises from the same incident but no federal statute appears. Cut: 'Yes, because the counterclaim presents a federal question.'",
+    "answer": "CUT as misfit / wrong_frame.",
+    "tension_slug": null,
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20353_baptism_tank_burst-3",
+    "source_qid": "20353_baptism_tank_burst",
+    "drill_type": "anchor",
+    "target_skill": "supplemental_jurisdiction_defendant_counterclaim",
+    "prompt": "State the Gold Key for a same-event defendant counterclaim below $75,000 in a diversity case.",
+    "answer": "It can use supplemental jurisdiction unless a specific plaintiff-side §1367(b) bar applies.",
+    "tension_slug": null,
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20353_baptism_tank_burst-4",
+    "source_qid": "20353_baptism_tank_burst",
+    "drill_type": "answer_array",
+    "target_skill": "result_reason_match",
+    "prompt": "Two answers say yes; one says federal question, one says same Article III case. The stem gives only same-incident facts. Which yes survives?",
+    "answer": "The same Article III case answer.",
+    "tension_slug": null,
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20567_psalm_panels_venue-1",
+    "source_qid": "20567_psalm_panels_venue",
+    "drill_type": "CUT",
+    "target_skill": "Federal-statute-on-point anchor",
+    "prompt": "Diversity case; state service rule conflicts with valid Federal Rule. Which source controls?",
+    "answer": "Federal rule/statute on point controls if valid.",
+    "tension_slug": "valid-federal-statute-directly-controls-vs-erie-state-law-policy-bait",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20567_psalm_panels_venue-2",
+    "source_qid": "20567_psalm_panels_venue",
+    "drill_type": "trap_spotting",
+    "target_skill": "State-law-claim bait",
+    "prompt": "Choice says state procedure controls because the claim arises under state law. Name the trap.",
+    "answer": "Bait doctrine / wrong frame.",
+    "tension_slug": "valid-federal-statute-directly-controls-vs-erie-state-law-policy-bait",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20567_psalm_panels_venue-3",
+    "source_qid": "20567_psalm_panels_venue",
+    "drill_type": "call_focus",
+    "target_skill": "Rule-source call",
+    "prompt": "Call asks which rule controls. One answer picks the rule that would dismiss. Cut or keep?",
+    "answer": "Cut if it answers outcome instead of source-of-rule.",
+    "tension_slug": "valid-federal-statute-directly-controls-vs-erie-state-law-policy-bait",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20567_psalm_panels_venue-4",
+    "source_qid": "20567_psalm_panels_venue",
+    "drill_type": "anchor_recall",
+    "target_skill": "§ 1391 venue",
+    "prompt": "What federal district is proper under § 1391(b)(2)?",
+    "answer": "A district where a substantial part of the events or omissions giving rise to the claim occurred.",
+    "tension_slug": "valid-federal-statute-directly-controls-vs-erie-state-law-policy-bait",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20606_lydia_festival_venue-1",
+    "source_qid": "20606_lydia_festival_venue",
+    "drill_type": "bucket_check",
+    "target_skill": "venue source sorting",
+    "prompt": "Event in District X; two defendants reside in Districts Y and Z of the same state; plaintiff resides in District P. Which buckets count?",
+    "answer": "X, Y, and Z; not P.",
+    "tension_slug": "complete-venue-buckets-vs-incomplete-poisoned-venue-list",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20606_lydia_festival_venue-2",
+    "source_qid": "20606_lydia_festival_venue",
+    "drill_type": "trap_spotting",
+    "target_skill": "plaintiff-home lure rejection",
+    "prompt": "A venue answer includes the plaintiff's home district in an ordinary private-defendant tort suit. What is the trap?",
+    "answer": "Plaintiff residence is not a venue bucket here.",
+    "tension_slug": "complete-venue-buckets-vs-incomplete-poisoned-venue-list",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20606_lydia_festival_venue-3",
+    "source_qid": "20606_lydia_festival_venue",
+    "drill_type": "answer_array",
+    "target_skill": "complete-list selection",
+    "prompt": "One choice gives event only, one gives defendants only, one gives plaintiff plus event, one gives event plus defendants. Which shape usually survives?",
+    "answer": "The complete event-plus-defendants list.",
+    "tension_slug": "complete-venue-buckets-vs-incomplete-poisoned-venue-list",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20627_ruth_hymn_poster_contract-1",
+    "source_qid": "20627_ruth_hymn_poster_contract",
+    "drill_type": "anchor_recall",
+    "target_skill": "diversity time of filing",
+    "prompt": "P and D are both Texas citizens when P files a $90,000 state-law case. D moves to Oklahoma before answering. Diversity?",
+    "answer": "No. Citizenship is measured at filing.",
+    "tension_slug": "filing-day-citizenship-snapshot-vs-later-domicile-facts",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20627_ruth_hymn_poster_contract-2",
+    "source_qid": "20627_ruth_hymn_poster_contract",
+    "drill_type": "overclaim_cut",
+    "target_skill": "never / any detector",
+    "prompt": "Cut the answer: 'No, because state-law claims can never be heard under diversity.'",
+    "answer": "Cut. Never is an overclaim.",
+    "tension_slug": "filing-day-citizenship-snapshot-vs-later-domicile-facts",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20627_ruth_hymn_poster_contract-3",
+    "source_qid": "20627_ruth_hymn_poster_contract",
+    "drill_type": "call_focus",
+    "target_skill": "freeze the filing snapshot",
+    "prompt": "A stem gives citizenship at filing and then a later domicile change. What fact do you check first?",
+    "answer": "Citizenship when the complaint was filed.",
+    "tension_slug": "filing-day-citizenship-snapshot-vs-later-domicile-facts",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20690-1",
+    "source_qid": "20690",
+    "drill_type": "cut",
+    "target_skill": "wrong_frame",
+    "prompt": "The call asks whether a late personal-jurisdiction motion should be granted. A choice says the plaintiff must establish supplemental jurisdiction. Cut or keep?",
+    "answer": "Cut: NOT_RESPONSIVE / misfit.",
+    "tension_slug": null,
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20690-2",
+    "source_qid": "20690",
+    "drill_type": "anchor",
+    "target_skill": "Rule 12 waiver",
+    "prompt": "A defendant knew all personal-jurisdiction facts and answered without raising PJ. What happens to the PJ defense?",
+    "answer": "Waived.",
+    "tension_slug": null,
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20690-3",
+    "source_qid": "20690",
+    "drill_type": "anchor",
+    "target_skill": "amended complaint no revival",
+    "prompt": "Plaintiff later amends only to add damages from the same transaction against the same defendant. Does that automatically revive waived PJ?",
+    "answer": "No.",
+    "tension_slug": null,
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20690-4",
+    "source_qid": "20690",
+    "drill_type": "trap_spotting",
+    "target_skill": "absolute words",
+    "prompt": "A choice says every amended complaint restarts all Rule 12 defenses. What is the C3 tell?",
+    "answer": "Every/all overclaim plus fabricated Rule 12 reset.",
+    "tension_slug": null,
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20811_illuminated_psalms_solvent-1",
+    "source_qid": "20811_illuminated_psalms_solvent",
+    "drill_type": "CUT",
+    "target_skill": "wrong_element",
+    "prompt": "A defendant did all conduct in State X; plaintiff feels injury in State Y. Is injury felt in State Y the defendant contact?",
+    "answer": "No. It is a plaintiff-side effects fact.",
+    "tension_slug": "defendant-created-contacts-vs-plaintiff-side-fairness-effects",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20811_illuminated_psalms_solvent-2",
+    "source_qid": "20811_illuminated_psalms_solvent",
+    "drill_type": "CUT",
+    "target_skill": "misfit",
+    "prompt": "The call asks personal jurisdiction; an answer discusses federal-court exclusion. What is the cut?",
+    "answer": "Misfit: wrong procedural gate.",
+    "tension_slug": "defendant-created-contacts-vs-plaintiff-side-fairness-effects",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20811_illuminated_psalms_solvent-3",
+    "source_qid": "20811_illuminated_psalms_solvent",
+    "drill_type": "CALL",
+    "target_skill": "threshold ordering",
+    "prompt": "A personal-jurisdiction answer relies on fairness before defendant contacts. What is the ordered move?",
+    "answer": "Contacts first, fairness second.",
+    "tension_slug": "defendant-created-contacts-vs-plaintiff-side-fairness-effects",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-20811_illuminated_psalms_solvent-4",
+    "source_qid": "20811_illuminated_psalms_solvent",
+    "drill_type": "trap_spotting",
+    "target_skill": "fairness-alone trap",
+    "prompt": "Plaintiff is ill and travel is hard. Defendant has no forum contacts. Can hardship create contacts?",
+    "answer": "No. Fairness cannot create minimum contacts.",
+    "tension_slug": "defendant-created-contacts-vs-plaintiff-side-fairness-effects",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-21711_foam_whale_nativity_attachment-1",
+    "source_qid": "21711_foam_whale_nativity_attachment",
+    "drill_type": "CUT",
+    "target_skill": "wrong_element",
+    "prompt": "A plaintiff sues in State B because she was injured and prefers that forum. What is the C3 break?",
+    "answer": "NOT_RESPONSIVE: plaintiff preference is not defendant-forum power.",
+    "tension_slug": "court-power-over-defendant-vs-plaintiff-property-collection-lures",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-21711_foam_whale_nativity_attachment-2",
+    "source_qid": "21711_foam_whale_nativity_attachment",
+    "drill_type": "CUT",
+    "target_skill": "violation_vs_remedy",
+    "prompt": "An answer says the attached property is valuable enough to satisfy the judgment. What is the trap?",
+    "answer": "It answers collection, not jurisdiction.",
+    "tension_slug": "court-power-over-defendant-vs-plaintiff-property-collection-lures",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-21711_foam_whale_nativity_attachment-3",
+    "source_qid": "21711_foam_whale_nativity_attachment",
+    "drill_type": "ANCHOR",
+    "target_skill": "quasi_in_rem_relatedness",
+    "prompt": "A defendant's unrelated property is attached in the forum for a claim arising elsewhere. Does the property alone support jurisdiction?",
+    "answer": "No. Unrelated property alone is not enough.",
+    "tension_slug": "court-power-over-defendant-vs-plaintiff-property-collection-lures",
+    "subject": "CIVIL_PROCEDURE"
+  },
+  {
+    "id": "MICRO-21711_foam_whale_nativity_attachment-4",
+    "source_qid": "21711_foam_whale_nativity_attachment",
+    "drill_type": "TRAP_SPOTTING",
+    "target_skill": "tiered_absolute",
+    "prompt": "Choice says any property in the forum creates personal jurisdiction. What word should ring?",
+    "answer": "Any.",
+    "tension_slug": "court-power-over-defendant-vs-plaintiff-property-collection-lures",
+    "subject": "CIVIL_PROCEDURE"
+  }
+]

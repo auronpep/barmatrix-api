@@ -1,0 +1,132 @@
+[
+  {
+    "id": "EVI-ANCHOR-TRADE-TERMS-01",
+    "type": "ANCHOR",
+    "title": "Trade term, not craft expertise",
+    "signal": "A contract phrase is explained by a witness familiar with the trade’s vocabulary.",
+    "student_move": "Name the testimony purpose before evaluating expert labels.",
+    "tiny_rule": "Trade-term testimony explains trade meaning.",
+    "trap": "Choosing the witness’s end-use expertise or the parties’ stipulation as the reason.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "17045_scripture_banner_cloth"
+    ]
+  },
+  {
+    "id": "EVI-PRIV-OBJECT-NOT-MEDIUM-01",
+    "type": "ANCHOR",
+    "title": "Privilege Object, Not Medium",
+    "signal": "The answer says a writing, text, card, email, or document is not a communication.",
+    "student_move": "Ask whether the object contains a confidential spouse-to-spouse communication.",
+    "tiny_rule": "Written can still be communication.",
+    "trap": "format/object confusion",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "19228_prayer_card_study_bible"
+    ]
+  },
+  {
+    "id": "REM-EVIDENCE-SPOUSAL-19379-01",
+    "type": "ANCHOR",
+    "title": "Do not collapse the two spousal privileges",
+    "signal": "Divorced spouse asked about a private statement from the marriage.",
+    "student_move": "Separate testimonial privilege from communications privilege before choosing sustain or overrule.",
+    "tiny_rule": "Current marriage matters for testimonial privilege; private communication during marriage matters for communications privilege.",
+    "trap": "Divorce ends everything.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "19379_hymn_candle_invoice_van"
+    ]
+  },
+  {
+    "id": "REMED-EVIDENCE-DOUBLE-HEARSAY-TRANSCRIPT",
+    "type": "ANCHOR",
+    "title": "Transcript = two layers",
+    "signal": "A transcript carries a statement from an earlier proceeding.",
+    "student_move": "Ask: what admits the speaker's statement, and what admits the transcript?",
+    "tiny_rule": "Both layers need paths.",
+    "trap": "Picking the first familiar exception name.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20307_bethany_banners_transcript"
+    ]
+  },
+  {
+    "id": "REM-EVIDENCE-PRIV-CRIME-FRAUD-20313",
+    "type": "ANCHOR",
+    "title": "Purpose beats suspicious topic",
+    "signal": "Client asks whether a proposed act would be fraudulent.",
+    "student_move": "Ask whether the client is seeking compliance advice or help carrying out wrongdoing.",
+    "tiny_rule": "Crime-fraud needs furtherance; compliance advice remains privileged.",
+    "trap": "Fraud word = automatic exception.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20313_bethlehem_olivewood_crosses"
+    ]
+  },
+  {
+    "id": "EVI-REM-ANY-TENDENCY-01",
+    "type": "ANCHOR",
+    "title": "Relevance is a clue threshold",
+    "signal": "Opponent says the evidence has innocent explanations or is not conclusive.",
+    "student_move": "Ask what fact the evidence tends to make more likely.",
+    "tiny_rule": "A clue need not be a confession.",
+    "trap": "demanding certainty before admissibility",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20404_acts_axes_cash_loads"
+    ]
+  },
+  {
+    "id": "REM-EVIDENCE-R610-BIAS-01",
+    "type": "ANCHOR",
+    "title": "Religion Evidence: Purpose Split",
+    "signal": "Religious affiliation appears, but the proponent says bias.",
+    "student_move": "Do not stop at the religious-evidence objection. Ask the offered purpose.",
+    "tiny_rule": "Belief-as-truthfulness is barred; affiliation-for-bias is not.",
+    "trap": "Blanket religious-affiliation ban.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20423_galilee_props_bias"
+    ]
+  },
+  {
+    "id": "RM-EVI-FOUNDATION-GATE-01",
+    "type": "ANCHOR",
+    "title": "Gate Before Weight",
+    "signal": "Unidentified object; no witness; no marking; no chain/source fact.",
+    "student_move": "Cut weight arguments until a threshold link exists.",
+    "tiny_rule": "A jury weighs weak evidence; it does not supply the first connection.",
+    "trap": "Let the jury decide.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20565_purple_gear_hymnbook_tote"
+    ]
+  },
+  {
+    "id": "REMED-EVIDENCE-407-PURPOSE",
+    "type": "ANCHOR",
+    "title": "Rule 407 Purpose Lock",
+    "signal": "Post-injury fix plus answer choices about relevance, feasibility, or negligence-only scope.",
+    "student_move": "Name the offered purpose before reading exceptions.",
+    "tiny_rule": "Defect/warning purpose is barred; feasibility is not automatic.",
+    "trap": "Treating feasibility or relevance as a universal admission route.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20602_davids_harp_projector"
+    ]
+  },
+  {
+    "id": "EVI-REMEDY-REAL-OBJECT-CONNECTION-01",
+    "type": "ANCHOR",
+    "title": "Real object needs a bridge",
+    "signal": "Physical object offered, but no fact connects it to the charged event or issue.",
+    "student_move": "Ask: what fact does this object make more likely?",
+    "tiny_rule": "Object category is not a bridge.",
+    "trap": "The crime label makes the object feel relevant.",
+    "confidence": "HARD_STRUCTURAL",
+    "example_qids": [
+      "20760_rubber_stamp_mail_fraud"
+    ]
+  }
+]

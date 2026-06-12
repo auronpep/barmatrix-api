@@ -1,0 +1,282 @@
+[
+  {
+    "id": "MICRO-17058_advent_honey_parcel-1",
+    "source_qid": "17058_advent_honey_parcel",
+    "drill_type": "CUT",
+    "target_skill": "overclaim detection",
+    "prompt": "A signed deed is held by a custodian with no authority. Choice: custody automatically gives authority to complete any blank. Cut or keep?",
+    "answer": "Cut: tiered_absolute / NOT_TRUE.",
+    "tension_slug": "deed-validity-at-delivery-vs-downstream-recording-consideration-custody-facts",
+    "subject": "REAL_PROPERTY"
+  },
+  {
+    "id": "MICRO-17058_advent_honey_parcel-2",
+    "source_qid": "17058_advent_honey_parcel",
+    "drill_type": "Issue-Sense",
+    "target_skill": "wrong-element detection",
+    "prompt": "The stem flags a blank grantee. Choice: deed required no consideration. What is the skipped move?",
+    "answer": "It answers payment, not grantee identity.",
+    "tension_slug": "deed-validity-at-delivery-vs-downstream-recording-consideration-custody-facts",
+    "subject": "REAL_PROPERTY"
+  },
+  {
+    "id": "MICRO-17058_advent_honey_parcel-3",
+    "source_qid": "17058_advent_honey_parcel",
+    "drill_type": "Gold Key recall",
+    "target_skill": "deed-validity gate",
+    "prompt": "What must be true of the grantee when a deed is delivered?",
+    "answer": "The grantee must be identified or ascertainable; unauthorized later insertion does not cure.",
+    "tension_slug": "deed-validity-at-delivery-vs-downstream-recording-consideration-custody-facts",
+    "subject": "REAL_PROPERTY"
+  },
+  {
+    "id": "MICRO-17058_advent_honey_parcel-4",
+    "source_qid": "17058_advent_honey_parcel",
+    "drill_type": "Silver Key navigation",
+    "target_skill": "gate before downstream facts",
+    "prompt": "Which comes first: recording or deed validity?",
+    "answer": "Deed validity first.",
+    "tension_slug": "deed-validity-at-delivery-vs-downstream-recording-consideration-custody-facts",
+    "subject": "REAL_PROPERTY"
+  },
+  {
+    "id": "MICRO-19381_shepherd_olive_press_deed-1",
+    "source_qid": "19381_shepherd_olive_press_deed",
+    "drill_type": "anchor_recall",
+    "target_skill": "Recording vs validity",
+    "prompt": "A valid deed is delivered and accepted but not recorded. No third party appears. Who owns?",
+    "answer": "The grantee owns; recording is not required between grantor and grantee.",
+    "tension_slug": "recording-as-validity-condition-vs-recording-as-notice-priority-protection",
+    "subject": "REAL_PROPERTY"
+  },
+  {
+    "id": "MICRO-19381_shepherd_olive_press_deed-2",
+    "source_qid": "19381_shepherd_olive_press_deed",
+    "drill_type": "answer_array",
+    "target_skill": "3-vs-1 recording trap",
+    "prompt": "Three choices give the grantor title because the deed was not recorded. One gives the grantee title because delivery and acceptance occurred. What is the array testing?",
+    "answer": "Recording vs validity.",
+    "tension_slug": "recording-as-validity-condition-vs-recording-as-notice-priority-protection",
+    "subject": "REAL_PROPERTY"
+  },
+  {
+    "id": "MICRO-19381_shepherd_olive_press_deed-3",
+    "source_qid": "19381_shepherd_olive_press_deed",
+    "drill_type": "trigger_fact",
+    "target_skill": "Outsider check",
+    "prompt": "What fact would change this into a recording-act priority question?",
+    "answer": "A later buyer, lender, creditor, or other protected third-party claimant.",
+    "tension_slug": "recording-as-validity-condition-vs-recording-as-notice-priority-protection",
+    "subject": "REAL_PROPERTY"
+  },
+  {
+    "id": "MICRO-19430_harp_instructor_olive_grove-1",
+    "source_qid": "19430_harp_instructor_olive_grove",
+    "drill_type": "anchor_recall",
+    "target_skill": "ascertainable grantee by role",
+    "prompt": "A deed says “to the choir director of a school today.” One person held that role at delivery. Who is the grantee?",
+    "answer": "The role-holder.",
+    "tension_slug": "ascertainable-role-holder-vs-formalities-entity-traps",
+    "subject": "REAL_PROPERTY"
+  },
+  {
+    "id": "MICRO-19430_harp_instructor_olive_grove-2",
+    "source_qid": "19430_harp_instructor_olive_grove",
+    "drill_type": "cut",
+    "target_skill": "fabricated deed formalities",
+    "prompt": "Cut the choice: “Grantor keeps title because the grantee did not sign the deed.”",
+    "answer": "NOT_TRUE; fabricated_rule; grantee signature generally not required.",
+    "tension_slug": "ascertainable-role-holder-vs-formalities-entity-traps",
+    "subject": "REAL_PROPERTY"
+  },
+  {
+    "id": "MICRO-19430_harp_instructor_olive_grove-3",
+    "source_qid": "19430_harp_instructor_olive_grove",
+    "drill_type": "answer_array",
+    "target_skill": "role-holder vs entity",
+    "prompt": "A deed says “to the treasurer of Mercy Hall.” Does that automatically make Mercy Hall the grantee?",
+    "answer": "No; first ask who the role-holder was.",
+    "tension_slug": "ascertainable-role-holder-vs-formalities-entity-traps",
+    "subject": "REAL_PROPERTY"
+  },
+  {
+    "id": "MICRO-19904_psalm_orchard_foreclosure_notice-1",
+    "source_qid": "19904_psalm_orchard_foreclosure_notice",
+    "drill_type": "CUT",
+    "target_skill": "procedural_frame",
+    "prompt": "A foreclosure stem says the lender did not notify the life tenant or remainderman. Three choices order a sale. What is the first cut?",
+    "answer": "Cut the sale-scope choices as premature; choose the process answer.",
+    "tension_slug": "process-threshold-versus-sale-scope-merits",
+    "subject": "REAL_PROPERTY"
+  },
+  {
+    "id": "MICRO-19904_psalm_orchard_foreclosure_notice-2",
+    "source_qid": "19904_psalm_orchard_foreclosure_notice",
+    "drill_type": "CALL",
+    "target_skill": "threshold before merits",
+    "prompt": "Which comes first in foreclosure: identifying the estate to sell or serving the holders of affected estates?",
+    "answer": "Serving the affected estate holders.",
+    "tension_slug": "process-threshold-versus-sale-scope-merits",
+    "subject": "REAL_PROPERTY"
+  },
+  {
+    "id": "MICRO-19904_psalm_orchard_foreclosure_notice-3",
+    "source_qid": "19904_psalm_orchard_foreclosure_notice",
+    "drill_type": "anchor",
+    "target_skill": "foreclosure necessary parties",
+    "prompt": "Who must receive notice when a judicial foreclosure may cut off a life estate and remainder?",
+    "answer": "Both the life tenant and the remainderman.",
+    "tension_slug": "process-threshold-versus-sale-scope-merits",
+    "subject": "REAL_PROPERTY"
+  },
+  {
+    "id": "MICRO-20213_mercy_pool_reliction-1",
+    "source_qid": "20213_mercy_pool_reliction",
+    "drill_type": "anchor_recall",
+    "target_skill": "reliction owner-axis",
+    "prompt": "Water naturally and gradually recedes from a private lakefront parcel and exposes land attached to that parcel. Who owns the exposed land?",
+    "answer": "The adjoining littoral owner.",
+    "tension_slug": "adjoining-owner-vs-public-far-side-no-private-owner",
+    "subject": "REAL_PROPERTY"
+  },
+  {
+    "id": "MICRO-20213_mercy_pool_reliction-2",
+    "source_qid": "20213_mercy_pool_reliction",
+    "drill_type": "overclaim_cut",
+    "target_skill": "public-forever absolute",
+    "prompt": "Cut or keep: all land once covered by a lake remains public forever.",
+    "answer": "Cut: tiered_absolute overclaim.",
+    "tension_slug": "adjoining-owner-vs-public-far-side-no-private-owner",
+    "subject": "REAL_PROPERTY"
+  },
+  {
+    "id": "MICRO-20213_mercy_pool_reliction-3",
+    "source_qid": "20213_mercy_pool_reliction",
+    "drill_type": "answer_array",
+    "target_skill": "adjacency vs direction",
+    "prompt": "Two owners are on opposite sides of a lake. Water recedes from Owner 1’s side and exposes a strip attached to Owner 1’s land. Does the far-side owner get it because the water moved that direction?",
+    "answer": "No. The adjoining owner gets it under the reliction anchor.",
+    "tension_slug": "adjoining-owner-vs-public-far-side-no-private-owner",
+    "subject": "REAL_PROPERTY"
+  },
+  {
+    "id": "MICRO-20312_loaves_fishes_retreat-1",
+    "source_qid": "20312_loaves_fishes_retreat",
+    "drill_type": "anchor_recall",
+    "target_skill": "life estate encumbrance allocation",
+    "prompt": "Life tenant in possession; remainderman waiting; mortgage has principal and interest due. Allocate the burdens.",
+    "answer": "Life tenant pays interest up to rental value; remainderman pays principal.",
+    "tension_slug": "interest-current-use-burden-vs-principal-future-equity-burden",
+    "subject": "REAL_PROPERTY"
+  },
+  {
+    "id": "MICRO-20312_loaves_fishes_retreat-2",
+    "source_qid": "20312_loaves_fishes_retreat",
+    "drill_type": "answer_array",
+    "target_skill": "2x2 allocation grid",
+    "prompt": "Four choices assign two costs to two estate holders. What is the first move?",
+    "answer": "Read it as a grid: identify each cost and each holder before applying the anchor.",
+    "tension_slug": "interest-current-use-burden-vs-principal-future-equity-burden",
+    "subject": "REAL_PROPERTY"
+  },
+  {
+    "id": "MICRO-20312_loaves_fishes_retreat-3",
+    "source_qid": "20312_loaves_fishes_retreat",
+    "drill_type": "wrong_answer_recovery",
+    "target_skill": "avoid over-assigning burdens",
+    "prompt": "Why is 'life tenant pays both principal and interest' tempting and why does it fail?",
+    "answer": "Tempting because the life tenant is in possession; fails because possession maps to interest, not principal.",
+    "tension_slug": "interest-current-use-burden-vs-principal-future-equity-burden",
+    "subject": "REAL_PROPERTY"
+  },
+  {
+    "id": "MICRO-20493_fish_mark_picnic_lot-1",
+    "source_qid": "20493_fish_mark_picnic_lot",
+    "drill_type": "anchor_recall",
+    "target_skill": "minimal deed formalities",
+    "prompt": "A landowner writes present transfer words on ordinary paper, signs by an intended mark, delivers it, and the grantee accepts. No money is paid. Does title pass between them?",
+    "answer": "Yes, if the writing identifies grantor, grantee, land, present transfer, and is delivered and accepted.",
+    "tension_slug": null,
+    "subject": "REAL_PROPERTY"
+  },
+  {
+    "id": "MICRO-20493_fish_mark_picnic_lot-2",
+    "source_qid": "20493_fish_mark_picnic_lot",
+    "drill_type": "trap_spotting",
+    "target_skill": "extra-gate sweep",
+    "prompt": "Which added gate is not required for baseline deed validity: printed deed form, consideration, recording, or all three?",
+    "answer": "All three are not required under the tested baseline.",
+    "tension_slug": null,
+    "subject": "REAL_PROPERTY"
+  },
+  {
+    "id": "MICRO-20493_fish_mark_picnic_lot-3",
+    "source_qid": "20493_fish_mark_picnic_lot",
+    "drill_type": "crossover",
+    "target_skill": "recording acts separation",
+    "prompt": "What does recording usually protect that deed delivery already accomplished between the parties?",
+    "answer": "Recording protects notice/priority against third parties; delivery and acceptance transfer between the parties.",
+    "tension_slug": null,
+    "subject": "REAL_PROPERTY"
+  },
+  {
+    "id": "MICRO-20728_star_stable_stall-1",
+    "source_qid": "20728_star_stable_stall",
+    "drill_type": "anchor_recall",
+    "target_skill": "Lease-transfer waiver",
+    "prompt": "Landlord knows of an unauthorized assignment, accepts rent from the assignee, and says nothing. What is the waiver effect?",
+    "answer": "The landlord may waive the right to terminate for that transfer.",
+    "tension_slug": null,
+    "subject": "REAL_PROPERTY"
+  },
+  {
+    "id": "MICRO-20728_star_stable_stall-2",
+    "source_qid": "20728_star_stable_stall",
+    "drill_type": "cut",
+    "target_skill": "Wrong-element cut",
+    "prompt": "Choice says: 'Yes, because the lease prohibited assignment.' Stem says landlord accepted rent from assignee without protest. What is the defect?",
+    "answer": "It proves the original breach but does not answer the later waiver fact.",
+    "tension_slug": null,
+    "subject": "REAL_PROPERTY"
+  },
+  {
+    "id": "MICRO-20728_star_stable_stall-3",
+    "source_qid": "20728_star_stable_stall",
+    "drill_type": "timing",
+    "target_skill": "Contradiction by sequence",
+    "prompt": "Stem says landlord deposited assignee's rent and said nothing. Choice says landlord objected within a reasonable time. Cut or keep?",
+    "answer": "Cut. The choice conflicts with the timing signal.",
+    "tension_slug": null,
+    "subject": "REAL_PROPERTY"
+  },
+  {
+    "id": "MICRO-20729_courtyard_stormwater-1",
+    "source_qid": "20729_courtyard_stormwater",
+    "drill_type": "Gold Key recall",
+    "target_skill": "total taking of leased premises",
+    "prompt": "A tenant has four years left when the entire leased parcel is condemned. Name the two tenant consequences.",
+    "answer": "Future rent stops; tenant may claim leasehold value in the award.",
+    "tension_slug": "one-consequence-answer-versus-combined-consequence-answer",
+    "subject": "REAL_PROPERTY"
+  },
+  {
+    "id": "MICRO-20729_courtyard_stormwater-2",
+    "source_qid": "20729_courtyard_stormwater",
+    "drill_type": "Silver Key answer-array",
+    "target_skill": "component package",
+    "prompt": "One choice says X, one says Y, one says X and Y. What move do you run?",
+    "answer": "Test X and Y separately; if both are true, choose the combined answer.",
+    "tension_slug": "one-consequence-answer-versus-combined-consequence-answer",
+    "subject": "REAL_PROPERTY"
+  },
+  {
+    "id": "MICRO-20729_courtyard_stormwater-3",
+    "source_qid": "20729_courtyard_stormwater",
+    "drill_type": "Trap diagnosis",
+    "target_skill": "fabricated formal condition",
+    "prompt": "A choice says a leasehold survives a taking unless named in the award. What mold is this?",
+    "answer": "fabricated_rule.",
+    "tension_slug": "one-consequence-answer-versus-combined-consequence-answer",
+    "subject": "REAL_PROPERTY"
+  }
+]

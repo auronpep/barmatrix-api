@@ -1,0 +1,249 @@
+[
+  {
+    "id": "CONTRACTS-REMEDY-COURSE-DEALING-01",
+    "type": "ANCHOR",
+    "title": "Course of dealing before defaults",
+    "signal": "Undefined UCC term + prior same-party transactions.",
+    "student_move": "Do not jump straight to trade usage or gap-fillers.",
+    "tiny_rule": "Same-party course of dealing can explain the phrase; general usage and defaults do not automatically override it.",
+    "trap": "Source-order reversal.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "17026_manger_prop_bundles"
+    ]
+  },
+  {
+    "id": "CON-FORM-GUARANTY-PERFORMANCE-01",
+    "type": "ANCHOR",
+    "title": "Performance accepts the guaranty offer.",
+    "signal": "If you extend credit, I guarantee payment.",
+    "student_move": "Find whether the credit was extended before death or revocation.",
+    "tiny_rule": "Requested credit extension can accept.",
+    "trap": "Treating later notice as formation.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "17110_sticker_press_guaranty"
+    ]
+  },
+  {
+    "id": "REM-CONTRACTS-REMEDY-MENU-01",
+    "type": "ANCHOR",
+    "title": "Bargain price beats reasonable-value bait",
+    "signal": "Full performance + agreed price + higher reasonable value.",
+    "student_move": "Start with the bargain number before considering reliance or restitution labels.",
+    "tiny_rule": "If the contract price is fixed and fully earned, recover that price.",
+    "trap": "Picking the higher market value or the spread.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "17173_road_to_emmaus_puzzle_quest"
+    ]
+  },
+  {
+    "id": "REM-CONTRACTS-SATISFACTION-OBJECT-01",
+    "type": "ANCHOR",
+    "title": "Satisfaction About What?",
+    "signal": "A party says 'I was not satisfied' after a measurable performance condition was met.",
+    "student_move": "Underline the object of satisfaction, then compare it to the facts.",
+    "tiny_rule": "Commercial/mechanical satisfaction is objective; personal taste is subjective.",
+    "trap": "honest-dislike wrong frame",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "19250_scripture_card_printer"
+    ]
+  },
+  {
+    "id": "REM-CONTRACTS-TPB-PACKAGE-01",
+    "type": "ANCHOR",
+    "title": "Third-party beneficiary package deal",
+    "signal": "A nonparty enforces a contract that also limits the claim.",
+    "student_move": "Do not split the contract into benefit-only and cap-free pieces.",
+    "tiny_rule": "TPB right travels with the contract terms.",
+    "trap": "Nonparty status feels like freedom from the cap.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "19386_scripture_audio_cap"
+    ]
+  },
+  {
+    "id": "CON-REQ-01",
+    "type": "ANCHOR",
+    "title": "Requirements estimate is not a floor",
+    "signal": "all requirements + estimate + shutdown",
+    "student_move": "Stay in the quantity/good-faith lane before considering excuse or writing rules.",
+    "tiny_rule": "Estimate guides policing; it is not automatically a minimum.",
+    "trap": "Treating the estimate as the quantity promised.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20004_dove_tokens_manna_game"
+    ]
+  },
+  {
+    "id": "REM-CONTRACTS-SOF-ADMISSION-QUANTITY-CAP",
+    "type": "ANCHOR",
+    "title": "Admission exception quantity cap",
+    "signal": "No writing plus in-court admission of a smaller quantity.",
+    "student_move": "Lock the admitted quantity before evaluating all-or-none answers.",
+    "tiny_rule": "Admission opens enforcement only up to the quantity admitted.",
+    "trap": "Some admitted contract means all alleged goods are enforceable.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20100_fish_and_loaves_keychains"
+    ]
+  },
+  {
+    "id": "REM-CONTRACTS-EXPECTATION-SAVED-COSTS-01",
+    "type": "ANCHOR",
+    "title": "Do not pay avoided costs.",
+    "signal": "The stem gives contract price and expected cost, then says the contractor avoided all costs.",
+    "student_move": "Subtract the avoided cost from the price.",
+    "tiny_rule": "Expectation protects the net bargain, not the gross price.",
+    "trap": "price/cost/zero answer array",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20271_lantern_handbell_evening"
+    ]
+  },
+  {
+    "id": "REM-CONTRACTS-RISK-BEFORE-RESCISSION-01",
+    "type": "ANCHOR",
+    "title": "Risk before rescission",
+    "signal": "Mutual mistake plus as-is / unknown-defect clause.",
+    "student_move": "Do not stop at both mistaken. Ask who took the risk.",
+    "tiny_rule": "If the claimant accepted the mistake-risk, rescission is denied.",
+    "trap": "Picking the mutual-mistake-only grant answer.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20351_red_sea_mini_golf"
+    ]
+  },
+  {
+    "id": "RC-CONTRACTS-NOTICE-AFTER-ACCEPTANCE-01",
+    "type": "ANCHOR",
+    "title": "Accepted goods: notice keeps the remedy alive",
+    "signal": "Buyer knows goods are defective, keeps silent, then raises defect after being sued.",
+    "student_move": "Ask whether the buyer notified the seller within a reasonable time.",
+    "tiny_rule": "Known defect plus no seasonable notice means no defect remedy after acceptance.",
+    "trap": "Picking the nonconformity answer because the goods were genuinely defective.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20370_dove_mug_notice"
+    ]
+  },
+  {
+    "id": "RC-CONTRACTS-REQ-QTY-01",
+    "type": "ANCHOR",
+    "title": "Flexible quantity is not empty quantity",
+    "signal": "all goods the buyer requires",
+    "student_move": "Do not equate no fixed number with no quantity.",
+    "tiny_rule": "Requirements quantity is measured by good-faith needs.",
+    "trap": "Illusory-promise overread.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20461_lydia_beeswax_requirements"
+    ]
+  },
+  {
+    "id": "CONTRACTS-ANCHOR-SOF-MEMO-ADDRESSEE-01",
+    "type": "ANCHOR",
+    "title": "SOF memorandum: signer beats addressee",
+    "signal": "A signed writing admits a guaranty but was sent to someone other than the enforcing creditor.",
+    "student_move": "Map who is being sued; then ask whether that person signed a writing identifying the promise.",
+    "tiny_rule": "The memorandum need not be addressed to the enforcing party.",
+    "trap": "extra formality",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20523_easter_stage_guaranty"
+    ]
+  },
+  {
+    "id": "CONTRACTS-ANCHOR-PI-01",
+    "type": "ANCHOR",
+    "title": "Prospective inability: reliance before cure",
+    "signal": "Future performance appears impossible, then later becomes possible.",
+    "student_move": "Ask whether the other party changed position before the cure.",
+    "tiny_rule": "Reliance before cure locks the defendant-side discharge.",
+    "trap": "Later readiness feels decisive, but it is late.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20556_mustard_seed_puppet_caravan"
+    ]
+  },
+  {
+    "id": "RM-CONTRACTS-CONDITION-SUBSEQUENT-01",
+    "type": "ANCHOR",
+    "title": "Unless-trigger cuts off duty",
+    "signal": "Contract says 'remains effective unless' or similar.",
+    "student_move": "Track the exact trigger and timing before defaulting to breach, impossibility, or substantial performance.",
+    "tiny_rule": "If the terminating event happened, the duty is cut off.",
+    "trap": "treating initial effectiveness as permanent",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20569_ark_float"
+    ]
+  },
+  {
+    "id": "REM-CONTRACTS-COMPLETE-INTEGRATION-01",
+    "type": "ANCHOR",
+    "title": "Complete beats consistent",
+    "signal": "Signed writing says complete and exclusive; offered term came before signing.",
+    "student_move": "Do not ask only whether the oral term conflicts; ask whether the writing is complete.",
+    "tiny_rule": "Complete integration excludes prior consistent add-ons.",
+    "trap": "Consistency trap",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20599_advent_handbell_integration"
+    ]
+  },
+  {
+    "id": "REM-CONTRACTS-SP-UNIQUE-GOODS-01",
+    "type": "ANCHOR",
+    "title": "Specific performance for goods: find the uniqueness trigger",
+    "signal": "Buyer asks for specific performance of a chattel.",
+    "student_move": "Ask whether the object is unique or highly unusual; ignore merchant status and reciprocity.",
+    "tiny_rule": "Unique/highly unusual goods can support buyer specific performance.",
+    "trap": "Ordinary personalty damages default overstated into a never rule.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20737_jonahs_whale_lyre"
+    ]
+  },
+  {
+    "id": "CONTRACTS-ANCHOR-MERCHANT-CONFIRMATION-01",
+    "type": "ANCHOR",
+    "title": "Merchant confirmation: oral objection trap",
+    "signal": "Two merchants, oral goods deal, signed confirmation, oral objection.",
+    "student_move": "Check whether the recipient sent written notice of objection within 10 days.",
+    "tiny_rule": "Written objection required; oral objection is not enough.",
+    "trap": "Treating any timely objection as enough.",
+    "confidence": "PURE_ANCHOR",
+    "example_qids": [
+      "20805_psalm_lanterns_confirmation"
+    ]
+  },
+  {
+    "id": "REM-CONTRACTS-PREEXISTING-DUTY-01",
+    "type": "ANCHOR",
+    "title": "Existing duty is not new consideration",
+    "signal": "A party promises to do the same thing already owed.",
+    "student_move": "Ask what new legal detriment appears in the later exchange.",
+    "tiny_rule": "Already owed is not newly paid for.",
+    "trap": "Promise-for-promise wording looks like consideration.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20808_jericho_press"
+    ]
+  },
+  {
+    "id": "REM-CONTRACTS-OFFER-ACCEPTANCE-MODE-01",
+    "type": "ANCHOR",
+    "title": "Mode-of-Acceptance Label Drill",
+    "signal": "One party says “I will buy if you deliver,” and the other says “I will deliver.”",
+    "student_move": "Ask what act the first statement required and whether that act has happened.",
+    "tiny_rule": "Words promising future delivery are not the delivery itself.",
+    "trap": "Calling the future promise an acceptance or commencement.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "21879_noahs_ark_puppet_set"
+    ]
+  }
+]

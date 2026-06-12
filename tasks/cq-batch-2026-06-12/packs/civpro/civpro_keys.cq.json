@@ -1,0 +1,362 @@
+[
+  {
+    "id": "GK-CIVIL_PROCEDURE-JMOL-STANDARD-01",
+    "kind": "gold",
+    "statement": "JMOL asks whether, after a party has been fully heard on an issue, a reasonable jury would have a legally sufficient evidentiary basis to find for that party on that issue.",
+    "type": "threshold",
+    "trigger": "Party rests; opponent moves for JMOL on a specific element.",
+    "authority": "Fed. R. Civ. P. 50(a)(1)",
+    "last_minute_review": true,
+    "example_qids": [
+      "19266_carol_banquet_jmol"
+    ]
+  },
+  {
+    "id": "SK-CIVIL_PROCEDURE-JMOL-PROCEDURAL-LENS-01",
+    "kind": "silver",
+    "statement": "On a JMOL motion, stay on trial evidence for the targeted element; do not drift to sympathy, filing conduct, or automatic jury submission.",
+    "type": "trap_spotting",
+    "trigger": "Call asks what standard the court should apply to JMOL.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "19266_carol_banquet_jmol"
+    ]
+  },
+  {
+    "id": "GK-CIVIL_PROCEDURE-LOST-ESI-01",
+    "kind": "gold",
+    "statement": "Lost ESI has a sanction ladder: prejudice without intent allows only curative measures no greater than necessary; adverse inference, presumption, dismissal, or default requires intent to deprive.",
+    "type": "distinction",
+    "trigger": "lost ESI + prejudice + no deliberate deprivation",
+    "authority": "Fed. R. Civ. P. 37(e)(1)-(2)",
+    "last_minute_review": true,
+    "example_qids": [
+      "19286_five_loaves_press"
+    ]
+  },
+  {
+    "id": "SK-CIVIL_PROCEDURE-LOST-ESI-01",
+    "kind": "silver",
+    "statement": "Read the choices by sanction severity keyed to mental state: no intent in the stem pushes you away from unfavorable-presumption and case-ending answers.",
+    "type": "answer_array",
+    "trigger": "one answer cures prejudice; two answers punish as if intent existed",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "19286_five_loaves_press"
+    ]
+  },
+  {
+    "id": "GK-CIVIL_PROCEDURE-JONAH-WHALE-FLOAT-01",
+    "kind": "gold",
+    "statement": "False imprisonment requires intentional confinement. A complaint that pleads only negligent confinement defeats that claim at the motion-to-dismiss stage.",
+    "type": "distinction",
+    "trigger": "Complaint labels false imprisonment but says the confinement happened negligently.",
+    "authority": "Restatement (Second) of Torts §35; Fed. R. Civ. P. 12(b)(6); Ashcroft v. Iqbal.",
+    "last_minute_review": true,
+    "example_qids": [
+      "19721_jonah_whale_float"
+    ]
+  },
+  {
+    "id": "GK-CIVIL_PROCEDURE-JONAH-WHALE-FLOAT-02",
+    "kind": "gold",
+    "statement": "Amount in controversy is not a likely-verdict test. The pleaded amount controls unless it is legally certain the claim is below the jurisdictional threshold.",
+    "type": "threshold",
+    "trigger": "Answer choice talks about unlikely recovery above $75,000.",
+    "authority": "28 U.S.C. §1332; St. Paul Mercury Indem. Co. v. Red Cab Co.",
+    "last_minute_review": true,
+    "example_qids": [
+      "19721_jonah_whale_float"
+    ]
+  },
+  {
+    "id": "SK-CIVIL_PROCEDURE-JONAH-WHALE-FLOAT-01",
+    "kind": "silver",
+    "statement": "On a motion-to-dismiss array, match the reason to the motion. Same outcome plus wrong procedural reason is a trap.",
+    "type": "call_focus",
+    "trigger": "Two choices talk about amount in controversy while one choice talks about failure to state a claim.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "19721_jonah_whale_float"
+    ]
+  },
+  {
+    "id": "GK-CIVIL_PROCEDURE-COLLATERAL-ORDER-NARROWNESS-01",
+    "kind": "gold",
+    "statement": "Collateral-order review is narrow. Ordinary discovery orders generally wait for final judgment; expense alone is not effective unreviewability.",
+    "type": "threshold",
+    "trigger": "Immediate appeal from a discovery order under the collateral order doctrine.",
+    "authority": "28 U.S.C. §1291; Cohen; Mohawk; Cunningham.",
+    "last_minute_review": true,
+    "example_qids": [
+      "19793_dove_candle_ledgers"
+    ]
+  },
+  {
+    "id": "SK-CIVIL_PROCEDURE-DOVE-CANDLE-LEDGERS-01",
+    "kind": "silver",
+    "statement": "In an appealability array, sort answers as review-now or review-later. Cut the extreme words first, then ask whether final judgment review is enough.",
+    "type": "answer_array",
+    "trigger": "Immediate appeal + discovery order + collateral order doctrine.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "19793_dove_candle_ledgers"
+    ]
+  },
+  {
+    "id": "GK-CIVIL_PROCEDURE-UNDERLYING-FACTS-01",
+    "kind": "gold",
+    "statement": "Attorney-client privilege protects confidential legal-advice communications, not the underlying facts. A fact does not become privileged just because the client told it to a lawyer.",
+    "type": "distinction",
+    "trigger": "The discovery request asks for a fact, but the refusal says the fact was told to counsel.",
+    "authority": "Upjohn Co. v. United States, 449 U.S. 383 (1981); Fed. R. Civ. P. 26(b)(1); Fed. R. Civ. P. 33(a)(2).",
+    "last_minute_review": true,
+    "example_qids": [
+      "19840_red_sea_bridge_bolts"
+    ]
+  },
+  {
+    "id": "SK-CIVIL_PROCEDURE-FACT-NOT-CHAT-01",
+    "kind": "silver",
+    "statement": "Before reading privilege choices, name the object of discovery. If the other side asks for the fact itself, do not let an answer switch you to the lawyer conversation.",
+    "type": "trap_spotting",
+    "trigger": "Interrogatory asks for an identity or event fact; objection says the fact was told to counsel.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "19840_red_sea_bridge_bolts"
+    ]
+  },
+  {
+    "id": "GK-CIVIL_PROCEDURE-RULE54B-CERT-01",
+    "kind": "gold",
+    "statement": "Rule 54(b) is not automatic. A partial judgment in a multi-claim or multi-party civil action is immediately appealable only if the district court directs entry of judgment and determines that there is no just reason for delay.",
+    "type": "threshold",
+    "trigger": "Fewer than all claims or parties resolved; claims remain; order lacks certification language.",
+    "authority": "Fed. R. Civ. P. 54(b).",
+    "last_minute_review": true,
+    "example_qids": [
+      "20247_bible_memory_kit"
+    ]
+  },
+  {
+    "id": "SK-CIVIL_PROCEDURE-RULE54B-CERT-01",
+    "kind": "silver",
+    "statement": "When the stem goes out of its way to say the order lacks formal Rule 54(b) language, do not let a partial-dismissal fact do the work by itself.",
+    "type": "trap_spotting",
+    "trigger": "One party is out, but other claims remain and formal certification is missing.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20247_bible_memory_kit"
+    ]
+  },
+  {
+    "id": "GK-CIVIL_PROCEDURE-FUNCTIONAL-INJUNCTION-01",
+    "kind": "gold",
+    "statement": "For immediate appeal, an order can count as an injunction by practical effect. A command to do or stop doing something may be injunctive even when the caption uses another label.",
+    "type": "distinction",
+    "trigger": "Non-injunction caption plus a command to stop conduct until trial.",
+    "authority": "28 U.S.C. §1292(a)(1); Carson v. American Brands; Abbott v. Perez.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20291_nativity_prop_rental_freeze"
+    ]
+  },
+  {
+    "id": "SK-CIVIL_PROCEDURE-FUNCTIONAL-INJUNCTION-01",
+    "kind": "silver",
+    "statement": "In a label-vs-function appealability question, read the verb in the order before reading the caption. A stop-command is the navigation signal.",
+    "type": "trap_spotting",
+    "trigger": "Order caption says one thing; operative sentence commands a party not to act.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20291_nativity_prop_rental_freeze"
+    ]
+  },
+  {
+    "id": "GK-CIVIL_PROCEDURE-DEFENDANT_COUNTERCLAIM-01",
+    "kind": "gold",
+    "statement": "In a diversity case, a defendant's same-transaction counterclaim can use supplemental jurisdiction even below $75,000 unless a specific plaintiff-side §1367(b) bar applies.",
+    "type": "rule",
+    "trigger": "Defendant counterclaim + same incident + no independent amount in controversy.",
+    "authority": "28 U.S.C. §1367(a)-(b); Fed. R. Civ. P. 13(a)(1).",
+    "last_minute_review": true,
+    "example_qids": [
+      "20353_baptism_tank_burst"
+    ]
+  },
+  {
+    "id": "SK-CIVIL_PROCEDURE-SUPP_COUNTERCLAIM_ARRAY-01",
+    "kind": "silver",
+    "statement": "Read the array as result plus jurisdictional reason. A 'yes' answer is not enough; the reason must be same-event supplemental jurisdiction, not federal question.",
+    "type": "answer_array",
+    "trigger": "A counterclaim in a diversity case with no independent amount.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20353_baptism_tank_burst"
+    ]
+  },
+  {
+    "id": "GK-CIVIL_PROCEDURE-FED-STATUTE-VENUE-01",
+    "kind": "gold",
+    "statement": "When a valid federal statute directly controls a federal-court procedural issue, apply the federal statute before Erie twin-aims balancing.",
+    "type": "rule",
+    "trigger": "Diversity case + state procedural rule + federal statute on point.",
+    "authority": "28 U.S.C. § 1391; Hanna v. Plumer; Stewart Organization v. Ricoh.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20567_psalm_panels_venue"
+    ]
+  },
+  {
+    "id": "SK-CIVIL_PROCEDURE-RULE-SOURCE-CALL-01",
+    "kind": "silver",
+    "statement": "On a 'which rule controls' call, do not pick the rule that creates the preferred outcome. First identify whether a federal statute directly answers the procedural question.",
+    "type": "call_focus",
+    "trigger": "Answer choices compare state rule, federal statute, and forum-shopping policy.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20567_psalm_panels_venue"
+    ]
+  },
+  {
+    "id": "GK-CIVIL_PROCEDURE-VENUE-BUCKETS-01",
+    "kind": "gold",
+    "statement": "For ordinary federal civil actions, venue can sit in the event district or in a defendant-residence district when all defendants reside in that same state; the plaintiff's home is not a venue bucket.",
+    "type": "rule",
+    "trigger": "The call asks which judicial districts are proper and gives accident location plus defendants from different districts of one state.",
+    "authority": "28 U.S.C. § 1391(b)(1), (b)(2), (c)(1)",
+    "last_minute_review": true,
+    "example_qids": [
+      "20606_lydia_festival_venue"
+    ]
+  },
+  {
+    "id": "SK-CIVIL_PROCEDURE-VENUE-BUCKETS-01",
+    "kind": "silver",
+    "statement": "Read list answers as bucket checklists: keep every valid bucket and reject any answer that adds a false bucket or omits a true one.",
+    "type": "answer_array",
+    "trigger": "Choices mix event district, defendant districts, and plaintiff home district.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20606_lydia_festival_venue"
+    ]
+  },
+  {
+    "id": "GK-CIVIL_PROCEDURE-DIVERSITY-FILING-01",
+    "kind": "gold",
+    "statement": "For ordinary diversity jurisdiction, citizenship is measured when the complaint is filed. A later move does not create diversity that was missing at filing.",
+    "type": "rule",
+    "trigger": "A stem gives citizenship at filing and a later domicile change.",
+    "authority": "28 U.S.C. § 1332(a); Grupo Dataflux v. Atlas Global Group, L.P.; Mollan v. Torrance",
+    "last_minute_review": true,
+    "example_qids": [
+      "20627_ruth_hymn_poster_contract"
+    ]
+  },
+  {
+    "id": "SK-CIVIL_PROCEDURE-DIVERSITY-SNAPSHOT-01",
+    "kind": "silver",
+    "statement": "When a jurisdiction stem gives filing-day citizenship and later domicile facts, freeze the snapshot at filing before judging the later facts.",
+    "type": "call_focus",
+    "trigger": "same-state parties at filing plus a later move before answer or trial",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20627_ruth_hymn_poster_contract"
+    ]
+  },
+  {
+    "id": "GK-CIVIL_PROCEDURE-R12-PJ-WAIVER-01",
+    "kind": "gold",
+    "statement": "Personal jurisdiction is a waivable Rule 12(b)(2) defense. If it was available and the defendant omitted it from the first answer or first Rule 12 motion, it is waived.",
+    "type": "rule",
+    "trigger": "A defendant answers or files a Rule 12 motion without objecting to personal jurisdiction.",
+    "authority": "Fed. R. Civ. P. 12(b)(2), 12(g)(2), 12(h)(1).",
+    "last_minute_review": true,
+    "example_qids": [
+      "20690"
+    ]
+  },
+  {
+    "id": "GK-CIVIL_PROCEDURE-AMENDED-COMPLAINT-NO-REVIVAL-02",
+    "kind": "gold",
+    "statement": "An amended complaint does not automatically revive a Rule 12(b)(2)-(5) defense that was available and waived earlier unless the amendment first creates the defense.",
+    "type": "distinction",
+    "trigger": "Plaintiff amends after defendant already failed to raise a known threshold defense.",
+    "authority": "Gilmore v. Shearson/American Express, Inc.; State Auto Ins. Co. v. Thomas Landscaping & Constr., Inc.; Gnotec Reftele AB order.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20690"
+    ]
+  },
+  {
+    "id": "SK-CIVIL_PROCEDURE-JURISDICTION-WORD-01",
+    "kind": "silver",
+    "statement": "Match the jurisdiction word to the call before doing doctrine. Personal jurisdiction is defendant-court power; supplemental jurisdiction is subject-matter power over claims.",
+    "type": "trap_spotting",
+    "trigger": "A choice switches from personal jurisdiction to supplemental jurisdiction.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20690"
+    ]
+  },
+  {
+    "id": "GK-CIVIL_PROCEDURE-CONTACTS_BEFORE_FAIRNESS-01",
+    "kind": "gold",
+    "statement": "Specific jurisdiction starts with defendant-created forum contacts. Fairness or convenience can defeat jurisdiction after contacts exist, but it cannot create contacts by itself.",
+    "type": "threshold",
+    "trigger": "The plaintiff felt harm at home or argues the home forum is fair, while the defendant's conduct all occurred elsewhere.",
+    "authority": "International Shoe; World-Wide Volkswagen; Walden; Ford.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20811_illuminated_psalms_solvent"
+    ]
+  },
+  {
+    "id": "SK-CIVIL_PROCEDURE-ILLUMINATED_PSALMS_SOLVENT-01",
+    "kind": "silver",
+    "statement": "In a specific-jurisdiction array, sort contacts first and fairness second. A plaintiff-side hardship fact cannot do the work of a defendant-side contact fact.",
+    "type": "answer_array",
+    "trigger": "Choices mention hardship, injury felt in the forum, and no forum-directed defendant conduct.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20811_illuminated_psalms_solvent"
+    ]
+  },
+  {
+    "id": "GK-CIVIL_PROCEDURE-QIR-01",
+    "kind": "gold",
+    "statement": "Forum property is not a magic key. If the claim is unrelated to the attached property, the forum still needs a defendant-forum-litigation connection.",
+    "type": "constitutional_principle",
+    "trigger": "A plaintiff attaches a defendant's forum property to sue on an unrelated personal claim.",
+    "authority": "Shaffer v. Heitner, 433 U.S. 186; International Shoe Co. v. Washington, 326 U.S. 310.",
+    "last_minute_review": true,
+    "example_qids": [
+      "21711_foam_whale_nativity_attachment"
+    ]
+  },
+  {
+    "id": "SK-CIVIL_PROCEDURE-JURISDICTION-ASSET-VALUE-01",
+    "kind": "silver",
+    "statement": "Separate court power from collection. An asset's value may matter after a valid judgment, but it does not answer whether this court can decide the claim.",
+    "type": "trap_spotting",
+    "trigger": "An answer asks whether the attached property can satisfy the whole judgment.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "21711_foam_whale_nativity_attachment"
+    ]
+  }
+]

@@ -1,0 +1,230 @@
+[
+  {
+    "id": "GK-REAL_PROPERTY-BLANK-GRANTEE-01",
+    "kind": "gold",
+    "statement": "A deed must identify an existing or ascertainable grantee when delivered. A later unauthorized insertion plus recording does not supply that missing validity gate.",
+    "type": "threshold",
+    "trigger": "signed deed, blank grantee line, no authority to complete, later self-insertion",
+    "authority": "Cornell LII Wex, Deed; Alan White, Deeds and Recording Acts; Sanders v. Kirk; Tumansky v. Woodruff.",
+    "last_minute_review": true,
+    "example_qids": [
+      "17058_advent_honey_parcel"
+    ]
+  },
+  {
+    "id": "SK-REAL_PROPERTY-DEED-GATE-01",
+    "kind": "silver",
+    "statement": "Run the deed-validity gate before downstream facts. Signature, custody, recording, and consideration matter only after the instrument can operate as a deed.",
+    "type": "call_focus",
+    "trigger": "answer choices offer signed/recorded/no-consideration reasons while the stem flags a blank grantee",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "17058_advent_honey_parcel"
+    ]
+  },
+  {
+    "id": "GK-REAL_PROPERTY-RECORDING-VALIDITY-01",
+    "kind": "gold",
+    "statement": "A valid deed delivered and accepted passes title between grantor and grantee even if unrecorded; recording protects notice and priority against outsiders.",
+    "type": "distinction",
+    "trigger": "Valid deed + delivery + acceptance + no recording + no third-party claimant.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "19381_shepherd_olive_press_deed"
+    ]
+  },
+  {
+    "id": "SK-REAL_PROPERTY-RECORDING-VALIDITY-01",
+    "kind": "silver",
+    "statement": "When three choices make missing recording decide ownership, first ask whether the stem has an outsider. No outsider means the array is testing validity between the original parties.",
+    "type": "answer_array",
+    "trigger": "All distractors point to nonrecording.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "19381_shepherd_olive_press_deed"
+    ]
+  },
+  {
+    "id": "GK-REAL_PROPERTY-ASCERTAINABLE-GRANTEE-01",
+    "kind": "gold",
+    "statement": "A deed does not fail merely because the grantee is described by role rather than personal name. If one person fits the description at delivery, that person is ascertainable and can take title.",
+    "type": "rule",
+    "trigger": "Deed says “to the [office/role holder]” and the stem says one person held that role at delivery.",
+    "authority": "Vineyard v. O’Connor, 36 S.W. 424 (Tex. 1896), as cited in ConocoPhillips Co. v. Hahn.",
+    "last_minute_review": true,
+    "example_qids": [
+      "19430_harp_instructor_olive_grove"
+    ]
+  },
+  {
+    "id": "GK-REAL_PROPERTY-GRANTEE-SIGNATURE-01",
+    "kind": "gold",
+    "statement": "A grantee generally need not sign the deed to take title; delivery by the grantor and acceptance by the grantee do the work.",
+    "type": "rule",
+    "trigger": "Answer says the named recipient loses because the recipient did not sign.",
+    "authority": "Tex. Prop. Code § 5.021 requires the conveyance to be subscribed and delivered by the conveyor or authorized agent.",
+    "last_minute_review": true,
+    "example_qids": [
+      "19430_harp_instructor_olive_grove"
+    ]
+  },
+  {
+    "id": "SK-REAL_PROPERTY-ROLE-GRANTEE-01",
+    "kind": "silver",
+    "statement": "When a deed names a role, separate the role-holder from the organization named inside the role phrase before checking formalities.",
+    "type": "answer_array",
+    "trigger": "Choice set includes the person, the grantor, and the organization as possible owners.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "19430_harp_instructor_olive_grove"
+    ]
+  },
+  {
+    "id": "GK-REAL_PROPERTY-FORECLOSURE-NOTICE-01",
+    "kind": "gold",
+    "statement": "In judicial foreclosure, holders of present or future property interests that may be cut off by the sale must receive notice and be made parties before the court orders the sale.",
+    "type": "threshold",
+    "trigger": "Foreclosure requested without notice or service on a life tenant or remainderman.",
+    "authority": "Mullane v. Central Hanover Bank & Trust Co.; Mennonite Board of Missions v. Adams.",
+    "last_minute_review": true,
+    "example_qids": [
+      "19904_psalm_orchard_foreclosure_notice"
+    ]
+  },
+  {
+    "id": "SK-REAL_PROPERTY-FORECLOSURE-NOTICE-01",
+    "kind": "silver",
+    "statement": "When a foreclosure stem says the lender did not notify or serve the estate holders, lock the call as process first and sale scope second.",
+    "type": "call_focus",
+    "trigger": "without notifying or serving",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "19904_psalm_orchard_foreclosure_notice"
+    ]
+  },
+  {
+    "id": "GK-REAL_PROPERTY-RELICTION-01",
+    "kind": "gold",
+    "statement": "Gradual natural recession of water generally moves the water boundary; the exposed land belongs to the adjoining riparian or littoral owner.",
+    "type": "rule",
+    "trigger": "Natural, gradual recession exposing dry land attached to a water-adjacent parcel.",
+    "authority": "Cornell Wex reliction; Nebraska v. Iowa gradual-change boundary principle.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20213_mercy_pool_reliction"
+    ]
+  },
+  {
+    "id": "SK-REAL_PROPERTY-RELICTION-01",
+    "kind": "silver",
+    "statement": "For water-boundary ownership arrays, lock two facts before reading policy-sounding answers: gradual or sudden, and which parcel the exposed land touches.",
+    "type": "answer_array",
+    "trigger": "Four choices name different owners of newly exposed waterfront land.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20213_mercy_pool_reliction"
+    ]
+  },
+  {
+    "id": "GK-REAL_PROPERTY-LIFE-ENCUMBRANCE-01",
+    "kind": "gold",
+    "statement": "For an existing mortgage or encumbrance on land held in life estate, the life tenant pays interest up to the reasonable rental value; the remainderman pays principal.",
+    "type": "distinction",
+    "trigger": "life tenant + remainderman + mortgage/encumbrance + principal and interest",
+    "authority": "Thompson v. Watkins, 285 N.C. 616 (1974); N.Y. Real Property Law § 269.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20312_loaves_fishes_retreat"
+    ]
+  },
+  {
+    "id": "SK-REAL_PROPERTY-LIFE-ENCUMBRANCE-01",
+    "kind": "silver",
+    "statement": "When every choice assigns principal and interest between two estate holders, read the answers as a 2x2 allocation grid before using the anchor.",
+    "type": "answer_array",
+    "trigger": "choices distribute principal and interest between life tenant and remainderman",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20312_loaves_fishes_retreat"
+    ]
+  },
+  {
+    "id": "GK-REAL_PROPERTY-MINIMAL-DEED-FORMALITIES-01",
+    "kind": "gold",
+    "statement": "A deed can be valid between grantor and grantee if it is a writing that identifies the grantor, grantee, land, and present transfer, is signed or otherwise authenticated by the grantor, and is delivered and accepted. No printed deed form, consideration, notarization, or recording is required for baseline validity between them.",
+    "type": "rule",
+    "trigger": "Who owns land after an informal written transfer with present words, mark, handoff, and acceptance?",
+    "authority": "Common-law/bar baseline; representative authorities include statutes and cases recognizing writing, subscription, delivery, signature by mark, no consideration requirement, and validity of unrecorded instruments between parties.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20493_fish_mark_picnic_lot"
+    ]
+  },
+  {
+    "id": "SK-REAL_PROPERTY-EXTRA-GATE-ARRAY-01",
+    "kind": "silver",
+    "statement": "When three deed answers add formal extra gates and one answer lists the minimal transfer elements, treat the array as an extra-gate sweep after the deed-formality anchor.",
+    "type": "answer_array",
+    "trigger": "An informal writing plus present transfer words is followed by three formal-sounding objections.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20493_fish_mark_picnic_lot"
+    ]
+  },
+  {
+    "id": "GK-REAL_PROPERTY-STALL-WAIVER-01",
+    "kind": "gold",
+    "statement": "A landlord who knows of an unauthorized assignment or sublease and accepts rent without promptly reserving rights generally waives the right to terminate for that transfer.",
+    "type": "rule",
+    "trigger": "The landlord accepts rent from the assignee and says nothing.",
+    "authority": "Judicial Council of California CACI No. 4324; Kern Sunset Oil Co. v. Good Roads Oil Co.; Weisman v. Clark.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20728_star_stable_stall"
+    ]
+  },
+  {
+    "id": "SK-REAL_PROPERTY-STALL-WAIVER-01",
+    "kind": "silver",
+    "statement": "When one answer uses the original lease clause and another uses later landlord conduct, mark the later conduct fact before choosing.",
+    "type": "trap_spotting",
+    "trigger": "The stem gives both a no-assignment clause and later acceptance of rent without protest.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20728_star_stable_stall"
+    ]
+  },
+  {
+    "id": "GK-REAL_PROPERTY-WHOLE-TAKING-01",
+    "kind": "gold",
+    "statement": "A total eminent-domain taking of leased land reaches the tenant's leasehold: future rent stops, and the tenant may claim the value of the leasehold interest taken.",
+    "type": "rule",
+    "trigger": "entire leased parcel taken by eminent domain during the lease term",
+    "authority": "U.S. Const. amend. V; United States v. General Motors Corp.; Farr v. Williams; City of Vista v. Fielder",
+    "last_minute_review": true,
+    "example_qids": [
+      "20729_courtyard_stormwater"
+    ]
+  },
+  {
+    "id": "SK-REAL_PROPERTY-COMPONENT-PACKAGE-01",
+    "kind": "silver",
+    "statement": "When two choices each give one consequence and a third combines them, test each component. If both components are true, the combined choice is the complete answer.",
+    "type": "answer_array",
+    "trigger": "one answer says X, one says Y, one says X plus Y",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20729_courtyard_stormwater"
+    ]
+  }
+]

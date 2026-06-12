@@ -1,0 +1,27 @@
+{
+  "subject_dir": "conlaw",
+  "subject": "CONSTITUTIONAL_LAW",
+  "batch": "cq-2026-06-12",
+  "question_count": 14,
+  "qids": [
+    "17167_manger_lights_portal",
+    "19177_manna_wagon_disposal",
+    "19194_loaves_pages",
+    "19502_manna_festival_finals_tax",
+    "19607_cana_hills_bethany_flats",
+    "19982_manna_warehouse",
+    "20153_lampstand_labs",
+    "20186_road_to_emmaus_royalty_ledgers",
+    "20231_crown_above_caesars",
+    "20586_psalms_hormone_use",
+    "20638_advent_rescue_beacons",
+    "20714_prayer_robotics_kits",
+    "21848_manna_house_family_integrity",
+    "21872_scripturequest_price_gate"
+  ],
+  "cards": 14,
+  "keys": 37,
+  "drills": 6,
+  "microdrills": 49,
+  "note": "New subject pack — requires wiring into src/lib/c3-subjects.ts before it is served."
+}

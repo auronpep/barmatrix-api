@@ -1,0 +1,612 @@
+[
+  {
+    "id": "MICRO-14621_manna_cafe_bookmaker-1",
+    "source_qid": "14621_manna_cafe_bookmaker",
+    "drill_type": "call_focus",
+    "target_skill": "Violation vs remedy",
+    "prompt": "A grand jury heard evidence derived from an unlawful search. The defendant moves to dismiss the indictment. What is the first C3 question?",
+    "answer": "Does the violation supply dismissal as the remedy?",
+    "tension_slug": "violation-vs-remedy-unlawful-evidence-before-grand-jury-vs-dismissal-of-indictment",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-14621_manna_cafe_bookmaker-2",
+    "source_qid": "14621_manna_cafe_bookmaker",
+    "drill_type": "gold_key_recall",
+    "target_skill": "Grand jury indictment challenge",
+    "prompt": "Does hearsay before a grand jury automatically invalidate a facially valid indictment?",
+    "answer": "No.",
+    "tension_slug": "violation-vs-remedy-unlawful-evidence-before-grand-jury-vs-dismissal-of-indictment",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-14621_manna_cafe_bookmaker-3",
+    "source_qid": "14621_manna_cafe_bookmaker",
+    "drill_type": "trap_spotting",
+    "target_skill": "Dominant search trap",
+    "prompt": "Choice says: 'Yes, because of the unlawful search.' The call asks dismissal. What trap is this?",
+    "answer": "Violation_vs_remedy.",
+    "tension_slug": "violation-vs-remedy-unlawful-evidence-before-grand-jury-vs-dismissal-of-indictment",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-14621_manna_cafe_bookmaker-4",
+    "source_qid": "14621_manna_cafe_bookmaker",
+    "drill_type": "wrong_frame",
+    "target_skill": "Undercover conversation",
+    "prompt": "Suspect brags to an undercover agent in a café. What frame should you resist?",
+    "answer": "Custodial Miranda/right-to-counsel unless custody or charge facts appear.",
+    "tension_slug": "violation-vs-remedy-unlawful-evidence-before-grand-jury-vs-dismissal-of-indictment",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-17084_five_loaves_bank_records-1",
+    "source_qid": "17084_five_loaves_bank_records",
+    "drill_type": "anchor_recall",
+    "target_skill": "Bank-record third-party doctrine",
+    "prompt": "Agents obtain deposit slips and canceled checks from a suspect's bank. Does the suspect have a Fourth Amendment privacy interest in the bank records?",
+    "answer": "No.",
+    "tension_slug": "fourth-amendment-protected-interest-in-bank-records-vs-no-protected-interest-under-third-party-doctrine",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-17084_five_loaves_bank_records-2",
+    "source_qid": "17084_five_loaves_bank_records",
+    "drill_type": "call_focus",
+    "target_skill": "Suppression threshold",
+    "prompt": "Before asking whether agents needed a warrant or subpoena, what threshold question should you ask?",
+    "answer": "Whether this defendant has a Fourth Amendment interest in the records.",
+    "tension_slug": "fourth-amendment-protected-interest-in-bank-records-vs-no-protected-interest-under-third-party-doctrine",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-17084_five_loaves_bank_records-3",
+    "source_qid": "17084_five_loaves_bank_records",
+    "drill_type": "wrong_source",
+    "target_skill": "Correct result, wrong reason",
+    "prompt": "No suppression because bank records are excluded by statute. Name the defect.",
+    "answer": "Wrong source; the rule is constitutional third-party doctrine.",
+    "tension_slug": "fourth-amendment-protected-interest-in-bank-records-vs-no-protected-interest-under-third-party-doctrine",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-17151_carol_program-1",
+    "source_qid": "17151_carol_program",
+    "drill_type": "anchor_recall",
+    "target_skill": "general intent vs specific intent",
+    "prompt": "A voluntarily drunk defendant commits a general-intent battery. Is intoxication a defense?",
+    "answer": "No.",
+    "tension_slug": "general-intent-vs-specific-intent-defense-scope",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-17151_carol_program-2",
+    "source_qid": "17151_carol_program",
+    "drill_type": "cut_reason",
+    "target_skill": "same-result wrong-reason",
+    "prompt": "The stem says battery requires intentional contact. A choice says no defense because battery is strict liability. Cut or keep?",
+    "answer": "Cut: contradiction.",
+    "tension_slug": "general-intent-vs-specific-intent-defense-scope",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-17151_carol_program-3",
+    "source_qid": "17151_carol_program",
+    "drill_type": "overclaim_spotting",
+    "target_skill": "tiered_absolute",
+    "prompt": "A choice says intoxication negates any intent formed while drunk. Name the mold.",
+    "answer": "tiered_absolute.",
+    "tension_slug": "general-intent-vs-specific-intent-defense-scope",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-17151_carol_program-4",
+    "source_qid": "17151_carol_program",
+    "drill_type": "timing_axis",
+    "target_skill": "memory vs intent",
+    "prompt": "A choice turns on whether the defendant remembers the event later. What is the better axis?",
+    "answer": "Intent at the moment of contact.",
+    "tension_slug": "general-intent-vs-specific-intent-defense-scope",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-19263_chapel_handbells-1",
+    "source_qid": "19263_chapel_handbells",
+    "drill_type": "axis_flash",
+    "target_skill": "title_vs_possession",
+    "prompt": "Seller signs a bill of sale after a buyer lies about current status. Which lane?",
+    "answer": "False pretenses.",
+    "tension_slug": "what-passed-because-of-the-deception-ownership-title-possession-only-or-lawful-custody",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-19263_chapel_handbells-2",
+    "source_qid": "19263_chapel_handbells",
+    "drill_type": "contrast_pair",
+    "target_skill": "larceny_by_trick_vs_false_pretenses",
+    "prompt": "Borrowed by lie versus sold by lie: classify each.",
+    "answer": "Borrowed by lie = larceny by trick; sold by lie = false pretenses.",
+    "tension_slug": "what-passed-because-of-the-deception-ownership-title-possession-only-or-lawful-custody",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-19263_chapel_handbells-3",
+    "source_qid": "19263_chapel_handbells",
+    "drill_type": "wrong_basis_cut",
+    "target_skill": "bad_check_as_intent_evidence",
+    "prompt": "A bad check appears in a false-pretenses stem. What does it usually do?",
+    "answer": "It supports fraudulent intent; it does not replace the present-fact lie.",
+    "tension_slug": "what-passed-because-of-the-deception-ownership-title-possession-only-or-lawful-custody",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-19336_nativity_warehouse_rescue-1",
+    "source_qid": "19336_nativity_warehouse_rescue",
+    "drill_type": "Gold Key recall",
+    "target_skill": "Defense-of-others majority rule",
+    "prompt": "A defender reasonably but mistakenly protects the apparent victim. Does the reasonable mistake defeat the defense under the majority rule?",
+    "answer": "No. Majority rule uses reasonable belief.",
+    "tension_slug": "majority-reasonable-appearance-versus-alter-ego-actual-rights",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-19336_nativity_warehouse_rescue-2",
+    "source_qid": "19336_nativity_warehouse_rescue",
+    "drill_type": "CLASH axis",
+    "target_skill": "Actual hidden facts versus reasonable appearance",
+    "prompt": "One answer says the apparent attacker actually had self-defense. Another says the intervener reasonably believed force was needed. What is the axis?",
+    "answer": "Alter-ego actual rights versus majority reasonable appearance.",
+    "tension_slug": "majority-reasonable-appearance-versus-alter-ego-actual-rights",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-19336_nativity_warehouse_rescue-3",
+    "source_qid": "19336_nativity_warehouse_rescue",
+    "drill_type": "CUT fabricated rule",
+    "target_skill": "Extra-prerequisite detection",
+    "prompt": "Defense of others applies only if the person defended asked for help. What mold is this?",
+    "answer": "fabricated_rule; NOT_TRUE after the Gold Key.",
+    "tension_slug": "majority-reasonable-appearance-versus-alter-ego-actual-rights",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-19336_nativity_warehouse_rescue-4",
+    "source_qid": "19336_nativity_warehouse_rescue",
+    "drill_type": "CUT fabricated rule",
+    "target_skill": "Extra-prerequisite detection",
+    "prompt": "Defense of others fails because the defender did not witness the start of the fight. What mold is this?",
+    "answer": "fabricated_rule; NOT_TRUE after the Gold Key.",
+    "tension_slug": "majority-reasonable-appearance-versus-alter-ego-actual-rights",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-19499_jericho_chariot_night-1",
+    "source_qid": "19499_jericho_chariot_night",
+    "drill_type": "anchor_recall",
+    "target_skill": "Wharton's Rule extra-party exception",
+    "prompt": "Two required participants plus one unnecessary helper join the plan. Does Wharton's Rule bar conspiracy?",
+    "answer": "No. Extra participants defeat the bar.",
+    "tension_slug": "minimum-required-participants-vs-extra-participants",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-19499_jericho_chariot_night-2",
+    "source_qid": "19499_jericho_chariot_night",
+    "drill_type": "clash_axis",
+    "target_skill": "participant counting",
+    "prompt": "Name the axis: two-party offense, five-person plan.",
+    "answer": "Minimum required participants vs actual agreement participants.",
+    "tension_slug": "minimum-required-participants-vs-extra-participants",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-19499_jericho_chariot_night-3",
+    "source_qid": "19499_jericho_chariot_night",
+    "drill_type": "overclaim_cut",
+    "target_skill": "tiered_absolute",
+    "prompt": "Wharton's Rule always bars conspiracy whenever the target offense involves any agreement.",
+    "answer": "Cut as overclaim.",
+    "tension_slug": "minimum-required-participants-vs-extra-participants",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-19499_jericho_chariot_night-4",
+    "source_qid": "19499_jericho_chariot_night",
+    "drill_type": "wrong_element",
+    "target_skill": "red-herring fact",
+    "prompt": "The organizers expected payment, so Wharton's Rule bars conspiracy.",
+    "answer": "Wrong fact axis; payment is not the trigger.",
+    "tension_slug": "minimum-required-participants-vs-extra-participants",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-19554_road_to_damascus_cashbox-1",
+    "source_qid": "19554_road_to_damascus_cashbox",
+    "drill_type": "CUT",
+    "target_skill": "overclaim",
+    "prompt": "Choice says all worker theft from a business is embezzlement. Name the mold.",
+    "answer": "tiered_absolute",
+    "tension_slug": "custody-versus-lawful-possession-versus-title",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-19554_road_to_damascus_cashbox-2",
+    "source_qid": "19554_road_to_damascus_cashbox",
+    "drill_type": "ANCHOR",
+    "target_skill": "custody versus possession",
+    "prompt": "A low-level worker collects owner cash and pockets it. Classify.",
+    "answer": "larceny",
+    "tension_slug": "custody-versus-lawful-possession-versus-title",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-19554_road_to_damascus_cashbox-3",
+    "source_qid": "19554_road_to_damascus_cashbox",
+    "drill_type": "ISSUE_SENSE",
+    "target_skill": "wrong element",
+    "prompt": "Choice says no theft because the worker could handle the money. What element is missing?",
+    "answer": "permission to keep or appropriate the money",
+    "tension_slug": "custody-versus-lawful-possession-versus-title",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-20127_jericho_trumpet-1",
+    "source_qid": "20127_jericho_trumpet",
+    "drill_type": "anchor_recall",
+    "target_skill": "Miranda physical-fruit distinction",
+    "prompt": "Police get a voluntary unwarned statement naming a weapon location and offer only the weapon. Suppress?",
+    "answer": "No, not solely on Miranda grounds.",
+    "tension_slug": "violation-layer-vs-remedy-layer-statement-evidence-vs-physical-evidence",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-20127_jericho_trumpet-2",
+    "source_qid": "20127_jericho_trumpet",
+    "drill_type": "bait_architecture",
+    "target_skill": "violation_vs_remedy",
+    "prompt": "The call asks whether evidence is suppressed after a violation. What must you identify first?",
+    "answer": "The evidence being offered and the remedy rule.",
+    "tension_slug": "violation-layer-vs-remedy-layer-statement-evidence-vs-physical-evidence",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-20127_jericho_trumpet-3",
+    "source_qid": "20127_jericho_trumpet",
+    "drill_type": "overclaim_cut",
+    "target_skill": "tiered_absolute",
+    "prompt": "Classify: all evidence derived from an unwarned statement is suppressed.",
+    "answer": "NOT_TRUE; tiered_absolute.",
+    "tension_slug": "violation-layer-vs-remedy-layer-statement-evidence-vs-physical-evidence",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-20127_jericho_trumpet-4",
+    "source_qid": "20127_jericho_trumpet",
+    "drill_type": "backwards_cut",
+    "target_skill": "voluntary does not erase Miranda",
+    "prompt": "Classify: voluntary means there was no Miranda violation.",
+    "answer": "NOT_TRUE; backwards.",
+    "tension_slug": "violation-layer-vs-remedy-layer-statement-evidence-vs-physical-evidence",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-20258_psalter_pressure-1",
+    "source_qid": "20258_psalter_pressure",
+    "drill_type": "CUT",
+    "target_skill": "overclaim detector",
+    "prompt": "Choice says police may use any deception during interrogation. What is the C3 cut?",
+    "answer": "NOT_TRUE / tiered_absolute.",
+    "tension_slug": null,
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-20258_psalter_pressure-2",
+    "source_qid": "20258_psalter_pressure",
+    "drill_type": "CUT",
+    "target_skill": "bait doctrine",
+    "prompt": "Choice says the confession is admissible because warnings were given and understood. The stem adds threats and deprivation. What is the C3 cut?",
+    "answer": "NOT_RESPONSIVE / bait_doctrine; warnings answer the wrong layer.",
+    "tension_slug": null,
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-20258_psalter_pressure-3",
+    "source_qid": "20258_psalter_pressure",
+    "drill_type": "answer_array",
+    "target_skill": "no-but-wrong-reason",
+    "prompt": "Two choices say no. One says no because coercion; one says no because no written waiver. Which survives?",
+    "answer": "The coercion answer; the form answer gives the wrong reason.",
+    "tension_slug": null,
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-20258_psalter_pressure-4",
+    "source_qid": "20258_psalter_pressure",
+    "drill_type": "anchor",
+    "target_skill": "confession voluntariness",
+    "prompt": "What Gold Key unlocks warnings-plus-pressure confession questions?",
+    "answer": "Coercion can make a confession involuntary and inadmissible even after warnings.",
+    "tension_slug": null,
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-20387_psalms_chess_indictment-1",
+    "source_qid": "20387_psalms_chess_indictment",
+    "drill_type": "CUT",
+    "target_skill": "violation_vs_remedy",
+    "prompt": "Unlawful arrest; no evidence or statement obtained; independent evidence supports indictment. Motion to dismiss?",
+    "answer": "Deny; dismissal is not required.",
+    "tension_slug": "violation-versus-remedy",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-20387_psalms_chess_indictment-2",
+    "source_qid": "20387_psalms_chess_indictment",
+    "drill_type": "trap_spotting",
+    "target_skill": "good-faith side street",
+    "prompt": "A choice says dismissal depends on officer good faith. What is the C3 signal?",
+    "answer": "Good faith is an evidence-admissibility lane; lock the dismissal call.",
+    "tension_slug": "violation-versus-remedy",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-20387_psalms_chess_indictment-3",
+    "source_qid": "20387_psalms_chess_indictment",
+    "drill_type": "anchor_recall",
+    "target_skill": "unlawful arrest remedy",
+    "prompt": "What is the remedy for an unlawful arrest when no evidence was obtained from it?",
+    "answer": "No automatic dismissal; suppress tainted evidence only when applicable.",
+    "tension_slug": "violation-versus-remedy",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-20387_psalms_chess_indictment-4",
+    "source_qid": "20387_psalms_chess_indictment",
+    "drill_type": "overclaim",
+    "target_skill": "automatic indictment nullity",
+    "prompt": "A choice says an unlawful arrest voids any later indictment. Name the mold.",
+    "answer": "tiered_absolute.",
+    "tension_slug": "violation-versus-remedy",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-20476_road_to_bethlehem_sash-1",
+    "source_qid": "20476_road_to_bethlehem_sash",
+    "drill_type": "CUT",
+    "target_skill": "overclaim",
+    "prompt": "During a lawful frisk, the answer says any item found may be seized. Name the mold.",
+    "answer": "tiered_absolute",
+    "tension_slug": "extra-manipulation-immediate-apparentness-vs-no-warrant-after-pocket-entry",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-20476_road_to_bethlehem_sash-2",
+    "source_qid": "20476_road_to_bethlehem_sash",
+    "drill_type": "CLASH",
+    "target_skill": "same-result pair",
+    "prompt": "Two answers both say suppression. One names manipulation before identification; one names lack of warrant before pocket entry. Which fact resolves it?",
+    "answer": "The officer manipulated the nonweapon object before identifying contraband.",
+    "tension_slug": "extra-manipulation-immediate-apparentness-vs-no-warrant-after-pocket-entry",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-20476_road_to_bethlehem_sash-3",
+    "source_qid": "20476_road_to_bethlehem_sash",
+    "drill_type": "ANCHOR",
+    "target_skill": "plain feel immediate apparentness",
+    "prompt": "What must be true before an officer may seize contraband felt during a lawful frisk?",
+    "answer": "Its contraband character must be immediately apparent by touch.",
+    "tension_slug": "extra-manipulation-immediate-apparentness-vs-no-warrant-after-pocket-entry",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-20476_road_to_bethlehem_sash-4",
+    "source_qid": "20476_road_to_bethlehem_sash",
+    "drill_type": "CALL",
+    "target_skill": "call focus",
+    "prompt": "A choice justifies a drug search because the area was known for drug sales. Why is it off-call?",
+    "answer": "The call asks about plain-feel seizure validity, not drug-investigation suspicion.",
+    "tension_slug": "extra-manipulation-immediate-apparentness-vs-no-warrant-after-pocket-entry",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-CR-100-1",
+    "source_qid": "CR-100",
+    "drill_type": "Gold Key recall",
+    "target_skill": "duress threshold",
+    "prompt": "A defendant steals after a threatener far away promises to hurt a sibling next week. Does duress succeed?",
+    "answer": "No. The threat is future and remote, so imminence is missing.",
+    "tension_slug": "imminent-threshold-vs-real-but-incomplete-fear-family-facts",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-CR-100-2",
+    "source_qid": "CR-100",
+    "drill_type": "wrong_element cut",
+    "target_skill": "partial defense elements",
+    "prompt": "Choice says: 'Yes, because the threat was to a close family member.' Cut or keep?",
+    "answer": "Cut as NOT_RESPONSIVE / wrong_element unless imminence and no escape are also satisfied.",
+    "tension_slug": "imminent-threshold-vs-real-but-incomplete-fear-family-facts",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-CR-100-3",
+    "source_qid": "CR-100",
+    "drill_type": "tiered_absolute cut",
+    "target_skill": "scope overclaim",
+    "prompt": "Choice says: 'No, because duress is only for violent crimes.' Cut or keep?",
+    "answer": "Cut as NOT_TRUE / tiered_absolute.",
+    "tension_slug": "imminent-threshold-vs-real-but-incomplete-fear-family-facts",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-20542_praise_festival_cashbox-1",
+    "source_qid": "20542_praise_festival_cashbox",
+    "drill_type": "Gold Key recall",
+    "target_skill": "Sixth Amendment attachment and same-offense boundary",
+    "prompt": "After indictment, police ask without counsel about a relabeled lesser version of the charged incident. What is the trigger?",
+    "answer": "Same charged offense in substance after attachment; suppress without counsel or waiver.",
+    "tension_slug": "same-offense-substance-versus-different-label",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-20542_praise_festival_cashbox-2",
+    "source_qid": "20542_praise_festival_cashbox",
+    "drill_type": "Wrong-frame CUT",
+    "target_skill": "Miranda vs Massiah",
+    "prompt": "A choice says no suppression because the defendant was not in custody. The call is Sixth Amendment after indictment. Cut or keep?",
+    "answer": "Cut as bait_doctrine / wrong_frame.",
+    "tension_slug": "same-offense-substance-versus-different-label",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-20542_praise_festival_cashbox-3",
+    "source_qid": "20542_praise_festival_cashbox",
+    "drill_type": "CLASH axis",
+    "target_skill": "same offense versus different label",
+    "prompt": "One answer says same charged offense; another says different labels. What fact decides?",
+    "answer": "Whether the questioning targets the same incident and same offense in substance.",
+    "tension_slug": "same-offense-substance-versus-different-label",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-20542_praise_festival_cashbox-4",
+    "source_qid": "20542_praise_festival_cashbox",
+    "drill_type": "Overclaim scan",
+    "target_skill": "tiered_absolute",
+    "prompt": "Police may not question an indicted defendant about any unrelated offense. What is the mold?",
+    "answer": "tiered_absolute; the Sixth Amendment right is offense-specific.",
+    "tension_slug": "same-offense-substance-versus-different-label",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-20597_olivewood_nativity_craft_swap-1",
+    "source_qid": "20597_olivewood_nativity_craft_swap",
+    "drill_type": "matrix_read",
+    "target_skill": "answer_array",
+    "prompt": "One defendant mistakenly thinks property is free; another knows it belongs to someone but misunderstands the law. Which outcome pair should you expect?",
+    "answer": "Fact-mistake defendant not guilty if intent is negated; law-mistake defendant guilty.",
+    "tension_slug": "fact-mistake-versus-law-mistake",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-20597_olivewood_nativity_craft_swap-2",
+    "source_qid": "20597_olivewood_nativity_craft_swap",
+    "drill_type": "gold_key_recall",
+    "target_skill": "anchor",
+    "prompt": "For a specific-intent crime, must an honest fact mistake be reasonable?",
+    "answer": "No. It must honestly negate the specific intent.",
+    "tension_slug": "fact-mistake-versus-law-mistake",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-20597_olivewood_nativity_craft_swap-3",
+    "source_qid": "20597_olivewood_nativity_craft_swap",
+    "drill_type": "trap_cut",
+    "target_skill": "wrong_frame",
+    "prompt": "Cut: 'Both are guilty because only reasonable mistakes count.'",
+    "answer": "Wrong frame. Specific-intent fact mistake does not require reasonableness.",
+    "tension_slug": "fact-mistake-versus-law-mistake",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-20654_nativity_ornaments_volition-1",
+    "source_qid": "20654_nativity_ornaments_volition",
+    "drill_type": "anchor_recall",
+    "target_skill": "cognition_vs_volition",
+    "prompt": "A defendant knows an act is wrong but cannot control the act due to mental disease. Which lane is this: M'Naghten or irresistible impulse?",
+    "answer": "Irresistible impulse.",
+    "tension_slug": "cognition-vs-volition",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-20654_nativity_ornaments_volition-2",
+    "source_qid": "20654_nativity_ornaments_volition",
+    "drill_type": "cut",
+    "target_skill": "wrong_element",
+    "prompt": "Cut the choice: 'The defendant is insane because she has a recognized mental disease.'",
+    "answer": "Wrong element: diagnosis is threshold, not sufficient.",
+    "tension_slug": "cognition-vs-volition",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-20654_nativity_ornaments_volition-3",
+    "source_qid": "20654_nativity_ornaments_volition",
+    "drill_type": "answer_array",
+    "target_skill": "bucket_sorting",
+    "prompt": "Sort these facts into lanes: mental disease; knew wrong; could not conform.",
+    "answer": "Mental disease = threshold; knew wrong = cognition; could not conform = volition.",
+    "tension_slug": "cognition-vs-volition",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-21867_psalm_puzzle_booth-1",
+    "source_qid": "21867_psalm_puzzle_booth",
+    "drill_type": "CUT",
+    "target_skill": "wrong_element",
+    "prompt": "A defendant commits a permit misdemeanor. The victim later dies in an unrelated accident. Is the misdemeanor label enough?",
+    "answer": "No; check actual and proximate cause.",
+    "tension_slug": "misdemeanor-label-vs-cause-link",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-21867_psalm_puzzle_booth-2",
+    "source_qid": "21867_psalm_puzzle_booth",
+    "drill_type": "CUT",
+    "target_skill": "overclaim",
+    "prompt": "Classify: 'Any death after a misdemeanor is manslaughter.'",
+    "answer": "tiered_absolute; NOT_TRUE.",
+    "tension_slug": "misdemeanor-label-vs-cause-link",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-21867_psalm_puzzle_booth-3",
+    "source_qid": "21867_psalm_puzzle_booth",
+    "drill_type": "anchor",
+    "target_skill": "misdemeanor manslaughter causation",
+    "prompt": "State the Gold Key for misdemeanor manslaughter.",
+    "answer": "The misdemeanor must actually and proximately cause the death.",
+    "tension_slug": "misdemeanor-label-vs-cause-link",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-21867_psalm_puzzle_booth-4",
+    "source_qid": "21867_psalm_puzzle_booth",
+    "drill_type": "trap_spotting",
+    "target_skill": "cause-link residual",
+    "prompt": "One answer says the misdemeanor happened. One answer says the misdemeanor did not cause the death. Which one is the safer residual?",
+    "answer": "The cause-link answer.",
+    "tension_slug": "misdemeanor-label-vs-cause-link",
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-21869_tiny_house_hymn_sheet-1",
+    "source_qid": "21869_tiny_house_hymn_sheet",
+    "drill_type": "anchor_recall",
+    "target_skill": "Gold Key recall",
+    "prompt": "Police have an arrest warrant for Paul and enter Ruth’s home to find him without a search warrant, consent, or exigency. Lawful entry?",
+    "answer": "No. Third-party home requires a search warrant or valid exception.",
+    "tension_slug": null,
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-21869_tiny_house_hymn_sheet-2",
+    "source_qid": "21869_tiny_house_hymn_sheet",
+    "drill_type": "cut",
+    "target_skill": "Overclaim detection",
+    "prompt": "Cut: 'Yes, because an arrest warrant follows the suspect into any home.'",
+    "answer": "tiered_absolute; arrest warrant does not authorize entry into any third-party home.",
+    "tension_slug": null,
+    "subject": "CRIMINAL_LAW"
+  },
+  {
+    "id": "MICRO-21869_tiny_house_hymn_sheet-3",
+    "source_qid": "21869_tiny_house_hymn_sheet",
+    "drill_type": "issue_sense",
+    "target_skill": "Wrong element / wrong timing",
+    "prompt": "Call asks whether entry into Naomi’s home was lawful. Choice says no only because suspect was found in the pantry.",
+    "answer": "NOT_RESPONSIVE; room fact comes after entry.",
+    "tension_slug": null,
+    "subject": "CRIMINAL_LAW"
+  }
+]

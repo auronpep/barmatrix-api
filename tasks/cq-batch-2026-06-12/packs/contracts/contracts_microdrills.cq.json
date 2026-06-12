@@ -1,0 +1,672 @@
+[
+  {
+    "id": "MICRO-17026_manger_prop_bundles-1",
+    "source_qid": "17026_manger_prop_bundles",
+    "drill_type": "cut",
+    "target_skill": "source-order reversal",
+    "prompt": "Undefined UCC term; prior same-party contracts and default gap-filler both appear. Which source comes first?",
+    "answer": "Prior course of dealing before default gap-filler.",
+    "tension_slug": "ucc-agreement-source-hierarchy-private-course-of-dealing-versus-general-trade-usage-versus-default-gap-fillers",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-17026_manger_prop_bundles-2",
+    "source_qid": "17026_manger_prop_bundles",
+    "drill_type": "cut",
+    "target_skill": "mixed contract source law",
+    "prompt": "A contract includes goods, setup, and a short training session; most price is goods. Does the service piece automatically make the deal common law?",
+    "answer": "No. Goods predominate.",
+    "tension_slug": "ucc-agreement-source-hierarchy-private-course-of-dealing-versus-general-trade-usage-versus-default-gap-fillers",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-17026_manger_prop_bundles-3",
+    "source_qid": "17026_manger_prop_bundles",
+    "drill_type": "clash",
+    "target_skill": "course of dealing vs usage of trade",
+    "prompt": "Same-party prior contracts define a phrase one way; general trade usage defines it another. Which source is stronger if they conflict?",
+    "answer": "Course of dealing.",
+    "tension_slug": "ucc-agreement-source-hierarchy-private-course-of-dealing-versus-general-trade-usage-versus-default-gap-fillers",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-17110_sticker_press_guaranty-1",
+    "source_qid": "17110_sticker_press_guaranty",
+    "drill_type": "CUT",
+    "target_skill": "overclaim detection",
+    "prompt": "No guaranty formed because all guaranties are gratuitous promises.",
+    "answer": "CUT: tiered_absolute.",
+    "tension_slug": "performance-before-death-vs-notice-death-trap",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-17110_sticker_press_guaranty-2",
+    "source_qid": "17110_sticker_press_guaranty",
+    "drill_type": "CALL",
+    "target_skill": "call focus",
+    "prompt": "A guarantor dies after the creditor performs the requested act. Is death a formation blocker?",
+    "answer": "No. Performance before death accepted.",
+    "tension_slug": "performance-before-death-vs-notice-death-trap",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-17110_sticker_press_guaranty-3",
+    "source_qid": "17110_sticker_press_guaranty",
+    "drill_type": "CLASH",
+    "target_skill": "timing axis",
+    "prompt": "Offer, performance, death, notice. Which fact matters?",
+    "answer": "Performance before death.",
+    "tension_slug": "performance-before-death-vs-notice-death-trap",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-17110_sticker_press_guaranty-4",
+    "source_qid": "17110_sticker_press_guaranty",
+    "drill_type": "anchor",
+    "target_skill": "performance acceptance",
+    "prompt": "If-credit-then-guarantee note; creditor extends credit before death.",
+    "answer": "Guaranty formed.",
+    "tension_slug": "performance-before-death-vs-notice-death-trap",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-17173_road_to_emmaus_puzzle_quest-1",
+    "source_qid": "17173_road_to_emmaus_puzzle_quest",
+    "drill_type": "remedy_measure_menu",
+    "target_skill": "Classify dollar choices before choosing.",
+    "prompt": "A fully performing painter agreed to $9,000. The work was worth $14,000. The owner refuses to pay. Choices are $9,000, $14,000, $5,000, or $0. Which number starts as the anchor?",
+    "answer": "$9,000, the contract price.",
+    "tension_slug": null,
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-17173_road_to_emmaus_puzzle_quest-2",
+    "source_qid": "17173_road_to_emmaus_puzzle_quest",
+    "drill_type": "overclaim_cut",
+    "target_skill": "Hear absolute remedy language.",
+    "prompt": "Cut this answer: '$14,000, because reliance damages always use reasonable value.'",
+    "answer": "Cut as tiered_absolute; 'always' overclaims and reasonable value is not automatic reliance.",
+    "tension_slug": null,
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-17173_road_to_emmaus_puzzle_quest-3",
+    "source_qid": "17173_road_to_emmaus_puzzle_quest",
+    "drill_type": "wrong_element_recovery",
+    "target_skill": "Separate bad label from proper recovery.",
+    "prompt": "Why is 'nothing, because reliance is unavailable' not responsive when the plaintiff fully performed?",
+    "answer": "Because the call asks proper recovery; the contract price remains available.",
+    "tension_slug": null,
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-17173_road_to_emmaus_puzzle_quest-4",
+    "source_qid": "17173_road_to_emmaus_puzzle_quest",
+    "drill_type": "gold_key_recall",
+    "target_skill": "Recall fixed-price full-performance anchor.",
+    "prompt": "State the tiny rule for fixed price + full performance + higher market value.",
+    "answer": "Recover the fixed contract price; do not use higher reasonable value to exceed it.",
+    "tension_slug": null,
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-19250_scripture_card_printer-1",
+    "source_qid": "19250_scripture_card_printer",
+    "drill_type": "Gold Key recall",
+    "target_skill": "objective vs subjective satisfaction",
+    "prompt": "A satisfaction clause asks whether equipment produces 900 units per hour; tests show 940; buyer dislikes the color. Which standard governs?",
+    "answer": "Objective commercial standard.",
+    "tension_slug": "objective-commercial-performance-vs-subjective-personal-dislike",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-19250_scripture_card_printer-2",
+    "source_qid": "19250_scripture_card_printer",
+    "drill_type": "Overclaim cut",
+    "target_skill": "tiered_absolute",
+    "prompt": "Cut the phrase: 'any satisfaction clause gives unlimited subjective discretion.'",
+    "answer": "tiered_absolute; NOT_TRUE.",
+    "tension_slug": "objective-commercial-performance-vs-subjective-personal-dislike",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-19250_scripture_card_printer-3",
+    "source_qid": "19250_scripture_card_printer",
+    "drill_type": "Silver Key navigation",
+    "target_skill": "object-of-satisfaction scan",
+    "prompt": "Before accepting 'I was not satisfied,' what do you underline?",
+    "answer": "What the contract says the party must be satisfied about.",
+    "tension_slug": "objective-commercial-performance-vs-subjective-personal-dislike",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-19386_scripture_audio_cap-1",
+    "source_qid": "19386_scripture_audio_cap",
+    "drill_type": "CUT",
+    "target_skill": "overclaim",
+    "prompt": "A choice says intended beneficiaries can never enforce service contracts. What is the visible breaker?",
+    "answer": "The categorical word 'never' overclaims.",
+    "tension_slug": "same-contract-cap-travels-with-intended-beneficiary-right-vs-nonparty-escape-from-the-cap",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-19386_scripture_audio_cap-2",
+    "source_qid": "19386_scripture_audio_cap",
+    "drill_type": "CLASH",
+    "target_skill": "source-of-right/source-of-limit axis",
+    "prompt": "A beneficiary sues under a contract that also caps the promisor's liability. What axis decides cap vs full recovery?",
+    "answer": "Whether the right and the cap come from the same contract.",
+    "tension_slug": "same-contract-cap-travels-with-intended-beneficiary-right-vs-nonparty-escape-from-the-cap",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-19386_scripture_audio_cap-3",
+    "source_qid": "19386_scripture_audio_cap",
+    "drill_type": "ANCHOR",
+    "target_skill": "TPB scope",
+    "prompt": "State the Gold Key for an intended beneficiary and a contract cap.",
+    "answer": "An intended beneficiary takes the contract as written; same-contract caps apply.",
+    "tension_slug": "same-contract-cap-travels-with-intended-beneficiary-right-vs-nonparty-escape-from-the-cap",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-19386_scripture_audio_cap-4",
+    "source_qid": "19386_scripture_audio_cap",
+    "drill_type": "ISSUE-SENSE",
+    "target_skill": "TPB vs assignment",
+    "prompt": "The stem says the plaintiff sues as an intended beneficiary. A choice says recovery requires assignment. What is the mold?",
+    "answer": "Bait doctrine / wrong frame.",
+    "tension_slug": "same-contract-cap-travels-with-intended-beneficiary-right-vs-nonparty-escape-from-the-cap",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20004_dove_tokens_manna_game-1",
+    "source_qid": "20004_dove_tokens_manna_game",
+    "drill_type": "gold_key_recall",
+    "target_skill": "requirements-contract estimate",
+    "prompt": "A buyer promises to buy all requirements for one product line, estimates 40,000 units, then shuts that line down in good faith and buys none elsewhere. Is 40,000 a minimum?",
+    "answer": "No. The estimate is not automatically a floor; actual good-faith requirements may be zero.",
+    "tension_slug": null,
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20004_dove_tokens_manna_game-2",
+    "source_qid": "20004_dove_tokens_manna_game",
+    "drill_type": "wrong_frame_cut",
+    "target_skill": "excuse-doctrine drift",
+    "prompt": "The answer says the buyer wins only if it proves frustration. The stem asks about actual requirements after a covered-line shutdown. What is the C3 label?",
+    "answer": "NOT_RESPONSIVE / bait_doctrine / wrong_frame.",
+    "tension_slug": null,
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20004_dove_tokens_manna_game-3",
+    "source_qid": "20004_dove_tokens_manna_game",
+    "drill_type": "falsity_direction",
+    "target_skill": "parol evidence timing",
+    "prompt": "A later shutdown fact is offered to measure actual requirements. Does the parol evidence rule bar it as varying the estimate?",
+    "answer": "No. That is a backwards timing use of the parol-evidence rule.",
+    "tension_slug": null,
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20100_fish_and_loaves_keychains-1",
+    "source_qid": "20100_fish_and_loaves_keychains",
+    "drill_type": "number_lock",
+    "target_skill": "Gold Key recall",
+    "prompt": "No writing. Buyer admits 300 units but denies 900. How many units are enforceable under the UCC admission exception?",
+    "answer": "300",
+    "tension_slug": "alleged-quantity-versus-admitted-quantity",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20100_fish_and_loaves_keychains-2",
+    "source_qid": "20100_fish_and_loaves_keychains",
+    "drill_type": "mold_identification",
+    "target_skill": "extreme_of_range",
+    "prompt": "Buyer admits 300 but seller seeks 900. Choice says all 900 because buyer admitted a contract existed. Name the mold.",
+    "answer": "extreme_of_range",
+    "tension_slug": "alleged-quantity-versus-admitted-quantity",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20100_fish_and_loaves_keychains-3",
+    "source_qid": "20100_fish_and_loaves_keychains",
+    "drill_type": "answer_array",
+    "target_skill": "all/none/admitted-number scan",
+    "prompt": "Choices say all, none, market reasonable, or admitted amount. What number do you lock first?",
+    "answer": "The quantity admitted in court.",
+    "tension_slug": "alleged-quantity-versus-admitted-quantity",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20271_lantern_handbell_evening-1",
+    "source_qid": "20271_lantern_handbell_evening",
+    "drill_type": "number_array",
+    "target_skill": "cost-saved offset",
+    "prompt": "Contract price $70,000; saved costs $52,000; no other loss. Recovery?",
+    "answer": "$18,000",
+    "tension_slug": null,
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20271_lantern_handbell_evening-2",
+    "source_qid": "20271_lantern_handbell_evening",
+    "drill_type": "wrong_element",
+    "target_skill": "gross price trap",
+    "prompt": "Why is the full contract price not the recovery when all costs were avoided?",
+    "answer": "It ignores saved costs and overcompensates.",
+    "tension_slug": null,
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20271_lantern_handbell_evening-3",
+    "source_qid": "20271_lantern_handbell_evening",
+    "drill_type": "fabricated_rule",
+    "target_skill": "no-work myth",
+    "prompt": "Does a contractor lose all profit recovery because work had not begun?",
+    "answer": "No. If the contract was repudiated and profit is proved, saved costs are subtracted.",
+    "tension_slug": null,
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20351_red_sea_mini_golf-1",
+    "source_qid": "20351_red_sea_mini_golf",
+    "drill_type": "CUT",
+    "target_skill": "Overclaim detection",
+    "prompt": "Hidden defects are always outside an as-is clause.",
+    "answer": "Cut: tiered_absolute.",
+    "tension_slug": "mutual-mistake-fact-vs-contractual-risk-allocation",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20351_red_sea_mini_golf-2",
+    "source_qid": "20351_red_sea_mini_golf",
+    "drill_type": "CUT",
+    "target_skill": "Fabricated rule detection",
+    "prompt": "Deny rescission only if the buyer inspected every hidden component personally.",
+    "answer": "Cut: fabricated_rule.",
+    "tension_slug": "mutual-mistake-fact-vs-contractual-risk-allocation",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20351_red_sea_mini_golf-3",
+    "source_qid": "20351_red_sea_mini_golf",
+    "drill_type": "ANCHOR",
+    "target_skill": "Risk allocation in mutual mistake",
+    "prompt": "Both parties were mistaken, but the buyer agreed to take unknown hidden-defect risk. Rescission?",
+    "answer": "No rescission.",
+    "tension_slug": "mutual-mistake-fact-vs-contractual-risk-allocation",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20351_red_sea_mini_golf-4",
+    "source_qid": "20351_red_sea_mini_golf",
+    "drill_type": "ANSWER_ARRAY",
+    "target_skill": "2x2 grant/deny matrix",
+    "prompt": "Two choices grant because of mistake; two deny because of risk or a proof condition. Which axis decides?",
+    "answer": "Risk allocation.",
+    "tension_slug": "mutual-mistake-fact-vs-contractual-risk-allocation",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20370_dove_mug_notice-1",
+    "source_qid": "20370_dove_mug_notice",
+    "drill_type": "CUT",
+    "target_skill": "same_outcome_wrong_reason",
+    "prompt": "Seller sues for price after buyer accepted defective goods. Choice says seller wins because acceptance alone always binds buyer to contract price. Cut or keep?",
+    "answer": "Cut; acceptance alone is incomplete because timely notice can preserve defect remedies.",
+    "tension_slug": "notice-after-acceptance-vs-defect-alone-defense",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20370_dove_mug_notice-2",
+    "source_qid": "20370_dove_mug_notice",
+    "drill_type": "Issue-Sense",
+    "target_skill": "wrong_element",
+    "prompt": "Buyer knew goods were defective on delivery and stayed silent for months. Choice says buyer wins because goods were defective. What is the skipped element?",
+    "answer": "Notice after discovery; defect alone is not responsive.",
+    "tension_slug": "notice-after-acceptance-vs-defect-alone-defense",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20370_dove_mug_notice-3",
+    "source_qid": "20370_dove_mug_notice",
+    "drill_type": "Anchor",
+    "target_skill": "accepted_goods_notice_rule",
+    "prompt": "After accepting goods, what must a buyer do after discovering a defect to preserve remedies?",
+    "answer": "Notify the seller within a reasonable time.",
+    "tension_slug": "notice-after-acceptance-vs-defect-alone-defense",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20370_dove_mug_notice-4",
+    "source_qid": "20370_dove_mug_notice",
+    "drill_type": "Trap Spotting",
+    "target_skill": "fabricated_rule",
+    "prompt": "Choice says seller loses the price if a reasonable pre-shipment inspection would have found the defect. What mold is this?",
+    "answer": "fabricated_rule.",
+    "tension_slug": "notice-after-acceptance-vs-defect-alone-defense",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20461_lydia_beeswax_requirements-1",
+    "source_qid": "20461_lydia_beeswax_requirements",
+    "drill_type": "gold_key_recall",
+    "target_skill": "requirements quantity",
+    "prompt": "A buyer offers to purchase all widgets her shop requires for six months. No fixed number is stated. Is the quantity automatically too indefinite?",
+    "answer": "No. Requirements quantity can be measured by good-faith needs.",
+    "tension_slug": null,
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20461_lydia_beeswax_requirements-2",
+    "source_qid": "20461_lydia_beeswax_requirements",
+    "drill_type": "overclaim_cut",
+    "target_skill": "tiered_absolute",
+    "prompt": "Cut or keep: 'Requirements quantities are always illusory.'",
+    "answer": "Cut: tiered_absolute.",
+    "tension_slug": null,
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20461_lydia_beeswax_requirements-3",
+    "source_qid": "20461_lydia_beeswax_requirements",
+    "drill_type": "wrong_frame",
+    "target_skill": "price quote vs offer",
+    "prompt": "Stem says buyer wrote 'I offer to buy' and seller accepted. Choice says the writing was only a price quote. What is the C3 label?",
+    "answer": "NOT_RESPONSIVE / bait_doctrine / wrong_frame.",
+    "tension_slug": null,
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20461_lydia_beeswax_requirements-4",
+    "source_qid": "20461_lydia_beeswax_requirements",
+    "drill_type": "anchor_assisted_cut",
+    "target_skill": "adequacy review",
+    "prompt": "Choice says no contract unless the court finds the stated price adequate. What is the problem?",
+    "answer": "Fabricated adequacy gate; anchor-assisted cut.",
+    "tension_slug": null,
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20523_easter_stage_guaranty-1",
+    "source_qid": "20523_easter_stage_guaranty",
+    "drill_type": "Gold Key recall",
+    "target_skill": "SOF memorandum sufficiency",
+    "prompt": "A guarantor signs a note to the debtor admitting the guaranty. The creditor sues. Does the note fail solely because it was addressed to the debtor?",
+    "answer": "No. Addressee is not the test; signer and content are.",
+    "tension_slug": "extra-formalities-versus-party-to-be-charged-memorandum",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20523_easter_stage_guaranty-2",
+    "source_qid": "20523_easter_stage_guaranty",
+    "drill_type": "CUT",
+    "target_skill": "extra-formality detection",
+    "prompt": "Cut the answer: 'No, because both the debtor and guarantor must always sign the guaranty memorandum.'",
+    "answer": "CUT as tiered_absolute after the Gold Key; the party being charged must sign.",
+    "tension_slug": "extra-formalities-versus-party-to-be-charged-memorandum",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20523_easter_stage_guaranty-3",
+    "source_qid": "20523_easter_stage_guaranty",
+    "drill_type": "answer_array",
+    "target_skill": "formalities grouping",
+    "prompt": "Choices add creditor-addressing, both-signature, and debtor-signature requirements. What is the shared trap?",
+    "answer": "Extra formalities beyond the party-to-be-charged signed memorandum.",
+    "tension_slug": "extra-formalities-versus-party-to-be-charged-memorandum",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20556_mustard_seed_puppet_caravan-1",
+    "source_qid": "20556_mustard_seed_puppet_caravan",
+    "drill_type": "timeline_clash",
+    "target_skill": "CLASH",
+    "prompt": "Replacement hired December 5; outside commitment released December 12. Which date controls?",
+    "answer": "December 5 controls because reliance came before cure.",
+    "tension_slug": "later-readiness-label-only-answer-vs-reliance-before-cure",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20556_mustard_seed_puppet_caravan-2",
+    "source_qid": "20556_mustard_seed_puppet_caravan",
+    "drill_type": "label_vs_fact",
+    "target_skill": "Issue-Sense",
+    "prompt": "One answer says 'repudiation'; another says 'hired replacement in reliance.' Which is stronger?",
+    "answer": "The reliance answer.",
+    "tension_slug": "later-readiness-label-only-answer-vs-reliance-before-cure",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20556_mustard_seed_puppet_caravan-3",
+    "source_qid": "20556_mustard_seed_puppet_caravan",
+    "drill_type": "wrong_timing_cut",
+    "target_skill": "CUT",
+    "prompt": "A performer is ready on the start date after the company already hired a replacement. What is the trap?",
+    "answer": "Later readiness.",
+    "tension_slug": "later-readiness-label-only-answer-vs-reliance-before-cure",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20556_mustard_seed_puppet_caravan-4",
+    "source_qid": "20556_mustard_seed_puppet_caravan",
+    "drill_type": "notice_lure",
+    "target_skill": "CUT",
+    "prompt": "The performer never personally warned the company, but the company learned from a reliable notice. What is the trap?",
+    "answer": "Direct-notice wrong element.",
+    "tension_slug": "later-readiness-label-only-answer-vs-reliance-before-cure",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20569_ark_float-1",
+    "source_qid": "20569_ark_float",
+    "drill_type": "cut",
+    "target_skill": "wrong-frame trigger swap",
+    "prompt": "A contract says a duty remains effective unless Event X happens. Event X happens. A choice says breach unless performance was impossible. Cut or keep?",
+    "answer": "Cut. It swaps Event X for impossibility.",
+    "tension_slug": "exact-stated-terminating-event-vs-neighboring-contract-doctrines",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20569_ark_float-2",
+    "source_qid": "20569_ark_float",
+    "drill_type": "anchor",
+    "target_skill": "condition subsequent",
+    "prompt": "What does a later 'unless' event do to an existing duty when the contract says it ends the duty?",
+    "answer": "It discharges the duty.",
+    "tension_slug": "exact-stated-terminating-event-vs-neighboring-contract-doctrines",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20569_ark_float-3",
+    "source_qid": "20569_ark_float",
+    "drill_type": "call_prediction",
+    "target_skill": "timeline discipline",
+    "prompt": "The contract was effective when signed, but the stated later terminating event occurred before performance. Which fact is dispositive?",
+    "answer": "The later terminating event.",
+    "tension_slug": "exact-stated-terminating-event-vs-neighboring-contract-doctrines",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20599_advent_handbell_integration-1",
+    "source_qid": "20599_advent_handbell_integration",
+    "drill_type": "CUT",
+    "target_skill": "wrong-object Issue-Sense",
+    "prompt": "A party offers an oral side promise, but an answer excludes the signed contract. What filter breaks?",
+    "answer": "NOT_RESPONSIVE / misfit.",
+    "tension_slug": "complete-and-exclusive-integration-vs-mere-non-contradiction",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20599_advent_handbell_integration-2",
+    "source_qid": "20599_advent_handbell_integration",
+    "drill_type": "CLASH",
+    "target_skill": "integration-level axis",
+    "prompt": "One answer says the oral term is consistent; another says the writing is complete and exclusive. What is the axis?",
+    "answer": "Complete integration versus mere non-contradiction.",
+    "tension_slug": "complete-and-exclusive-integration-vs-mere-non-contradiction",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20599_advent_handbell_integration-3",
+    "source_qid": "20599_advent_handbell_integration",
+    "drill_type": "ANCHOR",
+    "target_skill": "complete integration Gold Key",
+    "prompt": "A complete-and-exclusive writing is silent about a prior oral add-on. Does consistency alone admit it?",
+    "answer": "No. Complete integration excludes prior consistent add-ons.",
+    "tension_slug": "complete-and-exclusive-integration-vs-mere-non-contradiction",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20737_jonahs_whale_lyre-1",
+    "source_qid": "20737_jonahs_whale_lyre",
+    "drill_type": "anchor_recall",
+    "target_skill": "Gold Key recall",
+    "prompt": "Buyer seeks specific performance of a highly unusual chattel. What fact matters?",
+    "answer": "The goods are unique or highly unusual.",
+    "tension_slug": "which-fact-triggers-specific-performance",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20737_jonahs_whale_lyre-2",
+    "source_qid": "20737_jonahs_whale_lyre",
+    "drill_type": "wrong_element_cut",
+    "target_skill": "Issue-Sense",
+    "prompt": "Choice says yes because the seller is a merchant. What filter breaks?",
+    "answer": "NOT_RESPONSIVE; merchant status is not the remedy trigger.",
+    "tension_slug": "which-fact-triggers-specific-performance",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20737_jonahs_whale_lyre-3",
+    "source_qid": "20737_jonahs_whale_lyre",
+    "drill_type": "overclaim_cut",
+    "target_skill": "Ear plus anchor",
+    "prompt": "Choice says no specific performance is ever available for personalty. What mold?",
+    "answer": "tiered_absolute; it omits the unique-goods exception.",
+    "tension_slug": "which-fact-triggers-specific-performance",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20737_jonahs_whale_lyre-4",
+    "source_qid": "20737_jonahs_whale_lyre",
+    "drill_type": "answer_array_navigation",
+    "target_skill": "Silver Key",
+    "prompt": "Three answers say yes for different reasons. What move?",
+    "answer": "Pick the Yes tied to the stem’s remedy-trigger fact.",
+    "tension_slug": "which-fact-triggers-specific-performance",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20805_psalm_lanterns_confirmation-1",
+    "source_qid": "20805_psalm_lanterns_confirmation",
+    "drill_type": "anchor_recall",
+    "target_skill": "merchant-confirmation written objection",
+    "prompt": "Two merchants make an oral goods deal. Seller sends a signed confirmation. Buyer calls within 10 days to object but sends no writing. Does the call defeat the confirmation?",
+    "answer": "No. Written objection is required.",
+    "tension_slug": "timely-oral-objection-versus-required-written-objection",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20805_psalm_lanterns_confirmation-2",
+    "source_qid": "20805_psalm_lanterns_confirmation",
+    "drill_type": "trap_spotting",
+    "target_skill": "timing versus form",
+    "prompt": "A choice says: 'Any objection within 10 days defeats the confirmation.' Name the trap.",
+    "answer": "Timing-swallows-form trap; objection must be written.",
+    "tension_slug": "timely-oral-objection-versus-required-written-objection",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20805_psalm_lanterns_confirmation-3",
+    "source_qid": "20805_psalm_lanterns_confirmation",
+    "drill_type": "mold_label",
+    "target_skill": "fabricated_rule",
+    "prompt": "A choice says the sender must prove the recipient read every word of a merchant confirmation. Mold?",
+    "answer": "fabricated_rule.",
+    "tension_slug": "timely-oral-objection-versus-required-written-objection",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20805_psalm_lanterns_confirmation-4",
+    "source_qid": "20805_psalm_lanterns_confirmation",
+    "drill_type": "signature_myth",
+    "target_skill": "recipient signature under merchant confirmation",
+    "prompt": "A choice says the confirmation fails because the recipient merchant did not sign it. Why cut?",
+    "answer": "The merchant-confirmation rule can work without recipient signature if no timely written objection is sent.",
+    "tension_slug": "timely-oral-objection-versus-required-written-objection",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20808_jericho_press-1",
+    "source_qid": "20808_jericho_press",
+    "drill_type": "Gold Key recall",
+    "target_skill": "preexisting duty",
+    "prompt": "A promises B to do the exact act A already owes B under an earlier contract. Is A's promise consideration for B's new promise?",
+    "answer": "No. Existing duty is not new consideration.",
+    "tension_slug": "new-legal-detriment-vs-preexisting-duty",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20808_jericho_press-2",
+    "source_qid": "20808_jericho_press",
+    "drill_type": "CLASH axis",
+    "target_skill": "new legal detriment vs preexisting duty",
+    "prompt": "Choice 1 says promise-for-promise. Choice 2 says no consideration. What fact decides?",
+    "answer": "Whether the promisee gave up a new legal right or only repeated an existing duty.",
+    "tension_slug": "new-legal-detriment-vs-preexisting-duty",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20808_jericho_press-3",
+    "source_qid": "20808_jericho_press",
+    "drill_type": "Wrong-element cut",
+    "target_skill": "promissory estoppel reliance",
+    "prompt": "A choice says estoppel applies, but the plaintiff did not change position because of the promise. Cut or keep?",
+    "answer": "Cut. Estoppel needs reliance.",
+    "tension_slug": "new-legal-detriment-vs-preexisting-duty",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-20808_jericho_press-4",
+    "source_qid": "20808_jericho_press",
+    "drill_type": "Wrong-frame cut",
+    "target_skill": "condition-precedent bait",
+    "prompt": "A choice uses a hidden earlier promise to make a condition in a later promise by another person. What is the C3 label?",
+    "answer": "Wrong-frame bait doctrine.",
+    "tension_slug": "new-legal-detriment-vs-preexisting-duty",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-21879_noahs_ark_puppet_set-1",
+    "source_qid": "21879_noahs_ark_puppet_set",
+    "drill_type": "label_classification",
+    "target_skill": "offer_acceptance_mode",
+    "prompt": "Buyer: “I will buy if you deliver Friday.” Seller Thursday: “I will deliver Friday.” Classify seller’s words.",
+    "answer": "Offer, not acceptance, if delivery was the required acceptance.",
+    "tension_slug": "offer-vs-acceptance-by-required-performance",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-21879_noahs_ark_puppet_set-2",
+    "source_qid": "21879_noahs_ark_puppet_set",
+    "drill_type": "verb_tense_cut",
+    "target_skill": "future_words_vs_performance",
+    "prompt": "Choice says “commencement of performance.” Stem says “I will bring it tomorrow.” Cut or keep?",
+    "answer": "Cut; future words are not present performance.",
+    "tension_slug": "offer-vs-acceptance-by-required-performance",
+    "subject": "CONTRACTS"
+  },
+  {
+    "id": "MICRO-21879_noahs_ark_puppet_set-3",
+    "source_qid": "21879_noahs_ark_puppet_set",
+    "drill_type": "wrong_frame",
+    "target_skill": "ratification_trap",
+    "prompt": "Can a party ratify an acceptance that never legally occurred?",
+    "answer": "No.",
+    "tension_slug": "offer-vs-acceptance-by-required-performance",
+    "subject": "CONTRACTS"
+  }
+]

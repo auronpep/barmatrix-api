@@ -1,0 +1,626 @@
+[
+  {
+    "id": "GK-TORTS-THIRD-PARTY-SECURITY-01",
+    "kind": "gold",
+    "statement": "A business is not an insurer against random third-party crime. Customer status matters, but guard/security duty needs a foreseeability trigger such as prior similar incidents, created risk, imminent danger, or comparable notice.",
+    "type": "distinction",
+    "trigger": "A customer is attacked by an unknown third party and sues for missing security guards.",
+    "authority": "Restatement (Second) of Torts § 344 cmt. f; Restatement (Second) of Torts § 314A business-invitee principles, lawyer-confirmation only.",
+    "last_minute_review": true,
+    "example_qids": [
+      "19213_road_to_emmaus_breezeway"
+    ]
+  },
+  {
+    "id": "SK-TORTS-SECURITY-CALL-01",
+    "kind": "silver",
+    "statement": "Lock the exact duty before reading the choices: the question is not whether Esther was a customer, but whether these facts triggered a guard-duty against a random third-party attack.",
+    "type": "call_focus",
+    "trigger": "A choice says duty exists merely because the plaintiff bought or completed something at the business.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "19213_road_to_emmaus_breezeway"
+    ]
+  },
+  {
+    "id": "GK-TORTS-LEARNED-INTERMEDIARY-01",
+    "kind": "gold",
+    "statement": "For prescription products, an adequate warning to the prescribing healthcare provider can satisfy the manufacturer's warning duty; the manufacturer is not automatically required to warn the patient directly.",
+    "type": "distinction",
+    "trigger": "Prescription-only product + professional warning to prescriber + jurisdiction follows learned-intermediary rule.",
+    "authority": "Restatement (Third) of Torts: Products Liability § 6(d); learned-intermediary case law.",
+    "last_minute_review": true,
+    "example_qids": [
+      "19434"
+    ]
+  },
+  {
+    "id": "SK-TORTS-WARNED-RISK-01",
+    "kind": "silver",
+    "statement": "On a failure-to-warn call, an answer saying the warned-of risk happened proves injury, not warning defect.",
+    "type": "trap_spotting",
+    "trigger": "Choice points to injury by the described risk instead of the adequacy or audience of the warning.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "19434"
+    ]
+  },
+  {
+    "id": "GK-TORTS-NEGLIGENT-ENTRUSTMENT-01",
+    "kind": "gold",
+    "statement": "Negligent entrustment looks to control or supply of the chattel plus known unsafe use; formal legal title is not the gate.",
+    "type": "distinction",
+    "trigger": "Defendant is not owner but has key, permission authority, or control and hands the chattel to an impaired or inexperienced user.",
+    "authority": "Restatement (Second) of Torts §§ 308, 390; Delana v. CED Sales, Inc.",
+    "last_minute_review": true,
+    "example_qids": [
+      "19448_praise_night_tshirt_cannon"
+    ]
+  },
+  {
+    "id": "SK-TORTS-NEGLIGENT-ENTRUSTMENT-01",
+    "kind": "silver",
+    "statement": "Lock the target defendant first: the call asks about Lydia's duty, so an answer focused only on Barnabas's operation is adjacent-call bait.",
+    "type": "call_focus",
+    "trigger": "The injured plaintiff sues the person who handed over the chattel, not the person who physically used it.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "19448_praise_night_tshirt_cannon"
+    ]
+  },
+  {
+    "id": "GK-TORTS-LIMITED-CLASS-01",
+    "kind": "gold",
+    "statement": "For negligent misrepresentation by a professional information supplier, economic-loss duty is limited to a known person or limited group for a specific transaction or substantially similar transaction. It does not run to every foreseeable later reader.",
+    "type": "threshold",
+    "trigger": "professional report, economic loss, unknown third-party reader",
+    "authority": "Restatement (Second) of Torts § 552; Bily v. Arthur Young & Co.; Ultramares Corp. v. Touche.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20024_loaves_fishes_crate_count"
+    ]
+  },
+  {
+    "id": "SK-TORTS-TARGETED-USE-01",
+    "kind": "silver",
+    "statement": "When one finalist says 'foreseeable reader' and another says 'known or limited class for a transaction,' name the axis as targeted-use duty, not general foreseeability.",
+    "type": "clash",
+    "trigger": "unknown later reader relying on a client-republished report",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20024_loaves_fishes_crate_count"
+    ]
+  },
+  {
+    "id": "GK-TORTS-PUBLIC-FALSE-LIGHT-01",
+    "kind": "gold",
+    "statement": "Public-concern false light points to actual malice: the publisher knew the false implication was false or recklessly disregarded that risk. Strict liability is the trap.",
+    "type": "constitutional_principle",
+    "trigger": "false-light claim + public-concern publication + pre-publication contradiction",
+    "authority": "Time, Inc. v. Hill, 385 U.S. 374 (1967); New York Times Co. v. Sullivan, 376 U.S. 254 (1964)",
+    "last_minute_review": true,
+    "example_qids": [
+      "20123_prayer_card_threat_writers"
+    ]
+  },
+  {
+    "id": "SK-TORTS-PRAYER-CARD-01",
+    "kind": "silver",
+    "statement": "On a mental-state call, cut choices that describe harm, remedy, tort category, or no-fault liability before judging doctrine.",
+    "type": "call_focus",
+    "trigger": "call asks 'what mental-state showing'",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20123_prayer_card_threat_writers"
+    ]
+  },
+  {
+    "id": "GK-TORTS-LATER-REPAIR-01",
+    "kind": "gold",
+    "statement": "A later safety fix is not proof that the earlier condition was negligent. Its limited use is a non-breach purpose such as feasibility, and only if that purpose is genuinely disputed.",
+    "type": "distinction",
+    "trigger": "Defendant changes the condition after the injury.",
+    "authority": "Fed. R. Evid. 407; Restatement (Third) of Torts: Liability for Physical and Emotional Harm §3.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20310_psalms_wax_lamp"
+    ]
+  },
+  {
+    "id": "SK-TORTS-LATER-REPAIR-01",
+    "kind": "silver",
+    "statement": "Lock the call to use, not hindsight. First cut the two extremes: later fix proves everything, later fix proves nothing.",
+    "type": "call_focus",
+    "trigger": "A post-injury safety change appears in a breach question.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20310_psalms_wax_lamp"
+    ]
+  },
+  {
+    "id": "GK-TORTS-RES-IPSA-INFERENCE-01",
+    "kind": "gold",
+    "statement": "Res ipsa is an inference bridge. It can apply when the plaintiff lacks direct proof of the exact defect, and it permits but does not compel a negligence finding.",
+    "type": "rule",
+    "trigger": "The call asks whether res ipsa is available and the stem says the plaintiff lacks direct defect proof.",
+    "authority": "Restatement (Second) of Torts § 328D",
+    "last_minute_review": true,
+    "example_qids": [
+      "20328_bethlehem_star_drop"
+    ]
+  },
+  {
+    "id": "GK-TORTS-RES-IPSA-CONTROL-01",
+    "kind": "gold",
+    "statement": "Contractor involvement does not automatically erase res ipsa responsibility when the defendant retained operational responsibility for the instrumentality.",
+    "type": "distinction",
+    "trigger": "The stem says a contractor serviced the mechanism but the defendant retained operational responsibility and received reports.",
+    "authority": "Restatement (Second) of Torts § 328D responsibility/control formulation",
+    "last_minute_review": true,
+    "example_qids": [
+      "20328_bethlehem_star_drop"
+    ]
+  },
+  {
+    "id": "SK-TORTS-RES-IPSA-ARRAY-01",
+    "kind": "silver",
+    "statement": "Cut the absolute contractor and automatic-judgment answers first. Then resolve the residual pair by asking whether the missing exact defect is fatal or is the reason res ipsa matters.",
+    "type": "answer_array",
+    "trigger": "One answer says no exact defect, one says inference without exact defect.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20328_bethlehem_star_drop"
+    ]
+  },
+  {
+    "id": "GK-TORTS-USER-SUPPLIER-01",
+    "kind": "gold",
+    "statement": "Strict products liability for a defective product is aimed at commercial sellers or distributors, not a person who merely uses the product.",
+    "type": "distinction",
+    "trigger": "The defendant is using, testing, or operating a product rather than selling or distributing it.",
+    "authority": "Restatement (Third) of Torts: Products Liability § 1.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20439_floating_star_driveway"
+    ]
+  },
+  {
+    "id": "GK-TORTS-FAULT-BASIS-01",
+    "kind": "gold",
+    "statement": "Cause and status are not enough; the plaintiff’s argument must supply negligence, intent, or a strict-liability category. Unreasonable conduct supplies the negligence route.",
+    "type": "threshold",
+    "trigger": "A best-argument call with choices that name cause, status, or product defect.",
+    "authority": "Restatement (Third) of Torts: Liability for Physical and Emotional Harm § 3.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20439_floating_star_driveway"
+    ]
+  },
+  {
+    "id": "SK-TORTS-BEST-ARGUMENT-01",
+    "kind": "silver",
+    "statement": "On a best-argument call, pick the answer that gives the plaintiff a legal route to liability; do not require the answer to prove the whole case.",
+    "type": "call_focus",
+    "trigger": "The call asks for the claimant’s most effective argument.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20439_floating_star_driveway"
+    ]
+  },
+  {
+    "id": "GK-TORTS-COLLATERAL-SOURCE-01",
+    "kind": "gold",
+    "statement": "Plaintiff-side insurance is collateral. A negligence defendant gets no credit for benefits paid by the plaintiff's own insurer; credit is for payments by the defendant, someone acting for the defendant, or another actor subject to the same tort liability.",
+    "type": "rule",
+    "trigger": "Defendant asks to reduce a tort award because plaintiff's own insurer already paid.",
+    "authority": "Restatement (Second) of Torts § 920A.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20496_loaves_prop_cart"
+    ]
+  },
+  {
+    "id": "SK-TORTS-COLLATERAL-SOURCE-01",
+    "kind": "silver",
+    "statement": "For setoff questions, ask who paid and whose liability the payer was tied to before reacting to double-recovery language.",
+    "type": "trap_spotting",
+    "trigger": "Motion to reduce damages after insurance or settlement payment.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20496_loaves_prop_cart"
+    ]
+  },
+  {
+    "id": "GK-TORTS-JERICHO-WALL-01",
+    "kind": "gold",
+    "statement": "For a business invitee, owner liability turns on dangerous conditions the owner knew about or would discover by reasonable care, plus failure to protect.",
+    "type": "rule",
+    "trigger": "public-facing business premises plus customer injury from a condition on the premises",
+    "authority": "Restatement (Second) of Torts §§ 332, 343",
+    "last_minute_review": true,
+    "example_qids": [
+      "20546_jericho_wall_studio"
+    ]
+  },
+  {
+    "id": "GK-TORTS-PRODUCT-SELLER-01",
+    "kind": "gold",
+    "statement": "A product defect alone points to strict products liability only when the defendant is in the business of selling that type of product.",
+    "type": "threshold",
+    "trigger": "injury from a defective component but defendant is sued as premises owner",
+    "authority": "Restatement (Second) of Torts § 402A",
+    "last_minute_review": true,
+    "example_qids": [
+      "20546_jericho_wall_studio"
+    ]
+  },
+  {
+    "id": "SK-TORTS-JERICHO-WALL-01",
+    "kind": "silver",
+    "statement": "Lock the named defendant before reading the added facts: the winning fact must create liability for Lydia, not for Barnabas or the product chain.",
+    "type": "cut",
+    "trigger": "one defendant named in the call, but choices mention product defect, contractor conduct, and customer payment",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20546_jericho_wall_studio"
+    ]
+  },
+  {
+    "id": "GK-TORTS-DANGER-INVITES-RESCUE-01",
+    "kind": "gold",
+    "statement": "Danger invites rescue: when a person negligently creates apparent human peril, even to himself, a reasonable rescue attempt is foreseeable and the rescuer may recover for rescue injuries caused by that negligence.",
+    "type": "rule",
+    "trigger": "rescuer injured while trying to save someone from danger the defendant negligently created",
+    "authority": "Wagner v. International Railway Co., 232 N.Y. 176 (1921); self-peril applications recognized in later rescue-doctrine cases.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20594_daniels_whale_float"
+    ]
+  },
+  {
+    "id": "SK-TORTS-BECAUSE-CLAUSE-01",
+    "kind": "silver",
+    "statement": "In a party-result answer set, test the because-clause before choosing the winner. A correct party with a wrong reason is still out.",
+    "type": "answer_array",
+    "trigger": "choices split between plaintiff/defendant and each uses 'because'",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20594_daniels_whale_float"
+    ]
+  },
+  {
+    "id": "GK-TORTS-APPROPRIATION-IDENTITY-01",
+    "kind": "gold",
+    "statement": "Appropriation is not limited to exact name or photograph. A clearly recognizable, unauthorized commercial evocation of the plaintiff’s identity can be enough.",
+    "type": "distinction",
+    "trigger": "Ad uses a lookalike, soundalike, persona, or identity cues to sell a product.",
+    "authority": "Restatement (Second) of Torts § 652C; Midler v. Ford Motor Co., 849 F.2d 460 (9th Cir. 1988).",
+    "last_minute_review": true,
+    "example_qids": [
+      "20598_write_it_on_your_heart"
+    ]
+  },
+  {
+    "id": "SK-TORTS-APPROPRIATION-IDENTITY-01",
+    "kind": "silver",
+    "statement": "For appropriation calls, sort the array by the three trigger facts: identity use, commercial advantage, and no consent. Extra requirements like exact name/photo, insult, or false fact are trap add-ons.",
+    "type": "trap_spotting",
+    "trigger": "One answer mirrors identity-use facts while others add conditions.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20598_write_it_on_your_heart"
+    ]
+  },
+  {
+    "id": "GK-TORTS-RESCUE-NEGLIGENT-PERIL-01",
+    "kind": "gold",
+    "statement": "Rescue doctrine needs a negligent peril-maker. A rescuer's injury is charged to the person whose negligence created the peril, not merely to the person who needed help.",
+    "type": "threshold",
+    "trigger": "rescuer sues the imperiled person's estate",
+    "authority": "Wagner v. International Railway, 232 N.Y. 176, 133 N.E. 437 (N.Y. 1921); Cornell Wex rescue doctrine",
+    "last_minute_review": true,
+    "example_qids": [
+      "20603_road_to_emmaus_escape_room"
+    ]
+  },
+  {
+    "id": "SK-TORTS-TARGET-ACTOR-01",
+    "kind": "silver",
+    "statement": "Lock the target actor before judging the rescue. If the rescuer sues the imperiled person's estate, ask what that imperiled person did wrong.",
+    "type": "call_focus",
+    "trigger": "choices discuss the rescuer's reasonableness, public policy, or failed benefit",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20603_road_to_emmaus_escape_room"
+    ]
+  },
+  {
+    "id": "GK-TORTS-FALSE-LIGHT-PUBLICITY-01",
+    "kind": "gold",
+    "statement": "False light needs publicity to the public or a broad audience. A private one-listener accusation is not enough, even if it is false.",
+    "type": "threshold",
+    "trigger": "false light claim + one private listener + no repeat",
+    "authority": "Restatement (Second) of Torts §652E; Restatement publicity commentary.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20605_scripture_quiz_whisper"
+    ]
+  },
+  {
+    "id": "GK-TORTS-PRIVACY-TORT-HOMES-02",
+    "kind": "gold",
+    "statement": "Commercial use of a person's identity is appropriation, not false light. Do not borrow the neighboring privacy tort's element.",
+    "type": "distinction",
+    "trigger": "false light choice using identity, likeness, or commercial use",
+    "authority": "Restatement (Second) of Torts §652C and §652E.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20605_scripture_quiz_whisper"
+    ]
+  },
+  {
+    "id": "SK-TORTS-FALSE-LIGHT-NO-PAIR-01",
+    "kind": "silver",
+    "statement": "When two answers say No, keep the No reason that matches the stem's decisive fact. Here, private audience beats commercial-use vocabulary.",
+    "type": "trap_spotting",
+    "trigger": "two No choices in a privacy-tort element question",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20605_scripture_quiz_whisper"
+    ]
+  },
+  {
+    "id": "GK-TORTS-FORESEEABLE-RISK-01",
+    "kind": "gold",
+    "statement": "Negligence turns on unreasonable conduct in light of a foreseeable risk. A fact that makes the specific risk not foreseeable can defeat breach.",
+    "type": "rule",
+    "trigger": "The added fact says the missing safety device is usually present.",
+    "authority": "Restatement (Third) of Torts: Liability for Physical and Emotional Harm § 3; negligence factors include foreseeable likelihood/severity and burden of precautions.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20649_christmas_pageant_platform"
+    ]
+  },
+  {
+    "id": "GK-TORTS-CONTRIB-AVOIDABILITY-01",
+    "kind": "gold",
+    "statement": "Contributory negligence requires negligent plaintiff conduct that contributed to the harm. A fact that the plaintiff would have avoided injury by doing something else is not enough by itself.",
+    "type": "distinction",
+    "trigger": "The answer says the plaintiff would not have been hurt from another position.",
+    "authority": "Common-law contributory negligence rule; see Cornell Wex summary.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20649_christmas_pageant_platform"
+    ]
+  },
+  {
+    "id": "SK-TORTS-PAGEANT-ARRAY-01",
+    "kind": "silver",
+    "statement": "In an added-fact defense question, sort each option by what it attacks: defendant breach, plaintiff negligence, other cause, or other party. The best defense fact usually attacks an element of the plaintiff's claim against this defendant.",
+    "type": "answer_array",
+    "trigger": "Choices point in four different blame directions.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20649_christmas_pageant_platform"
+    ]
+  },
+  {
+    "id": "GK-TORTS-MEDMAL-CAUSATION-01",
+    "kind": "gold",
+    "statement": "In malpractice, proof that the doctor broke a professional rule is not enough; the plaintiff must prove that the broken rule caused the injury.",
+    "type": "threshold",
+    "trigger": "Stem gives standard-of-care evidence but no evidence the missed consult would change the outcome.",
+    "authority": "Restatement (Third) of Torts §§ 26, 29; medical-malpractice causation doctrine.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20717_ruths_hymn_recording_procedure"
+    ]
+  },
+  {
+    "id": "GK-TORTS-LIFE-SUPPORT-01",
+    "kind": "gold",
+    "statement": "When the alleged tort creates the condition requiring life support, later withdrawal of support normally does not cut off causation.",
+    "type": "distinction",
+    "trigger": "Family/court withdraws support after the medical injury creates a permanent vegetative state.",
+    "authority": "State v. Pelham; State v. Patterson.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20717_ruths_hymn_recording_procedure"
+    ]
+  },
+  {
+    "id": "SK-TORTS-CAUSATION-LINK-01",
+    "kind": "silver",
+    "statement": "Track the alleged breach, not the whole medical timeline. The question is not procedure-to-death; it is missed-consult-to-injury.",
+    "type": "clash",
+    "trigger": "One answer proves breach while another says no evidence the omitted consult would change the outcome.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20717_ruths_hymn_recording_procedure"
+    ]
+  },
+  {
+    "id": "GK-TORTS-KNOWN-RECIPIENT-01",
+    "kind": "gold",
+    "statement": "For negligent misrepresentation by a professional information supplier, no contract privity is required when the plaintiff is the known person, or one of a limited known group, expected to rely on the information in the transaction.",
+    "type": "rule",
+    "trigger": "professional report + named recipient or limited known group + business reliance",
+    "authority": "Restatement (Second) of Torts §552; Private Mortgage Investment Services, Inc. v. Hotel & Club Associates, Inc.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20725_emmaus_laser_cutter"
+    ]
+  },
+  {
+    "id": "SK-TORTS-BRACKET-CLASS-01",
+    "kind": "silver",
+    "statement": "When the array swings from no contract to every foreseeable reader, bracket both extremes and look for the named-recipient middle lane.",
+    "type": "answer_array",
+    "trigger": "choices include no contract, every foreseeable, and named-recipient reliance",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20725_emmaus_laser_cutter"
+    ]
+  },
+  {
+    "id": "GK-TORTS-SPECIAL-RISK-01",
+    "kind": "gold",
+    "statement": "Strict liability for an abnormally dangerous activity follows the special danger, not every accident near the activity. The injury must be the kind of harm that made the activity abnormal.",
+    "type": "distinction",
+    "trigger": "The stem gives an abnormally dangerous activity plus an ordinary injury mechanism.",
+    "authority": "Restatement (Second) of Torts §519(2)",
+    "last_minute_review": true,
+    "example_qids": [
+      "20727"
+    ]
+  },
+  {
+    "id": "SK-TORTS-RISK-LINK-01",
+    "kind": "silver",
+    "statement": "In a 2-yes / 2-no strict-liability array, do not pick the outcome first. Pick the reason that links this injury to the risk named in the answer.",
+    "type": "answer_array",
+    "trigger": "Two answers say yes, two say no, and only one answer talks about the injury source.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20727"
+    ]
+  },
+  {
+    "id": "GK-TORTS-BATTERY-CONTACT-INTENT-01",
+    "kind": "gold",
+    "statement": "Battery intent points at harmful/offensive contact or apprehension of that contact. It does not require intent to injure, appreciation of risk, or bad motive; a child can be liable if the child formed that contact-level intent.",
+    "type": "distinction",
+    "trigger": "Battery call plus choices that talk about injury, risk, age, or anger.",
+    "authority": "Restatement (Second) of Torts §§ 13, 18; Garratt v. Dailey.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20730_shepherd_sling_fair"
+    ]
+  },
+  {
+    "id": "SK-TORTS-BATTERY-ANSWER-ARRAY-01",
+    "kind": "silver",
+    "statement": "When the answer array gives four mental states, choose the one aimed at the tort named in the call. For battery, the contact-target answer beats injury, risk, and motive answers.",
+    "type": "answer_array",
+    "trigger": "Battery call with choices about contact, injury, risk, and anger.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20730_shepherd_sling_fair"
+    ]
+  },
+  {
+    "id": "GK-TORTS-ERRONEOUS-DEATH-NOTICE-01",
+    "kind": "gold",
+    "statement": "When a jurisdiction recognizes negligent erroneous death notice, the claim does not fail merely because the plaintiff was outside physical danger or because the reported death was false.",
+    "type": "exception",
+    "trigger": "False death notice to close family + severe distress + jurisdiction recognizes the category.",
+    "authority": "Johnson v. State of New York, 37 N.Y.2d 378 (1975); Restatement (Third) of Torts: Liability for Physical and Emotional Harm § 47(b).",
+    "last_minute_review": true,
+    "example_qids": [
+      "20733_galilee_trails_death_notice"
+    ]
+  },
+  {
+    "id": "SK-TORTS-SPECIAL-CATEGORY-CUT-01",
+    "kind": "silver",
+    "statement": "When the stem says the jurisdiction recognizes a special category, cut choices that answer the ordinary default lane instead of the special lane.",
+    "type": "cut",
+    "trigger": "Stem phrase: jurisdiction recognizes negligent erroneous death notice as a special NIED category.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20733_galilee_trails_death_notice"
+    ]
+  },
+  {
+    "id": "GK-TORTS-NUISANCE-ABATEMENT-01",
+    "kind": "gold",
+    "statement": "In nuisance remedies, a court can tailor abatement to a reasonable fix. Avoidable-consequences principles can limit damages, but they do not erase the nuisance or require total closure.",
+    "type": "distinction",
+    "trigger": "The stem gives both a substantial interference and a moderate-cost abatement option.",
+    "authority": "Restatement (Second) of Torts §§ 822, 826; Boomer v. Atlantic Cement Co., 26 N.Y.2d 219 (1970).",
+    "last_minute_review": true,
+    "example_qids": [
+      "20735_bethlehem_donkey_blower"
+    ]
+  },
+  {
+    "id": "SK-TORTS-BETHLEHEM-01",
+    "kind": "silver",
+    "statement": "When the choices are shutdown, no remedy, punitive-only, and tailored abatement, treat the first three as remedy oversteers. Match the remedy to the stem’s reasonable-fix fact.",
+    "type": "answer_array",
+    "trigger": "The stem says a moderate-cost change would end nearly all interference.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20735_bethlehem_donkey_blower"
+    ]
+  },
+  {
+    "id": "GK-TORTS-FORESEEABILITY-TARGET-01",
+    "kind": "gold",
+    "statement": "For negligence by an active operator, the foreseeability target is the plaintiff/class/risk created by the defendant's conduct, not the exact prior event that put the plaintiff there and not whether the defendant's own careless act was foreseeable.",
+    "type": "distinction",
+    "trigger": "answer choices all complete 'foreseeable that ___'",
+    "authority": "Palsgraf v. Long Island R.R.; Restatement (Third) of Torts §§ 7, 29",
+    "last_minute_review": true,
+    "example_qids": [
+      "20744_bethlehem_loading_lane"
+    ]
+  },
+  {
+    "id": "SK-TORTS-BETHLEHEM-LANE-01",
+    "kind": "silver",
+    "statement": "When every choice starts from 'foreseeable that,' compare the object of foreseeability first. Set-stage cause, exact chain, defendant breach, and plaintiff risk are different targets.",
+    "type": "answer_array",
+    "trigger": "same grammatical stem repeated across all choices",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20744_bethlehem_loading_lane"
+    ]
+  },
+  {
+    "id": "GK-TORTS-NONDELEGABLE-01",
+    "kind": "gold",
+    "statement": "A statutory or otherwise nondelegable safety duty stays with the hirer even when the negligent work is done by an independent contractor.",
+    "type": "exception",
+    "trigger": "statutory/public safety duty plus outside contractor",
+    "authority": "Restatement (Second) of Torts §§ 409, 424",
+    "last_minute_review": true,
+    "example_qids": [
+      "21752_olive_oil_ramp"
+    ]
+  },
+  {
+    "id": "SK-TORTS-NONDELEGABLE-01",
+    "kind": "silver",
+    "statement": "When the stem gives a legal safety duty and an outside contractor, do not choose the all-or-nothing contractor answers; look for the duty-stays-with-the-hirer route.",
+    "type": "trap_spotting",
+    "trigger": "statutory duty + hired contractor + injured public entrant",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "21752_olive_oil_ramp"
+    ]
+  }
+]

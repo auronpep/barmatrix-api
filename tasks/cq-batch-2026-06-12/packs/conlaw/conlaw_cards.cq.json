@@ -1,0 +1,184 @@
+[
+  {
+    "id": "REM-CONLAW-NP-01",
+    "type": "ANCHOR",
+    "title": "Necessary means useful, not indispensable",
+    "signal": "The stem says Congress could have used another method.",
+    "student_move": "Reject indispensability language; check for enumerated-power connection.",
+    "tiny_rule": "Useful/proper means plus enumerated-power hook survives.",
+    "trap": "Turning necessary into only possible.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "17167_manger_lights_portal"
+    ]
+  },
+  {
+    "id": "CONLAW-REMEDY-PROPERTY-SOURCE-01",
+    "type": "ANCHOR",
+    "title": "Property Clause source match",
+    "signal": "Congress disposes of property belonging to the United States.",
+    "student_move": "Name the actor, object, and action; match them to the specific power source.",
+    "tiny_rule": "Federal property + dispose/sell = Property Clause.",
+    "trap": "Policy/fairness answers distract from the source of power.",
+    "confidence": "PURE_ANCHOR",
+    "example_qids": [
+      "19177_manna_wagon_disposal"
+    ]
+  },
+  {
+    "id": "REM-CONLAW-WINDSOR-BARE-ANIMUS",
+    "type": "ANCHOR",
+    "title": "Federal benefits + state-law same-sex marriage",
+    "signal": "Federal law refuses to recognize a same-sex spouse whom state law recognizes.",
+    "student_move": "Lock the Equal Protection call; avoid both strict-scrutiny overpromotion and benefits-entitlement wrong frame.",
+    "tiny_rule": "Bare animus/equal-dignity injury is not a legitimate interest.",
+    "trap": "Rational-basis deference plus tradition language.",
+    "confidence": "PURE_ANCHOR",
+    "example_qids": [
+      "19194_loaves_pages"
+    ]
+  },
+  {
+    "id": "REM-CONLAW-TAX-REVENUE-01",
+    "type": "ANCHOR",
+    "title": "Tax-power frame before scrutiny frame",
+    "signal": "Federal excise tax + revenue purpose + answer choices invoking strict scrutiny or equal protection.",
+    "student_move": "Ask whether the stem gives a protected trigger. If not, stay in the revenue-tax frame.",
+    "tiny_rule": "Bad economic effects do not by themselves invalidate a facial revenue tax.",
+    "trap": "Picking the dramatic constitutional standard instead of the tax-power answer.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "19502_manna_festival_finals_tax"
+    ]
+  },
+  {
+    "id": "REM-CONLAW-TIER-TRIGGER-01",
+    "type": "ANCHOR",
+    "title": "Tier trigger before tier label",
+    "signal": "Answer names strict or intermediate scrutiny.",
+    "student_move": "Ask what trigger the answer supplies.",
+    "tiny_rule": "No valid trigger means default rational basis.",
+    "trap": "Picking the strongest-sounding tier because the facts feel unfair.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "19607_cana_hills_bethany_flats"
+    ]
+  },
+  {
+    "id": "REMED-CONLAW-SPENDING-CLEAR-NOTICE",
+    "type": "ANCHOR",
+    "title": "Hidden grant terms",
+    "signal": "Federal money plus states plus later undisclosed condition.",
+    "student_move": "Ask whether the state could know the condition before accepting.",
+    "tiny_rule": "No clear notice, no knowing acceptance.",
+    "trap": "Treating federal spending as a blank check.",
+    "confidence": "PURE_ANCHOR",
+    "example_qids": [
+      "19982_manna_warehouse"
+    ]
+  },
+  {
+    "id": "REM-CONLAW-LAMPSTAND-01",
+    "type": "ANCHOR",
+    "title": "Neutral aid / secular-use restriction",
+    "signal": "Religious and secular schools get the same educational aid, and the statute limits use to secular instruction.",
+    "student_move": "Do not make religious-school aid per se unconstitutional. Look for neutrality and use restriction.",
+    "tiny_rule": "Neutral + secular-use school aid usually defeats the per se Establishment Clause trap.",
+    "trap": "Public money plus religious school feels automatically invalid.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20153_lampstand_labs"
+    ]
+  },
+  {
+    "id": "REM-CONLAW-20186-MAZARS-01",
+    "type": "ANCHOR",
+    "title": "Presidential subpoena = calibrated review",
+    "signal": "Congress seeks President's personal information from a third party.",
+    "student_move": "Cut automatic extremes; then apply the Gold Key.",
+    "tiny_rule": "No automatic enforcement, no automatic immunity; court checks purpose, tailoring, and burdens.",
+    "trap": "Choosing the branch slogan instead of the court's task.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20186_road_to_emmaus_royalty_ledgers"
+    ]
+  },
+  {
+    "id": "REM-CONLAW-BELIEF-CONDUCT-01",
+    "type": "ANCHOR",
+    "title": "Belief lane vs conduct lane",
+    "signal": "A religion question says the state punishes holding, teaching, professing, or affirming a belief.",
+    "student_move": "Cut answers that switch to conduct, churches only, or a different Religion Clause.",
+    "tiny_rule": "Belief as such is protected; conduct is separate.",
+    "trap": "The state justifies a belief ban by pointing to regulable conduct.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20231_crown_above_caesars"
+    ]
+  },
+  {
+    "id": "REM-CONLAW-CLASSIFICATION-FIRST-20586",
+    "type": "ANCHOR",
+    "title": "Classification First, Scrutiny Second",
+    "signal": "Answer choices jump to strict scrutiny, rights in every context, or automatic discrimination.",
+    "student_move": "Name the line the law draws before choosing a tier.",
+    "tiny_rule": "Equal Protection starts with classification.",
+    "trap": "Policy-disagreement and same-medication facts are not automatic scrutiny triggers.",
+    "confidence": "HARD_STRUCTURAL",
+    "example_qids": [
+      "20586_psalms_hormone_use"
+    ]
+  },
+  {
+    "id": "REM-CONLAW-FED-CONTRACTOR-INTERFERENCE",
+    "type": "ANCHOR",
+    "title": "Federal contractor: practical interference axis",
+    "signal": "state regulation of a private federal contractor",
+    "student_move": "Ask whether the state rule burdens the federal job.",
+    "tiny_rule": "No interference, no immunity win.",
+    "trap": "geography or express-exemption formalism",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20638_advent_rescue_beacons"
+    ]
+  },
+  {
+    "id": "REM-CONLAW-FLAST-STANDING-01",
+    "type": "ANCHOR",
+    "title": "Taxpayer Standing: Narrow Door, Not Open Gate",
+    "signal": "Federal taxpayer challenges religious spending.",
+    "student_move": "Cut 'any taxpayer' overclaims, then check the narrow spending-power/Establishment trigger.",
+    "tiny_rule": "General no standing; Flast exception for congressional spending plus Establishment Clause.",
+    "trap": "Treating all taxpayer challenges as allowed, or treating merits proof as standing proof.",
+    "confidence": "PURE_ANCHOR",
+    "example_qids": [
+      "20714_prayer_robotics_kits"
+    ]
+  },
+  {
+    "id": "REM-CONLAW-FAMILY-HOME-01",
+    "type": "ANCHOR",
+    "title": "Close-family household ≠ ordinary zoning",
+    "signal": "A city rule excludes one close relative from a shared household.",
+    "student_move": "Treat it as family-integrity due process after cutting wrong constitutional homes.",
+    "tiny_rule": "Family household first; zoning only after the family trigger is absent.",
+    "trap": "Treating every occupancy ordinance as ordinary rational-basis zoning.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "21848_manna_house_family_integrity"
+    ]
+  },
+  {
+    "id": "CONLAW-PRICE-GATE-01",
+    "type": "ANCHOR",
+    "title": "Price Gate Across State Lines",
+    "signal": "Sell here only if prices elsewhere satisfy this state’s rule.",
+    "student_move": "Follow the price lever across the border.",
+    "tiny_rule": "In-state access tied to out-of-state prices points to DCC extraterritorial price control.",
+    "trap": "Accepting the state’s in-state label.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "21872_scripturequest_price_gate"
+    ]
+  }
+]

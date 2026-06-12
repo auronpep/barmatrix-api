@@ -1,0 +1,223 @@
+[
+  {
+    "id": "REM-CRIMINAL-BA2-GRAND-JURY-01",
+    "type": "ANCHOR",
+    "title": "Violation is not remedy",
+    "signal": "A choice proves police misconduct, but the call asks whether the indictment is dismissed.",
+    "student_move": "Separate the wrong from the remedy. Then apply the grand-jury Gold Key.",
+    "tiny_rule": "Grand jury taint usually does not dismiss a facially valid indictment.",
+    "trap": "Unlawful search = automatic dismissal.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "14621_manna_cafe_bookmaker"
+    ]
+  },
+  {
+    "id": "CRIM-REM-BANK-THIRD-PARTY-01",
+    "type": "ANCHOR",
+    "title": "Bank records: interest first, process second",
+    "signal": "Agents obtain account records from a bank.",
+    "student_move": "Ask whether the defendant has a Fourth Amendment interest before arguing warrant, subpoena, or suppression.",
+    "tiny_rule": "Miller bank records are bank business records; no Fourth Amendment suppression right belongs to the depositor.",
+    "trap": "Treating personal finance privacy as Fourth Amendment privacy.",
+    "confidence": "PURE_ANCHOR",
+    "example_qids": [
+      "17084_five_loaves_bank_records"
+    ]
+  },
+  {
+    "id": "REM-CRIM-INTOX-GENERAL-INTENT-01",
+    "type": "ANCHOR",
+    "title": "Voluntary intoxication: specific-intent only",
+    "signal": "The stem says no further purpose or objective.",
+    "student_move": "Classify the offense before applying intoxication.",
+    "tiny_rule": "Voluntary intoxication does not excuse general intent.",
+    "trap": "Treating drunkenness, blackout, or no memory as a universal intent defense.",
+    "confidence": "PURE_ANCHOR",
+    "example_qids": [
+      "17151_carol_program"
+    ]
+  },
+  {
+    "id": "CRIM-02",
+    "type": "ANCHOR",
+    "title": "Property-crime taxonomy: title, possession, custody",
+    "signal": "Choices name larceny by trick, embezzlement, and false pretenses.",
+    "student_move": "Find what the victim transferred.",
+    "tiny_rule": "Title/ownership by deceit = false pretenses; possession-only by deceit = larceny by trick; lawful custody then conversion = embezzlement.",
+    "trap": "Students stop at the visible lie instead of classifying the transfer.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "19263_chapel_handbells"
+    ]
+  },
+  {
+    "id": "CRIM-ANCHOR-DEFENSE-OTHERS-01",
+    "type": "ANCHOR",
+    "title": "Defense of others: reasonable appearance beats hidden truth",
+    "signal": "Intervener reasonably but mistakenly protects the apparent victim.",
+    "student_move": "Do not ask who was actually entitled to self-defense until you know the rule frame.",
+    "tiny_rule": "Majority rule = reasonable belief; alter ego = actual rights.",
+    "trap": "Hidden-truth answer feels precise but answers the wrong rule frame.",
+    "confidence": "PURE_ANCHOR",
+    "example_qids": [
+      "19336_nativity_warehouse_rescue"
+    ]
+  },
+  {
+    "id": "REM-CRIMINAL-WHARTON-COUNT",
+    "type": "ANCHOR",
+    "title": "Wharton Count Check",
+    "signal": "Wharton’s Rule plus extra people in the agreement",
+    "student_move": "Count required participants first; count actual agreement participants second.",
+    "tiny_rule": "Extra participants defeat Wharton’s Rule.",
+    "trap": "Stopping at the two-party offense and missing the extra-party exception.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "19499_jericho_chariot_night"
+    ]
+  },
+  {
+    "id": "RC-CRIM-CUSTODY-POSSESSION-01",
+    "type": "ANCHOR",
+    "title": "Custody is not possession",
+    "signal": "Low-level worker handles owner cash.",
+    "student_move": "Ask whether the worker had custody only, lawful possession, title by deception, or no taking.",
+    "tiny_rule": "Custody + pocketing owner cash = larceny.",
+    "trap": "Worker theft automatically means embezzlement.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "19554_road_to_damascus_cashbox"
+    ]
+  },
+  {
+    "id": "REM-CRIM-MIRANDA-FRUIT-01",
+    "type": "ANCHOR",
+    "title": "Miranda Fruit Is Not Fourth-Amendment Fruit",
+    "signal": "Unwarned but voluntary statement leads police to a physical object.",
+    "student_move": "Pin the offered evidence: statement or object.",
+    "tiny_rule": "Statement out; voluntary-statement physical fruit generally in.",
+    "trap": "Importing all-fruits suppression from Fourth Amendment doctrine.",
+    "confidence": "PURE_ANCHOR",
+    "example_qids": [
+      "20127_jericho_trumpet"
+    ]
+  },
+  {
+    "id": "CRIM-REM-20258-01",
+    "type": "ANCHOR",
+    "title": "Warnings are not a pressure shield",
+    "signal": "Stem gives Miranda warnings and then coercive pressure facts.",
+    "student_move": "Separate warning/form facts from voluntariness facts.",
+    "tiny_rule": "Coercion can defeat admissibility even after warnings.",
+    "trap": "Picking the warning answer because it sounds procedurally clean.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20258_psalter_pressure"
+    ]
+  },
+  {
+    "id": "CRIM-REM-ARREST-REMEDY-01",
+    "type": "ANCHOR",
+    "title": "Bad arrest is not automatic dismissal",
+    "signal": "Unlawful arrest + motion to dismiss + independent evidence",
+    "student_move": "Separate the violation from the requested remedy.",
+    "tiny_rule": "Suppress tainted evidence when applicable; do not dismiss charges supported by independent evidence.",
+    "trap": "Treating illegality as automatic case erasure.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20387_psalms_chess_indictment"
+    ]
+  },
+  {
+    "id": "REM-CRIMINAL-PLAIN-FEEL-01",
+    "type": "ANCHOR",
+    "title": "Plain feel: immediate apparentness, not tactile investigation",
+    "signal": "Lawful frisk; nonweapon object; officer keeps feeling it to identify it.",
+    "student_move": "Stop the frisk at the moment the officer knows the item is not a weapon unless contraband is already immediately apparent.",
+    "tiny_rule": "Manipulation to identify contraband breaks plain feel.",
+    "trap": "Treating Terry frisk as permission to search for drugs.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20476_road_to_bethlehem_sash"
+    ]
+  },
+  {
+    "id": "REM-CRIM-DURESS-IMMINENCE",
+    "type": "ANCHOR",
+    "title": "Duress requires now-pressure.",
+    "signal": "Future threat, remote threatener, time to seek help.",
+    "student_move": "Cut fear-only and family-only answers; keep the answer that checks imminence.",
+    "tiny_rule": "Duress is immediate-threat plus no reasonable escape, not fear alone.",
+    "trap": "Sympathy for a believable family threat.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "CR-100"
+    ]
+  },
+  {
+    "id": "CRIM-REM-20542-SAME-OFFENSE",
+    "type": "ANCHOR",
+    "title": "Same offense, new label",
+    "signal": "Police say they only want to ask about a smaller version of the charged incident.",
+    "student_move": "Do not stop at the label. Compare the factual event and offense substance.",
+    "tiny_rule": "Post-charge Sixth Amendment protection follows the same offense in substance.",
+    "trap": "The label-only answer sounds precise but is too shallow.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20542_praise_festival_cashbox"
+    ]
+  },
+  {
+    "id": "CRIM-REM-MISTAKE-FACT-LAW-01",
+    "type": "ANCHOR",
+    "title": "Fact mistake / law mistake split",
+    "signal": "One actor misunderstands ownership facts; another understands facts but misunderstands legality.",
+    "student_move": "First label each mistake as fact or law, then apply the specific-intent Gold Key.",
+    "tiny_rule": "Specific-intent fact mistake can negate intent; law mistake generally cannot.",
+    "trap": "Treating all sincere mistakes the same or requiring reasonableness for every mistake.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20597_olivewood_nativity_craft_swap"
+    ]
+  },
+  {
+    "id": "CRIM-ANCHOR-INSANITY-01",
+    "type": "ANCHOR",
+    "title": "Insanity tests: cognition vs volition",
+    "signal": "Stem gives M'Naghten plus irresistible impulse.",
+    "student_move": "Match facts to lanes before picking.",
+    "tiny_rule": "Know-wrong = cognition; cannot-conform = volition.",
+    "trap": "Treating one lane as the whole insanity defense.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20654_nativity_ornaments_volition"
+    ]
+  },
+  {
+    "id": "CRIM-REM-CAUSE-LINK-01",
+    "type": "ANCHOR",
+    "title": "Misdemeanor label is not a death cause",
+    "signal": "A misdemeanor is followed by a death from a separate event.",
+    "student_move": "Ask whether the misdemeanor produced the death, not merely whether it came first.",
+    "tiny_rule": "No cause link, no misdemeanor manslaughter.",
+    "trap": "Counting chronology as causation.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "21867_psalm_puzzle_booth"
+    ]
+  },
+  {
+    "id": "CRIM-REM-THIRD-PARTY-HOME-01",
+    "type": "ANCHOR",
+    "title": "Person warrant vs place warrant",
+    "signal": "Arrest warrant for suspect + suspect inside someone else's home.",
+    "student_move": "Ask whose home is being entered.",
+    "tiny_rule": "Own home may be Payton; third-party home needs Steagald search warrant or exception.",
+    "trap": "Arrest-warrant portability.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "21869_tiny_house_hymn_sheet"
+    ]
+  }
+]

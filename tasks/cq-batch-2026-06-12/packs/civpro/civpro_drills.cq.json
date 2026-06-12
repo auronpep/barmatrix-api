@@ -1,0 +1,96 @@
+[
+  {
+    "id": "DRILL-CQ-CIVPRO-F01",
+    "title": "Trap mold: backwards",
+    "skill": "Trap recognition",
+    "task": "Across 3 questions, identify which choice carries the \"backwards\" mold before solving.",
+    "trap_family": "backwards",
+    "qid_pool": [
+      "19286_five_loaves_press",
+      "20627_ruth_hymn_poster_contract",
+      "20811_illuminated_psalms_solvent"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 2/3 questions."
+  },
+  {
+    "id": "DRILL-CQ-CIVPRO-F02",
+    "title": "Trap mold: bait_doctrine",
+    "skill": "Trap recognition",
+    "task": "Across 3 questions, identify which choice carries the \"bait_doctrine\" mold before solving.",
+    "trap_family": "bait_doctrine",
+    "qid_pool": [
+      "19721_jonah_whale_float",
+      "19840_red_sea_bridge_bolts",
+      "20567_psalm_panels_venue"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 2/3 questions."
+  },
+  {
+    "id": "DRILL-CQ-CIVPRO-F03",
+    "title": "Trap mold: fabricated_rule",
+    "skill": "Trap recognition",
+    "task": "Across 4 questions, identify which choice carries the \"fabricated_rule\" mold before solving.",
+    "trap_family": "fabricated_rule",
+    "qid_pool": [
+      "19266_carol_banquet_jmol",
+      "19286_five_loaves_press",
+      "19721_jonah_whale_float",
+      "20690"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 3/4 questions."
+  },
+  {
+    "id": "DRILL-CQ-CIVPRO-F04",
+    "title": "Trap mold: misfit",
+    "skill": "Trap recognition",
+    "task": "Across 3 questions, identify which choice carries the \"misfit\" mold before solving.",
+    "trap_family": "misfit",
+    "qid_pool": [
+      "20353_baptism_tank_burst",
+      "20690",
+      "20811_illuminated_psalms_solvent"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 2/3 questions."
+  },
+  {
+    "id": "DRILL-CQ-CIVPRO-F05",
+    "title": "Trap mold: tiered_absolute",
+    "skill": "Trap recognition",
+    "task": "Across 10 questions, identify which choice carries the \"tiered_absolute\" mold before solving.",
+    "trap_family": "tiered_absolute",
+    "qid_pool": [
+      "19266_carol_banquet_jmol",
+      "19286_five_loaves_press",
+      "19793_dove_candle_ledgers",
+      "19840_red_sea_bridge_bolts",
+      "20247_bible_memory_kit",
+      "20291_nativity_prop_rental_freeze",
+      "20353_baptism_tank_burst",
+      "20627_ruth_hymn_poster_contract",
+      "20690",
+      "21711_foam_whale_nativity_attachment"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 9/10 questions."
+  },
+  {
+    "id": "DRILL-CQ-CIVPRO-F06",
+    "title": "Trap mold: wrong_element",
+    "skill": "Trap recognition",
+    "task": "Across 5 questions, identify which choice carries the \"wrong_element\" mold before solving.",
+    "trap_family": "wrong_element",
+    "qid_pool": [
+      "19721_jonah_whale_float",
+      "20247_bible_memory_kit",
+      "20606_lydia_festival_venue",
+      "20811_illuminated_psalms_solvent",
+      "21711_foam_whale_nativity_attachment"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 4/5 questions."
+  }
+]

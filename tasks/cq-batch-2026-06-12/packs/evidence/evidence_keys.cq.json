@@ -1,0 +1,266 @@
+[
+  {
+    "id": "GK-EVIDENCE-TRADE-TERMS-01",
+    "kind": "gold",
+    "statement": "Trade terminology or usage evidence may be admitted to explain the trade meaning of a contract term. The reason is the trade-meaning function, not an express agreement by the parties.",
+    "type": "rule",
+    "trigger": "A contract phrase is explained by someone familiar with the relevant wholesale trade.",
+    "authority": "UCC 1-303(c)-(d); Restatement (Second) of Contracts 222.",
+    "last_minute_review": true,
+    "example_qids": [
+      "17045_scripture_banner_cloth"
+    ]
+  },
+  {
+    "id": "GK-EVIDENCE-OPINION-01",
+    "kind": "gold",
+    "statement": "Opinion form alone does not exclude qualified specialized-knowledge testimony.",
+    "type": "rule",
+    "trigger": "An answer says to exclude testimony simply because it is an opinion.",
+    "authority": "FRE 702; FRE 704.",
+    "last_minute_review": true,
+    "example_qids": [
+      "17045_scripture_banner_cloth"
+    ]
+  },
+  {
+    "id": "SK-EVIDENCE-PURPOSE-LABEL-01",
+    "kind": "silver",
+    "statement": "On an admissibility call, first name what the testimony is offered to prove. Pick the answer that labels that use, not the answer that repeats a tempting background fact.",
+    "type": "call_focus",
+    "trigger": "Three choices say admitted, but for different reasons.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "17045_scripture_banner_cloth"
+    ]
+  },
+  {
+    "id": "GK-EVIDENCE-MARITAL-WRITTEN-COMMUNICATION-01",
+    "kind": "gold",
+    "statement": "Marital communications privilege protects a confidential communication between spouses during marriage; the communication can be written or electronic, not only spoken.",
+    "type": "distinction",
+    "trigger": "private written message between spouses during marriage",
+    "authority": "FRE 501; SEC v. Lavin; Wolfle v. United States; Trammel v. United States",
+    "last_minute_review": true,
+    "example_qids": [
+      "19228_prayer_card_study_bible"
+    ]
+  },
+  {
+    "id": "SK-EVIDENCE-PRAYER-CARD-01",
+    "kind": "silver",
+    "statement": "When privilege answers fight over spoken words, document format, and refusal to testify, ask what object the privilege protects.",
+    "type": "answer_array",
+    "trigger": "one answer says document; one says spoken; one says spouse refuses",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "19228_prayer_card_study_bible"
+    ]
+  },
+  {
+    "id": "GK-EVIDENCE-SPOUSAL-01",
+    "kind": "gold",
+    "statement": "Spousal testimonial privilege and confidential marital communications privilege are separate. Testimonial privilege requires a current marriage; communications privilege can protect confidential private communications made during the marriage even after divorce.",
+    "type": "distinction",
+    "trigger": "Divorced former spouse + private statement made during marriage.",
+    "authority": "FRE 501; Trammel v. United States; Pereira v. United States.",
+    "last_minute_review": true,
+    "example_qids": [
+      "19379_hymn_candle_invoice_van"
+    ]
+  },
+  {
+    "id": "SK-EVIDENCE-SPOUSAL-01",
+    "kind": "silver",
+    "statement": "When the answer set splits sustain/overrule and testimonial/communications, pick the route that matches the timing facts: divorced now, private communication then.",
+    "type": "answer_array",
+    "trigger": "Two sustain answers with different privilege labels.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "19379_hymn_candle_invoice_van"
+    ]
+  },
+  {
+    "id": "GK-EVIDENCE-DOUBLE-HEARSAY-01",
+    "kind": "gold",
+    "statement": "For hearsay within hearsay, each layer needs its own path. In an employee-transcript item, check the employee statement layer and the transcript/public-record layer separately.",
+    "type": "rule",
+    "trigger": "Transcript of earlier testimony offered for its truth.",
+    "authority": "FRE 805; FRE 801(d)(2)(D); FRE 803(8).",
+    "last_minute_review": true,
+    "example_qids": [
+      "20307_bethany_banners_transcript"
+    ]
+  },
+  {
+    "id": "GK-EVIDENCE-FORMER-TESTIMONY-01",
+    "kind": "gold",
+    "statement": "Former testimony needs the current opponent, or a civil predecessor, to have had an opportunity and similar motive to develop the earlier testimony.",
+    "type": "threshold",
+    "trigger": "Earlier criminal trial; later civil defendant was not a party.",
+    "authority": "FRE 804(b)(1).",
+    "last_minute_review": true,
+    "example_qids": [
+      "20307_bethany_banners_transcript"
+    ]
+  },
+  {
+    "id": "SK-EVIDENCE-TRANSCRIPT-LAYERS-01",
+    "kind": "silver",
+    "statement": "When a choice says 'transcript,' split the evidence into speaker layer and document layer before choosing an exception.",
+    "type": "answer_array",
+    "trigger": "Transcript offered in a later trial.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20307_bethany_banners_transcript"
+    ]
+  },
+  {
+    "id": "GK-EVIDENCE-CRIME-FRAUD-01",
+    "kind": "gold",
+    "statement": "Crime-fraud is purpose-based, not topic-based: privilege fails only when legal advice is sought to commit, continue, or cover up crime or fraud.",
+    "type": "exception",
+    "trigger": "Client asks whether planned conduct would be fraudulent and says she will not do it if unlawful.",
+    "authority": "FRE 501 common law; United States v. Zolin; Clark v. United States.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20313_bethlehem_olivewood_crosses"
+    ]
+  },
+  {
+    "id": "GK-EVIDENCE-WORKPRODUCT-DISTINCTION-01",
+    "kind": "gold",
+    "statement": "Substantial need is a work-product concept; it is not the test for overriding attorney-client communications.",
+    "type": "distinction",
+    "trigger": "A privilege answer says 'substantial need.'",
+    "authority": "Federal privilege and work-product doctrine distinction.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20313_bethlehem_olivewood_crosses"
+    ]
+  },
+  {
+    "id": "SK-EVIDENCE-CRIME-FRAUD-01",
+    "kind": "silver",
+    "statement": "When a privilege answer says 'fraud,' do not stop at the topic. Name the axis: compliance advice versus using the lawyer to further fraud.",
+    "type": "clash",
+    "trigger": "Client says she will not proceed if the conduct is fraudulent.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20313_bethlehem_olivewood_crosses"
+    ]
+  },
+  {
+    "id": "GK-EVIDENCE-ANY-TENDENCY-01",
+    "kind": "gold",
+    "statement": "Relevant evidence does not need to prove the whole case by itself. If it has any tendency to make a consequential fact more probable, it clears the relevance threshold.",
+    "type": "threshold",
+    "trigger": "The opponent says the evidence could have another explanation.",
+    "authority": "Fed. R. Evid. 401, 402, 403; see pass-1 legal verification.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20404_acts_axes_cash_loads"
+    ]
+  },
+  {
+    "id": "SK-EVIDENCE-RELEVANCE-ARRAY-01",
+    "kind": "silver",
+    "statement": "In a relevance array, cut 'conclusive,' 'always,' and 'only' before weighing the story. The survivor usually states what the evidence tends to show.",
+    "type": "answer_array",
+    "trigger": "Three choices narrow admissibility; one states the fact relation.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20404_acts_axes_cash_loads"
+    ]
+  },
+  {
+    "id": "GK-EVIDENCE-RELIGION-BIAS-01",
+    "kind": "gold",
+    "statement": "Rule 610 blocks religion-as-truthfulness evidence. It does not block religious affiliation or organizational ties when offered to show bias, interest, or relationship to a party.",
+    "type": "distinction",
+    "trigger": "religion objection plus paid role or organizational tie to a party",
+    "authority": "Federal Rule of Evidence 610 Advisory Committee Note",
+    "last_minute_review": true,
+    "example_qids": [
+      "20423_galilee_props_bias"
+    ]
+  },
+  {
+    "id": "SK-EVIDENCE-PURPOSE-AXIS-01",
+    "kind": "silver",
+    "statement": "When an Evidence answer turns on the same fact being used for different credibility purposes, name the offered purpose first and grade only that lane.",
+    "type": "trap_spotting",
+    "trigger": "The stem says 'offered to show bias' and 'not to show truthfulness.'",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20423_galilee_props_bias"
+    ]
+  },
+  {
+    "id": "GK-EVIDENCE-FOUNDATION-GATE-01",
+    "kind": "gold",
+    "statement": "A physical object does not reach the jury on 'maybe.' The proponent must first supply some link supporting a finding that the object is what it claims or is connected to the case.",
+    "type": "threshold",
+    "trigger": "An object is offered, but the stem gives no identifying witness, no marks, and no source facts.",
+    "authority": "FRE 901(a); FRE 104(b).",
+    "last_minute_review": true,
+    "example_qids": [
+      "20565_purple_gear_hymnbook_tote"
+    ]
+  },
+  {
+    "id": "SK-EVIDENCE-FOUNDATION-GATE-01",
+    "kind": "silver",
+    "statement": "When a choice says the jury can weigh it, first ask whether the item crossed the foundation gate. No gate, no weight.",
+    "type": "call_focus",
+    "trigger": "The proponent says the jury can decide what to make of an unidentified object.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20565_purple_gear_hymnbook_tote"
+    ]
+  },
+  {
+    "id": "GK-EVIDENCE-RULE407-PURPOSE-01",
+    "kind": "gold",
+    "statement": "Rule 407 is not negligence-only: it bars later fixes offered to prove product defect, design defect, or a need for warning or instruction. Feasibility is only a separate permitted purpose when it is genuinely disputed and actually offered for that purpose.",
+    "type": "distinction",
+    "trigger": "Post-injury redesign or stronger warning offered in a product case.",
+    "authority": "Federal Rule of Evidence 407; 1997 Advisory Committee note.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20602_davids_harp_projector"
+    ]
+  },
+  {
+    "id": "SK-EVIDENCE-RULE407-PURPOSE-01",
+    "kind": "silver",
+    "statement": "When the stem tells you why evidence is offered, hold that purpose fixed. Relevance and exception words do not matter until they match the stated purpose.",
+    "type": "call_focus",
+    "trigger": "The stem says the later measure is offered to prove defect or inadequate warning.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20602_davids_harp_projector"
+    ]
+  },
+  {
+    "id": "SK-EVIDENCE-RUBBER-STAMP-01",
+    "kind": "silver",
+    "statement": "In Evidence, start with the bridge: what fact does this item help prove in this case? If the stem gives no bridge, do not jump to object category, demonstrative use, or prejudice.",
+    "type": "call_focus",
+    "trigger": "A physical object is offered, but the stem says no witness connects it to the defendant, document, event, or issue.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20760_rubber_stamp_mail_fraud"
+    ]
+  }
+]

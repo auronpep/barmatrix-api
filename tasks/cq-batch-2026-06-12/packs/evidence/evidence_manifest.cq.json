@@ -1,0 +1,23 @@
+{
+  "subject_dir": "evidence",
+  "subject": "EVIDENCE",
+  "batch": "cq-2026-06-12",
+  "question_count": 10,
+  "qids": [
+    "17045_scripture_banner_cloth",
+    "19228_prayer_card_study_bible",
+    "19379_hymn_candle_invoice_van",
+    "20307_bethany_banners_transcript",
+    "20313_bethlehem_olivewood_crosses",
+    "20404_acts_axes_cash_loads",
+    "20423_galilee_props_bias",
+    "20565_purple_gear_hymnbook_tote",
+    "20602_davids_harp_projector",
+    "20760_rubber_stamp_mail_fraud"
+  ],
+  "cards": 10,
+  "keys": 22,
+  "drills": 4,
+  "microdrills": 33,
+  "note": "New subject pack — requires wiring into src/lib/c3-subjects.ts before it is served."
+}

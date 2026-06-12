@@ -1,0 +1,124 @@
+[
+  {
+    "id": "DRILL-CQ-CONTRACTS-F01",
+    "title": "Trap mold: backwards",
+    "skill": "Trap recognition",
+    "task": "Across 4 questions, identify which choice carries the \"backwards\" mold before solving.",
+    "trap_family": "backwards",
+    "qid_pool": [
+      "17026_manger_prop_bundles",
+      "17110_sticker_press_guaranty",
+      "19386_scripture_audio_cap",
+      "20004_dove_tokens_manna_game"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 3/4 questions."
+  },
+  {
+    "id": "DRILL-CQ-CONTRACTS-F02",
+    "title": "Trap mold: bait_doctrine",
+    "skill": "Trap recognition",
+    "task": "Across 8 questions, identify which choice carries the \"bait_doctrine\" mold before solving.",
+    "trap_family": "bait_doctrine",
+    "qid_pool": [
+      "19250_scripture_card_printer",
+      "19386_scripture_audio_cap",
+      "20004_dove_tokens_manna_game",
+      "20461_lydia_beeswax_requirements",
+      "20556_mustard_seed_puppet_caravan",
+      "20569_ark_float",
+      "20599_advent_handbell_integration",
+      "20808_jericho_press"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 7/8 questions."
+  },
+  {
+    "id": "DRILL-CQ-CONTRACTS-F03",
+    "title": "Trap mold: extreme_of_range",
+    "skill": "Trap recognition",
+    "task": "Across 3 questions, identify which choice carries the \"extreme_of_range\" mold before solving.",
+    "trap_family": "extreme_of_range",
+    "qid_pool": [
+      "17026_manger_prop_bundles",
+      "20004_dove_tokens_manna_game",
+      "20100_fish_and_loaves_keychains"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 2/3 questions."
+  },
+  {
+    "id": "DRILL-CQ-CONTRACTS-F04",
+    "title": "Trap mold: fabricated_rule",
+    "skill": "Trap recognition",
+    "task": "Across 8 questions, identify which choice carries the \"fabricated_rule\" mold before solving.",
+    "trap_family": "fabricated_rule",
+    "qid_pool": [
+      "17173_road_to_emmaus_puzzle_quest",
+      "20100_fish_and_loaves_keychains",
+      "20271_lantern_handbell_evening",
+      "20351_red_sea_mini_golf",
+      "20370_dove_mug_notice",
+      "20461_lydia_beeswax_requirements",
+      "20523_easter_stage_guaranty",
+      "20805_psalm_lanterns_confirmation"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 7/8 questions."
+  },
+  {
+    "id": "DRILL-CQ-CONTRACTS-F05",
+    "title": "Trap mold: flat_misstatement",
+    "skill": "Trap recognition",
+    "task": "Across 4 questions, identify which choice carries the \"flat_misstatement\" mold before solving.",
+    "trap_family": "flat_misstatement",
+    "qid_pool": [
+      "19250_scripture_card_printer",
+      "20599_advent_handbell_integration",
+      "20805_psalm_lanterns_confirmation",
+      "21879_noahs_ark_puppet_set"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 3/4 questions."
+  },
+  {
+    "id": "DRILL-CQ-CONTRACTS-F06",
+    "title": "Trap mold: tiered_absolute",
+    "skill": "Trap recognition",
+    "task": "Across 10 questions, identify which choice carries the \"tiered_absolute\" mold before solving.",
+    "trap_family": "tiered_absolute",
+    "qid_pool": [
+      "17110_sticker_press_guaranty",
+      "17173_road_to_emmaus_puzzle_quest",
+      "19250_scripture_card_printer",
+      "19386_scripture_audio_cap",
+      "20100_fish_and_loaves_keychains",
+      "20351_red_sea_mini_golf",
+      "20461_lydia_beeswax_requirements",
+      "20523_easter_stage_guaranty",
+      "20737_jonahs_whale_lyre",
+      "20805_psalm_lanterns_confirmation"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 9/10 questions."
+  },
+  {
+    "id": "DRILL-CQ-CONTRACTS-F07",
+    "title": "Trap mold: wrong_element",
+    "skill": "Trap recognition",
+    "task": "Across 8 questions, identify which choice carries the \"wrong_element\" mold before solving.",
+    "trap_family": "wrong_element",
+    "qid_pool": [
+      "17173_road_to_emmaus_puzzle_quest",
+      "20271_lantern_handbell_evening",
+      "20351_red_sea_mini_golf",
+      "20370_dove_mug_notice",
+      "20556_mustard_seed_puppet_caravan",
+      "20569_ark_float",
+      "20737_jonahs_whale_lyre",
+      "20808_jericho_press"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 7/8 questions."
+  }
+]

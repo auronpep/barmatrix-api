@@ -1,0 +1,180 @@
+[
+  {
+    "id": "DRILL-CQ-TORTS-F01",
+    "title": "Trap mold: bait_doctrine",
+    "skill": "Trap recognition",
+    "task": "Across 8 questions, identify which choice carries the \"bait_doctrine\" mold before solving.",
+    "trap_family": "bait_doctrine",
+    "qid_pool": [
+      "20439_floating_star_driveway",
+      "20496_loaves_prop_cart",
+      "20546_jericho_wall_studio",
+      "20598_write_it_on_your_heart",
+      "20605_scripture_quiz_whisper",
+      "20649_christmas_pageant_platform",
+      "20730_shepherd_sling_fair",
+      "20733_galilee_trails_death_notice"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 7/8 questions."
+  },
+  {
+    "id": "DRILL-CQ-TORTS-F02",
+    "title": "Trap mold: colloquialism",
+    "skill": "Trap recognition",
+    "task": "Across 3 questions, identify which choice carries the \"colloquialism\" mold before solving.",
+    "trap_family": "colloquialism",
+    "qid_pool": [
+      "20496_loaves_prop_cart",
+      "20598_write_it_on_your_heart",
+      "20603_road_to_emmaus_escape_room"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 2/3 questions."
+  },
+  {
+    "id": "DRILL-CQ-TORTS-F03",
+    "title": "Trap mold: extreme_of_range",
+    "skill": "Trap recognition",
+    "task": "Across 4 questions, identify which choice carries the \"extreme_of_range\" mold before solving.",
+    "trap_family": "extreme_of_range",
+    "qid_pool": [
+      "20310_psalms_wax_lamp",
+      "20328_bethlehem_star_drop",
+      "20735_bethlehem_donkey_blower",
+      "21752_olive_oil_ramp"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 3/4 questions."
+  },
+  {
+    "id": "DRILL-CQ-TORTS-F04",
+    "title": "Trap mold: fabricated_rule",
+    "skill": "Trap recognition",
+    "task": "Across 6 questions, identify which choice carries the \"fabricated_rule\" mold before solving.",
+    "trap_family": "fabricated_rule",
+    "qid_pool": [
+      "19213_road_to_emmaus_breezeway",
+      "19448_praise_night_tshirt_cannon",
+      "20328_bethlehem_star_drop",
+      "20598_write_it_on_your_heart",
+      "20725_emmaus_laser_cutter",
+      "21752_olive_oil_ramp"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 5/6 questions."
+  },
+  {
+    "id": "DRILL-CQ-TORTS-F05",
+    "title": "Trap mold: flat_misstatement",
+    "skill": "Trap recognition",
+    "task": "Across 4 questions, identify which choice carries the \"flat_misstatement\" mold before solving.",
+    "trap_family": "flat_misstatement",
+    "qid_pool": [
+      "20123_prayer_card_threat_writers",
+      "20605_scripture_quiz_whisper",
+      "20717_ruths_hymn_recording_procedure",
+      "20725_emmaus_laser_cutter"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 3/4 questions."
+  },
+  {
+    "id": "DRILL-CQ-TORTS-F06",
+    "title": "Trap mold: misfit",
+    "skill": "Trap recognition",
+    "task": "Across 4 questions, identify which choice carries the \"misfit\" mold before solving.",
+    "trap_family": "misfit",
+    "qid_pool": [
+      "20024_loaves_fishes_crate_count",
+      "20123_prayer_card_threat_writers",
+      "20594_daniels_whale_float",
+      "20730_shepherd_sling_fair"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 3/4 questions."
+  },
+  {
+    "id": "DRILL-CQ-TORTS-F07",
+    "title": "Trap mold: tiered_absolute",
+    "skill": "Trap recognition",
+    "task": "Across 12 questions, identify which choice carries the \"tiered_absolute\" mold before solving.",
+    "trap_family": "tiered_absolute",
+    "qid_pool": [
+      "19213_road_to_emmaus_breezeway",
+      "19434",
+      "19448_praise_night_tshirt_cannon",
+      "20024_loaves_fishes_crate_count",
+      "20310_psalms_wax_lamp",
+      "20328_bethlehem_star_drop",
+      "20594_daniels_whale_float",
+      "20725_emmaus_laser_cutter",
+      "20727",
+      "20733_galilee_trails_death_notice",
+      "20735_bethlehem_donkey_blower",
+      "21752_olive_oil_ramp"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 11/12 questions."
+  },
+  {
+    "id": "DRILL-CQ-TORTS-F08",
+    "title": "Trap mold: wrong_element",
+    "skill": "Trap recognition",
+    "task": "Across 17 questions, identify which choice carries the \"wrong_element\" mold before solving.",
+    "trap_family": "wrong_element",
+    "qid_pool": [
+      "19213_road_to_emmaus_breezeway",
+      "19434",
+      "20024_loaves_fishes_crate_count",
+      "20123_prayer_card_threat_writers",
+      "20310_psalms_wax_lamp",
+      "20439_floating_star_driveway",
+      "20496_loaves_prop_cart",
+      "20546_jericho_wall_studio",
+      "20594_daniels_whale_float",
+      "20603_road_to_emmaus_escape_room",
+      "20605_scripture_quiz_whisper",
+      "20649_christmas_pageant_platform",
+      "20717_ruths_hymn_recording_procedure",
+      "20727",
+      "20730_shepherd_sling_fair",
+      "20735_bethlehem_donkey_blower",
+      "20744_bethlehem_loading_lane"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 16/17 questions."
+  },
+  {
+    "id": "DRILL-CQ-TORTS-C01",
+    "title": "Topic circuit: Negligence",
+    "skill": "Mixed-call endurance",
+    "task": "Timed circuit across 10 Negligence questions; predict the call before reading choices.",
+    "topic": "Negligence",
+    "qid_pool": [
+      "19213_road_to_emmaus_breezeway",
+      "19448_praise_night_tshirt_cannon",
+      "20310_psalms_wax_lamp",
+      "20328_bethlehem_star_drop",
+      "20439_floating_star_driveway",
+      "20496_loaves_prop_cart",
+      "20546_jericho_wall_studio",
+      "20594_daniels_whale_float",
+      "20649_christmas_pageant_platform",
+      "20744_bethlehem_loading_lane"
+    ],
+    "cards": [
+      "RC-TORTS-SECURITY-DUTY-01",
+      "RC-TORTS-NE-001",
+      "REM-TORTS-SRM-01",
+      "RC-TORTS-RES-IPSA-01",
+      "REM-TORTS-20439-01",
+      "TOR-REM-COLLATERAL-SOURCE-01",
+      "REM-TORTS-NAMED-DEFENDANT-INSPECTION-01",
+      "REM-TORTS-RESCUE-20594",
+      "REM-TORTS-20649-01",
+      "TOR-FORESEEABILITY-TARGET-01"
+    ],
+    "pass_criterion": "8/10 correct with calls predicted."
+  }
+]

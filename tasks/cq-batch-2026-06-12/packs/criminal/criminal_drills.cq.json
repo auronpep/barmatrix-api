@@ -1,0 +1,118 @@
+[
+  {
+    "id": "DRILL-CQ-CRIMINAL-F01",
+    "title": "Trap mold: bait_doctrine",
+    "skill": "Trap recognition",
+    "task": "Across 9 questions, identify which choice carries the \"bait_doctrine\" mold before solving.",
+    "trap_family": "bait_doctrine",
+    "qid_pool": [
+      "19263_chapel_handbells",
+      "19336_nativity_warehouse_rescue",
+      "19499_jericho_chariot_night",
+      "19554_road_to_damascus_cashbox",
+      "20258_psalter_pressure",
+      "20387_psalms_chess_indictment",
+      "20476_road_to_bethlehem_sash",
+      "20542_praise_festival_cashbox",
+      "20597_olivewood_nativity_craft_swap"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 8/9 questions."
+  },
+  {
+    "id": "DRILL-CQ-CRIMINAL-F02",
+    "title": "Trap mold: fabricated_rule",
+    "skill": "Trap recognition",
+    "task": "Across 6 questions, identify which choice carries the \"fabricated_rule\" mold before solving.",
+    "trap_family": "fabricated_rule",
+    "qid_pool": [
+      "17084_five_loaves_bank_records",
+      "17151_carol_program",
+      "19336_nativity_warehouse_rescue",
+      "20258_psalter_pressure",
+      "20387_psalms_chess_indictment",
+      "21867_psalm_puzzle_booth"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 5/6 questions."
+  },
+  {
+    "id": "DRILL-CQ-CRIMINAL-F03",
+    "title": "Trap mold: flat_misstatement",
+    "skill": "Trap recognition",
+    "task": "Across 4 questions, identify which choice carries the \"flat_misstatement\" mold before solving.",
+    "trap_family": "flat_misstatement",
+    "qid_pool": [
+      "14621_manna_cafe_bookmaker",
+      "17084_five_loaves_bank_records",
+      "20654_nativity_ornaments_volition",
+      "21869_tiny_house_hymn_sheet"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 3/4 questions."
+  },
+  {
+    "id": "DRILL-CQ-CRIMINAL-F04",
+    "title": "Trap mold: tiered_absolute",
+    "skill": "Trap recognition",
+    "task": "Across 11 questions, identify which choice carries the \"tiered_absolute\" mold before solving.",
+    "trap_family": "tiered_absolute",
+    "qid_pool": [
+      "17151_carol_program",
+      "19499_jericho_chariot_night",
+      "19554_road_to_damascus_cashbox",
+      "20127_jericho_trumpet",
+      "20258_psalter_pressure",
+      "20387_psalms_chess_indictment",
+      "20476_road_to_bethlehem_sash",
+      "20542_praise_festival_cashbox",
+      "21867_psalm_puzzle_booth",
+      "21869_tiny_house_hymn_sheet",
+      "CR-100"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 10/11 questions."
+  },
+  {
+    "id": "DRILL-CQ-CRIMINAL-F05",
+    "title": "Trap mold: wrong_element",
+    "skill": "Trap recognition",
+    "task": "Across 9 questions, identify which choice carries the \"wrong_element\" mold before solving.",
+    "trap_family": "wrong_element",
+    "qid_pool": [
+      "14621_manna_cafe_bookmaker",
+      "19263_chapel_handbells",
+      "19499_jericho_chariot_night",
+      "19554_road_to_damascus_cashbox",
+      "20476_road_to_bethlehem_sash",
+      "20654_nativity_ornaments_volition",
+      "21867_psalm_puzzle_booth",
+      "21869_tiny_house_hymn_sheet",
+      "CR-100"
+    ],
+    "cards": [],
+    "pass_criterion": "Identify the trap choice in 8/9 questions."
+  },
+  {
+    "id": "DRILL-CQ-CRIMINAL-C01",
+    "title": "Topic circuit: Defenses",
+    "skill": "Mixed-call endurance",
+    "task": "Timed circuit across 5 Defenses questions; predict the call before reading choices.",
+    "topic": "Defenses",
+    "qid_pool": [
+      "17151_carol_program",
+      "19336_nativity_warehouse_rescue",
+      "20597_olivewood_nativity_craft_swap",
+      "20654_nativity_ornaments_volition",
+      "CR-100"
+    ],
+    "cards": [
+      "REM-CRIM-INTOX-GENERAL-INTENT-01",
+      "CRIM-ANCHOR-DEFENSE-OTHERS-01",
+      "REM-CRIM-DURESS-IMMINENCE",
+      "CRIM-REM-MISTAKE-FACT-LAW-01",
+      "CRIM-ANCHOR-INSANITY-01"
+    ],
+    "pass_criterion": "4/5 correct with calls predicted."
+  }
+]

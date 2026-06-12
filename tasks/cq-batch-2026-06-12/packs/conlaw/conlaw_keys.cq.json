@@ -1,0 +1,446 @@
+[
+  {
+    "id": "GK-CONLAW-MANGER-LIGHTS-01",
+    "kind": "gold",
+    "statement": "Necessary and Proper does not mean absolutely indispensable; Congress may use appropriate means connected to executing an enumerated power.",
+    "type": "distinction",
+    "trigger": "challenger says Congress could have used another administrative method",
+    "authority": "McCulloch v. Maryland; United States v. Darby; United States v. Comstock",
+    "last_minute_review": true,
+    "example_qids": [
+      "17167_manger_lights_portal"
+    ]
+  },
+  {
+    "id": "GK-CONLAW-MANGER-LIGHTS-02",
+    "kind": "gold",
+    "statement": "The Necessary and Proper Clause is not freestanding; the means must execute an enumerated or otherwise vested federal power.",
+    "type": "threshold",
+    "trigger": "answer says valid even with no enumerated-power connection",
+    "authority": "Kinsella v. United States ex rel. Singleton",
+    "last_minute_review": true,
+    "example_qids": [
+      "17167_manger_lights_portal"
+    ]
+  },
+  {
+    "id": "SK-CONLAW-MANGER-LIGHTS-01",
+    "kind": "silver",
+    "statement": "In a 2-valid/2-invalid constitutional array, do not stop at the result word; read the reason after it and keep the answer that preserves both required links.",
+    "type": "answer_array",
+    "trigger": "two answers say valid and two say invalid",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "17167_manger_lights_portal"
+    ]
+  },
+  {
+    "id": "GK-CONLAW-PROPERTY-DISPOSE-01",
+    "kind": "gold",
+    "statement": "When Congress sells or otherwise disposes of property belonging to the United States, the Property Clause is the power source.",
+    "type": "constitutional_principle",
+    "trigger": "Congress + federal property + sell/dispose",
+    "authority": "U.S. Const. art. IV, § 3, cl. 2",
+    "last_minute_review": true,
+    "example_qids": [
+      "19177_manna_wagon_disposal"
+    ]
+  },
+  {
+    "id": "GK-CONLAW-ATTAINDER-PUNISHMENT-02",
+    "kind": "gold",
+    "statement": "A bill of attainder requires legislative punishment of an identified person or group without judicial trial.",
+    "type": "threshold",
+    "trigger": "Answer says bill of attainder but stem gives no punishment",
+    "authority": "Nixon v. Administrator of General Services, 433 U.S. 425",
+    "last_minute_review": true,
+    "example_qids": [
+      "19177_manna_wagon_disposal"
+    ]
+  },
+  {
+    "id": "GK-CONLAW-FOURTEENTH-STATE-03",
+    "kind": "gold",
+    "statement": "The Fourteenth Amendment Equal Protection Clause is the state-action source; do not use it as the direct source for Congress.",
+    "type": "distinction",
+    "trigger": "Congress/federal actor + Fourteenth Amendment answer",
+    "authority": "U.S. Const. amend. XIV, § 1",
+    "last_minute_review": true,
+    "example_qids": [
+      "19177_manna_wagon_disposal"
+    ]
+  },
+  {
+    "id": "GK-CONLAW-NO-GENERAL-POLICE-04",
+    "kind": "gold",
+    "statement": "Congress has enumerated powers, not a general police power; find the specific federal power that fits.",
+    "type": "constitutional_principle",
+    "trigger": "Answer says general police powers of Congress",
+    "authority": "United States v. Lopez, 514 U.S. 549",
+    "last_minute_review": true,
+    "example_qids": [
+      "19177_manna_wagon_disposal"
+    ]
+  },
+  {
+    "id": "SK-CONLAW-MANNA-WAGONS-01",
+    "kind": "silver",
+    "statement": "For a Con Law source-choice array, match actor + object + action before debating policy.",
+    "type": "answer_array",
+    "trigger": "Congress + federal property + sale",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "19177_manna_wagon_disposal"
+    ]
+  },
+  {
+    "id": "GK-CONLAW-WINDSOR-DOMA-01",
+    "kind": "gold",
+    "statement": "When a federal marriage-recognition law denies federal benefits to same-sex spouses who are lawfully married under state law for the purpose/effect of marking those marriages as lesser, it fails Fifth Amendment equal-protection principles; bare animus is not a legitimate interest.",
+    "type": "constitutional_principle",
+    "trigger": "Federal definition of spouse/marriage excludes state-law same-sex spouses from federal benefits.",
+    "authority": "United States v. Windsor, 570 U.S. 744 (2013); Romer v. Evans, 517 U.S. 620 (1996).",
+    "last_minute_review": true,
+    "example_qids": [
+      "19194_loaves_pages"
+    ]
+  },
+  {
+    "id": "GK-CONLAW-WINDSOR-SCRUTINY-02",
+    "kind": "gold",
+    "statement": "Do not turn Windsor into a strict-scrutiny/suspect-classification answer; Windsor invalidated DOMA without expressly making sexual orientation a suspect classification.",
+    "type": "distinction",
+    "trigger": "Answer says sexual orientation is a suspect classification under Windsor-style facts.",
+    "authority": "United States v. Windsor, 570 U.S. 744 (2013).",
+    "last_minute_review": true,
+    "example_qids": [
+      "19194_loaves_pages"
+    ]
+  },
+  {
+    "id": "SK-CONLAW-BENEFIT-FRAME-01",
+    "kind": "silver",
+    "statement": "When the call is Equal Protection, do not answer whether the benefit exists as a free-standing right; answer whether the government may draw this line.",
+    "type": "call_focus",
+    "trigger": "Answer talks about Congress’s benefits power or no constitutional right to a benefit.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "19194_loaves_pages"
+    ]
+  },
+  {
+    "id": "GK-CONLAW-TAX-REVENUE-01",
+    "kind": "gold",
+    "statement": "A federal excise tax that is facially revenue-raising is usually valid even if it burdens, discourages, or economically harms the taxed activity.",
+    "type": "rule",
+    "trigger": "federal excise tax + revenue/debt purpose + argument that the tax hurts the taxed activity",
+    "authority": "U.S. Const. art. I, §8; Sonzinsky v. United States; Fernandez v. Wiener",
+    "last_minute_review": true,
+    "example_qids": [
+      "19502_manna_festival_finals_tax"
+    ]
+  },
+  {
+    "id": "GK-CONLAW-TAX-CLASS-02",
+    "kind": "gold",
+    "statement": "Ordinary economic and tax classifications do not get strict scrutiny unless the stem gives a suspect class, fundamental right, or other protected trigger.",
+    "type": "burden",
+    "trigger": "tax classification + compelling-interest or equal-protection answer with no protected trigger",
+    "authority": "Regan v. Taxation With Representation; FCC v. Beach Communications",
+    "last_minute_review": true,
+    "example_qids": [
+      "19502_manna_festival_finals_tax"
+    ]
+  },
+  {
+    "id": "SK-CONLAW-TAX-ARRAY-01",
+    "kind": "silver",
+    "statement": "When a Con Law tax array mixes compelling interest, rational relation, equal protection, and economic-impact language, first lock the question as taxing power before liking the strongest-sounding constitutional phrase.",
+    "type": "answer_array",
+    "trigger": "revenue tax stem with multiple constitutional standards in the answer set",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "19502_manna_festival_finals_tax"
+    ]
+  },
+  {
+    "id": "GK-CONLAW-SCHOOL-FUNDING-01",
+    "kind": "gold",
+    "statement": "Public education is not a federal fundamental right, and poverty/local district wealth is not a suspect class for school-funding disparities; rational basis applies.",
+    "type": "constitutional_principle",
+    "trigger": "public-school funding gap caused by local property-tax bases",
+    "authority": "San Antonio Independent School District v. Rodriguez, 411 U.S. 1 (1973)",
+    "last_minute_review": true,
+    "example_qids": [
+      "19607_cana_hills_bethany_flats"
+    ]
+  },
+  {
+    "id": "GK-CONLAW-DISPARATE-IMPACT-01",
+    "kind": "gold",
+    "statement": "A facially neutral policy’s racial disparate impact does not by itself trigger heightened Equal Protection scrutiny; look for discriminatory purpose or a racial classification.",
+    "type": "threshold",
+    "trigger": "neutral funding formula plus racial overlap language",
+    "authority": "Washington v. Davis, 426 U.S. 229 (1976)",
+    "last_minute_review": true,
+    "example_qids": [
+      "19607_cana_hills_bethany_flats"
+    ]
+  },
+  {
+    "id": "SK-CONLAW-SCHOOL-FUNDING-01",
+    "kind": "silver",
+    "statement": "In a scrutiny-tier array, read each heightened-review answer by its trigger, not by how morally serious the inequality feels.",
+    "type": "answer_array",
+    "trigger": "Strict / intermediate / rational-basis answer spread",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "19607_cana_hills_bethany_flats"
+    ]
+  },
+  {
+    "id": "GK-CONLAW-SPENDING-CLEAR-NOTICE-01",
+    "kind": "gold",
+    "statement": "Spending Clause conditions must be stated clearly enough that a state can knowingly decide whether to accept the money and the obligations. A blank-check future-condition clause is the red flag.",
+    "type": "constitutional_principle",
+    "trigger": "state accepts federal money before the concrete condition appears",
+    "authority": "Pennhurst State School & Hospital v. Halderman; South Dakota v. Dole; Arlington Central School District Board of Education v. Murphy.",
+    "last_minute_review": true,
+    "example_qids": [
+      "19982_manna_warehouse"
+    ]
+  },
+  {
+    "id": "SK-CONLAW-MANNA-WAREHOUSE-01",
+    "kind": "silver",
+    "statement": "When the call asks for the state’s Spending Clause objection, hunt for the answer that attacks the condition’s clarity at the time of acceptance.",
+    "type": "trap_spotting",
+    "trigger": "state took grant money before the costly condition was listed",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "19982_manna_warehouse"
+    ]
+  },
+  {
+    "id": "GK-CONLAW-LAMPSTAND-01",
+    "kind": "gold",
+    "statement": "Neutral educational aid available to religious and secular private schools on equal terms, restricted to secular use, is not automatically an Establishment Clause violation.",
+    "type": "constitutional_principle",
+    "trigger": "Public funds buy school equipment for religious and nonreligious schools on identical terms, with secular-use limits.",
+    "authority": "Mitchell v. Helms, 530 U.S. 793 (2000)",
+    "last_minute_review": true,
+    "example_qids": [
+      "20153_lampstand_labs"
+    ]
+  },
+  {
+    "id": "GK-CONLAW-LAMPSTAND-02",
+    "kind": "gold",
+    "statement": "Federal taxpayers can have standing to challenge congressional taxing-and-spending measures alleged to violate the Establishment Clause.",
+    "type": "threshold",
+    "trigger": "Federal taxpayers sue to stop congressional spending on Establishment Clause grounds.",
+    "authority": "Flast v. Cohen, 392 U.S. 83 (1968)",
+    "last_minute_review": true,
+    "example_qids": [
+      "20153_lampstand_labs"
+    ]
+  },
+  {
+    "id": "GK-CONLAW-LAMPSTAND-03",
+    "kind": "gold",
+    "statement": "Congress is not categorically barred from subsidizing education; the taxing-and-spending power reaches general-welfare education spending.",
+    "type": "constitutional_principle",
+    "trigger": "Answer says education is solely for states.",
+    "authority": "U.S. Const. art. I, sec. 8, cl. 1",
+    "last_minute_review": true,
+    "example_qids": [
+      "20153_lampstand_labs"
+    ]
+  },
+  {
+    "id": "SK-CONLAW-LAMPSTAND-01",
+    "kind": "silver",
+    "statement": "In a 2-yes / 2-no constitutional array, do not pick by result. Grade the reason after because; same result plus false reason still dies.",
+    "type": "answer_array",
+    "trigger": "Two choices say No but only one uses the statute's secular-use fact.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20153_lampstand_labs"
+    ]
+  },
+  {
+    "id": "GK-CONSTITUTIONAL_LAW-MAZARS-PRESIDENTIAL-01",
+    "kind": "gold",
+    "statement": "When Congress subpoenas a President's personal information, there is no automatic enforcement and no automatic immunity. Courts check valid legislative purpose, need, reasonable tailoring, and burdens on the presidency.",
+    "type": "constitutional_principle",
+    "trigger": "congressional subpoena for President's personal records held by a third party",
+    "authority": "Trump v. Mazars USA, LLP, 591 U.S. ___ (2020)",
+    "last_minute_review": true,
+    "example_qids": [
+      "20186_road_to_emmaus_royalty_ledgers"
+    ]
+  },
+  {
+    "id": "SK-CONSTITUTIONAL_LAW-AUTOMATIC-EXTREMES-01",
+    "kind": "silver",
+    "statement": "When three choices give automatic outcomes and one describes a judicial evaluation, lock the call before choosing. The court-task call usually wants the calibrated evaluation, not a branch-power slogan.",
+    "type": "answer_array",
+    "trigger": "automatically / never / unlimited / only if",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20186_road_to_emmaus_royalty_ledgers"
+    ]
+  },
+  {
+    "id": "GK-CONLAW-BELIEF-CONDUCT-01",
+    "kind": "gold",
+    "statement": "Free Exercise protects religious belief and profession as such. Conduct inspired by belief is a separate lane and may be regulated under the applicable constitutional standard.",
+    "type": "distinction",
+    "trigger": "A statute punishes holding, teaching, professing, or affirming a religious belief.",
+    "authority": "Reynolds v. United States; Cantwell v. Connecticut; Employment Division v. Smith.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20231_crown_above_caesars"
+    ]
+  },
+  {
+    "id": "SK-CONLAW-BELIEF-CONDUCT-01",
+    "kind": "silver",
+    "statement": "First lock the object of the law: belief/teaching or conduct. If the answer changes the object from belief to unlawful acts, cut it as the adjacent-call answer.",
+    "type": "cut",
+    "trigger": "Stem says hold or teach, while an answer says unlawful acts or conduct.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20231_crown_above_caesars"
+    ]
+  },
+  {
+    "id": "GK-CONSTITUTIONAL_LAW-MEDICAL-USE-01",
+    "kind": "gold",
+    "statement": "A statute that bars the same medication only for a specified medical use and age group is not automatically a sex classification. Start with the classification the law actually draws.",
+    "type": "distinction",
+    "trigger": "same medication allowed for some diagnoses but barred for minors for one diagnosis",
+    "authority": "United States v. Skrmetti, 605 U.S. 495 (2025); Massachusetts Board of Retirement v. Murgia; Vacco v. Quill",
+    "last_minute_review": true,
+    "example_qids": [
+      "20586_psalms_hormone_use"
+    ]
+  },
+  {
+    "id": "SK-CONSTITUTIONAL_LAW-PSALMS-HORMONE-01",
+    "kind": "silver",
+    "statement": "On an Equal Protection threshold call, cut answers that jump straight to automatic scrutiny. The answer that names the classification actually drawn is the responsive lane.",
+    "type": "answer_array",
+    "trigger": "call asks key Equal Protection threshold question",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20586_psalms_hormone_use"
+    ]
+  },
+  {
+    "id": "GK-CONSTITUTIONAL_LAW-FEDERAL-CONTRACTOR-01",
+    "kind": "gold",
+    "statement": "A state may regulate a federal contractor unless applying the state rule would interfere with federal purposes or policies.",
+    "type": "constitutional_principle",
+    "trigger": "state prosecutes or regulates a private contractor performing a federal contract",
+    "authority": "Supremacy Clause; Leslie Miller; Goodyear Atomic",
+    "last_minute_review": true,
+    "example_qids": [
+      "20638_advent_rescue_beacons"
+    ]
+  },
+  {
+    "id": "SK-CONSTITUTIONAL_LAW-FEDERAL-CONTRACTOR-01",
+    "kind": "silver",
+    "statement": "When the call asks which fact best supports the state against federal-contractor immunity, look for the fact about practical effect on the federal job.",
+    "type": "answer_array",
+    "trigger": "choices split between location facts, express wording, and contract-performance cost",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20638_advent_rescue_beacons"
+    ]
+  },
+  {
+    "id": "GK-CONSTITUTIONAL_LAW-FLAST_SPENDING-01",
+    "kind": "gold",
+    "statement": "Federal taxpayers generally lack standing, but they may challenge a congressional taxing-and-spending enactment when the claim alleges violation of a specific constitutional limit on that spending power; the Establishment Clause is the classic trigger.",
+    "type": "exception",
+    "trigger": "Federal taxpayer + congressional spending + Establishment Clause claim.",
+    "authority": "Flast v. Cohen, 392 U.S. 83 (1968).",
+    "last_minute_review": true,
+    "example_qids": [
+      "20714_prayer_robotics_kits"
+    ]
+  },
+  {
+    "id": "SK-CONSTITUTIONAL_LAW-PRAYER_ROBOTICS_KITS-01",
+    "kind": "silver",
+    "statement": "On a taxpayer-standing call, separate entry-to-court from whether the aid is unconstitutional.",
+    "type": "call_focus",
+    "trigger": "The call asks whether the taxpayer has standing.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20714_prayer_robotics_kits"
+    ]
+  },
+  {
+    "id": "GK-CONSTITUTIONAL_LAW-FAMILY-INTEGRITY-01",
+    "kind": "gold",
+    "statement": "When a government housing rule directly excludes close relatives from living together as a household, route the claim to substantive due process family integrity, not ordinary zoning.",
+    "type": "constitutional_principle",
+    "trigger": "A residential rule slices a close relative out of a family household.",
+    "authority": "Moore v. City of East Cleveland, 431 U.S. 494 (1977).",
+    "last_minute_review": true,
+    "example_qids": [
+      "21848_manna_house_family_integrity"
+    ]
+  },
+  {
+    "id": "SK-CONSTITUTIONAL_LAW-ROUTE-CALL-01",
+    "kind": "silver",
+    "statement": "On a route call, pick the constitutional home before grading policy strength. First cut homes that have no facts in the stem.",
+    "type": "call_focus",
+    "trigger": "The call asks for the best constitutional route and the choices name different constitutional homes.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "21848_manna_house_family_integrity"
+    ]
+  },
+  {
+    "id": "GK-CONSTITUTIONAL_LAW-PRICE-AFFIRMATION-01",
+    "kind": "gold",
+    "statement": "A state may not condition in-state sales on a seller’s prices charged wholly outside the state. Price-affirmation laws tying in-state access to out-of-state prices are classic dormant Commerce Clause danger zones.",
+    "type": "rule",
+    "trigger": "in-state sales permission depends on prices in other states",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "21872_scripturequest_price_gate"
+    ]
+  },
+  {
+    "id": "SK-CONSTITUTIONAL_LAW-PRICE-LEVER-01",
+    "kind": "silver",
+    "statement": "Ignore the state’s label and follow the lever. If the in-state sales gate moves when out-of-state prices move, the DCC objection is extraterritorial control.",
+    "type": "trap_spotting",
+    "trigger": "certify prices in every other state",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "21872_scripturequest_price_gate"
+    ]
+  }
+]

@@ -1,0 +1,470 @@
+[
+  {
+    "id": "GK-CONTRACTS-MANGER-BUNDLES-01",
+    "kind": "gold",
+    "statement": "A mixed goods/services contract follows the goods side when the sale-of-goods purpose predominates; small setup, painting, configuration, or training services do not automatically make the whole deal a services contract.",
+    "type": "distinction",
+    "trigger": "Most of the price or contract object is the tangible goods, with services attached.",
+    "authority": "UCC 2-102; Bonebrake v. Cox, 499 F.2d 951.",
+    "last_minute_review": true,
+    "example_qids": [
+      "17026_manger_prop_bundles"
+    ]
+  },
+  {
+    "id": "GK-CONTRACTS-MANGER-BUNDLES-02",
+    "kind": "gold",
+    "statement": "For UCC meaning evidence, use agreement sources before defaults: express terms, course of performance, course of dealing, usage of trade, then gap-fillers. Course of dealing beats general usage of trade if they cannot reasonably be read together.",
+    "type": "rule",
+    "trigger": "Undefined contract phrase plus prior dealings and industry evidence.",
+    "authority": "UCC 2-202; UCC 1-303.",
+    "last_minute_review": true,
+    "example_qids": [
+      "17026_manger_prop_bundles"
+    ]
+  },
+  {
+    "id": "SK-CONTRACTS-MANGER-BUNDLES-01",
+    "kind": "silver",
+    "statement": "Read this array as a source-order ladder: source law first, private party history second, general trade usage third, defaults last.",
+    "type": "answer_array",
+    "trigger": "An undefined phrase plus prior same-party contracts plus general trade usage.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "17026_manger_prop_bundles"
+    ]
+  },
+  {
+    "id": "GK-CONTRACTS-PERFORMANCE-GUARANTY-01",
+    "kind": "gold",
+    "statement": "A guaranty offer that says “if you extend credit, I guarantee payment” invites acceptance by performance. The creditor accepts by extending the requested credit before the guarantor’s death.",
+    "type": "rule",
+    "trigger": "If-credit-then-I-guarantee wording plus credit extended before death.",
+    "authority": "Restatement (Second) of Contracts §§ 36, 50, 54; Davis v. Wells, 104 U.S. 159.",
+    "last_minute_review": true,
+    "example_qids": [
+      "17110_sticker_press_guaranty"
+    ]
+  },
+  {
+    "id": "SK-CONTRACTS-STICKER-PRESS-01",
+    "kind": "silver",
+    "statement": "For formation calls, lock the time line before the doctrine: offer, requested performance, death, default. If performance came before death, later notice language is a trap.",
+    "type": "call_focus",
+    "trigger": "A choice makes death or notice decisive even though requested performance already happened.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "17110_sticker_press_guaranty"
+    ]
+  },
+  {
+    "id": "GK-CONTRACTS-BARGAIN-PRICE-01",
+    "kind": "gold",
+    "statement": "Full performance plus an unpaid fixed contract price means the bargain price is the recovery. Do not relabel higher reasonable value as reliance or restitution to get more.",
+    "type": "distinction",
+    "trigger": "The stem gives both a fixed contract price and a higher reasonable value after full performance.",
+    "authority": "Restatement (Second) of Contracts §§ 344, 347, 349, 373(2).",
+    "last_minute_review": true,
+    "example_qids": [
+      "17173_road_to_emmaus_puzzle_quest"
+    ]
+  },
+  {
+    "id": "SK-CONTRACTS-REMEDY-MENU-01",
+    "kind": "silver",
+    "statement": "When the choices are all dollar amounts, classify the menu before choosing: contract price, market value, zero, or spread.",
+    "type": "answer_array",
+    "trigger": "The stem supplies two dollar amounts and the choices recombine them.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "17173_road_to_emmaus_puzzle_quest"
+    ]
+  },
+  {
+    "id": "GK-CONTRACTS-SATISFACTION-COMMERCIAL-01",
+    "kind": "gold",
+    "statement": "When a satisfaction condition concerns commercial utility, mechanical fitness, or measurable performance, use an objective reasonable-person standard if practicable. Honest personal dissatisfaction controls only taste/aesthetic satisfaction clauses.",
+    "type": "distinction",
+    "trigger": "satisfaction clause tied to a measurable output or performance metric",
+    "authority": "Restatement (Second) of Contracts § 228; commercial/mechanical utility cases applying objective reasonableness.",
+    "last_minute_review": true,
+    "example_qids": [
+      "19250_scripture_card_printer"
+    ]
+  },
+  {
+    "id": "SK-CONTRACTS-SATISFACTION-COMMERCIAL-01",
+    "kind": "silver",
+    "statement": "Before honoring 'not satisfied,' underline what the clause says the party must be satisfied about. If the object is a measurable output, match the answer to the metric, not the buyer's mood.",
+    "type": "trap_spotting",
+    "trigger": "satisfaction clause plus test results",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "19250_scripture_card_printer"
+    ]
+  },
+  {
+    "id": "GK-CONTRACTS-TPB-CAP-01",
+    "kind": "gold",
+    "statement": "An intended beneficiary takes the contract as written. If the same contract creates the beneficiary's right and caps liability, the beneficiary's claim is capped.",
+    "type": "rule",
+    "trigger": "A nonparty sues as an intended beneficiary and seeks more than a limit in the same contract.",
+    "authority": "Restatement (Second) of Contracts §§ 302, 309.",
+    "last_minute_review": true,
+    "example_qids": [
+      "19386_scripture_audio_cap"
+    ]
+  },
+  {
+    "id": "SK-CONTRACTS-TPB-CAP-01",
+    "kind": "silver",
+    "statement": "In a no-recovery / capped-recovery / full-recovery / assignment answer set, compare the source of the right with the source of the limit. Same source means package answer.",
+    "type": "answer_array",
+    "trigger": "A beneficiary claims more than a contract limit.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "19386_scripture_audio_cap"
+    ]
+  },
+  {
+    "id": "GK-CONTRACTS-REQUIREMENTS-SHUTDOWN-01",
+    "kind": "gold",
+    "statement": "In a requirements contract, a stated estimate is not a fixed minimum. Actual good-faith requirements can be zero if the buyer truly shuts down the covered operation and does not shift the same requirements elsewhere.",
+    "type": "rule",
+    "trigger": "all requirements + stated estimate + covered line shuts down + no substitute purchases",
+    "authority": "UCC 2-306(1); official-comment material on good-faith discontinuance.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20004_dove_tokens_manna_game"
+    ]
+  },
+  {
+    "id": "SK-CONTRACTS-REQUIREMENTS-LANE-01",
+    "kind": "silver",
+    "statement": "When the stem says 'all requirements' plus an estimate, first ask whether the buyer still had covered requirements. Cut answers that jump to fixed quantity, excuse, or parol-evidence frames.",
+    "type": "answer_array",
+    "trigger": "requirements term with estimate and later shutdown",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20004_dove_tokens_manna_game"
+    ]
+  },
+  {
+    "id": "GK-CONTRACTS-FISH-KEYCHAINS-01",
+    "kind": "gold",
+    "statement": "For a UCC sale-of-goods oral contract, an in-court admission can satisfy the Statute of Frauds, but only for the quantity the party admits.",
+    "type": "exception",
+    "trigger": "No signed writing plus testimony admitting a smaller quantity than the seller alleges.",
+    "authority": "UCC 2-201(3)(b)",
+    "last_minute_review": true,
+    "example_qids": [
+      "20100_fish_and_loaves_keychains"
+    ]
+  },
+  {
+    "id": "SK-CONTRACTS-FISH-KEYCHAINS-01",
+    "kind": "silver",
+    "statement": "When the answers fight over all, none, and only the admitted amount, circle the exact admitted number first; the right answer usually sits on that number.",
+    "type": "answer_array",
+    "trigger": "A party admits one quantity but denies the larger alleged quantity.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20100_fish_and_loaves_keychains"
+    ]
+  },
+  {
+    "id": "GK-CONTRACTS-COSTS-SAVED-01",
+    "kind": "gold",
+    "statement": "When a service contract is repudiated before the contractor spends money, expectation recovery is the profit the contractor lost: contract price minus costs avoided, plus any other proven loss.",
+    "type": "rule",
+    "trigger": "fixed service price + expected costs + repudiation before performance + avoided all costs",
+    "authority": "Restatement (Second) of Contracts § 347",
+    "last_minute_review": true,
+    "example_qids": [
+      "20271_lantern_handbell_evening"
+    ]
+  },
+  {
+    "id": "SK-CONTRACTS-PROFIT-MATH-01",
+    "kind": "silver",
+    "statement": "When the choices are gross price, expected cost, net profit, and zero, treat the array as a formula test: keep the answer that uses price and subtracts saved costs.",
+    "type": "answer_array",
+    "trigger": "one choice equals price, one equals cost, one equals price-minus-cost, one equals zero",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20271_lantern_handbell_evening"
+    ]
+  },
+  {
+    "id": "GK-CONTRACTS-AS-IS-MISTAKE-01",
+    "kind": "gold",
+    "statement": "A mutual mistake does not support rescission if the party seeking rescission bore the risk. An as-is clause can allocate unknown hidden-defect risk to that party.",
+    "type": "rule",
+    "trigger": "A mutual mistake stem plus an express as-is or unknown-defect risk-allocation term.",
+    "authority": "Restatement (Second) of Contracts §§ 152, 154.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20351_red_sea_mini_golf"
+    ]
+  },
+  {
+    "id": "SK-CONTRACTS-AS-IS-MISTAKE-01",
+    "kind": "silver",
+    "statement": "In a grant/deny rescission matrix, separate the mistake fact from the risk-allocation fact. The answer that engages the explicit risk term beats the answer that only says both parties were mistaken.",
+    "type": "answer_array",
+    "trigger": "Two choices grant rescission, two deny; one denial tracks the as-is clause.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20351_red_sea_mini_golf"
+    ]
+  },
+  {
+    "id": "GK-CONTRACTS-DOVE-NOTICE-01",
+    "kind": "gold",
+    "statement": "After accepting goods, a buyer who discovers a defect must notify the seller within a reasonable time or lose the defect remedy.",
+    "type": "rule",
+    "trigger": "Known nonconformity on delivery plus months of silence before a price suit.",
+    "authority": "UCC §§2-602, 2-606, 2-607, 2-709",
+    "last_minute_review": true,
+    "example_qids": [
+      "20370_dove_mug_notice"
+    ]
+  },
+  {
+    "id": "SK-CONTRACTS-DOVE-ARRAY-01",
+    "kind": "silver",
+    "statement": "Read the 2x2 by reason, not outcome: the seller-wins choice with the notice fact beats the seller-wins choice with acceptance alone.",
+    "type": "answer_array",
+    "trigger": "Two choices name the seller and two name the buyer.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20370_dove_mug_notice"
+    ]
+  },
+  {
+    "id": "GK-CONTRACTS-REQUIREMENTS-01",
+    "kind": "gold",
+    "statement": "A requirements term is a quantity term: it measures the buyer's quantity by actual good-faith needs, not by a fixed number.",
+    "type": "rule",
+    "trigger": "all goods the buyer requires",
+    "authority": "UCC 2-306(1)",
+    "last_minute_review": true,
+    "example_qids": [
+      "20461_lydia_beeswax_requirements"
+    ]
+  },
+  {
+    "id": "SK-CONTRACTS-REQUIREMENTS-ARRAY-01",
+    "kind": "silver",
+    "statement": "When three choices say no contract and the stem gives a requirements phrase, cut the no-contract reasons one at a time before assuming the missing number is fatal.",
+    "type": "answer_array",
+    "trigger": "No fixed number objection after an 'all I require' phrase.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20461_lydia_beeswax_requirements"
+    ]
+  },
+  {
+    "id": "GK-CONTRACTS-SURETY-MEMO-THIRD-PERSON-01",
+    "kind": "gold",
+    "statement": "For a common-law Statute of Frauds memorandum, the writing need not be addressed or delivered to the enforcing party. Ask whether it is signed by the party to be charged and whether it identifies the promise, parties, and essential terms.",
+    "type": "distinction",
+    "trigger": "signed note admits a guaranty but was sent to someone other than the creditor",
+    "authority": "Restatement (Second) of Contracts §§ 131, 133; lawyer-confirmation only",
+    "last_minute_review": true,
+    "example_qids": [
+      "20523_easter_stage_guaranty"
+    ]
+  },
+  {
+    "id": "SK-CONTRACTS-SURETY-MEMO-ARRAY-01",
+    "kind": "silver",
+    "statement": "When three answers add formalities and one answer tracks the signer-plus-content path, group the formalities first. Then cut the addressee and extra-signature conditions as the same trap family.",
+    "type": "answer_array",
+    "trigger": "choices say must be addressed, must always be signed by both, or only if debtor signed",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20523_easter_stage_guaranty"
+    ]
+  },
+  {
+    "id": "GK-CONTRACTS-PROSPECTIVE-INABILITY-01",
+    "kind": "gold",
+    "statement": "If a party's own conduct makes future performance reasonably appear impossible, the other side can be discharged when it materially changes position in reliance before the obstacle disappears.",
+    "type": "distinction",
+    "trigger": "Outside commitment begins before contract performance; replacement hired before later release.",
+    "authority": "Restatement (Second) of Contracts §§ 250, 253, 256.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20556_mustard_seed_puppet_caravan"
+    ]
+  },
+  {
+    "id": "SK-CONTRACTS-RELIANCE-TIMING-01",
+    "kind": "silver",
+    "statement": "In a future-performance clash, prefer the answer that states the reliance/timing fact over the answer that gives only a legal label.",
+    "type": "clash",
+    "trigger": "Two defendant answers remain; one says only 'anticipatory repudiation,' the other says reliance.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20556_mustard_seed_puppet_caravan"
+    ]
+  },
+  {
+    "id": "GK-CONTRACTS-ARK-FLOAT-01",
+    "kind": "gold",
+    "statement": "A condition subsequent is a later event that cuts off an existing contractual duty when the contract says that event will end the duty.",
+    "type": "rule",
+    "trigger": "contract says remains effective unless a later event occurs",
+    "authority": "Restatement (Second) of Contracts §230; condition subsequent / event that terminates a duty",
+    "last_minute_review": true,
+    "example_qids": [
+      "20569_ark_float"
+    ]
+  },
+  {
+    "id": "SK-CONTRACTS-ARK-FLOAT-01",
+    "kind": "silver",
+    "statement": "When a contract gives an exact 'unless' trigger, do not let choices swap in a broader doctrine like impossibility or substantial performance.",
+    "type": "trap_spotting",
+    "trigger": "answer uses a different doctrine than the clause's stated event",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20569_ark_float"
+    ]
+  },
+  {
+    "id": "GK-CONTRACTS-COMPLETE-INTEGRATION-01",
+    "kind": "gold",
+    "statement": "A complete-and-exclusive writing is a complete integration. Prior or contemporaneous oral additions inside the same deal are excluded even if they do not contradict the writing.",
+    "type": "distinction",
+    "trigger": "complete and exclusive statement + prior oral extra term",
+    "authority": "Restatement (Second) of Contracts §§ 210, 213, 216",
+    "last_minute_review": true,
+    "example_qids": [
+      "20599_advent_handbell_integration"
+    ]
+  },
+  {
+    "id": "SK-CONTRACTS-INTEGRATION-CLASH-01",
+    "kind": "silver",
+    "statement": "When one choice says the oral term does not contradict and another points to complete/exclusive language, clash them on integration level before judging consistency.",
+    "type": "clash",
+    "trigger": "not conflict vs complete and exclusive",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20599_advent_handbell_integration"
+    ]
+  },
+  {
+    "id": "GK-CONTRACTS-UNIQUE-GOODS-SP-01",
+    "kind": "gold",
+    "statement": "For goods, specific performance is exceptional but available to a buyer when the goods are unique or highly unusual.",
+    "type": "exception",
+    "trigger": "The stem describes an unusual object and asks for specific performance.",
+    "authority": "UCC 2-716(1)",
+    "last_minute_review": true,
+    "example_qids": [
+      "20737_jonahs_whale_lyre"
+    ]
+  },
+  {
+    "id": "SK-CONTRACTS-JONAH-LYRE-01",
+    "kind": "silver",
+    "statement": "In a 3-Yes/1-No remedies array, do not accept the first Yes. Pick the answer tied to the stem’s remedy-trigger fact.",
+    "type": "answer_array",
+    "trigger": "Multiple Yes answers give different reasons for specific performance.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20737_jonahs_whale_lyre"
+    ]
+  },
+  {
+    "id": "GK-CONTRACTS-MERCHANT-CONFIRMATION-01",
+    "kind": "gold",
+    "statement": "Between merchants, a signed written confirmation sufficient against the sender can satisfy the UCC Statute of Frauds against the recipient if the recipient has reason to know its contents and does not give written notice of objection within 10 days. Oral objection is not enough.",
+    "type": "exception",
+    "trigger": "two merchants + oral goods deal + signed written confirmation + oral/no written objection",
+    "authority": "UCC §2-201(2)",
+    "last_minute_review": true,
+    "example_qids": [
+      "20805_psalm_lanterns_confirmation"
+    ]
+  },
+  {
+    "id": "SK-CONTRACTS-TIMING-VS-FORM-01",
+    "kind": "silver",
+    "statement": "When a choice says the objection was within 10 days, ask a second question: was it in the required form? Timing does not cure the wrong method of objection.",
+    "type": "trap_spotting",
+    "trigger": "oral objection inside a time window",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20805_psalm_lanterns_confirmation"
+    ]
+  },
+  {
+    "id": "GK-CONTRACTS-PRESS-DUTY-01",
+    "kind": "gold",
+    "statement": "A promise to do what the promisee is already legally obligated to do is not consideration for a new promise, unless the new performance is materially different or the old duty is honestly disputed.",
+    "type": "rule",
+    "trigger": "A later promise is exchanged for permission or performance already owed under an earlier deal.",
+    "authority": "Restatement (Second) of Contracts §§ 71, 73.",
+    "last_minute_review": true,
+    "example_qids": [
+      "20808_jericho_press"
+    ]
+  },
+  {
+    "id": "SK-CONTRACTS-PRESS-DUTY-01",
+    "kind": "silver",
+    "statement": "When one answer says 'promise-for-promise' and the other says 'no consideration,' ask what new legal position the plaintiff gave up in the later deal.",
+    "type": "answer_array",
+    "trigger": "A surface bargain repeats an earlier duty.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "20808_jericho_press"
+    ]
+  },
+  {
+    "id": "GK-CONTRACTS-MODE-ACCEPTANCE-01",
+    "kind": "gold",
+    "statement": "If an offer requires acceptance by a specified performance or tender, a later promise to perform is not the invited acceptance; it is at most a new offer or counteroffer.",
+    "type": "distinction",
+    "trigger": "A buyer says “I will buy if you deliver,” and the seller later says “I will deliver.”",
+    "authority": "Restatement (Second) of Contracts §§30, 45, 50; UCC §2-206 language/circumstances caveat.",
+    "last_minute_review": true,
+    "example_qids": [
+      "21879_noahs_ark_puppet_set"
+    ]
+  },
+  {
+    "id": "SK-CONTRACTS-NOAHS-ARK-01",
+    "kind": "silver",
+    "statement": "Classify the sentence before debating doctrine: future-tense words are not performance already begun.",
+    "type": "cut",
+    "trigger": "Choice labels a promise to bring later as performance now.",
+    "authority": null,
+    "last_minute_review": true,
+    "example_qids": [
+      "21879_noahs_ark_puppet_set"
+    ]
+  }
+]

@@ -1,0 +1,184 @@
+[
+  {
+    "id": "CIV-REM-JMOL-EVIDENCE-GATE-01",
+    "type": "ANCHOR",
+    "title": "JMOL = evidence gate, not moral gate",
+    "signal": "Party rests; motion targets one element.",
+    "student_move": "Ask whether the record contains evidence a reasonable jury could use on that element.",
+    "tiny_rule": "No evidence on an essential element means no legally sufficient jury basis.",
+    "trap": "Bad faith, sympathy, or jury-autopilot standards.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "19266_carol_banquet_jmol"
+    ]
+  },
+  {
+    "id": "REM-CIVIL_PROCEDURE-LOST-ESI-01",
+    "type": "ANCHOR",
+    "title": "Lost ESI sanction ladder",
+    "signal": "ESI lost after preservation duty, prejudice shown, no intent.",
+    "student_move": "Choose cure-the-prejudice measures; cut adverse inference and case-ending sanctions.",
+    "tiny_rule": "Prejudice cures; intent punishes.",
+    "trap": "Treating lost evidence as automatically unfavorable.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "19286_five_loaves_press"
+    ]
+  },
+  {
+    "id": "REM-CIV-12B6-INTENT-01",
+    "type": "ANCHOR",
+    "title": "Complaint label vs complaint facts",
+    "signal": "Claim label says an intentional tort, but the pleaded facts say negligence.",
+    "student_move": "Use the claim label and the pleaded fact together; do not stop at notice.",
+    "tiny_rule": "A complaint can defeat itself by pleading facts inconsistent with an element of the selected claim.",
+    "trap": "Notice pleading or amount-in-controversy distractors.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "19721_jonah_whale_float"
+    ]
+  },
+  {
+    "id": "RC-CIVIL_PROCEDURE-COLLATERAL-ORDER-NARROWNESS-01",
+    "type": "ANCHOR",
+    "title": "Finality Gate: Ordinary Discovery Waits",
+    "signal": "Immediate appeal from a discovery order.",
+    "student_move": "Treat cost as bait; check whether later review is enough.",
+    "tiny_rule": "Collateral order is narrow; ordinary discovery orders usually wait.",
+    "trap": "Turning expense or separateness into immediate appeal.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "19793_dove_candle_ledgers"
+    ]
+  },
+  {
+    "id": "CIV-DISC-PRIV-01",
+    "type": "ANCHOR",
+    "title": "Fact, not chat",
+    "signal": "Discovery asks for a fact; privilege objection points to a lawyer conversation.",
+    "student_move": "Separate the underlying fact from the communication that reported it.",
+    "tiny_rule": "Facts do not become privileged by being told to counsel.",
+    "trap": "Every fact discussed with a lawyer becomes privileged.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "19840_red_sea_bridge_bolts"
+    ]
+  },
+  {
+    "id": "CIV-REM-54B-CERT-GATE",
+    "type": "ANCHOR",
+    "title": "Rule 54(b): partial dismissal is not automatic finality",
+    "signal": "Fewer than all claims or parties resolved.",
+    "student_move": "Ask whether the court both directed entry of judgment and found no just reason for delay.",
+    "tiny_rule": "No certification, no immediate Rule 54(b) appeal.",
+    "trap": "Full dismissal of one defendant feels final.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20247_bible_memory_kit"
+    ]
+  },
+  {
+    "id": "CIV-REM-20291-FUNCTIONAL-INJUNCTION",
+    "type": "ANCHOR",
+    "title": "Caption vs command",
+    "signal": "A district-court order has a neutral label but tells someone to do or stop doing something.",
+    "student_move": "Ignore the caption first; identify the operative command.",
+    "tiny_rule": "Function beats label for injunction appealability.",
+    "trap": "Magic-word caption rule; every-management-order overclaim.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20291_nativity_prop_rental_freeze"
+    ]
+  },
+  {
+    "id": "CIV-REM-20353-DEFENDANT-COUNTERCLAIM",
+    "type": "ANCHOR",
+    "title": "Defendant counterclaim under supplemental jurisdiction",
+    "signal": "Diversity anchor claim plus low-value defendant counterclaim from the same incident.",
+    "student_move": "Check whether the low-value claim is defendant-side and same occurrence before applying §1367(b).",
+    "tiny_rule": "Same-event defendant counterclaims may ride §1367(a); §1367(b) is plaintiff-side.",
+    "trap": "Treating every low-value diversity claim as independently barred.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20353_baptism_tank_burst"
+    ]
+  },
+  {
+    "id": "CIV-REM-ERIE-FED-STATUTE-01",
+    "type": "ANCHOR",
+    "title": "Federal statute on point beats Erie balancing",
+    "signal": "Diversity + state rule + federal statute directly addressing procedure.",
+    "student_move": "Ask whether the federal statute directly controls before discussing forum shopping.",
+    "tiny_rule": "Federal statute on point first; Erie twin aims only after no controlling federal law.",
+    "trap": "State-law claim language makes the state procedural rule feel controlling.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20567_psalm_panels_venue"
+    ]
+  },
+  {
+    "id": "CIV-REMEDY-VENUE-BUCKETS-20606",
+    "type": "ANCHOR",
+    "title": "Venue bucket checklist",
+    "signal": "The call asks which judicial districts are proper.",
+    "student_move": "Build the complete bucket list before reading combinations.",
+    "tiny_rule": "Event district plus qualifying defendant-residence districts; plaintiff home is a lure.",
+    "trap": "Stopping after the loudest venue fact.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20606_lydia_festival_venue"
+    ]
+  },
+  {
+    "id": "REM-CIV-DIVERSITY-FILING-SNAPSHOT",
+    "type": "ANCHOR",
+    "title": "Diversity snapshot",
+    "signal": "Filing-day citizenship plus later move.",
+    "student_move": "Freeze citizenship at filing before reading later procedural facts.",
+    "tiny_rule": "Diversity citizenship is checked at filing.",
+    "trap": "response-date and before-trial timing choices",
+    "confidence": "PURE_ANCHOR",
+    "example_qids": [
+      "20627_ruth_hymn_poster_contract"
+    ]
+  },
+  {
+    "id": "CIV-REMEDY-R12-WAIVER-20690",
+    "type": "ANCHOR",
+    "title": "First response freezes waivable Rule 12 defenses",
+    "signal": "Known personal-jurisdiction facts + answer or first Rule 12 motion without PJ objection.",
+    "student_move": "Check whether the later pleading created a new defect. If not, cut fresh-start answers.",
+    "tiny_rule": "Available PJ objections are use-it-or-lose-it; same-defect amendments do not restart them.",
+    "trap": "Amended complaint = fresh Rule 12 slate.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20690"
+    ]
+  },
+  {
+    "id": "CIV-REM-PJ-CONTACTS-FIRST",
+    "type": "ANCHOR",
+    "title": "Contacts First, Fairness Second",
+    "signal": "Plaintiff argues home forum is fairest, but defendant did all conduct elsewhere.",
+    "student_move": "Ask for defendant-created forum contacts before weighing fairness.",
+    "tiny_rule": "Fairness can defeat jurisdiction; it cannot create minimum contacts.",
+    "trap": "Letting sympathy for plaintiff hardship substitute for purposeful availment.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20811_illuminated_psalms_solvent"
+    ]
+  },
+  {
+    "id": "CIV-REM-QIR-RELATEDNESS-01",
+    "type": "ANCHOR",
+    "title": "Unrelated property is not forum power.",
+    "signal": "Plaintiff attaches defendant's forum property for a claim arising elsewhere.",
+    "student_move": "Ask whether the property connects the defendant, forum, and litigation.",
+    "tiny_rule": "Unrelated property alone does not create jurisdiction over the personal claim.",
+    "trap": "Any-property / asset-value shortcut.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "21711_foam_whale_nativity_attachment"
+    ]
+  }
+]

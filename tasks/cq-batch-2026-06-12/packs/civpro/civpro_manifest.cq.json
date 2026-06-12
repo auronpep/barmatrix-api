@@ -1,0 +1,27 @@
+{
+  "subject_dir": "civpro",
+  "subject": "CIVIL_PROCEDURE",
+  "batch": "cq-2026-06-12",
+  "question_count": 14,
+  "qids": [
+    "19266_carol_banquet_jmol",
+    "19286_five_loaves_press",
+    "19721_jonah_whale_float",
+    "19793_dove_candle_ledgers",
+    "19840_red_sea_bridge_bolts",
+    "20247_bible_memory_kit",
+    "20291_nativity_prop_rental_freeze",
+    "20353_baptism_tank_burst",
+    "20567_psalm_panels_venue",
+    "20606_lydia_festival_venue",
+    "20627_ruth_hymn_poster_contract",
+    "20690",
+    "20811_illuminated_psalms_solvent",
+    "21711_foam_whale_nativity_attachment"
+  ],
+  "cards": 14,
+  "keys": 30,
+  "drills": 6,
+  "microdrills": 53,
+  "note": "New subject pack — requires wiring into src/lib/c3-subjects.ts before it is served."
+}

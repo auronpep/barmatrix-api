@@ -1,0 +1,301 @@
+[
+  {
+    "id": "RC-TORTS-SECURITY-DUTY-01",
+    "type": "ANCHOR",
+    "title": "Customer status is not guard-duty by itself",
+    "signal": "A business customer is attacked by an unknown stranger, and the answer says duty exists merely because the person was a customer.",
+    "student_move": "Ask what specific duty is claimed. If it is guards/security, look for prior similar danger, created risk, imminent danger, or comparable notice.",
+    "tiny_rule": "Status opens the premises-duty lane; foreseeability triggers the security-guard duty.",
+    "trap": "Treating invitee/customer status as automatic insurance against crime.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "19213_road_to_emmaus_breezeway"
+    ]
+  },
+  {
+    "id": "REM-TORTS-LI-01",
+    "type": "ANCHOR",
+    "title": "Warned risk is not warning defect",
+    "signal": "The answer says the plaintiff suffered the exact risk described.",
+    "student_move": "Ask whether the call is about injury or about warning duty.",
+    "tiny_rule": "Injury completes harm; it does not prove the warning was defective.",
+    "trap": "Wrong-element answer on failure-to-warn claims.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "19434"
+    ]
+  },
+  {
+    "id": "RC-TORTS-NE-001",
+    "type": "ANCHOR",
+    "title": "Control Beats Title",
+    "signal": "Non-owner had authority over who could use the chattel.",
+    "student_move": "Ask who supplied or permitted use, then ask whether the user was visibly unsafe.",
+    "tiny_rule": "For negligent entrustment, supplier/control can be enough; title is not the gate.",
+    "trap": "Owner-only answer.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "19448_praise_night_tshirt_cannon"
+    ]
+  },
+  {
+    "id": "REM-TORTS-NMISREP-01",
+    "type": "ANCHOR",
+    "title": "Foreseeability is not the whole duty gate.",
+    "signal": "Professional information + economic loss + unknown later reader.",
+    "student_move": "Ask: targeted person/class and targeted transaction?",
+    "tiny_rule": "Foreseeability alone loses to targeted-use duty.",
+    "trap": "General negligence reflex.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20024_loaves_fishes_crate_count"
+    ]
+  },
+  {
+    "id": "REM-TORTS-FALSE-LIGHT-FAULT-01",
+    "type": "ANCHOR",
+    "title": "False-light public concern: fault before feelings",
+    "signal": "False-light claim plus public-concern publication.",
+    "student_move": "Lock the call. If it asks mental state, find the publisher's knowledge or serious doubt.",
+    "tiny_rule": "Actual malice is knowledge of falsity or reckless disregard.",
+    "trap": "Mistaking embarrassment, special damages, or misleading graphics for the required mental-state showing.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20123_prayer_card_threat_writers"
+    ]
+  },
+  {
+    "id": "REM-TORTS-SRM-01",
+    "type": "ANCHOR",
+    "title": "Later Fix Is Not Hindsight Liability",
+    "signal": "Post-injury repair, added guard, new warning, new traction, or changed procedure.",
+    "student_move": "Separate prior breach from later feasibility.",
+    "tiny_rule": "Later fix is not breach proof; feasibility only if genuinely disputed.",
+    "trap": "They fixed it later, so they must have breached earlier.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20310_psalms_wax_lamp"
+    ]
+  },
+  {
+    "id": "RC-TORTS-RES-IPSA-01",
+    "type": "ANCHOR",
+    "title": "Res ipsa: inference, not proof shortcut to judgment",
+    "signal": "Abnormal malfunction, defendant responsibility, plaintiff non-contribution, no direct proof.",
+    "student_move": "Do not punish the plaintiff for lacking the exact defect; ask whether the event itself can speak.",
+    "tiny_rule": "No exact defect needed; no automatic judgment.",
+    "trap": "Missing direct proof feels fatal.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20328_bethlehem_star_drop"
+    ]
+  },
+  {
+    "id": "REM-TORTS-20439-01",
+    "type": "ANCHOR",
+    "title": "Cause/status/product are not the claim",
+    "signal": "A Torts answer names only cause, status, or product defect.",
+    "student_move": "Ask whether the answer supplies a liability basis.",
+    "tiny_rule": "For negligence, look for unreasonable conduct.",
+    "trap": "Choosing a legally flavored fragment instead of the operative ground.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20439_floating_star_driveway"
+    ]
+  },
+  {
+    "id": "TOR-REM-COLLATERAL-SOURCE-01",
+    "type": "ANCHOR",
+    "title": "Who paid?",
+    "signal": "Insurance payment before or after tort verdict.",
+    "student_move": "Sort the payer: defendant-side, joint-tortfeasor-side, or plaintiff-side.",
+    "tiny_rule": "Plaintiff-side insurance does not reduce the judgment.",
+    "trap": "Double recovery feels fair but points the wrong way.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20496_loaves_prop_cart"
+    ]
+  },
+  {
+    "id": "REM-TORTS-NAMED-DEFENDANT-INSPECTION-01",
+    "type": "ANCHOR",
+    "title": "Owner-inspection fact beats product/contractor/status bait",
+    "signal": "Premises owner is sued after a third party installed a dangerous device.",
+    "student_move": "Ask which choice supplies breach by the named owner.",
+    "tiny_rule": "For invitees, reasonable inspection can be the breach path.",
+    "trap": "Product defect and contractor conduct feel causal but do not answer owner breach.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20546_jericho_wall_studio"
+    ]
+  },
+  {
+    "id": "REM-TORTS-RESCUE-20594",
+    "type": "ANCHOR",
+    "title": "Danger invites rescue, not automatic indemnity",
+    "signal": "Rescuer injured while responding to apparent human peril.",
+    "student_move": "Ask whether the defendant's unreasonable conduct created the danger; then reject actual-awareness and automatic-payment traps.",
+    "tiny_rule": "Rescue is foreseeable when negligent danger creates apparent human peril.",
+    "trap": "Treating rescue as either meddling or automatic reimbursement.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20594_daniels_whale_float"
+    ]
+  },
+  {
+    "id": "REM-TORTS-APPROPRIATION-IDENTITY-01",
+    "type": "ANCHOR",
+    "title": "Name/photo trap in appropriation",
+    "signal": "The stem says no exact name or photograph, but many identity cues are copied.",
+    "student_move": "Do not require exact name/photo. Ask whether the ad clearly uses the plaintiff’s identity for commercial advantage without consent.",
+    "tiny_rule": "Recognizable commercial evocation can be enough.",
+    "trap": "Exact-name/photo-only answer.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20598_write_it_on_your_heart"
+    ]
+  },
+  {
+    "id": "REM-TORTS-RESCUE-ACTOR-FAULT-01",
+    "type": "ANCHOR",
+    "title": "Rescue Doctrine: Actor-Fault Gate",
+    "signal": "Rescuer is hurt and sues the person rescued or that person's estate.",
+    "student_move": "Target the defendant's negligence before praising the rescue.",
+    "tiny_rule": "No negligent peril-maker, no rescuer recovery from that defendant.",
+    "trap": "Noble rescue facts feel dispositive.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20603_road_to_emmaus_escape_room"
+    ]
+  },
+  {
+    "id": "TOR-ANCHOR-FALSE-LIGHT-PUBLICITY",
+    "type": "ANCHOR",
+    "title": "False light publicity gate",
+    "signal": "False-light claim after a private accusation.",
+    "student_move": "Ask whether the matter reached the public or a broad audience.",
+    "tiny_rule": "One private listener is not false-light publicity.",
+    "trap": "Treating falsity or defamation overlap as enough.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20605_scripture_quiz_whisper"
+    ]
+  },
+  {
+    "id": "REM-TORTS-20649-01",
+    "type": "ANCHOR",
+    "title": "Avoidability is not contributory negligence",
+    "signal": "Choice says plaintiff would have avoided injury if she had acted differently.",
+    "student_move": "Ask whether the choice says the actual conduct was negligent.",
+    "tiny_rule": "No plaintiff negligence, no contributory-negligence bar.",
+    "trap": "Confusing safer hypothetical with legal fault.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20649_christmas_pageant_platform"
+    ]
+  },
+  {
+    "id": "TOR-REM-CAUSATION-LINK-01",
+    "type": "ANCHOR",
+    "title": "Breach is not causation",
+    "signal": "The stem proves what the doctor should have done but not what would have happened if the doctor had done it.",
+    "student_move": "Ask: what evidence links this specific missed step to this specific injury?",
+    "tiny_rule": "No link, no negligence win.",
+    "trap": "Choosing the answer that proves breach or the answer that proves the procedure caused harm.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20717_ruths_hymn_recording_procedure"
+    ]
+  },
+  {
+    "id": "REM-TORTS-NM-CLASS-BOUNDARY-01",
+    "type": "ANCHOR",
+    "title": "Known recipient, not no one and not everyone",
+    "signal": "Professional report prepared for a named recipient's business reliance.",
+    "student_move": "Cut the extremes: no-contract is too narrow; every-foreseeable is too broad.",
+    "tiny_rule": "Known recipient or limited known group can recover for careless false business information.",
+    "trap": "Students choose either strict privity or unlimited foreseeability.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20725_emmaus_laser_cutter"
+    ]
+  },
+  {
+    "id": "REM-TORTS-SPECIAL-RISK-LINK",
+    "type": "ANCHOR",
+    "title": "Strict Liability Needs the Risk Link",
+    "signal": "Dangerous activity plus ordinary injury.",
+    "student_move": "Ask what hurt the plaintiff before choosing a strict-liability answer.",
+    "tiny_rule": "Activity label is not enough; injury must flow from the abnormal risk.",
+    "trap": "Picking the dangerous-activity label.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20727"
+    ]
+  },
+  {
+    "id": "REM-TORTS-BATTERY-CONTACT-INTENT",
+    "type": "ANCHOR",
+    "title": "Battery mental-state target",
+    "signal": "Battery answer set offers contact, injury, risk, and motive.",
+    "student_move": "Lock the call, then pick the answer that targets contact.",
+    "tiny_rule": "Contact intent beats injury/risk/motive.",
+    "trap": "Choosing the more serious-sounding injury or risk answer.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20730_shepherd_sling_fair"
+    ]
+  },
+  {
+    "id": "RC-TORTS-NIED-SPECIAL-CATEGORY-01",
+    "type": "ANCHOR",
+    "title": "Special category beats ordinary NIED gate",
+    "signal": "Stem gives a recognized emotional-distress category.",
+    "student_move": "Do not import zone-of-danger or bystander requirements unless the call asks for the ordinary rule.",
+    "tiny_rule": "Recognized erroneous death notice is its own NIED lane.",
+    "trap": "Physical danger sounds like the default NIED screen.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20733_galilee_trails_death_notice"
+    ]
+  },
+  {
+    "id": "REM-TORTS-NUISANCE-ABATEMENT-01",
+    "type": "ANCHOR",
+    "title": "Nuisance Remedy Oversteer",
+    "signal": "The answer says total shutdown, no remedy, or punitive-only.",
+    "student_move": "Ask which remedy fits the abatement fact.",
+    "tiny_rule": "Tailor the fix; limit avoidable damages.",
+    "trap": "All-or-nothing remedy language.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20735_bethlehem_donkey_blower"
+    ]
+  },
+  {
+    "id": "TOR-FORESEEABILITY-TARGET-01",
+    "type": "ANCHOR",
+    "title": "Foreseeability target scan",
+    "signal": "All answers ask what had to be foreseeable.",
+    "student_move": "Name the object after 'foreseeable that' before judging law.",
+    "tiny_rule": "Pick the plaintiff/risk target, not the old cause, exact chain, or defendant breach.",
+    "trap": "Students pick the most dramatic fact instead of the legal target.",
+    "confidence": "ANCHOR_ASSISTED",
+    "example_qids": [
+      "20744_bethlehem_loading_lane"
+    ]
+  },
+  {
+    "id": "REM-TORTS-NONDELEGABLE-01",
+    "type": "ANCHOR",
+    "title": "Independent contractor is not the end of the story",
+    "signal": "Hirer has a statutory/public safety duty and hires someone else to perform it.",
+    "student_move": "Ask whether the duty itself can be delegated.",
+    "tiny_rule": "Nondelegable duty can keep liability with the hirer.",
+    "trap": "Contractor status as total shield.",
+    "confidence": "PURE_ANCHOR",
+    "example_qids": [
+      "21752_olive_oil_ramp"
+    ]
+  }
+]

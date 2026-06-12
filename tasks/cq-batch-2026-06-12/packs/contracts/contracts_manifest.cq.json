@@ -1,0 +1,32 @@
+{
+  "subject_dir": "contracts",
+  "subject": "CONTRACTS",
+  "batch": "cq-2026-06-12",
+  "question_count": 19,
+  "qids": [
+    "17026_manger_prop_bundles",
+    "17110_sticker_press_guaranty",
+    "17173_road_to_emmaus_puzzle_quest",
+    "19250_scripture_card_printer",
+    "19386_scripture_audio_cap",
+    "20004_dove_tokens_manna_game",
+    "20100_fish_and_loaves_keychains",
+    "20271_lantern_handbell_evening",
+    "20351_red_sea_mini_golf",
+    "20370_dove_mug_notice",
+    "20461_lydia_beeswax_requirements",
+    "20523_easter_stage_guaranty",
+    "20556_mustard_seed_puppet_caravan",
+    "20569_ark_float",
+    "20599_advent_handbell_integration",
+    "20737_jonahs_whale_lyre",
+    "20805_psalm_lanterns_confirmation",
+    "20808_jericho_press",
+    "21879_noahs_ark_puppet_set"
+  ],
+  "cards": 19,
+  "keys": 39,
+  "drills": 7,
+  "microdrills": 67,
+  "note": "New subject pack — requires wiring into src/lib/c3-subjects.ts before it is served."
+}

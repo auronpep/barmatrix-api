@@ -1,0 +1,332 @@
+[
+  {
+    "id": "MICRO-17045_scripture_banner_cloth-1",
+    "source_qid": "17045_scripture_banner_cloth",
+    "drill_type": "CUT",
+    "target_skill": "offered purpose",
+    "prompt": "A witness familiar with wholesale terminology explains a contract phrase. Choice says admitted because the witness is expert in using the product. Cut or keep?",
+    "answer": "Cut. Wrong purpose.",
+    "tension_slug": null,
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-17045_scripture_banner_cloth-2",
+    "source_qid": "17045_scripture_banner_cloth",
+    "drill_type": "ANCHOR",
+    "target_skill": "opinion testimony",
+    "prompt": "A qualified specialized-knowledge witness gives an opinion that helps explain a disputed term. Exclude merely because it is opinion?",
+    "answer": "No.",
+    "tension_slug": null,
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-17045_scripture_banner_cloth-3",
+    "source_qid": "17045_scripture_banner_cloth",
+    "drill_type": "CALL_FOCUS",
+    "target_skill": "true fact versus legal reason",
+    "prompt": "Parties agree to use trade terminology. Is that the core reason a trade-term witness's testimony is admitted?",
+    "answer": "No. The core reason is trade terminology explaining the contract term.",
+    "tension_slug": null,
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-19228_prayer_card_study_bible-1",
+    "source_qid": "19228_prayer_card_study_bible",
+    "drill_type": "Gold Key recall",
+    "target_skill": "written marital communication",
+    "prompt": "A husband privately emails his wife during marriage. Is the email excluded from privilege merely because it is written?",
+    "answer": "No. Written can still be a confidential marital communication.",
+    "tension_slug": "communication-substance-and-confidentiality-vs-medium-refusal-traps",
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-19228_prayer_card_study_bible-2",
+    "source_qid": "19228_prayer_card_study_bible",
+    "drill_type": "Trap spotting",
+    "target_skill": "format/object distinction",
+    "prompt": "Choice says: 'not privileged because the note is a document.' Name the trap.",
+    "answer": "Format/object confusion.",
+    "tension_slug": "communication-substance-and-confidentiality-vs-medium-refusal-traps",
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-19228_prayer_card_study_bible-3",
+    "source_qid": "19228_prayer_card_study_bible",
+    "drill_type": "Wrong-frame recovery",
+    "target_skill": "communications vs testimonial privilege",
+    "prompt": "Choice turns on whether the witness spouse refuses to testify. What call did it answer?",
+    "answer": "Adverse spousal testimony, not confidential marital communication.",
+    "tension_slug": "communication-substance-and-confidentiality-vs-medium-refusal-traps",
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-19379_hymn_candle_invoice_van-1",
+    "source_qid": "19379_hymn_candle_invoice_van",
+    "drill_type": "Gold Key recall",
+    "target_skill": "spousal privilege distinction",
+    "prompt": "A divorced former spouse is called to testify about a private statement from the marriage. Which privilege route is live?",
+    "answer": "Confidential marital communications privilege.",
+    "tension_slug": "adverse-spousal-testimonial-privilege-vs-confidential-marital-communications-privilege",
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-19379_hymn_candle_invoice_van-2",
+    "source_qid": "19379_hymn_candle_invoice_van",
+    "drill_type": "Overclaim cut",
+    "target_skill": "Ear: tiered_absolute",
+    "prompt": "Cut the defect: 'Divorce ends every spousal privilege.'",
+    "answer": "Tiered absolute; divorce does not end every spousal privilege.",
+    "tension_slug": "adverse-spousal-testimonial-privilege-vs-confidential-marital-communications-privilege",
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-19379_hymn_candle_invoice_van-3",
+    "source_qid": "19379_hymn_candle_invoice_van",
+    "drill_type": "Wrong-frame clash",
+    "target_skill": "Issue-Sense: bait_doctrine",
+    "prompt": "Two answers say sustain. One says adverse testimonial privilege; one says confidential marital communications privilege. The parties are divorced, but the statement was private and made during marriage. Which route wins?",
+    "answer": "Confidential marital communications privilege.",
+    "tension_slug": "adverse-spousal-testimonial-privilege-vs-confidential-marital-communications-privilege",
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-20307_bethany_banners_transcript-1",
+    "source_qid": "20307_bethany_banners_transcript",
+    "drill_type": "Gold Key recall",
+    "target_skill": "Double-hearsay layer split",
+    "prompt": "A transcript of earlier testimony is offered in a later civil trial. What two layers must be cleared?",
+    "answer": "The speaker's statement layer and the transcript/document layer.",
+    "tension_slug": null,
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-20307_bethany_banners_transcript-2",
+    "source_qid": "20307_bethany_banners_transcript",
+    "drill_type": "Wrong-frame cut",
+    "target_skill": "Former testimony threshold",
+    "prompt": "Prior testimony is offered against a party who was not present in the earlier case. What threshold should you check?",
+    "answer": "Whether that party or a civil predecessor had an opportunity and similar motive to develop the testimony.",
+    "tension_slug": null,
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-20307_bethany_banners_transcript-3",
+    "source_qid": "20307_bethany_banners_transcript",
+    "drill_type": "Exception distinction",
+    "target_skill": "Recorded recollection vs transcript",
+    "prompt": "Why is a court transcript usually not a recorded recollection?",
+    "answer": "It is not the witness's made-or-adopted memory record.",
+    "tension_slug": null,
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-20313_bethlehem_olivewood_crosses-1",
+    "source_qid": "20313_bethlehem_olivewood_crosses",
+    "drill_type": "Gold Key recall",
+    "target_skill": "crime-fraud boundary",
+    "prompt": "Client asks lawyer whether a planned act would be fraudulent and says she will not do it if unlawful. Does crime-fraud automatically apply?",
+    "answer": "No. The purpose is compliance advice, not furtherance.",
+    "tension_slug": "compliance-advice-versus-furthering-fraud",
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-20313_bethlehem_olivewood_crosses-2",
+    "source_qid": "20313_bethlehem_olivewood_crosses",
+    "drill_type": "bait-doctrine cut",
+    "target_skill": "privilege versus work product",
+    "prompt": "A privilege answer says disclosure depends on substantial need. What is the C3 label?",
+    "answer": "bait_doctrine / wrong_frame.",
+    "tension_slug": "compliance-advice-versus-furthering-fraud",
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-20313_bethlehem_olivewood_crosses-3",
+    "source_qid": "20313_bethlehem_olivewood_crosses",
+    "drill_type": "Clash axis",
+    "target_skill": "purpose axis",
+    "prompt": "Two answers fight: fraud topic kills privilege versus legal advice to avoid fraud. What fact decides?",
+    "answer": "Client says she will not proceed if the conduct is fraudulent.",
+    "tension_slug": "compliance-advice-versus-furthering-fraud",
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-20404_acts_axes_cash_loads-1",
+    "source_qid": "20404_acts_axes_cash_loads",
+    "drill_type": "CUT",
+    "target_skill": "overclaim",
+    "prompt": "Classify: inadmissible because financial records are always unfairly prejudicial.",
+    "answer": "tiered_absolute; NOT_TRUE.",
+    "tension_slug": null,
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-20404_acts_axes_cash_loads-2",
+    "source_qid": "20404_acts_axes_cash_loads",
+    "drill_type": "ANCHOR",
+    "target_skill": "relevance threshold",
+    "prompt": "Does circumstantial evidence need to conclusively prove the fact before it is admissible?",
+    "answer": "No. Any tendency is enough if the fact matters.",
+    "tension_slug": null,
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-20404_acts_axes_cash_loads-3",
+    "source_qid": "20404_acts_axes_cash_loads",
+    "drill_type": "BAIT_ARCHITECTURE",
+    "target_skill": "offered_for_purpose",
+    "prompt": "Records contradict a witness and also support the claim. Is an only-impeachment answer safe?",
+    "answer": "No. It underclaims the substantive use.",
+    "tension_slug": null,
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-20423_galilee_props_bias-1",
+    "source_qid": "20423_galilee_props_bias",
+    "drill_type": "purpose_axis",
+    "target_skill": "offered_for_purpose",
+    "prompt": "A witness belongs to a religious organization connected to a party. The question is offered to show bias. Is Rule 610 a blanket bar?",
+    "answer": "No. Bias purpose is outside the belief-as-truthfulness ban.",
+    "tension_slug": "religious-belief-truthfulness-use-versus-organizational-affiliation-bias-use",
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-20423_galilee_props_bias-2",
+    "source_qid": "20423_galilee_props_bias",
+    "drill_type": "overclaim_cut",
+    "target_skill": "tiered_absolute",
+    "prompt": "Cut the flaw: any reference to religious affiliation is inadmissible.",
+    "answer": "Overclaim. Any erases the bias-purpose lane.",
+    "tension_slug": "religious-belief-truthfulness-use-versus-organizational-affiliation-bias-use",
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-20423_galilee_props_bias-3",
+    "source_qid": "20423_galilee_props_bias",
+    "drill_type": "bait_doctrine_sort",
+    "target_skill": "bait_doctrine",
+    "prompt": "Truthful character may be supported only after attack. Does that govern a bias question?",
+    "answer": "No. That is Rule 608(a) truthfulness-character doctrine, not bias.",
+    "tension_slug": "religious-belief-truthfulness-use-versus-organizational-affiliation-bias-use",
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-20423_galilee_props_bias-4",
+    "source_qid": "20423_galilee_props_bias",
+    "drill_type": "fabricated_rule_cut",
+    "target_skill": "fabricated_rule",
+    "prompt": "Bias may be shown only by reputation evidence.",
+    "answer": "Cut. The only limit is invented.",
+    "tension_slug": "religious-belief-truthfulness-use-versus-organizational-affiliation-bias-use",
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-20565_purple_gear_hymnbook_tote-1",
+    "source_qid": "20565_purple_gear_hymnbook_tote",
+    "drill_type": "CUT",
+    "target_skill": "weight-before-foundation",
+    "prompt": "An unidentified object is offered with no witness, marking, or source fact. One answer says admit because the opponent can argue weight. Cut or keep?",
+    "answer": "Cut. Weight comes after foundation.",
+    "tension_slug": "foundation-gate-vs-jury-weight",
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-20565_purple_gear_hymnbook_tote-2",
+    "source_qid": "20565_purple_gear_hymnbook_tote",
+    "drill_type": "CUT",
+    "target_skill": "burden direction",
+    "prompt": "An answer says exclude only if the opponent proves the object came from somewhere else. What is the problem?",
+    "answer": "Backwards. The proponent must first show a connection.",
+    "tension_slug": "foundation-gate-vs-jury-weight",
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-20565_purple_gear_hymnbook_tote-3",
+    "source_qid": "20565_purple_gear_hymnbook_tote",
+    "drill_type": "EAR",
+    "target_skill": "tiered absolute",
+    "prompt": "An answer says any physical object may be considered by the jury. What is the mold?",
+    "answer": "tiered_absolute; it erases the foundation requirement.",
+    "tension_slug": "foundation-gate-vs-jury-weight",
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-20565_purple_gear_hymnbook_tote-4",
+    "source_qid": "20565_purple_gear_hymnbook_tote",
+    "drill_type": "CALL",
+    "target_skill": "threshold before weight",
+    "prompt": "Two choices survive: one says weight, one says no foundation. Which layer controls?",
+    "answer": "No foundation controls before weight.",
+    "tension_slug": "foundation-gate-vs-jury-weight",
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-20602_davids_harp_projector-1",
+    "source_qid": "20602_davids_harp_projector",
+    "drill_type": "purpose_pin",
+    "target_skill": "offered_for_purpose",
+    "prompt": "A plaintiff offers a later product redesign to prove the original product was defective. Name the offered purpose.",
+    "answer": "Product/design defect; barred under Rule 407.",
+    "tension_slug": "barred-defect-warning-purpose-versus-general-relevance-feasibility-negligence-only-drift",
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-20602_davids_harp_projector-2",
+    "source_qid": "20602_davids_harp_projector",
+    "drill_type": "gold_key_recall",
+    "target_skill": "Rule 407 product scope",
+    "prompt": "True or false: Rule 407 applies only to negligence and culpable conduct.",
+    "answer": "False; it also covers product defect, design defect, and warning/instruction need.",
+    "tension_slug": "barred-defect-warning-purpose-versus-general-relevance-feasibility-negligence-only-drift",
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-20602_davids_harp_projector-3",
+    "source_qid": "20602_davids_harp_projector",
+    "drill_type": "overclaim_cut",
+    "target_skill": "tiered_absolute",
+    "prompt": "Cut the phrase: 'A later redesign always proves feasibility.'",
+    "answer": "Always is the overclaim; feasibility is only a permitted purpose when disputed and actually offered.",
+    "tension_slug": "barred-defect-warning-purpose-versus-general-relevance-feasibility-negligence-only-drift",
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-20602_davids_harp_projector-4",
+    "source_qid": "20602_davids_harp_projector",
+    "drill_type": "relevance_layer",
+    "target_skill": "specific exclusion over general relevance",
+    "prompt": "Why is 'relevant evidence is generally admissible' a bad answer to a Rule 407 call?",
+    "answer": "It answers the wrong layer; relevance does not override a specific exclusion.",
+    "tension_slug": "barred-defect-warning-purpose-versus-general-relevance-feasibility-negligence-only-drift",
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-20760_rubber_stamp_mail_fraud-1",
+    "source_qid": "20760_rubber_stamp_mail_fraud",
+    "drill_type": "CUT",
+    "target_skill": "overclaim",
+    "prompt": "A physical object is offered because all objects of that kind are relevant in this type of case. What is the C3 cut?",
+    "answer": "Tiered-absolute overclaim; category alone is not a case connection.",
+    "tension_slug": null,
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-20760_rubber_stamp_mail_fraud-2",
+    "source_qid": "20760_rubber_stamp_mail_fraud",
+    "drill_type": "CUT",
+    "target_skill": "offered_purpose",
+    "prompt": "The proponent offers an object as real evidence. A choice admits it as a demonstrative aid, but the stem gives no such purpose. What is the cut?",
+    "answer": "NOT_RESPONSIVE; bait_doctrine / offered_for_purpose.",
+    "tension_slug": null,
+    "subject": "EVIDENCE"
+  },
+  {
+    "id": "MICRO-20760_rubber_stamp_mail_fraud-3",
+    "source_qid": "20760_rubber_stamp_mail_fraud",
+    "drill_type": "CALL_FOCUS",
+    "target_skill": "layer_order",
+    "prompt": "An object has no link to the charged event. One choice excludes under prejudice only; another excludes for no probative value. Which layer comes first?",
+    "answer": "Connection/relevance comes before prejudice.",
+    "tension_slug": null,
+    "subject": "EVIDENCE"
+  }
+]

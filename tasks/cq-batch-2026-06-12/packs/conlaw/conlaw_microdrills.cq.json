@@ -1,0 +1,492 @@
+[
+  {
+    "id": "MICRO-17167_manger_lights_portal-1",
+    "source_qid": "17167_manger_lights_portal",
+    "drill_type": "Gold Key recall",
+    "target_skill": "Necessary and Proper not indispensable",
+    "prompt": "Congress uses an administrative method to run a valid commerce regulation. The challenger says another method would work. Does the method have to be indispensable?",
+    "answer": "No. It must be an appropriate means connected to executing the enumerated power.",
+    "tension_slug": null,
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-17167_manger_lights_portal-2",
+    "source_qid": "17167_manger_lights_portal",
+    "drill_type": "answer_array",
+    "target_skill": "read result plus reason",
+    "prompt": "Two choices say valid and two say invalid. What must you read next?",
+    "answer": "The reason after the result word.",
+    "tension_slug": null,
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-17167_manger_lights_portal-3",
+    "source_qid": "17167_manger_lights_portal",
+    "drill_type": "CUT",
+    "target_skill": "tiered absolute",
+    "prompt": "Classify: 'Federal tracking portals are never proper.'",
+    "answer": "NOT_TRUE, tiered_absolute.",
+    "tension_slug": null,
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-17167_manger_lights_portal-4",
+    "source_qid": "17167_manger_lights_portal",
+    "drill_type": "CUT",
+    "target_skill": "freestanding-power trap",
+    "prompt": "Classify: 'Valid even with no connection to an enumerated power.'",
+    "answer": "NOT_TRUE, flat_misstatement.",
+    "tension_slug": null,
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-19177_manna_wagon_disposal-1",
+    "source_qid": "19177_manna_wagon_disposal",
+    "drill_type": "Gold Key recall",
+    "target_skill": "Property Clause trigger",
+    "prompt": "Congress sells surplus federal equipment to a private buyer. What power source should you check first?",
+    "answer": "Property Clause.",
+    "tension_slug": "specific-property-clause-source-vs-wrong-constitutional-labels",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-19177_manna_wagon_disposal-2",
+    "source_qid": "19177_manna_wagon_disposal",
+    "drill_type": "Wrong-frame cut",
+    "target_skill": "Bill-of-attainder threshold",
+    "prompt": "A choice says bill of attainder, but the stem gives a subsidy or sale. What fact is missing?",
+    "answer": "Punishment.",
+    "tension_slug": "specific-property-clause-source-vs-wrong-constitutional-labels",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-19177_manna_wagon_disposal-3",
+    "source_qid": "19177_manna_wagon_disposal",
+    "drill_type": "Actor matching",
+    "target_skill": "Fourteenth Amendment source",
+    "prompt": "The actor is Congress and the answer says Fourteenth Amendment equal protection. What is the mismatch?",
+    "answer": "The Fourteenth Amendment Equal Protection Clause is the state-action source.",
+    "tension_slug": "specific-property-clause-source-vs-wrong-constitutional-labels",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-19177_manna_wagon_disposal-4",
+    "source_qid": "19177_manna_wagon_disposal",
+    "drill_type": "Right-result wrong-source",
+    "target_skill": "No general federal police power",
+    "prompt": "An answer says a congressional act is valid under general police powers. What is the recovery move?",
+    "answer": "Find the specific enumerated power; Congress lacks a general police power.",
+    "tension_slug": "specific-property-clause-source-vs-wrong-constitutional-labels",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-19194_loaves_pages-1",
+    "source_qid": "19194_loaves_pages",
+    "drill_type": "Gold Key recall",
+    "target_skill": "Windsor/Romer bare animus",
+    "prompt": "Federal law denies federal recognition to a same-sex spouse lawfully married under state law. What tiny anchor decides the item?",
+    "answer": "Bare animus/equal-dignity injury is not a legitimate governmental interest; Windsor/Romer controls.",
+    "tension_slug": "equal-protection-classification-purpose-vs-benefit-entitlement-frame",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-19194_loaves_pages-2",
+    "source_qid": "19194_loaves_pages",
+    "drill_type": "Silver Key call-focus",
+    "target_skill": "wrong-frame cut",
+    "prompt": "The call asks Equal Protection, but one answer says Congress controls federal benefits. What is the cut?",
+    "answer": "NOT_RESPONSIVE misfit: benefits authority does not answer whether the classification violates Equal Protection.",
+    "tension_slug": "equal-protection-classification-purpose-vs-benefit-entitlement-frame",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-19194_loaves_pages-3",
+    "source_qid": "19194_loaves_pages",
+    "drill_type": "Strict-scrutiny trap",
+    "target_skill": "tier calibration",
+    "prompt": "An answer says Windsor requires strict scrutiny because sexual orientation is a suspect class. What is the recovery move?",
+    "answer": "Do not overpromote Windsor; it invalidated DOMA without expressly declaring suspect-class status.",
+    "tension_slug": "equal-protection-classification-purpose-vs-benefit-entitlement-frame",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-19502_manna_festival_finals_tax-1",
+    "source_qid": "19502_manna_festival_finals_tax",
+    "drill_type": "CUT",
+    "target_skill": "strict-scrutiny trigger discipline",
+    "prompt": "A federal excise tax funds debt retirement. One answer says it is valid because of a compelling national interest. What is the first C3 cut?",
+    "answer": "Cut the strict-scrutiny frame unless the stem gives a protected trigger.",
+    "tension_slug": "taxing-power-revenue-frame-vs-imported-constitutional-defect-frames",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-19502_manna_festival_finals_tax-2",
+    "source_qid": "19502_manna_festival_finals_tax",
+    "drill_type": "CUT",
+    "target_skill": "economic-impact non sequitur",
+    "prompt": "A tax may reduce attendance at the taxed events. Does that alone defeat the tax's revenue relationship?",
+    "answer": "No. Economic burden does not erase the revenue-tax frame.",
+    "tension_slug": "taxing-power-revenue-frame-vs-imported-constitutional-defect-frames",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-19502_manna_festival_finals_tax-3",
+    "source_qid": "19502_manna_festival_finals_tax",
+    "drill_type": "ANCHOR",
+    "target_skill": "taxing-power Gold Key",
+    "prompt": "State the Gold Key for a facial revenue excise tax with adverse economic consequences.",
+    "answer": "A facial revenue tax is usually valid even if it burdens or discourages the taxed activity.",
+    "tension_slug": "taxing-power-revenue-frame-vs-imported-constitutional-defect-frames",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-19502_manna_festival_finals_tax-4",
+    "source_qid": "19502_manna_festival_finals_tax",
+    "drill_type": "ANSWER_ARRAY",
+    "target_skill": "tax array navigation",
+    "prompt": "The array contains compelling interest, rational relation, equal protection, and adverse economic consequences. What frame should you lock first?",
+    "answer": "Taxing power.",
+    "tension_slug": "taxing-power-revenue-frame-vs-imported-constitutional-defect-frames",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-19607_cana_hills_bethany_flats-1",
+    "source_qid": "19607_cana_hills_bethany_flats",
+    "drill_type": "Gold Key recall",
+    "target_skill": "school-funding tier trigger",
+    "prompt": "A local-property-tax public-school funding plan creates richer and poorer districts. Is education a federal fundamental right for strict scrutiny?",
+    "answer": "No. Rational basis applies under the school-funding Gold Key.",
+    "tension_slug": "heightened-review-trigger-vs-default-rational-basis",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-19607_cana_hills_bethany_flats-2",
+    "source_qid": "19607_cana_hills_bethany_flats",
+    "drill_type": "Silver Key answer-array scan",
+    "target_skill": "tier trigger before tier label",
+    "prompt": "Three choices name strict or intermediate scrutiny and one names rational basis. What is the first move?",
+    "answer": "Check the trigger each heightened-review choice names.",
+    "tension_slug": "heightened-review-trigger-vs-default-rational-basis",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-19607_cana_hills_bethany_flats-3",
+    "source_qid": "19607_cana_hills_bethany_flats",
+    "drill_type": "Disparate-impact threshold",
+    "target_skill": "impact vs purpose",
+    "prompt": "A neutral public policy disproportionately affects racial-minority communities. Does impact alone trigger heightened Equal Protection scrutiny?",
+    "answer": "No. Look for discriminatory purpose or a racial classification.",
+    "tension_slug": "heightened-review-trigger-vs-default-rational-basis",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-19982_manna_warehouse-1",
+    "source_qid": "19982_manna_warehouse",
+    "drill_type": "anchor_recall",
+    "target_skill": "Spending Clause clear notice",
+    "prompt": "A state accepts grant money before a concrete condition is stated. What objection should fire?",
+    "answer": "No clear notice for knowing acceptance.",
+    "tension_slug": null,
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-19982_manna_warehouse-2",
+    "source_qid": "19982_manna_warehouse",
+    "drill_type": "ear_falsity",
+    "target_skill": "backwards rule",
+    "prompt": "Classify: Congress may add any undisclosed condition after a state accepts federal funds.",
+    "answer": "NOT_TRUE; backwards.",
+    "tension_slug": null,
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-19982_manna_warehouse-3",
+    "source_qid": "19982_manna_warehouse",
+    "drill_type": "trap_spotting",
+    "target_skill": "call lock",
+    "prompt": "The call asks for a Spending Clause objection. Which facts matter most?",
+    "answer": "State acceptance, unclear condition, later costly mandate.",
+    "tension_slug": null,
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-20153_lampstand_labs-1",
+    "source_qid": "20153_lampstand_labs",
+    "drill_type": "Gold Key recall",
+    "target_skill": "neutral aid",
+    "prompt": "A federal program gives secular-use science equipment to religious and secular private schools on equal terms. Automatic Establishment Clause violation?",
+    "answer": "No. Neutral + secular-use aid is not automatically invalid.",
+    "tension_slug": "automatic-invalidity-of-aid-to-religious-schools-vs-neutral-secular-use-aid",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-20153_lampstand_labs-2",
+    "source_qid": "20153_lampstand_labs",
+    "drill_type": "answer-array read",
+    "target_skill": "same-result wrong-reason",
+    "prompt": "Two choices say No. One says no standing; one says secular-use restriction. What do you check?",
+    "answer": "Grade the because; same result is not enough.",
+    "tension_slug": "automatic-invalidity-of-aid-to-religious-schools-vs-neutral-secular-use-aid",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-20153_lampstand_labs-3",
+    "source_qid": "20153_lampstand_labs",
+    "drill_type": "overclaim detector",
+    "target_skill": "states-only language",
+    "prompt": "Answer says education is solely a state function. What is the C3 signal?",
+    "answer": "Solely is the overclaim signal; check spending-power anchor.",
+    "tension_slug": "automatic-invalidity-of-aid-to-religious-schools-vs-neutral-secular-use-aid",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-20153_lampstand_labs-4",
+    "source_qid": "20153_lampstand_labs",
+    "drill_type": "threshold trap",
+    "target_skill": "Flast standing",
+    "prompt": "Federal taxpayers challenge congressional spending as violating the Establishment Clause. Standing absent?",
+    "answer": "No. Flast supplies the taxpayer-standing anchor.",
+    "tension_slug": "automatic-invalidity-of-aid-to-religious-schools-vs-neutral-secular-use-aid",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-20186_road_to_emmaus_royalty_ledgers-1",
+    "source_qid": "20186_road_to_emmaus_royalty_ledgers",
+    "drill_type": "CUT",
+    "target_skill": "overclaim",
+    "prompt": "Congressional subpoena answer says the court must enforce automatically because Congress has unlimited investigative power. Name the mold.",
+    "answer": "tiered_absolute / NOT_TRUE",
+    "tension_slug": "automatic-outcome-vs-calibrated-review",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-20186_road_to_emmaus_royalty_ledgers-2",
+    "source_qid": "20186_road_to_emmaus_royalty_ledgers",
+    "drill_type": "CALL",
+    "target_skill": "answer_array",
+    "prompt": "Three answers give automatic outcomes; one answer gives a tailored judicial evaluation. What is the navigation move?",
+    "answer": "Use the answer-array Silver Key and prefer the calibrated court-task answer.",
+    "tension_slug": "automatic-outcome-vs-calibrated-review",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-20186_road_to_emmaus_royalty_ledgers-3",
+    "source_qid": "20186_road_to_emmaus_royalty_ledgers",
+    "drill_type": "ANCHOR",
+    "target_skill": "Mazars trigger",
+    "prompt": "What Gold Key triggers when Congress subpoenas a President's personal records from a third party?",
+    "answer": "No automatic enforcement and no automatic immunity; court checks purpose, need, tailoring, and burden.",
+    "tension_slug": "automatic-outcome-vs-calibrated-review",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-20231_crown_above_caesars-1",
+    "source_qid": "20231_crown_above_caesars",
+    "drill_type": "CUT",
+    "target_skill": "belief/conduct object lock",
+    "prompt": "A statute punishes teaching a religious creed. One answer defends it by citing the state's power to regulate unlawful acts inspired by the creed. What is the C3 cut?",
+    "answer": "NOT_RESPONSIVE; bait_doctrine; wrong_frame.",
+    "tension_slug": "belief-as-such-punishment-vs-conduct-regulation",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-20231_crown_above_caesars-2",
+    "source_qid": "20231_crown_above_caesars",
+    "drill_type": "CUT",
+    "target_skill": "only-if overclaim",
+    "prompt": "A religion-clause answer says the law is invalid only if it also violates Establishment. What is the mold?",
+    "answer": "NOT_TRUE; tiered_absolute.",
+    "tension_slug": "belief-as-such-punishment-vs-conduct-regulation",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-20231_crown_above_caesars-3",
+    "source_qid": "20231_crown_above_caesars",
+    "drill_type": "ANCHOR",
+    "target_skill": "Free Exercise tiny anchor",
+    "prompt": "State the Gold Key for a statute that punishes holding or teaching a religious belief.",
+    "answer": "Belief/profession as such is protected; conduct is separate.",
+    "tension_slug": "belief-as-such-punishment-vs-conduct-regulation",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-20231_crown_above_caesars-4",
+    "source_qid": "20231_crown_above_caesars",
+    "drill_type": "SILVER_KEY",
+    "target_skill": "adjacent-call defense",
+    "prompt": "What is the Silver Key when the stem says hold or teach but the answer says unlawful acts?",
+    "answer": "Lock the object of the law; cut object-switch answers.",
+    "tension_slug": "belief-as-such-punishment-vs-conduct-regulation",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-20586_psalms_hormone_use-1",
+    "source_qid": "20586_psalms_hormone_use",
+    "drill_type": "overclaim_cut",
+    "target_skill": "automatic-trigger spotting",
+    "prompt": "Which phrase makes this answer structurally suspect: 'bad medical policy automatically triggers strict scrutiny'?",
+    "answer": "automatically triggers",
+    "tension_slug": null,
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-20586_psalms_hormone_use-2",
+    "source_qid": "20586_psalms_hormone_use",
+    "drill_type": "classification_first",
+    "target_skill": "Equal Protection threshold framing",
+    "prompt": "Before choosing scrutiny, what must you identify in an Equal Protection question?",
+    "answer": "The classification the law actually draws.",
+    "tension_slug": null,
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-20586_psalms_hormone_use-3",
+    "source_qid": "20586_psalms_hormone_use",
+    "drill_type": "gold_key_recall",
+    "target_skill": "medical-use versus sex classification",
+    "prompt": "Same medication, different permitted uses. Does that fact alone automatically prove sex discrimination?",
+    "answer": "No. Start with the classification drawn by the law.",
+    "tension_slug": null,
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-20638_advent_rescue_beacons-1",
+    "source_qid": "20638_advent_rescue_beacons",
+    "drill_type": "clash_axis",
+    "target_skill": "name the immunity axis",
+    "prompt": "State regulation of a federal contractor: express exemption or no project burden?",
+    "answer": "No project burden is the stronger state-support fact.",
+    "tension_slug": "practical-interference-vs-geography-formality",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-20638_advent_rescue_beacons-2",
+    "source_qid": "20638_advent_rescue_beacons",
+    "drill_type": "wrong_frame_cut",
+    "target_skill": "cut geography bait",
+    "prompt": "Federal contractor claims immunity; choice says the creek is wholly intrastate.",
+    "answer": "Cut as not responsive after federal authority is given.",
+    "tension_slug": "practical-interference-vs-geography-formality",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-20638_advent_rescue_beacons-3",
+    "source_qid": "20638_advent_rescue_beacons",
+    "drill_type": "gold_key_recall",
+    "target_skill": "federal-contractor anchor",
+    "prompt": "What makes state regulation of a federal contractor vulnerable?",
+    "answer": "Interference with federal purposes or policies.",
+    "tension_slug": "practical-interference-vs-geography-formality",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-20714_prayer_robotics_kits-1",
+    "source_qid": "20714_prayer_robotics_kits",
+    "drill_type": "Gold Key recall",
+    "target_skill": "taxpayer standing exception",
+    "prompt": "Federal taxpayer challenges a congressional spending program as violating the Establishment Clause. Standing?",
+    "answer": "Yes, under the narrow Flast exception.",
+    "tension_slug": "is-this-a-general-taxpayer-grievance-or-the-narrow-spending-power-establishment-clause-exception",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-20714_prayer_robotics_kits-2",
+    "source_qid": "20714_prayer_robotics_kits",
+    "drill_type": "overclaim cut",
+    "target_skill": "tiered_absolute",
+    "prompt": "Choice says: 'Any federal taxpayer may challenge any congressional spending.' Cut or keep?",
+    "answer": "Cut: overclaim.",
+    "tension_slug": "is-this-a-general-taxpayer-grievance-or-the-narrow-spending-power-establishment-clause-exception",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-20714_prayer_robotics_kits-3",
+    "source_qid": "20714_prayer_robotics_kits",
+    "drill_type": "call focus",
+    "target_skill": "standing versus merits",
+    "prompt": "Choice denies standing because no religious use has been proved. What is the skipped move?",
+    "answer": "The choice answers merits proof, not standing.",
+    "tension_slug": "is-this-a-general-taxpayer-grievance-or-the-narrow-spending-power-establishment-clause-exception",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-21848_manna_house_family_integrity-1",
+    "source_qid": "21848_manna_house_family_integrity",
+    "drill_type": "route-call cut",
+    "target_skill": "claim-home first",
+    "prompt": "A city occupancy rule excludes an aunt from living with her niece and the niece's children. Which route: commerce, ordinary zoning, or family-integrity due process?",
+    "answer": "Family-integrity due process.",
+    "tension_slug": "family-integrity-route-vs-ordinary-zoning-route",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-21848_manna_house_family_integrity-2",
+    "source_qid": "21848_manna_house_family_integrity",
+    "drill_type": "overclaim detector",
+    "target_skill": "tiered_absolute",
+    "prompt": "Classify: 'Aunts are never family for constitutional purposes.'",
+    "answer": "tiered_absolute; use the family-integrity Gold Key.",
+    "tension_slug": "family-integrity-route-vs-ordinary-zoning-route",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-21848_manna_house_family_integrity-3",
+    "source_qid": "21848_manna_house_family_integrity",
+    "drill_type": "misfit detector",
+    "target_skill": "wrong constitutional home",
+    "prompt": "A local family-household ordinance is challenged. The answer says Dormant Commerce Clause only. Cut or keep?",
+    "answer": "Cut as misfit / NOT_RESPONSIVE.",
+    "tension_slug": "family-integrity-route-vs-ordinary-zoning-route",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-21848_manna_house_family_integrity-4",
+    "source_qid": "21848_manna_house_family_integrity",
+    "drill_type": "bait-doctrine detector",
+    "target_skill": "neighboring context",
+    "prompt": "A residential code excludes a close relative from a household. The answer treats it as ordinary zoning rational basis with no family liberty concern. What is the breaker?",
+    "answer": "Neighboring zoning frame; direct family exclusion triggers the Gold Key.",
+    "tension_slug": "family-integrity-route-vs-ordinary-zoning-route",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-21872_scripturequest_price_gate-1",
+    "source_qid": "21872_scripturequest_price_gate",
+    "drill_type": "cut",
+    "target_skill": "overclaim",
+    "prompt": "Cut the choice: 'The state may control all nationwide prices once the seller enters its market.'",
+    "answer": "extreme_of_range; local sales power is being pushed to nationwide prices.",
+    "tension_slug": "in-state-sales-condition-vs-out-of-state-price-control",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-21872_scripturequest_price_gate-2",
+    "source_qid": "21872_scripturequest_price_gate",
+    "drill_type": "cut",
+    "target_skill": "misfit",
+    "prompt": "Call asks for a DCC objection. Choice says Article IV privileges and immunities is the only doctrine. Cut or keep?",
+    "answer": "Cut: misfit / wrong doctrine home.",
+    "tension_slug": "in-state-sales-condition-vs-out-of-state-price-control",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-21872_scripturequest_price_gate-3",
+    "source_qid": "21872_scripturequest_price_gate",
+    "drill_type": "anchor",
+    "target_skill": "DCC price-affirmation Gold Key",
+    "prompt": "State conditions in-state sales on prices charged in other states. Name the DCC objection.",
+    "answer": "Extraterritorial price control / price affirmation.",
+    "tension_slug": "in-state-sales-condition-vs-out-of-state-price-control",
+    "subject": "CONSTITUTIONAL_LAW"
+  },
+  {
+    "id": "MICRO-21872_scripturequest_price_gate-4",
+    "source_qid": "21872_scripturequest_price_gate",
+    "drill_type": "trap_spotting",
+    "target_skill": "state label vs practical effect",
+    "prompt": "The state says it regulates only in-state sales. What fact should you follow?",
+    "answer": "The certification lever tied to prices in every other state.",
+    "tension_slug": "in-state-sales-condition-vs-out-of-state-price-control",
+    "subject": "CONSTITUTIONAL_LAW"
+  }
+]

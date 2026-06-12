@@ -1,0 +1,812 @@
+[
+  {
+    "id": "MICRO-19213_road_to_emmaus_breezeway-1",
+    "source_qid": "19213_road_to_emmaus_breezeway",
+    "drill_type": "cut",
+    "target_skill": "overclaim",
+    "prompt": "A business must prevent all crimes on its premises.",
+    "answer": "Cut: tiered_absolute.",
+    "tension_slug": null,
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-19213_road_to_emmaus_breezeway-2",
+    "source_qid": "19213_road_to_emmaus_breezeway",
+    "drill_type": "issue_sense",
+    "target_skill": "wrong_element",
+    "prompt": "Duty exists because the plaintiff had just paid for the service.",
+    "answer": "Cut: status fact only; not guard-duty trigger.",
+    "tension_slug": null,
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-19213_road_to_emmaus_breezeway-3",
+    "source_qid": "19213_road_to_emmaus_breezeway",
+    "drill_type": "anchor",
+    "target_skill": "third-party crime duty",
+    "prompt": "No prior similar incidents; unknown stranger attack; guard-duty claim.",
+    "answer": "No guard duty absent foreseeability trigger.",
+    "tension_slug": null,
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-19434-1",
+    "source_qid": "19434",
+    "drill_type": "CUT",
+    "target_skill": "wrong_element",
+    "prompt": "Failure-to-warn claim. The answer says the plaintiff suffered the exact risk listed in the warning. What filter breaks?",
+    "answer": "NOT_RESPONSIVE: it proves injury, not warning defect.",
+    "tension_slug": null,
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-19434-2",
+    "source_qid": "19434",
+    "drill_type": "CUT",
+    "target_skill": "overclaim",
+    "prompt": "An answer says prescription products are exempt from all products liability claims. What mold?",
+    "answer": "tiered_absolute.",
+    "tension_slug": null,
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-19434-3",
+    "source_qid": "19434",
+    "drill_type": "ANCHOR",
+    "target_skill": "learned intermediary",
+    "prompt": "Prescription-only product, adequate warning to prescribing physician, no direct patient warning. What Gold Key?",
+    "answer": "Learned intermediary: adequate warning to prescriber can satisfy the manufacturer's warning duty.",
+    "tension_slug": null,
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-19434-4",
+    "source_qid": "19434",
+    "drill_type": "PREDICT",
+    "target_skill": "call lock",
+    "prompt": "A patient sues for failure to warn after the doctor received and discussed a warning. What is the precise call?",
+    "answer": "Whether the manufacturer breached the warning duty, not whether the patient was injured.",
+    "tension_slug": null,
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-19448_praise_night_tshirt_cannon-1",
+    "source_qid": "19448_praise_night_tshirt_cannon",
+    "drill_type": "CUT",
+    "target_skill": "overclaim",
+    "prompt": "Negligent entrustment makes the entrustor strictly liable for any injury caused by the chattel.",
+    "answer": "CUT: tiered_absolute / wrong_standard.",
+    "tension_slug": "control-supply-versus-formal-ownership",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-19448_praise_night_tshirt_cannon-2",
+    "source_qid": "19448_praise_night_tshirt_cannon",
+    "drill_type": "ANCHOR",
+    "target_skill": "control versus title",
+    "prompt": "The defendant is not the owner but has authority to decide who uses the chattel.",
+    "answer": "Use Gold Key: supplier/control can satisfy the negligent entrustment gate.",
+    "tension_slug": "control-supply-versus-formal-ownership",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-19448_praise_night_tshirt_cannon-3",
+    "source_qid": "19448_praise_night_tshirt_cannon",
+    "drill_type": "CALL_FOCUS",
+    "target_skill": "target defendant",
+    "prompt": "The injured plaintiff sues the person who handed over the chattel, but a choice says the user alone operated it.",
+    "answer": "Lock the call to the entrustor's duty; do not answer only the user's negligence.",
+    "tension_slug": "control-supply-versus-formal-ownership",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20024_loaves_fishes_crate_count-1",
+    "source_qid": "20024_loaves_fishes_crate_count",
+    "drill_type": "CUT",
+    "target_skill": "overclaim",
+    "prompt": "No, because pure economic loss is never recoverable for negligent misrepresentation.",
+    "answer": "CUT: tiered_absolute / NOT_TRUE.",
+    "tension_slug": "open-ended-foreseeability-vs-known-limited-class-for-a-specific-transaction",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20024_loaves_fishes_crate_count-2",
+    "source_qid": "20024_loaves_fishes_crate_count",
+    "drill_type": "CLASH",
+    "target_skill": "targeted-use axis",
+    "prompt": "Foreseeable later reader vs known/limited class for a transaction. Which fact decides?",
+    "answer": "Whether the professional supplied the information for that person/class and transaction.",
+    "tension_slug": "open-ended-foreseeability-vs-known-limited-class-for-a-specific-transaction",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20024_loaves_fishes_crate_count-3",
+    "source_qid": "20024_loaves_fishes_crate_count",
+    "drill_type": "ANCHOR",
+    "target_skill": "Gold Key recall",
+    "prompt": "Professional report, economic loss, unknown third-party reader. What tiny rule?",
+    "answer": "Duty is limited to a known or limited group for a specific transaction; foreseeability alone is not enough.",
+    "tension_slug": "open-ended-foreseeability-vs-known-limited-class-for-a-specific-transaction",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20123_prayer_card_threat_writers-1",
+    "source_qid": "20123_prayer_card_threat_writers",
+    "drill_type": "CUT",
+    "target_skill": "mental-state call focus",
+    "prompt": "A false-light call asks for mental state. Choice says the plaintiff was humiliated. Cut or keep?",
+    "answer": "Cut: harm, not mental state.",
+    "tension_slug": null,
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20123_prayer_card_threat_writers-2",
+    "source_qid": "20123_prayer_card_threat_writers",
+    "drill_type": "ANCHOR",
+    "target_skill": "public-concern false-light fault",
+    "prompt": "Public-concern false light; publisher had contrary note and published anyway. What fault phrase?",
+    "answer": "Actual malice.",
+    "tension_slug": null,
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20123_prayer_card_threat_writers-3",
+    "source_qid": "20123_prayer_card_threat_writers",
+    "drill_type": "TRAP_SPOTTING",
+    "target_skill": "strict liability shortcut",
+    "prompt": "Choice says strict liability because the graphic misled readers. What trap?",
+    "answer": "No-fault shortcut; public-concern false light needs constitutional fault.",
+    "tension_slug": null,
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20310_psalms_wax_lamp-1",
+    "source_qid": "20310_psalms_wax_lamp",
+    "drill_type": "CUT",
+    "target_skill": "overclaim detection",
+    "prompt": "A defendant repairs a hazard after an injury. One choice says the repair conclusively proves breach. Cut or keep?",
+    "answer": "Cut. Conclusive proof is an overclaim.",
+    "tension_slug": "later-installation-use-breach-proof-vs-limited-feasibility-use",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20310_psalms_wax_lamp-2",
+    "source_qid": "20310_psalms_wax_lamp",
+    "drill_type": "CALL_LOCK",
+    "target_skill": "call focus",
+    "prompt": "The call asks breach by the defendant. A choice proves plaintiff contributory negligence. What filter breaks?",
+    "answer": "NOT_RESPONSIVE.",
+    "tension_slug": "later-installation-use-breach-proof-vs-limited-feasibility-use",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20310_psalms_wax_lamp-3",
+    "source_qid": "20310_psalms_wax_lamp",
+    "drill_type": "ANCHOR",
+    "target_skill": "later remedial measure limited use",
+    "prompt": "A later guard may be used for what limited purpose if genuinely disputed?",
+    "answer": "Feasibility, not breach proof.",
+    "tension_slug": "later-installation-use-breach-proof-vs-limited-feasibility-use",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20310_psalms_wax_lamp-4",
+    "source_qid": "20310_psalms_wax_lamp",
+    "drill_type": "TRAP_SPOTTING",
+    "target_skill": "hindsight bias",
+    "prompt": "What is the trap in 'they fixed it later, so they were negligent before'?",
+    "answer": "It uses hindsight as a substitute for breach analysis.",
+    "tension_slug": "later-installation-use-breach-proof-vs-limited-feasibility-use",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20328_bethlehem_star_drop-1",
+    "source_qid": "20328_bethlehem_star_drop",
+    "drill_type": "gold_key_recall",
+    "target_skill": "res ipsa direct-proof trap",
+    "prompt": "Plaintiff lacks proof of the exact defect but the instrumentality fails abnormally under defendant responsibility. Fatal to res ipsa?",
+    "answer": "No. Missing exact defect proof is compatible with res ipsa.",
+    "tension_slug": "precise-defect-proof-required-vs-res-ipsa-inference-without-direct-defect-proof",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20328_bethlehem_star_drop-2",
+    "source_qid": "20328_bethlehem_star_drop",
+    "drill_type": "overclaim_cut",
+    "target_skill": "absolute contractor trap",
+    "prompt": "Hiring a contractor always defeats res ipsa responsibility.",
+    "answer": "Cut. Always overclaims.",
+    "tension_slug": "precise-defect-proof-required-vs-res-ipsa-inference-without-direct-defect-proof",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20328_bethlehem_star_drop-3",
+    "source_qid": "20328_bethlehem_star_drop",
+    "drill_type": "remedy_precision",
+    "target_skill": "inference versus judgment",
+    "prompt": "Res ipsa requires judgment for the plaintiff once an accident happens.",
+    "answer": "Cut. It permits an inference; it does not require judgment.",
+    "tension_slug": "precise-defect-proof-required-vs-res-ipsa-inference-without-direct-defect-proof",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20328_bethlehem_star_drop-4",
+    "source_qid": "20328_bethlehem_star_drop",
+    "drill_type": "answer_array",
+    "target_skill": "residual pair recognition",
+    "prompt": "No exact defect proof vs inference without exact defect proof. Name the axis.",
+    "answer": "Whether res ipsa requires direct proof of the precise defect.",
+    "tension_slug": "precise-defect-proof-required-vs-res-ipsa-inference-without-direct-defect-proof",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20439_floating_star_driveway-1",
+    "source_qid": "20439_floating_star_driveway",
+    "drill_type": "CUT",
+    "target_skill": "wrong_element",
+    "prompt": "A Torts answer says only that the defendant’s act was a concurring cause. Cut or keep?",
+    "answer": "Cut unless another part of the answer supplies negligence, intent, or strict liability.",
+    "tension_slug": null,
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20439_floating_star_driveway-2",
+    "source_qid": "20439_floating_star_driveway",
+    "drill_type": "CUT",
+    "target_skill": "bait_doctrine",
+    "prompt": "A passerby is injured by a defective device used by a pageant director. The answer says the director is strictly liable for using a defective product. Cut or keep?",
+    "answer": "Cut; strict products liability targets commercial sellers or distributors, not mere users.",
+    "tension_slug": null,
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20439_floating_star_driveway-3",
+    "source_qid": "20439_floating_star_driveway",
+    "drill_type": "CALL",
+    "target_skill": "call_focus",
+    "prompt": "The call asks for the plaintiff’s most effective argument. One answer gives possible unreasonable conduct; another gives only causation. Which wins?",
+    "answer": "The unreasonable-conduct answer.",
+    "tension_slug": null,
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20439_floating_star_driveway-4",
+    "source_qid": "20439_floating_star_driveway",
+    "drill_type": "ANCHOR",
+    "target_skill": "negligence reasonableness",
+    "prompt": "Which phrase best supplies negligence: professional status, concurring cause, unreasonable conduct, or product defect?",
+    "answer": "Unreasonable conduct.",
+    "tension_slug": null,
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20496_loaves_prop_cart-1",
+    "source_qid": "20496_loaves_prop_cart",
+    "drill_type": "Gold Key recall",
+    "target_skill": "Collateral source rule",
+    "prompt": "A plaintiff's own insurer paid medical bills before a tort verdict. Can the defendant reduce the verdict by that amount?",
+    "answer": "No. Plaintiff-side insurance is collateral.",
+    "tension_slug": "who-paid",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20496_loaves_prop_cart-2",
+    "source_qid": "20496_loaves_prop_cart",
+    "drill_type": "Source sorting",
+    "target_skill": "Setoff payer classification",
+    "prompt": "Classify the payer: defendant, joint tortfeasor, plaintiff's own insurer.",
+    "answer": "Only plaintiff's own insurer is collateral.",
+    "tension_slug": "who-paid",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20496_loaves_prop_cart-3",
+    "source_qid": "20496_loaves_prop_cart",
+    "drill_type": "Trap language",
+    "target_skill": "Fairness bait detection",
+    "prompt": "A choice says 'no double recovery.' What question must you ask first?",
+    "answer": "Who paid, and whose liability was the payer tied to?",
+    "tension_slug": "who-paid",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20546_jericho_wall_studio-1",
+    "source_qid": "20546_jericho_wall_studio",
+    "drill_type": "CUT",
+    "target_skill": "named-defendant filtering",
+    "prompt": "Premises owner is sued; one choice says the contractor was careful. Cut or keep?",
+    "answer": "Cut as NOT_RESPONSIVE unless it supplies owner breach.",
+    "tension_slug": "named-defendant-premises-breach-vs-adjacent-product-contractor-status-facts",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20546_jericho_wall_studio-2",
+    "source_qid": "20546_jericho_wall_studio",
+    "drill_type": "CUT",
+    "target_skill": "wrong_frame detection",
+    "prompt": "Premises owner is sued; one choice says the device had a manufacturing defect. What is the trap?",
+    "answer": "Product frame; it needs seller status or owner-discoverability.",
+    "tension_slug": "named-defendant-premises-breach-vs-adjacent-product-contractor-status-facts",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20546_jericho_wall_studio-3",
+    "source_qid": "20546_jericho_wall_studio",
+    "drill_type": "ANCHOR",
+    "target_skill": "invitee inspection duty",
+    "prompt": "What owner-side fact most supports an invitee premises claim?",
+    "answer": "The owner knew or reasonable inspection would have discovered the dangerous condition.",
+    "tension_slug": "named-defendant-premises-breach-vs-adjacent-product-contractor-status-facts",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20546_jericho_wall_studio-4",
+    "source_qid": "20546_jericho_wall_studio",
+    "drill_type": "CALIBRATION",
+    "target_skill": "anchor-assisted clean cut",
+    "prompt": "Three choices miss named-defendant breach; one gives reasonable inspection by owner. Confidence?",
+    "answer": "ANCHOR_ASSISTED; commit after call/read check.",
+    "tension_slug": "named-defendant-premises-breach-vs-adjacent-product-contractor-status-facts",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20594_daniels_whale_float-1",
+    "source_qid": "20594_daniels_whale_float",
+    "drill_type": "Gold Key recall",
+    "target_skill": "rescue doctrine",
+    "prompt": "A negligent defendant creates apparent danger to himself, and a rescuer is injured. State the rescue rule.",
+    "answer": "Danger invites rescue; reasonable rescue is foreseeable, and the rescuer may recover for injury caused by the negligent peril.",
+    "tension_slug": "foreseeable-rescue-versus-actual-awareness",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20594_daniels_whale_float-2",
+    "source_qid": "20594_daniels_whale_float",
+    "drill_type": "answer-array drill",
+    "target_skill": "because-clause testing",
+    "prompt": "Two answers choose the same party but give different reasons. What do you test first?",
+    "answer": "The because-clause.",
+    "tension_slug": "foreseeable-rescue-versus-actual-awareness",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20594_daniels_whale_float-3",
+    "source_qid": "20594_daniels_whale_float",
+    "drill_type": "wrong-element drill",
+    "target_skill": "actual awareness versus foreseeability",
+    "prompt": "The defendant did not know a rescuer would appear. Is that the rescue-doctrine element?",
+    "answer": "No. The key is whether rescue was foreseeable from the danger.",
+    "tension_slug": "foreseeable-rescue-versus-actual-awareness",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20598_write_it_on_your_heart-1",
+    "source_qid": "20598_write_it_on_your_heart",
+    "drill_type": "CUT",
+    "target_skill": "fabricated_rule",
+    "prompt": "A commercial uses a distinctive soundalike and costume to evoke a celebrity but avoids the celebrity’s name and photo. Cut the answer: 'No, because no exact name or photograph was used.'",
+    "answer": "CUT as fabricated_rule once the Gold Key is applied.",
+    "tension_slug": "identity-use-commercial-consent-answer-vs-extra-condition-traps",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20598_write_it_on_your_heart-2",
+    "source_qid": "20598_write_it_on_your_heart",
+    "drill_type": "CUT",
+    "target_skill": "colloquialism",
+    "prompt": "A commercial respectfully imitates a performer’s identity to sell a product. Cut the answer: 'No, because the imitation was flattering.'",
+    "answer": "CUT as colloquialism; tone is not the appropriation trigger.",
+    "tension_slug": "identity-use-commercial-consent-answer-vs-extra-condition-traps",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20598_write_it_on_your_heart-3",
+    "source_qid": "20598_write_it_on_your_heart",
+    "drill_type": "wrong_frame",
+    "target_skill": "bait_doctrine",
+    "prompt": "A product ad uses a person’s recognizable identity without consent. Cut the answer: 'Yes, but only if the ad stated a false fact.'",
+    "answer": "CUT as bait_doctrine / wrong_frame; false fact belongs to neighboring reputation torts.",
+    "tension_slug": "identity-use-commercial-consent-answer-vs-extra-condition-traps",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20598_write_it_on_your_heart-4",
+    "source_qid": "20598_write_it_on_your_heart",
+    "drill_type": "residual",
+    "target_skill": "Gold Key application",
+    "prompt": "Pick the survivor: exact name/photo requirement, flattering-use answer, false-fact answer, or identity-use/commercial/no-consent answer.",
+    "answer": "Identity-use/commercial/no-consent answer.",
+    "tension_slug": "identity-use-commercial-consent-answer-vs-extra-condition-traps",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20603_road_to_emmaus_escape_room-1",
+    "source_qid": "20603_road_to_emmaus_escape_room",
+    "drill_type": "cut",
+    "target_skill": "colloquialism",
+    "prompt": "An answer says, 'Yes, because the law should encourage rescue.' Cut or keep?",
+    "answer": "Cut. It is policy language, not the operative legal test.",
+    "tension_slug": "daniel-s-negligent-creation-of-peril-vs-ruth-centered-rescue-facts",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20603_road_to_emmaus_escape_room-2",
+    "source_qid": "20603_road_to_emmaus_escape_room",
+    "drill_type": "issue_sense",
+    "target_skill": "wrong_element",
+    "prompt": "A rescuer sues the rescued person's estate. One answer says the rescuer acted reasonably. What is missing?",
+    "answer": "The rescued person's negligent creation of the peril.",
+    "tension_slug": "daniel-s-negligent-creation-of-peril-vs-ruth-centered-rescue-facts",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20603_road_to_emmaus_escape_room-3",
+    "source_qid": "20603_road_to_emmaus_escape_room",
+    "drill_type": "anchor",
+    "target_skill": "rescue doctrine threshold",
+    "prompt": "When can a rescuer recover from the person rescued?",
+    "answer": "Only when that person negligently created the peril that led to the rescue injury.",
+    "tension_slug": "daniel-s-negligent-creation-of-peril-vs-ruth-centered-rescue-facts",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20603_road_to_emmaus_escape_room-4",
+    "source_qid": "20603_road_to_emmaus_escape_room",
+    "drill_type": "call_focus",
+    "target_skill": "target actor",
+    "prompt": "The choices discuss the rescuer, policy, and failed rescue. The suit is against the estate. What is the first move?",
+    "answer": "Lock the target actor and ask what the estate's decedent did wrong.",
+    "tension_slug": "daniel-s-negligent-creation-of-peril-vs-ruth-centered-rescue-facts",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20605_scripture_quiz_whisper-1",
+    "source_qid": "20605_scripture_quiz_whisper",
+    "drill_type": "Gold Key recall",
+    "target_skill": "false-light publicity threshold",
+    "prompt": "A false accusation is made privately to one person and not repeated. False light?",
+    "answer": "No; no public-style publicity.",
+    "tension_slug": "publicity-threshold-vs-false-impression-only-wrong-privacy-tort-frames",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20605_scripture_quiz_whisper-2",
+    "source_qid": "20605_scripture_quiz_whisper",
+    "drill_type": "Wrong-frame sort",
+    "target_skill": "privacy tort homes",
+    "prompt": "Commercial use of name or likeness belongs to which privacy tort home?",
+    "answer": "Appropriation, not false light.",
+    "tension_slug": "publicity-threshold-vs-false-impression-only-wrong-privacy-tort-frames",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20605_scripture_quiz_whisper-3",
+    "source_qid": "20605_scripture_quiz_whisper",
+    "drill_type": "Wrong-element cut",
+    "target_skill": "false-impression-only trap",
+    "prompt": "Choice says yes because the statement created a false impression. What element is missing?",
+    "answer": "Publicity to the public or a broad audience.",
+    "tension_slug": "publicity-threshold-vs-false-impression-only-wrong-privacy-tort-frames",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20649_christmas_pageant_platform-1",
+    "source_qid": "20649_christmas_pageant_platform",
+    "drill_type": "CUT",
+    "target_skill": "wrong-element",
+    "prompt": "A plaintiff would not have been injured if she had used a safer position. Does that alone prove contributory negligence?",
+    "answer": "No. It shows avoidability, not negligent conduct.",
+    "tension_slug": "defendant-no-breach-foreseeability-vs-plaintiff-avoidability-vs-other-cause-blame",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20649_christmas_pageant_platform-2",
+    "source_qid": "20649_christmas_pageant_platform",
+    "drill_type": "CLASH",
+    "target_skill": "tension axis",
+    "prompt": "Two answers survive: one says the device is usually present; one says the plaintiff could have stood elsewhere. Name the axis.",
+    "answer": "Defendant no-breach / unforeseeable risk versus plaintiff avoidability.",
+    "tension_slug": "defendant-no-breach-foreseeability-vs-plaintiff-avoidability-vs-other-cause-blame",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20649_christmas_pageant_platform-3",
+    "source_qid": "20649_christmas_pageant_platform",
+    "drill_type": "CALL",
+    "target_skill": "answer-array sorting",
+    "prompt": "In an added-fact defense call, which fact is stronger: one blaming a manufacturer, or one making the defendant's risk unforeseeable?",
+    "answer": "The unforeseeable-risk fact, because it attacks the plaintiff's claim against this defendant.",
+    "tension_slug": "defendant-no-breach-foreseeability-vs-plaintiff-avoidability-vs-other-cause-blame",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20649_christmas_pageant_platform-4",
+    "source_qid": "20649_christmas_pageant_platform",
+    "drill_type": "ANCHOR",
+    "target_skill": "contributory negligence",
+    "prompt": "What must the added fact show before contributory negligence bars recovery?",
+    "answer": "Plaintiff negligence that contributed to the harm.",
+    "tension_slug": "defendant-no-breach-foreseeability-vs-plaintiff-avoidability-vs-other-cause-blame",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20717_ruths_hymn_recording_procedure-1",
+    "source_qid": "20717_ruths_hymn_recording_procedure",
+    "drill_type": "CUT",
+    "target_skill": "wrong_element",
+    "prompt": "A malpractice stem proves accepted practice required a specialist consult. No evidence says the consult would have changed the outcome. Cut the breach-only answer.",
+    "answer": "Cut as wrong_element: breach without causation.",
+    "tension_slug": "breach-evidence-vs-breach-caused-injury-evidence",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20717_ruths_hymn_recording_procedure-2",
+    "source_qid": "20717_ruths_hymn_recording_procedure",
+    "drill_type": "CLASH",
+    "target_skill": "tension_axis",
+    "prompt": "One answer says the doctor was negligent for omitting a consult. Another says no proof shows the consult would change the result. Name the axis.",
+    "answer": "Breach evidence vs breach-caused-injury evidence.",
+    "tension_slug": "breach-evidence-vs-breach-caused-injury-evidence",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20717_ruths_hymn_recording_procedure-3",
+    "source_qid": "20717_ruths_hymn_recording_procedure",
+    "drill_type": "ANCHOR",
+    "target_skill": "life_support_superseding_cause",
+    "prompt": "The injury causes a vegetative state; family and court approve withdrawal of support. Does that usually break causation?",
+    "answer": "No, if the original breach caused the condition requiring support.",
+    "tension_slug": "breach-evidence-vs-breach-caused-injury-evidence",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20725_emmaus_laser_cutter-1",
+    "source_qid": "20725_emmaus_laser_cutter",
+    "drill_type": "cut",
+    "target_skill": "Overclaim class boundary",
+    "prompt": "Choice says negligent misrepresentation reaches every foreseeable reader of a professional report. Cut or keep?",
+    "answer": "Cut: tiered_absolute / too broad.",
+    "tension_slug": "known-recipient-duty-boundary-no-contract-vs-every-foreseeable-reader-vs-named-recipient",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20725_emmaus_laser_cutter-2",
+    "source_qid": "20725_emmaus_laser_cutter",
+    "drill_type": "anchor",
+    "target_skill": "Known recipient rule",
+    "prompt": "Professional knows a named buyer will rely on a careless report. Buyer is not in contract with professional. Does no contract alone defeat the claim?",
+    "answer": "No. Use the known-recipient Gold Key.",
+    "tension_slug": "known-recipient-duty-boundary-no-contract-vs-every-foreseeable-reader-vs-named-recipient",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20725_emmaus_laser_cutter-3",
+    "source_qid": "20725_emmaus_laser_cutter",
+    "drill_type": "cut",
+    "target_skill": "Mental-state mismatch",
+    "prompt": "Choice says negligent misrepresentation requires knowledge of falsity. Stem says carelessly false information. Cut or keep?",
+    "answer": "Cut: flat_misstatement / wrong mental state.",
+    "tension_slug": "known-recipient-duty-boundary-no-contract-vs-every-foreseeable-reader-vs-named-recipient",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20725_emmaus_laser_cutter-4",
+    "source_qid": "20725_emmaus_laser_cutter",
+    "drill_type": "answer_array",
+    "target_skill": "Bracket extremes",
+    "prompt": "Array contains no contract, every foreseeable reader, and known recipient. Which lane is structurally favored after the Gold Key?",
+    "answer": "Known recipient.",
+    "tension_slug": "known-recipient-duty-boundary-no-contract-vs-every-foreseeable-reader-vs-named-recipient",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20727-1",
+    "source_qid": "20727",
+    "drill_type": "CUT",
+    "target_skill": "wrong_element",
+    "prompt": "A fireworks company is preparing a show. Before any fireworks are armed, a visitor is hurt by a collapsing picnic table. Strict liability?",
+    "answer": "No, unless the injury came from the special fireworks risk.",
+    "tension_slug": "special-risk-injury-link-vs-activity-site-timing-shortcut",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20727-2",
+    "source_qid": "20727",
+    "drill_type": "EAR",
+    "target_skill": "tiered_absolute",
+    "prompt": "Strict liability never applies before the dangerous activity begins.",
+    "answer": "Cut the absolute; timing alone is not the scope rule.",
+    "tension_slug": "special-risk-injury-link-vs-activity-site-timing-shortcut",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20727-3",
+    "source_qid": "20727",
+    "drill_type": "answer_array",
+    "target_skill": "2-yes / 2-no reason read",
+    "prompt": "Two answers say yes, two say no. One yes proves activity danger; one no proves no special-risk injury. Which reason controls?",
+    "answer": "The injury-source reason controls.",
+    "tension_slug": "special-risk-injury-link-vs-activity-site-timing-shortcut",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20727-4",
+    "source_qid": "20727",
+    "drill_type": "Gold Key recall",
+    "target_skill": "special-risk limitation",
+    "prompt": "State the tiny rule for abnormally dangerous activity strict liability.",
+    "answer": "Liability covers only the kind of harm that makes the activity abnormally dangerous.",
+    "tension_slug": "special-risk-injury-link-vs-activity-site-timing-shortcut",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20730_shepherd_sling_fair-1",
+    "source_qid": "20730_shepherd_sling_fair",
+    "drill_type": "choice_sort",
+    "target_skill": "mental-state target sorting",
+    "prompt": "Battery call: one choice says contact intent, one says injury intent, one says risk appreciation, one says bad motive. Which target belongs to battery?",
+    "answer": "Contact intent.",
+    "tension_slug": "contact-intent-vs-injury-risk-motive-mental-state-distractors",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20730_shepherd_sling_fair-2",
+    "source_qid": "20730_shepherd_sling_fair",
+    "drill_type": "gold_key_recall",
+    "target_skill": "battery anchor",
+    "prompt": "Does battery require intent to injure?",
+    "answer": "No. It requires intent to cause harmful/offensive contact or apprehension.",
+    "tension_slug": "contact-intent-vs-injury-risk-motive-mental-state-distractors",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20730_shepherd_sling_fair-3",
+    "source_qid": "20730_shepherd_sling_fair",
+    "drill_type": "crossover",
+    "target_skill": "battery vs negligence",
+    "prompt": "A child is old enough to appreciate risk. Is that the strongest battery argument?",
+    "answer": "No. Risk appreciation is a negligence-style frame; battery turns on contact intent.",
+    "tension_slug": "contact-intent-vs-injury-risk-motive-mental-state-distractors",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20730_shepherd_sling_fair-4",
+    "source_qid": "20730_shepherd_sling_fair",
+    "drill_type": "motive_filter",
+    "target_skill": "motive vs element",
+    "prompt": "The defendant was unjustifiably angry before making contact. Is that the battery element?",
+    "answer": "No. It may explain motive, but the element is intentional contact.",
+    "tension_slug": "contact-intent-vs-injury-risk-motive-mental-state-distractors",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20733_galilee_trails_death_notice-1",
+    "source_qid": "20733_galilee_trails_death_notice",
+    "drill_type": "CUT",
+    "target_skill": "overclaim detection",
+    "prompt": "A choice says any negligent message that causes grief creates liability. What is the mold?",
+    "answer": "tiered_absolute",
+    "tension_slug": "special-erroneous-death-notice-category-vs-ordinary-nied-physical-danger-default",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20733_galilee_trails_death_notice-2",
+    "source_qid": "20733_galilee_trails_death_notice",
+    "drill_type": "CUT",
+    "target_skill": "bait doctrine",
+    "prompt": "The stem gives an erroneous-death-notice category, and a choice denies recovery for lack of physical danger. What is the skipped move?",
+    "answer": "Special-category lane check.",
+    "tension_slug": "special-erroneous-death-notice-category-vs-ordinary-nied-physical-danger-default",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20733_galilee_trails_death_notice-3",
+    "source_qid": "20733_galilee_trails_death_notice",
+    "drill_type": "anchor",
+    "target_skill": "NIED special category",
+    "prompt": "A spouse receives a negligent false death notice and suffers severe distress. The jurisdiction recognizes the category. Does lack of physical danger defeat the claim?",
+    "answer": "No.",
+    "tension_slug": "special-erroneous-death-notice-category-vs-ordinary-nied-physical-danger-default",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20735_bethlehem_donkey_blower-1",
+    "source_qid": "20735_bethlehem_donkey_blower",
+    "drill_type": "CUT",
+    "target_skill": "tiered_absolute",
+    "prompt": "A nuisance exists, so any substantial nuisance requires the defendant to stop the activity. Cut or keep?",
+    "answer": "Cut: automatic-shutdown overclaim.",
+    "tension_slug": "all-or-nothing-remedies-versus-tailored-abatement-and-avoidable-damages",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20735_bethlehem_donkey_blower-2",
+    "source_qid": "20735_bethlehem_donkey_blower",
+    "drill_type": "CLASH",
+    "target_skill": "remedy axis",
+    "prompt": "No remedy because plaintiff refused mitigation vs tailored abatement with limited damages. Name the axis.",
+    "answer": "Whether mitigation erases the remedy or only limits avoidable damages.",
+    "tension_slug": "all-or-nothing-remedies-versus-tailored-abatement-and-avoidable-damages",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20735_bethlehem_donkey_blower-3",
+    "source_qid": "20735_bethlehem_donkey_blower",
+    "drill_type": "Gold Key recall",
+    "target_skill": "avoidable consequences",
+    "prompt": "What does mitigation do in a nuisance-remedy question?",
+    "answer": "It can limit damages; it does not erase nuisance relief.",
+    "tension_slug": "all-or-nothing-remedies-versus-tailored-abatement-and-avoidable-damages",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20735_bethlehem_donkey_blower-4",
+    "source_qid": "20735_bethlehem_donkey_blower",
+    "drill_type": "answer_array",
+    "target_skill": "oversteer screen",
+    "prompt": "Choices are shutdown, no remedy, punitive-only, tailored abatement. What should you look for?",
+    "answer": "The fact that supports a reasonable tailored fix.",
+    "tension_slug": "all-or-nothing-remedies-versus-tailored-abatement-and-avoidable-damages",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20744_bethlehem_loading_lane-1",
+    "source_qid": "20744_bethlehem_loading_lane",
+    "drill_type": "target_scan",
+    "target_skill": "identify foreseeability object",
+    "prompt": "In a negligence answer choice, underline the object after 'foreseeable that.' Is it plaintiff/risk, exact chain, prior cause, or defendant breach?",
+    "answer": "plaintiff/risk is the target",
+    "tension_slug": "foreseeability-target-plaintiff-risk-in-the-lane-versus-set-stage-cause-exact-chain-or-defendant-s-own-breach",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20744_bethlehem_loading_lane-2",
+    "source_qid": "20744_bethlehem_loading_lane",
+    "drill_type": "wrong_element",
+    "target_skill": "separate breach from foreseeability",
+    "prompt": "A choice says liability turns on whether the defendant would drive while impaired. What element is it chasing?",
+    "answer": "defendant breach, not foreseeability target",
+    "tension_slug": "foreseeability-target-plaintiff-risk-in-the-lane-versus-set-stage-cause-exact-chain-or-defendant-s-own-breach",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-20744_bethlehem_loading_lane-3",
+    "source_qid": "20744_bethlehem_loading_lane",
+    "drill_type": "set_stage",
+    "target_skill": "identify preexisting condition lure",
+    "prompt": "A person is already in a lane before defendant drives through it. Does liability turn on whether the earlier cause of that position was foreseeable?",
+    "answer": "No; focus on whether a person in the lane was foreseeable.",
+    "tension_slug": "foreseeability-target-plaintiff-risk-in-the-lane-versus-set-stage-cause-exact-chain-or-defendant-s-own-breach",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-21752_olive_oil_ramp-1",
+    "source_qid": "21752_olive_oil_ramp",
+    "drill_type": "anchor_recall",
+    "target_skill": "nondelegable-duty exception",
+    "prompt": "A business has a statutory duty to keep an entrance safe and hires an independent contractor to clear it. The contractor is negligent. What argument keeps the business in the case?",
+    "answer": "The duty may be nondelegable.",
+    "tension_slug": "independent-contractor-default-vs-nondelegable-duty-exception",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-21752_olive_oil_ramp-2",
+    "source_qid": "21752_olive_oil_ramp",
+    "drill_type": "overclaim_cut",
+    "target_skill": "tiered_absolute",
+    "prompt": "Cut this answer: 'Every outside contractor working at a business is treated as the business's employee.'",
+    "answer": "Cut as tiered_absolute; nondelegable duty is narrower than employee status.",
+    "tension_slug": "independent-contractor-default-vs-nondelegable-duty-exception",
+    "subject": "TORTS"
+  },
+  {
+    "id": "MICRO-21752_olive_oil_ramp-3",
+    "source_qid": "21752_olive_oil_ramp",
+    "drill_type": "trap_spotting",
+    "target_skill": "contractor-shield exception check",
+    "prompt": "Stem signal: statutory safety duty + independent contractor + public entrant injured. What trap should you expect?",
+    "answer": "The trap is treating contractor status as a total shield.",
+    "tension_slug": "independent-contractor-default-vs-nondelegable-duty-exception",
+    "subject": "TORTS"
+  }
+]
