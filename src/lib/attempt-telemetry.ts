@@ -53,23 +53,25 @@ export function summarizeInteractionLog(
   events: readonly InteractionEvent[],
   correctLetter: "A" | "B" | "C" | "D" | null,
 ): TelemetrySummary {
-  const selects = events.filter(
+  const letterEvents = events.filter(
     (e): e is Extract<InteractionEvent, { letter: string }> =>
       e.ev === "select" || e.ev === "submit",
   );
-  const firstSelect = selects[0] ?? null;
-  const submit = selects.find((e) => e.ev === "submit") ?? null;
-  const selectOnly = selects.filter((e) => e.ev === "select");
+  const firstSelect = letterEvents[0] ?? null;
+  const submit = letterEvents.find((e) => e.ev === "submit") ?? null;
+  const selectOnly = letterEvents.filter((e) => e.ev === "select");
+  const firstTrueSelect = selectOnly[0] ?? null;
 
   let switchedOffCorrect: boolean | null = null;
   if (correctLetter !== null && submit) {
-    const touchedCorrect = selects.some((e) => e.letter === correctLetter);
+    const touchedCorrect = letterEvents.some((e) => e.letter === correctLetter);
     switchedOffCorrect = touchedCorrect && submit.letter !== correctLetter;
   }
 
   return {
     time_to_first_selection_ms: firstSelect ? firstSelect.t : null,
-    deliberation_ms: firstSelect && submit ? submit.t - firstSelect.t : null,
+    deliberation_ms:
+      firstTrueSelect && submit ? submit.t - firstTrueSelect.t : null,
     answer_changes: Math.max(0, selectOnly.length - 1),
     switched_off_correct: switchedOffCorrect,
     stem_rereads: events.filter((e) => e.ev === "scroll_stem").length,

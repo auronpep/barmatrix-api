@@ -50,6 +50,14 @@ describe("interactionLogSchema", () => {
     const r = interactionLogSchema.safeParse(long);
     assert.equal(r.success, false);
   });
+
+  it("accepts equal timestamps (ties are valid)", () => {
+    const r = interactionLogSchema.safeParse([
+      { t: 0, ev: "shown" },
+      { t: 0, ev: "scroll_stem" },
+    ]);
+    assert.equal(r.success, true);
+  });
 });
 
 describe("summarizeInteractionLog", () => {
@@ -83,5 +91,19 @@ describe("summarizeInteractionLog", () => {
     assert.equal(s.deliberation_ms, null);
     assert.equal(s.answer_changes, 0);
     assert.equal(s.stem_rereads, 0);
+  });
+
+  it("submit-only log: timing populated, deliberation null", () => {
+    const s = summarizeInteractionLog(
+      [
+        { t: 0, ev: "shown" },
+        { t: 12000, ev: "submit", letter: "C" },
+      ],
+      "C",
+    );
+    assert.equal(s.time_to_first_selection_ms, 12000);
+    assert.equal(s.deliberation_ms, null);
+    assert.equal(s.answer_changes, 0);
+    assert.equal(s.switched_off_correct, false);
   });
 });
