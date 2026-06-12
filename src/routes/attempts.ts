@@ -162,7 +162,9 @@ export function buildAttemptMetadata(
     return { ...base };
   }
   const telemetry = summarizeInteractionLog(parsed.data, correctLetter);
-  if (JSON.stringify(parsed.data).length > MAX_LOG_BYTES) {
+  // With MAX_EVENTS=200 this is near-unreachable belt-and-braces; kept cheap.
+  const serialized = JSON.stringify(parsed.data);
+  if (serialized.length > MAX_LOG_BYTES) {
     console.warn("[attempts post] interaction_log over byte cap; kept summary only");
     return { ...base, telemetry };
   }
