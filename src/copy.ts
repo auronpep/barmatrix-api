@@ -6,11 +6,20 @@
 // BARMATRIX/DRIFT_CONTROL.md.
 
 export const CAPACITY_COPY = {
-  open: "July-cycle cohort enrollment is open. Limited seats available.",
-  limited: "Limited July-cycle cohort seats available.",
-  almost_full: "The July-cycle cohort is almost full.",
-  last_seats: "Last July-cycle cohort seats available.",
-  waitlist: "Cohort capacity reached. Join the waitlist.",
+  open: "July-cycle cohort enrollment is open.",
+  limited: "July-cycle cohort enrollment is open.",
+  almost_full: "July-cycle cohort enrollment is open.",
+  last_seats: "July-cycle cohort enrollment is open.",
+  waitlist: "Enrollment is currently paused. Contact support for the next available start.",
 } as const;
 
 export type CohortPublicStatus = keyof typeof CAPACITY_COPY;
+
+export function publicCopyForCohortStatus(
+  status: CohortPublicStatus | string | null | undefined,
+): string {
+  if (status && status in CAPACITY_COPY) {
+    return CAPACITY_COPY[status as CohortPublicStatus];
+  }
+  return CAPACITY_COPY.open;
+}

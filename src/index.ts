@@ -12,7 +12,11 @@ import { config } from "./config.js";
 import { initSentry, isSentryEnabled, setupSentryErrorHandler } from "./sentry.js";
 import { handleListenError } from "./lib/listen.js";
 import { getPool, ping } from "./db.js";
-import { CAPACITY_COPY, type CohortPublicStatus } from "./copy.js";
+import {
+  CAPACITY_COPY,
+  publicCopyForCohortStatus,
+  type CohortPublicStatus,
+} from "./copy.js";
 import {
   fulfillCheckoutSession,
   recordInstallmentPayment,
@@ -400,7 +404,10 @@ app.get("/api/cohort/status", async (_req, res) => {
       });
       return;
     }
-    res.json(row);
+    res.json({
+      ...row,
+      public_copy: publicCopyForCohortStatus(row.public_status),
+    });
   } catch (err) {
     console.error("[cohort status] failed:", err);
     res.json({
@@ -587,10 +594,9 @@ app.post("/api/checkout/create-session", async (req, res) => {
     await enforceCheckoutCapacityOpen(getPool(), config.cohort.code);
   } catch (err) {
     if (err instanceof CohortCapacityFullError) {
-      // Public copy per DRIFT_CONTROL.md "waitlist" band.
       res.status(409).json({
         error: "cohort_full",
-        public_copy: "Cohort capacity reached. Join the waitlist.",
+        public_copy: CAPACITY_COPY.waitlist,
       });
       return;
     }
