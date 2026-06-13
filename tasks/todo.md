@@ -1,5 +1,19 @@
 # Ambassador Launch Production Checklist
 
+# Checkout Recovery Account Access - 2026-06-13
+
+## Plan
+
+- [x] Add a regression that manual checkout recovery sends the buyer through the same Clerk access email path as the Stripe webhook.
+- [x] Wire `/api/checkout/:sessionId/recover` to send the enrollment access email after successful recovery fulfillment.
+- [x] Keep recovery idempotent: do not resend access email when the session was already fulfilled.
+- [x] Run focused API tests, build, and diff checks.
+- [ ] Deploy only after verification passes and the private target is confirmed.
+
+## Review
+
+- In progress.
+
 # Checkout Provisioning Hardening - 2026-06-13
 
 ## Plan

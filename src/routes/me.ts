@@ -18,6 +18,7 @@ import { getPool } from "../db.js";
 import { snakeToTitle, kebabToTitle } from "../lib/format.js";
 import { resolveClerkEmail } from "../lib/clerk-identity.js";
 import { fulfillCheckoutSession } from "../entitlement.js";
+import { sendEnrollmentEmailForFulfillment } from "../email.js";
 import { claimDiagnosticForSession, collectClaimableDiagnosticIds } from "../lib/claim-diagnostic.js";
 import { routeFromSessionAttemptCounts } from "../lib/checkout-next-step.js";
 import { config } from "../config.js";
@@ -471,6 +472,11 @@ export function registerMeRoutes(app: Express): void {
       } catch (err) {
         console.error("[checkout recover] diagnostic claim failed:", err);
       }
+
+      await sendEnrollmentEmailForFulfillment({
+        session,
+        fulfillment: result,
+      });
 
       res.json({
         status: result.status,
