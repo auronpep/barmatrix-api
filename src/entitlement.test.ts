@@ -92,14 +92,16 @@ function duplicateCheckoutSessionError(): Error & { code: string; errno: number 
 
 class ScriptedClient implements DbClient {
   calls: string[] = [];
+  callsWithValues: Array<{ sql: string; values: readonly unknown[] }> = [];
 
   constructor(private readonly steps: ScriptStep[]) {}
 
   async query<T>(
     sql: string,
-    _values?: readonly unknown[],
+    values: readonly unknown[] = [],
   ): Promise<QueryResult<T>> {
     this.calls.push(sql);
+    this.callsWithValues.push({ sql, values });
     const step = this.steps.shift();
     assert.ok(step, `unexpected query: ${sql}`);
     assert.match(sql, step.match);
@@ -182,6 +184,70 @@ describe("fulfillCheckoutSession idempotency", () => {
       purchaseId: "purchase_existing",
     });
     assert.equal(seatAssigned, false);
+  });
+
+  it("stores the required checkout first and last name when Stripe customer name is blank", async () => {
+    const client = new ScriptedClient([
+      { match: /^BEGIN$/ },
+      {
+        match: /SELECT purchase_id FROM purchases WHERE stripe_checkout_session_id/,
+        result: rows([]),
+      },
+      { match: /INSERT INTO students/ },
+      {
+        match: /SELECT student_id FROM students/,
+        result: rows([{ student_id: "student_1" }]),
+      },
+      {
+        match: /SELECT cohort_id FROM cohort_config/,
+        result: rows([{ cohort_id: "cohort_1" }]),
+      },
+      { match: /INSERT INTO purchases/ },
+      { match: /^COMMIT$/ },
+    ]);
+    const session = {
+      ...checkoutSession(),
+      id: "cs_test_custom_name",
+      customer_details: {
+        email: "buyer@example.test",
+        name: null,
+      },
+      custom_fields: [
+        {
+          key: "first_name",
+          type: "text",
+          text: { value: "Buyer" },
+        },
+        {
+          key: "last_name",
+          type: "text",
+          text: { value: "Example" },
+        },
+      ],
+    } as unknown as Stripe.Checkout.Session;
+
+    const result = await fulfillCheckoutSession(
+      { session, subscriptionId: null },
+      {
+        pool: poolFor(client),
+        createId: () => "purchase_new",
+        assignSeat: async () => 42,
+        logger: {
+          log: () => {},
+          warn: () => {},
+        },
+      },
+    );
+
+    assert.equal(result.status, "fulfilled");
+    const studentInsert = client.callsWithValues.find((call) =>
+      /INSERT INTO students/.test(call.sql),
+    );
+    assert.ok(studentInsert);
+    assert.deepEqual(studentInsert.values.slice(0, 2), [
+      "buyer@example.test",
+      "Buyer Example",
+    ]);
   });
 });
 

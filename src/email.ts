@@ -64,7 +64,10 @@ export type EnrollmentEmailResult =
         | "duplicate_fulfillment"
         | "missing_trap_or_rule";
     }
-  | { status: "failed"; reason: "resend_error" };
+  | {
+      status: "failed";
+      reason: "resend_error" | "clerk_access_unavailable";
+    };
 
 interface SendEnrollmentEmailOptions {
   env?: Env;
@@ -204,6 +207,10 @@ export async function sendEnrollmentEmailForFulfillment(
       ...context,
       reason: accessResult.reason,
     });
+  }
+
+  if (!accessUrl) {
+    return { status: "failed", reason: "clerk_access_unavailable" };
   }
 
   let result: EnrollmentEmailResult;

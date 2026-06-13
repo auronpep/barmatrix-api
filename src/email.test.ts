@@ -278,6 +278,55 @@ describe("sendEnrollmentEmailForFulfillment", () => {
     ]);
   });
 
+  it("does not send a signup fallback email when Clerk access provisioning fails", async () => {
+    let emailCalled = false;
+    const errors: unknown[] = [];
+
+    const result = await sendEnrollmentEmailForFulfillment(
+      {
+        session,
+        fulfillment: {
+          status: "fulfilled",
+          purchaseId: "purchase_123",
+          studentId: "student_123",
+        },
+      },
+      {
+        createAccessLink: async () => ({
+          status: "failed",
+          reason: "clerk_error",
+        }),
+        sendEmail: async () => {
+          emailCalled = true;
+          return { status: "sent", id: "email_123" };
+        },
+        logger: {
+          log: () => {},
+          warn: () => {},
+          error: (...args: unknown[]) => {
+            errors.push(args);
+          },
+        },
+      },
+    );
+
+    assert.deepEqual(result, {
+      status: "failed",
+      reason: "clerk_access_unavailable",
+    });
+    assert.equal(emailCalled, false);
+    assert.deepEqual(errors, [
+      [
+        "[clerk] checkout access link failed",
+        {
+          checkoutSessionId: "cs_test_123",
+          purchaseId: "purchase_123",
+          reason: "clerk_error",
+        },
+      ],
+    ]);
+  });
+
   it("surfaces delivery failure without throwing after fulfillment", async () => {
     const errors: unknown[] = [];
 
@@ -288,8 +337,9 @@ describe("sendEnrollmentEmailForFulfillment", () => {
       },
       {
         createAccessLink: async () => ({
-          status: "skipped",
-          reason: "missing_config",
+          status: "sent",
+          userId: "user_123",
+          accessUrl: "https://accounts.barmatrix.app/sign-in/token/abc",
         }),
         sendEmail: async () => ({ status: "failed", reason: "resend_error" }),
         logger: {

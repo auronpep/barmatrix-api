@@ -1,5 +1,24 @@
 # Ambassador Launch Production Checklist
 
+# Checkout Provisioning Hardening - 2026-06-13
+
+## Plan
+
+- [x] Add a regression for Clerk provisioning failures so paid fulfillment does not send a broken sign-up fallback email.
+- [x] Add a regression for coupon/free Stripe checkout sessions where required first/last custom fields exist but `customer_details.name` is blank.
+- [x] Require enrollment access email to have a Clerk access URL after checkout fulfillment.
+- [x] Store student full name from Stripe Checkout `first_name` and `last_name` custom fields before falling back to `customer_details.name`.
+- [x] Verify focused launch-critical API tests and TypeScript build.
+- [ ] Deploy to Hostinger and verify live API behavior.
+
+## Review
+
+- Root cause hardening: previous auto-account work created/reused Clerk users, but fulfillment email still had a fallback path that could send users to manual sign-up if Clerk access provisioning failed.
+- Name capture hardening: Stripe Checkout already requires `first_name` and `last_name`, including coupon/free checkout, but entitlement storage only read `customer_details.name`.
+- Focused tests pass: `node --import tsx --test src\email.test.ts src\checkout.test.ts src\clerk-access.test.ts src\stripe-webhook.test.ts src\entitlement.test.ts` (43 tests).
+- `npm run build` passes.
+- `git diff --check` passes.
+
 # Checkout Clerk Access Repair - 2026-06-12
 
 ## Plan
