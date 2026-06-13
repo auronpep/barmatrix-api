@@ -28,6 +28,8 @@
 - 2026-06-13 follow-up verification passed: `npx tsx --test src\checkout.test.ts src\clerk-access.test.ts src\email.test.ts src\entitlement.test.ts src\stripe-webhook.test.ts` (43/43), `npm run build`, and `git diff --check`.
 - 2026-06-13 policy hardening: added a regression that two-pay Checkout Sessions must not set `allow_promotion_codes`, then removed promotion-code exposure from the two-pay branch while leaving pay-in-full coupon entry intact.
 - 2026-06-13 policy hardening verification passed: `npx tsx --test src\checkout.test.ts`, `npx tsx --test src\checkout.test.ts src\clerk-access.test.ts src\email.test.ts src\entitlement.test.ts src\stripe-webhook.test.ts` (43/43), `npm run build`, and `git diff --check`.
+- 2026-06-13 policy hardening deploy passed via Git Bash `scripts/deploy.sh`; API health returned HTTP 200 and rollback snapshot was kept at `~/domains/barmatrix.app/nodejs/dist.bak-20260612-211938`.
+- 2026-06-13 live policy verification passed: fresh pay-in-full Checkout session `cs_live_b1Pk8Q84DfOsFbvBFXPlOyDCFW6mHMXV29c3G2aipVyUbPL7bX1H9Lqenf` showed `Add promotion code` plus required first/last name fields; fresh two-pay Checkout session `cs_live_a1ssGNbtaDajZ579W9yfEW199lrlBa2r9Zht3MVK2eSKfEGxNudAPUR3D5` showed required first/last name fields and no promotion-code textbox.
 
 # Checkout Clerk Access Repair - 2026-06-12
 
