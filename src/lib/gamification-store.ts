@@ -14,6 +14,7 @@ import {
 export type XpSourceType =
   | "boot_camp_day"
   | "boot_camp_mastery"
+  | "path_step" // J7 guided "lead me" path — one event per completed step
   | "day_plan_step"
   | "day_plan_main_item"
   | "day_plan_complete"
