@@ -108,7 +108,7 @@ Pre-deploy verification:
 - [x] Make `/api/me/c3/next` serve a live active question when C3-tagged mold candidates are not available.
 - [x] Keep the response honest: mark the coaching target as starter/baseline and `measured: false`.
 - [x] Run focused C3 coach tests, typecheck, build, and local parse gates.
-- [ ] Deploy API and live-verify the Coach no longer lands paid users on a dead coverage-pending state.
+- [x] Deploy API and live-verify the Coach no longer lands paid users on a dead coverage-pending state.
 
 ## Review
 
@@ -116,3 +116,5 @@ Pre-deploy verification:
 - 2026-06-13: Added `starterCoachQuestionQuery()` and `buildStarterCoachPayload()` so the coach can fall back to an unseen active question with `target_mold: "starter_baseline"` and `measured: false`.
 - 2026-06-13: Verification passed: `npx tsx --test src\routes\c3-coach.test.ts`, `npm run typecheck`, `npm run build`, `node --check dist\index.js`, and `node --check dist\sentry-init.js`.
 - 2026-06-13: `bash` on this Windows PATH resolves to WSL bash and the deploy dry-run wrapper hung before output; local deploy-equivalent build and parse gates were run manually instead.
+- 2026-06-13: Git Bash dry run passed with `SKIP_AUTODEPLOY_CHECK=1 DRY_RUN=1 ./scripts/deploy.sh`; production deploy passed via `./scripts/deploy.sh` with API health HTTP 200 and rollback snapshot `~/domains/barmatrix.app/nodejs/dist.bak-20260612-201131`.
+- 2026-06-13: Live browser verification on `/coach` confirmed `Start coaching` now returns a question payload with `Starter C3 Baseline` instead of `Coach coverage pending`.
