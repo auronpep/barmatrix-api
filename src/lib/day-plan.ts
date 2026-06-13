@@ -206,6 +206,8 @@ const FLASHCARD_ITEMS = [
   ["CRIM-GP-CUT-01", "General-principles issue-cut flashcard", "Sort attempt, conspiracy, causation, duty, and mental state first."],
 ] as const;
 
+const CRIMINAL_DAY1_FLASHCARD_DECK_ID = "criminal-law-day1";
+
 const CRIMINAL_LESSON_REFS = [
   ["layer-gate", "Layer before doctrine", "Name the criminal-law layer before doctrine."],
   ["output-gate", "Requested-output gate", "Find the requested output first."],
@@ -305,9 +307,12 @@ export const DAY1_PLAN: DayPlanManifest = {
         xp: 5,
       }),
     ),
-    ...FLASHCARD_ITEMS.map(([id, title, label], index) =>
-      step({
-        order: index + 21,
+    ...FLASHCARD_ITEMS.map(([id, title, label], index) => {
+      const order = index + 21;
+      const cardId = `c${String(index + 1).padStart(2, "0")}`;
+      const href = `/flashcards/${CRIMINAL_DAY1_FLASHCARD_DECK_ID}?card=${cardId}&step=${day1StepId(order)}`;
+      return step({
+        order,
         mainItemId: "flashcards",
         kind: "flashcard",
         title,
@@ -316,12 +321,12 @@ export const DAY1_PLAN: DayPlanManifest = {
           type: "c3_card",
           id,
           label,
-          href: "/subjects/criminal-law",
+          href,
         },
-        action: { label: "Open card set", href: "/subjects/criminal-law" },
+        action: { label: "Open flashcard", href },
         xp: 4,
-      }),
-    ),
+      });
+    }),
     ...CRIMINAL_LESSON_REFS.map(([id, title, prompt], index) =>
       step({
         order: index + 31,
@@ -785,6 +790,10 @@ function step(input: {
     action: input.action,
     xp: input.xp,
   };
+}
+
+function day1StepId(order: number): string {
+  return `j7d1-s${String(order).padStart(2, "0")}`;
 }
 
 function mainItem(

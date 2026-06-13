@@ -55,6 +55,19 @@ describe("J7 Day 1 manifest", () => {
     );
   });
 
+  it("routes flashcard tasks to the live deck with the matching day-plan step", () => {
+    const flashcardSteps = DAY1_PLAN.steps.filter((step) => step.main_item_id === "flashcards");
+
+    assert.equal(flashcardSteps.length, 10);
+    for (const [index, step] of flashcardSteps.entries()) {
+      const cardId = `c${String(index + 1).padStart(2, "0")}`;
+      const expectedHref = `/flashcards/criminal-law-day1?card=${cardId}&step=${step.step_id}`;
+      assert.equal(step.action.label, "Open flashcard");
+      assert.equal(step.action.href, expectedHref);
+      assert.equal(step.content_ref.href, expectedHref);
+    }
+  });
+
   it("uses the 3 AM local rollover boundary", () => {
     assert.equal(
       programDayKey(new Date("2026-06-08T09:59:00.000Z"), "America/Los_Angeles"),
