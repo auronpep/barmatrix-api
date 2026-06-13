@@ -49,7 +49,7 @@ export function buildCheckoutSessionParams(
 ): Stripe.Checkout.SessionCreateParams {
   const discountFields = input.promotionCodeId
     ? { discounts: [{ promotion_code: input.promotionCodeId }] }
-    : { allow_promotion_codes: true };
+    : {};
 
   if (input.paymentPlan === "pay_in_full") {
     return {
