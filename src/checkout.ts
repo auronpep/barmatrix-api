@@ -26,6 +26,7 @@ export interface BuildCheckoutSessionParamsInput {
   cancelUrl: string;
   pricePayInFull: string;
   pricePayInTwo: string;
+  promotionCodeId?: string;
 }
 
 const LOCAL_DEV_ORIGINS = new Set([
@@ -46,11 +47,15 @@ export function resolveCheckoutReturnUrls(
 export function buildCheckoutSessionParams(
   input: BuildCheckoutSessionParamsInput,
 ): Stripe.Checkout.SessionCreateParams {
+  const discountFields = input.promotionCodeId
+    ? { discounts: [{ promotion_code: input.promotionCodeId }] }
+    : { allow_promotion_codes: true };
+
   if (input.paymentPlan === "pay_in_full") {
     return {
       mode: "payment",
       customer_creation: "always",
-      allow_promotion_codes: true,
+      ...discountFields,
       line_items: [{ price: input.pricePayInFull, quantity: 1 }],
       success_url: input.successUrl,
       cancel_url: input.cancelUrl,
@@ -60,7 +65,7 @@ export function buildCheckoutSessionParams(
 
   return {
     mode: "payment",
-    allow_promotion_codes: true,
+    ...discountFields,
     line_items: [{ price: input.pricePayInTwo, quantity: 1 }],
     customer_creation: "always",
     payment_intent_data: {

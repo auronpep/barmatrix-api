@@ -88,9 +88,27 @@ describe("checkout session params", () => {
 
     assert.equal(params.mode, "payment");
     assert.equal(params.customer_creation, "always");
+    assert.equal(params.allow_promotion_codes, true);
     assert.deepEqual(params.line_items, [{ price: "price_full", quantity: 1 }]);
     assert.equal(params.success_url, "https://barmatrix.app/checkout/success");
     assert.equal(params.cancel_url, "https://barmatrix.app/pricing");
+  });
+
+  it("attaches a resolved Stripe promotion code instead of relying on manual entry", () => {
+    const params = buildCheckoutSessionParams({
+      paymentPlan: "pay_in_full",
+      metadata: { ...metadata, coupon_code: "Jesuslovesyou" },
+      successUrl: "https://barmatrix.app/checkout/success",
+      cancelUrl: "https://barmatrix.app/pricing",
+      pricePayInFull: "price_full",
+      pricePayInTwo: "price_two",
+      promotionCodeId: "promo_live_zero",
+    });
+
+    assert.equal(params.mode, "payment");
+    assert.equal(params.allow_promotion_codes, undefined);
+    assert.deepEqual(params.discounts, [{ promotion_code: "promo_live_zero" }]);
+    assert.deepEqual(params.line_items, [{ price: "price_full", quantity: 1 }]);
   });
 
   it("creates a two-pay session that saves the card for the second installment", () => {
@@ -105,6 +123,7 @@ describe("checkout session params", () => {
 
     assert.equal(params.mode, "payment");
     assert.equal(params.customer_creation, "always");
+    assert.equal(params.allow_promotion_codes, true);
     assert.deepEqual(params.line_items, [{ price: "price_two", quantity: 1 }]);
     assert.deepEqual(params.payment_intent_data, {
       setup_future_usage: "off_session",

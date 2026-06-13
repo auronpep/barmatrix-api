@@ -567,6 +567,14 @@ const checkoutBody = z.object({
   partner_id: z.string().uuid().nullable().optional(),
   referral_click_id: z.string().uuid().nullable().optional(),
   diagnostic_id: z.string().uuid().nullable().optional(),
+  coupon_code: z
+    .string()
+    .trim()
+    .min(2)
+    .max(64)
+    .regex(/^[A-Za-z0-9_-]+$/)
+    .nullable()
+    .optional(),
   success_url: z.string().url().optional(),
   cancel_url: z.string().url().optional(),
 });
@@ -583,6 +591,7 @@ app.post("/api/checkout/create-session", async (req, res) => {
     referral_click_id: parse.data.referral_click_id ?? "",
     diagnostic_id: parse.data.diagnostic_id ?? "",
     payment_plan: parse.data.payment_plan,
+    coupon_code: parse.data.coupon_code ?? "",
   };
 
   // ---- Cohort capacity gate ----
@@ -617,6 +626,34 @@ app.post("/api/checkout/create-session", async (req, res) => {
       nodeEnv: config.nodeEnv,
     });
 
+    let promotionCodeId: string | undefined;
+    const couponCode = parse.data.coupon_code?.trim();
+    if (couponCode) {
+      if (parse.data.payment_plan !== "pay_in_full") {
+        res.status(400).json({
+          error: "coupon_requires_pay_in_full",
+          message: "Promotion codes are only available on pay-in-full checkout.",
+        });
+        return;
+      }
+
+      const promotionCodes = await stripeClient.promotionCodes.list({
+        active: true,
+        code: couponCode,
+        limit: 1,
+      });
+      const promotionCode = promotionCodes.data[0];
+      if (!promotionCode || !promotionCode.coupon.valid) {
+        res.status(400).json({
+          error: "invalid_coupon_code",
+          message: "That promotion code is not active for checkout.",
+        });
+        return;
+      }
+      promotionCodeId = promotionCode.id;
+      metadata.coupon_code = promotionCode.code;
+    }
+
     const sessionParams = buildCheckoutSessionParams({
       paymentPlan: parse.data.payment_plan,
       metadata,
@@ -624,6 +661,7 @@ app.post("/api/checkout/create-session", async (req, res) => {
       cancelUrl,
       pricePayInFull: config.stripe.pricePayInFull,
       pricePayInTwo: config.stripe.pricePayInTwo,
+      promotionCodeId,
     });
 
     const session = await stripeClient.checkout.sessions.create(sessionParams);
