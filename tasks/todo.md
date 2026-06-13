@@ -9,7 +9,7 @@
 - [x] Require enrollment access email to have a Clerk access URL after checkout fulfillment.
 - [x] Store student full name from Stripe Checkout `first_name` and `last_name` custom fields before falling back to `customer_details.name`.
 - [x] Verify focused launch-critical API tests and TypeScript build.
-- [ ] Deploy to Hostinger and verify live API behavior.
+- [x] Deploy to Hostinger and verify live API behavior.
 
 ## Review
 
@@ -18,6 +18,10 @@
 - Focused tests pass: `node --import tsx --test src\email.test.ts src\checkout.test.ts src\clerk-access.test.ts src\stripe-webhook.test.ts src\entitlement.test.ts` (43 tests).
 - `npm run build` passes.
 - `git diff --check` passes.
+- Production deploy completed on 2026-06-13 UTC via manual equivalent of `scripts/deploy.sh`; API health returned HTTP 200 with `{"ok":true,"db":"up"}`.
+- Rollback snapshot on Hostinger: `~/domains/barmatrix.app/nodejs/dist.bak-20260612-192229`.
+- Live Stripe checkout smoke created a session with `customer_creation: "always"`, `allow_promotion_codes: true`, `/checkout/success` return URL, and required `first_name` / `last_name` custom fields.
+- Deployed build markers confirmed: `dist/email.js` returns `clerk_access_unavailable` when Clerk access URL creation fails, and `dist/entitlement.js` stores full name via `checkoutFullName(session)`.
 
 # Checkout Clerk Access Repair - 2026-06-12
 
