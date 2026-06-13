@@ -13,6 +13,7 @@ import {
   srsStateQuery, recentlySeenQuery,
   candidatesForMoldQuery, servableQuestionQuery, servableChoicesQuery,
   forkCandidatesQuery, forkMoldForQuestionQuery,
+  starterCoachQuestionQuery,
 } from "../lib/c3-coach-queries.js";
 import { shouldInjectFork } from "../lib/c3-fork-injection.js";
 
@@ -59,6 +60,27 @@ export function buildCoachPayload(input: BuildPayloadInput) {
     remediation: { lesson_slug: mold.lesson_slug, deck_ref: mold.deck_ref },
     cohort_signal: null,
   };
+}
+
+export function buildStarterCoachPayload(
+  question: ServableQuestion,
+  coverage: { total_attempts: number; measured_attempts: number },
+) {
+  return buildCoachPayload({
+    question,
+    mold: {
+      mold_code: "starter_baseline",
+      name: "Starter C3 Baseline",
+      family: "ISSUE_SENSE",
+      lesson_slug: "lesson-01",
+      deck_ref: null,
+      exposures: 0,
+      bite_pct: 0,
+      measured: false,
+    },
+    deficit: 0,
+    coverage,
+  });
 }
 
 const RECENTLY_SEEN_LIMIT = 25;
@@ -182,7 +204,28 @@ export function registerC3CoachRoutes(app: Express, rngFactory: () => Rng = () =
         const pick = pickFromCandidates(ids, seen);
         if (pick) { chosenQid = pick; chosenCode = cand.mold_code; break; }
       }
-      if (!chosenQid || !chosenCode) { res.json(UNAVAILABLE("no_tagged_items")); return; }
+      if (!chosenQid || !chosenCode) {
+        const starterR = await pool.query(starterCoachQuestionQuery(), [sid, CANDIDATE_POOL]);
+        const starterIds = (starterR.rows as Record<string, unknown>[]).map((r) => String(r.question_id));
+        const starterPick = pickFromCandidates(starterIds, seen);
+
+        if (starterPick) {
+          const [starterQR, starterChoicesR] = await Promise.all([
+            pool.query(servableQuestionQuery(), [starterPick]),
+            pool.query(servableChoicesQuery(), [starterPick]),
+          ]);
+          if ((starterQR.rows as unknown[]).length > 0) {
+            res.json(buildStarterCoachPayload(
+              { ...(starterQR.rows[0] as ServableQuestion), choices: starterChoicesR.rows as ServableChoice[] },
+              { total_attempts: total, measured_attempts },
+            ));
+            return;
+          }
+        }
+
+        res.json(UNAVAILABLE("no_tagged_items"));
+        return;
+      }
 
       const [qR, chR] = await Promise.all([
         pool.query(servableQuestionQuery(), [chosenQid]),

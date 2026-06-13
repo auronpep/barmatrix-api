@@ -22,7 +22,8 @@ process.env.FRONTEND_URL = "https://barmatrix.app";
 process.env.SUCCESS_URL = "https://barmatrix.app/account/?welcome=1";
 process.env.CANCEL_URL = "https://barmatrix.app/pricing/";
 
-const { pickFromCandidates, buildCoachPayload } = await import("./c3-coach.js");
+const { starterCoachQuestionQuery } = await import("../lib/c3-coach-queries.js");
+const { pickFromCandidates, buildCoachPayload, buildStarterCoachPayload } = await import("./c3-coach.js");
 
 describe("pickFromCandidates", () => {
   it("returns the first candidate not in recently-seen", () => {
@@ -70,5 +71,31 @@ describe("buildCoachPayload", () => {
     });
     assert.equal(p.coaching.fork_practice, true);
     assert.equal(p.coaching.target_mold, "fork");
+  });
+
+  it("assembles an honest starter payload when tagged C3 candidates are unavailable", () => {
+    const p = buildStarterCoachPayload(question, { total_attempts: 17, measured_attempts: 0 });
+
+    assert.equal(p.available, true);
+    assert.equal(p.coaching.target_mold, "starter_baseline");
+    assert.equal(p.coaching.name, "Starter C3 Baseline");
+    assert.equal(p.coaching.measured, false);
+    assert.equal(p.coaching.deficit_pct, 0);
+    assert.equal(p.coaching.fork_practice, false);
+    assert.equal(p.coverage.pct, 0);
+    assert.equal(p.remediation.lesson_slug, "lesson-01");
+  });
+});
+
+describe("starterCoachQuestionQuery", () => {
+  it("selects active unseen questions without requiring C3 annotations", () => {
+    const sql = starterCoachQuestionQuery();
+
+    assert.match(sql, /FROM questions q/);
+    assert.match(sql, /q\.status = 'active'/);
+    assert.match(sql, /student_attempts a/);
+    assert.match(sql, /a\.student_id = \$1/);
+    assert.match(sql, /a\.question_id = q\.question_id/);
+    assert.doesNotMatch(sql, /c3_annotations/);
   });
 });

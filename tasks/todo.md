@@ -99,3 +99,20 @@ Pre-deploy verification:
 - `npm run typecheck`: PASS.
 - `npm run build`: PASS.
 - Extra `npm test` attempt: required launch coverage passed, then the full glob stopped at `src/routes/me-red-zones.integration.test.ts` because that integration harness imports config before a required DB env is available in the test process.
+
+# C3 Coach Starter Fallback - 2026-06-13
+
+## Plan
+
+- [x] Add focused regression coverage for a starter-coach fallback payload/query.
+- [x] Make `/api/me/c3/next` serve a live active question when C3-tagged mold candidates are not available.
+- [x] Keep the response honest: mark the coaching target as starter/baseline and `measured: false`.
+- [x] Run focused C3 coach tests, typecheck, build, and local parse gates.
+- [ ] Deploy API and live-verify the Coach no longer lands paid users on a dead coverage-pending state.
+
+## Review
+
+- 2026-06-13: Live paid browser check could open `/coach`, but `Start coaching` returned `Coach coverage pending` / `no_tagged_items` instead of a usable question.
+- 2026-06-13: Added `starterCoachQuestionQuery()` and `buildStarterCoachPayload()` so the coach can fall back to an unseen active question with `target_mold: "starter_baseline"` and `measured: false`.
+- 2026-06-13: Verification passed: `npx tsx --test src\routes\c3-coach.test.ts`, `npm run typecheck`, `npm run build`, `node --check dist\index.js`, and `node --check dist\sentry-init.js`.
+- 2026-06-13: `bash` on this Windows PATH resolves to WSL bash and the deploy dry-run wrapper hung before output; local deploy-equivalent build and parse gates were run manually instead.

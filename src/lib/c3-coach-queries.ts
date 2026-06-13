@@ -78,6 +78,22 @@ export function forkMoldForQuestionQuery(): string {
      LIMIT 1`;
 }
 
+// Starter coach fallback: if the C3 mold layer has no servable candidate yet,
+// keep the paid Coach usable by serving an ordinary active question the student
+// has not already attempted. It deliberately does not join c3_annotations.
+export function starterCoachQuestionQuery(): string {
+  return `
+    SELECT q.question_id AS question_id
+      FROM questions q
+     WHERE q.status = 'active'
+       AND NOT EXISTS (
+         SELECT 1 FROM student_attempts a
+          WHERE a.student_id = $1 AND a.question_id = q.question_id
+       )
+     ORDER BY RAND()
+     LIMIT $2`;
+}
+
 export function servableQuestionQuery(): string {
   return `
     SELECT question_id, external_id, subject, topic, subtopic, tension_point,
