@@ -68,6 +68,30 @@ describe("J7 Day 1 manifest", () => {
     }
   });
 
+  it("routes diagnostic and Criminal Law tasks with day-plan completion context", () => {
+    const diagnosticSteps = DAY1_PLAN.steps.filter((step) =>
+      step.main_item_id === "diagnostic-a" || step.main_item_id === "diagnostic-b",
+    );
+    const criminalLessonSteps = DAY1_PLAN.steps.filter(
+      (step) => step.main_item_id === "criminal-lesson",
+    );
+
+    assert.equal(diagnosticSteps.length, 20);
+    assert.equal(criminalLessonSteps.length, 10);
+    for (const step of diagnosticSteps) {
+      const expectedHref = `/diagnostic/session?step=${step.step_id}`;
+      assert.equal(step.action.label, "Answer guided question");
+      assert.equal(step.action.href, expectedHref);
+      assert.equal(step.content_ref.href, expectedHref);
+    }
+    for (const step of criminalLessonSteps) {
+      const expectedHref = `/drills/criminal-law?step=${step.step_id}`;
+      assert.equal(step.action.label, "Open guided drill");
+      assert.equal(step.action.href, expectedHref);
+      assert.equal(step.content_ref.href, expectedHref);
+    }
+  });
+
   it("uses the 3 AM local rollover boundary", () => {
     assert.equal(
       programDayKey(new Date("2026-06-08T09:59:00.000Z"), "America/Los_Angeles"),

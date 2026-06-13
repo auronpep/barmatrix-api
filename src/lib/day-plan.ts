@@ -273,23 +273,25 @@ export const DAY1_PLAN: DayPlanManifest = {
     },
   ],
   steps: [
-    ...DIAGNOSTIC_A_ITEMS.map(([id, title, label], index) =>
-      step({
-        order: index + 1,
+    ...DIAGNOSTIC_A_ITEMS.map(([id, title, label], index) => {
+      const order = index + 1;
+      const href = `/diagnostic/session?step=${day1StepId(order)}`;
+      return step({
+        order,
         mainItemId: "diagnostic-a",
         kind: "diagnostic_question",
         title,
-        prompt: `Answer the focused Criminal Law and Procedure question, then name the trap: ${label}.`,
+        prompt: `Answer one guided placement question, then name the trap focus: ${label}.`,
         contentRef: {
           type: "diagnostic_question_external",
           id,
           label,
-          href: "/diagnostic/session",
+          href,
         },
-        action: { label: "Answer question", href: "/diagnostic/session" },
+        action: { label: "Answer guided question", href },
         xp: 5,
-      }),
-    ),
+      });
+    }),
     ...FOUNDATION_SLICES.map(([id, title, prompt], index) =>
       step({
         order: index + 11,
@@ -327,9 +329,11 @@ export const DAY1_PLAN: DayPlanManifest = {
         xp: 4,
       });
     }),
-    ...CRIMINAL_LESSON_REFS.map(([id, title, prompt], index) =>
-      step({
-        order: index + 31,
+    ...CRIMINAL_LESSON_REFS.map(([id, title, prompt], index) => {
+      const order = index + 31;
+      const href = `/drills/criminal-law?step=${day1StepId(order)}`;
+      return step({
+        order,
         mainItemId: "criminal-lesson",
         kind: index === 9 ? "checkpoint" : "criminal_lesson",
         title,
@@ -338,29 +342,31 @@ export const DAY1_PLAN: DayPlanManifest = {
           type: "criminal_lesson",
           id,
           label: "Criminal Law layer-gate lesson",
-          href: "/drills/criminal-law",
+          href,
         },
-        action: { label: "Open Criminal Law drill", href: "/drills/criminal-law" },
+        action: { label: "Open guided drill", href },
         xp: 5,
-      }),
-    ),
-    ...DIAGNOSTIC_B_ITEMS.map(([id, title, label], index) =>
-      step({
-        order: index + 41,
+      });
+    }),
+    ...DIAGNOSTIC_B_ITEMS.map(([id, title, label], index) => {
+      const order = index + 41;
+      const href = `/diagnostic/session?step=${day1StepId(order)}`;
+      return step({
+        order,
         mainItemId: "diagnostic-b",
         kind: "diagnostic_question",
         title,
-        prompt: `Answer the focused follow-up question, then name the trap: ${label}.`,
+        prompt: `Answer one guided follow-up question, then name the trap focus: ${label}.`,
         contentRef: {
           type: "diagnostic_question_external",
           id,
           label,
-          href: "/diagnostic/session",
+          href,
         },
-        action: { label: "Answer question", href: "/diagnostic/session" },
+        action: { label: "Answer guided question", href },
         xp: 5,
-      }),
-    ),
+      });
+    }),
   ],
 };
 
