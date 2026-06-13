@@ -26,6 +26,8 @@
 - 2026-06-13 follow-up verification: production API created live Stripe session `cs_live_b1PjhfRPtD3kqnneKYrxrFqat16IOlqiacUzH6R8JoGaseFR0EVCwkaJYq`; the hosted Stripe Checkout page showed required `First name` and `Last name` fields before coupon entry.
 - 2026-06-13 follow-up verification: applying ambassador code `JESUSLOVESYOU` changed the live Stripe Checkout total to `$0.00` / `100% off` while keeping `First name` and `Last name` visible with `0/80 characters (at least 1 character required)`. The final order was not submitted.
 - 2026-06-13 follow-up verification passed: `npx tsx --test src\checkout.test.ts src\clerk-access.test.ts src\email.test.ts src\entitlement.test.ts src\stripe-webhook.test.ts` (43/43), `npm run build`, and `git diff --check`.
+- 2026-06-13 policy hardening: added a regression that two-pay Checkout Sessions must not set `allow_promotion_codes`, then removed promotion-code exposure from the two-pay branch while leaving pay-in-full coupon entry intact.
+- 2026-06-13 policy hardening verification passed: `npx tsx --test src\checkout.test.ts`, `npx tsx --test src\checkout.test.ts src\clerk-access.test.ts src\email.test.ts src\entitlement.test.ts src\stripe-webhook.test.ts` (43/43), `npm run build`, and `git diff --check`.
 
 # Checkout Clerk Access Repair - 2026-06-12
 

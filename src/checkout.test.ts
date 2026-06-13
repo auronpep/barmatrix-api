@@ -121,6 +121,7 @@ describe("checkout session params", () => {
 
     assert.equal(params.mode, "payment");
     assert.equal(params.customer_creation, "always");
+    assert.equal(params.allow_promotion_codes, undefined);
     assert.deepEqual(params.line_items, [{ price: "price_two", quantity: 1 }]);
     assert.equal(params.custom_fields?.length, 2);
     assert.equal(params.custom_fields?.[0]?.key, "first_name");

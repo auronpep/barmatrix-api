@@ -78,7 +78,6 @@ export function buildCheckoutSessionParams(
 
   return {
     mode: "payment",
-    allow_promotion_codes: true,
     line_items: [{ price: input.pricePayInTwo, quantity: 1 }],
     customer_creation: "always",
     custom_fields: CHECKOUT_NAME_FIELDS,
