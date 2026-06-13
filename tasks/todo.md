@@ -8,11 +8,15 @@
 - [x] Wire `/api/checkout/:sessionId/recover` to send the enrollment access email after successful recovery fulfillment.
 - [x] Keep recovery idempotent: do not resend access email when the session was already fulfilled.
 - [x] Run focused API tests, build, and diff checks.
-- [ ] Deploy only after verification passes and the private target is confirmed.
+- [x] Deploy only after verification passes and the private target is confirmed.
 
 ## Review
 
-- In progress.
+- Root cause: the webhook path created/reused the Clerk user and sent the access email, but `/api/checkout/:sessionId/recover` only fulfilled the DB purchase and claimed the diagnostic. If recovery was needed, the buyer could become enrolled without receiving the automatic account access email.
+- Fix: recovery now calls `sendEnrollmentEmailForFulfillment({ session, fulfillment: result })` after successful manual fulfillment, reusing the same Clerk sign-in-token path as the Stripe webhook.
+- Verification passed: `npx tsx --test src\checkout-recovery-access.test.ts src\checkout.test.ts src\clerk-access.test.ts src\email.test.ts src\entitlement.test.ts src\stripe-webhook.test.ts` (44/44), `npm run typecheck`, `npm run build`, `git diff --check`, and deploy dry run.
+- Production deploy passed via Git Bash `scripts/deploy.sh`; API health returned HTTP 200 and rollback snapshot was kept at `~/domains/barmatrix.app/nodejs/dist.bak-20260612-221738`.
+- Live proof: `https://api.barmatrix.app/health` returned `{"ok":true,"db":"up"}`, deployed `dist/routes/me.js` includes `sendEnrollmentEmailForFulfillment`, and live `/checkout/success` renders `Open Account` without the old checkout-success sign-up target.
 
 # Checkout Provisioning Hardening - 2026-06-13
 
