@@ -139,76 +139,91 @@ export interface DayPlanSummary {
   step_count: number;
 }
 
-const DIAGNOSTIC_A_IDS = [
-  "14556",
-  "14561",
-  "14590",
-  "14601",
-  "14610",
-  "14621",
-  "14641",
-  "14744",
-  "14563",
-  "14616",
+const DAY_CARD_COPY = {
+  1: {
+    title: "Day 1: Trap Hunt and C3 Power-Up",
+    description: "Kick off the run: hunt the first remedy traps, unlock C3, and bank your opening streak.",
+  },
+  2: {
+    title: "Day 2: Gate Builder and Trap Repair",
+    description: "Level up the gates: rescue yesterday's misses, sharpen Procedure moves, and clear mixed traps.",
+  },
+  3: {
+    title: "Day 3: Mixed-Set Boss Run",
+    description: "Pressure run: switch Criminal Law and Procedure without handrails, then bridge to the next red zone.",
+  },
+} as const satisfies Record<number, { title: string; description: string }>;
+
+const DIAGNOSTIC_A_ITEMS = [
+  ["14556", "Illegal arrest remedy trap", "Unlawful arrest does not dismiss an indictment"],
+  ["14561", "Grand jury exclusionary-rule posture", "Suppression rules do not control the grand jury room"],
+  ["14590", "Suggestive identification reliability trap", "Suggestiveness affects admissibility only when reliability fails"],
+  ["14601", "Voluntariness needs police coercion", "Mental state alone does not make a confession involuntary"],
+  ["14610", "Grand jury counsel-location trap", "Counsel access changes outside the grand jury room"],
+  ["14621", "Grand jury evidence gate", "Grand juries may consider evidence trial courts might later exclude"],
+  ["14641", "Attempt mens rea for strict-liability crimes", "Attempt still requires the intent to commit the target offense"],
+  ["14744", "Burglary intent-at-entry trap", "Burglary turns on intent when entry happens"],
+  ["14563", "Plain-view after emergency entry", "Lawful emergency entry can make obvious evidence usable"],
+  ["14616", "Private actor state-action trap", "A private search becomes constitutional only when government directs it"],
 ] as const;
 
-const DIAGNOSTIC_B_IDS = [
-  "14630",
-  "14679",
-  "14712",
-  "14715",
-  "14745",
-  "14605",
-  "14660",
-  "14676",
-  "14696",
-  "14700",
+const DIAGNOSTIC_B_ITEMS = [
+  ["14630", "Factual impossibility attempt trap", "Fake contraband does not excuse a completed attempt"],
+  ["14679", "Attempted murder transfer trap", "Transferred intent does not create attempt liability for the unintended victim"],
+  ["14712", "Robbery force-or-fear gate", "Robbery needs present force or fear against a person"],
+  ["14715", "Burglary accomplice entry-intent trap", "Liability follows the entry intent and the actor's assistance"],
+  ["14745", "Pinkerton foreseeable-crime trap", "A conspirator can be liable for foreseeable crimes in furtherance"],
+  ["14605", "Element burden-shift trap", "The state must prove every element beyond a reasonable doubt"],
+  ["14660", "Omission legal-duty gate", "Moral blame is not homicide liability without a legal duty"],
+  ["14676", "Suicide superseding-cause trap", "An independent suicide can break the homicide causation chain"],
+  ["14696", "Preparation versus attempt line", "Attempt starts only after a substantial step toward the crime"],
+  ["14700", "Solicitation complete-on-request trap", "Solicitation is complete when the criminal request is communicated"],
 ] as const;
 
 const FOUNDATION_SLICES = [
-  ["frame", "Read the TRUE and RESPONSIVE frame."],
-  ["truth-filter", "Name what makes a choice not true."],
-  ["responsive-filter", "Name what makes a choice true but not responsive."],
-  ["break-discipline", "Practice saying the break before moving on."],
-  ["filing-service-example", "Review the filing versus service example."],
-  ["ear-skill", "Separate the Ear from Issue-Sense."],
-  ["issue-sense", "Tie responsiveness to the exact call."],
-  ["survivor", "Confirm the survivor is forced, not preferred."],
-  ["micro-check", "Answer the short method check."],
-  ["method-commit", "Write the one-sentence method commitment."],
+  ["frame", "TRUE and RESPONSIVE frame", "Read the TRUE and RESPONSIVE frame."],
+  ["truth-filter", "Truth filter", "Name what makes a choice not true."],
+  ["responsive-filter", "Responsiveness filter", "Name what makes a choice true but not responsive."],
+  ["break-discipline", "Break-before-answer discipline", "Practice saying the break before moving on."],
+  ["filing-service-example", "Filing versus service contrast", "Review the filing versus service example."],
+  ["ear-skill", "Ear versus Issue-Sense split", "Separate the Ear from Issue-Sense."],
+  ["issue-sense", "Call-of-question lock", "Tie responsiveness to the exact call."],
+  ["survivor", "Forced survivor check", "Confirm the survivor is forced, not preferred."],
+  ["micro-check", "TRUE and RESPONSIVE method check", "Answer the short method check."],
+  ["method-commit", "One-sentence method commitment", "Write the one-sentence method commitment."],
 ] as const;
 
-const FLASHCARD_IDS = [
-  "CRIM-CUT-01",
-  "CRIM-CLASH-01",
-  "CRIM-CALL-01",
-  "CRIM-ANCHOR-01",
-  "CRIM-DRIFT-01",
-  "CRIM-CP-CUT-01",
-  "CRIM-CP-CLASH-01",
-  "CRIM-CP-CALL-01",
-  "CRIM-CP-ANCHOR-01",
-  "CRIM-GP-CUT-01",
+const FLASHCARD_ITEMS = [
+  ["CRIM-CUT-01", "Issue-cut flashcard", "Find the exact Criminal Law issue before doctrine drift."],
+  ["CRIM-CLASH-01", "Rule-clash flashcard", "Name the competing rule or exception before choosing."],
+  ["CRIM-CALL-01", "Call-of-question flashcard", "Answer the legal output the question actually asks for."],
+  ["CRIM-ANCHOR-01", "Fact-anchor flashcard", "Anchor the answer to the fact that changes liability."],
+  ["CRIM-DRIFT-01", "Doctrine-drift flashcard", "Stop switching crimes before the controlling variable is named."],
+  ["CRIM-CP-CUT-01", "Procedure issue-cut flashcard", "Separate search, statement, identification, and remedy gates."],
+  ["CRIM-CP-CLASH-01", "Procedure rule-clash flashcard", "Name the constitutional gate before the remedy."],
+  ["CRIM-CP-CALL-01", "Procedure output flashcard", "Match suppression, dismissal, or admissibility to the call."],
+  ["CRIM-CP-ANCHOR-01", "Procedure fact-anchor flashcard", "Use the custody, warrant, standing, or counsel fact that controls."],
+  ["CRIM-GP-CUT-01", "General-principles issue-cut flashcard", "Sort attempt, conspiracy, causation, duty, and mental state first."],
 ] as const;
 
 const CRIMINAL_LESSON_REFS = [
-  ["layer-gate", "Name the criminal-law layer before doctrine."],
-  ["output-gate", "Find the requested output first."],
-  ["actor-grid", "Sort the actor who controls the result."],
-  ["remedy-wall", "Separate violation from remedy."],
-  ["timing-completion", "Mark the timing or completion variable."],
-  ["mental-state", "Identify the minimum mental-state gate."],
-  ["causation-force", "Check causation, force, and possession/title."],
-  ["offense-label", "Do not compare crime names before the variable."],
-  ["anchor-deck", "Use the smallest anchor that resolves the variable."],
-  ["no-outline", "Stop any mini-outline drift and restate the variable."],
+  ["layer-gate", "Layer before doctrine", "Name the criminal-law layer before doctrine."],
+  ["output-gate", "Requested-output gate", "Find the requested output first."],
+  ["actor-grid", "Controlling-actor grid", "Sort the actor who controls the result."],
+  ["remedy-wall", "Violation-versus-remedy wall", "Separate violation from remedy."],
+  ["timing-completion", "Timing and completion variable", "Mark the timing or completion variable."],
+  ["mental-state", "Minimum mental-state gate", "Identify the minimum mental-state gate."],
+  ["causation-force", "Causation, force, and possession check", "Check causation, force, and possession/title."],
+  ["offense-label", "Offense-label discipline", "Do not compare crime names before the variable."],
+  ["anchor-deck", "Smallest controlling anchor", "Use the smallest anchor that resolves the variable."],
+  ["no-outline", "No-outline reset", "Stop any mini-outline drift and restate the variable."],
 ] as const;
 
 export const DAY1_PLAN: DayPlanManifest = {
   plan_key: "j7-day-001",
   version: "2026-06-08.v1",
   day_index: 1,
-  title: "Day 1: Criminal Law diagnostic and C3 foundation",
+  title: DAY_CARD_COPY[1].title,
   approved: true,
   approved_at: "2026-06-08",
   timezone: "America/Los_Angeles",
@@ -217,8 +232,8 @@ export const DAY1_PLAN: DayPlanManifest = {
     {
       main_item_id: "diagnostic-a",
       order: 1,
-      title: "Criminal Law and Procedure diagnostic A",
-      description: "First selected diagnostic pass over Criminal Law and Procedure.",
+      title: "Criminal Procedure remedy traps",
+      description: "Ten focused traps about arrest, grand jury, identification, confession, and search remedies.",
       selectable: false,
       step_count: 10,
     },
@@ -233,52 +248,52 @@ export const DAY1_PLAN: DayPlanManifest = {
     {
       main_item_id: "flashcards",
       order: 3,
-      title: "10 Criminal Law flashcards",
-      description: "Ten C3 criminal cards delivered one at a time.",
+      title: "Criminal Law trap flashcards",
+      description: "Ten C3 cards for issue cuts, rule clashes, calls, anchors, and doctrine drift.",
       selectable: false,
       step_count: 10,
     },
     {
       main_item_id: "criminal-lesson",
       order: 4,
-      title: "Criminal Law lesson",
-      description: "A short layer-gate lesson for Criminal Law and Procedure.",
+      title: "Criminal Law layer-gate lesson",
+      description: "A short lesson on naming the layer, output, actor, timing, and remedy before doctrine.",
       selectable: false,
       step_count: 10,
     },
     {
       main_item_id: "diagnostic-b",
       order: 5,
-      title: "Criminal Law and Procedure diagnostic B",
-      description: "Second selected diagnostic pass to compare against the first.",
+      title: "Criminal Law liability traps",
+      description: "Ten follow-up traps about attempt, homicide, robbery, burglary, conspiracy, and burdens.",
       selectable: false,
       step_count: 10,
     },
   ],
   steps: [
-    ...DIAGNOSTIC_A_IDS.map((id, index) =>
+    ...DIAGNOSTIC_A_ITEMS.map(([id, title, label], index) =>
       step({
         order: index + 1,
         mainItemId: "diagnostic-a",
         kind: "diagnostic_question",
-        title: `Diagnostic A question ${index + 1}`,
-        prompt: "Answer the next selected Criminal Law and Procedure diagnostic question.",
+        title,
+        prompt: `Answer the focused Criminal Law and Procedure question, then name the trap: ${label}.`,
         contentRef: {
           type: "diagnostic_question_external",
           id,
-          label: `Diagnostic A external question ${id}`,
+          label,
           href: "/diagnostic/session",
         },
         action: { label: "Answer question", href: "/diagnostic/session" },
         xp: 5,
       }),
     ),
-    ...FOUNDATION_SLICES.map(([id, prompt], index) =>
+    ...FOUNDATION_SLICES.map(([id, title, prompt], index) =>
       step({
         order: index + 11,
         mainItemId: "foundations-c3",
         kind: index === 9 ? "checkpoint" : "lesson_slice",
-        title: `C3 foundation micro-lesson ${index + 1}`,
+        title,
         prompt,
         contentRef: {
           type: "foundation_lesson",
@@ -290,29 +305,29 @@ export const DAY1_PLAN: DayPlanManifest = {
         xp: 5,
       }),
     ),
-    ...FLASHCARD_IDS.map((id, index) =>
+    ...FLASHCARD_ITEMS.map(([id, title, label], index) =>
       step({
         order: index + 21,
         mainItemId: "flashcards",
         kind: "flashcard",
-        title: `Flashcard ${index + 1}`,
+        title,
         prompt: "Read the card, say the student move out loud, then mark it complete.",
         contentRef: {
           type: "c3_card",
           id,
-          label: id,
+          label,
           href: "/subjects/criminal-law",
         },
         action: { label: "Open card set", href: "/subjects/criminal-law" },
         xp: 4,
       }),
     ),
-    ...CRIMINAL_LESSON_REFS.map(([id, prompt], index) =>
+    ...CRIMINAL_LESSON_REFS.map(([id, title, prompt], index) =>
       step({
         order: index + 31,
         mainItemId: "criminal-lesson",
         kind: index === 9 ? "checkpoint" : "criminal_lesson",
-        title: `Criminal Law layer lesson ${index + 1}`,
+        title,
         prompt,
         contentRef: {
           type: "criminal_lesson",
@@ -324,17 +339,17 @@ export const DAY1_PLAN: DayPlanManifest = {
         xp: 5,
       }),
     ),
-    ...DIAGNOSTIC_B_IDS.map((id, index) =>
+    ...DIAGNOSTIC_B_ITEMS.map(([id, title, label], index) =>
       step({
         order: index + 41,
         mainItemId: "diagnostic-b",
         kind: "diagnostic_question",
-        title: `Diagnostic B question ${index + 1}`,
-        prompt: "Answer the next selected follow-up diagnostic question.",
+        title,
+        prompt: `Answer the focused follow-up question, then name the trap: ${label}.`,
         contentRef: {
           type: "diagnostic_question_external",
           id,
-          label: `Diagnostic B external question ${id}`,
+          label,
           href: "/diagnostic/session",
         },
         action: { label: "Answer question", href: "/diagnostic/session" },
@@ -478,7 +493,7 @@ export const DAY2_PLAN: DayPlanManifest = {
   plan_key: "j7-crimpro-day-002",
   version: "2026-06-08.v1",
   day_index: 2,
-  title: "Day 2: Doctrine expansion and trap repair",
+  title: DAY_CARD_COPY[2].title,
   approved: true,
   approved_at: "2026-06-08",
   timezone: DAY1_PLAN.timezone,
@@ -503,7 +518,7 @@ export const DAY3_PLAN: DayPlanManifest = {
   plan_key: "j7-crimpro-day-003",
   version: "2026-06-08.v1",
   day_index: 3,
-  title: "Day 3: Mixed execution and exam-ready control",
+  title: DAY_CARD_COPY[3].title,
   approved: true,
   approved_at: "2026-06-08",
   timezone: DAY1_PLAN.timezone,
@@ -820,16 +835,7 @@ function guidedSteps(
 }
 
 function dayPlanDescription(dayIndex: number): string {
-  switch (dayIndex) {
-    case 1:
-      return "Orientation, baseline diagnostics, C3 method, and the first Criminal Law gates.";
-    case 2:
-      return "Doctrine expansion, Procedure core gates, Criminal Law trap repair, and mixed drill.";
-    case 3:
-      return "Homicide audit, pressure sets, mixed execution, and final readiness bridge.";
-    default:
-      return "Guided BarMatrix path.";
-  }
+  return DAY_CARD_COPY[dayIndex as keyof typeof DAY_CARD_COPY]?.description ?? "Guided BarMatrix path.";
 }
 
 function compareCatchup(a: CatchupBankItem, b: CatchupBankItem): number {
