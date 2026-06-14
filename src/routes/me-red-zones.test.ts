@@ -7,6 +7,9 @@ process.env.DATABASE_HOST = "127.0.0.1";
 process.env.DATABASE_NAME = "test_db";
 process.env.DATABASE_USER = "test_user";
 process.env.DATABASE_PASSWORD = "test_password";
+// config.ts requires BARMATRIX_DB_KEY (not DATABASE_PASSWORD) and throws at
+// import time if unset, which would crash this file before any test runs.
+process.env.BARMATRIX_DB_KEY = "test_password";
 process.env.STRIPE_SECRET_KEY = "sk_test_placeholder";
 process.env.STRIPE_WEBHOOK_SECRET = "whsec_placeholder";
 process.env.STRIPE_PRODUCT_BARMATRIX_FLAGSHIP = "prod_placeholder";

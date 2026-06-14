@@ -281,8 +281,12 @@ app.post(
       // Return 500 so Stripe retries delivery. Idempotency guards in
       // the event audit store and fulfillment handlers prevent
       // double-application.
+      // Log the summarized (redacted, length-capped) message for a clean,
+      // greppable line AND the raw error so the server log keeps the full stack
+      // trace for debugging. Sentry below additionally captures the raw error.
       console.error(
         `[stripe webhook] handler failed for ${event.type} ${event.id}: ${summarizeStripeWebhookError(err)}`,
+        err,
       );
       // Report to Sentry: this catch responds inline and never reaches the
       // Express error handler, so without this the most revenue-critical

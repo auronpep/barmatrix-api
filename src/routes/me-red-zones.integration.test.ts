@@ -9,6 +9,10 @@ process.env.DATABASE_HOST = "127.0.0.1";
 process.env.DATABASE_NAME = "test_db";
 process.env.DATABASE_USER = "test_user";
 process.env.DATABASE_PASSWORD = "test_password";
+// config.ts requires BARMATRIX_DB_KEY (not DATABASE_PASSWORD) for the pool
+// password and throws at import time if it is unset — which previously crashed
+// the entire `npm test` glob the moment it reached this file. Set it here.
+process.env.BARMATRIX_DB_KEY = "test_password";
 process.env.STRIPE_SECRET_KEY = "sk_test_placeholder";
 process.env.STRIPE_WEBHOOK_SECRET = "whsec_placeholder";
 process.env.STRIPE_PRODUCT_BARMATRIX_FLAGSHIP = "prod_placeholder";
@@ -27,7 +31,18 @@ const express = (await import("express")).default;
 const { getPool } = await import("../db.js");
 const { registerMeRedZonesRoutes } = await import("./me-red-zones.js");
 
-describe("GET /api/me/red-zones/zone integration tests", () => {
+// This is a live-DB integration suite. When no MySQL is reachable (the common
+// case for unit-only CI and local `npm test` runs without a tunnel), probe once
+// and skip the whole suite instead of letting connection errors fail the run.
+let dbAvailable = false;
+try {
+  await getPool().query("SELECT 1");
+  dbAvailable = true;
+} catch {
+  dbAvailable = false;
+}
+
+describe("GET /api/me/red-zones/zone integration tests", { skip: !dbAvailable ? "no database available" : false }, () => {
   let app: Express;
   let pool: ReturnType<typeof getPool>;
   let server: Server;
@@ -220,7 +235,7 @@ describe("GET /api/me/red-zones/zone integration tests", () => {
     assert.equal(
       hiddenWrongs.length,
       0,
-      "recent_wrongs should NOT include wrong answers from hidden questions [BUG #2]",
+      "recent_wrongs should NOT include wrong answers from hidden questions (regression guard)",
     );
 
     // The active question's wrong answer SHOULD be in the list
@@ -252,7 +267,7 @@ describe("GET /api/me/red-zones/zone integration tests", () => {
       assert.notEqual(
         data.drill.status,
         "completed",
-        "drill should not be completed [BUG #1]",
+        "drill should not be completed (regression guard)",
       );
       assert(
         ["prescribed", "in_progress"].includes(data.drill.status),

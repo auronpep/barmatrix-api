@@ -90,6 +90,12 @@ export async function assignSeatWithinCapacity(
   cohortId: string,
   studentId: string,
 ): Promise<number> {
+  // The SELECT ... FOR UPDATE below takes a row lock on this cohort's
+  // cohort_config row. Every concurrent fulfillment for the same cohort must
+  // acquire that lock before counting seats or inserting an enrollment, so the
+  // count -> capacity check -> seat insert sequence is fully serialized. This is
+  // what prevents two simultaneous webhooks from both passing the cap check and
+  // double-assigning the same seat number (MAX(seat_number)+1).
   const cohort = await client.query<{ internal_capacity: number | string }>(
     `SELECT internal_capacity
        FROM cohort_config
@@ -196,7 +202,7 @@ function toNonNegativeInteger(value: number | string): number {
   const parsed = typeof value === "number" ? value : Number(value);
   if (!Number.isInteger(parsed) || parsed < 0) {
     throw new CohortCapacityUnavailableError(
-      `capacity value is not a non-negative integer`,
+      `capacity value is not a non-negative integer: ${JSON.stringify(value)}`,
     );
   }
   return parsed;

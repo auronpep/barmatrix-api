@@ -340,11 +340,20 @@ function parseUuidOrNull(value: string | null | undefined): string | null {
 
 function isDuplicateCheckoutSessionError(err: unknown): boolean {
   if (typeof err !== "object" || err === null) return false;
-  const e = err as { code?: string; errno?: number; message?: string };
-  const message = e.message ?? "";
+  const e = err as {
+    code?: string;
+    errno?: number;
+    message?: string;
+    sqlMessage?: string;
+  };
+  // mysql2 populates `code` and `errno` independently across versions/configs;
+  // treat the error as a duplicate-key violation if EITHER signal matches,
+  // still gated on the message referencing the checkout-session constraint so
+  // we never mistake an unrelated duplicate for this one.
+  const isDupKey = e.code === "ER_DUP_ENTRY" || e.errno === 1062;
+  const message = `${e.message ?? ""} ${e.sqlMessage ?? ""}`;
   return (
-    e.code === "ER_DUP_ENTRY" &&
-    e.errno === 1062 &&
+    isDupKey &&
     (message.includes("uq_purchases_checkout_session") ||
       message.includes("stripe_checkout_session_id"))
   );
