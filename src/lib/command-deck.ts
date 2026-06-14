@@ -30,9 +30,10 @@ export function daysToExam(now: Date): number | null {
  * `days` is ISO 'YYYY-MM-DD' strings, newest first (DESC).
  */
 export function computeStreak(days: string[], now: Date): number {
-  if (days.length === 0) return 0;
+  const first = days[0];
+  if (first === undefined) return 0;
   const todayDay = utcDayNumber(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
-  const newest = isoToDayNumber(days[0]);
+  const newest = isoToDayNumber(first);
 
   let expected: number;
   if (newest === todayDay) {
@@ -156,7 +157,7 @@ export function buildTensionMatrix(rows: HeatRow[]): TensionMatrix {
       bySubject.set(r.subject, new Array(TENSION_COLS.length).fill(0));
     }
     const arr = bySubject.get(r.subject)!;
-    arr[dimIdx] += r.miss_count;
+    arr[dimIdx] = (arr[dimIdx] ?? 0) + r.miss_count;
   }
   const out = [...bySubject.entries()]
     .sort((a, b) => a[0].localeCompare(b[0]))
