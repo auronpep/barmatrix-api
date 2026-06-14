@@ -346,8 +346,17 @@ function isDuplicateCheckoutSessionError(err: unknown): boolean {
 }
 
 function getRecordedInvoices(metadata: unknown): string[] {
-  const parsed =
-    typeof metadata === "string" ? (JSON.parse(metadata) as unknown) : metadata;
+  let parsed: unknown;
+  if (typeof metadata === "string") {
+    try {
+      parsed = JSON.parse(metadata);
+    } catch {
+      console.warn("[entitlement] getRecordedInvoices: malformed metadata JSON, treating as empty");
+      return [];
+    }
+  } else {
+    parsed = metadata;
+  }
   if (typeof parsed !== "object" || parsed === null) return [];
   const invoices = (parsed as { recorded_invoices?: unknown }).recorded_invoices;
   return Array.isArray(invoices)
