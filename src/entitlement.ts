@@ -101,7 +101,12 @@ export async function fulfillCheckoutSession(
       "SELECT student_id FROM students WHERE email = $1 LIMIT 1",
       [email],
     );
-    const studentId = studentLookup.rows[0]!.student_id;
+    if (!studentLookup.rows[0]) {
+      throw new Error(
+        `student lookup failed after upsert for email=${email}`,
+      );
+    }
+    const studentId = studentLookup.rows[0].student_id;
 
     // ---- Look up cohort ----
     const cohortLookup = await client.query<{ cohort_id: string }>(
