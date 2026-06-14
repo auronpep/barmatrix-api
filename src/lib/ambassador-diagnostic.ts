@@ -8,6 +8,7 @@ const LETTERS = ["A", "B", "C", "D"] as const;
 type Letter = (typeof LETTERS)[number];
 
 export const DEFAULT_AMBASSADOR_DIAGNOSTIC_SOURCE_DIR =
+  process.env.AMBASSADOR_DIAGNOSTIC_SOURCE_DIR ||
   "C:/Users/JesusLovesMe/Downloads/Diagnostic_260605";
 
 export const AMBASSADOR_DIAGNOSTIC_EXTERNAL_IDS = Array.from(

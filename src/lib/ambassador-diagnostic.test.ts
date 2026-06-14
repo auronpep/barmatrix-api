@@ -13,7 +13,16 @@ import {
   toDiagnosticAttemptRow,
 } from "./ambassador-diagnostic.js";
 
-describe("ambassador diagnostic integration", () => {
+// This is a live-file integration suite: it reads 20 markdown source files
+// from the diagnostic source directory. Set AMBASSADOR_DIAGNOSTIC_SOURCE_DIR
+// to the path where the source files are stored, or the suite will be skipped.
+const sourceDir = DEFAULT_AMBASSADOR_DIAGNOSTIC_SOURCE_DIR;
+const sourcesAvailable = existsSync(sourceDir);
+
+describe(
+  "ambassador diagnostic integration",
+  { skip: !sourcesAvailable ? `source dir not found: ${sourceDir}` : false },
+  () => {
   it("uses the 20 fixed DIAG external ids in serving order", () => {
     assert.equal(DIAGNOSTIC_LENGTH, 20);
     assert.equal(AMBASSADOR_DIAGNOSTIC_EXTERNAL_IDS.length, 20);
