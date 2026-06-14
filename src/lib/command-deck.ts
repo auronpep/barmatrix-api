@@ -88,6 +88,23 @@ export function shapeSubjectMastery(rows: SubjectMasteryRow[]): SubjectMastery[]
     .sort((a, b) => a.pct - b.pct || a.subject.localeCompare(b.subject));
 }
 
+export interface Coverage {
+  covered: number;
+  bank_total: number;
+  pct: number;
+}
+
+/**
+ * Lifetime question-bank coverage: distinct active questions the student has
+ * attempted, over the size of the active bank. Feeds the Briefing readiness
+ * signal's "Bank covered" driver. Honest 0 when the bank is empty.
+ */
+export function shapeCoverage(covered: number, bankTotal: number): Coverage {
+  const c = Math.max(0, Math.floor(covered));
+  const t = Math.max(0, Math.floor(bankTotal));
+  return { covered: c, bank_total: t, pct: t > 0 ? Math.round((c / t) * 100) : 0 };
+}
+
 // The 7 trap "dimensions" shown across the top of the personal tension matrix.
 export const TENSION_COLS = [
   "Rule/Excptn",
