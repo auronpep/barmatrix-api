@@ -104,7 +104,7 @@ describe("tension matrix", () => {
     assert.ok(ev);
     const standardIdx = TENSION_COLS.indexOf("Standard");
     const timingIdx = TENSION_COLS.indexOf("Timing");
-    assert.ok(ev.heat[standardIdx] >= ev.heat[timingIdx]); // more misses => more heat
+    assert.ok(ev.heat[standardIdx]! >= ev.heat[timingIdx]!); // more misses => more heat
     assert.equal(ev.attempts[standardIdx], 9);
   });
   it("returns empty rows for no data", () => {
