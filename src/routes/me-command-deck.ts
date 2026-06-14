@@ -22,6 +22,7 @@ import {
   SESSION_GOAL_MIN,
   computeStreak,
   shapeSubjectMastery,
+  shapeCoverage,
   buildTensionMatrix,
   type SubjectMasteryRow,
   type HeatRow,
@@ -64,6 +65,10 @@ interface TrendRow {
   day: string;
   attempts: number | string;
   pct: number | string;
+}
+interface CoverageQueryRow {
+  covered: number | string | null;
+  bank_total: number | string | null;
 }
 interface AttemptRow {
   attempt_id: string;
@@ -160,10 +165,12 @@ export function registerCommandDeckRoutes(
           status: null,
           student: emptyStudent,
           subject_mastery: [],
+          coverage: { covered: 0, bank_total: 0, pct: 0 },
           red_zones: [],
           mastery_trend: [],
           recent_attempts: [],
           next_up: null,
+          queue: [],
           tension_matrix: null,
         });
         return;
@@ -175,7 +182,7 @@ export function registerCommandDeckRoutes(
 
       try {
         const pool = getPool();
-        const [nameRes, dayRes, masteryRes, rzRes, trendRes, atRes, drRes] =
+        const [nameRes, dayRes, masteryRes, rzRes, trendRes, atRes, drRes, covRes] =
           await Promise.all([
             pool.query<NameRow>(
               "SELECT full_name FROM students WHERE student_id = $1 LIMIT 1",
@@ -249,6 +256,15 @@ export function registerCommandDeckRoutes(
                 LIMIT 20`,
               [studentId],
             ),
+            pool.query<CoverageQueryRow>(
+              `SELECT
+                 (SELECT COUNT(DISTINCT a.question_id)
+                    FROM student_attempts a
+                    JOIN questions q ON q.question_id = a.question_id
+                   WHERE a.student_id = $1 AND q.status = 'active') AS covered,
+                 (SELECT COUNT(*) FROM questions WHERE status = 'active') AS bank_total`,
+              [studentId],
+            ),
           ]);
 
         // --- student / today ---
@@ -257,6 +273,13 @@ export function registerCommandDeckRoutes(
         const todaySecs = num(dayRes.rows.find((r) => String(r.d) === todayIso)?.secs);
         const firstName =
           String(nameRes.rows[0]?.full_name ?? "").trim().split(/\s+/)[0] || "there";
+
+        // --- bank coverage (lifetime distinct active questions attempted) ---
+        const covRow = covRes.rows[0];
+        const coverage = shapeCoverage(
+          num(covRow?.covered),
+          num(covRow?.bank_total),
+        );
 
         // --- subject mastery ---
         const masteryRows: SubjectMasteryRow[] = masteryRes.rows.map((r) => ({
@@ -373,10 +396,12 @@ export function registerCommandDeckRoutes(
             session_goal_min: SESSION_GOAL_MIN,
           },
           subject_mastery: shapeSubjectMastery(masteryRows),
+          coverage,
           red_zones: redZones,
           mastery_trend: masteryTrend,
           recent_attempts: recentAttempts,
           next_up: nextUp,
+          queue,
           tension_matrix: tensionMatrix,
         });
       } catch (err) {

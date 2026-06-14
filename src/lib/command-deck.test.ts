@@ -7,10 +7,38 @@ import {
   SESSION_GOAL_MIN,
   computeStreak,
   shapeSubjectMastery,
+  shapeCoverage,
   TENSION_COLS,
   trapSlugToDimension,
   buildTensionMatrix,
 } from "./command-deck.js";
+
+describe("shapeCoverage", () => {
+  it("computes percent of the active bank attempted", () => {
+    assert.deepEqual(shapeCoverage(150, 600), {
+      covered: 150,
+      bank_total: 600,
+      pct: 25,
+    });
+  });
+  it("rounds to the nearest whole percent", () => {
+    assert.equal(shapeCoverage(1, 3).pct, 33);
+  });
+  it("returns 0 percent for an empty bank (no divide-by-zero)", () => {
+    assert.deepEqual(shapeCoverage(0, 0), {
+      covered: 0,
+      bank_total: 0,
+      pct: 0,
+    });
+  });
+  it("coerces string/null counts and floors negatives to 0", () => {
+    assert.deepEqual(shapeCoverage(-5 as number, 100), {
+      covered: 0,
+      bank_total: 100,
+      pct: 0,
+    });
+  });
+});
 
 describe("daysToExam", () => {
   it("counts whole days from a given 'now' to the exam date (UTC)", () => {

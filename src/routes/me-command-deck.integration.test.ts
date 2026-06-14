@@ -191,6 +191,11 @@ describe("GET /api/me/command-deck integration tests", () => {
     assert.ok(evMastery, "Evidence mastery present");
     assert.equal(evMastery.pct, 0); // 0 of 1 correct in last 14d
 
+    assert.ok(data.coverage, "coverage present");
+    assert.ok(typeof data.coverage.pct === "number");
+    assert.ok(data.coverage.bank_total >= 1); // seeded questions exist
+    assert.ok(data.coverage.covered >= 1); // student attempted >=1 active question
+
     assert.ok(Array.isArray(data.red_zones));
     assert.ok(data.red_zones.length >= 1);
     assert.equal(data.red_zones[0].rank, 1);
