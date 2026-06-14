@@ -116,6 +116,7 @@ export async function assignSeatWithinCapacity(
     [cohortId, studentId],
   );
   const existingRow = existing.rows[0];
+  // Case 1: Already enrolled and active with an assigned seat — reuse it (idempotent)
   if (
     existingRow &&
     existingRow.enrollment_status === "active" &&
@@ -143,6 +144,7 @@ export async function assignSeatWithinCapacity(
     );
   }
 
+  // Case 2: Enrollment exists but either inactive or without a seat — reactivate and reuse
   if (existingRow?.seat_number !== null && existingRow?.seat_number !== undefined) {
     await client.query(
       `UPDATE cohort_enrollments
@@ -154,6 +156,7 @@ export async function assignSeatWithinCapacity(
   }
 
   const seatNumber = await nextSeatNumber(client, cohortId);
+  // Case 3: Enrollment exists but without a seat — assign new seat and activate
   if (existingRow) {
     await client.query(
       `UPDATE cohort_enrollments
@@ -165,6 +168,7 @@ export async function assignSeatWithinCapacity(
     return seatNumber;
   }
 
+  // Case 4: No enrollment exists — create new enrollment with new seat
   await client.query(
     `INSERT INTO cohort_enrollments (
        enrollment_id, cohort_id, student_id, seat_number, enrollment_status

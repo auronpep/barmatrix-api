@@ -612,7 +612,7 @@ app.post("/api/checkout/create-session", async (req, res) => {
     if (err instanceof CohortCapacityUnavailableError) {
       console.error("[checkout] capacity check failed closed:", err.name);
     } else {
-      console.error("[checkout] capacity check failed closed: unknown");
+      console.error("[checkout] capacity check failed closed:", err);
     }
     res.status(503).json({ error: "cohort_capacity_unavailable" });
     return;
