@@ -1,6 +1,39 @@
 // Pure helpers for the command-deck dashboard endpoint. No DB access here — all
 // functions are deterministic and unit-tested in command-deck.test.ts.
 
+import { snakeToTitle, kebabToTitle } from "./format.js";
+
+// Minimal shape of a drill_assignments row needed to derive its display labels.
+// The route's DB-row type structurally satisfies this.
+export interface DrillLabelInput {
+  drill_slug: string | null;
+  reason: string;
+  red_zone_dimension: string | null;
+  red_zone_tag: string | null;
+}
+
+/** Human-readable subject for a drill assignment. Falls back to "Mixed". */
+export function drillSubject(d: DrillLabelInput): string {
+  if (d.red_zone_dimension === "subject" && d.red_zone_tag) return d.red_zone_tag;
+  if (d.red_zone_dimension) return snakeToTitle(d.red_zone_dimension);
+  return "Mixed";
+}
+
+/**
+ * Human-readable title for a drill assignment.
+ *
+ * A named drill carries a kebab-case slug. Prescribed red-zone drills are
+ * generated on the fly with no slug, so derive a readable title from the
+ * red-zone tag (e.g. "traditional_bases_tag_jurisdiction" -> "Traditional
+ * Bases Tag Jurisdiction"); fall back to the subject. Never surface the raw
+ * `reason` enum (e.g. "prescribed_red_zone_drill") as a user-facing title.
+ */
+export function drillTitle(d: DrillLabelInput): string {
+  if (d.drill_slug) return kebabToTitle(d.drill_slug);
+  if (d.red_zone_tag) return snakeToTitle(d.red_zone_tag);
+  return drillSubject(d);
+}
+
 // Cohort-wide MBE / California Bar day 1. Founder-set constant; there is no
 // per-student exam_date column, so the countdown is shared across the cohort.
 // UTC midnight.

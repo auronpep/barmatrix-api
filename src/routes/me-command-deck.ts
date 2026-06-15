@@ -12,7 +12,7 @@
 import type { Express, Request, RequestHandler, Response } from "express";
 import { clerkMiddleware } from "@clerk/express";
 import { getPool } from "../db.js";
-import { snakeToTitle, kebabToTitle } from "../lib/format.js";
+import { snakeToTitle } from "../lib/format.js";
 import {
   resolveClerkStudent,
   type StudentResolution,
@@ -24,6 +24,8 @@ import {
   shapeSubjectMastery,
   shapeCoverage,
   buildTensionMatrix,
+  drillSubject,
+  drillTitle,
   type SubjectMasteryRow,
   type HeatRow,
 } from "../lib/command-deck.js";
@@ -117,16 +119,6 @@ function trapNameFrom(forensicTags: unknown, subtopic: string | null): string {
 function num(v: number | string | null | undefined): number {
   const n = Number(v ?? 0);
   return Number.isFinite(n) ? n : 0;
-}
-
-function drillSubject(d: DrillRow): string {
-  if (d.red_zone_dimension === "subject" && d.red_zone_tag) return d.red_zone_tag;
-  if (d.red_zone_dimension) return snakeToTitle(d.red_zone_dimension);
-  return "Mixed";
-}
-
-function drillTitle(d: DrillRow): string {
-  return d.drill_slug ? kebabToTitle(d.drill_slug) : d.reason;
 }
 
 export function registerCommandDeckRoutes(

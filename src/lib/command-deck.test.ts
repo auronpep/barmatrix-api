@@ -11,7 +11,66 @@ import {
   TENSION_COLS,
   trapSlugToDimension,
   buildTensionMatrix,
+  drillTitle,
+  drillSubject,
+  type DrillLabelInput,
 } from "./command-deck.js";
+
+function drill(overrides: Partial<DrillLabelInput>): DrillLabelInput {
+  return {
+    drill_slug: null,
+    reason: "prescribed_red_zone_drill",
+    red_zone_dimension: null,
+    red_zone_tag: null,
+    ...overrides,
+  };
+}
+
+describe("drillTitle", () => {
+  it("uses the kebab-case slug for a named drill", () => {
+    assert.equal(drillTitle(drill({ drill_slug: "evidence-hearsay" })), "Evidence Hearsay");
+  });
+
+  it("derives a readable title from red_zone_tag for prescribed red-zone drills", () => {
+    // Regression: prescribed_red_zone drills have no slug and previously fell
+    // back to the raw `reason` enum ("prescribed_red_zone_drill").
+    assert.equal(
+      drillTitle(
+        drill({
+          red_zone_dimension: "jurisdiction",
+          red_zone_tag: "traditional_bases_tag_jurisdiction",
+        }),
+      ),
+      "Traditional Bases Tag Jurisdiction",
+    );
+  });
+
+  it("never surfaces the raw reason enum as a title", () => {
+    const title = drillTitle(drill({ red_zone_tag: "wrong_exception" }));
+    assert.notEqual(title, "prescribed_red_zone_drill");
+    assert.equal(title, "Wrong Exception");
+  });
+
+  it("falls back to the subject when there is no slug or tag", () => {
+    assert.equal(drillTitle(drill({ red_zone_dimension: null, red_zone_tag: null })), "Mixed");
+    assert.equal(drillTitle(drill({ red_zone_dimension: "evidence" })), "Evidence");
+  });
+});
+
+describe("drillSubject", () => {
+  it("returns the raw tag for a subject-dimension red zone", () => {
+    assert.equal(
+      drillSubject(drill({ red_zone_dimension: "subject", red_zone_tag: "Evidence" })),
+      "Evidence",
+    );
+  });
+  it("title-cases a non-subject dimension", () => {
+    assert.equal(drillSubject(drill({ red_zone_dimension: "jurisdiction" })), "Jurisdiction");
+  });
+  it("falls back to Mixed when no dimension is set", () => {
+    assert.equal(drillSubject(drill({})), "Mixed");
+  });
+});
 
 describe("shapeCoverage", () => {
   it("computes percent of the active bank attempted", () => {
