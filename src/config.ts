@@ -103,7 +103,14 @@ export const config = {
   },
 
   cohort: {
+    // Must match cohort_config.cohort_code in the database. A mismatch causes
+    // checkout capacity checks and fulfillment to fail to find the active
+    // cohort row, so keep this in sync with the seeded schema.
     code: "JULY_MBE_REPAIR",
+    // California July 2026 bar exam. This is a single fixed date shared by the
+    // entire cohort (everyone sits the exam on the same day), so it is hardcoded
+    // here rather than stored per student. ISO date, exam-local (California).
+    examDate: "2026-07-28",
     priceCents: 99900,
     payInFullCents: 99900,
     payInTwoTotalCents: 99900,

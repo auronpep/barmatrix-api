@@ -281,8 +281,12 @@ app.post(
       // Return 500 so Stripe retries delivery. Idempotency guards in
       // the event audit store and fulfillment handlers prevent
       // double-application.
+      // Log the summarized (redacted, length-capped) message for a clean,
+      // greppable line AND the raw error so the server log keeps the full stack
+      // trace for debugging. Sentry below additionally captures the raw error.
       console.error(
         `[stripe webhook] handler failed for ${event.type} ${event.id}: ${summarizeStripeWebhookError(err)}`,
+        err,
       );
       // Report to Sentry: this catch responds inline and never reaches the
       // Express error handler, so without this the most revenue-critical
@@ -612,7 +616,7 @@ app.post("/api/checkout/create-session", async (req, res) => {
     if (err instanceof CohortCapacityUnavailableError) {
       console.error("[checkout] capacity check failed closed:", err.name);
     } else {
-      console.error("[checkout] capacity check failed closed: unknown");
+      console.error("[checkout] capacity check failed closed:", err);
     }
     res.status(503).json({ error: "cohort_capacity_unavailable" });
     return;
@@ -757,8 +761,57 @@ app.post("/api/referrals/click", async (req, res) => {
     res.status(400).json({ error: parse.error.flatten() });
     return;
   }
-  // TODO: resolve partner_code → partner_id, insert into referral_clicks.
-  res.json({ referral_click_id: "00000000-0000-0000-0000-000000000000" });
+
+  try {
+    const pool = getPool();
+
+    // Resolve partner_code to partner_id
+    const partnerLookup = await pool.query<{ partner_id: string }>(
+      "SELECT partner_id FROM partners WHERE partner_code = $1 LIMIT 1",
+      [parse.data.partner_code],
+    );
+    if (partnerLookup.rows.length === 0) {
+      console.warn(
+        `[referrals] partner_code not found: ${parse.data.partner_code}`,
+      );
+      res.status(404).json({
+        error: "partner_code_not_found",
+        message: "The partner code was not recognized",
+      });
+      return;
+    }
+    const partnerId = partnerLookup.rows[0]!.partner_id;
+
+    // Create referral click record with metadata
+    const referralClickId = randomUUID();
+    const metadata = {
+      campaign_id: parse.data.campaign_id ?? null,
+      utm_source: parse.data.utm_source ?? null,
+      utm_medium: parse.data.utm_medium ?? null,
+      utm_campaign: parse.data.utm_campaign ?? null,
+      visitor_id: parse.data.visitor_id ?? null,
+      landing_page: parse.data.landing_page ?? null,
+      captured_at: new Date().toISOString(),
+    };
+
+    await pool.query(
+      `INSERT INTO referral_clicks (
+         referral_click_id, partner_id, metadata
+       )
+       VALUES ($1, $2, $3)`,
+      [referralClickId, partnerId, JSON.stringify(metadata)],
+    );
+
+    console.log(
+      `[referrals] click recorded: referral_click_id=${referralClickId} partner_code=${parse.data.partner_code} partner_id=${partnerId}`,
+    );
+
+    res.json({ referral_click_id: referralClickId });
+  } catch (err) {
+    console.error("[referrals/click] failed:", err);
+    Sentry.captureException(err, { tags: { area: "referrals_click" } });
+    res.status(500).json({ error: "internal server error" });
+  }
 });
 
 // ----- 404 + error handlers -----

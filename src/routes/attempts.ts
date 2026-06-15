@@ -468,8 +468,14 @@ async function updateC3SrsAsync(
 }
 
 function asStringArray(value: unknown): string[] {
-  const parsed =
-    typeof value === "string" ? (JSON.parse(value) as unknown) : value;
+  let parsed: unknown = value;
+  if (typeof value === "string") {
+    try {
+      parsed = JSON.parse(value);
+    } catch {
+      return [];
+    }
+  }
   return Array.isArray(parsed)
     ? parsed.filter((item): item is string => typeof item === "string")
     : [];

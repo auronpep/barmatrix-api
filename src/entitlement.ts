@@ -101,7 +101,12 @@ export async function fulfillCheckoutSession(
       "SELECT student_id FROM students WHERE email = $1 LIMIT 1",
       [email],
     );
-    const studentId = studentLookup.rows[0]!.student_id;
+    if (!studentLookup.rows[0]) {
+      throw new Error(
+        `student lookup failed after upsert for email=${email}`,
+      );
+    }
+    const studentId = studentLookup.rows[0].student_id;
 
     // ---- Look up cohort ----
     const cohortLookup = await client.query<{ cohort_id: string }>(
@@ -335,19 +340,37 @@ function parseUuidOrNull(value: string | null | undefined): string | null {
 
 function isDuplicateCheckoutSessionError(err: unknown): boolean {
   if (typeof err !== "object" || err === null) return false;
-  const e = err as { code?: string; errno?: number; message?: string };
-  const message = e.message ?? "";
+  const e = err as {
+    code?: string;
+    errno?: number;
+    message?: string;
+    sqlMessage?: string;
+  };
+  // mysql2 populates `code` and `errno` independently across versions/configs;
+  // treat the error as a duplicate-key violation if EITHER signal matches,
+  // still gated on the message referencing the checkout-session constraint so
+  // we never mistake an unrelated duplicate for this one.
+  const isDupKey = e.code === "ER_DUP_ENTRY" || e.errno === 1062;
+  const message = `${e.message ?? ""} ${e.sqlMessage ?? ""}`;
   return (
-    e.code === "ER_DUP_ENTRY" &&
-    e.errno === 1062 &&
+    isDupKey &&
     (message.includes("uq_purchases_checkout_session") ||
       message.includes("stripe_checkout_session_id"))
   );
 }
 
 function getRecordedInvoices(metadata: unknown): string[] {
-  const parsed =
-    typeof metadata === "string" ? (JSON.parse(metadata) as unknown) : metadata;
+  let parsed: unknown;
+  if (typeof metadata === "string") {
+    try {
+      parsed = JSON.parse(metadata);
+    } catch {
+      console.warn("[entitlement] getRecordedInvoices: malformed metadata JSON, treating as empty");
+      return [];
+    }
+  } else {
+    parsed = metadata;
+  }
   if (typeof parsed !== "object" || parsed === null) return [];
   const invoices = (parsed as { recorded_invoices?: unknown }).recorded_invoices;
   return Array.isArray(invoices)

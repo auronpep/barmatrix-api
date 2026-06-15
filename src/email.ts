@@ -493,7 +493,7 @@ function buildInstallmentReceiptPayload(
     `<p>We've received your BarMatrix payment${escapeHtml(
       amountClause,
     )} — thank you. Your enrollment remains active.</p>` +
-    `<p><a href="${escapeHtml(accountUrl)}">Pick up where you left off</a>.</p>` +
+    `<p><a href="${escapeHtml(accountUrl)}">Pick up where you left off.</a></p>` +
     `<p>Questions about your billing? Reply to this email or contact ${escapeHtml(
       config.supportEmail,
     )}.</p>`;

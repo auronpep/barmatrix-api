@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { existsSync } from "node:fs";
 import { describe, it } from "node:test";
 
 import {
@@ -10,6 +11,7 @@ import {
   type RawDiagnosticAttemptRow,
 } from "./diagnostic.js";
 import {
+  DEFAULT_AMBASSADOR_DIAGNOSTIC_SOURCE_DIR,
   buildFixedDiagnosticQuestionSelection,
   loadAmbassadorDiagnosticSources,
   shapeDiagnosticRecommendation,
@@ -256,8 +258,15 @@ describe("selectDiagnosticQuestionIds", () => {
   });
 });
 
-describe("ambassador diagnostic end-to-end contract", () => {
-  it("starts with the fixed 20 ids, computes red zones, and returns a recommendation", () => {
+// This test loads and parses the 20 ambassador diagnostic source files.
+// Set AMBASSADOR_DIAGNOSTIC_SOURCE_DIR or the test will be skipped.
+const ambassadorSourceDir = DEFAULT_AMBASSADOR_DIAGNOSTIC_SOURCE_DIR;
+
+describe(
+  "ambassador diagnostic end-to-end contract",
+  { skip: !existsSync(ambassadorSourceDir) ? `source dir not found: ${ambassadorSourceDir}` : false },
+  () => {
+    it("starts with the fixed 20 ids, computes red zones, and returns a recommendation", () => {
     const selection = buildFixedDiagnosticQuestionSelection();
     assert.match(selection.sql, /q\.status = 'diagnostic'/);
     assert.equal(selection.values.length, 40);
@@ -282,8 +291,9 @@ describe("ambassador diagnostic end-to-end contract", () => {
     assert.equal(recommendation.level.level, 4);
     assert.equal(recommendation.next_step.primary_label, "Start The Method");
     assert.equal(recommendation.next_step.href, "/foundations/lesson-01");
-  });
-});
+    });
+  }
+);
 
 // --- dedupeAttemptsByLatest ------------------------------------------------
 // Validates the contract that mirrors the SQL-level MAX(attempted_at) dedupe
