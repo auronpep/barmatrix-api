@@ -51,6 +51,7 @@ import {
 import { registerMeRoutes } from "./routes/me.js";
 import { registerMeDayPlanRoutes } from "./routes/me-day-plan.js";
 import { registerMeRedZonesRoutes } from "./routes/me-red-zones.js";
+import { registerMeConfusionRoutes } from "./routes/me-confusion.js";
 import { registerMeGamificationRoutes } from "./routes/me-gamification.js";
 import { registerMeTrapsRoutes } from "./routes/me-traps.js";
 import { registerTrapsRoutes } from "./routes/traps.js";
@@ -543,6 +544,7 @@ registerKnowledgeRoutes(app);
 registerMeRoutes(app);
 registerMeDayPlanRoutes(app);
 registerMeRedZonesRoutes(app);
+registerMeConfusionRoutes(app);
 registerMeGamificationRoutes(app);
 registerMeTrapsRoutes(app);
 registerTrapsRoutes(app);

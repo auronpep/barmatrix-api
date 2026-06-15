@@ -20,8 +20,13 @@ process.env.FRONTEND_URL = "https://barmatrix.app";
 process.env.SUCCESS_URL = "https://barmatrix.app/account/?welcome=1";
 process.env.CANCEL_URL = "https://barmatrix.app/pricing/";
 
-const { findSelectedChoiceForAttempt, listQuestionC3MoldCodesForAttempt, attemptBody } =
-  await import("./attempts.js");
+const {
+  findSelectedChoiceForAttempt,
+  listQuestionC3MoldCodesForAttempt,
+  attemptBody,
+  insertConfusionTagRows,
+  isMissingConfusionTable,
+} = await import("./attempts.js");
 
 class ScriptedChoiceClient implements Pick<DbClient, "query"> {
   calls: string[] = [];
@@ -124,5 +129,77 @@ describe("attemptBody.flagged", () => {
 
   it("rejects a non-boolean flag", () => {
     assert.equal(attemptBody.safeParse({ ...base, flagged: "yes" }).success, false);
+  });
+});
+
+describe("attemptBody.confusion", () => {
+  const base = {
+    question_id: "00000000-0000-4000-8000-000000000000",
+    selected_letter: "A" as const,
+    confidence: 3,
+    time_seconds: 12,
+  };
+  const cid = (n: number) =>
+    `${String(n).repeat(8)}-${String(n).repeat(4)}-4${String(n).repeat(3)}-8${String(n).repeat(3)}-${String(n).repeat(12)}`;
+
+  it("is optional (older clients keep working)", () => {
+    assert.equal(attemptBody.parse(base).confusion, undefined);
+  });
+
+  it("accepts a valid disjoint confusion payload", () => {
+    const parsed = attemptBody.parse({
+      ...base,
+      confusion: {
+        eliminated: [cid(1)],
+        deciding_between: [cid(2)],
+        source: "pre_submit",
+      },
+    });
+    assert.deepEqual(parsed.confusion?.eliminated, [cid(1)]);
+  });
+
+  it("rejects a choice present in both buckets", () => {
+    assert.equal(
+      attemptBody.safeParse({
+        ...base,
+        confusion: {
+          eliminated: [cid(1)],
+          deciding_between: [cid(1)],
+          source: "pre_submit",
+        },
+      }).success,
+      false,
+    );
+  });
+});
+
+describe("insertConfusionTagRows", () => {
+  it("no-ops on empty rows", async () => {
+    const client = new ScriptedChoiceClient([]);
+    await insertConfusionTagRows(client, "att-1", "q-1", "pre_submit", []);
+    assert.equal(client.calls.length, 0);
+  });
+
+  it("builds one positional placeholder group per tagged choice", async () => {
+    const client = new ScriptedChoiceClient([rows([])]);
+    await insertConfusionTagRows(client, "att-1", "q-1", "pre_submit", [
+      { choice_id: "c-a", letter: "A", bucket: "eliminated", is_selected: false },
+      { choice_id: "c-b", letter: "B", bucket: "deciding_between", is_selected: true },
+    ]);
+    assert.equal(client.calls.length, 1);
+    const sql = client.calls[0] ?? "";
+    assert.match(sql, /INSERT INTO attempt_choice_tags/);
+    // two value groups, last placeholder is $14 (2 rows * 7 params).
+    assert.match(sql, /\$14\)/);
+    assert.doesNotMatch(sql, /\$15/);
+  });
+});
+
+describe("isMissingConfusionTable", () => {
+  it("detects ER_NO_SUCH_TABLE / errno 1146", () => {
+    assert.equal(isMissingConfusionTable({ code: "ER_NO_SUCH_TABLE" }), true);
+    assert.equal(isMissingConfusionTable({ errno: 1146 }), true);
+    assert.equal(isMissingConfusionTable({ code: "ER_BAD_FIELD_ERROR" }), false);
+    assert.equal(isMissingConfusionTable(null), false);
   });
 });

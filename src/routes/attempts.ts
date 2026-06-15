@@ -24,6 +24,14 @@ import {
   findOrCreateStudentByEmail,
 } from "../lib/clerk-identity.js";
 import { fresh, applySuccess, applyLapse, type MoldSrs } from "../lib/c3-srs.js";
+import {
+  confusionInputSchema,
+  confusionPatchSchema,
+  buildConfusionTagRows,
+  type ConfusionSource,
+  type ConfusionTagRow,
+  type QuestionChoiceRef,
+} from "../lib/confusion.js";
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 // Per SRC-0007 CLAIMS_SIGNOFF: never publish focus-group data below n=30.
@@ -51,6 +59,11 @@ export const attemptBody = z.object({
   time_seconds: z.number().int().min(0),
   platform: z.enum(["web", "ios", "android"]).default("web"),
   set_id: z.string().min(1).max(128).optional(),
+  // Confusion-Capture (optional): which choices the student knew were wrong vs
+  // was deciding between, keyed by stable choice_id. Stored in attempt_choice_tags
+  // (SCHEMA_CONFUSION_CAPTURE_MYSQL.sql). Optional + best-effort so older clients
+  // and a missing table never break an attempt.
+  confusion: confusionInputSchema.optional(),
 });
 
 interface QuestionForAttempt {
@@ -131,6 +144,61 @@ export async function listQuestionC3MoldCodesForAttempt(
     if (isMissingC3MoldColumn(err)) return [];
     throw err;
   }
+}
+
+/** All choices for a question (choice_id, letter, is_correct) — used to resolve a
+ *  confusion payload's choice_ids and set is_selected/is_correct on each tag. */
+export async function listQuestionChoicesForAttempt(
+  client: Pick<DbClient, "query">,
+  questionId: string,
+): Promise<QuestionChoiceRef[]> {
+  const { rows } = await client.query<QuestionChoiceRef>(
+    `SELECT choice_id, letter, is_correct
+       FROM answer_choices
+      WHERE question_id = $1`,
+    [questionId],
+  );
+  return rows;
+}
+
+/** True when the optional attempt_choice_tags table is not provisioned (1146).
+ *  Confusion capture is founder-gated and may be absent in production. */
+export function isMissingConfusionTable(err: unknown): boolean {
+  const e = err as { code?: unknown; errno?: unknown } | null;
+  return !!e && (e.code === "ER_NO_SUCH_TABLE" || e.errno === 1146);
+}
+
+/** Bulk-insert confusion tag rows (one per tagged choice) for an attempt. */
+export async function insertConfusionTagRows(
+  client: Pick<DbClient, "query">,
+  attemptId: string,
+  questionId: string,
+  source: ConfusionSource,
+  rows: ReadonlyArray<ConfusionTagRow>,
+): Promise<void> {
+  if (rows.length === 0) return;
+  const PARAMS_PER_ROW = 7;
+  const placeholders = rows
+    .map((_r, i) => {
+      const b = i * PARAMS_PER_ROW;
+      return `($${b + 1}, $${b + 2}, $${b + 3}, $${b + 4}, $${b + 5}, $${b + 6}, $${b + 7})`;
+    })
+    .join(", ");
+  const values = rows.flatMap((r) => [
+    attemptId,
+    r.choice_id,
+    questionId,
+    r.letter,
+    r.bucket,
+    r.is_selected ? 1 : 0,
+    source,
+  ]);
+  await client.query(
+    `INSERT INTO attempt_choice_tags
+       (attempt_id, choice_id, question_id, letter, bucket, is_selected, source)
+     VALUES ${placeholders}`,
+    values,
+  );
 }
 
 export function registerAttemptsRoutes(app: Express): void {
@@ -241,6 +309,29 @@ export function registerAttemptsRoutes(app: Express): void {
         ],
       );
 
+      // 3b. Confusion capture (optional): resolve the tagged choice_ids against
+      // this question's choices now (inside the txn) but write the tags AFTER
+      // commit. Best-effort — a confusion glitch or an absent table must never
+      // cost a recorded attempt, so unknown choice_ids are dropped (logged).
+      let confusionRows: ConfusionTagRow[] = [];
+      let confusionSource: ConfusionSource | null = null;
+      if (body.confusion) {
+        const choices = await listQuestionChoicesForAttempt(client, body.question_id);
+        const built = buildConfusionTagRows(
+          choices,
+          body.confusion,
+          selected.choice_id,
+        );
+        confusionRows = built.rows;
+        confusionSource = body.confusion.source;
+        if (built.dropped.length > 0) {
+          console.warn(
+            `[attempts post] confusion dropped unknown choice_ids for question ${body.question_id}:`,
+            built.dropped,
+          );
+        }
+      }
+
       // 4. Update red-zones + drill assignment when not anonymous.
       const redZoneUpdates: RedZoneUpdate[] = [];
       if (!isAnonymous) {
@@ -287,6 +378,29 @@ export function registerAttemptsRoutes(app: Express): void {
       }
 
       await client.query("COMMIT");
+
+      // Persist confusion tags AFTER commit so a missing table / write error can
+      // never roll back the attempt. Awaited (so the common case stores before we
+      // respond) but fully swallowed on failure.
+      if (confusionSource && confusionRows.length > 0) {
+        try {
+          await insertConfusionTagRows(
+            client,
+            attemptId,
+            body.question_id,
+            confusionSource,
+            confusionRows,
+          );
+        } catch (err) {
+          if (isMissingConfusionTable(err)) {
+            console.warn(
+              "[attempts post] attempt_choice_tags absent — confusion not stored",
+            );
+          } else {
+            console.error("[attempts post] confusion insert failed:", err);
+          }
+        }
+      }
 
       // Fire-and-forget: persist SM-2 state so c3-coach doesn't replay full history.
       if (!isAnonymous) {
@@ -416,6 +530,132 @@ export function registerAttemptsRoutes(app: Express): void {
       res.status(500).json({ error: "internal server error" });
     }
   });
+
+  // PATCH /api/attempts/:id/confusion — the retrospective edit on the answer page.
+  // Re-asserts the whole confusion set for one attempt. Authed + ownership-checked
+  // (a caller can only edit their own attempt); replaces the tags transactionally.
+  app.patch(
+    "/api/attempts/:id/confusion",
+    clerkMiddleware(),
+    async (req: Request, res: Response) => {
+      const id = req.params.id;
+      if (typeof id !== "string" || !UUID_RE.test(id)) {
+        res.status(400).json({ error: "invalid attempt id" });
+        return;
+      }
+      const parse = confusionPatchSchema.safeParse(req.body);
+      if (!parse.success) {
+        res.status(400).json({ error: parse.error.flatten() });
+        return;
+      }
+
+      const { userId } = getAuth(req);
+      if (!userId) {
+        res.status(401).json({ error: "not authenticated" });
+        return;
+      }
+      let email: string | null;
+      try {
+        email = await resolveClerkEmail(userId);
+      } catch (err) {
+        console.error("[attempts confusion patch] clerk lookup failed:", err);
+        res.status(502).json({ error: "auth provider lookup failed" });
+        return;
+      }
+      if (!email) {
+        res.status(401).json({ error: "not authenticated" });
+        return;
+      }
+
+      const pool = getPool();
+      const client = await pool.connect();
+      try {
+        const { rows: aRows } = await client.query<{
+          student_id: string;
+          question_id: string;
+          selected_choice_id: string | null;
+        }>(
+          `SELECT student_id, question_id, selected_choice_id
+             FROM student_attempts WHERE attempt_id = $1 LIMIT 1`,
+          [id],
+        );
+        const attemptRow = aRows[0];
+        if (!attemptRow) {
+          res.status(404).json({ error: "attempt not found" });
+          return;
+        }
+
+        const callerStudentId = await findOrCreateStudentByEmail(client, email);
+        if (attemptRow.student_id !== callerStudentId) {
+          res.status(403).json({ error: "not your attempt" });
+          return;
+        }
+
+        const choices = await listQuestionChoicesForAttempt(
+          client,
+          attemptRow.question_id,
+        );
+        const built = buildConfusionTagRows(
+          choices,
+          parse.data,
+          attemptRow.selected_choice_id,
+        );
+        if (built.overlap.length > 0 || built.dropped.length > 0) {
+          res.status(400).json({
+            error:
+              "confusion choice_ids must belong to the question and be disjoint",
+            invalid: [...built.overlap, ...built.dropped],
+          });
+          return;
+        }
+
+        try {
+          await client.query("BEGIN");
+          await client.query(
+            `DELETE FROM attempt_choice_tags WHERE attempt_id = $1`,
+            [id],
+          );
+          await insertConfusionTagRows(
+            client,
+            id,
+            attemptRow.question_id,
+            parse.data.source,
+            built.rows,
+          );
+          await client.query("COMMIT");
+        } catch (err) {
+          await client.query("ROLLBACK").catch(() => undefined);
+          if (isMissingConfusionTable(err)) {
+            res.json({
+              ok: false,
+              persisted: false,
+              reason: "confusion_capture_not_provisioned",
+            });
+            return;
+          }
+          throw err;
+        }
+
+        res.json({
+          ok: true,
+          persisted: true,
+          attempt_id: id,
+          eliminated: built.rows
+            .filter((r) => r.bucket === "eliminated")
+            .map((r) => r.choice_id),
+          deciding_between: built.rows
+            .filter((r) => r.bucket === "deciding_between")
+            .map((r) => r.choice_id),
+          source: parse.data.source,
+        });
+      } catch (err) {
+        console.error("[attempts confusion patch] failed:", err);
+        res.status(500).json({ error: "internal server error" });
+      } finally {
+        client.release();
+      }
+    },
+  );
 }
 
 // ── C3 SRS helpers ────────────────────────────────────────────────────────────
