@@ -30,7 +30,18 @@ const express = (await import("express")).default;
 const { getPool } = await import("../db.js");
 const { registerCommandDeckRoutes } = await import("./me-command-deck.js");
 
-describe("GET /api/me/command-deck integration tests", () => {
+// Probe for a reachable DB once and skip the whole suite when there isn't one,
+// instead of letting the before() connection error fail the default `npm test`
+// run. Mirrors me-red-zones.integration.test.ts.
+let dbAvailable = false;
+try {
+  await getPool().query("SELECT 1");
+  dbAvailable = true;
+} catch {
+  dbAvailable = false;
+}
+
+describe("GET /api/me/command-deck integration tests", { skip: !dbAvailable ? "no database available" : false }, () => {
   let app: Express;
   let pool: ReturnType<typeof getPool>;
   let server: Server;
