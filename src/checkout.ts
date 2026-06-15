@@ -19,6 +19,10 @@ export interface CheckoutReturnUrls {
   cancelUrl: string;
 }
 
+export type CheckoutRecoveryValidation =
+  | { ok: true }
+  | { ok: false; httpStatus: number; error: string };
+
 export interface BuildCheckoutSessionParamsInput {
   paymentPlan: CheckoutPaymentPlan;
   metadata: Record<string, string>;
@@ -95,6 +99,37 @@ export function buildCheckoutSessionParams(
     cancel_url: input.cancelUrl,
     metadata: input.metadata,
   };
+}
+
+export function validateCheckoutSessionForRecovery(
+  session: Stripe.Checkout.Session,
+): CheckoutRecoveryValidation {
+  if (session.status !== "complete") {
+    return {
+      ok: false,
+      httpStatus: 409,
+      error: "checkout_session_not_complete",
+    };
+  }
+
+  if (session.payment_status !== "paid") {
+    return {
+      ok: false,
+      httpStatus: 409,
+      error: "checkout_session_not_paid",
+    };
+  }
+
+  const paymentPlan = session.metadata?.payment_plan;
+  if (paymentPlan !== "pay_in_full" && paymentPlan !== "two_pay_500_499") {
+    return {
+      ok: false,
+      httpStatus: 400,
+      error: "checkout_session_not_recoverable",
+    };
+  }
+
+  return { ok: true };
 }
 
 function safeReturnUrl(

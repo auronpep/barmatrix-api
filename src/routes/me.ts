@@ -21,6 +21,8 @@ import { fulfillCheckoutSession } from "../entitlement.js";
 import { claimDiagnosticForSession, collectClaimableDiagnosticIds } from "../lib/claim-diagnostic.js";
 import { routeFromSessionAttemptCounts } from "../lib/checkout-next-step.js";
 import { config } from "../config.js";
+import { validateCheckoutSessionForRecovery } from "../checkout.js";
+import { armTwoPaySubscription } from "../lib/two-pay.js";
 
 const MAX_ZONES_PER_DIMENSION = 5;
 const ACTIVE_RED_ZONE_THRESHOLD = 0.7;
@@ -455,10 +457,28 @@ export function registerMeRoutes(app: Express): void {
         return;
       }
 
+      const validation = validateCheckoutSessionForRecovery(session);
+      if (!validation.ok) {
+        res.status(validation.httpStatus).json({ error: validation.error });
+        return;
+      }
+
+      let subscriptionId: string | null = null;
+      if (session.metadata?.payment_plan === "two_pay_500_499") {
+        subscriptionId = await armTwoPaySubscription(session, stripe);
+      } else if (typeof session.subscription === "string") {
+        subscriptionId = session.subscription;
+      } else if (
+        session.subscription &&
+        typeof session.subscription === "object"
+      ) {
+        subscriptionId = session.subscription.id;
+      }
+
       // Manually fulfill the session
       const result = await fulfillCheckoutSession({
         session,
-        subscriptionId: null,
+        subscriptionId,
       });
 
       // Best-effort: claim the buyer's anonymous diagnostic onto the recovered
@@ -488,10 +508,7 @@ export function registerMeRoutes(app: Express): void {
         tags: { area: "checkout_recover" },
         extra: { sessionId },
       });
-      res.status(500).json({
-        error: "recovery failed",
-        details: err instanceof Error ? err.message : String(err),
-      });
+      res.status(500).json({ error: "recovery failed" });
     }
   });
 }

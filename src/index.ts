@@ -38,6 +38,7 @@ import {
   buildCheckoutSessionParams,
   resolveCheckoutReturnUrls,
 } from "./checkout.js";
+import { armTwoPaySubscription } from "./lib/two-pay.js";
 import {
   CohortCapacityFullError,
   CohortCapacityUnavailableError,
@@ -101,92 +102,6 @@ if (!isSentryEnabled()) {
 
 // Module-scoped Stripe client — cheaper than instantiating per request.
 const stripeClient = new Stripe(config.stripe.secretKey);
-
-/**
- * Idempotent 2-pay subscription arming. If a subscription already exists
- * for this checkout session (identified by metadata.first_session_id), it
- * is returned. Otherwise, a fresh $0 anchor subscription is created with
- * billing_cycle_anchor = day 30, cancel_at = day 60, default_payment_method
- * set, and a pending $499 InvoiceItem attached.
- */
-async function armTwoPaySubscription(
-  session: Stripe.Checkout.Session,
-): Promise<string | null> {
-  const customerId =
-    typeof session.customer === "string"
-      ? session.customer
-      : (session.customer?.id ?? null);
-  const paymentIntentId =
-    typeof session.payment_intent === "string"
-      ? session.payment_intent
-      : (session.payment_intent?.id ?? null);
-  if (!customerId || !paymentIntentId) {
-    console.error(
-      `[stripe webhook] two-pay arming: session missing customer/payment_intent`,
-      { sessionId: session.id, customerId, paymentIntentId },
-    );
-    return null;
-  }
-
-  // Idempotency: look for an existing subscription tagged with this session.
-  const existing = await stripeClient.subscriptions.list({
-    customer: customerId,
-    limit: 10,
-  });
-  const reused = existing.data.find(
-    (s) => s.metadata?.first_session_id === session.id,
-  );
-  if (reused) {
-    console.log(
-      `[stripe webhook] two-pay arming: reusing sub=${reused.id} for session=${session.id}`,
-    );
-    return reused.id;
-  }
-
-  const pi = await stripeClient.paymentIntents.retrieve(paymentIntentId);
-  const paymentMethodId =
-    typeof pi.payment_method === "string"
-      ? pi.payment_method
-      : (pi.payment_method?.id ?? null);
-  if (!paymentMethodId) {
-    throw new Error(
-      `two-pay arming: no payment_method on payment_intent ${paymentIntentId}`,
-    );
-  }
-
-  await stripeClient.customers.update(customerId, {
-    invoice_settings: { default_payment_method: paymentMethodId },
-  });
-
-  const now = Math.floor(Date.now() / 1000);
-  const day30 = now + 30 * 86400;
-  const day60 = now + 60 * 86400;
-
-  const sub = await stripeClient.subscriptions.create({
-    customer: customerId,
-    items: [{ price: config.stripe.priceFlagshipAnchor }],
-    default_payment_method: paymentMethodId,
-    billing_cycle_anchor: day30,
-    proration_behavior: "none",
-    cancel_at: day60,
-    metadata: {
-      payment_plan: "two_pay_500_499",
-      first_session_id: session.id,
-      cohort_code: config.cohort.code,
-    },
-  });
-
-  await stripeClient.invoiceItems.create({
-    customer: customerId,
-    price: config.stripe.pricePayInTwoSecond,
-    subscription: sub.id,
-  });
-
-  console.log(
-    `[stripe webhook] two-pay armed: sub=${sub.id} customer=${customerId} day30=${day30} day60=${day60}`,
-  );
-  return sub.id;
-}
 
 interface CohortStatusRow {
   cohort_code: string;
@@ -316,7 +231,7 @@ async function handleStripeWebhookEvent(
       // For 2-pay, the subscription must be armed BEFORE we record the
       // purchase so the stripe_subscription_id is populated.
       if (session.metadata?.payment_plan === "two_pay_500_499") {
-        subscriptionId = await armTwoPaySubscription(session);
+        subscriptionId = await armTwoPaySubscription(session, stripeClient);
       } else if (typeof session.subscription === "string") {
         subscriptionId = session.subscription;
       } else if (

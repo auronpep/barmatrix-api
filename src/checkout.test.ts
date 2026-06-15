@@ -1,8 +1,10 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
+import type Stripe from "stripe";
 import {
   buildCheckoutSessionParams,
   resolveCheckoutReturnUrls,
+  validateCheckoutSessionForRecovery,
 } from "./checkout.js";
 
 const defaults = {
@@ -152,5 +154,63 @@ describe("checkout session params", () => {
       setup_future_usage: "off_session",
       metadata: { ...metadata, payment_plan: "two_pay_500_499" },
     });
+  });
+});
+
+describe("checkout recovery validation", () => {
+  function recoverySession(
+    overrides: Partial<Stripe.Checkout.Session> = {},
+  ): Stripe.Checkout.Session {
+    return {
+      id: "cs_test_recover",
+      object: "checkout.session",
+      status: "complete",
+      payment_status: "paid",
+      metadata: {
+        payment_plan: "pay_in_full",
+      },
+      ...overrides,
+    } as unknown as Stripe.Checkout.Session;
+  }
+
+  it("allows completed paid BarMatrix sessions to be recovered", () => {
+    assert.deepEqual(validateCheckoutSessionForRecovery(recoverySession()), {
+      ok: true,
+    });
+  });
+
+  it("rejects incomplete sessions before any local fulfillment", () => {
+    assert.deepEqual(
+      validateCheckoutSessionForRecovery(recoverySession({ status: "open" })),
+      {
+        ok: false,
+        httpStatus: 409,
+        error: "checkout_session_not_complete",
+      },
+    );
+  });
+
+  it("rejects unpaid sessions before any local fulfillment", () => {
+    assert.deepEqual(
+      validateCheckoutSessionForRecovery(
+        recoverySession({ payment_status: "unpaid" }),
+      ),
+      {
+        ok: false,
+        httpStatus: 409,
+        error: "checkout_session_not_paid",
+      },
+    );
+  });
+
+  it("rejects Stripe sessions that are not a BarMatrix checkout", () => {
+    assert.deepEqual(
+      validateCheckoutSessionForRecovery(recoverySession({ metadata: {} })),
+      {
+        ok: false,
+        httpStatus: 400,
+        error: "checkout_session_not_recoverable",
+      },
+    );
   });
 });
