@@ -346,6 +346,10 @@ export function registerCommandDeckRoutes(
           reason: d.reason,
           question_count: 0, // not known from an assignment row
           est_min: 0,
+          // Start payload for one-click launch from the deck (kind
+          // "prescribed_red_zone"); null when the assignment isn't red-zone-typed.
+          red_zone_dimension: d.red_zone_dimension ?? null,
+          red_zone_tag: d.red_zone_tag ?? null,
         }));
         const nextUp = queue[0] ?? null;
 
