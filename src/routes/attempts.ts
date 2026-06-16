@@ -32,6 +32,13 @@ import {
   type ConfusionTagRow,
   type QuestionChoiceRef,
 } from "../lib/confusion.js";
+import {
+  interactionLogSchema,
+  summarizeInteractionLog,
+  MAX_LOG_BYTES,
+  type InteractionEvent,
+  type TelemetrySummary,
+} from "../lib/attempt-telemetry.js";
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 // Per SRC-0007 CLAIMS_SIGNOFF: never publish focus-group data below n=30.
@@ -64,6 +71,14 @@ export const attemptBody = z.object({
   // (SCHEMA_CONFUSION_CAPTURE_MYSQL.sql). Optional + best-effort so older clients
   // and a missing table never break an attempt.
   confusion: confusionInputSchema.optional(),
+  // Behavioral micro-signal stream (spec 2026-06-12). Deliberately z.unknown():
+  // malformed telemetry must never 400 the attempt; it is validated separately
+  // in buildAttemptMetadata and dropped on failure.
+  interaction_log: z.unknown().optional(),
+});
+
+export const forensicsDwellBody = z.object({
+  dwell_ms: z.number().int().min(0).max(86_400_000),
 });
 
 interface QuestionForAttempt {
@@ -201,6 +216,33 @@ export async function insertConfusionTagRows(
   );
 }
 
+export interface AttemptMetadata {
+  [key: string]: unknown;
+  interaction_log?: InteractionEvent[];
+  telemetry?: TelemetrySummary;
+}
+
+export function buildAttemptMetadata(
+  base: Record<string, unknown>,
+  rawLog: unknown,
+  correctLetter: "A" | "B" | "C" | "D" | null,
+): AttemptMetadata {
+  if (rawLog === undefined || rawLog === null) return { ...base };
+  const parsed = interactionLogSchema.safeParse(rawLog);
+  if (!parsed.success) {
+    console.warn("[attempts post] dropped malformed interaction_log");
+    return { ...base };
+  }
+  const telemetry = summarizeInteractionLog(parsed.data, correctLetter);
+  // With MAX_EVENTS=200 this is near-unreachable belt-and-braces; kept cheap.
+  const serialized = JSON.stringify(parsed.data);
+  if (serialized.length > MAX_LOG_BYTES) {
+    console.warn("[attempts post] interaction_log over byte cap; kept summary only");
+    return { ...base, telemetry };
+  }
+  return { ...base, interaction_log: parsed.data, telemetry };
+}
+
 export function registerAttemptsRoutes(app: Express): void {
   app.post("/api/attempts", clerkMiddleware(), async (req: Request, res: Response) => {
     const parse = attemptBody.safeParse(req.body);
@@ -305,7 +347,13 @@ export function registerAttemptsRoutes(app: Express): void {
           body.time_seconds,
           body.platform,
           setId,
-          isAnonymous ? JSON.stringify({ anonymous: true }) : JSON.stringify({}),
+          JSON.stringify(
+            buildAttemptMetadata(
+              isAnonymous ? { anonymous: true } : {},
+              body.interaction_log,
+              correctAnswer,
+            ),
+          ),
         ],
       );
 
@@ -656,6 +704,40 @@ export function registerAttemptsRoutes(app: Express): void {
       }
     },
   );
+
+  // Fire-and-forget dwell report. Arrives after the attempt POST because the
+  // forensics panel opens after submit (spec §4). Absent dwell = skipped
+  // forensics, which is itself signal — so failures here return errors but
+  // clients treat the call as best-effort.
+  app.patch("/api/attempts/:id/forensics-dwell", async (req: Request, res: Response) => {
+    const id = req.params.id;
+    if (typeof id !== "string" || !UUID_RE.test(id)) {
+      res.status(400).json({ error: "invalid attempt id" });
+      return;
+    }
+    const parse = forensicsDwellBody.safeParse(req.body);
+    if (!parse.success) {
+      res.status(400).json({ error: parse.error.flatten() });
+      return;
+    }
+    try {
+      const pool = getPool();
+      const { rowCount } = await pool.query(
+        `UPDATE student_attempts
+            SET metadata = JSON_SET(metadata, '$.forensics_dwell_ms', $1)
+          WHERE attempt_id = $2`,
+        [parse.data.dwell_ms, id],
+      );
+      if (rowCount === 0) {
+        res.status(404).json({ error: "attempt not found" });
+        return;
+      }
+      res.status(204).end();
+    } catch (err) {
+      console.error("[attempts dwell] failed:", err);
+      res.status(500).json({ error: "internal server error" });
+    }
+  });
 }
 
 // ── C3 SRS helpers ────────────────────────────────────────────────────────────
