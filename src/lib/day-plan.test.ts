@@ -27,6 +27,34 @@ describe("J7 Day 1 manifest", () => {
     );
   });
 
+  it("uses student-facing Day 1 titles and content labels instead of internal references", () => {
+    const visibleStrings = [
+      DAY1_PLAN.title,
+      ...DAY1_PLAN.main_items.flatMap((item) => [item.title, item.description]),
+      ...DAY1_PLAN.steps.flatMap((step) => [
+        step.title,
+        step.prompt,
+        step.action.label,
+        step.content_ref.label ?? "",
+      ]),
+    ];
+
+    for (const value of visibleStrings) {
+      assert.doesNotMatch(value, /Diagnostic [AB](?: question| external question)/i);
+      assert.doesNotMatch(value, /\bexternal question\b/i);
+      assert.doesNotMatch(value, /\b(?:CRIM|CPA|GP|HOM|INC|OC)-[A-Z0-9-]+\b/);
+      assert.doesNotMatch(value, /\bFlashcard \d+\b/i);
+      assert.doesNotMatch(value, /\blayer lesson \d+\b/i);
+      assert.doesNotMatch(value, /\bmicro-lesson \d+\b/i);
+    }
+
+    assert.equal(DAY1_PLAN.steps[0]?.title, "Illegal arrest remedy trap");
+    assert.equal(
+      DAY1_PLAN.steps[0]?.content_ref.label,
+      "Unlawful arrest does not dismiss an indictment",
+    );
+  });
+
   it("uses the 3 AM local rollover boundary", () => {
     assert.equal(
       programDayKey(new Date("2026-06-08T09:59:00.000Z"), "America/Los_Angeles"),
@@ -107,6 +135,24 @@ describe("J7 three-day guided path", () => {
         [5, 50],
       ],
     );
+    assert.deepEqual(
+      cards.map((card) => card.title),
+      [
+        "Day 1: Trap Hunt and C3 Power-Up",
+        "Day 2: Gate Builder and Trap Repair",
+        "Day 3: Mixed-Set Boss Run",
+      ],
+    );
+    assert.deepEqual(
+      cards.map((card) => card.description),
+      [
+        "Kick off the run: hunt the first remedy traps, unlock C3, and bank your opening streak.",
+        "Level up the gates: rescue yesterday's misses, sharpen Procedure moves, and clear mixed traps.",
+        "Pressure run: switch Criminal Law and Procedure without handrails, then bridge to the next red zone.",
+      ],
+    );
+    assert.ok(!cards.some((card) => /Orientation, baseline diagnostics/i.test(card.description)));
+    assert.ok(!cards.some((card) => /diagnostic and C3 foundation/i.test(card.title)));
   });
 });
 

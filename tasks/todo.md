@@ -1,5 +1,48 @@
 # Ambassador Launch Production Checklist
 
+# Checkout Clerk Access Repair - 2026-06-12
+
+## Plan
+
+- [x] Isolate the work from the dirty main checkout in a clean worktree.
+- [x] Confirm current checkout fulfillment, enrollment email, and Clerk SDK shapes.
+- [x] Add a failing test for creating a Clerk invitation after a fulfilled Stripe checkout.
+- [x] Implement best-effort Clerk invitation creation without rolling back paid fulfillment.
+- [x] Wire the enrollment email to prefer the Clerk invitation URL when available.
+- [x] Run focused tests, typecheck, build, and deploy dry run.
+- [x] Deploy only after verifying the target and deployment scope are safe.
+
+## Review
+
+- Root cause: Stripe Checkout with a 100% coupon can complete with only an email address; the webhook fulfilled DB enrollment and sent a Resend email, but no Clerk invitation/account creation happened.
+- Added `src/clerk-access.ts` to create a Clerk invitation with `notify: true`, `ignoreExisting: true`, and a `/sign-up?after=dashboard` redirect for newly fulfilled checkout emails.
+- Updated enrollment email handling to create the Clerk invitation before sending the access email and to use Clerk's invitation URL when available.
+- Focused tests pass: `npx tsx --test src/clerk-access.test.ts src/email.test.ts src/checkout.test.ts`.
+- `npm run typecheck`, `npm run build`, and `DRY_RUN=1 scripts/deploy.sh` pass.
+- Production deploy via `scripts/deploy.sh` passed on 2026-06-12 with API health HTTP 200 and rollback snapshot `~/domains/barmatrix.app/nodejs/dist.bak-20260612-153550`.
+- Sent a one-time Clerk invitation for the already-completed `votewood@icloud.com` checkout from the live Hostinger runtime.
+
+# Checkout Auto Account Provisioning - 2026-06-12
+
+## Plan
+
+- [x] Verify current Clerk user/sign-in-token and Stripe custom-field contracts.
+- [x] Add failing tests for required first/last name fields in Stripe Checkout.
+- [x] Add failing tests for automatic Clerk user creation/reuse plus sign-in token email link.
+- [x] Implement Stripe Checkout first/last name custom fields.
+- [x] Implement automatic Clerk user provisioning and sign-in token generation.
+- [x] Verify locally and smoke the Clerk SDK methods from Hostinger.
+- [x] Deploy API after dry run and health checks.
+
+## Review
+
+- Stripe Checkout now includes required `first_name` and `last_name` custom fields on pay-in-full and two-pay sessions, so 100% coupon checkouts still collect names.
+- Checkout fulfillment now creates or reuses a Clerk user by checkout email, updates names when present, creates a 30-day sign-in-token link, and sends that link in the access email.
+- Focused tests pass: `npx tsx --test src/checkout.test.ts src/clerk-access.test.ts src/email.test.ts`.
+- `npm run typecheck`, `npm run build`, and `DRY_RUN=1 scripts/deploy.sh` pass.
+- Production deploy via `scripts/deploy.sh` passed on 2026-06-12 with API health HTTP 200 and rollback snapshot `~/domains/barmatrix.app/nodejs/dist.bak-20260612-155155`.
+- Sent a fresh automatic-account access email for `votewood@icloud.com`; live helper returned an access link and Resend returned `sent`.
+
 ## Plan
 
 - [x] Preserve uncommitted work with `git stash push -u -m sentry-eaddrinuse-wip`.

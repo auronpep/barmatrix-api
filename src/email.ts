@@ -1,5 +1,10 @@
 import type Stripe from "stripe";
 import { Resend } from "resend";
+import {
+  createCheckoutAccessLink,
+  type CheckoutAccessLinkInput,
+  type ClerkAccessLinkResult,
+} from "./clerk-access.js";
 
 type Env = NodeJS.ProcessEnv | Record<string, string | undefined>;
 
@@ -16,6 +21,7 @@ export interface EnrollmentEmailInput {
   fullName: string | null | undefined;
   checkoutSessionId: string;
   purchaseId?: string;
+  accountAccessUrl?: string | null;
 }
 
 export interface TrapNamingEmailInput {
@@ -68,10 +74,14 @@ interface SendEnrollmentEmailOptions {
 interface CheckoutFulfillmentResult {
   status: "fulfilled" | "duplicate";
   purchaseId?: string;
+  studentId?: string;
 }
 
 interface FulfillmentEmailOptions {
   sendEmail?: (input: EnrollmentEmailInput) => Promise<EnrollmentEmailResult>;
+  createAccessLink?: (
+    input: CheckoutAccessLinkInput,
+  ) => Promise<ClerkAccessLinkResult>;
   logger?: Pick<typeof console, "log" | "warn" | "error">;
 }
 
@@ -156,23 +166,59 @@ export async function sendEnrollmentEmailForFulfillment(
   }
 
   const sendEmail = options.sendEmail ?? sendEnrollmentEmail;
+  const createAccessLink = options.createAccessLink ?? createCheckoutAccessLink;
   const logger = options.logger ?? console;
-  let result: EnrollmentEmailResult;
-  try {
-    result = await sendEmail({
-      to: input.session.customer_details?.email,
-      fullName: input.session.customer_details?.name,
-      checkoutSessionId: input.session.id,
-      purchaseId: input.fulfillment.purchaseId,
-    });
-  } catch {
-    result = { status: "failed", reason: "resend_error" };
-  }
+  let accessUrl: string | null = null;
+  const profile = checkoutCustomerProfile(input.session);
+
+  const accessResult = await createAccessLink({
+    to: input.session.customer_details?.email,
+    firstName: profile.firstName,
+    lastName: profile.lastName,
+    fullName: profile.fullName,
+    checkoutSessionId: input.session.id,
+    purchaseId: input.fulfillment.purchaseId,
+    studentId: input.fulfillment.studentId,
+  }).catch((): ClerkAccessLinkResult => ({
+    status: "failed",
+    reason: "clerk_error",
+  }));
 
   const context = {
     checkoutSessionId: input.session.id,
     purchaseId: input.fulfillment.purchaseId,
   };
+  if (accessResult.status === "sent") {
+    accessUrl = accessResult.accessUrl;
+    logger.log("[clerk] checkout access link sent", {
+      ...context,
+      userId: accessResult.userId,
+    });
+  } else if (accessResult.status === "failed") {
+    logger.error("[clerk] checkout access link failed", {
+      ...context,
+      reason: accessResult.reason,
+    });
+  } else {
+    logger.warn("[clerk] checkout access link skipped", {
+      ...context,
+      reason: accessResult.reason,
+    });
+  }
+
+  let result: EnrollmentEmailResult;
+  try {
+    result = await sendEmail({
+      to: input.session.customer_details?.email,
+      fullName: profile.fullName,
+      checkoutSessionId: input.session.id,
+      purchaseId: input.fulfillment.purchaseId,
+      accountAccessUrl: accessUrl,
+    });
+  } catch {
+    result = { status: "failed", reason: "resend_error" };
+  }
+
   if (result.status === "sent") {
     logger.log("[email] enrollment email sent", {
       ...context,
@@ -191,6 +237,28 @@ export async function sendEnrollmentEmailForFulfillment(
   }
 
   return result;
+}
+
+function checkoutCustomerProfile(session: Stripe.Checkout.Session): {
+  firstName: string | null;
+  lastName: string | null;
+  fullName: string | null;
+} {
+  const firstName = checkoutCustomTextValue(session, "first_name");
+  const lastName = checkoutCustomTextValue(session, "last_name");
+  const customFullName =
+    firstName || lastName ? [firstName, lastName].filter(Boolean).join(" ") : null;
+  const fullName = customFullName || clean(session.customer_details?.name);
+
+  return { firstName, lastName, fullName };
+}
+
+function checkoutCustomTextValue(
+  session: Stripe.Checkout.Session,
+  key: string,
+): string | null {
+  const field = session.custom_fields?.find((item) => item.key === key);
+  return clean(field?.text?.value ?? null);
 }
 
 // ---------------------------------------------------------------------------
@@ -660,7 +728,9 @@ function buildEnrollmentEmailPayload(
   recipient: string,
   config: EnrollmentEmailConfig,
 ): EnrollmentEmailPayload {
-  const accessUrl = `${config.frontendUrl}/account/`;
+  const accessUrl =
+    clean(input.accountAccessUrl) ??
+    `${config.frontendUrl}/sign-up?after=dashboard&source=enrollment_email`;
   const salutation = clean(input.fullName) ?? "Welcome to BarMatrix";
   const text =
     `${salutation},\n\n` +

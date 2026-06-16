@@ -97,6 +97,7 @@ describe("sendEnrollmentEmail", () => {
         fullName: "Student Example",
         checkoutSessionId: "cs_test_123",
         purchaseId: "purchase_123",
+        accountAccessUrl: "https://accounts.barmatrix.app/sign-in/token/abc",
       },
       {
         env: configuredEnv(),
@@ -112,10 +113,40 @@ describe("sendEnrollmentEmail", () => {
       replyTo: "help@barmatrix.app",
       subject: "Your BarMatrix access is ready",
       text:
-        "Student Example,\n\nYour BarMatrix enrollment is active. Access your account at https://barmatrix.app/account/.\n\nQuestions? Reply to this email or contact support@barmatrix.app.",
+        "Student Example,\n\nYour BarMatrix enrollment is active. Access your account at https://accounts.barmatrix.app/sign-in/token/abc.\n\nQuestions? Reply to this email or contact support@barmatrix.app.",
       html:
-        "<p>Student Example,</p><p>Your BarMatrix enrollment is active.</p><p><a href=\"https://barmatrix.app/account/\">Access your account</a></p><p>Questions? Reply to this email or contact support@barmatrix.app.</p>",
+        "<p>Student Example,</p><p>Your BarMatrix enrollment is active.</p><p><a href=\"https://accounts.barmatrix.app/sign-in/token/abc\">Access your account</a></p><p>Questions? Reply to this email or contact support@barmatrix.app.</p>",
     });
+  });
+
+  it("falls back to the sign-up path when no account access URL is available", async () => {
+    const sentPayloads: unknown[] = [];
+    const client: EnrollmentEmailClient = {
+      emails: {
+        send: async (payload) => {
+          sentPayloads.push(payload);
+          return { data: { id: "email_123" }, error: null };
+        },
+      },
+    };
+
+    const result = await sendEnrollmentEmail(
+      {
+        to: "student@example.com",
+        fullName: null,
+        checkoutSessionId: "cs_test_123",
+      },
+      {
+        env: configuredEnv(),
+        createClient: () => client,
+      },
+    );
+
+    assert.deepEqual(result, { status: "sent", id: "email_123" });
+    assert.match(
+      (sentPayloads[0] as { text: string }).text,
+      /https:\/\/barmatrix\.app\/sign-up\?after=dashboard&source=enrollment_email/,
+    );
   });
 
   it("returns a failed result when Resend rejects delivery", async () => {
@@ -147,8 +178,20 @@ describe("sendEnrollmentEmailForFulfillment", () => {
     id: "cs_test_123",
     customer_details: {
       email: " Student@Example.com ",
-      name: "Student Example",
+      name: null,
     },
+    custom_fields: [
+      {
+        key: "first_name",
+        type: "text",
+        text: { value: "Student" },
+      },
+      {
+        key: "last_name",
+        type: "text",
+        text: { value: "Example" },
+      },
+    ],
   } as Stripe.Checkout.Session;
 
   it("does not send on duplicate checkout fulfillment replay", async () => {
@@ -164,6 +207,10 @@ describe("sendEnrollmentEmailForFulfillment", () => {
           called = true;
           return { status: "sent", id: "email_123" };
         },
+        createAccessLink: async () => {
+          called = true;
+          return { status: "sent", userId: "user_123", accessUrl: null };
+        },
       },
     );
 
@@ -172,6 +219,63 @@ describe("sendEnrollmentEmailForFulfillment", () => {
       reason: "duplicate_fulfillment",
     });
     assert.equal(called, false);
+  });
+
+  it("creates a Clerk access link before sending enrollment email", async () => {
+    const accessInputs: unknown[] = [];
+    const emailInputs: unknown[] = [];
+
+    const result = await sendEnrollmentEmailForFulfillment(
+      {
+        session,
+        fulfillment: {
+          status: "fulfilled",
+          purchaseId: "purchase_123",
+          studentId: "student_123",
+        },
+      },
+      {
+        createAccessLink: async (input) => {
+          accessInputs.push(input);
+          return {
+            status: "sent",
+            userId: "user_123",
+            accessUrl: "https://accounts.barmatrix.app/sign-in/token/abc",
+          };
+        },
+        sendEmail: async (input) => {
+          emailInputs.push(input);
+          return { status: "sent", id: "email_123" };
+        },
+        logger: {
+          log: () => {},
+          warn: () => {},
+          error: () => {},
+        },
+      },
+    );
+
+    assert.deepEqual(result, { status: "sent", id: "email_123" });
+    assert.deepEqual(accessInputs, [
+      {
+        to: " Student@Example.com ",
+        firstName: "Student",
+        lastName: "Example",
+        fullName: "Student Example",
+        checkoutSessionId: "cs_test_123",
+        purchaseId: "purchase_123",
+        studentId: "student_123",
+      },
+    ]);
+    assert.deepEqual(emailInputs, [
+      {
+        to: " Student@Example.com ",
+        fullName: "Student Example",
+        checkoutSessionId: "cs_test_123",
+        purchaseId: "purchase_123",
+        accountAccessUrl: "https://accounts.barmatrix.app/sign-in/token/abc",
+      },
+    ]);
   });
 
   it("surfaces delivery failure without throwing after fulfillment", async () => {
@@ -183,6 +287,10 @@ describe("sendEnrollmentEmailForFulfillment", () => {
         fulfillment: { status: "fulfilled", purchaseId: "purchase_123" },
       },
       {
+        createAccessLink: async () => ({
+          status: "skipped",
+          reason: "missing_config",
+        }),
         sendEmail: async () => ({ status: "failed", reason: "resend_error" }),
         logger: {
           log: () => {},

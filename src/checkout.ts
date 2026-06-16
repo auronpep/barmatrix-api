@@ -29,6 +29,23 @@ export interface BuildCheckoutSessionParamsInput {
   promotionCodeId?: string;
 }
 
+const CHECKOUT_NAME_FIELDS: Stripe.Checkout.SessionCreateParams.CustomField[] = [
+  {
+    key: "first_name",
+    label: { type: "custom", custom: "First name" },
+    optional: false,
+    type: "text",
+    text: { maximum_length: 80, minimum_length: 1 },
+  },
+  {
+    key: "last_name",
+    label: { type: "custom", custom: "Last name" },
+    optional: false,
+    type: "text",
+    text: { maximum_length: 80, minimum_length: 1 },
+  },
+];
+
 const LOCAL_DEV_ORIGINS = new Set([
   "http://localhost:3000",
   "http://127.0.0.1:3000",
@@ -57,6 +74,7 @@ export function buildCheckoutSessionParams(
       customer_creation: "always",
       ...discountFields,
       line_items: [{ price: input.pricePayInFull, quantity: 1 }],
+      custom_fields: CHECKOUT_NAME_FIELDS,
       success_url: input.successUrl,
       cancel_url: input.cancelUrl,
       metadata: input.metadata,
@@ -68,6 +86,7 @@ export function buildCheckoutSessionParams(
     ...discountFields,
     line_items: [{ price: input.pricePayInTwo, quantity: 1 }],
     customer_creation: "always",
+    custom_fields: CHECKOUT_NAME_FIELDS,
     payment_intent_data: {
       setup_future_usage: "off_session",
       metadata: input.metadata,
