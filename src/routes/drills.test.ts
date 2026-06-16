@@ -29,6 +29,7 @@ const {
   redZoneTargetFor,
   reasonFor,
   drillNameFor,
+  shapeCatalogTensionEntry,
   DrillInputError,
   DEFAULT_DRILL_SIZE,
   MIN_DRILL_SIZE,
@@ -97,6 +98,18 @@ describe("humanizeTag", () => {
   it("handles empty / null", () => {
     assert.equal(humanizeTag(""), "");
     assert.equal(humanizeTag(null), "");
+  });
+});
+
+describe("shapeCatalogTensionEntry", () => {
+  it("publishes route-safe slugs for unsafe observed tension values", () => {
+    const raw = "Fact of consequence + weak proof/alternative cause";
+    const entry = shapeCatalogTensionEntry({ slug: raw, question_count: "20" });
+
+    assert.match(entry.slug, /^observed_[A-Za-z0-9_-]+$/);
+    assert.notEqual(entry.slug, raw);
+    assert.equal(entry.label, "Fact Of Consequence + Weak Proof/Alternative Cause");
+    assert.equal(entry.question_count, 20);
   });
 });
 

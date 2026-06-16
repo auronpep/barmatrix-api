@@ -21,6 +21,7 @@ import type { Express, Request, Response } from "express";
 import { randomUUID } from "node:crypto";
 import { getPool, type DbClient, type DbPool } from "../db.js";
 import { kebabToTitle } from "../lib/format.js";
+import { toTensionRouteSlug } from "../lib/tensions.js";
 import {
   requireEnrolledResourceOwner,
   requireEnrollment,
@@ -98,6 +99,14 @@ export function humanizeTag(value: string | null | undefined): string {
     .replace(/\s+/g, " ")
     .trim()
     .replace(/\b\w/g, (ch) => ch.toUpperCase());
+}
+
+export function shapeCatalogTensionEntry(row: CatalogRow) {
+  return {
+    slug: toTensionRouteSlug(row.slug),
+    label: humanizeTag(row.slug),
+    question_count: Number(row.question_count),
+  };
 }
 
 export function normalizeStartInput(raw: unknown): NormalizedStartInput {
@@ -562,11 +571,7 @@ export function registerDrillsRoutes(app: Express): void {
           LIMIT $1`,
         [CATALOG_LIMIT],
       );
-      tensions = rows.map((r) => ({
-        slug: r.slug,
-        label: humanizeTag(r.slug),
-        question_count: Number(r.question_count),
-      }));
+      tensions = rows.map(shapeCatalogTensionEntry);
     } catch (err) {
       console.error("[drills catalog] tensions failed:", err);
     }
