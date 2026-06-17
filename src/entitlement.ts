@@ -64,7 +64,7 @@ export async function fulfillCheckoutSession(
     session.metadata?.payment_plan === "two_pay_500_499"
       ? "two_pay_500_499"
       : "pay_in_full";
-  const fullName = session.customer_details?.name ?? null;
+  const fullName = checkoutFullName(session);
   const referralClickId = parseUuidOrNull(session.metadata?.referral_click_id);
 
   // amount_total is what Stripe actually charged on this Checkout session.
@@ -336,6 +336,28 @@ export async function suspendEntitlement(
 function parseUuidOrNull(value: string | null | undefined): string | null {
   if (!value) return null;
   return /^[0-9a-f-]{36}$/i.test(value) ? value : null;
+}
+
+function checkoutFullName(session: Stripe.Checkout.Session): string | null {
+  const firstName = checkoutCustomTextValue(session, "first_name");
+  const lastName = checkoutCustomTextValue(session, "last_name");
+  const customFullName =
+    firstName || lastName ? [firstName, lastName].filter(Boolean).join(" ") : null;
+
+  return customFullName ?? clean(session.customer_details?.name);
+}
+
+function checkoutCustomTextValue(
+  session: Stripe.Checkout.Session,
+  key: string,
+): string | null {
+  const field = session.custom_fields?.find((item) => item.key === key);
+  return clean(field?.text?.value ?? null);
+}
+
+function clean(value: string | null | undefined): string | null {
+  const trimmed = value?.trim();
+  return trimmed ? trimmed : null;
 }
 
 function isDuplicateCheckoutSessionError(err: unknown): boolean {
