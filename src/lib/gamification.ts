@@ -11,6 +11,63 @@ export const STREAK_3 = 3;
 export const STREAK_7 = 7;
 export const MASTERY_ACE_SCORE = 0.9;
 
+export const LEVEL_THRESHOLDS: readonly number[] = [
+  0, 50, 150, 350, 700, 1200, 2000, 3200, 5000, 7500, 11000, 16000,
+] as const;
+
+export const TIER_TITLES: readonly string[] = [
+  "1L",
+  "Issue-Spotter",
+  "Rule Mechanic",
+  "Rule Mechanic",
+  "Distractor Hunter",
+  "Tension Reader",
+  "Tension Reader",
+  "Forensic Analyst",
+  "Forensic Analyst",
+  "Bar-Ready",
+  "Bar-Ready",
+  "Matrix Master",
+] as const;
+
+export interface LevelInfo {
+  level: number;
+  title: string;
+  xpIntoLevel: number;
+  xpForNextLevel: number;
+  pct: number;
+}
+
+export function levelFromXp(totalXp: number): LevelInfo {
+  const xp = Math.max(0, Math.round(totalXp));
+  const maxIndex = LEVEL_THRESHOLDS.length - 1;
+  let index = 0;
+  for (let i = maxIndex; i >= 0; i -= 1) {
+    if (xp >= (LEVEL_THRESHOLDS[i] ?? 0)) {
+      index = i;
+      break;
+    }
+  }
+
+  const isMax = index === maxIndex;
+  const levelStart = LEVEL_THRESHOLDS[index] ?? 0;
+  const xpIntoLevel = xp - levelStart;
+  const xpForNextLevel = isMax ? 0 : (LEVEL_THRESHOLDS[index + 1] ?? levelStart) - levelStart;
+  const pct = isMax
+    ? 1
+    : xpForNextLevel > 0
+      ? Math.min(1, xpIntoLevel / xpForNextLevel)
+      : 0;
+
+  return {
+    level: index + 1,
+    title: TIER_TITLES[index] ?? TIER_TITLES[maxIndex] ?? "Matrix Master",
+    xpIntoLevel,
+    xpForNextLevel,
+    pct,
+  };
+}
+
 export type BadgeSlug =
   | "first-day"
   | "halfway"

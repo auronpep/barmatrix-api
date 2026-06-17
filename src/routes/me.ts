@@ -14,8 +14,10 @@ import type { Express, Request, Response } from "express";
 import * as Sentry from "@sentry/node";
 import { clerkMiddleware, getAuth } from "@clerk/express";
 import Stripe from "stripe";
-import { getPool } from "../db.js";
+import { getPool, type DbPool } from "../db.js";
 import { snakeToTitle, kebabToTitle } from "../lib/format.js";
+import { readGamification } from "../lib/gamification-store.js";
+import { BADGE_CATALOG, levelFromXp, type BadgeSlug } from "../lib/gamification.js";
 import { resolveClerkEmail } from "../lib/clerk-identity.js";
 import { fulfillCheckoutSession } from "../entitlement.js";
 import { claimDiagnosticForSession, collectClaimableDiagnosticIds } from "../lib/claim-diagnostic.js";
@@ -117,6 +119,46 @@ function billingPortalCapability(row: EntitlementRow | undefined) {
       ? "manual_or_complimentary"
       : "stripe_customer_missing",
   };
+}
+
+function isMissingGamificationTableError(err: unknown): boolean {
+  const e = err as { code?: unknown; errno?: unknown } | null;
+  return !!e && (e.code === "ER_NO_SUCH_TABLE" || e.errno === 1146);
+}
+
+function emptyGamificationProfile() {
+  return {
+    total_xp: 0,
+    current_streak: 0,
+    longest_streak: 0,
+    level: levelFromXp(0),
+    badges: [] as unknown[],
+  };
+}
+
+async function readDashboardGamification(pool: DbPool, studentId: string) {
+  try {
+    const profile = await readGamification(pool, studentId);
+    return {
+      total_xp: profile.total_xp,
+      current_streak: profile.current_streak,
+      longest_streak: profile.longest_streak,
+      level: levelFromXp(profile.total_xp),
+      badges: profile.badges.map((b) => {
+        const meta = BADGE_CATALOG[b.slug as BadgeSlug];
+        return {
+          slug: b.slug,
+          label: meta?.label ?? b.slug,
+          description: meta?.description ?? "",
+          emoji: meta?.emoji ?? "🏅",
+          earned_at: b.earned_at,
+        };
+      }),
+    };
+  } catch (err) {
+    if (!isMissingGamificationTableError(err)) throw err;
+    return emptyGamificationProfile();
+  }
 }
 
 // Best-effort post-checkout routing signal. Reads the diagnostic ids tied to a
@@ -227,6 +269,7 @@ export function registerMeRoutes(app: Express): void {
         red_zones: { by_dimension: {} as Record<string, unknown[]> },
         recent_attempts: [] as unknown[],
         assigned_drills: [] as unknown[],
+        gamification: emptyGamificationProfile(),
       };
       if (!email) {
         res.json(empty);
@@ -246,7 +289,7 @@ export function registerMeRoutes(app: Express): void {
         }
         const studentId = student.student_id;
 
-        const [entRes, rzRes, atRes, drRes] = await Promise.all([
+        const [entRes, rzRes, atRes, drRes, gamification] = await Promise.all([
           pool.query<EntitlementRow>(
             `SELECT entitlement_status, refund_status,
                     stripe_customer_id, stripe_checkout_session_id, payment_plan
@@ -286,6 +329,7 @@ export function registerMeRoutes(app: Express): void {
               LIMIT 20`,
             [studentId],
           ),
+          readDashboardGamification(pool, studentId),
         ]);
 
         const ent = entRes.rows[0];
@@ -364,6 +408,7 @@ export function registerMeRoutes(app: Express): void {
           red_zones: { by_dimension: byDimension },
           recent_attempts: recentAttempts,
           assigned_drills: assignedDrills,
+          gamification,
         });
       } catch (err) {
         console.error("[me dashboard] failed:", err);

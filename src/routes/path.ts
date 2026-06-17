@@ -20,7 +20,7 @@ import { clerkMiddleware } from "@clerk/express";
 import { getPool } from "../db.js";
 import { resolveClerkStudent } from "../lib/me-student.js";
 import { grantBootCampActivity, readGamification } from "../lib/gamification-store.js";
-import { BADGE_CATALOG, type BadgeSlug } from "../lib/gamification.js";
+import { BADGE_CATALOG, levelFromXp, type BadgeSlug } from "../lib/gamification.js";
 import { PATH_STEPS, PATH_DAY_COUNT, PATH_VERSION } from "../lib/path.data.js";
 import {
   buildPathSummary,
@@ -229,6 +229,7 @@ async function readGamificationSafe(studentId: string) {
       total_xp: g.total_xp,
       current_streak: g.current_streak,
       longest_streak: g.longest_streak,
+      level: levelFromXp(g.total_xp),
       badges: g.badges.map((b) => {
         const meta = BADGE_CATALOG[b.slug as BadgeSlug];
         return {
@@ -241,7 +242,13 @@ async function readGamificationSafe(studentId: string) {
     };
   } catch (err) {
     if (!isMissingTableError(err)) throw err;
-    return { total_xp: 0, current_streak: 0, longest_streak: 0, badges: [] as unknown[] };
+    return {
+      total_xp: 0,
+      current_streak: 0,
+      longest_streak: 0,
+      level: levelFromXp(0),
+      badges: [] as unknown[],
+    };
   }
 }
 

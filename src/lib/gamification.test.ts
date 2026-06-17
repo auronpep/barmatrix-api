@@ -9,6 +9,9 @@ import {
   evaluateMasteryBadges,
   utcToday,
   BADGE_CATALOG,
+  LEVEL_THRESHOLDS,
+  TIER_TITLES,
+  levelFromXp,
 } from "./gamification.js";
 
 test("utcToday formats a Date as YYYY-MM-DD in UTC", () => {
@@ -103,4 +106,40 @@ test("BADGE_CATALOG covers every slug the evaluators can emit", () => {
   ] as const) {
     assert.ok(BADGE_CATALOG[slug], `missing catalog entry for ${slug}`);
   }
+});
+
+test("levelFromXp starts a new user at level 1", () => {
+  assert.deepEqual(levelFromXp(0), {
+    level: 1,
+    title: "1L",
+    xpIntoLevel: 0,
+    xpForNextLevel: 50,
+    pct: 0,
+  });
+});
+
+test("levelFromXp advances exactly at thresholds", () => {
+  const levelTwo = levelFromXp(LEVEL_THRESHOLDS[1] ?? 50);
+  assert.equal(levelTwo.level, 2);
+  assert.equal(levelTwo.xpIntoLevel, 0);
+
+  const oneShort = levelFromXp((LEVEL_THRESHOLDS[1] ?? 50) - 1);
+  assert.equal(oneShort.level, 1);
+});
+
+test("levelFromXp reports mid-level progress and clamps max level", () => {
+  const mid = levelFromXp(100);
+  assert.equal(mid.level, 2);
+  assert.equal(mid.xpIntoLevel, 50);
+  assert.equal(mid.xpForNextLevel, 100);
+  assert.equal(mid.pct, 0.5);
+
+  const max = levelFromXp(99999);
+  assert.equal(max.level, LEVEL_THRESHOLDS.length);
+  assert.equal(max.xpForNextLevel, 0);
+  assert.equal(max.pct, 1);
+});
+
+test("level thresholds and titles stay aligned", () => {
+  assert.equal(LEVEL_THRESHOLDS.length, TIER_TITLES.length);
 });

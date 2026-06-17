@@ -9,10 +9,16 @@ import { clerkMiddleware } from "@clerk/express";
 import { getPool } from "../db.js";
 import { resolveClerkStudent } from "../lib/me-student.js";
 import { readGamification } from "../lib/gamification-store.js";
-import { BADGE_CATALOG, type BadgeSlug } from "../lib/gamification.js";
+import { BADGE_CATALOG, levelFromXp, type BadgeSlug } from "../lib/gamification.js";
 
 function emptyProfile() {
-  return { total_xp: 0, current_streak: 0, longest_streak: 0, badges: [] as unknown[] };
+  return {
+    total_xp: 0,
+    current_streak: 0,
+    longest_streak: 0,
+    level: levelFromXp(0),
+    badges: [] as unknown[],
+  };
 }
 
 export function registerMeGamificationRoutes(app: Express): void {
@@ -37,6 +43,7 @@ export function registerMeGamificationRoutes(app: Express): void {
         total_xp: profile.total_xp,
         current_streak: profile.current_streak,
         longest_streak: profile.longest_streak,
+        level: levelFromXp(profile.total_xp),
         badges: profile.badges.map((b) => {
           const meta = BADGE_CATALOG[b.slug as BadgeSlug];
           return {
