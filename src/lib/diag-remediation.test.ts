@@ -10,18 +10,14 @@ import {
 } from "./diag-remediation.js";
 
 describe("diag-remediation", () => {
-  it("stages exactly 51 bundles", () => {
-    assert.equal(bundleCount(), 51);
-    assert.equal(allBundles().length, 51);
+  it("stages no remediation bundles while the learning bank is reset", () => {
+    assert.equal(bundleCount(), 0);
+    assert.equal(allBundles().length, 0);
   });
 
-  it("getBundle returns a real bundle for a known remediation_id", () => {
+  it("getBundle returns null for an archived remediation_id", () => {
     const bundle = getBundle("R-CIVPRO-PJ-OVERCLAIM");
-    assert.ok(bundle, "expected a bundle for R-CIVPRO-PJ-OVERCLAIM");
-    assert.equal(bundle.bundle_id, "BUNDLE-R-CIVPRO-PJ-OVERCLAIM");
-    assert.equal(bundle.c3_profile.c3_phase, "CUT");
-    assert.ok(bundle.micro_sequence.length > 0);
-    assert.ok(bundle.mastery_gate.length > 0);
+    assert.equal(bundle, null);
   });
 
   it("getBundle returns null for an unknown remediation_id", () => {
@@ -34,23 +30,15 @@ describe("diag-remediation", () => {
     assert.equal(result.ok, true);
   });
 
-  it("c3PhaseCounts sums to 51 with expected rough distribution", () => {
+  it("c3PhaseCounts reports zeroed phases", () => {
     const counts = c3PhaseCounts();
-    assert.equal(counts.CUT + counts.CLASH + counts.CALL, 51);
-    assert.equal(counts.CUT, 23);
-    assert.equal(counts.CLASH, 14);
-    assert.equal(counts.CALL, 14);
+    assert.deepEqual(counts, { CUT: 0, CLASH: 0, CALL: 0 });
   });
 
-  it("bundlesByRouteFamily groups every bundle", () => {
+  it("bundlesByRouteFamily is empty", () => {
     const byFamily = bundlesByRouteFamily();
     const total = [...byFamily.values()].reduce((sum, list) => sum + list.length, 0);
-    assert.equal(total, 51);
-    // every bundle in a group shares that group's route_family
-    for (const [family, list] of byFamily) {
-      for (const bundle of list) {
-        assert.equal(bundle.c3_profile.route_family, family);
-      }
-    }
+    assert.equal(total, 0);
+    assert.equal(byFamily.size, 0);
   });
 });

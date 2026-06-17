@@ -1,59 +1,9 @@
 {
   "subject": "REAL_PROPERTY",
-  "version": "rp-c3-handoff-v1",
-  "fit": "Real Property = first-effective-link decoding across property-status chains.",
-  "student_mantra": "Source. Status. Event. Consequence.",
-  "lessons": [
-    {
-      "id": "RP-00",
-      "title": "First Effective Link Controls",
-      "file": "01_lessons/RP_00_Macro_First_Effective_Link.md"
-    },
-    {
-      "id": "RP-01",
-      "subtopic": "Contracts",
-      "title": "Contract First, Closing Second, Deed Last",
-      "file": "01_lessons/RP_01_Contracts.md"
-    },
-    {
-      "id": "RP-02",
-      "subtopic": "Mortgages",
-      "title": "Debt First, Land Second, Priority Third",
-      "file": "01_lessons/RP_02_Mortgages.md"
-    },
-    {
-      "id": "RP-03",
-      "subtopic": "Ownership",
-      "title": "Status First, Consequence Second",
-      "file": "01_lessons/RP_03_Ownership.md"
-    },
-    {
-      "id": "RP-04",
-      "subtopic": "Rights in Land",
-      "title": "Classify the Use Right Before You Enforce It",
-      "file": "01_lessons/RP_04_Rights_in_Land.md"
-    },
-    {
-      "id": "RP-05",
-      "subtopic": "Titles",
-      "title": "Valid Transfer First, Recording Second",
-      "file": "01_lessons/RP_05_Titles.md"
-    }
-  ],
-  "dominant_cut": "wrong legal layer / wrong status-holder / remedy before right / recording before valid transfer",
-  "dominant_clash": "legal-status pair",
-  "dominant_call": "first effective link controls",
-  "residue": {
-    "fork_or_split": [
-      14984
-    ],
-    "promote_from_manual_to_anchor_assisted": [
-      14935,
-      15010,
-      15024
-    ],
-    "calibrated_partition_candidate": [
-      15032
-    ]
-  }
+  "version": "content-reset",
+  "fit": "",
+  "student_mantra": "",
+  "dominant_call": "",
+  "lessons": [],
+  "residue": {}
 }

@@ -125,7 +125,7 @@ export interface ValidationResult {
   errors: string[];
 }
 
-const EXPECTED_BUNDLE_COUNT = 51;
+const EXPECTED_BUNDLE_COUNT = 0;
 
 /**
  * Structural validation of the staged bundle set. Checks:

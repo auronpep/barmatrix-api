@@ -1,14 +1,45 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { getBundle } from "./diag-remediation.js";
+import type { RemediationBundle } from "./diag-remediation.js";
 import {
   assembleStudentReportPayload,
   type GradedResponse,
 } from "./diag-report.js";
 
 describe("diag-report", () => {
-  const bundle = getBundle("R-CIVPRO-PJ-OVERCLAIM");
-  assert.ok(bundle, "fixture bundle R-CIVPRO-PJ-OVERCLAIM must exist");
+  const bundle: RemediationBundle = {
+    bundle_id: "BUNDLE-RESET-FIXTURE",
+    remediation_id: "RESET-FIXTURE",
+    title: "Reset Fixture",
+    status: "test_fixture",
+    source_instances: [{ question_id: "DIAG-014", subject: "Civil Procedure" }],
+    diagnostic_trigger: "Synthetic reset test fixture.",
+    student_facing_diagnosis: "Synthetic reset report profile.",
+    c3_profile: {
+      route_family: "reset-fixture",
+      failure_mode: "synthetic",
+      c3_phase: "CUT",
+      confidence_class: "mixed",
+      primary_skill: "diagnostic-report",
+      subjects: ["Civil Procedure"],
+    },
+    assigned_path: {
+      lesson_route: ["lesson-01"],
+      subject_overlay: "Synthetic overlay",
+      tiny_anchor: "Synthetic anchor",
+    },
+    micro_sequence: [
+      {
+        step: 1,
+        name: "Synthetic step",
+        duration_minutes: 5,
+        student_task: "Review the synthetic reset fixture.",
+        success_check: "Fixture assembled.",
+      },
+    ],
+    mastery_gate: "Synthetic gate",
+    escalation: {},
+  };
 
   const responses: GradedResponse[] = [
     {

@@ -4,12 +4,10 @@ import { describe, it } from "node:test";
 const { getCertOutline, cooldownMsFor, overallStatus, COOLDOWN_STEPS_MS } = await import("./cert.js");
 
 describe("cert content", () => {
-  it("outline lists M1..M10 with pass specs and key-free items", () => {
+  it("outline lists no live competencies while certification content is reset", () => {
     const o = getCertOutline();
-    assert.deepEqual(o.competencies.map((c) => c.id), ["M1","M2","M3","M4","M5","M6","M7","M8","M9","M10"]);
-    const item = o.competencies[0]!.items[0]! as unknown as Record<string, unknown>;
-    assert.ok(item.prompt);
-    for (const k of ["key","explanation","mechanism","is_fork","key_answer"]) assert.ok(!(k in item));
+    assert.deepEqual(o.competencies, []);
+    assert.equal(o.preview, true);
   });
 });
 
@@ -23,10 +21,9 @@ describe("cooldown", () => {
 });
 
 describe("overallStatus", () => {
-  it("CONFIRMED only when all 10 competencies passed", () => {
+  it("stays NOT_YET while no certification competencies are live", () => {
     const all = Object.fromEntries(["M1","M2","M3","M4","M5","M6","M7","M8","M9","M10"].map((id) => [id, true]));
-    assert.equal(overallStatus(all), "CONFIRMED");
-    assert.equal(overallStatus({ ...all, M10: false }), "NOT_YET");
+    assert.equal(overallStatus(all), "NOT_YET");
     assert.equal(overallStatus({}), "NOT_YET");
   });
 });

@@ -6,17 +6,19 @@ import {
 import { validateCriminal, validateRealProperty, validateAllSubjects } from "./c3-subjects-validate.js";
 
 describe("c3-subjects loader", () => {
-  it("lists both subjects with non-empty content", () => {
+  it("lists subject shells with empty content during reset", () => {
     const subjects = listSubjects();
     assert.equal(subjects.length, 2);
     const crim = subjects.find((s) => s.code === "CRIMINAL_LAW_PROCEDURE")!;
-    assert.equal(crim.application_rows, 151);
-    assert.ok(crim.cards > 0 && crim.drills > 0);
-    assert.match(crim.student_mantra, /Output first/i);
+    assert.equal(crim.application_rows, 0);
+    assert.equal(crim.cards, 0);
+    assert.equal(crim.drills, 0);
+    assert.equal(crim.student_mantra, "");
     const rp = subjects.find((s) => s.code === "REAL_PROPERTY")!;
-    assert.equal(rp.lessons, 6);
-    assert.ok(rp.cards > 0 && rp.drills > 0);
-    assert.match(rp.student_mantra, /Source\. Status\. Event\. Consequence/i);
+    assert.equal(rp.lessons, 0);
+    assert.equal(rp.cards, 0);
+    assert.equal(rp.drills, 0);
+    assert.equal(rp.student_mantra, "");
   });
 
   it("isSubjectCode guards", () => {
@@ -25,32 +27,31 @@ describe("c3-subjects loader", () => {
     assert.equal(isSubjectCode("EVIDENCE"), false);
   });
 
-  it("serves overlay, cards, drills, residue", () => {
+  it("serves overlays and empty cards/drills/residue", () => {
     assert.ok(getOverlay("CRIMINAL_LAW_PROCEDURE"));
-    assert.ok(getCards("CRIMINAL_LAW_PROCEDURE").length > 0);
-    assert.ok(getDrills("REAL_PROPERTY").length > 0);
+    assert.deepEqual(getCards("CRIMINAL_LAW_PROCEDURE"), []);
+    assert.deepEqual(getDrills("REAL_PROPERTY"), []);
     assert.ok(getResidue("CRIMINAL_LAW_PROCEDURE"));
   });
 
-  it("filters the criminal application table", () => {
+  it("filters the empty criminal application table", () => {
     const all = getApplicationRows("CRIMINAL_LAW_PROCEDURE");
-    assert.equal(all.length, 151);
+    assert.equal(all.length, 0);
     const homicide = getApplicationRows("CRIMINAL_LAW_PROCEDURE", { subtopic: "Homicide" });
-    assert.equal(homicide.length, 26);
+    assert.equal(homicide.length, 0);
     const needsHuman = getApplicationRows("CRIMINAL_LAW_PROCEDURE", { status: "NEEDS_HUMAN" });
-    assert.equal(needsHuman.length, 1);
-    assert.equal(needsHuman[0]!.qid, "14650");
+    assert.equal(needsHuman.length, 0);
   });
 });
 
 describe("c3-subjects validation (acceptance criteria as code)", () => {
-  it("criminal package passes all invariants (151 rows, Q14650, counts)", () => {
+  it("criminal reset package passes empty-state invariants", () => {
     const r = validateCriminal();
     assert.deepEqual(r.errors, []);
     assert.equal(r.ok, true);
   });
 
-  it("real property package passes residue + content invariants", () => {
+  it("real property reset package passes empty-state invariants", () => {
     const r = validateRealProperty();
     assert.deepEqual(r.errors, []);
     assert.equal(r.ok, true);
