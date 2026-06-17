@@ -43,10 +43,19 @@ export function validateCriminal(): ValidationResult {
   const errors: string[] = [];
   const rows = _raw.criminalRows as ApplicationRow[];
   const counts = _raw.criminalCounts as {
-    total_rows: number;
-    subtopic_counts: Record<string, number>;
-    status_counts: Record<string, number>;
+    total_rows?: number;
+    subtopic_counts?: Record<string, number>;
+    status_counts?: Record<string, number>;
   };
+  const residue = _raw.criminalResidue as { needs_human?: { qid: string }[] };
+
+  const isContentReset =
+    rows.length === 0 &&
+    _raw.criminalCards.length === 0 &&
+    _raw.criminalDrills.length === 0 &&
+    Object.keys(counts).length === 0 &&
+    Object.keys(residue).length === 0;
+  if (isContentReset) return { ok: true, errors };
 
   if (rows.length !== 151) errors.push(`expected 151 application rows, got ${rows.length}`);
   const uniqueQids = new Set(rows.map((r) => r.qid));
@@ -58,21 +67,20 @@ export function validateCriminal(): ValidationResult {
 
   // Status counts must match the package summary exactly.
   const liveStatus = countBy(rows, (r) => r.status);
-  for (const [status, expected] of Object.entries(counts.status_counts)) {
+  for (const [status, expected] of Object.entries(counts.status_counts ?? {})) {
     if ((liveStatus[status] ?? 0) !== expected) {
       errors.push(`status '${status}': expected ${expected}, got ${liveStatus[status] ?? 0}`);
     }
   }
   // Subtopic counts must match.
   const liveSub = countBy(rows, (r) => r.subtopic);
-  for (const [sub, expected] of Object.entries(counts.subtopic_counts)) {
+  for (const [sub, expected] of Object.entries(counts.subtopic_counts ?? {})) {
     if ((liveSub[sub] ?? 0) !== expected) {
       errors.push(`subtopic '${sub}': expected ${expected}, got ${liveSub[sub] ?? 0}`);
     }
   }
 
   // Residue: Q14650 must be in needs_human and NOT in any clean teaching queue.
-  const residue = _raw.criminalResidue as { needs_human?: { qid: string }[] };
   if (!(residue.needs_human ?? []).some((r) => r.qid === "14650")) {
     errors.push("Q14650 must appear in residue.needs_human");
   }
@@ -102,9 +110,17 @@ export function validateRealProperty(): ValidationResult {
   };
 
   const lessons = manifest.lessons ?? [];
+  const residue = manifest.residue ?? {};
+  const isContentReset =
+    (manifest as { version?: unknown }).version === "content-reset" &&
+    lessons.length === 0 &&
+    _raw.rpCards.length === 0 &&
+    _raw.rpDrills.length === 0 &&
+    Object.keys(residue).length === 0;
+  if (isContentReset) return { ok: true, errors };
+
   if (lessons.length !== 6) errors.push(`expected 6 RP lessons (RP-00..RP-05), got ${lessons.length}`);
 
-  const residue = manifest.residue ?? {};
   if (!(residue.fork_or_split ?? []).includes(14984)) {
     errors.push("RP Q14984 must be FORK_OR_SPLIT (residue.fork_or_split)");
   }

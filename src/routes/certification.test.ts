@@ -32,18 +32,20 @@ const {
 } = await import("./certification.js");
 
 describe("cert outline shaping", () => {
-  it("locked when fewer than 14 lessons complete", () => {
+  it("locked with no live competencies when fewer than 14 lessons complete", () => {
     const o = shapeOutline({ lessonsCompleted: 10, lessonCount: 14, results: [] });
     assert.equal(o.unlocked, false);
-    assert.equal(o.competencies.length, 10); // still lists them (locked)
+    assert.equal(o.competencies.length, 0);
+    assert.equal(o.overall, "NOT_YET");
   });
-  it("unlocked at 14/14, merges results + overall status", () => {
+  it("unlocked at 14/14 but remains NOT_YET while content is unavailable", () => {
     const results = ["M1","M2","M3","M4","M5","M6","M7","M8","M9","M10"].map((id) => ({
       competency_id: id, passed: 1, attempts_count: 1, last_attempt_at: "2026-05-30T00:00:00.000Z",
     }));
     const o = shapeOutline({ lessonsCompleted: 14, lessonCount: 14, results });
     assert.equal(o.unlocked, true);
-    assert.equal(o.overall, "CONFIRMED");
+    assert.equal(o.competencies.length, 0);
+    assert.equal(o.overall, "NOT_YET");
   });
 });
 describe("nextRetryAt", () => {

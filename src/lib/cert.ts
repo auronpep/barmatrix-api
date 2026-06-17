@@ -65,5 +65,6 @@ export function cooldownMsFor(attemptsCount: number): number {
 
 export function overallStatus(passedById: Record<string, boolean>): "CONFIRMED" | "NOT_YET" {
   const ids = CERT_CONTENT.competencies.map((c) => c.id);
+  if (ids.length === 0) return "NOT_YET";
   return ids.every((id) => passedById[id] === true) ? "CONFIRMED" : "NOT_YET";
 }

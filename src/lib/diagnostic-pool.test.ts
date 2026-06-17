@@ -10,13 +10,9 @@ function seededRng(seed: number): () => number {
 }
 
 describe("selectDiagnosticPool", () => {
-  it("returns 12 ids, hard-set first in order", () => {
+  it("returns no ids while the diagnostic pool is reset", () => {
     const ids = selectDiagnosticPool(DIAGNOSTIC_POOL, seededRng(1));
-    assert.equal(ids.length, 12);
-    const hardSet = DIAGNOSTIC_POOL.filter((q) => q.role === "hard_set")
-      .sort((a, b) => a.order - b.order)
-      .map((q) => q.externalId);
-    assert.deepEqual(ids.slice(0, 6), hardSet);
+    assert.deepEqual(ids, []);
   });
 
   it("never serves bench items", () => {
@@ -30,19 +26,7 @@ describe("selectDiagnosticPool", () => {
     }
   });
 
-  it("includes Real Property every run (only uncovered subject → subject-first pull)", () => {
-    const rp = new Set(
-      DIAGNOSTIC_POOL.filter((q) => q.subject === "REAL_PROPERTY").map((q) => q.externalId),
-    );
-    let rpRuns = 0;
-    for (let seed = 1; seed <= 50; seed++) {
-      const ids = selectDiagnosticPool(DIAGNOSTIC_POOL, seededRng(seed));
-      if (ids.some((id) => rp.has(id))) rpRuns++;
-    }
-    assert.ok(rpRuns >= 45, `RP appeared in only ${rpRuns}/50 runs`);
-  });
-
-  it("produces 12 distinct ids", () => {
+  it("produces distinct ids", () => {
     const ids = selectDiagnosticPool(DIAGNOSTIC_POOL, seededRng(9));
     assert.equal(new Set(ids).size, ids.length);
   });
