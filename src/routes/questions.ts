@@ -41,10 +41,30 @@ export const MAX_BY_SUBJECT_LIMIT = 100;
 
 export interface BySubjectParams {
   subject: string | null;
+  subjectKey: string | null;
   page: number;
   limit: number;
   offset: number;
 }
+
+const SUBJECT_ALIASES: Record<string, string> = {
+  civil_procedure: "CIVIL_PROCEDURE",
+  civ_pro: "CIVIL_PROCEDURE",
+  constitutional_law: "CONSTITUTIONAL_LAW",
+  con_law: "CONSTITUTIONAL_LAW",
+  contracts: "CONTRACTS",
+  contract_law: "CONTRACTS",
+  criminal: "CRIMINAL",
+  criminal_law: "CRIMINAL",
+  criminal_procedure: "CRIMINAL",
+  criminal_law_and_procedure: "CRIMINAL",
+  crim_law: "CRIMINAL",
+  crim_pro: "CRIMINAL",
+  evidence: "EVIDENCE",
+  real_property: "REAL_PROPERTY",
+  property: "REAL_PROPERTY",
+  torts: "TORTS",
+};
 
 function clampInt(
   value: unknown,
@@ -62,6 +82,17 @@ function clampInt(
   return Math.max(min, Math.min(max, Math.trunc(raw)));
 }
 
+export function normalizeSubjectForQuery(subject: string): string {
+  const compact = subject
+    .trim()
+    .replace(/&/g, " and ")
+    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "");
+  return SUBJECT_ALIASES[compact] ?? subject.trim();
+}
+
 // Pure normalization for the by-subject list query. Exported so it can be unit
 // tested without a live database (mirrors the knowledge route's helpers).
 export function normalizeBySubjectParams(
@@ -72,6 +103,7 @@ export function normalizeBySubjectParams(
     typeof subjectRaw === "string" && subjectRaw.trim().length > 0
       ? subjectRaw.trim()
       : null;
+  const subjectKey = subject ? normalizeSubjectForQuery(subject) : null;
   const page = clampInt(query.page, 1, 1, Number.MAX_SAFE_INTEGER);
   const limit = clampInt(
     query.limit,
@@ -79,7 +111,7 @@ export function normalizeBySubjectParams(
     1,
     MAX_BY_SUBJECT_LIMIT,
   );
-  return { subject, page, limit, offset: (page - 1) * limit };
+  return { subject, subjectKey, page, limit, offset: (page - 1) * limit };
 }
 
 export function registerQuestionsRoutes(app: Express): void {
@@ -88,10 +120,10 @@ export function registerQuestionsRoutes(app: Express): void {
   // ":id" param route — otherwise "by-subject" is captured as :id and fails
   // the UUID check with 400 {"error":"invalid question id"}.
   app.get("/api/questions/by-subject", async (req: Request, res: Response) => {
-    const { subject, page, limit, offset } = normalizeBySubjectParams(
+    const { subject, subjectKey, page, limit, offset } = normalizeBySubjectParams(
       req.query as Record<string, unknown>,
     );
-    if (!subject) {
+    if (!subject || !subjectKey) {
       res.status(400).json({ error: "subject is required" });
       return;
     }
@@ -104,19 +136,20 @@ export function registerQuestionsRoutes(app: Express): void {
           WHERE subject = $1 AND status = 'active'
           ORDER BY RAND()
           LIMIT $2 OFFSET $3`,
-        [subject, limit, offset],
+        [subjectKey, limit, offset],
       );
 
       const { rows: countRows } = await pool.query<{ total: number | string }>(
         `SELECT COUNT(*) AS total
            FROM questions
           WHERE subject = $1 AND status = 'active'`,
-        [subject],
+        [subjectKey],
       );
       const total = Number(countRows[0]?.total ?? 0);
 
       res.json({
         subject,
+        canonical_subject: subjectKey,
         page,
         limit,
         total,
