@@ -23,6 +23,7 @@ process.env.CANCEL_URL = "https://barmatrix.app/pricing/";
 
 const {
   normalizeBySubjectParams,
+  normalizeSubjectForQuery,
   DEFAULT_BY_SUBJECT_LIMIT,
   MAX_BY_SUBJECT_LIMIT,
 } = await import("./questions.js");
@@ -31,6 +32,7 @@ describe("normalizeBySubjectParams", () => {
   it("trims the subject and applies default pagination", () => {
     const params = normalizeBySubjectParams({ subject: "  Evidence  " });
     assert.equal(params.subject, "Evidence");
+    assert.equal(params.subjectKey, "EVIDENCE");
     assert.equal(params.page, 1);
     assert.equal(params.limit, DEFAULT_BY_SUBJECT_LIMIT);
     assert.equal(params.offset, 0);
@@ -38,6 +40,7 @@ describe("normalizeBySubjectParams", () => {
 
   it("returns a null subject for missing or blank values", () => {
     assert.equal(normalizeBySubjectParams({}).subject, null);
+    assert.equal(normalizeBySubjectParams({}).subjectKey, null);
     assert.equal(normalizeBySubjectParams({ subject: "   " }).subject, null);
     assert.equal(normalizeBySubjectParams({ subject: 42 }).subject, null);
   });
@@ -72,5 +75,18 @@ describe("normalizeBySubjectParams", () => {
     });
     assert.equal(params.page, 1);
     assert.equal(params.limit, DEFAULT_BY_SUBJECT_LIMIT);
+  });
+
+  it("maps display subject labels to FOC database subject keys", () => {
+    assert.equal(normalizeSubjectForQuery("Civil Procedure"), "CIVIL_PROCEDURE");
+    assert.equal(normalizeSubjectForQuery("Constitutional Law"), "CONSTITUTIONAL_LAW");
+    assert.equal(normalizeSubjectForQuery("Real Property"), "REAL_PROPERTY");
+    assert.equal(normalizeSubjectForQuery("Criminal Law"), "CRIMINAL");
+    assert.equal(normalizeSubjectForQuery("Criminal Procedure"), "CRIMINAL");
+  });
+
+  it("keeps canonical underscore keys canonical", () => {
+    assert.equal(normalizeSubjectForQuery("CIVIL_PROCEDURE"), "CIVIL_PROCEDURE");
+    assert.equal(normalizeSubjectForQuery("REAL_PROPERTY"), "REAL_PROPERTY");
   });
 });
