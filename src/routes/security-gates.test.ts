@@ -30,4 +30,12 @@ describe("sensitive route gates", () => {
     assert.match(text, /requireEnrolled\(req, res\)/);
     assert.match(text, /enrollment required/);
   });
+
+  it("gates Atlas_v1 admin routes behind ADMIN_SECRET", () => {
+    const text = source("./admin-atlas-v1.ts");
+
+    assert.match(text, /ADMIN_SECRET/);
+    assert.match(text, /x-admin-secret/);
+    assert.match(text, /api\/admin\/atlas-v1/);
+  });
 });

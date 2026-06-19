@@ -16,6 +16,7 @@
     "typecheck": "tsc --noEmit",
     "test": "tsx --test src/**/*.test.ts",
     "migrate": "node scripts/apply-schema.mjs",
+    "atlas:v1:sql": "tsx src/scripts/apply-atlas-v1-sql.ts",
     "knowledge:search": "tsx src/scripts/query-knowledge.ts"
   },
   "dependencies": {
