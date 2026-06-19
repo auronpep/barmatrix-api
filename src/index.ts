@@ -11,6 +11,7 @@ import * as Sentry from "@sentry/node";
 import { config } from "./config.js";
 import { initSentry, isSentryEnabled, setupSentryErrorHandler } from "./sentry.js";
 import { handleListenError } from "./lib/listen.js";
+import { isClerkAuthFailure } from "./lib/clerk-auth-errors.js";
 import { getPool, ping } from "./db.js";
 import {
   CAPACITY_COPY,
@@ -767,6 +768,10 @@ app.use((_req, res) => {
 app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
   if (isBodyParseError(err)) {
     res.status(400).json({ error: "invalid JSON body" });
+    return;
+  }
+  if (isClerkAuthFailure(err)) {
+    res.status(401).json({ error: "not authenticated" });
     return;
   }
   console.error("[unhandled]", err);
