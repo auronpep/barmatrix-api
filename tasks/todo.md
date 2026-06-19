@@ -192,13 +192,20 @@ Deleted GitHub branches:
 
 ### Plan
 
-- [ ] Preserve existing uncommitted API work and patch only the Claude audit hot paths.
-- [ ] Fix critical security/data-integrity issues: checkout recovery auth, answer-key auth, red-zone auth, debrief-event ownership, MariaDB drill assignment JSON.
-- [ ] Fix cheap high-severity hardening items where the existing code already has the pattern: billing portal return URL validation, DB pool timeout/queue limit, deploy restart path expansion, Docker/Sentry runtime user.
-- [ ] Add the smallest focused regression tests or assertions for changed behavior.
-- [ ] Run focused tests, `npm run typecheck`, and `npm run build`; record results here.
+- [x] Preserve existing uncommitted API work and patch only the Claude audit hot paths.
+- [x] Fix critical security/data-integrity issues: checkout recovery auth, answer-key auth, red-zone auth, debrief-event ownership, MariaDB drill assignment JSON.
+- [x] Fix cheap high-severity hardening items where the existing code already has the pattern: billing portal return URL validation, DB pool timeout/queue limit, deploy restart path expansion, Docker/Sentry runtime user.
+- [x] Add the smallest focused regression tests or assertions for changed behavior.
+- [x] Run focused tests, `npm run typecheck`, and `npm run build`; record results here.
 
 ### Notes
 
 - Source reports: `docs/BACKEND_AUDIT_2026-06-18.md` and `docs/BACKEND_AUDIT_2026-06-18_run2.md`.
 - Current worktree already contains Claude/user changes in LeadMe, answer-key, debrief, outline-atlas, `src/index.ts`, `src/routes/path.ts`, and this file. Do not revert them.
+
+### Review
+
+- 2026-06-19: Verification passed before deploy: focused audit suite `45/45`, full `npm test` `615/615`, `npm run typecheck`, `npm run build`, and `git diff --check`.
+- 2026-06-19: Production deploy completed via `scripts/deploy.sh`; build, `node --check`, atomic swap, Passenger restart, and health check passed.
+- 2026-06-19: Live smoke passed after deploy: `/health` returned DB up, unauthenticated answer-key/debrief-intel/checkout recovery returned 401, and `/api/red-zones?student_id=...` returned the locked empty state instead of caller-selected student data.
+- 2026-06-19: Captured the deployed tree on private branch `codex/api-live-hardening-2026-06-19` at commit `3a56080`; pushed only that branch to private `auronpep/barmatrix-api`. `main` was not moved.
