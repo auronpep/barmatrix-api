@@ -6,6 +6,10 @@ function source(path: string): string {
   return readFileSync(new URL(path, import.meta.url), "utf8");
 }
 
+function rootSource(path: string): string {
+  return readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
+}
+
 describe("sensitive route gates", () => {
   it("gates answer-key data behind Clerk enrollment", () => {
     const text = source("./answer-key.ts");
@@ -29,5 +33,12 @@ describe("sensitive route gates", () => {
     assert.match(text, /clerkMiddleware\(\)/);
     assert.match(text, /requireEnrolled\(req, res\)/);
     assert.match(text, /enrollment required/);
+  });
+
+  it("maps Clerk auth middleware failures to 401 instead of 500", () => {
+    const text = rootSource("./index.ts");
+
+    assert.match(text, /isClerkAuthFailure\(err\)/);
+    assert.match(text, /res\.status\(401\)\.json\(\{ error: "not authenticated" \}\)/);
   });
 });
