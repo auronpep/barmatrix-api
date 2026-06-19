@@ -234,4 +234,5 @@ Deleted GitHub branches:
 - Completed: gamification streak read now uses `FOR UPDATE` inside the existing transaction; flashcard review completion uses one multi-row insert.
 - Completed: attempt-feedback route rejects non-UUID attempt ids before ownership lookups; debrief section reads are capped; day-plan zero-step progress is 0 instead of `NaN`; C3 drill grading has an exhaustiveness guard; migration schema password fallback treats empty `DATABASE_PASSWORD` as missing.
 - Verification: `npm test` passed `626/626`; `npm run typecheck` passed; `npm run build` passed; `git diff --check` passed.
+- Deploy: `scripts/deploy.sh` completed successfully with deploy stamp `20260618-212456`; local build, `node --check`, upload, atomic swap, Passenger restart, and production health check passed on attempt 1 with HTTP 200.
 - Deferred: broad trap-naming batching/timeout redesign, `ORDER BY RAND()` sampling rewrites, migration runner applied-tracking/transaction redesign, and C3 coach serial waterfall reduction. Those need a separate behavior/performance pass.
