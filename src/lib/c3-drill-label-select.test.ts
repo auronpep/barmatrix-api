@@ -35,6 +35,7 @@ test("LABEL_SELECT: correct label is graded correct", () => {
 test("LABEL_SELECT: wrong label is graded incorrect, skill carried", () => {
   const r = gradeC3Attempt(labelSelect, { selected_choice_id: "FABRICATED RULE" });
   assert.equal(r.correct, false);
+  assert.equal(r.correct_choice_id, undefined);
   assert.equal(r.missed_filter, null);
   assert.equal(r.missed_skill, "EAR");
 });

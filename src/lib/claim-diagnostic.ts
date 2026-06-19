@@ -36,6 +36,11 @@ function isUuid(value: string | null | undefined): value is string {
   return typeof value === "string" && UUID_RE.test(value);
 }
 
+function isMissingDiagnosticLeadsTable(err: unknown): boolean {
+  const e = err as { code?: unknown; errno?: unknown } | null;
+  return !!e && (e.code === "ER_NO_SUCH_TABLE" || e.errno === 1146);
+}
+
 /**
  * Re-point one diagnostic session's attempts (set_id) onto a real student and
  * rebuild the derived red-zone rows. Must run inside a transaction so the
@@ -49,10 +54,13 @@ export async function claimDiagnosticAttempts(
   diagnosticId: string,
 ): Promise<number> {
   const update = await client.query(
-    `UPDATE student_attempts
-        SET student_id = $1
-      WHERE set_id = $2 AND student_id <> $1`,
-    [studentId, diagnosticId],
+    `UPDATE student_attempts a
+        JOIN students s ON s.student_id = a.student_id
+        SET a.student_id = $1
+      WHERE a.set_id = $2
+        AND a.student_id <> $1
+        AND s.email = $3`,
+    [studentId, diagnosticId, `anon-${diagnosticId}@barmatrix.local`],
   );
   const claimed = update.rowCount ?? 0;
   if (claimed === 0) return 0;
@@ -111,8 +119,9 @@ export async function collectClaimableDiagnosticIds(
         [email],
       );
       for (const r of rows) if (isUuid(r.diagnostic_id)) ids.add(r.diagnostic_id);
-    } catch {
+    } catch (err) {
       // diagnostic_leads self-creates on first lead capture; absence is fine.
+      if (!isMissingDiagnosticLeadsTable(err)) throw err;
     }
   }
   return [...ids];

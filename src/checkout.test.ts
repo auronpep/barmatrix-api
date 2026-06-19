@@ -3,6 +3,7 @@ import { describe, it } from "node:test";
 import type Stripe from "stripe";
 import {
   buildCheckoutSessionParams,
+  isAllowedReturnUrl,
   resolveCheckoutReturnUrls,
   validateCheckoutSessionForRecovery,
 } from "./checkout.js";
@@ -67,6 +68,14 @@ describe("checkout return URLs", () => {
       urls.cancelUrl,
       "http://localhost:3000/pricing?checkout=cancelled",
     );
+  });
+
+  it("exposes the same-origin guard for billing portal return URLs", () => {
+    assert.equal(
+      isAllowedReturnUrl("https://barmatrix.app/account/billing", defaults),
+      true,
+    );
+    assert.equal(isAllowedReturnUrl("https://evil.example/phish", defaults), false);
   });
 });
 

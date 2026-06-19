@@ -5,6 +5,7 @@
 //   POST  /api/admin/c3/item-stats/recompute  — recompute per-item psychometrics (A4)
 //   POST  /api/admin/c3/solver/run            — run the solver over untagged items (C2)
 import type { Express, Request, Response } from "express";
+import { timingSafeEqual } from "node:crypto";
 import { z } from "zod";
 import { getPool } from "../db.js";
 import {
@@ -24,7 +25,13 @@ function requireAdminSecret(req: Request, res: Response): boolean {
     res.status(503).json({ error: "admin access not configured (ADMIN_SECRET not set)" });
     return false;
   }
-  if (req.headers["x-admin-secret"] !== secret) {
+  const provided = req.headers["x-admin-secret"];
+  const candidate = Array.isArray(provided) ? provided[0] : provided;
+  if (
+    typeof candidate !== "string" ||
+    Buffer.byteLength(candidate) !== Buffer.byteLength(secret) ||
+    !timingSafeEqual(Buffer.from(candidate), Buffer.from(secret))
+  ) {
     res.status(403).json({ error: "forbidden" });
     return false;
   }

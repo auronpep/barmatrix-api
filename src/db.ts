@@ -71,6 +71,8 @@ export function getPool(): DbPool {
     password: config.db.password,
     waitForConnections: true,
     connectionLimit: 10,
+    connectTimeout: 5000,
+    queueLimit: 50,
     timezone: "Z",
     namedPlaceholders: false,
   });

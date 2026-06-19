@@ -14,7 +14,8 @@ WORKDIR /app
 ENV NODE_ENV=production
 COPY package*.json ./
 RUN npm ci --omit=dev && npm cache clean --force
-COPY --from=build /app/dist ./dist
+COPY --from=build --chown=node:node /app/dist ./dist
 # Cloud Run injects PORT=8080; src/config.ts honors it.
 EXPOSE 8080
-CMD ["node", "dist/index.js"]
+USER node
+CMD ["node", "--import", "./dist/sentry-init.js", "dist/index.js"]

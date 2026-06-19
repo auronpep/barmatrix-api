@@ -131,3 +131,81 @@ Keep/review branches with useful work:
 4. Archive/delete only ancestor or patch-equivalent branches after explicit approval, especially because many are checked out in linked worktrees.
 5. Review stashes before dropping anything; `stash@{0}` likely contains unfinished rebuild work and should not be applied blindly.
 6. After the live-protection merge is stable, selectively port remaining useful work by feature area: gamification, attempt telemetry, email engine, Sentry alert suppression, then any J7/C3 ideas.
+
+## 2026-06-17 GitHub Branch Cleanup
+
+### Plan
+
+- [x] Verify the GitHub remote and repository visibility before any branch mutation.
+- [x] Fetch/prune and inventory current local, remote, worktree, and stash state.
+- [x] Confirm `origin/main` is the GitHub default branch and identify every remote branch that is not `main`.
+- [x] Check whether any non-`main` remote branches have open PRs or branch-protection blockers.
+- [x] Delete all non-`main` branches from GitHub, leaving `main` as the only remote branch.
+- [x] Fetch/prune after deletion and verify GitHub reports only `main`.
+- [x] Record final results and any branches GitHub refused to delete.
+
+### Notes
+
+- Target remote: `origin` -> `https://github.com/auronpep/barmatrix-api.git`.
+- GitHub repository visibility confirmed private through `gh repo view`.
+- Scope is GitHub remote branch cleanup. Local worktrees and stashes are being inventoried but not removed unless separately needed.
+
+### Review
+
+- Result: GitHub now has only one branch, `main`.
+- Default branch: `main`.
+- Remaining remote head from `git ls-remote --heads origin`: `f1f869f7daffefb4a195eb579d27ae711aa4de52 refs/heads/main`.
+- `gh api repos/auronpep/barmatrix-api/branches --paginate --jq '.[].name'` returned only `main`.
+- Open PR check after cleanup returned `[]`.
+- No branch deletion failed.
+- Local note: this worktree is still on local branch `codex/content-reset-learning`, and its upstream is now gone. Local branches, worktrees, tags, and stashes were not removed.
+
+Deleted GitHub branches:
+
+- `claude/site-audit-izvda2`
+- `codex/checkout-clerk-access`
+- `codex/checkout-provisioning-hardening`
+- `codex/content-reset-learning`
+- `codex/j7-guided-path`
+- `deploy/command-deck-api-live`
+- `feat/ambassador-launch`
+- `feat/attempt-telemetry`
+- `feat/c3-count-sequence-drills`
+- `feat/c3-program`
+- `feat/c3-reflex-trainer`
+- `feat/command-deck-api`
+- `feat/confusion-capture`
+- `feat/email-engine-phase1`
+- `feat/foundations-method-course`
+- `feat/gamification-levels`
+- `feat/gamification-universal-xp`
+- `feat/sentry-tracing-eaddrinuse`
+- `feat/trap-naming-email`
+- `fix/diag-attempt-uniqueness`
+- `fix/eaddrinuse-clean`
+- `fix/listen-eaddrinuse-sentry`
+- `fix/post-checkout-flow-2026-06-15`
+- `integ/deferred-2026-06-15`
+- `test/sb-enrolled-proof`
+
+## 2026-06-19 Claude Backend Audit Repair
+
+### Plan
+
+- [x] Preserve existing uncommitted API work and patch only the Claude audit hot paths.
+- [x] Fix critical security/data-integrity issues: checkout recovery auth, answer-key auth, red-zone auth, debrief-event ownership, MariaDB drill assignment JSON.
+- [x] Fix cheap high-severity hardening items where the existing code already has the pattern: billing portal return URL validation, DB pool timeout/queue limit, deploy restart path expansion, Docker/Sentry runtime user.
+- [x] Add the smallest focused regression tests or assertions for changed behavior.
+- [x] Run focused tests, `npm run typecheck`, and `npm run build`; record results here.
+
+### Notes
+
+- Source reports: `docs/BACKEND_AUDIT_2026-06-18.md` and `docs/BACKEND_AUDIT_2026-06-18_run2.md`.
+- Current worktree already contains Claude/user changes in LeadMe, answer-key, debrief, outline-atlas, `src/index.ts`, `src/routes/path.ts`, and this file. Do not revert them.
+
+### Review
+
+- 2026-06-19: Verification passed before deploy: focused audit suite `45/45`, full `npm test` `615/615`, `npm run typecheck`, `npm run build`, and `git diff --check`.
+- 2026-06-19: Production deploy completed via `scripts/deploy.sh`; build, `node --check`, atomic swap, Passenger restart, and health check passed.
+- 2026-06-19: Live smoke passed after deploy: `/health` returned DB up, unauthenticated answer-key/debrief-intel/checkout recovery returned 401, and `/api/red-zones?student_id=...` returned the locked empty state instead of caller-selected student data.
+- 2026-06-19: Captured the deployed tree on private branch `codex/api-live-hardening-2026-06-19` at commit `3a56080`; pushed follow-up closeout commits only to private `auronpep/barmatrix-api`. `main` was not moved.

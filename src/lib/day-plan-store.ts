@@ -254,7 +254,7 @@ export async function recordCatchupStepCompletion(
     catchupId: string;
   },
 ): Promise<boolean> {
-  await db.query(
+  const update = await db.query(
     `UPDATE student_catchup_bank
         SET status = 'completed',
             completed_at = CURRENT_TIMESTAMP(6)
@@ -263,6 +263,7 @@ export async function recordCatchupStepCompletion(
         AND status = 'pending'`,
     [input.studentId, input.catchupId],
   );
+  if (update.rowCount === 0) return false;
   const result = await db.query(
     `INSERT IGNORE INTO student_day_plan_progress
        (progress_id, student_id, day_key, step_id, source, main_item_id,
