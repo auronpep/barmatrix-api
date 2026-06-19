@@ -28,6 +28,16 @@ export function remapDayQuestionIds(
   return remapped;
 }
 
+export function missingDbEnv(env: NodeJS.ProcessEnv): string[] {
+  const missing = ["DATABASE_HOST", "DATABASE_NAME", "DATABASE_USER"].filter(
+    (name) => !env[name],
+  );
+  if (!env.DATABASE_PASSWORD && !env.BARMATRIX_DB_KEY) {
+    missing.push("BARMATRIX_DB_KEY or DATABASE_PASSWORD");
+  }
+  return missing;
+}
+
 function parseJsonValue(value: unknown): unknown {
   return typeof value === "string" ? JSON.parse(value) : value;
 }
@@ -104,6 +114,11 @@ export async function runRemapJsonFksFromEnv(): Promise<{
   drillAssignments: number;
   bootCampSessions: number;
 }> {
+  const missing = missingDbEnv(process.env);
+  if (missing.length > 0) {
+    throw new Error(`Missing DB env: ${missing.join(", ")}`);
+  }
+
   const connection = await mysql.createConnection({
     host: process.env.DATABASE_HOST,
     port: Number(process.env.DATABASE_PORT ?? 3306),
