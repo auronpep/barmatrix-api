@@ -18,6 +18,14 @@ export type FactTone =
   | "selfhelp"
   | "call";
 
+export interface DebriefRedZone {
+  id: string;
+  label: string;
+  rank: number;
+  dimension?: string | null;
+  tag?: string | null;
+}
+
 export interface DebriefChoice {
   letter: string;
   correct: boolean;
@@ -36,7 +44,7 @@ export interface DebriefChoice {
   fullRight?: string;
   fullWrong?: string;
   recovery?: string | null;
-  redZone?: { id: string; label: string; rank: number } | null;
+  redZone?: DebriefRedZone | null;
 }
 
 export interface TriggerFact {
@@ -122,7 +130,7 @@ export interface DebriefData {
     queueMeta: string;
   };
 
-  redZone: { id: string; label: string; rank: number };
+  redZone: DebriefRedZone;
 }
 
 /* ───────────────────────── DB row shapes ───────────────────────── */
@@ -298,7 +306,10 @@ export function buildDebriefData(
 
   const subtopic = str(q.subtopic);
   const tensionPoint = str(q.tension_point);
-  const redZoneLabel = tensionPoint || subtopic || "this pattern";
+  const subject = str(q.subject);
+  const redZoneLabel = tensionPoint || subtopic || subject || "this pattern";
+  const redZoneDimension = tensionPoint ? "tension_point" : subtopic ? "subtopic" : subject ? "subject" : null;
+  const redZoneTag = tensionPoint || subtopic || subject || null;
 
   // Empty key cards — the component hides the keys block when neither has a
   // statement. Populated for real once the program_intelligence JSON is ingested.
@@ -308,7 +319,7 @@ export function buildDebriefData(
 
   return {
     qid: str(q.external_id) || q.question_id,
-    subject: str(q.subject),
+    subject,
     topic: str(q.topic),
     subtopic,
     outlineCode: str(meta.outline_code),
@@ -362,6 +373,12 @@ export function buildDebriefData(
       queueMeta: str(q.subject),
     },
 
-    redZone: { id: tensionPoint || subtopic, label: redZoneLabel, rank: 0 },
+    redZone: {
+      id: redZoneTag ?? "",
+      label: redZoneLabel,
+      rank: 0,
+      dimension: redZoneDimension,
+      tag: redZoneTag,
+    },
   };
 }

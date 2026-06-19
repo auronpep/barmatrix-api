@@ -76,6 +76,16 @@ describe("buildDebriefData", () => {
     assert.equal(d.governingLane, "RULE");
   });
 
+  it("exposes drillable red-zone coordinates for the repair CTA", () => {
+    assert.deepEqual(d.redZone, {
+      id: "erie_substance_vs_procedure",
+      label: "erie_substance_vs_procedure",
+      rank: 0,
+      dimension: "tension_point",
+      tag: "erie_substance_vs_procedure",
+    });
+  });
+
   it("sorts the credited choice onto the asked branch, NOT_TRUE/NOT_RESPONSIVE onto the decoy", () => {
     const find = (l: string) => d.choices.find((c) => c.letter === l)!;
     assert.equal(find("C").keyType, "call"); // credited → asked side
