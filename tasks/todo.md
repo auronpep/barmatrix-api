@@ -208,4 +208,4 @@ Deleted GitHub branches:
 - 2026-06-19: Verification passed before deploy: focused audit suite `45/45`, full `npm test` `615/615`, `npm run typecheck`, `npm run build`, and `git diff --check`.
 - 2026-06-19: Production deploy completed via `scripts/deploy.sh`; build, `node --check`, atomic swap, Passenger restart, and health check passed.
 - 2026-06-19: Live smoke passed after deploy: `/health` returned DB up, unauthenticated answer-key/debrief-intel/checkout recovery returned 401, and `/api/red-zones?student_id=...` returned the locked empty state instead of caller-selected student data.
-- 2026-06-19: Captured the deployed tree on private branch `codex/api-live-hardening-2026-06-19` at commit `3a56080`; pushed closeout tip `ccf3ee3` only to private `auronpep/barmatrix-api`. `main` was not moved.
+- 2026-06-19: Captured the deployed tree on private branch `codex/api-live-hardening-2026-06-19` at commit `3a56080`; pushed follow-up closeout commits only to private `auronpep/barmatrix-api`. `main` was not moved.
