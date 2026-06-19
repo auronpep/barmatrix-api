@@ -313,6 +313,8 @@ function isCorrect(item: C3DrillItem, response: C3StudentResponse): boolean {
       return parts.every((p) => sel[p.id] === p.correct_choice_id);
     }
   }
+  const exhaustive: never = item.task_type;
+  return exhaustive;
 }
 
 /** What filter the student missed, for review grouping. */

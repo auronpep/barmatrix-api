@@ -47,6 +47,7 @@ function debriefRow(): QueryResult<unknown> {
 
 describe("student debrief", () => {
   it("reads a debrief with a student-owned attempt overlay", async () => {
+    const calls: RecordedQuery[] = [];
     const db = dbFor((query) => {
       if (query.sql.includes("FROM debriefs")) return debriefRow();
       if (query.sql.includes("FROM debrief_sections")) {
@@ -115,7 +116,7 @@ describe("student debrief", () => {
         };
       }
       return { rows: [], rowCount: 0 };
-    });
+    }, calls);
 
     const result = await readStudentDebrief(db, {
       studentId: "stu_1",
@@ -127,6 +128,10 @@ describe("student debrief", () => {
     assert.deepEqual(result?.debrief.sections[0]?.payload, {
       markdown: "Student-safe section.",
     });
+    assert.match(
+      calls.find((call) => call.sql.includes("FROM debrief_sections"))?.sql ?? "",
+      /LIMIT 20/,
+    );
     assert.equal(result?.student_overlay?.selected_letter, "B");
     assert.equal(result?.student_overlay?.student_path_label, "BR-B-TRAP");
     assert.deepEqual(result?.student_overlay?.auto_expand_choices, ["B", "C"]);

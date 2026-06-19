@@ -47,6 +47,11 @@ interface RedZoneRow {
   attempts_count: number;
   high_confidence_wrong_count: number;
 }
+interface RedZoneMetricsRow {
+  active_red_zones: number | string;
+  high_confidence_wrongs: number | string;
+  avg_proficiency_score: number | string | null;
+}
 interface AttemptRow {
   attempt_id: string;
   question_id: string;
@@ -182,14 +187,16 @@ async function resolveCheckoutRouting(sessionId: string) {
     );
     if (ids.length === 0) return safeDefault;
 
-    const counts: number[] = [];
-    for (const id of ids) {
-      const { rows } = await pool.query<{ n: number | string }>(
-        "SELECT COUNT(*) AS n FROM student_attempts WHERE set_id = $1",
-        [id],
-      );
-      counts.push(Number(rows[0]?.n ?? 0));
-    }
+    const placeholders = ids.map((_id, index) => `$${index + 1}`).join(", ");
+    const { rows } = await pool.query<{ set_id: string; n: number | string }>(
+      `SELECT set_id, COUNT(*) AS n
+         FROM student_attempts
+        WHERE set_id IN (${placeholders})
+        GROUP BY set_id`,
+      ids,
+    );
+    const countsById = new Map(rows.map((row) => [row.set_id, Number(row.n)]));
+    const counts = ids.map((id) => countsById.get(id) ?? 0);
     return routeFromSessionAttemptCounts(counts);
   } catch (err) {
     console.error("[checkout status] routing resolve failed:", err);
@@ -289,7 +296,7 @@ export function registerMeRoutes(app: Express): void {
         }
         const studentId = student.student_id;
 
-        const [entRes, rzRes, atRes, drRes, gamification] = await Promise.all([
+        const [entRes, rzRes, rzMetricsRes, atRes, drRes, gamification] = await Promise.all([
           pool.query<EntitlementRow>(
             `SELECT entitlement_status, refund_status,
                     stripe_customer_id, stripe_checkout_session_id, payment_plan
@@ -306,7 +313,16 @@ export function registerMeRoutes(app: Express): void {
                     attempts_count, high_confidence_wrong_count
                FROM user_red_zones
               WHERE student_id = $1
-              ORDER BY dimension ASC, proficiency_score ASC`,
+              ORDER BY dimension ASC, proficiency_score ASC
+              LIMIT 50`,
+            [studentId],
+          ),
+          pool.query<RedZoneMetricsRow>(
+            `SELECT COALESCE(SUM(CASE WHEN proficiency_score < ${ACTIVE_RED_ZONE_THRESHOLD} THEN 1 ELSE 0 END), 0) AS active_red_zones,
+                    COALESCE(SUM(high_confidence_wrong_count), 0) AS high_confidence_wrongs,
+                    AVG(proficiency_score) AS avg_proficiency_score
+               FROM user_red_zones
+              WHERE student_id = $1`,
             [studentId],
           ),
           pool.query<AttemptRow>(
@@ -346,16 +362,13 @@ export function registerMeRoutes(app: Express): void {
             high_confidence_wrongs: number;
           }>
         > = {};
-        let profSum = 0;
-        let profCount = 0;
-        let activeRedZones = 0;
-        let highConfidenceWrongs = 0;
+        const rzMetrics = rzMetricsRes.rows[0];
+        const activeRedZones = Number(rzMetrics?.active_red_zones ?? 0);
+        const highConfidenceWrongs = Number(rzMetrics?.high_confidence_wrongs ?? 0);
+        const avgProficiency = rzMetrics?.avg_proficiency_score;
+        const repairPct = avgProficiency == null ? 0 : Math.round(Number(avgProficiency) * 100);
         for (const r of rzRes.rows) {
           const prof = Number(r.proficiency_score);
-          profSum += prof;
-          profCount += 1;
-          if (prof < ACTIVE_RED_ZONE_THRESHOLD) activeRedZones += 1;
-          highConfidenceWrongs += r.high_confidence_wrong_count;
           const list = byDimension[r.dimension] ?? [];
           if (list.length < MAX_ZONES_PER_DIMENSION) {
             list.push({
@@ -367,7 +380,6 @@ export function registerMeRoutes(app: Express): void {
           }
           byDimension[r.dimension] = list;
         }
-        const repairPct = profCount > 0 ? Math.round((profSum / profCount) * 100) : 0;
 
         const recentAttempts = atRes.rows.map((a) => {
           const correct = isTrue(a.correct);

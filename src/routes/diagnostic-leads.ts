@@ -74,14 +74,19 @@ CREATE TABLE IF NOT EXISTS diagnostic_leads (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
 `;
 
-let schemaReady = false;
+let schemaReady: Promise<void> | null = null;
 
 export async function ensureDiagnosticLeadTable(
   db: Pick<DbPool, "query">,
 ): Promise<void> {
-  if (schemaReady) return;
-  await db.query(createDiagnosticLeadsTableSql);
-  schemaReady = true;
+  schemaReady ??= db.query(createDiagnosticLeadsTableSql).then(
+    () => undefined,
+    (err) => {
+      schemaReady = null;
+      throw err;
+    },
+  );
+  await schemaReady;
 }
 
 export function diagnosticLeadMetadata(input: DiagnosticLeadInput): string {
@@ -107,10 +112,11 @@ export async function recordDiagnosticLead(
   }
 
   await ensureDiagnosticLeadTable(db);
+  const storedDiagnosticId = input.diagnostic_id ?? "";
   const values = [
     DIAGNOSTIC_LEAD_TYPE,
     input.email,
-    input.diagnostic_id,
+    storedDiagnosticId,
     input.full_name,
     input.jurisdiction,
     input.source_page,
@@ -154,10 +160,10 @@ export async function recordDiagnosticLead(
   const { rows } = await db.query<DiagnosticLeadRow>(
     `SELECT lead_id FROM diagnostic_leads
       WHERE email = $1
-        AND ((diagnostic_id IS NULL AND $2 IS NULL) OR diagnostic_id = $2)
+        AND diagnostic_id = $2
       ORDER BY created_at DESC
       LIMIT 1`,
-    [input.email, input.diagnostic_id],
+    [input.email, storedDiagnosticId],
   );
 
   return {

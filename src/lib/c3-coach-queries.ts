@@ -58,7 +58,7 @@ export function forkCandidatesQuery(): string {
   return `
     SELECT q.question_id AS question_id
       FROM questions q
-      JOIN c3_annotations an ON an.question_id = q.question_id
+      JOIN c3_annotations an ON an.question_id = q.question_id AND ${ANNOTATED}
      WHERE q.status = 'active'
        AND (an.verdict = 'FORK_OR_SPLIT' OR an.is_fork = 1)
      ORDER BY RAND()

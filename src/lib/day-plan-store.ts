@@ -60,13 +60,17 @@ CREATE TABLE IF NOT EXISTS student_catchup_bank (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
 `;
 
-let schemaReady = false;
+let schemaReady: Promise<void> | null = null;
 
 export async function ensureDayPlanTables(db: Queryable): Promise<void> {
-  if (schemaReady) return;
-  await db.query(createProgressTableSql);
-  await db.query(createCatchupTableSql);
-  schemaReady = true;
+  schemaReady ??= (async () => {
+    await db.query(createProgressTableSql);
+    await db.query(createCatchupTableSql);
+  })().catch((err) => {
+    schemaReady = null;
+    throw err;
+  });
+  await schemaReady;
 }
 
 export async function readCompletedStepIds(

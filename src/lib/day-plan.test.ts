@@ -226,6 +226,29 @@ describe("Lead Me catchup injection", () => {
     assert.equal(path.catchup.injected_count, 2);
     assert.equal(path.current_step?.step_id, "catchup-1");
   });
+
+  it("reports zero progress for an empty manifest", () => {
+    const path = buildLeadMePath({
+      manifest: {
+        plan_key: "empty",
+        version: "1",
+        day_index: 0,
+        title: "Empty",
+        approved: true,
+        approved_at: "2026-06-19",
+        timezone: "America/Los_Angeles",
+        rollover_hour: 3,
+        main_items: [],
+        steps: [],
+      },
+      completedDailyStepIds: new Set(),
+      completedCatchupIds: new Set(),
+      catchupBank: [],
+    });
+
+    assert.equal(path.metrics.total_daily_steps, 0);
+    assert.equal(path.metrics.progress_pct, 0);
+  });
 });
 
 function item(

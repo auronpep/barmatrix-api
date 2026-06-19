@@ -12,7 +12,7 @@ import type { Express, Request, Response } from "express";
 import { clerkMiddleware } from "@clerk/express";
 import { randomUUID } from "node:crypto";
 import { z } from "zod";
-import { getPool } from "../db.js";
+import { getPool, type DbPool } from "../db.js";
 import { resolveClerkStudent } from "../lib/me-student.js";
 import { getFlashcardDeck, shapeDeck } from "../lib/path-flashcards.data.js";
 
@@ -23,6 +23,25 @@ const completeBody = z.object({
 function isMissingTableError(err: unknown): boolean {
   const e = err as { code?: unknown; errno?: unknown } | null;
   return !!e && (e.code === "ER_NO_SUCH_TABLE" || e.errno === 1146);
+}
+
+export async function recordFlashcardReviews(
+  db: Pick<DbPool, "query">,
+  input: { studentId: string; deckId: string; cardIds: string[] },
+): Promise<void> {
+  if (input.cardIds.length === 0) return;
+  const values: unknown[] = [];
+  const rows = input.cardIds.map((cardId, index) => {
+    const start = index * 4;
+    values.push(randomUUID(), input.studentId, input.deckId, cardId);
+    return `($${start + 1}, $${start + 2}, $${start + 3}, $${start + 4})`;
+  });
+  await db.query(
+    `INSERT IGNORE INTO student_flashcard_reviews
+       (review_id, student_id, deck_id, card_id)
+     VALUES ${rows.join(", ")}`,
+    values,
+  );
 }
 
 export function registerFlashcardsRoutes(app: Express): void {
@@ -89,15 +108,13 @@ export function registerFlashcardsRoutes(app: Express): void {
       );
 
       const studentId = resolution.student.student_id;
+      const pool = getPool();
       try {
-        for (const cardId of reviewed) {
-          await getPool().query(
-            `INSERT IGNORE INTO student_flashcard_reviews
-               (review_id, student_id, deck_id, card_id)
-             VALUES ($1, $2, $3, $4)`,
-            [randomUUID(), studentId, deck.deck_id, cardId],
-          );
-        }
+        await recordFlashcardReviews(pool, {
+          studentId,
+          deckId: deck.deck_id,
+          cardIds: reviewed,
+        });
       } catch (err) {
         if (isMissingTableError(err)) {
           res.json({
@@ -118,7 +135,7 @@ export function registerFlashcardsRoutes(app: Express): void {
       // Re-read the distinct reviewed count so "complete" reflects all sessions.
       let total = reviewed.length;
       try {
-        const { rows } = await getPool().query<{ n: number | string }>(
+        const { rows } = await pool.query<{ n: number | string }>(
           `SELECT COUNT(DISTINCT card_id) AS n
              FROM student_flashcard_reviews
             WHERE student_id = $1 AND deck_id = $2`,

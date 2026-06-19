@@ -209,3 +209,29 @@ Deleted GitHub branches:
 - 2026-06-19: Production deploy completed via `scripts/deploy.sh`; build, `node --check`, atomic swap, Passenger restart, and health check passed.
 - 2026-06-19: Live smoke passed after deploy: `/health` returned DB up, unauthenticated answer-key/debrief-intel/checkout recovery returned 401, and `/api/red-zones?student_id=...` returned the locked empty state instead of caller-selected student data.
 - 2026-06-19: Captured the deployed tree on private branch `codex/api-live-hardening-2026-06-19` at commit `3a56080`; pushed follow-up closeout commits only to private `auronpep/barmatrix-api`. `main` was not moved.
+
+## 2026-06-19 Claude Backend Lower-Priority Repair
+
+### Plan
+
+- [x] Verify remaining lower-priority Claude findings against the current API code before changing behavior.
+- [x] Patch small local issues: stale schema readiness flags, avoidable N+1 queries, missing bounds, race-prone updates, UUID validation, and safe edge-case parsing.
+- [x] Add or update focused regression tests for changed behavior.
+- [x] Run focused/full tests, `npm run typecheck`, `npm run build`, and `git diff --check`; attempt `graphify update .`.
+- [x] Record completed fixes and any intentionally deferred broad items.
+
+### Notes
+
+- Scope is lower-priority/local hardening only. No deploy, push, migration redesign, or architecture-heavy rewrite unless explicitly requested.
+- `graphify update .` was attempted twice from `C:\BMO`; both attempts timed out, and the leftover `graphify` processes were stopped. Do not retry blindly without investigating why the graph update hangs.
+- Existing unrelated `src/scripts/remap-json-fks.ts` and `src/scripts/remap-json-fks.test.ts` changes are present in the worktree and were preserved, but they are outside this lower-priority Claude repair scope.
+
+### Review
+
+- Completed: memoized in-flight schema setup for day-plan, diagnostic lead, webinar lead, and trap-naming job DDL; failure resets the memoized promise for retry.
+- Completed: batched checkout diagnostic attempt counts, bounded dashboard red-zone rendering while preserving aggregate metrics, and changed Outline Atlas node detail to a direct point lookup.
+- Completed: C3 coach fork candidates now use the shared annotated-question gate; candidate pool is larger than the seen window and all-seen pools return unavailable instead of recycling a just-seen item.
+- Completed: gamification streak read now uses `FOR UPDATE` inside the existing transaction; flashcard review completion uses one multi-row insert.
+- Completed: attempt-feedback route rejects non-UUID attempt ids before ownership lookups; debrief section reads are capped; day-plan zero-step progress is 0 instead of `NaN`; C3 drill grading has an exhaustiveness guard; migration schema password fallback treats empty `DATABASE_PASSWORD` as missing.
+- Verification: `npm test` passed `626/626`; `npm run typecheck` passed; `npm run build` passed; `git diff --check` passed.
+- Deferred: broad trap-naming batching/timeout redesign, `ORDER BY RAND()` sampling rewrites, migration runner applied-tracking/transaction redesign, and C3 coach serial waterfall reduction. Those need a separate behavior/performance pass.

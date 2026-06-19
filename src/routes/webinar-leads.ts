@@ -76,12 +76,17 @@ CREATE TABLE IF NOT EXISTS webinar_leads (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
 `;
 
-let schemaReady = false;
+let schemaReady: Promise<void> | null = null;
 
 export async function ensureWebinarLeadTable(db: Pick<DbPool, "query">): Promise<void> {
-  if (schemaReady) return;
-  await db.query(createWebinarLeadsTableSql);
-  schemaReady = true;
+  schemaReady ??= db.query(createWebinarLeadsTableSql).then(
+    () => undefined,
+    (err) => {
+      schemaReady = null;
+      throw err;
+    },
+  );
+  await schemaReady;
 }
 
 export function webinarLeadMetadata(input: WebinarLeadInput): string {

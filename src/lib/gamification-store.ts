@@ -75,7 +75,8 @@ export async function grantBootCampActivity(
       `SELECT current_streak, longest_streak,
               DATE_FORMAT(last_active_date, '%Y-%m-%d') AS last_active_date
          FROM student_gamification
-        WHERE student_id = $1`,
+        WHERE student_id = $1
+        FOR UPDATE`,
       [input.studentId],
     );
     const prev = gRows.rows[0] ?? {

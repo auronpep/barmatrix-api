@@ -118,9 +118,12 @@ describe("outline atlas", () => {
   });
 
   it("reads a node detail with active attachments and children", async () => {
-    const node = await readOutlineAtlasNode(dbFor(), { code: "31010100" });
+    const calls: RecordedQuery[] = [];
+    const node = await readOutlineAtlasNode(dbFor(calls), { code: "31010100" });
 
     assert.equal(node?.node.code, "31010100");
+    assert.match(calls[0]?.sql ?? "", /WHERE code = \$1/);
+    assert.deepEqual(calls[0]?.values, ["31010100"]);
     assert.deepEqual(node?.node.attachments, [
       {
         attachment_type: "leadme_item",

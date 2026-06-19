@@ -40,7 +40,7 @@ export interface BuildPayloadInput {
 
 export function pickFromCandidates(candidates: string[], recentlySeen: Set<string>): string | null {
   if (candidates.length === 0) return null;
-  return candidates.find((q) => !recentlySeen.has(q)) ?? candidates[0]!;
+  return candidates.find((q) => !recentlySeen.has(q)) ?? null;
 }
 
 export function buildCoachPayload(input: BuildPayloadInput) {
@@ -62,7 +62,7 @@ export function buildCoachPayload(input: BuildPayloadInput) {
 }
 
 const RECENTLY_SEEN_LIMIT = 25;
-const CANDIDATE_POOL = 25;
+const CANDIDATE_POOL = RECENTLY_SEEN_LIMIT * 4;
 
 function isMissingError(err: unknown): boolean {
   const e = err as { code?: unknown; errno?: unknown } | null;

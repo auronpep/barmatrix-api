@@ -23,16 +23,24 @@ process.env.SUCCESS_URL = "https://barmatrix.app/account/?welcome=1";
 process.env.CANCEL_URL = "https://barmatrix.app/pricing/";
 
 const { pickFromCandidates, buildCoachPayload } = await import("./c3-coach.js");
+const { forkCandidatesQuery } = await import("../lib/c3-coach-queries.js");
+const { ANNOTATED } = await import("../lib/c3-queries.js");
 
 describe("pickFromCandidates", () => {
   it("returns the first candidate not in recently-seen", () => {
     assert.equal(pickFromCandidates(["q1", "q2", "q3"], new Set(["q1"])), "q2");
   });
-  it("falls back to the first candidate when all are recently seen", () => {
-    assert.equal(pickFromCandidates(["q1", "q2"], new Set(["q1", "q2"])), "q1");
+  it("returns null when all candidates are recently seen", () => {
+    assert.equal(pickFromCandidates(["q1", "q2"], new Set(["q1", "q2"])), null);
   });
   it("returns null when there are no candidates", () => {
     assert.equal(pickFromCandidates([], new Set()), null);
+  });
+});
+
+describe("forkCandidatesQuery", () => {
+  it("uses the shared annotated-question gate", () => {
+    assert.ok(forkCandidatesQuery().includes(ANNOTATED));
   });
 });
 

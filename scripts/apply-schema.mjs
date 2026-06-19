@@ -34,11 +34,12 @@ async function main() {
     "utf8mb4_unicode_ci",
   );
 
+  const databasePassword = process.env.DATABASE_PASSWORD || process.env.BARMATRIX_DB_KEY;
   const connection = await mysql.createConnection({
     host: process.env.DATABASE_HOST,
     port: Number(process.env.DATABASE_PORT ?? 3306),
     user: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD ?? process.env.BARMATRIX_DB_KEY,
+    password: databasePassword,
     database: process.env.DATABASE_NAME,
     multipleStatements: true,
     timezone: "Z",

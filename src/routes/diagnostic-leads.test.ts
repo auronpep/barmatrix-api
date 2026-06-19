@@ -124,6 +124,21 @@ describe("recordDiagnosticLead", () => {
     assert.match(result.message, /red-zone map is saved/);
   });
 
+  it("uses a non-null diagnostic id sentinel for email-only lead dedupe", async () => {
+    const { calls, db } = mockDb(2);
+    await recordDiagnosticLead(
+      diagnosticLeadBody.parse({
+        email: "student@example.com",
+      }),
+      db,
+    );
+
+    const insert = calls.find((call) => call.sql.includes("INSERT INTO diagnostic_leads"));
+    assert.equal(insert?.values[2], "");
+    const lookup = calls.find((call) => call.sql.includes("SELECT lead_id"));
+    assert.deepEqual(lookup?.values, ["student@example.com", ""]);
+  });
+
   it("ignores honeypot submissions without touching storage", async () => {
     const { calls, db } = mockDb(1);
     const result = await recordDiagnosticLead(

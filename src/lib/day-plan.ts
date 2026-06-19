@@ -731,6 +731,7 @@ export function buildLeadMePath(input: {
   const completedDaily = input.manifest.steps.filter((step) =>
     input.completedDailyStepIds.has(step.step_id),
   ).length;
+  const totalDailySteps = input.manifest.steps.length;
   const mainItems: LeadMePath["main_items"] = input.manifest.main_items.map((item) => {
     const itemSteps = input.manifest.steps.filter((step) => step.main_item_id === item.main_item_id);
     const completed = itemSteps.filter((step) => input.completedDailyStepIds.has(step.step_id)).length;
@@ -761,9 +762,9 @@ export function buildLeadMePath(input: {
     steps,
     current_step: steps.find((step) => !step.completed) ?? null,
     metrics: {
-      total_daily_steps: input.manifest.steps.length,
+      total_daily_steps: totalDailySteps,
       completed_daily_steps: completedDaily,
-      progress_pct: Math.round((completedDaily / input.manifest.steps.length) * 100),
+      progress_pct: totalDailySteps === 0 ? 0 : Math.round((completedDaily / totalDailySteps) * 100),
     },
     catchup: {
       pending_count: sortedCatchup.length,

@@ -12,10 +12,16 @@ const feedbackBody = z.object({
   skipped: z.boolean().optional(),
 });
 
+const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+export function isValidAttemptEventId(value: string): boolean {
+  return uuidPattern.test(value);
+}
+
 function attemptEventIdFromParams(req: Request): string | null {
   const raw = req.params.attemptEventId;
   const attemptEventId = Array.isArray(raw) ? raw[0] : raw;
-  return attemptEventId && attemptEventId.length <= 128 ? attemptEventId : null;
+  return attemptEventId && isValidAttemptEventId(attemptEventId) ? attemptEventId : null;
 }
 
 export function registerAttemptFeedbackRoutes(app: Express): void {

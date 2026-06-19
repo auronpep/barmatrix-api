@@ -148,9 +148,10 @@ async function readDebriefSections(
 ): Promise<StudentDebriefSection[]> {
   const { rows } = await db.query<DebriefSectionRow>(
     `SELECT section_id, section_key, section_type, title, order_index, compiled_json_text
-       FROM debrief_sections
+      FROM debrief_sections
       WHERE debrief_id = $1
-      ORDER BY COALESCE(order_index, 999999), section_key ASC`,
+      ORDER BY COALESCE(order_index, 999999), section_key ASC
+      LIMIT 20`,
     [debriefId],
   );
   return rows.map(sectionFromRow);

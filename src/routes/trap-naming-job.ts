@@ -101,16 +101,21 @@ async function loadTrapAndRule(
   };
 }
 
-let schemaReady = false;
+let schemaReady: Promise<void> | null = null;
 async function ensureSendColumn(db: Pick<DbPool, "query">): Promise<void> {
-  if (schemaReady) return;
-  // diagnostic_leads is created by the lead-capture route; add a send marker so
-  // the Day-1 email fires at most once per lead. ADD COLUMN IF NOT EXISTS is
-  // MariaDB-supported and idempotent.
-  await db.query(
+  schemaReady ??= db.query(
+    // diagnostic_leads is created by the lead-capture route; add a send marker so
+    // the Day-1 email fires at most once per lead. ADD COLUMN IF NOT EXISTS is
+    // MariaDB-supported and idempotent.
     "ALTER TABLE diagnostic_leads ADD COLUMN IF NOT EXISTS trap_email_sent_at DATETIME(6) NULL",
+  ).then(
+    () => undefined,
+    (err) => {
+      schemaReady = null;
+      throw err;
+    },
   );
-  schemaReady = true;
+  await schemaReady;
 }
 
 export interface TrapNamingJobItem {
@@ -165,9 +170,10 @@ export async function runTrapNamingJob(opts: {
   const cutoff = new Date(Date.now() - sinceHours * 60 * 60 * 1000);
   const { rows: leads } = await db.query<DiagnosticLeadJobRow>(
     `SELECT lead_id, email, diagnostic_id, full_name
-       FROM diagnostic_leads
-      WHERE trap_email_sent_at IS NULL
+      FROM diagnostic_leads
+     WHERE trap_email_sent_at IS NULL
         AND diagnostic_id IS NOT NULL
+        AND diagnostic_id <> ''
         AND created_at >= $1
       ORDER BY created_at ASC
       LIMIT $2`,

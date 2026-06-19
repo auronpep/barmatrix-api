@@ -31,10 +31,14 @@ describe("day plan storage", () => {
   it("creates progress and catchup-bank tables", async () => {
     const { calls, db } = mockDb();
 
-    await ensureDayPlanTables(db);
+    await Promise.all([ensureDayPlanTables(db), ensureDayPlanTables(db)]);
 
     assert.match(calls[0]?.sql ?? "", /CREATE TABLE IF NOT EXISTS student_day_plan_progress/);
     assert.match(calls[1]?.sql ?? "", /CREATE TABLE IF NOT EXISTS student_catchup_bank/);
+    assert.equal(
+      calls.filter((call) => call.sql.includes("CREATE TABLE IF NOT EXISTS student_day_plan_progress")).length,
+      1,
+    );
   });
 
   it("records a daily step completion with explicit content metadata", async () => {

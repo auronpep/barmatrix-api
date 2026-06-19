@@ -159,6 +159,39 @@ export async function readOutlineAtlas(
   return { nodes: rows.map(nodeFromRow) };
 }
 
+async function readOutlineNode(
+  db: Queryable,
+  input: { code: string; studentId?: string },
+): Promise<OutlineAtlasNode | null> {
+  if (input.studentId) {
+    const { rows } = await db.query<OutlineNodeRow>(
+      `SELECT n.code, n.ab, n.level, n.parent_code, n.label, n.path,
+              COALESCE(p.status, 'untouched') AS status,
+              p.mastery_score, p.confidence, COALESCE(p.attempts, 0) AS attempts,
+              COALESCE(p.correct, 0) AS correct, p.accuracy,
+              COALESCE(p.q_available, 0) AS q_available,
+              p.last_attempt_at, p.last_seen_at, p.dominant_trap, p.dominant_red_zone_id
+         FROM outline_nodes n
+         LEFT JOIN student_outline_perf p
+           ON p.outline_code = n.code
+          AND p.student_id = $2
+        WHERE n.code = $1
+        LIMIT 1`,
+      [input.code, input.studentId],
+    );
+    return rows[0] ? nodeFromRow(rows[0]) : null;
+  }
+
+  const { rows } = await db.query<OutlineNodeRow>(
+    `SELECT code, ab, level, parent_code, label, path
+       FROM outline_nodes
+      WHERE code = $1
+      LIMIT 1`,
+    [input.code],
+  );
+  return rows[0] ? nodeFromRow(rows[0]) : null;
+}
+
 async function readOutlineAttachments(
   db: Queryable,
   code: string,
@@ -218,11 +251,7 @@ export async function readOutlineAtlasNode(
   db: Queryable,
   input: { code: string; studentId?: string },
 ): Promise<OutlineAtlasNodeResponse | null> {
-  const atlas = await readOutlineAtlas(db, {
-    studentId: input.studentId,
-    limit: 1000,
-  });
-  const node = atlas.nodes.find((candidate) => candidate.code === input.code) ?? null;
+  const node = await readOutlineNode(db, input);
   if (!node) return null;
   const [attachments, children] = await Promise.all([
     readOutlineAttachments(db, input.code),
