@@ -130,6 +130,7 @@ describe("billing portal route wiring", () => {
     const source = readFileSync(new URL("./index.ts", import.meta.url), "utf8");
 
     assert.match(source, /recoverBillingCustomerFromCheckoutSession/);
+    assert.match(source, /isAllowedReturnUrl\(returnUrl/);
     assert.match(source, /resolveOwnedBillingPortalCustomer\(\s*\{/);
     assert.match(source, /checkoutSessions:\s*stripeClient\.checkout\.sessions/);
   });

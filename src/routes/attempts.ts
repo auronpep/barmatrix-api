@@ -411,7 +411,7 @@ export function registerAttemptsRoutes(app: Express): void {
           await client.query(
             `INSERT INTO drill_assignments
                (assignment_id, student_id, drill_slug, reason, red_zone_dimension, red_zone_tag, question_ids, status)
-             VALUES ($1, $2, $3, $4, $5, $6, JSON_ARRAY($7), 'in_progress')`,
+             VALUES ($1, $2, $3, $4, $5, $6, $7, 'in_progress')`,
             [
               randomUUID(),
               studentId,
@@ -419,7 +419,7 @@ export function registerAttemptsRoutes(app: Express): void {
               "wrong_answer_forensics",
               q?.subtopic ? "subtopic" : null,
               q?.subtopic ?? null,
-              body.question_id,
+              JSON.stringify([body.question_id]),
             ],
           );
         }

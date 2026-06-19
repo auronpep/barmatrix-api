@@ -31,11 +31,14 @@ import {
 import { z } from "zod";
 import Stripe from "stripe";
 import { registerQuestionsRoutes } from "./routes/questions.js";
+import { registerAnswerKeyRoutes } from "./routes/answer-key.js";
 import { registerAttemptsRoutes } from "./routes/attempts.js";
+import { registerAttemptFeedbackRoutes } from "./routes/attempt-feedback.js";
 import { registerRedZonesRoutes } from "./routes/red-zones.js";
 import { registerKnowledgeRoutes } from "./routes/knowledge.js";
 import {
   buildCheckoutSessionParams,
+  isAllowedReturnUrl,
   resolveCheckoutReturnUrls,
 } from "./checkout.js";
 import { armTwoPaySubscription } from "./lib/two-pay.js";
@@ -74,6 +77,10 @@ import { registerPlacementDiagnosticRoutes } from "./routes/placement-diagnostic
 import { registerWebinarLeadRoutes } from "./routes/webinar-leads.js";
 import { registerDiagnosticLeadRoutes } from "./routes/diagnostic-leads.js";
 import { registerTrapNamingJobRoutes } from "./routes/trap-naming-job.js";
+import { registerLeadMeRoutes } from "./routes/leadme.js";
+import { registerStudentDebriefRoutes } from "./routes/student-debriefs.js";
+import { registerDebriefIntelRoutes } from "./routes/debrief-intel.js";
+import { registerOutlineAtlasRoutes } from "./routes/outline-atlas.js";
 import {
   requireEnrollment,
   resolveOwnedBillingPortalCustomer,
@@ -454,11 +461,17 @@ app.get("/api/diagnostic/:id/results", async (req: Request, res: Response) => {
 // (returning fixed strings) were replaced after Handoff 10 wired the DB-backed
 // implementations against the Hearsay seed.
 registerQuestionsRoutes(app);
+registerAnswerKeyRoutes(app);
 registerAttemptsRoutes(app);
+registerAttemptFeedbackRoutes(app);
 registerRedZonesRoutes(app);
 registerKnowledgeRoutes(app);
 registerMeRoutes(app);
 registerMeDayPlanRoutes(app);
+registerLeadMeRoutes(app);
+registerStudentDebriefRoutes(app);
+registerDebriefIntelRoutes(app);
+registerOutlineAtlasRoutes(app);
 registerMeRedZonesRoutes(app);
 registerMeConfusionRoutes(app);
 registerCommandDeckRoutes(app);
@@ -615,6 +628,17 @@ app.post("/api/billing/create-portal-session", ...requireEnrollment(), async (re
   }
   const { checkout_session_id: checkoutSessionId, return_url: returnUrl } =
     parse.data;
+  if (
+    !isAllowedReturnUrl(returnUrl, {
+      frontendUrl: config.urls.frontend,
+      checkoutSuccess: config.urls.checkoutSuccess,
+      checkoutCancel: config.urls.checkoutCancel,
+      nodeEnv: config.nodeEnv,
+    })
+  ) {
+    res.status(400).json({ error: "return_url is not allowed" });
+    return;
+  }
 
   let ownership;
   try {
@@ -759,4 +783,42 @@ const server = app.listen(config.port, () => {
 // surfacing as a fatal uncaught exception in Sentry. See lib/listen.ts.
 server.on("error", (err: NodeJS.ErrnoException) => {
   handleListenError(err, config.port);
+});
+
+let shuttingDown = false;
+async function shutdown(signal: NodeJS.Signals): Promise<void> {
+  if (shuttingDown) return;
+  shuttingDown = true;
+  console.log(`[shutdown] ${signal} received; closing HTTP server and DB pool`);
+  const forceExit = setTimeout(() => {
+    console.error("[shutdown] timed out");
+    process.exit(1);
+  }, 10_000);
+  forceExit.unref();
+  server.close(async (err) => {
+    if (err) {
+      console.error("[shutdown] server close failed:", err);
+      Sentry.captureException(err, { tags: { area: "shutdown", step: "server_close" } });
+    }
+    try {
+      await getPool().end();
+      process.exit(err ? 1 : 0);
+    } catch (poolErr) {
+      console.error("[shutdown] pool close failed:", poolErr);
+      Sentry.captureException(poolErr, { tags: { area: "shutdown", step: "pool_end" } });
+      process.exit(1);
+    }
+  });
+}
+
+process.on("SIGTERM", () => void shutdown("SIGTERM"));
+process.on("SIGINT", () => void shutdown("SIGINT"));
+process.on("unhandledRejection", (reason) => {
+  console.error("[unhandledRejection]", reason);
+  Sentry.captureException(reason, { tags: { area: "process", kind: "unhandledRejection" } });
+});
+process.on("uncaughtException", (err) => {
+  console.error("[uncaughtException]", err);
+  Sentry.captureException(err, { tags: { area: "process", kind: "uncaughtException" } });
+  process.exit(1);
 });

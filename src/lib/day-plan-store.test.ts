@@ -17,7 +17,11 @@ function mockDb() {
     db: {
       query: async <T>(sql: string, values: readonly unknown[] = []): Promise<QueryResult<T>> => {
         calls.push({ sql, values });
-        return { rows: [], rowCount: sql.includes("INSERT IGNORE") ? 1 : 0 };
+        return {
+          rows: [],
+          rowCount: sql.includes("INSERT IGNORE") ||
+            sql.includes("UPDATE student_catchup_bank") ? 1 : 0,
+        };
       },
     },
   };
@@ -69,5 +73,27 @@ describe("day plan storage", () => {
     assert.equal(insert.values[2], "2026-06-08");
     assert.equal(insert.values[3], "catchup-1");
     assert.equal(insert.values[4], "catchup");
+  });
+
+  it("does not grant catchup progress when no pending catchup row was updated", async () => {
+    const calls: Call[] = [];
+    const db = {
+      query: async <T>(sql: string, values: readonly unknown[] = []): Promise<QueryResult<T>> => {
+        calls.push({ sql, values });
+        return { rows: [], rowCount: 0 };
+      },
+    };
+
+    const recorded = await recordCatchupStepCompletion(db, {
+      studentId: "student-1",
+      dayKey: "2026-06-08",
+      catchupId: "catchup-1",
+    });
+
+    assert.equal(recorded, false);
+    assert.equal(
+      calls.some((call) => call.sql.includes("INSERT IGNORE INTO student_day_plan_progress")),
+      false,
+    );
   });
 });

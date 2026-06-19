@@ -6,6 +6,9 @@ describe("checkout recovery route", () => {
   const source = readFileSync(new URL("./routes/me.ts", import.meta.url), "utf8");
 
   it("validates Stripe completion and payment state before fulfillment", () => {
+    assert.match(source, /clerkMiddleware\(\)/);
+    assert.match(source, /resolveClerkEmail\(userId\)/);
+    assert.match(source, /sessionEmail !== requesterEmail/);
     assert.match(source, /validateCheckoutSessionForRecovery\(session\)/);
     assert.match(source, /if \(!validation\.ok\)/);
     assert.match(source, /fulfillCheckoutSession\(\{/);

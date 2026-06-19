@@ -202,8 +202,9 @@ export function buildKnowledgeSearchQuery(filters: KnowledgeSearchFilters): Know
   }
   if (filters.q && textParam) {
     const textLikeParam = `CAST(${textParam} AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_unicode_ci`;
+    const escapedLikeParam = next(escapeLike(filters.q));
     where.push(
-      `(${textScore} > 0 OR ko.object_id = ${textLikeParam} OR ko.summary LIKE CONCAT('%', ${textLikeParam}, '%') OR ko.body LIKE CONCAT('%', ${textLikeParam}, '%'))`,
+      `(${textScore} > 0 OR ko.object_id = ${textLikeParam} OR ko.summary LIKE CONCAT('%', ${escapedLikeParam}, '%') ESCAPE '\\\\' OR ko.body LIKE CONCAT('%', ${escapedLikeParam}, '%') ESCAPE '\\\\')`,
     );
   }
   if (filters.subject) where.push(`ko.subject = ${next(filters.subject)}`);
@@ -266,6 +267,10 @@ export function buildKnowledgeSearchQuery(filters: KnowledgeSearchFilters): Know
     `,
     values,
   };
+}
+
+function escapeLike(value: string): string {
+  return value.replace(/[\\%_]/g, "\\$&");
 }
 
 export function shapeKnowledgeSearchResponse(

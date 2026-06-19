@@ -34,7 +34,7 @@ function optional(name: string, fallback: string): string {
   return process.env[name] ?? fallback;
 }
 
-const DEFAULT_ALLOWED_ORIGINS = "http://localhost:3000,http://127.0.0.1:3000";
+const DEV_ALLOWED_ORIGINS = "http://localhost:3000,http://127.0.0.1:3000";
 
 function originList(value: string | undefined): string[] {
   return (value ?? "")
@@ -44,8 +44,10 @@ function originList(value: string | undefined): string[] {
 }
 
 function allowedOrigins(): string[] {
+  const defaultOrigins =
+    process.env.NODE_ENV === "production" ? [] : originList(DEV_ALLOWED_ORIGINS);
   return [...new Set([
-    ...originList(DEFAULT_ALLOWED_ORIGINS),
+    ...defaultOrigins,
     ...originList(process.env.ALLOWED_ORIGINS),
   ])];
 }

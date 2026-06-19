@@ -157,7 +157,7 @@ export interface C3StudentResponse {
 export interface C3PartResult {
   part_id: string;
   correct: boolean;
-  correct_choice_id: string;
+  correct_choice_id?: string;
 }
 
 export interface C3Explanation {
@@ -239,18 +239,21 @@ export function gradeC3Attempt(
 
   const part_results =
     item.task_type === "MULTI_SELECT" && item.parts
-      ? item.parts.map((p) => ({
-          part_id: p.id,
-          correct: (response.selected_parts ?? {})[p.id] === p.correct_choice_id,
-          correct_choice_id: p.correct_choice_id,
-        }))
+      ? item.parts.map((p) => {
+          const partCorrect = (response.selected_parts ?? {})[p.id] === p.correct_choice_id;
+          return {
+            part_id: p.id,
+            correct: partCorrect,
+            ...(partCorrect ? { correct_choice_id: p.correct_choice_id } : {}),
+          };
+        })
       : undefined;
 
   return {
     correct,
-    correct_status: item.correct_status,
-    correct_choice_id: item.correct_choice_id,
-    choice_statuses: item.choice_statuses,
+    ...(correct ? { correct_status: item.correct_status } : {}),
+    ...(correct ? { correct_choice_id: item.correct_choice_id } : {}),
+    ...(correct ? { choice_statuses: item.choice_statuses } : {}),
     missed_filter: correct ? null : missedFilterFor(item, response),
     missed_skill: correct ? null : item.skill,
     explanation,

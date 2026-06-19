@@ -33,6 +33,7 @@ import {
   type PathState,
   type PathStep,
 } from "../lib/path-engine.js";
+import { readLeadMeCurrent } from "../lib/leadme-current-service.js";
 
 // Quiz steps ship with empty question_ids (founder hand-pick pending). Clamp each
 // quiz step's required count to the number of ids actually loaded so a short pick
@@ -321,11 +322,22 @@ export function registerPathRoutes(app: Express): void {
         currentDay,
       });
       const gamification = await readGamificationSafe(studentId);
+      let leadmeCurrent: Awaited<ReturnType<typeof readLeadMeCurrent>> | null = null;
+      try {
+        leadmeCurrent = await readLeadMeCurrent(getPool(), {
+          studentId,
+          currentDay,
+          now,
+        });
+      } catch (err) {
+        if (!isMissingTableError(err)) throw err;
+      }
 
       res.json({
         path_version: PATH_VERSION,
         day_count: PATH_DAY_COUNT,
         next_step: toPublicStep(next),
+        leadme_current: leadmeCurrent?.current_task ?? null,
         ...summary,
         gamification,
       });

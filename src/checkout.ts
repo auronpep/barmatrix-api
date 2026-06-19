@@ -141,7 +141,7 @@ function safeReturnUrl(
   return isAllowedReturnUrl(candidate, defaults) ? candidate : fallback;
 }
 
-function isAllowedReturnUrl(
+export function isAllowedReturnUrl(
   value: string,
   defaults: CheckoutReturnUrlDefaults,
 ): boolean {

@@ -130,6 +130,8 @@ test("TRUE_VS_TRUE: correct by choice id", () => {
 test("TRUE_VS_TRUE: wrong pick derives missed filter from the picked choice", () => {
   const r = gradeC3Attempt(trueVsTrue, { selected_choice_id: "A" });
   assert.equal(r.correct, false);
+  assert.equal(r.correct_choice_id, undefined);
+  assert.equal(r.choice_statuses, undefined);
   // Picked the true-but-not-responsive choice → NOT_RESPONSIVE gap.
   assert.equal(r.missed_filter, "NOT_RESPONSIVE");
 });

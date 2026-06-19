@@ -55,15 +55,24 @@ describe("knowledge retrieval helpers", () => {
 
     assert.match(query.sql, /MATCH\(ko\.summary, ko\.body\) AGAINST/);
     assert.match(query.sql, /CAST\(\$\d+ AS CHAR CHARACTER SET utf8mb4\) COLLATE utf8mb4_unicode_ci/);
+    assert.match(query.sql, /ESCAPE '\\\\'/);
     assert.match(query.sql, /JSON_CONTAINS\(ko\.component_targets, JSON_QUOTE\(\$\d+\)\)/);
     assert.match(query.sql, /ko\.promotion_status NOT IN \('rejected', 'archived'\)/);
     assert.deepEqual(query.values, [
+      "decoder",
       "decoder",
       "04-drill-library",
       "channel2",
       "needs_review",
       12,
     ]);
+  });
+
+  it("escapes LIKE metacharacters in the fallback text search", () => {
+    const query = buildKnowledgeSearchQuery(normalizeKnowledgeSearch({ q: "%_decoder" }));
+
+    assert.deepEqual(query.values.slice(0, 2), ["%_decoder", "\\%\\_decoder"]);
+    assert.match(query.sql, /LIKE CONCAT\('%', \$2, '%'\) ESCAPE '\\\\'/);
   });
 
   it("shapes rows with provenance, review gates, and component groupings", () => {

@@ -467,8 +467,7 @@ export function registerMeRoutes(app: Express): void {
   });
 
   // ---- Recovery endpoint: manually fulfill a checkout session if webhook failed ----
-  // Public endpoint — allows users to recover enrollment if webhook didn't fire.
-  app.post("/api/checkout/:sessionId/recover", async (req: Request, res: Response) => {
+  app.post("/api/checkout/:sessionId/recover", clerkMiddleware(), async (req: Request, res: Response) => {
     const sessionId = Array.isArray(req.params.sessionId)
       ? req.params.sessionId[0]
       : req.params.sessionId;
@@ -478,10 +477,47 @@ export function registerMeRoutes(app: Express): void {
     }
 
     try {
+      const { userId } = getAuth(req);
+      if (!userId) {
+        res.status(401).json({ error: "not authenticated" });
+        return;
+      }
+      let requesterEmail: string | null;
+      try {
+        requesterEmail = await resolveClerkEmail(userId);
+      } catch (err) {
+        console.error("[checkout recover] clerk lookup failed:", err);
+        res.status(502).json({ error: "auth provider lookup failed" });
+        return;
+      }
+      if (!requesterEmail) {
+        res.status(403).json({ error: "checkout session owner mismatch" });
+        return;
+      }
+
       const stripe = new Stripe(config.stripe.secretKey);
       const pool = getPool();
 
-      // Check if already fulfilled
+      // Fetch the session from Stripe
+      const session = await stripe.checkout.sessions.retrieve(sessionId);
+      if (!session) {
+        res.status(404).json({ error: "checkout session not found in Stripe" });
+        return;
+      }
+      const sessionEmail =
+        session.customer_details?.email?.toLowerCase().trim() ?? null;
+      if (!sessionEmail || sessionEmail !== requesterEmail) {
+        res.status(403).json({ error: "checkout session owner mismatch" });
+        return;
+      }
+
+      const validation = validateCheckoutSessionForRecovery(session);
+      if (!validation.ok) {
+        res.status(validation.httpStatus).json({ error: validation.error });
+        return;
+      }
+
+      // Check if already fulfilled after authenticating ownership of the Stripe session.
       const existing = await pool.query<{ purchase_id: string }>(
         "SELECT purchase_id FROM purchases WHERE stripe_checkout_session_id = $1 LIMIT 1",
         [sessionId],
@@ -492,19 +528,6 @@ export function registerMeRoutes(app: Express): void {
           purchaseId: existing.rows[0]?.purchase_id,
           message: "Checkout session was already processed",
         });
-        return;
-      }
-
-      // Fetch the session from Stripe
-      const session = await stripe.checkout.sessions.retrieve(sessionId);
-      if (!session) {
-        res.status(404).json({ error: "checkout session not found in Stripe" });
-        return;
-      }
-
-      const validation = validateCheckoutSessionForRecovery(session);
-      if (!validation.ok) {
-        res.status(validation.httpStatus).json({ error: validation.error });
         return;
       }
 

@@ -1,13 +1,13 @@
 // GET /api/red-zones — student's Red-Zone Map grouped by dimension.
 //
-// student_id is read from a query parameter (?student_id=<uuid>) until Clerk
-// is wired. Without a student_id we return an empty map with the locked CTA
-// copy so the frontend can render the "Take the diagnostic" empty state.
+// Student identity is derived from Clerk server-side. Unauthenticated or
+// unenrolled callers get the locked empty state, never another student's map.
 
 import type { Express, Request, Response } from "express";
+import { clerkMiddleware } from "@clerk/express";
 import { getPool } from "../db.js";
+import { resolveClerkStudent } from "../lib/me-student.js";
 
-const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const MAX_ZONES_PER_DIMENSION = 5;
 
 interface RedZoneRow {
@@ -19,19 +19,26 @@ interface RedZoneRow {
 }
 
 export function registerRedZonesRoutes(app: Express): void {
-  app.get("/api/red-zones", async (req: Request, res: Response) => {
-    const raw = req.query.student_id;
-    const studentId = typeof raw === "string" && UUID_RE.test(raw) ? raw : null;
-
-    if (!studentId) {
-      res.json({
-        by_dimension: {},
-        message: "Take the diagnostic to build your Red-Zone Map.",
-      });
-      return;
-    }
-
+  app.get("/api/red-zones", clerkMiddleware(), async (req: Request, res: Response) => {
     try {
+      const resolution = await resolveClerkStudent(req);
+      if (resolution.kind === "clerk_error") {
+        res.status(502).json({ error: "auth provider lookup failed" });
+        return;
+      }
+      if (
+        resolution.kind === "unauthenticated" ||
+        resolution.kind === "not_enrolled" ||
+        !resolution.student.enrolled
+      ) {
+        res.json({
+          by_dimension: {},
+          message: "Take the diagnostic to build your Red-Zone Map.",
+        });
+        return;
+      }
+      const studentId = resolution.student.student_id;
+
       const { rows } = await getPool().query<RedZoneRow>(
         `SELECT dimension, tag_value, proficiency_score,
                 attempts_count, high_confidence_wrong_count

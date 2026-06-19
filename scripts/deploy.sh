@@ -53,7 +53,7 @@ BASELINE="$APP_DIR/.deploy-reflog-baseline"
 reflog_top="$(ssh_run "cd $APP_DIR 2>/dev/null && git reflog --date=iso 2>/dev/null | head -1" || true)"
 if [ "$SKIP_AUTODEPLOY_CHECK" != "1" ]; then
   echo "==> [0/6] Preflight: checking prod git reflog vs deploy baseline"
-  baseline_top="$(ssh_run "cat $BASELINE 2>/dev/null" || true)"
+  baseline_top="$(ssh_run "set -e; cd $APP_DIR 2>/dev/null; APP=\$(pwd -P); cat \"\$APP/.deploy-reflog-baseline\" 2>/dev/null" || true)"
   if [ -z "$baseline_top" ]; then
     echo "  No baseline yet (first run of self-audit). Current prod reflog top:"
     echo "       ${reflog_top:-<empty>}"
@@ -102,7 +102,7 @@ ssh_run "set -e; cd $APP_DIR; APP=\$(pwd -P); \
   cd \"\$APP\"; cp -f \"\$APP/$STAGE/package.json\" package.json; rm -rf \"\$APP/$STAGE\""
 
 echo "==> [5/6] Restart Passenger (touch restart marker)"
-ssh_run "touch $APP_DIR/tmp/restart.txt"
+ssh_run "set -e; cd $APP_DIR; APP=\$(pwd -P); mkdir -p \"\$APP/tmp\"; touch \"\$APP/tmp/restart.txt\""
 
 echo "==> [6/6] Health check"
 ok=0
@@ -115,7 +115,7 @@ done
 
 if [ "$ok" != "1" ]; then
   echo "!! Health check FAILED -- rolling back to dist.bak-${STAMP}"
-  ssh_run "set -e; cd $APP_DIR; rm -rf dist; mv dist.bak-${STAMP} dist; touch tmp/restart.txt"
+  ssh_run "set -e; cd $APP_DIR; APP=\$(pwd -P); rm -rf \"\$APP/dist\"; mv \"\$APP/dist.bak-${STAMP}\" \"\$APP/dist\"; touch \"\$APP/tmp/restart.txt\""
   echo "!! Rolled back. Investigate before retrying."
   exit 1
 fi
@@ -123,7 +123,7 @@ fi
 # Refresh the auto-deploy self-audit baseline to the current reflog top, so the
 # next run can detect any hPanel re-clone that happens in between. Best-effort.
 if [ -n "${reflog_top:-}" ]; then
-  ssh_run "cat > $BASELINE" <<< "$reflog_top" || echo "   (warn: could not update $BASELINE)"
+  ssh_run "set -e; cd $APP_DIR; APP=\$(pwd -P); cat > \"\$APP/.deploy-reflog-baseline\"" <<< "$reflog_top" || echo "   (warn: could not update $BASELINE)"
 fi
 
 echo "==> Deploy OK. Rollback snapshot kept at $APP_DIR/dist.bak-${STAMP}"
