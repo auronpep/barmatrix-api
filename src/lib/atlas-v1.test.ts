@@ -205,7 +205,7 @@ describe("Atlas_v1 question intake", () => {
 });
 
 describe("Atlas_v1 student views", () => {
-  it("exposes only included outline counts and question fields to students", async () => {
+  it("exposes all outline nodes with only included counts and question fields to students", async () => {
     const coverage = await readAtlasV1StudentCoverage(dbFor());
     const questions = await readAtlasV1StudentQuestions(dbFor(), {
       outline_code: "31010103",
@@ -213,8 +213,10 @@ describe("Atlas_v1 student views", () => {
     });
 
     assert.deepEqual(coverage.nodes.map((node) => [node.code, node.question_count]), [
+      ["31010103", 0],
       ["31010104", 2],
     ]);
+    assert.deepEqual(coverage.summary, { total: 2, with_questions: 1 });
     assert.deepEqual(Object.keys(questions.items[0] ?? {}).sort(), [
       "call_text",
       "outline_code",

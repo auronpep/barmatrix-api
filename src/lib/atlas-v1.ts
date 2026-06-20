@@ -390,24 +390,25 @@ export async function readAtlasV1StudentCoverage(
   input: Omit<AtlasV1CoverageInput, "coverageState" | "questionStatus"> = {},
 ): Promise<AtlasV1StudentCoverageResponse> {
   const coverage = await readAtlasV1Coverage(db, input);
-  const nodes = coverage.nodes
-    .filter((node) => node.included_count > 0)
-    .map((node) => ({
-      code: node.code,
-      parent_code: node.parent_code,
-      subject: node.subject,
-      subject_display: node.subject_display,
-      subtopic: node.subtopic,
-      outline_text: node.outline_text,
-      display_label: node.display_label,
-      level: node.level,
-      leaf: node.leaf,
-      question_count: node.included_count,
-    }));
+  const nodes = coverage.nodes.map((node) => ({
+    code: node.code,
+    parent_code: node.parent_code,
+    subject: node.subject,
+    subject_display: node.subject_display,
+    subtopic: node.subtopic,
+    outline_text: node.outline_text,
+    display_label: node.display_label,
+    level: node.level,
+    leaf: node.leaf,
+    question_count: node.included_count,
+  }));
 
   return {
     nodes,
-    summary: { total: nodes.length, with_questions: nodes.length },
+    summary: {
+      total: nodes.length,
+      with_questions: nodes.filter((node) => node.question_count > 0).length,
+    },
   };
 }
 
