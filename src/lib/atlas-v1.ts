@@ -50,6 +50,9 @@ interface AtlasV1CoverageRow {
   leaf: number | string;
   included_count: number | string | null;
   review_count: number | string | null;
+  leadme_item_count: number | string | null;
+  debrief_element_count: number | string | null;
+  leadme_set_count: number | string | null;
   last_included_at: string | Date | null;
 }
 
@@ -65,6 +68,9 @@ export interface AtlasV1CoverageNode {
   leaf: boolean;
   included_count: number;
   review_count: number;
+  leadme_item_count: number;
+  debrief_element_count: number;
+  leadme_set_count: number;
   coverage_state: AtlasV1CoverageState;
   last_included_at: string | null;
 }
@@ -148,11 +154,14 @@ export interface AtlasV1StudentCoverageNode {
   level: number;
   leaf: boolean;
   question_count: number;
+  leadme_item_count: number;
+  debrief_element_count: number;
+  leadme_set_count: number;
 }
 
 export interface AtlasV1StudentCoverageResponse {
   nodes: AtlasV1StudentCoverageNode[];
-  summary: { total: number; with_questions: number };
+  summary: { total: number; with_questions: number; with_components: number };
 }
 
 export interface AtlasV1StudentQuestionListItem {
@@ -299,6 +308,9 @@ function mapCoverageRow(row: AtlasV1CoverageRow): AtlasV1CoverageNode {
     leaf: numberOrZero(row.leaf) === 1,
     included_count: includedCount,
     review_count: reviewCount,
+    leadme_item_count: numberOrZero(row.leadme_item_count),
+    debrief_element_count: numberOrZero(row.debrief_element_count),
+    leadme_set_count: numberOrZero(row.leadme_set_count),
     coverage_state: coverageState(includedCount, reviewCount),
     last_included_at: isoOrNull(row.last_included_at),
   };
@@ -334,14 +346,39 @@ export async function readAtlasV1Coverage(
 
   values.push(limit);
   const sql = `SELECT n.code, n.parent_code, n.subject, n.subject_display, n.subtopic,
-              n.outline_text, n.display_label, n.level, n.leaf,
-              SUM(CASE WHEN q.status = 'included' THEN 1 ELSE 0 END) AS included_count,
-              SUM(CASE WHEN q.status = 'review' THEN 1 ELSE 0 END) AS review_count,
-              MAX(CASE WHEN q.status = 'included' THEN q.included_at ELSE NULL END) AS last_included_at
-         FROM atlas_outline_nodes n
-         LEFT JOIN atlas_questions q
-           ON q.outline_code = n.code
-        WHERE ${where.join(" AND ")}
+               n.outline_text, n.display_label, n.level, n.leaf,
+               SUM(CASE WHEN q.status = 'included' THEN 1 ELSE 0 END) AS included_count,
+               SUM(CASE WHEN q.status = 'review' THEN 1 ELSE 0 END) AS review_count,
+               COALESCE(MAX(li.leadme_item_count), 0) AS leadme_item_count,
+               COALESCE(MAX(de.debrief_element_count), 0) AS debrief_element_count,
+               COALESCE(MAX(ls.leadme_set_count), 0) AS leadme_set_count,
+               MAX(CASE WHEN q.status = 'included' THEN q.included_at ELSE NULL END) AS last_included_at
+          FROM atlas_outline_nodes n
+          LEFT JOIN atlas_questions q
+            ON q.outline_code = n.code
+          LEFT JOIN (
+            SELECT primary_outline_code AS outline_code, COUNT(*) AS leadme_item_count
+              FROM leadme_items
+             WHERE primary_outline_code IS NOT NULL
+               AND status IN ('active', 'published')
+             GROUP BY primary_outline_code
+          ) li ON li.outline_code = n.code
+          LEFT JOIN (
+            SELECT primary_outline_code AS outline_code, COUNT(*) AS debrief_element_count
+              FROM debrief_elements
+             WHERE primary_outline_code IS NOT NULL
+               AND status IN ('active', 'core')
+               AND review_status IN ('approved', 'reviewed', 'legal_reviewed', 'active')
+             GROUP BY primary_outline_code
+          ) de ON de.outline_code = n.code
+          LEFT JOIN (
+            SELECT primary_outline_code AS outline_code, COUNT(*) AS leadme_set_count
+              FROM leadme_sets
+             WHERE primary_outline_code IS NOT NULL
+               AND status IN ('active', 'published')
+             GROUP BY primary_outline_code
+          ) ls ON ls.outline_code = n.code
+         WHERE ${where.join(" AND ")}
         GROUP BY n.code, n.parent_code, n.subject, n.subject_display, n.subtopic,
                  n.outline_text, n.display_label, n.level, n.leaf, n.sort_order
         ORDER BY
@@ -432,6 +469,9 @@ export async function readAtlasV1StudentCoverage(
     level: node.level,
     leaf: node.leaf,
     question_count: node.included_count,
+    leadme_item_count: node.leadme_item_count,
+    debrief_element_count: node.debrief_element_count,
+    leadme_set_count: node.leadme_set_count,
   }));
 
   return {
@@ -439,6 +479,9 @@ export async function readAtlasV1StudentCoverage(
     summary: {
       total: nodes.length,
       with_questions: nodes.filter((node) => node.question_count > 0).length,
+      with_components: nodes.filter(
+        (node) => node.leadme_item_count + node.debrief_element_count > 0,
+      ).length,
     },
   };
 }

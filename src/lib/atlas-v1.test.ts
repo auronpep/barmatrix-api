@@ -61,7 +61,7 @@ function dbFor(calls: RecordedQuery[] = []): Queryable {
           rowCount: 1,
         } as QueryResult<T>;
       }
-      if (sql.includes("FROM leadme_sets")) {
+      if (sql.includes("FROM leadme_sets s")) {
         return {
           rows: [
             {
@@ -74,7 +74,7 @@ function dbFor(calls: RecordedQuery[] = []): Queryable {
           rowCount: 1,
         } as QueryResult<T>;
       }
-      if (sql.includes("FROM leadme_items")) {
+      if (sql.includes("item_type AS component_type")) {
         return {
           rows: [
             { component_type: "lesson", component_count: "1" },
@@ -83,7 +83,7 @@ function dbFor(calls: RecordedQuery[] = []): Queryable {
           rowCount: 2,
         } as QueryResult<T>;
       }
-      if (sql.includes("FROM debrief_elements")) {
+      if (sql.includes("element_type AS component_type")) {
         return {
           rows: [
             { component_type: "trap", component_count: "1" },
@@ -107,6 +107,9 @@ function dbFor(calls: RecordedQuery[] = []): Queryable {
               leaf: "1",
               included_count: "0",
               review_count: "1",
+              leadme_item_count: "0",
+              debrief_element_count: "0",
+              leadme_set_count: "0",
               last_included_at: null,
             },
             {
@@ -121,6 +124,9 @@ function dbFor(calls: RecordedQuery[] = []): Queryable {
               leaf: "1",
               included_count: "2",
               review_count: "1",
+              leadme_item_count: "3",
+              debrief_element_count: "2",
+              leadme_set_count: "1",
               last_included_at: "2026-06-19T10:00:00Z",
             },
           ],
@@ -150,6 +156,8 @@ describe("Atlas_v1 coverage", () => {
     assert.equal(coverage.summary.missing, 0);
     assert.match(calls[0]?.sql ?? "", /FROM atlas_outline_nodes n/);
     assert.match(calls[0]?.sql ?? "", /LEFT JOIN atlas_questions q/);
+    assert.match(calls[0]?.sql ?? "", /FROM leadme_items/);
+    assert.match(calls[0]?.sql ?? "", /FROM debrief_elements/);
     assert.doesNotMatch(calls[0]?.sql ?? "", /FROM outline_nodes/);
     assert.doesNotMatch(calls[0]?.sql ?? "", /student_outline_perf/);
   });
@@ -244,11 +252,17 @@ describe("Atlas_v1 student views", () => {
       limit: 20,
     });
 
-    assert.deepEqual(coverage.nodes.map((node) => [node.code, node.question_count]), [
-      ["31010103", 0],
-      ["31010104", 2],
+    assert.deepEqual(coverage.nodes.map((node) => [
+      node.code,
+      node.question_count,
+      node.leadme_item_count,
+      node.debrief_element_count,
+      node.leadme_set_count,
+    ]), [
+      ["31010103", 0, 0, 0, 0],
+      ["31010104", 2, 3, 2, 1],
     ]);
-    assert.deepEqual(coverage.summary, { total: 2, with_questions: 1 });
+    assert.deepEqual(coverage.summary, { total: 2, with_questions: 1, with_components: 1 });
     assert.deepEqual(Object.keys(questions.items[0] ?? {}).sort(), [
       "call_text",
       "outline_code",
