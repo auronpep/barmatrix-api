@@ -69,6 +69,12 @@ function dbFor(calls: RecordedQuery[] = []): Queryable {
           rowCount: 1,
         } as QueryResult<T>;
       }
+      if (sql.includes("FROM tension_points")) {
+        return {
+          rows: [{ tension_point_id: "CP-TM-001" }],
+          rowCount: 1,
+        } as QueryResult<T>;
+      }
       if (sql.includes("COUNT(*) AS total") && sql.includes("FROM questions q")) {
         return {
           rows: [{ total: "5" }],
@@ -456,6 +462,11 @@ describe("Atlas_v1 detours", () => {
         label: "Same trap",
       },
       {
+        type: "tension",
+        key: "merits-vs-appealability",
+        label: "Same tension",
+      },
+      {
         type: "trap",
         key: "bad slug",
         label: "Invalid trap",
@@ -485,6 +496,12 @@ describe("Atlas_v1 detours", () => {
         visibility: "student",
       },
       {
+        type: "tension",
+        key: "merits-vs-appealability",
+        label: "Same tension",
+        visibility: "student",
+      },
+      {
         type: "trap",
         key: "bad slug",
         label: "Invalid trap",
@@ -499,6 +516,7 @@ describe("Atlas_v1 detours", () => {
     ]);
     assert.equal(counts.get("outline_code:31010103"), 2);
     assert.equal(counts.get("trap:judge-directs-finding"), 5);
+    assert.equal(counts.get("tension:merits-vs-appealability"), 5);
     assert.equal(counts.has("trap:bad slug"), false);
     assert.deepEqual(detours, [
       {
@@ -515,8 +533,17 @@ describe("Atlas_v1 detours", () => {
         target_count: 5,
         visibility: "student",
       },
+      {
+        type: "tension",
+        key: "merits-vs-appealability",
+        label: "Same tension",
+        target_count: 5,
+        visibility: "student",
+      },
     ]);
     assert.ok(calls.some((call) => /q\.outline_code IN \(\$1\)/.test(call.sql)));
     assert.ok(calls.some((call) => /JSON_CONTAINS/.test(call.sql)));
+    assert.ok(calls.some((call) => /FROM tension_points/.test(call.sql)));
+    assert.ok(calls.some((call) => /q\.tension_point IN \(\$1, \$2\)/.test(call.sql)));
   });
 });

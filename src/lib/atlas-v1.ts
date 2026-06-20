@@ -1,6 +1,12 @@
 import { randomUUID } from "node:crypto";
 import type { DbPool } from "../db.js";
 import { buildTrapQuestionsCountQuery, normalizeTrapSlug } from "./traps.js";
+import {
+  buildTensionCatalogRowQuery,
+  buildTensionQuestionsCountQuery,
+  isMissingTableError,
+  tensionLinkKeys,
+} from "./tensions.js";
 
 type Queryable = Pick<DbPool, "query">;
 
@@ -969,6 +975,33 @@ export async function readAtlasV1DetourTargetCounts(
     const query = buildTrapQuestionsCountQuery(key, false);
     const { rows } = await db.query<AtlasV1TrapTargetCountRow>(query.sql, query.values);
     counts.set(`trap:${key}`, numberOrZero(rows[0]?.total));
+  }
+
+  const tensionKeys = [
+    ...new Set(
+      specs
+        .filter((spec) => clean(spec.type) === "tension")
+        .map((spec) => clean(spec.key))
+        .filter(Boolean),
+    ),
+  ];
+  // ponytail: same author-curated ceiling as trap detours; batch catalog lookups if this stops being single digits.
+  for (const key of tensionKeys) {
+    const catalogQuery = buildTensionCatalogRowQuery(key);
+    let tensionPointId: string | null = null;
+    try {
+      const catalog = await db.query<{ tension_point_id: string | null }>(
+        catalogQuery.sql,
+        catalogQuery.values,
+      );
+      tensionPointId = catalog.rows[0]?.tension_point_id ?? null;
+    } catch (err) {
+      if (!isMissingTableError(err)) throw err;
+    }
+    const linkKeys = tensionLinkKeys(key, tensionPointId);
+    const countQuery = buildTensionQuestionsCountQuery(linkKeys, false);
+    const { rows } = await db.query<AtlasV1TrapTargetCountRow>(countQuery.sql, countQuery.values);
+    counts.set(`tension:${key}`, numberOrZero(rows[0]?.total));
   }
 
   return counts;
