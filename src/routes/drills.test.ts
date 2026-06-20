@@ -242,7 +242,9 @@ describe("redZoneTargetFor / reasonFor / drillNameFor", () => {
     assert.match(source, /FROM atlas_questions aq/);
     assert.match(source, /aq\.status = 'included'/);
     assert.match(source, /aq\.outline_code = \$1/);
-    assert.match(source, /JOIN questions q ON q\.question_id = aq\.question_id/);
+    assert.match(source, /LEFT JOIN questions q ON q\.question_id = aq\.question_id/);
+    assert.match(source, /SELECT DISTINCT aq\.question_id/);
+    assert.match(source, /q\.question_id IS NULL OR q\.status = 'active'/);
   });
 });
 

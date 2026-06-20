@@ -334,10 +334,11 @@ function masteredExclusion(
   studentId: string,
   enabled: boolean,
   paramIndex: number,
+  questionRef = "q.question_id",
 ): { clause: string; params: unknown[] } {
   if (!enabled) return { clause: "", params: [] };
   const clause = `
-        AND q.question_id NOT IN (
+        AND ${questionRef} NOT IN (
           SELECT a.question_id FROM student_attempts a
            WHERE a.student_id = $${paramIndex}
              AND a.correct = 1 AND a.confidence >= 4
@@ -416,15 +417,15 @@ async function selectQuestionIds(
   }
 
   if (input.kind === "outline_code") {
-    const excl = masteredExclusion(studentId, input.exclude_mastered, 3);
+    const excl = masteredExclusion(studentId, input.exclude_mastered, 3, "aq.question_id");
     const { rows } = await client.query<QuestionIdRow>(
       `SELECT question_id FROM (
-         SELECT DISTINCT q.question_id
+         SELECT DISTINCT aq.question_id
            FROM atlas_questions aq
-           JOIN questions q ON q.question_id = aq.question_id
+           LEFT JOIN questions q ON q.question_id = aq.question_id
           WHERE aq.status = 'included'
             AND aq.outline_code = $1
-            AND q.status = 'active'
+            AND (q.question_id IS NULL OR q.status = 'active')
             ${excl.clause}
        ) t
        ORDER BY RAND()
