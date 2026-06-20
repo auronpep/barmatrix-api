@@ -74,6 +74,38 @@ function dbFor(calls: RecordedQuery[] = []): Queryable {
           rowCount: 1,
         } as QueryResult<T>;
       }
+      if (sql.includes("SELECT item_id, external_id, item_type AS component_type")) {
+        return {
+          rows: [
+            {
+              item_id: "li_1",
+              external_id: "lesson_31010103",
+              component_type: "lesson",
+              estimated_seconds: "180",
+            },
+            {
+              item_id: "li_2",
+              external_id: "drill_31010103",
+              component_type: "micro_drill",
+              estimated_seconds: null,
+            },
+          ],
+          rowCount: 2,
+        } as QueryResult<T>;
+      }
+      if (sql.includes("SELECT element_id, element_type AS component_type")) {
+        return {
+          rows: [
+            {
+              element_id: "de_1",
+              component_type: "trap",
+              title: "Presumption burden trap",
+              source_count: "4",
+            },
+          ],
+          rowCount: 1,
+        } as QueryResult<T>;
+      }
       if (sql.includes("item_type AS component_type")) {
         return {
           rows: [
@@ -293,10 +325,33 @@ describe("Atlas_v1 student views", () => {
         { component_type: "trap", count: 1 },
         { component_type: "tension", count: 1 },
       ],
+      leadme_item_previews: [
+        {
+          item_id: "li_1",
+          external_id: "lesson_31010103",
+          component_type: "lesson",
+          estimated_seconds: 180,
+        },
+        {
+          item_id: "li_2",
+          external_id: "drill_31010103",
+          component_type: "micro_drill",
+          estimated_seconds: null,
+        },
+      ],
+      debrief_element_previews: [
+        {
+          element_id: "de_1",
+          component_type: "trap",
+          title: "Presumption burden trap",
+          source_count: 4,
+        },
+      ],
     });
-    assert.match(calls[1]?.sql ?? "", /s\.primary_outline_code = \$1/);
-    assert.match(calls[2]?.sql ?? "", /primary_outline_code = \$1/);
-    assert.match(calls[3]?.sql ?? "", /review_status IN/);
+    assert.ok(calls.some((call) => /s\.primary_outline_code = \$1/.test(call.sql)));
+    assert.ok(calls.some((call) => /SELECT item_id, external_id/.test(call.sql)));
+    assert.ok(calls.some((call) => /SELECT element_id, element_type AS component_type/.test(call.sql)));
+    assert.ok(calls.some((call) => /review_status IN/.test(call.sql)));
   });
 });
 

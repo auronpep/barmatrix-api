@@ -187,6 +187,20 @@ interface AtlasV1ComponentCountRow {
   component_count: number | string | null;
 }
 
+interface AtlasV1LeadMeItemPreviewRow {
+  item_id: string;
+  external_id: string;
+  component_type: string;
+  estimated_seconds: number | string | null;
+}
+
+interface AtlasV1DebriefElementPreviewRow {
+  element_id: string;
+  component_type: string;
+  title: string;
+  source_count: number | string | null;
+}
+
 export interface AtlasV1StudentComponentCount {
   component_type: string;
   count: number;
@@ -199,11 +213,27 @@ export interface AtlasV1StudentLeadMeSet {
   total_items: number;
 }
 
+export interface AtlasV1StudentLeadMeItemPreview {
+  item_id: string;
+  external_id: string;
+  component_type: string;
+  estimated_seconds: number | null;
+}
+
+export interface AtlasV1StudentDebriefElementPreview {
+  element_id: string;
+  component_type: string;
+  title: string;
+  source_count: number;
+}
+
 export interface AtlasV1StudentComponentsResponse {
   outline_code: string;
   leadme_set: AtlasV1StudentLeadMeSet | null;
   leadme_items: AtlasV1StudentComponentCount[];
   debrief_elements: AtlasV1StudentComponentCount[];
+  leadme_item_previews: AtlasV1StudentLeadMeItemPreview[];
+  debrief_element_previews: AtlasV1StudentDebriefElementPreview[];
 }
 
 export interface AtlasV1QuestionListInput {
@@ -520,7 +550,7 @@ export async function readAtlasV1StudentComponents(
   );
   if (!exists.rows[0]) return null;
 
-  const [sets, items, debrief] = await Promise.all([
+  const [sets, items, debrief, itemPreviews, debriefPreviews] = await Promise.all([
     db.query<AtlasV1LeadMeSetRow>(
       `SELECT s.set_id, s.title, s.set_type,
               COUNT(DISTINCT CASE WHEN i.item_id IS NOT NULL THEN e.item_id END) AS total_items
@@ -562,6 +592,34 @@ export async function readAtlasV1StudentComponents(
         ORDER BY element_type ASC`,
       [outlineCode],
     ),
+    db.query<AtlasV1LeadMeItemPreviewRow>(
+      `SELECT item_id, external_id, item_type AS component_type, estimated_seconds
+         FROM leadme_items
+        WHERE primary_outline_code = $1
+          AND status IN ('active', 'published')
+        ORDER BY CASE item_type
+                   WHEN 'lesson' THEN 0
+                   WHEN 'micro_read' THEN 1
+                   WHEN 'drill' THEN 2
+                   WHEN 'quiz' THEN 3
+                   WHEN 'flashcard' THEN 4
+                   ELSE 5
+                 END,
+                 updated_at DESC,
+                 item_id ASC
+        LIMIT 8`,
+      [outlineCode],
+    ),
+    db.query<AtlasV1DebriefElementPreviewRow>(
+      `SELECT element_id, element_type AS component_type, title, source_count
+         FROM debrief_elements
+        WHERE primary_outline_code = $1
+          AND status IN ('active', 'core')
+          AND review_status IN ('approved', 'reviewed', 'legal_reviewed', 'active')
+        ORDER BY source_count DESC, updated_at DESC, element_id ASC
+        LIMIT 8`,
+      [outlineCode],
+    ),
   ]);
 
   const leadmeSet = sets.rows[0];
@@ -582,6 +640,21 @@ export async function readAtlasV1StudentComponents(
     debrief_elements: debrief.rows.map((row) => ({
       component_type: row.component_type,
       count: numberOrZero(row.component_count),
+    })),
+    leadme_item_previews: itemPreviews.rows.map((row) => ({
+      item_id: row.item_id,
+      external_id: row.external_id,
+      component_type: row.component_type,
+      estimated_seconds:
+        row.estimated_seconds === null || row.estimated_seconds === undefined
+          ? null
+          : numberOrZero(row.estimated_seconds),
+    })),
+    debrief_element_previews: debriefPreviews.rows.map((row) => ({
+      element_id: row.element_id,
+      component_type: row.component_type,
+      title: row.title,
+      source_count: numberOrZero(row.source_count),
     })),
   };
 }
