@@ -1,5 +1,6 @@
 import { randomUUID } from "node:crypto";
 import type { DbPool } from "../db.js";
+import { buildTrapQuestionsCountQuery, normalizeTrapSlug } from "./traps.js";
 
 type Queryable = Pick<DbPool, "query">;
 
@@ -285,6 +286,7 @@ export interface AtlasV1Answer {
     minimum_explanation: string;
   };
   case_study_modules: Record<string, unknown>;
+  detours: AtlasV1Detour[];
 }
 
 export interface AtlasV1DetourSpec {
@@ -301,6 +303,15 @@ export interface AtlasV1Detour {
   label: string;
   target_count: number;
   visibility: AtlasV1DetourVisibility;
+}
+
+interface AtlasV1DetourTargetCountRow {
+  target_key: string;
+  target_count: number | string | null;
+}
+
+interface AtlasV1TrapTargetCountRow {
+  total: number | string | null;
 }
 
 function clean(value: unknown): string {
@@ -859,7 +870,10 @@ function isEmptyModule(value: unknown): boolean {
   return false;
 }
 
-export function shapeAtlasV1Answer(row: AtlasV1AnswerRow): AtlasV1Answer {
+export function shapeAtlasV1Answer(
+  row: AtlasV1AnswerRow,
+  detours: AtlasV1Detour[] = [],
+): AtlasV1Answer {
   let caseStudyModules: Record<string, unknown>;
   try {
     caseStudyModules = parseCaseStudyModules(row.case_study_json);
@@ -886,7 +900,78 @@ export function shapeAtlasV1Answer(row: AtlasV1AnswerRow): AtlasV1Answer {
       minimum_explanation: row.minimum_explanation,
     },
     case_study_modules: caseStudyModules,
+    detours,
   };
+}
+
+export function extractAtlasV1DetourSpecs(value: unknown): AtlasV1DetourSpec[] {
+  if (!Array.isArray(value)) return [];
+
+  const specs: AtlasV1DetourSpec[] = [];
+  for (const item of value) {
+    if (!item || typeof item !== "object" || Array.isArray(item)) continue;
+    const record = item as Record<string, unknown>;
+    const type = clean(record.type);
+    const key = clean(record.key);
+    const label = clean(record.label);
+    if (!type || !key || !label) continue;
+
+    specs.push({
+      type,
+      key,
+      label,
+      visibility: record.visibility === "admin_only" ? "admin_only" : "student",
+    });
+  }
+  return specs;
+}
+
+export async function readAtlasV1DetourTargetCounts(
+  db: Queryable,
+  specs: AtlasV1DetourSpec[],
+): Promise<Map<string, number>> {
+  const counts = new Map<string, number>();
+  const outlineCodes = [
+    ...new Set(
+      specs
+        .filter((spec) => clean(spec.type) === "outline_code" && /^[0-9]{8}$/.test(clean(spec.key)))
+        .map((spec) => clean(spec.key)),
+    ),
+  ];
+  if (outlineCodes.length > 0) {
+    const placeholders = outlineCodes.map((_, index) => `$${index + 1}`).join(", ");
+    const { rows } = await db.query<AtlasV1DetourTargetCountRow>(
+      `SELECT q.outline_code AS target_key, COUNT(*) AS target_count
+         FROM atlas_questions q
+        WHERE q.status = 'included'
+          AND q.outline_code IN (${placeholders})
+        GROUP BY q.outline_code`,
+      outlineCodes,
+    );
+    for (const row of rows) {
+      const code = clean(row.target_key);
+      if (code) counts.set(`outline_code:${code}`, numberOrZero(row.target_count));
+    }
+  }
+
+  const trapKeys = new Set<string>();
+  for (const spec of specs) {
+    if (clean(spec.type) !== "trap") continue;
+    try {
+      trapKeys.add(normalizeTrapSlug(spec.key));
+    } catch {
+      // Invalid trap keys simply cannot produce a student detour.
+    }
+  }
+
+  // ponytail: answer detours are author-curated single digits; batch if that changes.
+  for (const key of trapKeys) {
+    const query = buildTrapQuestionsCountQuery(key, false);
+    const { rows } = await db.query<AtlasV1TrapTargetCountRow>(query.sql, query.values);
+    counts.set(`trap:${key}`, numberOrZero(rows[0]?.total));
+  }
+
+  return counts;
 }
 
 export function shapeAtlasV1Detours(

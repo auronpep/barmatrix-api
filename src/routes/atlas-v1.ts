@@ -4,10 +4,13 @@ import { getPool } from "../db.js";
 import { requireEnrollment } from "../lib/clerk-entitlement.js";
 import {
   AtlasV1ValidationError,
+  extractAtlasV1DetourSpecs,
   readAtlasV1StudentCoverage,
   readAtlasV1StudentComponents,
   readAtlasV1StudentQuestions,
+  readAtlasV1DetourTargetCounts,
   shapeAtlasV1Answer,
+  shapeAtlasV1Detours,
   type AtlasV1AnswerRow,
 } from "../lib/atlas-v1.js";
 
@@ -120,7 +123,13 @@ export function registerAtlasV1Routes(app: Express): void {
         res.status(404).json({ error: "Atlas_v1 question not found" });
         return;
       }
-      res.json(shapeAtlasV1Answer(rows[0]));
+      const answer = shapeAtlasV1Answer(rows[0]);
+      const specs = extractAtlasV1DetourSpecs(answer.case_study_modules.detours);
+      const targetCounts = await readAtlasV1DetourTargetCounts(getPool(), specs);
+      res.json({
+        ...answer,
+        detours: shapeAtlasV1Detours(specs, targetCounts, "student"),
+      });
     } catch (err) {
       handleAtlasError(err, res, "answer");
     }

@@ -3,7 +3,9 @@ import { describe, it } from "node:test";
 import type { DbPool, QueryResult } from "../db.js";
 import {
   AtlasV1ValidationError,
+  extractAtlasV1DetourSpecs,
   readAtlasV1Coverage,
+  readAtlasV1DetourTargetCounts,
   readAtlasV1StudentCoverage,
   readAtlasV1StudentComponents,
   readAtlasV1StudentQuestions,
@@ -58,6 +60,18 @@ function dbFor(calls: RecordedQuery[] = []): Queryable {
               updated_at: "2026-06-19T10:00:00Z",
             },
           ],
+          rowCount: 1,
+        } as QueryResult<T>;
+      }
+      if (sql.includes("COUNT(*) AS target_count") && sql.includes("FROM atlas_questions q")) {
+        return {
+          rows: [{ target_key: "31010103", target_count: "2" }],
+          rowCount: 1,
+        } as QueryResult<T>;
+      }
+      if (sql.includes("COUNT(*) AS total") && sql.includes("FROM questions q")) {
+        return {
+          rows: [{ total: "5" }],
           rowCount: 1,
         } as QueryResult<T>;
       }
@@ -379,6 +393,7 @@ describe("Atlas_v1 answer case study", () => {
 
     assert.equal(answer.question.question_id, "CQ1");
     assert.deepEqual(Object.keys(answer.case_study_modules), ["facts"]);
+    assert.deepEqual(answer.detours, []);
   });
 });
 
@@ -425,5 +440,83 @@ describe("Atlas_v1 detours", () => {
         visibility: "student",
       },
     ]);
+  });
+
+  it("extracts specs and reads student-safe target counts from authoritative sources", async () => {
+    const calls: RecordedQuery[] = [];
+    const specs = extractAtlasV1DetourSpecs([
+      {
+        type: "outline_code",
+        key: "31010103",
+        label: "More Presumptions and Inferences",
+      },
+      {
+        type: "trap",
+        key: "judge-directs-finding",
+        label: "Same trap",
+      },
+      {
+        type: "trap",
+        key: "bad slug",
+        label: "Invalid trap",
+      },
+      {
+        type: "red_zone",
+        key: "missing-basic-fact",
+        label: "Missing basic fact",
+        visibility: "admin_only",
+      },
+      { type: "", key: "x", label: "Skipped" },
+    ]);
+    const counts = await readAtlasV1DetourTargetCounts(dbFor(calls), specs);
+    const detours = shapeAtlasV1Detours(specs, counts, "student");
+
+    assert.deepEqual(specs, [
+      {
+        type: "outline_code",
+        key: "31010103",
+        label: "More Presumptions and Inferences",
+        visibility: "student",
+      },
+      {
+        type: "trap",
+        key: "judge-directs-finding",
+        label: "Same trap",
+        visibility: "student",
+      },
+      {
+        type: "trap",
+        key: "bad slug",
+        label: "Invalid trap",
+        visibility: "student",
+      },
+      {
+        type: "red_zone",
+        key: "missing-basic-fact",
+        label: "Missing basic fact",
+        visibility: "admin_only",
+      },
+    ]);
+    assert.equal(counts.get("outline_code:31010103"), 2);
+    assert.equal(counts.get("trap:judge-directs-finding"), 5);
+    assert.equal(counts.has("trap:bad slug"), false);
+    assert.deepEqual(detours, [
+      {
+        type: "outline_code",
+        key: "31010103",
+        label: "More Presumptions and Inferences",
+        target_count: 2,
+        visibility: "student",
+      },
+      {
+        type: "trap",
+        key: "judge-directs-finding",
+        label: "Same trap",
+        target_count: 5,
+        visibility: "student",
+      },
+    ]);
+    assert.ok(calls.some((call) => /q\.outline_code IN \(\$1\)/.test(call.sql)));
+    assert.ok(calls.some((call) => /JSON_CONTAINS/.test(call.sql)));
   });
 });
