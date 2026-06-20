@@ -46,6 +46,7 @@ type TrackedColumn = (typeof TRACKED_COLUMNS)[number];
 export type DrillKind =
   | "tension"
   | "trap"
+  | "outline_code"
   | "prescribed_red_zone"
   | "review"
   | "retry";
@@ -55,6 +56,7 @@ export interface NormalizedStartInput {
   slug: string | null;
   red_zone_dimension: string | null;
   red_zone_tag: string | null;
+  outline_code: string | null;
   source_drill_id: string | null;
   subject: string | null;
   exclude_mastered: boolean;
@@ -119,12 +121,13 @@ export function normalizeStartInput(raw: unknown): NormalizedStartInput {
   if (
     kind !== "tension" &&
     kind !== "trap" &&
+    kind !== "outline_code" &&
     kind !== "prescribed_red_zone" &&
     kind !== "review" &&
     kind !== "retry"
   ) {
     throw new DrillInputError(
-      "kind must be one of: tension, trap, prescribed_red_zone, review, retry",
+      "kind must be one of: tension, trap, outline_code, prescribed_red_zone, review, retry",
     );
   }
 
@@ -142,6 +145,7 @@ export function normalizeStartInput(raw: unknown): NormalizedStartInput {
   let slug: string | null = null;
   let redZoneDimension: string | null = null;
   let redZoneTag: string | null = null;
+  let outlineCode: string | null = null;
   let sourceDrillId: string | null = null;
   let subject: string | null = null;
 
@@ -150,6 +154,11 @@ export function normalizeStartInput(raw: unknown): NormalizedStartInput {
       throw new DrillInputError(`slug is required for ${kind} drills`);
     }
     slug = b.slug.trim();
+  } else if (kind === "outline_code") {
+    if (typeof b.outline_code !== "string" || !/^[0-9]{8}$/.test(b.outline_code.trim())) {
+      throw new DrillInputError("outline_code must be 8 digits");
+    }
+    outlineCode = b.outline_code.trim();
   } else if (kind === "prescribed_red_zone") {
     if (typeof b.red_zone_dimension !== "string" || b.red_zone_dimension.trim() === "") {
       throw new DrillInputError(
@@ -185,6 +194,7 @@ export function normalizeStartInput(raw: unknown): NormalizedStartInput {
     slug,
     red_zone_dimension: redZoneDimension,
     red_zone_tag: redZoneTag,
+    outline_code: outlineCode,
     source_drill_id: sourceDrillId,
     subject,
     exclude_mastered: excludeMastered,
@@ -199,6 +209,9 @@ export function redZoneTargetFor(input: NormalizedStartInput): {
 } {
   if (input.kind === "review" || input.kind === "retry") {
     return { dimension: "", tag: "" };
+  }
+  if (input.kind === "outline_code") {
+    return { dimension: "outline_code", tag: input.outline_code ?? "" };
   }
   if (input.kind === "tension") {
     return { dimension: "tension_point", tag: input.slug ?? "" };
@@ -219,6 +232,7 @@ export function reasonFor(input: NormalizedStartInput): string {
 export function drillNameFor(input: NormalizedStartInput): string {
   if (input.kind === "review") return "Review missed questions";
   if (input.kind === "retry") return "Retry — missed only";
+  if (input.kind === "outline_code") return `Outline ${input.outline_code} drill`;
   const { tag } = redZoneTargetFor(input);
   const label = humanizeTag(tag) || "Targeted";
   if (input.kind === "tension") return `${label} tension drill`;
@@ -399,6 +413,25 @@ async function selectQuestionIds(
       studentId,
       input.exclude_mastered,
     );
+  }
+
+  if (input.kind === "outline_code") {
+    const excl = masteredExclusion(studentId, input.exclude_mastered, 3);
+    const { rows } = await client.query<QuestionIdRow>(
+      `SELECT question_id FROM (
+         SELECT DISTINCT q.question_id
+           FROM atlas_questions aq
+           JOIN questions q ON q.question_id = aq.question_id
+          WHERE aq.status = 'included'
+            AND aq.outline_code = $1
+            AND q.status = 'active'
+            ${excl.clause}
+       ) t
+       ORDER BY RAND()
+       LIMIT $2`,
+      [input.outline_code, input.size, ...excl.params],
+    );
+    return rows.map((r) => r.question_id);
   }
 
   if (input.kind === "review") {

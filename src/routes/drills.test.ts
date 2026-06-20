@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { describe, it } from "node:test";
 
 // drills.ts imports db.ts -> config.ts, which fails loud unless these are set.
@@ -164,6 +165,16 @@ describe("normalizeStartInput", () => {
     assert.equal(r.kind, "review");
     assert.equal(r.subject, null);
   });
+  it("accepts an outline-code drill target", () => {
+    const r = normalizeStartInput({ kind: "outline_code", outline_code: " 31010103 " });
+    assert.equal(r.kind, "outline_code");
+    assert.equal(r.outline_code, "31010103");
+    assert.equal(r.size, DEFAULT_DRILL_SIZE);
+    assert.throws(
+      () => normalizeStartInput({ kind: "outline_code", outline_code: "3101010" }),
+      DrillInputError,
+    );
+  });
   it("requires a valid uuid source_drill_id for retry drills", () => {
     assert.throws(() => normalizeStartInput({ kind: "retry" }), DrillInputError);
     assert.throws(
@@ -215,6 +226,23 @@ describe("redZoneTargetFor / reasonFor / drillNameFor", () => {
     assert.deepEqual(redZoneTargetFor(input), { dimension: "subtopic", tag: "Hearsay" });
     assert.equal(reasonFor(input), "prescribed_red_zone_drill");
     assert.equal(drillNameFor(input), "Hearsay repair drill");
+  });
+  it("maps an outline-code drill onto the outline code target", () => {
+    const input = normalizeStartInput({ kind: "outline_code", outline_code: "31010103" });
+    assert.deepEqual(redZoneTargetFor(input), {
+      dimension: "outline_code",
+      tag: "31010103",
+    });
+    assert.equal(reasonFor(input), "outline_code_drill");
+    assert.equal(drillNameFor(input), "Outline 31010103 drill");
+  });
+  it("starts outline-code drills from included Atlas questions only", () => {
+    const source = readFileSync(new URL("./drills.ts", import.meta.url), "utf8");
+    assert.match(source, /input\.kind === "outline_code"/);
+    assert.match(source, /FROM atlas_questions aq/);
+    assert.match(source, /aq\.status = 'included'/);
+    assert.match(source, /aq\.outline_code = \$1/);
+    assert.match(source, /JOIN questions q ON q\.question_id = aq\.question_id/);
   });
 });
 
