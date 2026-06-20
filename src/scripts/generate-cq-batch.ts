@@ -246,10 +246,47 @@ function repairOrphanChildren(source: string): string {
 function markdownSection(markdown: string, header: string): string | null {
   const normalized = markdown.replace(/\r\n/g, "\n");
   const re = new RegExp(`^#{1,4}\\s*(?:\\d+[.)]\\s*)?${header}[^\\n]*\\n([\\s\\S]*?)(?=^#{1,4}\\s|^---\\s*$)`, "im");
-  const body = normalized.match(re)?.[1];
+  const body = normalized.match(re)?.[1] ?? plainNumberedSection(normalized, header);
   if (!body) return null;
   const cleaned = body.replace(/\*\*/g, "").replace(/\n{3,}/g, "\n\n").trim();
   return cleaned.length > 0 ? cleaned : null;
+}
+
+function plainNumberedSection(markdown: string, header: string): string | null {
+  const re = new RegExp(`^\\s*\\d+[.)]\\s*${header}[^\\n]*\\n([\\s\\S]*?)(?=^\\s*\\d+[.)]\\s+\\S|^#{1,4}\\s|^---\\s*$)`, "im");
+  return markdown.match(re)?.[1] ?? null;
+}
+
+function markdownChoices(markdown: string): Partial<Record<Letter, string>> {
+  const normalized = markdown.replace(/\r\n/g, "\n");
+  const section =
+    markdownSection(normalized, "(?:3[.)]?\\s*)?Final answer choices") ??
+    markdownSection(normalized, "Final answer choices") ??
+    markdownSection(normalized, "Post-shuffle positions") ??
+    normalized;
+  const choices: Partial<Record<Letter, string>> = {};
+  const re = /^\s*(?:[-*]\s*)?\*{0,2}([A-D])\*{0,2}[.)]\s+\*{0,2}(.+?)\*{0,2}\s*$/gm;
+  for (const match of section.matchAll(re)) {
+    const letter = match[1] as Letter;
+    const text = (match[2] ?? "").trim();
+    if (text && !choices[letter]) choices[letter] = text;
+  }
+  return choices;
+}
+
+function cleanStem(value: string | null): string | null {
+  if (!value) return null;
+  let text = value.replace(/\r\n/g, "\n").trim();
+  for (;;) {
+    const next = text
+      .replace(/^\*{0,2}(?:Question ID|QID|Transformed from|Subject|Topic|Subtopic|Source row(?: used)?|BARMATRIX(?: transformed question ID| Q#| QID)?|Title|Final(?: Christian)? variation|Christian variation)[^:\n]*:\*{0,2}[^\n]*(?:\n|$)/i, "")
+      .replace(/^\*{0,2}(?:BARMATRIX Q#|Final(?: Christian)? variation|Christian variation)[^\n]*(?:\n|$)/i, "")
+      .replace(/^Source row used:[^\n]*(?:\n|$)/i, "")
+      .trimStart();
+    if (next === text) break;
+    text = next;
+  }
+  return text.trim().length > 0 ? text.trim() : null;
 }
 
 function slugify(value: string): string {
@@ -282,7 +319,11 @@ function outlineCodes(): Set<string> | null {
 function normalizeSubject(value: string | null): string | null {
   if (!value) return null;
   const raw = value.trim().toUpperCase().replace(/\s+/g, "_");
-  if (raw === "CRIMINAL" || raw === "CRIMINAL_LAW_PROCEDURE") return "CRIMINAL_LAW";
+  if (
+    raw === "CRIMINAL" ||
+    raw === "CRIMINAL_LAW_PROCEDURE" ||
+    raw === "CRIMINAL_LAW_AND_PROCEDURE"
+  ) return "CRIMINAL_LAW";
   return raw;
 }
 
@@ -304,7 +345,8 @@ function extractFences(markdown: string): Fences {
     const body = match[2] ?? "";
     const trimmed = body.trim();
     if (lang === "yaml" || (lang === "" && /^barmatrix_row:/m.test(trimmed))) {
-      if (!yamlBlock) yamlBlock = body;
+      const looksLikeQuestionYaml = /^(?:question_yaml(?:_v2)?:|barmatrix_row:|qid:|question_id:)/m.test(trimmed);
+      if (!yamlBlock || looksLikeQuestionYaml) yamlBlock = body;
       continue;
     }
     if (lang === "json" || (lang === "" && trimmed.startsWith("{"))) {
@@ -317,7 +359,24 @@ function extractFences(markdown: string): Fences {
       }
     }
   }
+  if (!yamlBlock) yamlBlock = extractUnfencedQuestionYaml(normalized);
   return { yaml: yamlBlock, jsons };
+}
+
+function extractUnfencedQuestionYaml(markdown: string): string | null {
+  const lines = markdown.split("\n");
+  const headerIndex = lines.findIndex((line) =>
+    /^#{2,4}\s*(?:\d+[.)]\s*)?(?:B1\b.*question yaml|question yaml|pass-2 question yaml)/i.test(line.trim()),
+  );
+  if (headerIndex < 0) return null;
+  const body: string[] = [];
+  for (let i = headerIndex + 1; i < lines.length; i += 1) {
+    const line = lines[i] ?? "";
+    if (/^#{2,4}\s*(?:\d+[.)]\s*)?(?:B2\b|2[.)]\s|student case study|c3_annotation|program_elements|program_intelligence)/i.test(line.trim())) break;
+    body.push(line);
+  }
+  const trimmed = body.join("\n").replace(/^```yaml\s*/i, "").replace(/```\s*$/i, "").trim();
+  return /^(?:question_yaml(?:_v2)?:|barmatrix_row:|qid:|question_id:)/m.test(trimmed) ? trimmed : null;
 }
 
 /** Identify the three Pass-2 JSON blocks by their distinguishing keys (block labels are
@@ -331,19 +390,33 @@ function classifyJsons(jsons: JsonRecord[]): {
   let programElements: JsonRecord | null = null;
   let programIntelligence: JsonRecord | null = null;
   for (const record of jsons) {
-    const inner =
-      rec(record.c3_annotation) ?? rec(record.program_elements) ?? rec(record.program_intelligence);
+    const wrappedC3 = rec(record.c3_annotation);
+    const wrappedElements = rec(record.program_elements);
+    const wrappedIntelligence = rec(record.program_intelligence);
+    if (!c3Annotation && wrappedC3) {
+      c3Annotation = wrappedC3;
+      continue;
+    }
+    if (!programElements && wrappedElements) {
+      programElements = wrappedElements;
+      continue;
+    }
+    if (!programIntelligence && wrappedIntelligence) {
+      programIntelligence = wrappedIntelligence;
+      continue;
+    }
+    const inner = wrappedC3 ?? wrappedElements ?? wrappedIntelligence;
     const target = inner ?? record;
-    if (!c3Annotation && rec(target.c3)) {
+    if (!c3Annotation && (rec(target.c3) || target.choices || target.credited_answer || target.case_study_verdict)) {
       c3Annotation = target;
       continue;
     }
-    if (!programIntelligence && (target.drill_seeds || target.wrong_answer_paths)) {
-      programIntelligence = target;
+    if (!programElements && (target.traps || target.remediation_card || target.red_zone_dimensions || target.tension)) {
+      programElements = target;
       continue;
     }
-    if (!programElements && (target.traps || target.remediation_card)) {
-      programElements = target;
+    if (!programIntelligence && (target.drill_seeds || target.wrong_answer_paths || target.trap_tags || target.component_routing || target.gold_keys || target.silver_keys)) {
+      programIntelligence = target;
     }
   }
   return { c3Annotation, programElements, programIntelligence };
@@ -413,9 +486,12 @@ function parseCqFile(markdown: string, sourceFile: string): CqQuestion {
 
   // some emitter generations wrap the whole document in question_yaml / question_yaml_v2
   doc = rec(doc.question_yaml) ?? rec(doc.question_yaml_v2) ?? doc;
-  const row = rec(doc.barmatrix_row) ?? rec(doc.question);
+  const row =
+    rec(doc.barmatrix_row) ??
+    rec(doc.question) ??
+    (str(doc.qid) || str(doc.question_id) ? doc : null);
   if (!row) throw new QuarantineError(sourceFile, ["B1 YAML missing barmatrix_row"]);
-  const c3 = rec(c3Annotation!.c3);
+  const c3 = rec(c3Annotation!.c3) ?? c3Annotation;
 
   // canonical qid is "<source-number>_<variant_slug>"; internal_id values like
   // "CR-100" are NOT unique across the bank and must never become external_id
@@ -435,7 +511,10 @@ function parseCqFile(markdown: string, sourceFile: string): CqQuestion {
     if (num) qid = slug ? `${num}_${slug}` : num;
   }
   const subject = normalizeSubject(str(row.subject) ?? deepString(doc, ["subject"]));
-  const call = str(row.call) ?? deepString(row, ["call", "call_of_question"]);
+  const call =
+    str(row.call) ??
+    deepString(row, ["call", "call_of_question", "transformed_call", "final_call"]) ??
+    markdownSection(markdown, "Call");
 
   // stem: B1 direct → nested (some generations wrap it in a sub-map) → Pass-1 markdown §1
   let stem =
@@ -447,14 +526,18 @@ function parseCqFile(markdown: string, sourceFile: string): CqQuestion {
       warnings.push("stem recovered from Pass-1 markdown (absent in B1 YAML)");
     }
   }
+  stem = cleanStem(stem);
 
   const choicesRec = rec(row.choices) ?? rec(row.answer_choices);
+  const rowChoiceRows = [...arr(row.answer_choices), ...arr(row.choices)];
+  const markdownChoiceText = markdownChoices(markdown);
   const choiceText = (letter: Letter): string | null => {
     const raw = choicesRec?.[letter];
-    return str(raw) ?? str(rec(raw)?.text) ?? str(rec(raw)?.choice_text);
+    const arrayChoice = rowChoiceRows.map((item) => rec(item)).find((item) => str(item?.letter) === letter);
+    return str(raw) ?? str(rec(raw)?.text) ?? str(rec(raw)?.choice_text) ?? str(arrayChoice?.text) ?? str(arrayChoice?.choice_text) ?? markdownChoiceText[letter] ?? null;
   };
   const officialKey =
-    (str(row.official_key) ?? str(c3?.credited_answer) ?? deepString(doc, ["official_key", "credited_answer"]))
+    (str(row.official_key) ?? str(row.key) ?? str(c3?.credited_answer) ?? deepString(doc, ["official_key", "credited_answer", "key"]))
       ?.charAt(0) ?? "";
 
   if (!qid) reasons.push("missing barmatrix_row.qid");
@@ -476,9 +559,9 @@ function parseCqFile(markdown: string, sourceFile: string): CqQuestion {
   const analyticsHooks = rec(doc.analytics_hooks);
 
   const b3Distractors = new Map<string, JsonRecord>();
-  for (const raw of arr(c3?.distractors)) {
+  for (const raw of [...arr(c3?.distractors), ...arr(c3?.choices), ...rowChoiceRows]) {
     const record = rec(raw);
-    const choice = str(record?.choice);
+    const choice = str(record?.choice) ?? str(record?.letter);
     if (record && choice) b3Distractors.set(choice, record);
   }
 
@@ -535,11 +618,13 @@ function parseCqFile(markdown: string, sourceFile: string): CqQuestion {
     const b3 = b3Distractors.get(letter) ?? null;
     const b4 = b4Traps.get(letter) ?? null;
     const b5 = b5Paths.get(letter) ?? null;
-    const mold = isCorrect ? null : (str(walk?.mold_code) ?? str(b3?.mold) ?? str(b4?.mold));
+    const mold = isCorrect ? null : (str(walk?.mold_code) ?? str(b3?.mold) ?? str(b3?.mold_code) ?? str(b4?.mold));
     const architecture = isCorrect
       ? null
-      : (str(walk?.bait_architecture_code) ?? str(b3?.architecture) ?? str(b4?.architecture));
-    const whyAttractive = isCorrect ? null : str(b4?.why_attractive);
+      : (str(walk?.bait_architecture_code) ?? str(b3?.architecture) ?? str(b3?.mold_family) ?? str(b4?.architecture));
+    const whyAttractive = isCorrect
+      ? null
+      : (str(b4?.why_attractive) ?? str(b3?.why_attractive) ?? str(b3?.attractive_reason) ?? str(b3?.trap_reason) ?? str(b3?.why_wrong_or_correct) ?? str(b3?.elimination_reason));
     // residual explanation field name drifted across emitter generations
     const residualWhy =
       str(residual?.explanation) ??
@@ -548,7 +633,9 @@ function parseCqFile(markdown: string, sourceFile: string): CqQuestion {
       str(residual?.why_it_survives) ??
       str(residual?.why) ??
       markdownSection(markdown, "(?:7[.)]?\\s*)?Full right-answer explanation");
-    const whyWrongOrCorrect = isCorrect ? residualWhy : (str(b3?.explanation) ?? null);
+    const whyWrongOrCorrect = isCorrect
+      ? (residualWhy ?? str(b3?.why_wrong_or_correct) ?? str(b3?.elimination_reason))
+      : (str(b3?.explanation) ?? str(b3?.why_wrong_or_correct) ?? str(b3?.elimination_reason) ?? null);
     const futureCue = isCorrect ? null : str(b5?.recovery_step);
 
     if (!isCorrect) {
@@ -566,7 +653,7 @@ function parseCqFile(markdown: string, sourceFile: string): CqQuestion {
       text: choiceText(letter) as string,
       is_correct: isCorrect,
       mold_code: mold,
-      filter_broken: isCorrect ? null : str(walk?.filter_broken),
+      filter_broken: isCorrect ? null : (str(walk?.filter_broken) ?? str(b3?.filter_broken) ?? str(b3?.filter)),
       architecture,
       student_label: str(walk?.student_label),
       c3_signal: str(walk?.c3_signal),
@@ -657,7 +744,7 @@ interface BatchResult {
 function loadBatch(sourceDir: string): BatchResult {
   if (!existsSync(sourceDir)) throw new Error(`source directory not found: ${sourceDir}`);
   const files = readdirSync(sourceDir)
-    .filter((name) => /^CQ\d+\.md$/i.test(name))
+    .filter((name) => /^CQ\d+(?:[_-].*)?\.md$/i.test(name))
     .sort();
   const passed: CqQuestion[] = [];
   const quarantined: ParseFailure[] = [];
@@ -1100,6 +1187,7 @@ function main(): void {
 
   if (command === "qa" || command === "all") {
     writeQaReport(batch, outDir);
+    writeFileSync(path.join(outDir, "cq-questions.json"), JSON.stringify(batch.passed, null, 2), "utf8");
     console.log(
       `qa: ${batch.passed.length} PASS / ${batch.quarantined.length} QUARANTINE → ${path.join(outDir, "qa-report.md")}`,
     );
