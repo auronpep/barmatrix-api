@@ -137,6 +137,35 @@ export interface AtlasV1QuestionListResponse {
   items: AtlasV1QuestionListItem[];
 }
 
+export interface AtlasV1StudentCoverageNode {
+  code: string;
+  parent_code: string | null;
+  subject: string;
+  subject_display: string;
+  subtopic: string;
+  outline_text: string;
+  display_label: string;
+  level: number;
+  leaf: boolean;
+  question_count: number;
+}
+
+export interface AtlasV1StudentCoverageResponse {
+  nodes: AtlasV1StudentCoverageNode[];
+  summary: { total: number; with_questions: number };
+}
+
+export interface AtlasV1StudentQuestionListItem {
+  question_id: string;
+  outline_code: string;
+  stem: string;
+  call_text: string;
+}
+
+export interface AtlasV1StudentQuestionListResponse {
+  items: AtlasV1StudentQuestionListItem[];
+}
+
 export interface AtlasV1QuestionListInput {
   outline_code?: string;
   status?: AtlasV1QuestionStatus;
@@ -352,6 +381,47 @@ export async function readAtlasV1Questions(
       source_ref: row.source_ref,
       included_at: isoOrNull(row.included_at),
       updated_at: isoOrNull(row.updated_at),
+    })),
+  };
+}
+
+export async function readAtlasV1StudentCoverage(
+  db: Queryable,
+  input: Omit<AtlasV1CoverageInput, "coverageState" | "questionStatus"> = {},
+): Promise<AtlasV1StudentCoverageResponse> {
+  const coverage = await readAtlasV1Coverage(db, input);
+  const nodes = coverage.nodes
+    .filter((node) => node.included_count > 0)
+    .map((node) => ({
+      code: node.code,
+      parent_code: node.parent_code,
+      subject: node.subject,
+      subject_display: node.subject_display,
+      subtopic: node.subtopic,
+      outline_text: node.outline_text,
+      display_label: node.display_label,
+      level: node.level,
+      leaf: node.leaf,
+      question_count: node.included_count,
+    }));
+
+  return {
+    nodes,
+    summary: { total: nodes.length, with_questions: nodes.length },
+  };
+}
+
+export async function readAtlasV1StudentQuestions(
+  db: Queryable,
+  input: Omit<AtlasV1QuestionListInput, "status"> = {},
+): Promise<AtlasV1StudentQuestionListResponse> {
+  const questions = await readAtlasV1Questions(db, { ...input, status: "included" });
+  return {
+    items: questions.items.map((question) => ({
+      question_id: question.question_id,
+      outline_code: question.outline_code,
+      stem: question.stem,
+      call_text: question.call_text,
     })),
   };
 }

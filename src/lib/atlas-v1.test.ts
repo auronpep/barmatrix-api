@@ -4,6 +4,8 @@ import type { DbPool, QueryResult } from "../db.js";
 import {
   AtlasV1ValidationError,
   readAtlasV1Coverage,
+  readAtlasV1StudentCoverage,
+  readAtlasV1StudentQuestions,
   readAtlasV1Questions,
   setAtlasV1QuestionStatus,
   shapeAtlasV1Answer,
@@ -199,6 +201,26 @@ describe("Atlas_v1 question intake", () => {
     });
     assert.match(calls[0]?.sql ?? "", /UPDATE atlas_questions/);
     assert.match(calls[0]?.sql ?? "", /included_at/);
+  });
+});
+
+describe("Atlas_v1 student views", () => {
+  it("exposes only included outline counts and question fields to students", async () => {
+    const coverage = await readAtlasV1StudentCoverage(dbFor());
+    const questions = await readAtlasV1StudentQuestions(dbFor(), {
+      outline_code: "31010103",
+      limit: 20,
+    });
+
+    assert.deepEqual(coverage.nodes.map((node) => [node.code, node.question_count]), [
+      ["31010104", 2],
+    ]);
+    assert.deepEqual(Object.keys(questions.items[0] ?? {}).sort(), [
+      "call_text",
+      "outline_code",
+      "question_id",
+      "stem",
+    ]);
   });
 });
 
