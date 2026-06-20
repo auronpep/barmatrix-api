@@ -5,6 +5,7 @@ import { requireEnrollment } from "../lib/clerk-entitlement.js";
 import {
   AtlasV1ValidationError,
   readAtlasV1StudentCoverage,
+  readAtlasV1StudentComponents,
   readAtlasV1StudentQuestions,
   shapeAtlasV1Answer,
   type AtlasV1AnswerRow,
@@ -25,6 +26,12 @@ function questionIdFromParams(req: Request): string | null {
   const raw = req.params.id;
   const id = Array.isArray(raw) ? raw[0] : raw;
   return typeof id === "string" && id.trim().length > 0 && id.length <= 128 ? id : null;
+}
+
+function codeFromParams(req: Request): string | null {
+  const raw = req.params.code;
+  const code = Array.isArray(raw) ? raw[0] : raw;
+  return typeof code === "string" && /^[0-9]{8}$/.test(code) ? code : null;
 }
 
 function handleAtlasError(err: unknown, res: Response, label: string): void {
@@ -53,6 +60,25 @@ export function registerAtlasV1Routes(app: Express): void {
       res.json(await readAtlasV1StudentCoverage(getPool(), parsed.data));
     } catch (err) {
       handleAtlasError(err, res, "coverage");
+    }
+  });
+
+  app.get("/api/atlas-v1/codes/:code/components", ...requireEnrollment(), async (req: Request, res: Response) => {
+    const code = codeFromParams(req);
+    if (!code) {
+      res.status(400).json({ error: "invalid outline code" });
+      return;
+    }
+
+    try {
+      const components = await readAtlasV1StudentComponents(getPool(), { outline_code: code });
+      if (!components) {
+        res.status(404).json({ error: "Atlas_v1 outline code not found" });
+        return;
+      }
+      res.json(components);
+    } catch (err) {
+      handleAtlasError(err, res, "components");
     }
   });
 

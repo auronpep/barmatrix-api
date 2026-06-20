@@ -45,6 +45,8 @@ describe("sensitive route gates", () => {
     assert.match(text, /requireEnrollment\(\)/);
     assert.match(text, /api\/atlas-v1/);
     assert.match(text, /q\.status = 'included'/);
+    assert.match(text, /codes\/:code\/components/);
+    assert.match(text, /readAtlasV1StudentComponents/);
     assert.doesNotMatch(text, /x-admin-secret/);
   });
 });

@@ -5,6 +5,7 @@ import {
   AtlasV1ValidationError,
   readAtlasV1Coverage,
   readAtlasV1StudentCoverage,
+  readAtlasV1StudentComponents,
   readAtlasV1StudentQuestions,
   readAtlasV1Questions,
   setAtlasV1QuestionStatus,
@@ -58,6 +59,37 @@ function dbFor(calls: RecordedQuery[] = []): Queryable {
             },
           ],
           rowCount: 1,
+        } as QueryResult<T>;
+      }
+      if (sql.includes("FROM leadme_sets")) {
+        return {
+          rows: [
+            {
+              set_id: "set_31010103",
+              title: "Presumptions LeadMe",
+              set_type: "guided_repair",
+              total_items: "3",
+            },
+          ],
+          rowCount: 1,
+        } as QueryResult<T>;
+      }
+      if (sql.includes("FROM leadme_items")) {
+        return {
+          rows: [
+            { component_type: "lesson", component_count: "1" },
+            { component_type: "micro_drill", component_count: "2" },
+          ],
+          rowCount: 2,
+        } as QueryResult<T>;
+      }
+      if (sql.includes("FROM debrief_elements")) {
+        return {
+          rows: [
+            { component_type: "trap", component_count: "1" },
+            { component_type: "tension", component_count: "1" },
+          ],
+          rowCount: 2,
         } as QueryResult<T>;
       }
       if (sql.includes("FROM atlas_outline_nodes")) {
@@ -223,6 +255,34 @@ describe("Atlas_v1 student views", () => {
       "question_id",
       "stem",
     ]);
+  });
+
+  it("exposes approved component availability for one outline code", async () => {
+    const calls: RecordedQuery[] = [];
+    const components = await readAtlasV1StudentComponents(dbFor(calls), {
+      outline_code: "31010103",
+    });
+
+    assert.deepEqual(components, {
+      outline_code: "31010103",
+      leadme_set: {
+        set_id: "set_31010103",
+        title: "Presumptions LeadMe",
+        set_type: "guided_repair",
+        total_items: 3,
+      },
+      leadme_items: [
+        { component_type: "lesson", count: 1 },
+        { component_type: "micro_drill", count: 2 },
+      ],
+      debrief_elements: [
+        { component_type: "trap", count: 1 },
+        { component_type: "tension", count: 1 },
+      ],
+    });
+    assert.match(calls[1]?.sql ?? "", /s\.primary_outline_code = \$1/);
+    assert.match(calls[2]?.sql ?? "", /primary_outline_code = \$1/);
+    assert.match(calls[3]?.sql ?? "", /review_status IN/);
   });
 });
 

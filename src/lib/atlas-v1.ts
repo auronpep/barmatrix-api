@@ -166,6 +166,37 @@ export interface AtlasV1StudentQuestionListResponse {
   items: AtlasV1StudentQuestionListItem[];
 }
 
+interface AtlasV1LeadMeSetRow {
+  set_id: string;
+  title: string;
+  set_type: string;
+  total_items: number | string | null;
+}
+
+interface AtlasV1ComponentCountRow {
+  component_type: string;
+  component_count: number | string | null;
+}
+
+export interface AtlasV1StudentComponentCount {
+  component_type: string;
+  count: number;
+}
+
+export interface AtlasV1StudentLeadMeSet {
+  set_id: string;
+  title: string;
+  set_type: string;
+  total_items: number;
+}
+
+export interface AtlasV1StudentComponentsResponse {
+  outline_code: string;
+  leadme_set: AtlasV1StudentLeadMeSet | null;
+  leadme_items: AtlasV1StudentComponentCount[];
+  debrief_elements: AtlasV1StudentComponentCount[];
+}
+
 export interface AtlasV1QuestionListInput {
   outline_code?: string;
   status?: AtlasV1QuestionStatus;
@@ -423,6 +454,91 @@ export async function readAtlasV1StudentQuestions(
       outline_code: question.outline_code,
       stem: question.stem,
       call_text: question.call_text,
+    })),
+  };
+}
+
+export async function readAtlasV1StudentComponents(
+  db: Queryable,
+  input: { outline_code: string },
+): Promise<AtlasV1StudentComponentsResponse | null> {
+  const outlineCode = clean(input.outline_code);
+  if (!/^[0-9]{8}$/.test(outlineCode)) {
+    throw new AtlasV1ValidationError(["outline_code must be 8 digits"]);
+  }
+
+  const exists = await db.query<{ code: string }>(
+    `SELECT code
+       FROM atlas_outline_nodes
+      WHERE code = $1
+        AND status = 'active'
+      LIMIT 1`,
+    [outlineCode],
+  );
+  if (!exists.rows[0]) return null;
+
+  const [sets, items, debrief] = await Promise.all([
+    db.query<AtlasV1LeadMeSetRow>(
+      `SELECT s.set_id, s.title, s.set_type,
+              COUNT(DISTINCT CASE WHEN i.item_id IS NOT NULL THEN e.item_id END) AS total_items
+         FROM leadme_sets s
+         LEFT JOIN leadme_set_entries e ON e.set_id = s.set_id
+         LEFT JOIN leadme_items i
+           ON i.item_id = e.item_id
+          AND i.status IN ('active', 'published')
+        WHERE s.primary_outline_code = $1
+          AND s.status IN ('active', 'published')
+        GROUP BY s.set_id, s.title, s.set_type, s.updated_at
+        ORDER BY CASE s.set_type
+                   WHEN 'guided_repair' THEN 0
+                   WHEN 'repair' THEN 1
+                   WHEN 'practice' THEN 2
+                   ELSE 3
+                 END,
+                 s.updated_at DESC,
+                 s.set_id ASC
+        LIMIT 1`,
+      [outlineCode],
+    ),
+    db.query<AtlasV1ComponentCountRow>(
+      `SELECT item_type AS component_type, COUNT(*) AS component_count
+         FROM leadme_items
+        WHERE primary_outline_code = $1
+          AND status IN ('active', 'published')
+        GROUP BY item_type
+        ORDER BY item_type ASC`,
+      [outlineCode],
+    ),
+    db.query<AtlasV1ComponentCountRow>(
+      `SELECT element_type AS component_type, COUNT(*) AS component_count
+         FROM debrief_elements
+        WHERE primary_outline_code = $1
+          AND status IN ('active', 'core')
+          AND review_status IN ('approved', 'reviewed', 'legal_reviewed', 'active')
+        GROUP BY element_type
+        ORDER BY element_type ASC`,
+      [outlineCode],
+    ),
+  ]);
+
+  const leadmeSet = sets.rows[0];
+  return {
+    outline_code: outlineCode,
+    leadme_set: leadmeSet
+      ? {
+          set_id: leadmeSet.set_id,
+          title: leadmeSet.title,
+          set_type: leadmeSet.set_type,
+          total_items: numberOrZero(leadmeSet.total_items),
+        }
+      : null,
+    leadme_items: items.rows.map((row) => ({
+      component_type: row.component_type,
+      count: numberOrZero(row.component_count),
+    })),
+    debrief_elements: debrief.rows.map((row) => ({
+      component_type: row.component_type,
+      count: numberOrZero(row.component_count),
     })),
   };
 }
