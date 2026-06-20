@@ -69,6 +69,51 @@ function dbFor(calls: RecordedQuery[] = []): Queryable {
           rowCount: 1,
         } as QueryResult<T>;
       }
+      if (sql.includes("SELECT case_study_json") && sql.includes("FROM atlas_questions")) {
+        return {
+          rows: [
+            {
+              case_study_json: JSON.stringify({
+                detours: [
+                  {
+                    type: "trap",
+                    key: "presumption-burden-trap",
+                    label: "Presumption burden trap",
+                  },
+                  {
+                    type: "tension",
+                    key: "judge-vs-jury",
+                    label: "Judge vs. jury",
+                  },
+                  {
+                    type: "outline_code",
+                    key: "31010104",
+                    label: "Materiality and probative value",
+                  },
+                ],
+              }),
+            },
+            {
+              case_study_json: JSON.stringify({
+                detours: [
+                  {
+                    type: "trap",
+                    key: "presumption-burden-trap",
+                    label: "Duplicate should collapse",
+                  },
+                  {
+                    type: "tension",
+                    key: "hidden-admin-path",
+                    label: "Hidden admin path",
+                    visibility: "admin_only",
+                  },
+                ],
+              }),
+            },
+          ],
+          rowCount: 2,
+        } as QueryResult<T>;
+      }
       if (sql.includes("FROM tension_points")) {
         return {
           rows: [{ tension_point_id: "CP-TM-001" }],
@@ -367,10 +412,27 @@ describe("Atlas_v1 student views", () => {
           source_count: 4,
         },
       ],
+      detour_previews: [
+        {
+          type: "trap",
+          key: "presumption-burden-trap",
+          label: "Presumption burden trap",
+          target_count: 5,
+          visibility: "student",
+        },
+        {
+          type: "tension",
+          key: "judge-vs-jury",
+          label: "Judge vs. jury",
+          target_count: 5,
+          visibility: "student",
+        },
+      ],
     });
     assert.ok(calls.some((call) => /s\.primary_outline_code = \$1/.test(call.sql)));
     assert.ok(calls.some((call) => /SELECT item_id, external_id/.test(call.sql)));
     assert.ok(calls.some((call) => /SELECT element_id, element_type AS component_type/.test(call.sql)));
+    assert.ok(calls.some((call) => /SELECT case_study_json/.test(call.sql)));
     assert.ok(calls.some((call) => /review_status IN/.test(call.sql)));
   });
 });

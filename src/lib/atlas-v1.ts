@@ -241,6 +241,7 @@ export interface AtlasV1StudentComponentsResponse {
   debrief_elements: AtlasV1StudentComponentCount[];
   leadme_item_previews: AtlasV1StudentLeadMeItemPreview[];
   debrief_element_previews: AtlasV1StudentDebriefElementPreview[];
+  detour_previews: AtlasV1Detour[];
 }
 
 export interface AtlasV1QuestionListInput {
@@ -318,6 +319,10 @@ interface AtlasV1DetourTargetCountRow {
 
 interface AtlasV1TrapTargetCountRow {
   total: number | string | null;
+}
+
+interface AtlasV1CodeDetourRow {
+  case_study_json?: unknown;
 }
 
 function clean(value: unknown): string {
@@ -567,7 +572,7 @@ export async function readAtlasV1StudentComponents(
   );
   if (!exists.rows[0]) return null;
 
-  const [sets, items, debrief, itemPreviews, debriefPreviews] = await Promise.all([
+  const [sets, items, debrief, itemPreviews, debriefPreviews, detourRows] = await Promise.all([
     db.query<AtlasV1LeadMeSetRow>(
       `SELECT s.set_id, s.title, s.set_type,
               COUNT(DISTINCT CASE WHEN i.item_id IS NOT NULL THEN e.item_id END) AS total_items
@@ -637,9 +642,21 @@ export async function readAtlasV1StudentComponents(
         LIMIT 8`,
       [outlineCode],
     ),
+    db.query<AtlasV1CodeDetourRow>(
+      `SELECT case_study_json
+         FROM atlas_questions
+        WHERE outline_code = $1
+          AND status = 'included'
+          AND case_study_json IS NOT NULL
+        ORDER BY included_at DESC, updated_at DESC, question_id ASC`,
+      [outlineCode],
+    ),
   ]);
 
   const leadmeSet = sets.rows[0];
+  const detourSpecs = collectAtlasV1CodeDetourSpecs(detourRows.rows);
+  const detourCounts =
+    detourSpecs.length > 0 ? await readAtlasV1DetourTargetCounts(db, detourSpecs) : new Map();
   return {
     outline_code: outlineCode,
     leadme_set: leadmeSet
@@ -673,6 +690,7 @@ export async function readAtlasV1StudentComponents(
       title: row.title,
       source_count: numberOrZero(row.source_count),
     })),
+    detour_previews: shapeAtlasV1Detours(detourSpecs, detourCounts, "student").slice(0, 6),
   };
 }
 
@@ -866,6 +884,30 @@ function parseCaseStudyModules(value: unknown): Record<string, unknown> {
     modules[key] = moduleValue;
   }
   return modules;
+}
+
+function collectAtlasV1CodeDetourSpecs(rows: AtlasV1CodeDetourRow[]): AtlasV1DetourSpec[] {
+  const seen = new Set<string>();
+  const specs: AtlasV1DetourSpec[] = [];
+
+  for (const row of rows) {
+    const modules = parseCaseStudyModules(row.case_study_json);
+    for (const spec of extractAtlasV1DetourSpecs(modules.detours)) {
+      const type = clean(spec.type);
+      if (type !== "trap" && type !== "tension") continue;
+
+      const key = clean(spec.key);
+      const label = clean(spec.label);
+      if (!key || !label) continue;
+
+      const signature = `${type}:${key}`;
+      if (seen.has(signature)) continue;
+      seen.add(signature);
+      specs.push({ ...spec, type, key, label });
+    }
+  }
+
+  return specs;
 }
 
 function isEmptyModule(value: unknown): boolean {
