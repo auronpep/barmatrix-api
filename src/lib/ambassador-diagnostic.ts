@@ -35,8 +35,8 @@ export const AMBASSADOR_DIAGNOSTIC_SOURCE_FILES = [
   "CQ19038.md",
   "CQ18771.md",
   "CQ17979_updated.md",
-  "CQ14829.md",
   "CQ17104.md",
+  "CQ19498.md",
 ] as const;
 
 export interface AmbassadorDiagnosticChoice {

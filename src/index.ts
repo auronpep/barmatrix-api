@@ -11,7 +11,7 @@ import * as Sentry from "@sentry/node";
 import { config } from "./config.js";
 import { initSentry, isSentryEnabled, setupSentryErrorHandler } from "./sentry.js";
 import { handleListenError } from "./lib/listen.js";
-import { getPool, ping } from "./db.js";
+import { getPool, ping, type DbPool } from "./db.js";
 import {
   CAPACITY_COPY,
   publicCopyForCohortStatus,
@@ -159,6 +159,30 @@ function parseStringArray(value: unknown): string[] {
   return Array.isArray(parsed)
     ? parsed.filter((item): item is string => typeof item === "string")
     : [];
+}
+
+function isMissingTableError(err: unknown): boolean {
+  const maybe = err as { code?: string; errno?: number };
+  return maybe.code === "ER_NO_SUCH_TABLE" || maybe.errno === 1146;
+}
+
+async function diagnosticResultsEmailGateSatisfied(
+  db: Pick<DbPool, "query">,
+  diagnosticId: string,
+): Promise<boolean> {
+  try {
+    const { rows } = await db.query<{ ok: number }>(
+      `SELECT 1 AS ok
+         FROM diagnostic_leads
+        WHERE diagnostic_id = $1
+        LIMIT 1`,
+      [diagnosticId],
+    );
+    return rows.length > 0;
+  } catch (err) {
+    if (isMissingTableError(err)) return false;
+    throw err;
+  }
 }
 
 const app = express();
@@ -410,13 +434,20 @@ app.get("/api/diagnostic/:id/results", async (req: Request, res: Response) => {
     return;
   }
   try {
+    const db = getPool();
+    const emailGateSatisfied = await diagnosticResultsEmailGateSatisfied(db, id);
+    if (!emailGateSatisfied) {
+      res.status(403).json({ error: "email gate required" });
+      return;
+    }
+
     // Dedupe to the LATEST attempt per question_id within this diagnostic
     // session. A student may submit a question more than once (double-submit,
     // retry, page-replay). Counting every row inflates `answered` and skews
     // the red-zone aggregation. The correlated MAX(attempted_at) subquery
     // keeps exactly one row per question — the most-recent outcome — and is
     // safe on MariaDB (no CAST AS JSON, no window functions required).
-    const { rows } = await getPool().query<DiagnosticAttemptQueryRow>(
+    const { rows } = await db.query<DiagnosticAttemptQueryRow>(
       `SELECT a.question_id,
               a.correct, a.confidence, a.time_seconds,
               q.subject, q.subtopic, q.tension_point,
