@@ -2,8 +2,10 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import type Stripe from "stripe";
 import {
+  buildDiagnosticResultsPayload,
   buildTrapNamingPayload,
   resolveEnrollmentEmailConfig,
+  sendDiagnosticResultsEmail,
   sendEnrollmentEmail,
   sendEnrollmentEmailForFulfillment,
   sendInstallmentReceiptForInvoice,
@@ -417,6 +419,81 @@ describe("sendTrapNamingEmail", () => {
     );
     assert.equal(result.status, "skipped");
     assert.equal(sends, 0);
+  });
+});
+
+describe("diagnostic results email", () => {
+  it("renders the result link, top trap, owned rule, and Flagship CTA", () => {
+    const config = resolveEnrollmentEmailConfig(configuredEnv());
+    assert.ok(config);
+
+    const payload = buildDiagnosticResultsPayload(
+      {
+        to: null,
+        fullName: "Sunny",
+        diagnosticId: "11111111-2222-3333-4444-555555555555",
+        resultsUrl:
+          "https://barmatrix.app/diagnostic/11111111-2222-3333-4444-555555555555/results",
+        salesPageUrl:
+          "https://barmatrix.app/checkout?source=diagnostic_email&campaign=red_zone_map",
+        topTraps: ["Fabricated Rule", "Wrong Element"],
+        topRule: "Statutory interpleader uses claimant diversity plus deposit or bond.",
+        scoreSummary: "8/20 correct, 4 high-confidence misses",
+      },
+      "student@example.com",
+      config,
+    );
+
+    assert.deepEqual(payload.to, ["student@example.com"]);
+    assert.equal(payload.subject, "Your BarMatrix Red-Zone Map is ready");
+    assert.match(payload.text, /Fabricated Rule/);
+    assert.match(payload.text, /Statutory interpleader uses claimant diversity/);
+    assert.match(payload.text, /8\/20 correct/);
+    assert.match(payload.text, /Review the Flagship path/);
+    assert.match(payload.html, /href="https:\/\/barmatrix\.app\/diagnostic\/11111111-2222-3333-4444-555555555555\/results"/);
+    assert.match(payload.html, /href="https:\/\/barmatrix\.app\/checkout\?source=diagnostic_email&amp;campaign=red_zone_map"/);
+  });
+
+  it("sends through Resend when configured and skips when config is missing", async () => {
+    const sentPayloads: unknown[] = [];
+    const client: EnrollmentEmailClient = {
+      emails: {
+        send: async (payload) => {
+          sentPayloads.push(payload);
+          return { data: { id: "email_diag" }, error: null };
+        },
+      },
+    };
+
+    const result = await sendDiagnosticResultsEmail(
+      {
+        to: " Student@Example.com ",
+        fullName: "Student Example",
+        diagnosticId: "diag_123",
+        resultsUrl: "https://barmatrix.app/diagnostic/diag_123/results",
+        topTraps: ["Wrong Element"],
+        topRule: "Use the controlling element.",
+      },
+      {
+        env: configuredEnv(),
+        createClient: () => client,
+      },
+    );
+
+    assert.deepEqual(result, { status: "sent", id: "email_diag" });
+    assert.equal(sentPayloads.length, 1);
+    assert.deepEqual((sentPayloads[0] as { to: string[] }).to, ["student@example.com"]);
+
+    const skipped = await sendDiagnosticResultsEmail(
+      {
+        to: "student@example.com",
+        fullName: null,
+        diagnosticId: "diag_123",
+        resultsUrl: "https://barmatrix.app/diagnostic/diag_123/results",
+      },
+      { env: {} },
+    );
+    assert.deepEqual(skipped, { status: "skipped", reason: "missing_config" });
   });
 });
 

@@ -9,12 +9,35 @@ type Letter = (typeof LETTERS)[number];
 
 export const DEFAULT_AMBASSADOR_DIAGNOSTIC_SOURCE_DIR =
   process.env.AMBASSADOR_DIAGNOSTIC_SOURCE_DIR ||
-  "C:/Users/JesusLovesMe/Downloads/Diagnostic_260605";
+  "C:/FOC/Workspace/Finished";
 
 export const AMBASSADOR_DIAGNOSTIC_EXTERNAL_IDS = Array.from(
   { length: 20 },
   (_, index) => `DIAG-${String(index + 1).padStart(3, "0")}`,
 );
+
+export const AMBASSADOR_DIAGNOSTIC_SOURCE_FILES = [
+  "CQ18018.md",
+  "CQ19855.md",
+  "CQ22620.md",
+  "CQ19025.md",
+  "CQ20657.md",
+  "CQ20446.md",
+  "CQ16014.md",
+  "CQ21464.md",
+  "CQ17089.md",
+  "CQ14767.md",
+  "CQ22108.md",
+  "CQ20136.md",
+  "CQ20236.md",
+  "CQ15236.md",
+  "CQ18017.md",
+  "CQ19038.md",
+  "CQ18771.md",
+  "CQ17979_updated.md",
+  "CQ14829.md",
+  "CQ17104.md",
+] as const;
 
 export interface AmbassadorDiagnosticChoice {
   choice_id: string;
@@ -53,6 +76,7 @@ export interface AmbassadorDiagnosticQuestion {
   correct_answer: Letter;
   choices: AmbassadorDiagnosticChoice[];
   anchor_card: AmbassadorAnchorCard | null;
+  red_zone_dimensions: string[];
 }
 
 interface FixedDiagnosticQuestionSelection {
@@ -309,6 +333,34 @@ function numberValue(record: JsonRecord | null, key: string): number | null {
   return Number.isFinite(parsed) ? parsed : null;
 }
 
+function stringArrayValue(record: JsonRecord | null, key: string): string[] {
+  const value = record?.[key];
+  if (!Array.isArray(value)) return [];
+  return value
+    .map((item) => {
+      if (typeof item === "string") return normalizeText(item);
+      if (item && typeof item === "object" && !Array.isArray(item)) {
+        const rec = item as JsonRecord;
+        return stringValue(rec, "label") ?? stringValue(rec, "value") ?? "";
+      }
+      return "";
+    })
+    .filter((item) => item.length > 0 && item.toLowerCase() !== "null");
+}
+
+function uniqueTexts(values: string[]): string[] {
+  const out: string[] = [];
+  const seen = new Set<string>();
+  for (const value of values) {
+    const normalized = normalizeText(value);
+    const key = normalized.toLowerCase();
+    if (!normalized || seen.has(key)) continue;
+    seen.add(key);
+    out.push(normalized);
+  }
+  return out;
+}
+
 function c3Record(jsons: JsonRecord[]): JsonRecord | null {
   for (const record of jsons) {
     const direct = nestedRecord(record, "c3");
@@ -318,6 +370,40 @@ function c3Record(jsons: JsonRecord[]): JsonRecord | null {
     if (nestedC3) return nestedC3;
   }
   return null;
+}
+
+function parseInlineYamlStringArray(value: string | null): string[] {
+  if (!value) return [];
+  const trimmed = value.trim();
+  if (!trimmed.startsWith("[") || !trimmed.endsWith("]")) return [];
+  try {
+    const parsed = JSON.parse(trimmed.replace(/'/g, '"'));
+    return Array.isArray(parsed)
+      ? parsed.filter((item): item is string => typeof item === "string")
+      : [];
+  } catch {
+    return [...trimmed.matchAll(/"([^"]+)"|'([^']+)'/g)]
+      .map((match) => match[1] ?? match[2] ?? "")
+      .filter(Boolean);
+  }
+}
+
+function extractRedZoneDimensions(yaml: string, jsons: JsonRecord[]): string[] {
+  const values: string[] = [];
+  for (const record of jsons) {
+    values.push(...stringArrayValue(record, "red_zone_dimensions"));
+    values.push(...stringArrayValue(nestedRecord(record, "program_elements"), "red_zone_dimensions"));
+    values.push(...stringArrayValue(nestedRecord(record, "analytics_hooks"), "red_zone_dimensions"));
+    const nested = nestedRecord(record, "question_yaml_v2");
+    values.push(...stringArrayValue(nestedRecord(nested, "program_elements"), "red_zone_dimensions"));
+    values.push(...stringArrayValue(nestedRecord(nested, "analytics_hooks"), "red_zone_dimensions"));
+  }
+  values.push(
+    ...parseInlineYamlStringArray(
+      scalarFromSection(normalizedSection(yaml, "analytics_hooks"), "red_zone_dimensions"),
+    ),
+  );
+  return uniqueTexts(values);
 }
 
 function c3DistractorMolds(jsons: JsonRecord[]): Partial<Record<Letter, string>> {
@@ -497,14 +583,26 @@ function normalizeSubject(value: string | null): string {
 function extractAnchorCard(yaml: string, jsons: JsonRecord[]): AmbassadorAnchorCard | null {
   for (const record of jsons) {
     const elements = nestedRecord(record, "program_elements");
-    const card = nestedRecord(elements, "remediation_card");
+    const nested = nestedRecord(record, "question_yaml_v2");
+    const nestedElements = nestedRecord(nested, "program_elements");
+    const card =
+      nestedRecord(record, "remediation_card") ??
+      nestedRecord(elements, "remediation_card") ??
+      nestedRecord(nestedElements, "remediation_card");
     const id = stringValue(card, "id") ?? stringValue(card, "card_id");
     if (id) {
       return {
         id,
         title: stringValue(card, "title") ?? stringValue(card, "card_title"),
-        front: stringValue(card, "front") ?? stringValue(card, "student_rule"),
-        back: stringValue(card, "back") ?? stringValue(card, "rule"),
+        front:
+          stringValue(card, "front") ??
+          stringValue(card, "student_rule") ??
+          stringValue(card, "student_move") ??
+          stringValue(card, "signal"),
+        back:
+          stringValue(card, "back") ??
+          stringValue(card, "rule") ??
+          stringValue(card, "tiny_rule"),
       };
     }
   }
@@ -628,6 +726,7 @@ function parseQuestionSource(markdown: string, sourceFile: string, index: number
     correct_answer: correctAnswer,
     choices,
     anchor_card: extractAnchorCard(yaml, jsons),
+    red_zone_dimensions: extractRedZoneDimensions(yaml, jsons),
   };
 }
 
@@ -667,9 +766,13 @@ export function loadAmbassadorDiagnosticSources(
   if (!existsSync(sourceDir)) {
     throw new Error(`diagnostic source directory not found: ${sourceDir}`);
   }
-  const files = readdirSync(sourceDir)
-    .filter((name) => /^Q1111\d+\.md$/.test(name))
-    .sort();
+  const names = new Set(readdirSync(sourceDir));
+  const selectedFilesAvailable = AMBASSADOR_DIAGNOSTIC_SOURCE_FILES.every((name) =>
+    names.has(name),
+  );
+  const files = selectedFilesAvailable
+    ? [...AMBASSADOR_DIAGNOSTIC_SOURCE_FILES]
+    : [...names].filter((name) => /^Q1111\d+\.md$/.test(name)).sort();
   if (files.length !== AMBASSADOR_DIAGNOSTIC_EXTERNAL_IDS.length) {
     throw new Error(`expected 20 diagnostic source files, found ${files.length}`);
   }
@@ -757,6 +860,7 @@ export function buildAmbassadorDiagnosticMysqlMigration(
         source_file: question.source_file,
         source_question_id: question.source_question_id,
         anchor_card: question.anchor_card,
+        red_zone_dimensions: question.red_zone_dimensions,
       }),
     ].join(", "),
   );
@@ -783,9 +887,40 @@ export function buildAmbassadorDiagnosticMysqlMigration(
     question.choices.map((choice) => `-- choice ${question.external_id} ${choice.letter}`),
   );
 
+  const tagRows = questions.flatMap((question) => {
+    const rows: string[] = [];
+    const push = (dimension: string, value: string, metadata: JsonRecord = {}) => {
+      rows.push(
+        [
+          `(SELECT question_id FROM questions WHERE external_id = ${sqlString(question.external_id)})`,
+          sqlString(dimension),
+          sqlString(value.slice(0, 255)),
+          sqlJson(metadata),
+        ].join(", "),
+      );
+    };
+    if (question.tension_point) {
+      push("tension", slugify(question.tension_point), { label: question.tension_point });
+    }
+    for (const value of question.red_zone_dimensions) {
+      push("red_zone_dimension", slugify(value), {
+        label: value,
+        source_file: question.source_file,
+      });
+    }
+    for (const choice of question.choices) {
+      if (!choice.mold_code) continue;
+      push("trap_family", choice.mold_code, {
+        source_file: question.source_file,
+        choice: choice.letter,
+      });
+    }
+    return rows;
+  });
+
   return [
     "-- Ambassador Day-1 diagnostic migration.",
-    "-- Generated from Diagnostic_260605 source files. JSON columns use MariaDB JSON text.",
+    "-- Generated from C:/FOC/Workspace/Finished Christian-flavored diagnostic files. JSON columns use MariaDB JSON text.",
     "START TRANSACTION;",
     "",
     "INSERT INTO questions",
@@ -821,9 +956,34 @@ export function buildAmbassadorDiagnosticMysqlMigration(
     "  future_cue = VALUES(future_cue),",
     "  remediation_id = VALUES(remediation_id);",
     "",
+    "DELETE qt FROM question_tags qt",
+    "  JOIN questions q ON q.question_id = qt.question_id",
+    ` WHERE q.external_id IN (${questions.map((q) => sqlString(q.external_id)).join(", ")})`,
+    "   AND qt.dimension IN ('tension', 'red_zone_dimension', 'trap_family');",
+    "",
+    ...(tagRows.length > 0
+      ? [
+          "INSERT INTO question_tags",
+          "  (question_id, dimension, value, metadata)",
+          "VALUES",
+          tagRows.map((row) => `  (${row})`).join(",\n"),
+          "ON DUPLICATE KEY UPDATE",
+          "  metadata = VALUES(metadata);",
+          "",
+        ]
+      : []),
     "COMMIT;",
     "",
   ].join("\n");
+}
+
+function slugify(value: string): string {
+  return normalizeText(value)
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "")
+    .slice(0, 255);
 }
 
 function stableUuid(seed: string): string {

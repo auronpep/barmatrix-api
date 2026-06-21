@@ -91,6 +91,7 @@ import { recoverBillingCustomerFromCheckoutSession } from "./lib/billing-portal.
 import {
   computeDiagnosticResults,
   extractDiagnosticAnchors,
+  redZoneDimensionsFromMetadata,
   DIAGNOSTIC_LENGTH,
   type DiagnosticAttemptRow,
 } from "./lib/diagnostic.js";
@@ -441,6 +442,7 @@ app.get("/api/diagnostic/:id/results", async (req: Request, res: Response) => {
       subject: r.subject,
       subtopic: r.subtopic,
       tension_point: r.tension_point,
+      red_zone_dimensions: redZoneDimensionsFromMetadata(r.metadata),
       selected_forensic_tags: parseStringArray(r.selected_forensic_tags),
     }));
     const results = computeDiagnosticResults(attempts);

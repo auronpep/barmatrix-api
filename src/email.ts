@@ -36,6 +36,17 @@ export interface TrapNamingEmailInput {
   nextStepLabel?: string | null;
 }
 
+export interface DiagnosticResultsEmailInput {
+  to: string | null | undefined;
+  fullName: string | null | undefined;
+  diagnosticId: string | null | undefined;
+  resultsUrl: string | null | undefined;
+  salesPageUrl?: string | null;
+  topTraps?: readonly (string | null | undefined)[] | null | undefined;
+  topRule?: string | null | undefined;
+  scoreSummary?: string | null | undefined;
+}
+
 export interface EnrollmentEmailPayload {
   from: string;
   to: string[];
@@ -149,6 +160,27 @@ export async function sendTrapNamingEmail(
 
   return dispatchEmail(
     buildTrapNamingPayload(input, recipient, config),
+    config,
+    options.createClient,
+  );
+}
+
+export async function sendDiagnosticResultsEmail(
+  input: DiagnosticResultsEmailInput,
+  options: SendEnrollmentEmailOptions = {},
+): Promise<EnrollmentEmailResult> {
+  const config = resolveEnrollmentEmailConfig(options.env);
+  if (!config) {
+    return { status: "skipped", reason: "missing_config" };
+  }
+
+  const recipient = normalizeEmail(input.to);
+  if (!recipient) {
+    return { status: "skipped", reason: "missing_recipient" };
+  }
+
+  return dispatchEmail(
+    buildDiagnosticResultsPayload(input, recipient, config),
     config,
     options.createClient,
   );
@@ -686,6 +718,76 @@ export function buildTrapNamingPayload(
     to: [recipient],
     replyTo: config.replyTo,
     subject,
+    text,
+    html,
+  };
+}
+
+export function buildDiagnosticResultsPayload(
+  input: DiagnosticResultsEmailInput,
+  recipient: string,
+  config: EnrollmentEmailConfig,
+): EnrollmentEmailPayload {
+  const firstName = clean(input.fullName);
+  const greeting = firstName ? `Hi ${firstName},` : "Hi there,";
+  const resultUrl =
+    clean(input.resultsUrl) ??
+    `${stripTrailingSlash(config.frontendUrl)}/diagnostic/${clean(input.diagnosticId) ?? ""}/results`;
+  const salesUrl =
+    clean(input.salesPageUrl) ??
+    `${stripTrailingSlash(config.frontendUrl)}/checkout?source=diagnostic_email&campaign=red_zone_map`;
+  const traps = (input.topTraps ?? [])
+    .map(clean)
+    .filter((value): value is string => value !== null);
+  const firstTrap = traps[0] ?? "your first red zone";
+  const trapLine =
+    traps.length > 1 ? `${firstTrap}; also watch ${traps.slice(1, 3).join(", ")}.` : `${firstTrap}.`;
+  const rule = clean(input.topRule);
+  const scoreSummary = clean(input.scoreSummary);
+  const scoreLine = scoreSummary ? `Diagnostic snapshot: ${scoreSummary}\n\n` : "";
+  const ruleText = rule
+    ? `Rule to keep tonight:\n${rule}\n\n`
+    : "Rule to keep tonight: slow down at the controlling distinction before the answer choices start sounding familiar.\n\n";
+
+  const text =
+    `${greeting}\n\n` +
+    `Your BarMatrix Red-Zone Map is ready.\n\n` +
+    `${scoreLine}` +
+    `First red zone: ${trapLine}\n\n` +
+    `${ruleText}` +
+    `Open your map: ${resultUrl}\n\n` +
+    `This diagnostic is not here to flatter you. It is here to show the exact place where your next wrong answer is likely to come from. That is useful work.\n\n` +
+    `Flagship is the paid guided repair path built from this map: targeted drills, case-study debriefs, and one next task at a time instead of another pile of random questions.\n\n` +
+    `Review the Flagship path: ${salesUrl}\n\n` +
+    `Keep doing the next faithful rep.\n\n` +
+    `- The BarMatrix Team\n\n` +
+    `Questions? Reply to this email or contact ${config.supportEmail}.`;
+
+  const ruleHtml = rule
+    ? `<p><strong>Rule to keep tonight:</strong></p><blockquote>${escapeHtml(rule)}</blockquote>`
+    : `<p><strong>Rule to keep tonight:</strong> slow down at the controlling distinction before the answer choices start sounding familiar.</p>`;
+  const scoreHtml = scoreSummary
+    ? `<p><strong>Diagnostic snapshot:</strong> ${escapeHtml(scoreSummary)}</p>`
+    : "";
+  const html =
+    `<p>${escapeHtml(greeting)}</p>` +
+    `<p>Your BarMatrix Red-Zone Map is ready.</p>` +
+    scoreHtml +
+    `<p><strong>First red zone:</strong> ${escapeHtml(trapLine)}</p>` +
+    ruleHtml +
+    `<p><a href="${escapeHtml(resultUrl)}">Open your map</a></p>` +
+    `<p>This diagnostic is not here to flatter you. It is here to show the exact place where your next wrong answer is likely to come from. That is useful work.</p>` +
+    `<p>Flagship is the paid guided repair path built from this map: targeted drills, case-study debriefs, and one next task at a time instead of another pile of random questions.</p>` +
+    `<p><a href="${escapeHtml(salesUrl)}">Review the Flagship path</a></p>` +
+    `<p>Keep doing the next faithful rep.</p>` +
+    `<p>- The BarMatrix Team</p>` +
+    `<p>Questions? Reply to this email or contact ${escapeHtml(config.supportEmail)}.</p>`;
+
+  return {
+    from: config.from,
+    to: [recipient],
+    replyTo: config.replyTo,
+    subject: "Your BarMatrix Red-Zone Map is ready",
     text,
     html,
   };

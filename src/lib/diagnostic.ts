@@ -31,6 +31,7 @@ const COLUMN_DIMENSIONS = ["subject", "subtopic", "tension_point"] as const;
 type ColumnDimension = (typeof COLUMN_DIMENSIONS)[number];
 
 const TRAP_DIMENSION = "wrong_answer_architecture";
+const RED_ZONE_DIMENSION = "red_zone_dimension";
 
 /** One attempt in a diagnostic session, already joined to its question + choice. */
 export interface DiagnosticAttemptRow {
@@ -40,6 +41,8 @@ export interface DiagnosticAttemptRow {
   subject: string | null;
   subtopic: string | null;
   tension_point: string | null;
+  /** Red-zone dimensions imported from questions.metadata.red_zone_dimensions. */
+  red_zone_dimensions?: string[];
   /** forensic_tags of the SELECTED choice, already parsed to a string[]. */
   selected_forensic_tags: string[];
 }
@@ -99,6 +102,34 @@ export interface AnchorSourceRow {
   subject: string | null;
 }
 
+function metadataObject(value: string | null): Record<string, unknown> | null {
+  if (!value) return null;
+  try {
+    const parsed = JSON.parse(value);
+    return parsed && typeof parsed === "object" && !Array.isArray(parsed)
+      ? (parsed as Record<string, unknown>)
+      : null;
+  } catch {
+    return null;
+  }
+}
+
+export function redZoneDimensionsFromMetadata(value: string | null): string[] {
+  const meta = metadataObject(value);
+  const dimensions = meta?.red_zone_dimensions;
+  if (!Array.isArray(dimensions)) return [];
+  const out: string[] = [];
+  const seen = new Set<string>();
+  for (const item of dimensions) {
+    const dimension = typeof item === "string" ? item.trim() : "";
+    const key = dimension.toLowerCase();
+    if (!dimension || seen.has(key)) continue;
+    seen.add(key);
+    out.push(dimension);
+  }
+  return out;
+}
+
 // Pure: parse each answered question's metadata TEXT, pull anchor_card, and
 // build a deduped list of rules the user now owns. Drops cards with no rule
 // (null front+back) so the close only ever shows something concrete to keep.
@@ -106,14 +137,8 @@ export function extractDiagnosticAnchors(rows: AnchorSourceRow[]): AnchorCard[] 
   const out: AnchorCard[] = [];
   const seen = new Set<string>();
   for (const r of rows) {
-    if (!r.metadata) continue;
-    let meta: unknown;
-    try {
-      meta = JSON.parse(r.metadata);
-    } catch {
-      continue;
-    }
-    if (!meta || typeof meta !== "object") continue;
+    const meta = metadataObject(r.metadata);
+    if (!meta) continue;
     const card = (meta as Record<string, unknown>).anchor_card;
     if (!card || typeof card !== "object") continue;
     const c = card as Record<string, unknown>;
@@ -193,6 +218,19 @@ function round1(value: number): number {
 
 function emptyAccumulator(): TagAccumulator {
   return { attempts: 0, correct: 0, highConfidenceWrongs: 0, subjectCounts: new Map() };
+}
+
+function uniqueRowTags(values: string[]): string[] {
+  const out: string[] = [];
+  const seen = new Set<string>();
+  for (const value of values) {
+    const normalized = typeof value === "string" ? value.trim() : "";
+    const key = normalized.toLowerCase();
+    if (!normalized || seen.has(key)) continue;
+    seen.add(key);
+    out.push(normalized);
+  }
+  return out;
 }
 
 function bumpSubject(acc: TagAccumulator, subject: string | null): void {
@@ -306,6 +344,7 @@ export function computeDiagnosticResults(rows: DiagnosticAttemptRow[]): Diagnost
     subtopic: new Map(),
     tension_point: new Map(),
   };
+  const redZoneDimensionAccumulators = new Map<string, TagAccumulator>();
   const trapAccumulators = new Map<string, TagAccumulator>();
 
   for (const row of rows) {
@@ -322,6 +361,15 @@ export function computeDiagnosticResults(rows: DiagnosticAttemptRow[]): Diagnost
       if (hcWrong) acc.highConfidenceWrongs += 1;
       bumpSubject(acc, row.subject);
       map.set(value, acc);
+    }
+
+    for (const value of uniqueRowTags(row.red_zone_dimensions ?? [])) {
+      const acc = redZoneDimensionAccumulators.get(value) ?? emptyAccumulator();
+      acc.attempts += 1;
+      if (right) acc.correct += 1;
+      if (hcWrong) acc.highConfidenceWrongs += 1;
+      bumpSubject(acc, row.subject);
+      redZoneDimensionAccumulators.set(value, acc);
     }
 
     // Trap architecture is sourced only from MISSED attempts' selected tags.
@@ -348,6 +396,13 @@ export function computeDiagnosticResults(rows: DiagnosticAttemptRow[]): Diagnost
       .sort(compareProficiencyDimension)
       .slice(0, MAX_ZONES_PER_DIMENSION);
     if (entries.length > 0) byDimension[dimension] = entries;
+  }
+  const redZoneDimensionEntries = [...redZoneDimensionAccumulators.entries()]
+    .map(([tag, acc]) => toEntry(tag, acc, true))
+    .sort(compareProficiencyDimension)
+    .slice(0, MAX_ZONES_PER_DIMENSION);
+  if (redZoneDimensionEntries.length > 0) {
+    byDimension[RED_ZONE_DIMENSION] = redZoneDimensionEntries;
   }
   const trapEntries = [...trapAccumulators.entries()]
     .map(([tag, acc]) => toEntry(tag, acc, true))

@@ -5,6 +5,7 @@ import { describe, it } from "node:test";
 import { DIAGNOSTIC_LENGTH, computeDiagnosticResults } from "./diagnostic.js";
 import {
   AMBASSADOR_DIAGNOSTIC_EXTERNAL_IDS,
+  AMBASSADOR_DIAGNOSTIC_SOURCE_FILES,
   DEFAULT_AMBASSADOR_DIAGNOSTIC_SOURCE_DIR,
   buildAmbassadorDiagnosticMysqlMigration,
   buildFixedDiagnosticQuestionSelection,
@@ -45,10 +46,14 @@ describe(
 
     for (const [index, question] of questions.entries()) {
       assert.equal(question.external_id, AMBASSADOR_DIAGNOSTIC_EXTERNAL_IDS[index]);
-      assert.match(question.source_file, /^Q1111\d+\.md$/);
+      assert.equal(question.source_file, AMBASSADOR_DIAGNOSTIC_SOURCE_FILES[index]);
       assert.equal(question.status, "diagnostic");
       assert.ok(question.subject.length > 0, `${question.source_file} subject`);
       assert.ok(question.subtopic.length > 0, `${question.source_file} subtopic`);
+      assert.ok(
+        question.red_zone_dimensions.length > 0,
+        `${question.source_file} red-zone dimensions`,
+      );
       assert.ok(question.fact_pattern.length > 40, `${question.source_file} fact pattern`);
       assert.ok(question.call_of_question.length > 8, `${question.source_file} call`);
       assert.ok(["A", "B", "C", "D"].includes(question.correct_answer));
@@ -67,12 +72,18 @@ describe(
     }
 
     const q1 = questions[0]!;
-    assert.equal(q1.source_file, "Q111111.md");
+    assert.equal(q1.source_file, "CQ18018.md");
     assert.equal(q1.subject, "CIVIL_PROCEDURE");
-    assert.equal(q1.correct_answer, "A");
-    assert.equal(q1.choices.find((choice) => choice.letter === "B")?.mold_code, "fabricated_rule");
-    assert.equal(q1.choices.find((choice) => choice.letter === "C")?.mold_code, "bait_doctrine");
-    assert.equal(q1.anchor_card?.id, "CIV-ANCHOR-ERIE-15C");
+    assert.equal(q1.correct_answer, "D");
+    assert.equal(q1.choices.find((choice) => choice.letter === "A")?.mold_code, "flat_misstatement");
+    assert.equal(q1.choices.find((choice) => choice.letter === "C")?.mold_code, "fabricated_rule");
+    assert.equal(q1.anchor_card?.id, "CP-PRETRIAL-INTERPLEADER-MINIMAL-DIVERSITY");
+    assert.deepEqual(q1.red_zone_dimensions, [
+      "statutory interpleader",
+      "minimal diversity among claimants",
+      "stakeholder citizenship trap",
+      "deposit or bond requirement",
+    ]);
   });
 
   it("builds fixed diagnostic selection SQL for status diagnostic rows only", () => {
@@ -99,7 +110,7 @@ describe(
     assert.equal(results.answered, 20);
     assert.equal(results.summary.correct, 18);
     assert.equal(recommendation.level.level, 4);
-    assert.equal(recommendation.top_leak?.tag, "bait_doctrine");
+    assert.equal(recommendation.top_leak?.tag, "fabricated_rule");
     assert.equal(recommendation.next_step.primary_label, "Start The Method");
     assert.equal(recommendation.next_step.href, "/foundations/lesson-01");
   });
@@ -114,6 +125,9 @@ describe(
     assert.doesNotMatch(sql, /CAST\s*\(/i);
     assert.match(sql, /'DIAG-001'/);
     assert.match(sql, /'\["fabricated_rule"\]'/);
+    assert.match(sql, /INSERT INTO question_tags/);
+    assert.match(sql, /'red_zone_dimension'/);
+    assert.match(sql, /'stakeholder_citizenship_trap'/);
     assert.match(sql, /'\[\]'/);
     assert.match(
       sql,

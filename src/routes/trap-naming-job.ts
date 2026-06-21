@@ -4,6 +4,7 @@ import { config } from "../config.js";
 import {
   computeDiagnosticResults,
   extractDiagnosticAnchors,
+  redZoneDimensionsFromMetadata,
   type DiagnosticAttemptRow,
   type AnchorSourceRow,
 } from "../lib/diagnostic.js";
@@ -84,6 +85,7 @@ async function loadTrapAndRule(
     subject: r.subject,
     subtopic: r.subtopic,
     tension_point: r.tension_point,
+    red_zone_dimensions: redZoneDimensionsFromMetadata(r.metadata),
     selected_forensic_tags: parseTags(r.selected_forensic_tags),
   }));
   const results = computeDiagnosticResults(attempts);

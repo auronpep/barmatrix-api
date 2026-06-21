@@ -1,8 +1,23 @@
 import type { Express, Request, Response } from "express";
 import { z } from "zod";
 import { getPool, type DbPool } from "../db.js";
+import {
+  computeDiagnosticResults,
+  extractDiagnosticAnchors,
+  redZoneDimensionsFromMetadata,
+  type DiagnosticAttemptRow,
+  type AnchorSourceRow,
+} from "../lib/diagnostic.js";
+import {
+  sendDiagnosticResultsEmail,
+  type DiagnosticResultsEmailInput,
+  type EnrollmentEmailResult,
+} from "../email.js";
 
 const DIAGNOSTIC_LEAD_TYPE = "diagnostic_results";
+const DEFAULT_FRONTEND_URL = "https://barmatrix.app";
+const DIAGNOSTIC_ID_RE =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 const optionalText = (max: number) =>
   z
@@ -39,11 +54,42 @@ export interface DiagnosticLeadResponse {
   ok: true;
   lead_id: string | null;
   status: "created" | "updated" | "ignored";
+  email_status?: "sent" | "skipped" | "failed" | "not_requested";
+  email_reason?: string;
   message: string;
 }
 
 interface DiagnosticLeadRow {
   lead_id: string;
+}
+
+interface DiagnosticEmailAttemptRow {
+  question_id: string;
+  correct: boolean | 0 | 1;
+  confidence: number | null;
+  time_seconds: number | null;
+  subject: string | null;
+  subtopic: string | null;
+  tension_point: string | null;
+  external_id: string | null;
+  metadata: string | null;
+  selected_forensic_tags: unknown;
+}
+
+interface DiagnosticLeadRecordOptions {
+  frontendUrl?: string;
+  loadEmailContext?: (
+    db: Pick<DbPool, "query">,
+    diagnosticId: string,
+  ) => Promise<DiagnosticEmailContext>;
+  sendEmail?: (input: DiagnosticResultsEmailInput) => Promise<EnrollmentEmailResult>;
+  logger?: Pick<typeof console, "warn" | "error">;
+}
+
+interface DiagnosticEmailContext {
+  topTraps: string[];
+  topRule: string | null;
+  scoreSummary: string | null;
 }
 
 const createDiagnosticLeadsTableSql = `
@@ -98,15 +144,142 @@ export function diagnosticLeadMetadata(input: DiagnosticLeadInput): string {
   });
 }
 
+function stripTrailingSlash(value: string): string {
+  return value.replace(/\/+$/, "");
+}
+
+function parseTags(value: unknown): string[] {
+  let parsed: unknown = value;
+  if (typeof value === "string") {
+    try {
+      parsed = JSON.parse(value);
+    } catch {
+      parsed = null;
+    }
+  }
+  return Array.isArray(parsed)
+    ? parsed.filter((item): item is string => typeof item === "string")
+    : [];
+}
+
+async function loadDiagnosticEmailContext(
+  db: Pick<DbPool, "query">,
+  diagnosticId: string,
+): Promise<DiagnosticEmailContext> {
+  const { rows } = await db.query<DiagnosticEmailAttemptRow>(
+    `SELECT a.question_id,
+            a.correct, a.confidence, a.time_seconds,
+            q.subject, q.subtopic, q.tension_point,
+            q.external_id, q.metadata,
+            ac.forensic_tags AS selected_forensic_tags
+       FROM student_attempts a
+       JOIN questions q ON q.question_id = a.question_id
+       LEFT JOIN answer_choices ac ON ac.choice_id = a.selected_choice_id
+      WHERE a.set_id = $1
+        AND a.attempted_at = (
+          SELECT MAX(a2.attempted_at)
+            FROM student_attempts a2
+           WHERE a2.set_id = $1
+             AND a2.question_id = a.question_id
+        )
+      ORDER BY a.attempted_at ASC`,
+    [diagnosticId],
+  );
+  if (rows.length === 0) {
+    return { topTraps: [], topRule: null, scoreSummary: null };
+  }
+  const attempts: DiagnosticAttemptRow[] = rows.map((r) => ({
+    correct: r.correct,
+    confidence: r.confidence,
+    time_seconds: r.time_seconds,
+    subject: r.subject,
+    subtopic: r.subtopic,
+    tension_point: r.tension_point,
+    red_zone_dimensions: redZoneDimensionsFromMetadata(r.metadata),
+    selected_forensic_tags: parseTags(r.selected_forensic_tags),
+  }));
+  const results = computeDiagnosticResults(attempts);
+  const anchorRows: AnchorSourceRow[] = rows.map((r) => ({
+    metadata: r.metadata,
+    external_id: r.external_id,
+    subject: r.subject,
+  }));
+  const anchors = extractDiagnosticAnchors(anchorRows);
+  const misses = results.summary.total - results.summary.correct;
+  const highConfidence = results.summary.high_confidence_misses;
+  return {
+    topTraps: results.top_trap_patterns.map((trap) => trap.label),
+    topRule: anchors[0]?.rule ?? null,
+    scoreSummary:
+      results.summary.total > 0
+        ? `${results.summary.correct}/${results.summary.total} correct, ${misses} misses, ${highConfidence} high-confidence misses`
+        : null,
+  };
+}
+
+function sourceParam(input: DiagnosticLeadInput): string {
+  return input.utm_source ?? input.source_page ?? "diagnostic_results";
+}
+
+function diagnosticResultsUrl(frontendUrl: string, diagnosticId: string): string {
+  return `${stripTrailingSlash(frontendUrl)}/diagnostic/${diagnosticId}/results?gate=emailed`;
+}
+
+function diagnosticSalesUrl(frontendUrl: string, input: DiagnosticLeadInput): string {
+  const url = new URL(`${stripTrailingSlash(frontendUrl)}/checkout`);
+  url.searchParams.set("diagnostic_id", input.diagnostic_id ?? "");
+  url.searchParams.set("source", "diagnostic_email");
+  url.searchParams.set("campaign", input.utm_campaign ?? "red_zone_map");
+  url.searchParams.set("lp", sourceParam(input));
+  if (input.partner_id) url.searchParams.set("partner_id", input.partner_id);
+  if (input.referral_click_id) url.searchParams.set("referral_click_id", input.referral_click_id);
+  return url.toString();
+}
+
+async function sendLeadDiagnosticEmail(
+  input: DiagnosticLeadInput,
+  db: Pick<DbPool, "query">,
+  options: DiagnosticLeadRecordOptions,
+): Promise<{ status: DiagnosticLeadResponse["email_status"]; reason?: string }> {
+  const diagnosticId = input.diagnostic_id ?? "";
+  if (!DIAGNOSTIC_ID_RE.test(diagnosticId)) {
+    return { status: "not_requested", reason: "missing_diagnostic_id" };
+  }
+
+  const frontendUrl = options.frontendUrl ?? process.env.FRONTEND_URL ?? DEFAULT_FRONTEND_URL;
+  const loadContext = options.loadEmailContext ?? loadDiagnosticEmailContext;
+  const sendEmail = options.sendEmail ?? sendDiagnosticResultsEmail;
+  try {
+    const context = await loadContext(db, diagnosticId);
+    const result = await sendEmail({
+      to: input.email,
+      fullName: input.full_name,
+      diagnosticId,
+      resultsUrl: diagnosticResultsUrl(frontendUrl, diagnosticId),
+      salesPageUrl: diagnosticSalesUrl(frontendUrl, input),
+      topTraps: context.topTraps,
+      topRule: context.topRule,
+      scoreSummary: context.scoreSummary,
+    });
+    if (result.status === "sent") return { status: "sent" };
+    return { status: result.status, reason: result.reason };
+  } catch (err) {
+    options.logger?.error("[diagnostic leads] results email failed:", err);
+    return { status: "failed", reason: "resend_error" };
+  }
+}
+
 export async function recordDiagnosticLead(
   input: DiagnosticLeadInput,
   db: Pick<DbPool, "query"> = getPool(),
+  options: DiagnosticLeadRecordOptions = {},
 ): Promise<DiagnosticLeadResponse> {
   if (input.website) {
     return {
       ok: true,
       lead_id: null,
       status: "ignored",
+      email_status: "not_requested",
       message: "Diagnostic results saved.",
     };
   }
@@ -165,12 +338,15 @@ export async function recordDiagnosticLead(
       LIMIT 1`,
     [input.email, storedDiagnosticId],
   );
+  const email = await sendLeadDiagnosticEmail(input, db, options);
 
   return {
     ok: true,
     lead_id: rows[0]?.lead_id ?? null,
     status: insert.rowCount === 1 ? "created" : "updated",
-    message: "Your red-zone map is saved. Check your email to claim it.",
+    email_status: email.status,
+    email_reason: email.reason,
+    message: "Your red-zone map is saved and ready. Check your email for the saved link.",
   };
 }
 
