@@ -26,9 +26,11 @@ import {
   buildDayPlanSummaries,
   buildLeadMePath,
   programDayKey,
+  type DayPlanManifest,
   type DayPlanSummary,
   type LeadMePath,
 } from "../lib/day-plan.js";
+import { readLeadMeV5AssaultManifest } from "../lib/leadme-v5-day-plan.js";
 import {
   ensureDayPlanTables,
   readCatchupById,
@@ -110,16 +112,19 @@ export function registerMeDayPlanRoutes(app: Express): void {
 
         const pool = getPool();
         const now = new Date();
-        const dayKey = programDayKey(now, DAY1_PLAN.timezone, DAY1_PLAN.rollover_hour);
+        const activeManifest = await readActiveLeadMeManifest(pool);
+        const dayKey = programDayKey(now, activeManifest.timezone, activeManifest.rollover_hour);
         await ensureDayPlanTables(pool);
-        await rolloverPriorDailySteps(pool, {
-          studentId: resolution.student.student_id,
-          currentDayKey: dayKey,
-          manifest: DAY1_PLAN,
-          now,
-        });
+        if (!isLeadMeV5TestManifest(activeManifest)) {
+          await rolloverPriorDailySteps(pool, {
+            studentId: resolution.student.student_id,
+            currentDayKey: dayKey,
+            manifest: activeManifest,
+            now,
+          });
+        }
 
-        const dailyStep = DAY1_PLAN.steps.find((step) => step.step_id === stepId) ?? null;
+        const dailyStep = activeManifest.steps.find((step) => step.step_id === stepId) ?? null;
         let gamification: GamificationGrant | null = null;
         if (dailyStep) {
           const inserted = await recordDailyStepCompletion(pool, {
@@ -141,6 +146,7 @@ export function registerMeDayPlanRoutes(app: Express): void {
             studentId: resolution.student.student_id,
             dayKey,
             mainItemId: dailyStep.main_item_id,
+            manifest: activeManifest,
             now,
           });
         } else {
@@ -188,28 +194,33 @@ async function readDayPlanResponse(
   now: Date,
   account: { status: string | null; refunded: boolean },
 ): Promise<DayPlanResponse> {
-  const dayKey = programDayKey(now, DAY1_PLAN.timezone, DAY1_PLAN.rollover_hour);
+  const activeManifest = await readActiveLeadMeManifest(pool);
+  const isV5Test = isLeadMeV5TestManifest(activeManifest);
+  const dayKey = programDayKey(now, activeManifest.timezone, activeManifest.rollover_hour);
   await ensureDayPlanTables(pool);
-  await rolloverPriorDailySteps(pool, {
-    studentId,
-    currentDayKey: dayKey,
-    manifest: DAY1_PLAN,
-    now,
-  });
+  if (!isV5Test) {
+    await rolloverPriorDailySteps(pool, {
+      studentId,
+      currentDayKey: dayKey,
+      manifest: activeManifest,
+      now,
+    });
+  }
   const [completedDaily, completedCatchup, catchupBank, gamification] = await Promise.all([
     readCompletedStepIds(pool, { studentId, dayKey, source: "daily" }),
     readCompletedStepIds(pool, { studentId, dayKey, source: "catchup" }),
-    readPendingCatchupBank(pool, studentId),
+    isV5Test ? Promise.resolve([]) : readPendingCatchupBank(pool, studentId),
     shapeGamification(pool, studentId),
   ]);
   const plan = buildLeadMePath({
-    manifest: DAY1_PLAN,
+    manifest: activeManifest,
     completedDailyStepIds: completedDaily,
     completedCatchupIds: completedCatchup,
     catchupBank,
+    maxCatchupPerDay: isV5Test ? 0 : undefined,
   });
   const completedPlanKeys = new Set<string>();
-  if (completedDaily.size >= DAY1_PLAN.steps.length) completedPlanKeys.add(DAY1_PLAN.plan_key);
+  if (completedDaily.size >= activeManifest.steps.length) completedPlanKeys.add(activeManifest.plan_key);
 
   return {
     enrolled: true,
@@ -217,11 +228,11 @@ async function readDayPlanResponse(
     refunded: account.refunded,
     student_id: studentId,
     day_key: dayKey,
-    timezone: DAY1_PLAN.timezone,
-    rollover_hour: DAY1_PLAN.rollover_hour,
+    timezone: activeManifest.timezone,
+    rollover_hour: activeManifest.rollover_hour,
     day_summaries: buildDayPlanSummaries({
-      manifests: DAY_GUIDED_PLANS,
-      activePlanKey: DAY1_PLAN.plan_key,
+      manifests: activeManifest === DAY1_PLAN ? DAY_GUIDED_PLANS : [activeManifest],
+      activePlanKey: activeManifest.plan_key,
       completedPlanKeys,
     }),
     plan,
@@ -235,6 +246,7 @@ async function grantMilestonesIfEarned(
     studentId: string;
     dayKey: string;
     mainItemId: string;
+    manifest: DayPlanManifest;
     now: Date;
   },
 ): Promise<void> {
@@ -243,7 +255,7 @@ async function grantMilestonesIfEarned(
     dayKey: input.dayKey,
     source: "daily",
   });
-  const itemSteps = DAY1_PLAN.steps.filter((step) => step.main_item_id === input.mainItemId);
+  const itemSteps = input.manifest.steps.filter((step) => step.main_item_id === input.mainItemId);
   const itemComplete = itemSteps.length > 0 && itemSteps.every((step) => completed.has(step.step_id));
   if (itemComplete) {
     await grantSafely(pool, {
@@ -255,17 +267,25 @@ async function grantMilestonesIfEarned(
       now: input.now,
     });
   }
-  const dayComplete = DAY1_PLAN.steps.every((step) => completed.has(step.step_id));
+  const dayComplete = input.manifest.steps.every((step) => completed.has(step.step_id));
   if (dayComplete) {
     await grantSafely(pool, {
       studentId: input.studentId,
       sourceType: "day_plan_complete",
-      sourceRef: `${input.dayKey}:${DAY1_PLAN.plan_key}`,
+      sourceRef: `${input.dayKey}:${input.manifest.plan_key}`,
       xp: DAY_COMPLETE_XP,
       contentBadges: ["guided-day"],
       now: input.now,
     });
   }
+}
+
+async function readActiveLeadMeManifest(pool: DbPool): Promise<DayPlanManifest> {
+  return (await readLeadMeV5AssaultManifest(pool)) ?? DAY1_PLAN;
+}
+
+function isLeadMeV5TestManifest(manifest: DayPlanManifest): boolean {
+  return manifest.plan_key === "leadme-v5-assault-live-test";
 }
 
 async function grantSafely(

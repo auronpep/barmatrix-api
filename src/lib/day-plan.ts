@@ -24,6 +24,7 @@ export interface DayPlanContentRef {
     | "c3_card"
     | "c3_drill"
     | "criminal_lesson"
+    | "leadme_v5_candidate"
     | "guided_microtask"
     | "reflection";
   id: string;
@@ -56,6 +57,21 @@ export interface DayPlanStep {
   content_ref: DayPlanContentRef;
   action: DayPlanAction;
   xp: number;
+  leadme_v5_item?: LeadMeV5ItemPreview;
+}
+
+export interface LeadMeV5ItemPreview {
+  item_id: string;
+  item_type: string;
+  title: string;
+  prompt: string;
+  front_blocks: Array<{
+    type: string;
+    markdown?: string | null;
+    alt_text?: string | null;
+    caption?: string | null;
+  }>;
+  options: Array<{ id: string; label: string }>;
 }
 
 export interface DayPlanManifest {
