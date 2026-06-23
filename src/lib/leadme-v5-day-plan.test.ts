@@ -1,6 +1,9 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { buildLeadMeV5AssaultManifest } from "./leadme-v5-day-plan.js";
+import {
+  buildLeadMeV5AssaultManifest,
+  evaluateLeadMeV5Response,
+} from "./leadme-v5-day-plan.js";
 
 describe("buildLeadMeV5AssaultManifest", () => {
   it("maps V5 candidate set composition into the single live Lead Me module", () => {
@@ -71,5 +74,43 @@ describe("buildLeadMeV5AssaultManifest", () => {
     assert.equal(manifest.steps[0]?.leadme_v5_item?.front_blocks[0]?.markdown, "Assault turns on apprehension.");
     assert.equal(manifest.steps[1]?.kind, "trap_repair");
     assert.equal(manifest.steps[1]?.leadme_v5_item?.options[0]?.label, "Actual ability only");
+  });
+
+  it("scores a selected response and returns branch feedback", () => {
+    const result = evaluateLeadMeV5Response(
+      {
+        identity: {
+          item_id: "LM-TORTS-ASSAULT-001",
+          title: "Assault Is Apprehension",
+          item_type: "micro_task",
+        },
+        atlas: { primary_outline_code: "64010101" },
+        content: { prompt: "Pick the first assault question." },
+        task: {
+          options: [
+            { id: "A", label: "Touching" },
+            { id: "B", label: "Apprehension" },
+          ],
+        },
+        evaluation: {
+          correct: ["B"],
+          responses: {
+            A: { branch_id: "BR-WRONG", correctness: "incorrect", student_label: "Touching" },
+            B: { branch_id: "BR-CORRECT", correctness: "correct", student_label: "Apprehension" },
+          },
+        },
+        branches: {
+          "BR-CORRECT": {
+            display_blocks: [{ type: "feedback", markdown: "Correct. Assault is apprehension." }],
+          },
+        },
+      },
+      "B",
+    );
+
+    assert.equal(result.correct, true);
+    assert.equal(result.selected_label, "Apprehension");
+    assert.deepEqual(result.correct_responses, [{ id: "B", label: "Apprehension" }]);
+    assert.equal(result.feedback_blocks[0]?.markdown, "Correct. Assault is apprehension.");
   });
 });

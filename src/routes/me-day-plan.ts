@@ -30,7 +30,11 @@ import {
   type DayPlanSummary,
   type LeadMePath,
 } from "../lib/day-plan.js";
-import { readLeadMeV5AssaultManifest } from "../lib/leadme-v5-day-plan.js";
+import {
+  readLeadMeV5AssaultManifest,
+  scoreLeadMeV5CandidateResponse,
+  type LeadMeV5ResponseResult,
+} from "../lib/leadme-v5-day-plan.js";
 import {
   ensureDayPlanTables,
   readCatchupById,
@@ -55,6 +59,13 @@ type DayPlanResponse = {
   day_summaries: DayPlanSummary[];
   plan: LeadMePath | null;
   gamification: Awaited<ReturnType<typeof shapeGamification>> | null;
+};
+
+type DayPlanCompleteResponse = DayPlanResponse & {
+  ok: true;
+  completed_step_id: string;
+  completion_gamification: GamificationGrant | null;
+  leadme_v5_result: LeadMeV5ResponseResult | null;
 };
 
 export function registerMeDayPlanRoutes(app: Express): void {
@@ -114,6 +125,7 @@ export function registerMeDayPlanRoutes(app: Express): void {
         const now = new Date();
         const activeManifest = await readActiveLeadMeManifest(pool);
         const dayKey = programDayKey(now, activeManifest.timezone, activeManifest.rollover_hour);
+        const selectedResponse = selectedLeadMeResponse(req.body);
         await ensureDayPlanTables(pool);
         if (!isLeadMeV5TestManifest(activeManifest)) {
           await rolloverPriorDailySteps(pool, {
@@ -126,7 +138,23 @@ export function registerMeDayPlanRoutes(app: Express): void {
 
         const dailyStep = activeManifest.steps.find((step) => step.step_id === stepId) ?? null;
         let gamification: GamificationGrant | null = null;
+        let leadMeV5Result: LeadMeV5ResponseResult | null = null;
         if (dailyStep) {
+          if (dailyStep.content_ref.type === "leadme_v5_candidate" && (dailyStep.leadme_v5_item?.options.length ?? 0) > 0) {
+            if (!selectedResponse) {
+              res.status(400).json({ error: "selected_response required" });
+              return;
+            }
+            try {
+              leadMeV5Result = await scoreLeadMeV5CandidateResponse(pool, {
+                itemId: dailyStep.content_ref.id,
+                selectedResponse,
+              });
+            } catch {
+              res.status(400).json({ error: "invalid selected_response" });
+              return;
+            }
+          }
           const inserted = await recordDailyStepCompletion(pool, {
             studentId: resolution.student.student_id,
             dayKey,
@@ -179,13 +207,26 @@ export function registerMeDayPlanRoutes(app: Express): void {
           status: resolution.student.status,
           refunded: resolution.student.refunded,
         });
-        res.json({ ok: true, completed_step_id: stepId, completion_gamification: gamification, ...response });
+        const completeResponse: DayPlanCompleteResponse = {
+          ok: true,
+          completed_step_id: stepId,
+          completion_gamification: gamification,
+          leadme_v5_result: leadMeV5Result,
+          ...response,
+        };
+        res.json(completeResponse);
       } catch (err) {
         console.error("[me-day-plan complete] failed:", err);
         res.status(500).json({ error: "internal server error" });
       }
     },
   );
+}
+
+function selectedLeadMeResponse(body: unknown): string | null {
+  if (!body || typeof body !== "object" || Array.isArray(body)) return null;
+  const value = (body as { selected_response?: unknown }).selected_response;
+  return typeof value === "string" && value.trim().length > 0 ? value.trim() : null;
 }
 
 async function readDayPlanResponse(

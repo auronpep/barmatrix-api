@@ -40,6 +40,37 @@ interface V5ItemDoc {
     }>;
   };
   task?: { options?: Array<{ id: string; label: string }> };
+  evaluation?: {
+    correct?: string[];
+    responses?: Record<string, {
+      branch_id?: string | null;
+      correctness?: string | null;
+      student_label?: string | null;
+    }>;
+  };
+  branches?: Record<string, {
+    display_blocks?: Array<{
+      type: string;
+      markdown?: string | null;
+      alt_text?: string | null;
+      caption?: string | null;
+    }>;
+  }>;
+}
+
+export interface LeadMeV5ResponseResult {
+  item_id: string;
+  title: string;
+  selected_response: string;
+  selected_label: string;
+  correct: boolean;
+  correct_responses: Array<{ id: string; label: string }>;
+  feedback_blocks: Array<{
+    type: string;
+    markdown?: string | null;
+    alt_text?: string | null;
+    caption?: string | null;
+  }>;
 }
 
 function asObject(value: unknown): Record<string, unknown> {
@@ -58,6 +89,35 @@ function itemPreview(item: V5ItemDoc): LeadMeV5ItemPreview {
     prompt: item.content.prompt,
     front_blocks: item.content.front_blocks ?? [],
     options: item.task?.options ?? [],
+  };
+}
+
+function optionLabel(item: V5ItemDoc, id: string): string {
+  return item.task?.options?.find((option) => option.id === id)?.label
+    ?? item.evaluation?.responses?.[id]?.student_label
+    ?? id;
+}
+
+export function evaluateLeadMeV5Response(
+  item: V5ItemDoc,
+  selectedResponse: string,
+): LeadMeV5ResponseResult {
+  const selected = selectedResponse.trim();
+  const response = item.evaluation?.responses?.[selected];
+  if (!selected || !response) {
+    throw new Error(`Unknown LeadMe V5 response ${selected || "(blank)"} for ${item.identity.item_id}`);
+  }
+
+  const correctIds = item.evaluation?.correct ?? [];
+  const branchId = response.branch_id ?? "";
+  return {
+    item_id: item.identity.item_id,
+    title: item.identity.title,
+    selected_response: selected,
+    selected_label: optionLabel(item, selected),
+    correct: correctIds.includes(selected) || response.correctness === "correct",
+    correct_responses: correctIds.map((id) => ({ id, label: optionLabel(item, id) })),
+    feedback_blocks: branchId ? (item.branches?.[branchId]?.display_blocks ?? []) : [],
   };
 }
 
@@ -148,4 +208,25 @@ export async function readLeadMeV5AssaultManifest(
   );
   const items = itemRows.map((row) => asObject(row.candidate_json) as unknown as V5ItemDoc);
   return buildLeadMeV5AssaultManifest({ set: setDoc, items });
+}
+
+export async function scoreLeadMeV5CandidateResponse(
+  db: Queryable,
+  input: { itemId: string; selectedResponse: string },
+): Promise<LeadMeV5ResponseResult> {
+  const { rows } = await db.query<CandidateRow>(
+    `SELECT item_id, candidate_json
+       FROM leadme_v5_item_candidates
+      WHERE item_id = $1
+        AND validation_status = 'passed'
+        AND status = 'candidate'
+      LIMIT 1`,
+    [input.itemId],
+  );
+  const row = rows[0];
+  if (!row) throw new Error(`LeadMe V5 candidate not found: ${input.itemId}`);
+  return evaluateLeadMeV5Response(
+    asObject(row.candidate_json) as unknown as V5ItemDoc,
+    input.selectedResponse,
+  );
 }
