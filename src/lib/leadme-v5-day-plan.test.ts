@@ -100,8 +100,8 @@ describe("buildLeadMeV5CandidateManifest", () => {
                 composition: {
                   sequence: [{
                     step_id: "first",
-                    item_id: "LM-TORTS-ASSAULT-001",
-                    role: "diagnose",
+                    item_id: "LM-TORTS-ASSAULT-000",
+                    role: "instruction",
                     required: true,
                     order_index: 1,
                   }],
@@ -109,23 +109,26 @@ describe("buildLeadMeV5CandidateManifest", () => {
               },
             }]);
         }
-        if (Array.isArray(params) && params[0] === "LM-TORTS-ASSAULT-001") {
+        if (Array.isArray(params) && params[0] === "LM-TORTS-ASSAULT-000") {
           return queryResult([{
-              item_id: "LM-TORTS-ASSAULT-001",
+              item_id: "LM-TORTS-ASSAULT-000",
               candidate_json: {
                 identity: {
-                  item_id: "LM-TORTS-ASSAULT-001",
-                  title: "Assault Trap Hunt",
-                  item_type: "signal_drill",
+                  item_id: "LM-TORTS-ASSAULT-000",
+                  title: "Assault Teach First",
+                  item_type: "instruction",
                 },
-                source: { source_section_id: "64010101" },
-                atlas: { primary_outline_code: "64010101", coverage_role: "trap_spotter" },
-                content: { prompt: "Tap the trap signal.", front_blocks: [] },
+                source: { source_section_id: "ASSAULT-000" },
+                atlas: { primary_outline_code: "64010101", coverage_role: "memory_line" },
+                content: {
+                  prompt: "Read this first. The next cards check whether you picked it up.",
+                  front_blocks: [{ type: "text", markdown: "Assault is apprehension, not contact." }],
+                },
                 task: {
-                  task_type: "identify_phrase",
-                  micro_task_kind: "wrong_answer_cut",
+                  task_type: "acknowledge",
+                  micro_task_kind: "lead_me",
                   layout: "standard",
-                  options: [{ id: "S1", label: "trap" }],
+                  options: [],
                 },
               },
             }]);
@@ -139,9 +142,11 @@ describe("buildLeadMeV5CandidateManifest", () => {
     assert.equal(queries[0], LEADME_V5_INTENTIONAL_TORTS_SET_ID);
     assert.equal(manifest?.plan_key, "leadme-v5-intentional-torts-pilot");
     assert.equal(manifest?.main_items[0]?.main_item_id, "leadme-v5-intentional-torts");
-    assert.equal(manifest?.steps[0]?.leadme_v5_item?.item_type, "signal_drill");
-    assert.equal(manifest?.steps[0]?.leadme_v5_item?.micro_task_kind, "wrong_answer_cut");
-    assert.equal(manifest?.steps[0]?.leadme_v5_item?.coverage_role, "trap_spotter");
+    assert.equal(manifest?.steps[0]?.leadme_v5_item?.item_type, "instruction");
+    assert.equal(manifest?.steps[0]?.leadme_v5_item?.task_type, "acknowledge");
+    assert.equal(manifest?.steps[0]?.leadme_v5_item?.micro_task_kind, "lead_me");
+    assert.equal(manifest?.steps[0]?.leadme_v5_item?.coverage_role, "memory_line");
+    assert.deepEqual(manifest?.steps[0]?.leadme_v5_item?.options, []);
   });
 
   it("scores a selected response and returns branch feedback", () => {
