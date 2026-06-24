@@ -1,7 +1,12 @@
 import type { DbPool } from "../db.js";
 import type { DayPlanManifest, DayPlanStep, LeadMeV5ItemPreview } from "./day-plan.js";
 
+export const LEADME_V5_INTENTIONAL_TORTS_SET_ID = "LMS-TORTS-64010000-INTENTIONAL-TORTS-PILOT";
 export const LEADME_V5_ASSAULT_SET_ID = "LMS-TORTS-64010101-ASSAULT";
+const ACTIVE_LEADME_V5_SET_IDS = [
+  LEADME_V5_INTENTIONAL_TORTS_SET_ID,
+  LEADME_V5_ASSAULT_SET_ID,
+] as const;
 
 type Queryable = Pick<DbPool, "query">;
 
@@ -29,7 +34,7 @@ interface V5SetDoc {
 interface V5ItemDoc {
   identity: { item_id: string; title: string; item_type: string };
   source?: { source_section_id?: string | null };
-  atlas: { primary_outline_code: string | null };
+  atlas: { primary_outline_code: string | null; coverage_role?: string | null };
   content: {
     prompt: string;
     front_blocks?: Array<{
@@ -39,7 +44,12 @@ interface V5ItemDoc {
       caption?: string | null;
     }>;
   };
-  task?: { options?: Array<{ id: string; label: string }> };
+  task?: {
+    task_type?: string | null;
+    micro_task_kind?: string | null;
+    layout?: string | null;
+    options?: Array<{ id: string; label: string }>;
+  };
   evaluation?: {
     correct?: string[];
     responses?: Record<string, {
@@ -60,6 +70,9 @@ interface V5ItemDoc {
 
 export interface LeadMeV5ResponseResult {
   item_id: string;
+  item_type: string;
+  task_type: string | null;
+  micro_task_kind: string | null;
   title: string;
   selected_response: string;
   selected_label: string;
@@ -85,6 +98,10 @@ function itemPreview(item: V5ItemDoc): LeadMeV5ItemPreview {
   return {
     item_id: item.identity.item_id,
     item_type: item.identity.item_type,
+    task_type: item.task?.task_type ?? null,
+    micro_task_kind: item.task?.micro_task_kind ?? null,
+    coverage_role: item.atlas.coverage_role ?? null,
+    layout: item.task?.layout ?? null,
     title: item.identity.title,
     prompt: item.content.prompt,
     front_blocks: item.content.front_blocks ?? [],
@@ -112,6 +129,9 @@ export function evaluateLeadMeV5Response(
   const branchId = response.branch_id ?? "";
   return {
     item_id: item.identity.item_id,
+    item_type: item.identity.item_type,
+    task_type: item.task?.task_type ?? null,
+    micro_task_kind: item.task?.micro_task_kind ?? null,
     title: item.identity.title,
     selected_response: selected,
     selected_label: optionLabel(item, selected),
@@ -121,11 +141,24 @@ export function evaluateLeadMeV5Response(
   };
 }
 
-export function buildLeadMeV5AssaultManifest(input: {
+function v5ManifestSlug(setId: string): string {
+  if (setId === LEADME_V5_ASSAULT_SET_ID) return "assault-live-test";
+  if (setId === LEADME_V5_INTENTIONAL_TORTS_SET_ID) return "intentional-torts-pilot";
+  return setId.toLowerCase().replace(/^lms-/, "").replaceAll("_", "-");
+}
+
+function v5MainItemId(setId: string): string {
+  if (setId === LEADME_V5_ASSAULT_SET_ID) return "leadme-v5-assault";
+  if (setId === LEADME_V5_INTENTIONAL_TORTS_SET_ID) return "leadme-v5-intentional-torts";
+  return `leadme-v5-${v5ManifestSlug(setId)}`;
+}
+
+export function buildLeadMeV5CandidateManifest(input: {
   set: V5SetDoc;
   items: V5ItemDoc[];
 }): DayPlanManifest {
   const itemById = new Map(input.items.map((item) => [item.identity.item_id, item]));
+  const mainItemId = v5MainItemId(input.set.identity.set_id);
   const steps: DayPlanStep[] = input.set.composition.sequence
     .filter((entry) => entry.item_id && itemById.has(entry.item_id))
     .sort((a, b) => a.order_index - b.order_index)
@@ -134,13 +167,13 @@ export function buildLeadMeV5AssaultManifest(input: {
       return {
         step_id: `leadme-v5-${item.identity.item_id.toLowerCase()}`,
         order: index + 1,
-        main_item_id: "leadme-v5-assault",
+        main_item_id: mainItemId,
         kind: item.identity.item_type === "red_zone_bridge" ? "trap_repair" : "lesson_slice",
         title: item.identity.title,
         prompt: item.content.prompt,
         estimated_seconds: Math.max(
           45,
-          Math.round(((input.set.delivery?.estimated_minutes ?? 5) * 60) / Math.max(input.items.length, 1)),
+          Math.round(((input.set.delivery?.estimated_minutes ?? 5) * 60) / Math.max(stepsLength(input.set), 1)),
         ),
         content_ref: {
           type: "leadme_v5_candidate",
@@ -154,7 +187,7 @@ export function buildLeadMeV5AssaultManifest(input: {
     });
 
   return {
-    plan_key: "leadme-v5-assault-live-test",
+    plan_key: `leadme-v5-${v5ManifestSlug(input.set.identity.set_id)}`,
     version: "5.0.0",
     day_index: 1,
     title: input.set.identity.title,
@@ -164,10 +197,10 @@ export function buildLeadMeV5AssaultManifest(input: {
     rollover_hour: 3,
     main_items: [
       {
-        main_item_id: "leadme-v5-assault",
+        main_item_id: mainItemId,
         order: 1,
         title: input.set.identity.title,
-        description: "Live V5 test module for Assault: apprehension, imminence, apparent ability, and wrong-answer repair.",
+        description: v5Description(input.set),
         selectable: false,
         step_count: steps.length,
       },
@@ -176,8 +209,22 @@ export function buildLeadMeV5AssaultManifest(input: {
   };
 }
 
-export async function readLeadMeV5AssaultManifest(
+export const buildLeadMeV5AssaultManifest = buildLeadMeV5CandidateManifest;
+
+function stepsLength(set: V5SetDoc): number {
+  return set.composition.sequence.filter((entry) => entry.item_id).length;
+}
+
+function v5Description(set: V5SetDoc): string {
+  if (set.identity.set_id === LEADME_V5_INTENTIONAL_TORTS_SET_ID) {
+    return "LeadMe V5 pilot for intentional torts: rule gates, trap signals, C3 filters, repairs, and answer checks.";
+  }
+  return "Live V5 test module for Assault: apprehension, imminence, apparent ability, and wrong-answer repair.";
+}
+
+async function readLeadMeV5SetManifest(
   db: Queryable,
+  setId: string,
 ): Promise<DayPlanManifest | null> {
   const { rows: setRows } = await db.query<CandidateRow>(
     `SELECT set_id, candidate_json
@@ -186,7 +233,7 @@ export async function readLeadMeV5AssaultManifest(
         AND validation_status = 'passed'
         AND status = 'candidate'
       LIMIT 1`,
-    [LEADME_V5_ASSAULT_SET_ID],
+    [setId],
   );
   const setRow = setRows[0];
   if (!setRow) return null;
@@ -207,7 +254,23 @@ export async function readLeadMeV5AssaultManifest(
     itemIds,
   );
   const items = itemRows.map((row) => asObject(row.candidate_json) as unknown as V5ItemDoc);
-  return buildLeadMeV5AssaultManifest({ set: setDoc, items });
+  return buildLeadMeV5CandidateManifest({ set: setDoc, items });
+}
+
+export async function readLeadMeV5CandidateManifest(
+  db: Queryable,
+): Promise<DayPlanManifest | null> {
+  for (const setId of ACTIVE_LEADME_V5_SET_IDS) {
+    const manifest = await readLeadMeV5SetManifest(db, setId);
+    if (manifest) return manifest;
+  }
+  return null;
+}
+
+export async function readLeadMeV5AssaultManifest(
+  db: Queryable,
+): Promise<DayPlanManifest | null> {
+  return readLeadMeV5SetManifest(db, LEADME_V5_ASSAULT_SET_ID);
 }
 
 export async function scoreLeadMeV5CandidateResponse(

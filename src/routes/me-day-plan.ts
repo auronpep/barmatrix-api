@@ -31,7 +31,7 @@ import {
   type LeadMePath,
 } from "../lib/day-plan.js";
 import {
-  readLeadMeV5AssaultManifest,
+  readLeadMeV5CandidateManifest,
   scoreLeadMeV5CandidateResponse,
   type LeadMeV5ResponseResult,
 } from "../lib/leadme-v5-day-plan.js";
@@ -322,11 +322,11 @@ async function grantMilestonesIfEarned(
 }
 
 async function readActiveLeadMeManifest(pool: DbPool): Promise<DayPlanManifest> {
-  return (await readLeadMeV5AssaultManifest(pool)) ?? DAY1_PLAN;
+  return (await readLeadMeV5CandidateManifest(pool)) ?? DAY1_PLAN;
 }
 
 function isLeadMeV5TestManifest(manifest: DayPlanManifest): boolean {
-  return manifest.plan_key === "leadme-v5-assault-live-test";
+  return manifest.plan_key.startsWith("leadme-v5-");
 }
 
 async function grantSafely(

@@ -63,6 +63,10 @@ export interface DayPlanStep {
 export interface LeadMeV5ItemPreview {
   item_id: string;
   item_type: string;
+  task_type: string | null;
+  micro_task_kind: string | null;
+  coverage_role: string | null;
+  layout: string | null;
   title: string;
   prompt: string;
   front_blocks: Array<{
