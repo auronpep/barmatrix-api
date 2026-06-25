@@ -7,6 +7,7 @@ import {
   isMissingTableError,
   tensionLinkKeys,
 } from "./tensions.js";
+import { readLeadMeV5CandidateSummaryForOutline } from "./leadme-v5-day-plan.js";
 
 type Queryable = Pick<DbPool, "query">;
 
@@ -401,9 +402,11 @@ export async function readAtlasV1Coverage(
                n.outline_text, n.display_label, n.level, n.leaf,
                SUM(CASE WHEN q.status = 'included' THEN 1 ELSE 0 END) AS included_count,
                SUM(CASE WHEN q.status = 'review' THEN 1 ELSE 0 END) AS review_count,
-               COALESCE(MAX(li.leadme_item_count), 0) AS leadme_item_count,
+               COALESCE(MAX(li.leadme_item_count), 0)
+                 + COALESCE(MAX(lv5i.leadme_v5_item_count), 0) AS leadme_item_count,
                COALESCE(MAX(de.debrief_element_count), 0) AS debrief_element_count,
-               COALESCE(MAX(ls.leadme_set_count), 0) AS leadme_set_count,
+               COALESCE(MAX(ls.leadme_set_count), 0)
+                 + COALESCE(MAX(lv5s.leadme_v5_set_count), 0) AS leadme_set_count,
                MAX(CASE WHEN q.status = 'included' THEN q.included_at ELSE NULL END) AS last_included_at
           FROM atlas_outline_nodes n
           LEFT JOIN atlas_questions q
@@ -415,6 +418,15 @@ export async function readAtlasV1Coverage(
                AND status IN ('active', 'published')
              GROUP BY primary_outline_code
           ) li ON li.outline_code = n.code
+          LEFT JOIN (
+            SELECT primary_outline_code AS outline_code,
+                   COUNT(DISTINCT item_id) AS leadme_v5_item_count
+              FROM leadme_v5_item_candidates
+             WHERE primary_outline_code IS NOT NULL
+               AND validation_status = 'passed'
+               AND status = 'candidate'
+             GROUP BY primary_outline_code
+          ) lv5i ON lv5i.outline_code = n.code
           LEFT JOIN (
             SELECT primary_outline_code AS outline_code, COUNT(*) AS debrief_element_count
               FROM debrief_elements
@@ -430,6 +442,15 @@ export async function readAtlasV1Coverage(
                AND status IN ('active', 'published')
              GROUP BY primary_outline_code
           ) ls ON ls.outline_code = n.code
+          LEFT JOIN (
+            SELECT primary_outline_code AS outline_code,
+                   COUNT(DISTINCT set_id) AS leadme_v5_set_count
+              FROM leadme_v5_set_candidates
+             WHERE primary_outline_code IS NOT NULL
+               AND validation_status = 'passed'
+               AND status = 'candidate'
+             GROUP BY primary_outline_code
+          ) lv5s ON lv5s.outline_code = n.code
          WHERE ${where.join(" AND ")}
         GROUP BY n.code, n.parent_code, n.subject, n.subject_display, n.subtopic,
                  n.outline_text, n.display_label, n.level, n.leaf, n.sort_order
@@ -572,7 +593,17 @@ export async function readAtlasV1StudentComponents(
   );
   if (!exists.rows[0]) return null;
 
-  const [sets, items, debrief, itemPreviews, debriefPreviews, detourRows] = await Promise.all([
+  const [
+    sets,
+    items,
+    debrief,
+    itemPreviews,
+    debriefPreviews,
+    detourRows,
+    v5Set,
+    v5ItemCount,
+    v5ItemPreviews,
+  ] = await Promise.all([
     db.query<AtlasV1LeadMeSetRow>(
       `SELECT s.set_id, s.title, s.set_type,
               COUNT(DISTINCT CASE WHEN i.item_id IS NOT NULL THEN e.item_id END) AS total_items
@@ -651,6 +682,28 @@ export async function readAtlasV1StudentComponents(
         ORDER BY included_at DESC, updated_at DESC, question_id ASC`,
       [outlineCode],
     ),
+    readLeadMeV5CandidateSummaryForOutline(db, outlineCode),
+    db.query<AtlasV1ComponentCountRow>(
+      `SELECT 'leadme_v5_candidate' AS component_type,
+              COUNT(DISTINCT item_id) AS component_count
+         FROM leadme_v5_item_candidates
+        WHERE primary_outline_code = $1
+          AND validation_status = 'passed'
+          AND status = 'candidate'`,
+      [outlineCode],
+    ),
+    db.query<AtlasV1LeadMeItemPreviewRow>(
+      `SELECT item_id, item_id AS external_id,
+              'leadme_v5_candidate' AS component_type,
+              NULL AS estimated_seconds
+         FROM leadme_v5_item_candidates
+        WHERE primary_outline_code = $1
+          AND validation_status = 'passed'
+          AND status = 'candidate'
+        ORDER BY updated_at DESC, item_id ASC
+        LIMIT 8`,
+      [outlineCode],
+    ),
   ]);
 
   const leadmeSet = sets.rows[0];
@@ -659,7 +712,14 @@ export async function readAtlasV1StudentComponents(
     detourSpecs.length > 0 ? await readAtlasV1DetourTargetCounts(db, detourSpecs) : new Map();
   return {
     outline_code: outlineCode,
-    leadme_set: leadmeSet
+    leadme_set: v5Set
+      ? {
+          set_id: v5Set.set_id,
+          title: v5Set.title,
+          set_type: v5Set.set_type,
+          total_items: v5Set.total_items,
+        }
+      : leadmeSet
       ? {
           set_id: leadmeSet.set_id,
           title: leadmeSet.title,
@@ -667,15 +727,17 @@ export async function readAtlasV1StudentComponents(
           total_items: numberOrZero(leadmeSet.total_items),
         }
       : null,
-    leadme_items: items.rows.map((row) => ({
-      component_type: row.component_type,
-      count: numberOrZero(row.component_count),
-    })),
+    leadme_items: [...v5ItemCount.rows, ...items.rows]
+      .map((row) => ({
+        component_type: row.component_type,
+        count: numberOrZero(row.component_count),
+      }))
+      .filter((row) => row.count > 0),
     debrief_elements: debrief.rows.map((row) => ({
       component_type: row.component_type,
       count: numberOrZero(row.component_count),
     })),
-    leadme_item_previews: itemPreviews.rows.map((row) => ({
+    leadme_item_previews: [...v5ItemPreviews.rows, ...itemPreviews.rows].slice(0, 8).map((row) => ({
       item_id: row.item_id,
       external_id: row.external_id,
       component_type: row.component_type,

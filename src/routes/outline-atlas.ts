@@ -6,6 +6,7 @@ import {
   readOutlineAtlas,
   readOutlineAtlasNode,
 } from "../lib/outline-atlas.js";
+import { readLeadMeV5CandidateSummaryForOutline } from "../lib/leadme-v5-day-plan.js";
 import { enqueueLeadMeSetForOutline } from "../lib/leadme-runtime-store.js";
 import { resolveClerkStudent } from "../lib/me-student.js";
 
@@ -142,7 +143,13 @@ export function registerOutlineAtlasRoutes(app: Express): void {
     try {
       const studentId = await resolveStudentId(req, res);
       if (!studentId) return;
-      const started = await enqueueLeadMeSetForOutline(getPool(), {
+      const pool = getPool();
+      const v5Started = await readLeadMeV5CandidateSummaryForOutline(pool, code);
+      if (v5Started) {
+        res.json({ ok: true, started: v5Started });
+        return;
+      }
+      const started = await enqueueLeadMeSetForOutline(pool, {
         studentId,
         outlineCode: code,
         currentDay: parsed.data.current_day ?? currentDayFromQuery(req),

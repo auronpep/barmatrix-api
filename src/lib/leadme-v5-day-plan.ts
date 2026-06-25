@@ -3,9 +3,9 @@ import type { DayPlanManifest, DayPlanStep, LeadMeV5ItemPreview } from "./day-pl
 
 export const LEADME_V5_INTENTIONAL_TORTS_SET_ID = "LMS-TORTS-64010000-INTENTIONAL-TORTS-PILOT";
 export const LEADME_V5_ASSAULT_SET_ID = "LMS-TORTS-64010101-ASSAULT";
+export const LEADME_V5_EVIDENCE_NON_HEARSAY_SET_ID = "LMS-EVIDENCE-33040203-NON-HEARSAY-PURPOSES-FULL";
 const ACTIVE_LEADME_V5_SET_IDS = [
-  LEADME_V5_INTENTIONAL_TORTS_SET_ID,
-  LEADME_V5_ASSAULT_SET_ID,
+  LEADME_V5_EVIDENCE_NON_HEARSAY_SET_ID,
 ] as const;
 
 type Queryable = Pick<DbPool, "query">;
@@ -16,8 +16,17 @@ interface CandidateRow {
   candidate_json: unknown;
 }
 
+export interface LeadMeV5SetStartSummary {
+  set_id: string;
+  title: string;
+  set_type: string;
+  status: string;
+  total_items: number;
+  inserted_items: number;
+}
+
 interface V5SetDoc {
-  identity: { set_id: string; title: string };
+  identity: { set_id: string; title: string; set_type?: string | null; status?: string | null };
   atlas_target: { primary_outline_code: string | null; subject: string };
   delivery?: { estimated_minutes?: number };
   composition: {
@@ -150,12 +159,14 @@ export function shouldRecordLeadMeV5DailyCompletion(
 function v5ManifestSlug(setId: string): string {
   if (setId === LEADME_V5_ASSAULT_SET_ID) return "assault-live-test";
   if (setId === LEADME_V5_INTENTIONAL_TORTS_SET_ID) return "intentional-torts-pilot";
+  if (setId === LEADME_V5_EVIDENCE_NON_HEARSAY_SET_ID) return "evidence-33040203-non-hearsay-purposes-full";
   return setId.toLowerCase().replace(/^lms-/, "").replaceAll("_", "-");
 }
 
 function v5MainItemId(setId: string): string {
   if (setId === LEADME_V5_ASSAULT_SET_ID) return "leadme-v5-assault";
   if (setId === LEADME_V5_INTENTIONAL_TORTS_SET_ID) return "leadme-v5-intentional-torts";
+  if (setId === LEADME_V5_EVIDENCE_NON_HEARSAY_SET_ID) return "leadme-v5-evidence-33040203";
   return `leadme-v5-${v5ManifestSlug(setId)}`;
 }
 
@@ -222,10 +233,25 @@ function stepsLength(set: V5SetDoc): number {
 }
 
 function v5Description(set: V5SetDoc): string {
+  if (set.identity.set_id === LEADME_V5_EVIDENCE_NON_HEARSAY_SET_ID) {
+    return "LeadMe V5 full module for Evidence: statements used for non-hearsay purposes.";
+  }
   if (set.identity.set_id === LEADME_V5_INTENTIONAL_TORTS_SET_ID) {
     return "LeadMe V5 pilot for intentional torts: rule gates, trap signals, C3 filters, repairs, and answer checks.";
   }
   return "Live V5 test module for Assault: apprehension, imminence, apparent ability, and wrong-answer repair.";
+}
+
+function v5SetType(set: V5SetDoc): string {
+  return set.identity.set_type ?? "lesson_flow";
+}
+
+function v5SetStatus(set: V5SetDoc): string {
+  return set.identity.status ?? "candidate";
+}
+
+function v5SetTotalItems(set: V5SetDoc): number {
+  return set.composition.sequence.filter((entry) => entry.item_id).length;
 }
 
 async function readLeadMeV5SetManifest(
@@ -271,6 +297,34 @@ export async function readLeadMeV5CandidateManifest(
     if (manifest) return manifest;
   }
   return null;
+}
+
+export async function readLeadMeV5CandidateSummaryForOutline(
+  db: Queryable,
+  outlineCode: string,
+): Promise<LeadMeV5SetStartSummary | null> {
+  const { rows } = await db.query<CandidateRow>(
+    `SELECT set_id, candidate_json
+       FROM leadme_v5_set_candidates
+      WHERE primary_outline_code = $1
+        AND validation_status = 'passed'
+        AND status = 'candidate'
+      ORDER BY updated_at DESC, set_id ASC
+      LIMIT 1`,
+    [outlineCode],
+  );
+  const row = rows[0];
+  if (!row) return null;
+  const set = asObject(row.candidate_json) as unknown as V5SetDoc;
+  const totalItems = v5SetTotalItems(set);
+  return {
+    set_id: set.identity.set_id,
+    title: set.identity.title,
+    set_type: v5SetType(set),
+    status: v5SetStatus(set),
+    total_items: totalItems,
+    inserted_items: totalItems,
+  };
 }
 
 export async function readLeadMeV5AssaultManifest(
