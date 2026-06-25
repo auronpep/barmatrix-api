@@ -7,6 +7,7 @@ import {
   buildLeadMeV5CandidateManifest,
   evaluateLeadMeV5Response,
   readLeadMeV5CandidateManifest,
+  shouldRecordLeadMeV5DailyCompletion,
 } from "./leadme-v5-day-plan.js";
 
 function queryResult<T>(rows: unknown[]): QueryResult<T> {
@@ -186,5 +187,11 @@ describe("buildLeadMeV5CandidateManifest", () => {
     assert.equal(result.selected_label, "Apprehension");
     assert.deepEqual(result.correct_responses, [{ id: "B", label: "Apprehension" }]);
     assert.equal(result.feedback_blocks[0]?.markdown, "Correct. Assault is apprehension.");
+  });
+
+  it("records only correct V5 attempts as completed daily steps", () => {
+    assert.equal(shouldRecordLeadMeV5DailyCompletion(null), true);
+    assert.equal(shouldRecordLeadMeV5DailyCompletion({ correct: true }), true);
+    assert.equal(shouldRecordLeadMeV5DailyCompletion({ correct: false }), false);
   });
 });

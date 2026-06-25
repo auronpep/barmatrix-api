@@ -33,6 +33,7 @@ import {
 import {
   readLeadMeV5CandidateManifest,
   scoreLeadMeV5CandidateResponse,
+  shouldRecordLeadMeV5DailyCompletion,
   type LeadMeV5ResponseResult,
 } from "../lib/leadme-v5-day-plan.js";
 import {
@@ -155,28 +156,30 @@ export function registerMeDayPlanRoutes(app: Express): void {
               return;
             }
           }
-          const inserted = await recordDailyStepCompletion(pool, {
-            studentId: resolution.student.student_id,
-            dayKey,
-            step: dailyStep,
-          });
-          if (inserted) {
-            gamification = await grantSafely(pool, {
+          if (shouldRecordLeadMeV5DailyCompletion(leadMeV5Result)) {
+            const inserted = await recordDailyStepCompletion(pool, {
               studentId: resolution.student.student_id,
-              sourceType: "day_plan_step",
-              sourceRef: `${dayKey}:${dailyStep.step_id}`,
-              xp: dailyStep.xp,
-              contentBadges: [],
+              dayKey,
+              step: dailyStep,
+            });
+            if (inserted) {
+              gamification = await grantSafely(pool, {
+                studentId: resolution.student.student_id,
+                sourceType: "day_plan_step",
+                sourceRef: `${dayKey}:${dailyStep.step_id}`,
+                xp: dailyStep.xp,
+                contentBadges: [],
+                now,
+              });
+            }
+            await grantMilestonesIfEarned(pool, {
+              studentId: resolution.student.student_id,
+              dayKey,
+              mainItemId: dailyStep.main_item_id,
+              manifest: activeManifest,
               now,
             });
           }
-          await grantMilestonesIfEarned(pool, {
-            studentId: resolution.student.student_id,
-            dayKey,
-            mainItemId: dailyStep.main_item_id,
-            manifest: activeManifest,
-            now,
-          });
         } else {
           const catchup = await readCatchupById(pool, {
             studentId: resolution.student.student_id,

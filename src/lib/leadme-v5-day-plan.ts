@@ -141,6 +141,12 @@ export function evaluateLeadMeV5Response(
   };
 }
 
+export function shouldRecordLeadMeV5DailyCompletion(
+  result: Pick<LeadMeV5ResponseResult, "correct"> | null,
+): boolean {
+  return result?.correct !== false;
+}
+
 function v5ManifestSlug(setId: string): string {
   if (setId === LEADME_V5_ASSAULT_SET_ID) return "assault-live-test";
   if (setId === LEADME_V5_INTENTIONAL_TORTS_SET_ID) return "intentional-torts-pilot";
