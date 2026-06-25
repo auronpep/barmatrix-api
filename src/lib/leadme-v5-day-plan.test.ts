@@ -158,6 +158,77 @@ describe("buildLeadMeV5CandidateManifest", () => {
     assert.deepEqual(manifest?.steps[0]?.leadme_v5_item?.options, []);
   });
 
+  it("loads a selected V5 candidate module by Atlas outline code", async () => {
+    const queries: unknown[][] = [];
+    const db = {
+      async query<T>(_sql: string, params: readonly unknown[] = []): Promise<QueryResult<T>> {
+        queries.push([...params]);
+        if (params[0] === "35030203") {
+          return queryResult([{ set_id: "LMS-EVIDENCE-35030203-PHYSICIAN-PATIENT-FULL", candidate_json: {} }]);
+        }
+        if (params[0] === "LMS-EVIDENCE-35030203-PHYSICIAN-PATIENT-FULL") {
+          return queryResult([{
+            set_id: "LMS-EVIDENCE-35030203-PHYSICIAN-PATIENT-FULL",
+            candidate_json: {
+              identity: {
+                set_id: "LMS-EVIDENCE-35030203-PHYSICIAN-PATIENT-FULL",
+                title: "Physician Patient Privilege",
+                set_type: "lesson_flow",
+              },
+              atlas_target: { primary_outline_code: "35030203", subject: "EVIDENCE" },
+              delivery: { estimated_minutes: 5 },
+              composition: {
+                sequence: [{
+                  step_id: "first",
+                  item_id: "LM-EVIDENCE-35030203-001",
+                  role: "instruction",
+                  required: true,
+                  order_index: 1,
+                }],
+              },
+            },
+          }]);
+        }
+        if (Array.isArray(params) && params[0] === "LM-EVIDENCE-35030203-001") {
+          return queryResult([{
+            item_id: "LM-EVIDENCE-35030203-001",
+            candidate_json: {
+              identity: {
+                item_id: "LM-EVIDENCE-35030203-001",
+                title: "Physician Patient Teach First",
+                item_type: "instruction",
+              },
+              source: { source_section_id: "35030203-001" },
+              atlas: { primary_outline_code: "35030203", coverage_role: "memory_line" },
+              content: {
+                prompt: "Read this first. The next cards check whether you picked it up.",
+                front_blocks: [{ type: "text", markdown: "Privilege depends on the jurisdiction's rule." }],
+              },
+              task: {
+                task_type: "acknowledge",
+                micro_task_kind: "lead_me",
+                layout: "standard",
+                options: [],
+              },
+            },
+          }]);
+        }
+        return queryResult([]);
+      },
+    };
+
+    const manifest = await readLeadMeV5CandidateManifest(db, "35030203");
+
+    assert.deepEqual(queries.map((params) => params[0]), [
+      "35030203",
+      "LMS-EVIDENCE-35030203-PHYSICIAN-PATIENT-FULL",
+      "LM-EVIDENCE-35030203-001",
+    ]);
+    assert.equal(manifest?.plan_key, "leadme-v5-evidence-35030203-physician-patient-full");
+    assert.equal(manifest?.main_items[0]?.description, "LeadMe V5 module for EVIDENCE: Physician Patient Privilege.");
+    assert.equal(manifest?.steps[0]?.content_ref.id, "LM-EVIDENCE-35030203-001");
+  });
+
   it("summarizes a V5 candidate set for an Atlas outline-code start", async () => {
     const db = {
       async query<T>(sql: string, params: readonly unknown[] = []): Promise<QueryResult<T>> {

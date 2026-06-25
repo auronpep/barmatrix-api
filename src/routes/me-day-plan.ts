@@ -89,7 +89,7 @@ export function registerMeDayPlanRoutes(app: Express): void {
       res.json(await readDayPlanResponse(getPool(), resolution.student.student_id, new Date(), {
         status: resolution.student.status,
         refunded: resolution.student.refunded,
-      }));
+      }, leadMeOutlineCodeFromQuery(req)));
     } catch (err) {
       console.error("[me-day-plan] failed:", err);
       res.status(500).json({ error: "internal server error" });
@@ -124,7 +124,8 @@ export function registerMeDayPlanRoutes(app: Express): void {
 
         const pool = getPool();
         const now = new Date();
-        const activeManifest = await readActiveLeadMeManifest(pool);
+        const outlineCode = selectedLeadMeOutlineCode(req.body) ?? leadMeOutlineCodeFromQuery(req);
+        const activeManifest = await readActiveLeadMeManifest(pool, outlineCode);
         const dayKey = programDayKey(now, activeManifest.timezone, activeManifest.rollover_hour);
         const selectedResponse = selectedLeadMeResponse(req.body);
         await ensureDayPlanTables(pool);
@@ -209,7 +210,7 @@ export function registerMeDayPlanRoutes(app: Express): void {
         const response = await readDayPlanResponse(pool, resolution.student.student_id, now, {
           status: resolution.student.status,
           refunded: resolution.student.refunded,
-        });
+        }, outlineCode);
         const completeResponse: DayPlanCompleteResponse = {
           ok: true,
           completed_step_id: stepId,
@@ -232,13 +233,28 @@ function selectedLeadMeResponse(body: unknown): string | null {
   return typeof value === "string" && value.trim().length > 0 ? value.trim() : null;
 }
 
+function selectedLeadMeOutlineCode(body: unknown): string | null {
+  if (!body || typeof body !== "object" || Array.isArray(body)) return null;
+  return cleanOutlineCode((body as { outline_code?: unknown }).outline_code);
+}
+
+function leadMeOutlineCodeFromQuery(req: Request): string | null {
+  return cleanOutlineCode(req.query.leadme_code ?? req.query.outline_code);
+}
+
+function cleanOutlineCode(value: unknown): string | null {
+  const raw = Array.isArray(value) ? value[0] : value;
+  return typeof raw === "string" && /^[0-9]{8}$/.test(raw) ? raw : null;
+}
+
 async function readDayPlanResponse(
   pool: DbPool,
   studentId: string,
   now: Date,
   account: { status: string | null; refunded: boolean },
+  outlineCode?: string | null,
 ): Promise<DayPlanResponse> {
-  const activeManifest = await readActiveLeadMeManifest(pool);
+  const activeManifest = await readActiveLeadMeManifest(pool, outlineCode);
   const isV5Test = isLeadMeV5TestManifest(activeManifest);
   const dayKey = programDayKey(now, activeManifest.timezone, activeManifest.rollover_hour);
   await ensureDayPlanTables(pool);
@@ -324,8 +340,8 @@ async function grantMilestonesIfEarned(
   }
 }
 
-async function readActiveLeadMeManifest(pool: DbPool): Promise<DayPlanManifest> {
-  return (await readLeadMeV5CandidateManifest(pool)) ?? DAY1_PLAN;
+async function readActiveLeadMeManifest(pool: DbPool, outlineCode?: string | null): Promise<DayPlanManifest> {
+  return (await readLeadMeV5CandidateManifest(pool, outlineCode)) ?? DAY1_PLAN;
 }
 
 function isLeadMeV5TestManifest(manifest: DayPlanManifest): boolean {

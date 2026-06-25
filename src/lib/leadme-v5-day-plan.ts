@@ -239,7 +239,10 @@ function v5Description(set: V5SetDoc): string {
   if (set.identity.set_id === LEADME_V5_INTENTIONAL_TORTS_SET_ID) {
     return "LeadMe V5 pilot for intentional torts: rule gates, trap signals, C3 filters, repairs, and answer checks.";
   }
-  return "Live V5 test module for Assault: apprehension, imminence, apparent ability, and wrong-answer repair.";
+  if (set.identity.set_id === LEADME_V5_ASSAULT_SET_ID) {
+    return "Live V5 test module for Assault: apprehension, imminence, apparent ability, and wrong-answer repair.";
+  }
+  return `LeadMe V5 module for ${set.atlas_target.subject}: ${set.identity.title}.`;
 }
 
 function v5SetType(set: V5SetDoc): string {
@@ -291,7 +294,22 @@ async function readLeadMeV5SetManifest(
 
 export async function readLeadMeV5CandidateManifest(
   db: Queryable,
+  outlineCode?: string | null,
 ): Promise<DayPlanManifest | null> {
+  if (outlineCode) {
+    const { rows } = await db.query<CandidateRow>(
+      `SELECT set_id
+         FROM leadme_v5_set_candidates
+        WHERE primary_outline_code = $1
+          AND validation_status = 'passed'
+          AND status = 'candidate'
+        ORDER BY updated_at DESC, set_id ASC
+        LIMIT 1`,
+      [outlineCode],
+    );
+    const setId = rows[0]?.set_id;
+    return setId ? readLeadMeV5SetManifest(db, setId) : null;
+  }
   for (const setId of ACTIVE_LEADME_V5_SET_IDS) {
     const manifest = await readLeadMeV5SetManifest(db, setId);
     if (manifest) return manifest;
