@@ -127,7 +127,7 @@ describe("recoverBillingCustomerFromCheckoutSession", () => {
 
 describe("billing portal route wiring", () => {
   it("passes the checkout-session customer recovery callback into the ownership helper", () => {
-    const source = readFileSync(new URL("./index.ts", import.meta.url), "utf8");
+    const source = readFileSync(new URL("./app-entry.ts", import.meta.url), "utf8");
 
     assert.match(source, /recoverBillingCustomerFromCheckoutSession/);
     assert.match(source, /isAllowedReturnUrl\(returnUrl/);
