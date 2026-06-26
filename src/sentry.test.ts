@@ -129,10 +129,18 @@ describe("Sentry API wiring", () => {
     const packageJson = JSON.parse(
       readFileSync(new URL("../package.json", import.meta.url), "utf8"),
     ) as { scripts?: { start?: string } };
+    const indexSource = readFileSync(
+      new URL("./index.ts", import.meta.url),
+      "utf8",
+    );
 
     assert.equal(
       packageJson.scripts?.start,
       "node --import ./dist/sentry-init.js dist/index.js",
+    );
+    assert.match(
+      indexSource,
+      /^import "\.\/sentry-init\.js";\r?\nimport express/m,
     );
   });
 });
