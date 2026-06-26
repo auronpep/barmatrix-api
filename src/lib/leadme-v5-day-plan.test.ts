@@ -6,6 +6,7 @@ import {
   LEADME_V5_EVIDENCE_NON_HEARSAY_SET_ID,
   buildLeadMeV5CandidateManifest,
   evaluateLeadMeV5Response,
+  recordLeadMeV5ChoiceEvent,
   readLeadMeV5CandidateManifest,
   readLeadMeV5CandidateSummaryForOutline,
   shouldRecordLeadMeV5DailyCompletion,
@@ -13,6 +14,11 @@ import {
 
 function queryResult<T>(rows: unknown[]): QueryResult<T> {
   return { rows: rows as T[], rowCount: rows.length };
+}
+
+interface RecordedQuery {
+  sql: string;
+  values: readonly unknown[];
 }
 
 describe("buildLeadMeV5CandidateManifest", () => {
@@ -304,6 +310,185 @@ describe("buildLeadMeV5CandidateManifest", () => {
     assert.equal(result.selected_label, "Apprehension");
     assert.deepEqual(result.correct_responses, [{ id: "B", label: "Apprehension" }]);
     assert.equal(result.feedback_blocks[0]?.markdown, "Correct. Assault is apprehension.");
+  });
+
+  it("does not expose V5 answer keys or branch payloads in candidate manifests", () => {
+    const manifest = buildLeadMeV5CandidateManifest({
+      set: {
+        identity: { set_id: LEADME_V5_ASSAULT_SET_ID, title: "Assault Router" },
+        atlas_target: { primary_outline_code: "64010101", subject: "Torts" },
+        composition: {
+          sequence: [{
+            step_id: "first",
+            item_id: "LMI-TORTS-64010101-ASSAULT-001",
+            role: "gate",
+            required: true,
+            order_index: 1,
+          }],
+        },
+      },
+      items: [{
+        identity: {
+          item_id: "LMI-TORTS-64010101-ASSAULT-001",
+          title: "Apprehension gate",
+          item_type: "multiple_choice",
+        },
+        atlas: { primary_outline_code: "64010101" },
+        content: {
+          prompt: "Pick the first assault question.",
+          front_blocks: [{ type: "text", markdown: "Assault is apprehension." }],
+        },
+        task: {
+          options: [
+            { id: "A", label: "Touching" },
+            { id: "B", label: "Apprehension" },
+          ],
+        },
+        evaluation: {
+          correct: ["B"],
+          responses: {
+            A: { branch_id: "BR-SECRET-WRONG", correctness: "incorrect" },
+            B: { branch_id: "BR-SECRET-CORRECT", correctness: "correct" },
+          },
+        },
+        branches: {
+          "BR-SECRET-CORRECT": {
+            display_blocks: [{ type: "feedback", markdown: "SECRET_FEEDBACK" }],
+          },
+        },
+      }],
+    });
+
+    const body = JSON.stringify(manifest);
+
+    assert.doesNotMatch(body, /"evaluation"/);
+    assert.doesNotMatch(body, /"branches"/);
+    assert.doesNotMatch(body, /"correct"/);
+    assert.doesNotMatch(body, /BR-SECRET/);
+    assert.doesNotMatch(body, /SECRET_FEEDBACK/);
+  });
+
+  it("records Assault and Evidence V5 choice submissions as useful attempt events", async () => {
+    const calls: RecordedQuery[] = [];
+    const db = {
+      async query<T>(sql: string, values: readonly unknown[] = []): Promise<QueryResult<T>> {
+        calls.push({ sql, values });
+        return queryResult([]);
+      },
+    };
+    const assaultResult = evaluateLeadMeV5Response(
+      {
+        identity: {
+          item_id: "LMI-TORTS-64010101-ASSAULT-001",
+          title: "Assault Is Apprehension",
+          item_type: "multiple_choice",
+        },
+        atlas: { primary_outline_code: "64010101" },
+        content: { prompt: "Pick the first assault question." },
+        task: {
+          task_type: "multiple_choice",
+          micro_task_kind: "lead_me",
+          options: [
+            { id: "A", label: "Touching" },
+            { id: "B", label: "Apprehension" },
+          ],
+        },
+        evaluation: {
+          correct: ["B"],
+          responses: {
+            A: { branch_id: "BR-WRONG", correctness: "incorrect", student_label: "Touching" },
+            B: { branch_id: "BR-CORRECT", correctness: "correct", student_label: "Apprehension" },
+          },
+        },
+        branches: {
+          "BR-CORRECT": {
+            display_blocks: [{ type: "feedback", markdown: "Correct. Assault is apprehension." }],
+          },
+        },
+      },
+      "B",
+    );
+    const evidenceResult = evaluateLeadMeV5Response(
+      {
+        identity: {
+          item_id: "LM-EVIDENCE-35030203-002",
+          title: "Physician-patient Source Law Gate",
+          item_type: "multiple_choice",
+        },
+        atlas: { primary_outline_code: "35030203" },
+        content: { prompt: "Pick the source-law move." },
+        task: {
+          task_type: "multiple_choice",
+          micro_task_kind: "lead_me",
+          options: [
+            { id: "A", label: "Federal always recognizes it" },
+            { id: "B", label: "Check the governing source law" },
+          ],
+        },
+        evaluation: {
+          correct: ["B"],
+          responses: {
+            A: { branch_id: "BR-WRONG", correctness: "incorrect" },
+            B: { branch_id: "BR-CORRECT", correctness: "correct" },
+          },
+        },
+        branches: {
+          "BR-WRONG": {
+            display_blocks: [{ type: "feedback", markdown: "Do not assume a general federal physician-patient privilege." }],
+          },
+        },
+      },
+      "A",
+    );
+
+    await recordLeadMeV5ChoiceEvent(db, {
+      eventId: "evt_assault",
+      studentId: "stu_1",
+      dayKey: "2026-06-25",
+      planKey: "leadme-v5-assault-live-test",
+      stepId: "leadme-v5-lmi-torts-64010101-assault-001",
+      mainItemId: "leadme-v5-assault",
+      outlineCode: "64010101",
+      timeSpentSec: 12,
+      result: assaultResult,
+    });
+    await recordLeadMeV5ChoiceEvent(db, {
+      eventId: "evt_evidence",
+      studentId: "stu_1",
+      dayKey: "2026-06-25",
+      planKey: "leadme-v5-evidence-35030203-physician-patient-full",
+      stepId: "leadme-v5-lm-evidence-35030203-002",
+      mainItemId: "leadme-v5-evidence-35030203-physician-patient-full",
+      outlineCode: "35030203",
+      timeSpentSec: null,
+      result: evidenceResult,
+    });
+
+    assert.equal(calls.length, 2);
+    assert.match(calls[0]?.sql ?? "", /INSERT INTO student_leadme_events/);
+    assert.deepEqual(calls[0]?.values.slice(0, 9), [
+      "evt_assault",
+      "stu_1",
+      "leadme-v5-lmi-torts-64010101-assault-001",
+      "LMI-TORTS-64010101-ASSAULT-001",
+      "leadme_v5_choice_submit",
+      "B",
+      "correct",
+      12,
+      calls[0]?.values[8],
+    ]);
+    const assaultPayload = JSON.parse(String(calls[0]?.values[8])) as Record<string, unknown>;
+    assert.equal(assaultPayload.selected_response, "B");
+    assert.equal(assaultPayload.correctness, "correct");
+    assert.match(JSON.stringify(assaultPayload), /Correct\. Assault is apprehension\./);
+
+    assert.equal(calls[1]?.values[5], "A");
+    assert.equal(calls[1]?.values[6], "incorrect");
+    const evidencePayload = JSON.parse(String(calls[1]?.values[8])) as Record<string, unknown>;
+    assert.equal(evidencePayload.outline_code, "35030203");
+    assert.equal(evidencePayload.selected_response, "A");
+    assert.equal(evidencePayload.correctness, "incorrect");
+    assert.match(JSON.stringify(evidencePayload), /general federal physician-patient privilege/);
   });
 
   it("records only correct V5 attempts as completed daily steps", () => {

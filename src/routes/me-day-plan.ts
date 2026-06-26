@@ -31,6 +31,7 @@ import {
   type LeadMePath,
 } from "../lib/day-plan.js";
 import {
+  recordLeadMeV5ChoiceEvent,
   readLeadMeV5CandidateManifest,
   scoreLeadMeV5CandidateResponse,
   shouldRecordLeadMeV5DailyCompletion,
@@ -128,6 +129,7 @@ export function registerMeDayPlanRoutes(app: Express): void {
         const activeManifest = await readActiveLeadMeManifest(pool, outlineCode);
         const dayKey = programDayKey(now, activeManifest.timezone, activeManifest.rollover_hour);
         const selectedResponse = selectedLeadMeResponse(req.body);
+        const timeSpentSec = selectedLeadMeTimeSpentSec(req.body);
         await ensureDayPlanTables(pool);
         if (!isLeadMeV5TestManifest(activeManifest)) {
           await rolloverPriorDailySteps(pool, {
@@ -156,6 +158,16 @@ export function registerMeDayPlanRoutes(app: Express): void {
               res.status(400).json({ error: "invalid selected_response" });
               return;
             }
+            await recordLeadMeV5ChoiceEvent(pool, {
+              studentId: resolution.student.student_id,
+              dayKey,
+              planKey: activeManifest.plan_key,
+              stepId: dailyStep.step_id,
+              mainItemId: dailyStep.main_item_id,
+              outlineCode,
+              timeSpentSec,
+              result: leadMeV5Result,
+            });
           }
           if (shouldRecordLeadMeV5DailyCompletion(leadMeV5Result)) {
             const inserted = await recordDailyStepCompletion(pool, {
@@ -231,6 +243,14 @@ function selectedLeadMeResponse(body: unknown): string | null {
   if (!body || typeof body !== "object" || Array.isArray(body)) return null;
   const value = (body as { selected_response?: unknown }).selected_response;
   return typeof value === "string" && value.trim().length > 0 ? value.trim() : null;
+}
+
+function selectedLeadMeTimeSpentSec(body: unknown): number | null {
+  if (!body || typeof body !== "object" || Array.isArray(body)) return null;
+  const value = (body as { time_spent_sec?: unknown }).time_spent_sec;
+  return typeof value === "number" && Number.isInteger(value) && value >= 0 && value <= 24 * 60 * 60
+    ? value
+    : null;
 }
 
 function selectedLeadMeOutlineCode(body: unknown): string | null {

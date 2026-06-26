@@ -90,9 +90,12 @@ export function registerMeConfusionRoutes(
                     q.subject            AS subject,
                     q.subtopic           AS subtopic
                FROM attempt_choice_tags t
-               JOIN student_attempts a ON a.attempt_id  = t.attempt_id
-               JOIN answer_choices  ac ON ac.choice_id  = t.choice_id
-               JOIN questions        q ON q.question_id = t.question_id
+               JOIN student_attempts a
+                 ON t.attempt_id COLLATE utf8mb4_unicode_ci = a.attempt_id
+               JOIN answer_choices ac
+                 ON t.choice_id COLLATE utf8mb4_unicode_ci = ac.choice_id
+               JOIN questions q
+                 ON t.question_id COLLATE utf8mb4_unicode_ci = q.question_id
               WHERE a.student_id = $1
               ORDER BY a.attempted_at DESC
               LIMIT ${MAX_TAG_ROWS}`,

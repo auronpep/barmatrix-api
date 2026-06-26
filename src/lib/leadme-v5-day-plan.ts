@@ -1,3 +1,4 @@
+import { randomUUID } from "node:crypto";
 import type { DbPool } from "../db.js";
 import type { DayPlanManifest, DayPlanStep, LeadMeV5ItemPreview } from "./day-plan.js";
 
@@ -93,6 +94,19 @@ export interface LeadMeV5ResponseResult {
     alt_text?: string | null;
     caption?: string | null;
   }>;
+}
+
+export interface RecordLeadMeV5ChoiceEventInput {
+  eventId?: string;
+  studentId: string;
+  dayKey: string;
+  planKey: string;
+  stepId: string;
+  mainItemId: string;
+  outlineCode?: string | null;
+  timeSpentSec?: number | null;
+  requestId?: string | null;
+  result: LeadMeV5ResponseResult;
 }
 
 function asObject(value: unknown): Record<string, unknown> {
@@ -370,4 +384,51 @@ export async function scoreLeadMeV5CandidateResponse(
     asObject(row.candidate_json) as unknown as V5ItemDoc,
     input.selectedResponse,
   );
+}
+
+export async function recordLeadMeV5ChoiceEvent(
+  db: Queryable,
+  input: RecordLeadMeV5ChoiceEventInput,
+): Promise<string> {
+  const eventId = input.eventId ?? randomUUID();
+  const correctness = input.result.correct ? "correct" : "incorrect";
+  const payload = {
+    schema_version: "leadme_v5_choice_event.v1",
+    source_surface: "leadme_v5_candidate",
+    day_key: input.dayKey,
+    plan_key: input.planKey,
+    step_id: input.stepId,
+    main_item_id: input.mainItemId,
+    outline_code: input.outlineCode ?? null,
+    item_id: input.result.item_id,
+    item_type: input.result.item_type,
+    task_type: input.result.task_type,
+    micro_task_kind: input.result.micro_task_kind,
+    title: input.result.title,
+    selected_response: input.result.selected_response,
+    selected_label: input.result.selected_label,
+    correctness,
+    correct_responses: input.result.correct_responses,
+    feedback_blocks: input.result.feedback_blocks,
+  };
+
+  await db.query(
+    `INSERT INTO student_leadme_events
+       (event_id, student_id, queue_entry_id, item_id, event_type,
+        selected_response, correctness, time_spent_sec, score_delta_json, request_id)
+     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+    [
+      eventId,
+      input.studentId,
+      input.stepId,
+      input.result.item_id,
+      "leadme_v5_choice_submit",
+      input.result.selected_response,
+      correctness,
+      input.timeSpentSec ?? null,
+      JSON.stringify(payload),
+      input.requestId ?? null,
+    ],
+  );
+  return eventId;
 }
