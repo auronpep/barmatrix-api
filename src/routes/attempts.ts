@@ -586,6 +586,12 @@ export function registerAttemptsRoutes(app: Express): void {
     "/api/attempts/:id/confusion",
     clerkMiddleware(),
     async (req: Request, res: Response) => {
+      const { userId } = getAuth(req);
+      if (!userId) {
+        res.status(401).json({ error: "not authenticated" });
+        return;
+      }
+
       const id = req.params.id;
       if (typeof id !== "string" || !UUID_RE.test(id)) {
         res.status(400).json({ error: "invalid attempt id" });
@@ -597,11 +603,6 @@ export function registerAttemptsRoutes(app: Express): void {
         return;
       }
 
-      const { userId } = getAuth(req);
-      if (!userId) {
-        res.status(401).json({ error: "not authenticated" });
-        return;
-      }
       let email: string | null;
       try {
         email = await resolveClerkEmail(userId);

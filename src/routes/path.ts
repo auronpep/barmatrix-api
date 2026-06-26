@@ -356,11 +356,6 @@ export function registerPathRoutes(app: Express): void {
         res.status(400).json({ error: "invalid step id" });
         return;
       }
-      const step = STEPS.find((s) => s.id === stepId) ?? null;
-      if (!step) {
-        res.status(404).json({ error: "step not found" });
-        return;
-      }
 
       const resolution = await resolveClerkStudent(req).catch(
         () => ({ kind: "db_error" }) as const,
@@ -372,6 +367,12 @@ export function registerPathRoutes(app: Express): void {
         return;
       }
       const studentId = resolution.student.student_id;
+
+      const step = STEPS.find((s) => s.id === stepId) ?? null;
+      if (!step) {
+        res.status(404).json({ error: "step not found" });
+        return;
+      }
 
       const unavailable = unavailableStepIds();
       if (unavailable.has(stepId)) {

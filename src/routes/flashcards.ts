@@ -70,16 +70,6 @@ export function registerFlashcardsRoutes(app: Express): void {
         res.status(400).json({ error: "invalid deck id" });
         return;
       }
-      const deck = getFlashcardDeck(deckId);
-      if (!deck) {
-        res.status(404).json({ error: "deck not found" });
-        return;
-      }
-      const parse = completeBody.safeParse(req.body);
-      if (!parse.success) {
-        res.status(400).json({ error: parse.error.flatten() });
-        return;
-      }
 
       const resolution = await resolveClerkStudent(req).catch(
         () => ({ kind: "db_error" }) as const,
@@ -98,6 +88,17 @@ export function registerFlashcardsRoutes(app: Express): void {
       }
       if (resolution.kind === "not_enrolled" || !("student" in resolution)) {
         res.status(403).json({ error: "not enrolled" });
+        return;
+      }
+
+      const deck = getFlashcardDeck(deckId);
+      if (!deck) {
+        res.status(404).json({ error: "deck not found" });
+        return;
+      }
+      const parse = completeBody.safeParse(req.body);
+      if (!parse.success) {
+        res.status(400).json({ error: parse.error.flatten() });
         return;
       }
 

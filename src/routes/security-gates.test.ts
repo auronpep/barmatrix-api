@@ -49,4 +49,52 @@ describe("sensitive route gates", () => {
     assert.match(text, /readAtlasV1StudentComponents/);
     assert.doesNotMatch(text, /x-admin-secret/);
   });
+
+  it("resolves auth before validating protected write route inputs", () => {
+    assertBefore(
+      after(source("./attempts.ts"), '"/api/attempts/:id/confusion"'),
+      'const { userId } = getAuth(req);',
+      'if (typeof id !== "string" || !UUID_RE.test(id))',
+    );
+    assertBefore(
+      after(source("./path.ts"), '"/api/me/path/:stepId/complete"'),
+      "resolveClerkStudent(req)",
+      "const step = STEPS.find",
+    );
+    assertBefore(
+      after(source("./flashcards.ts"), '"/api/me/flashcards/:deckId/complete"'),
+      "resolveClerkStudent(req)",
+      "const deck = getFlashcardDeck(deckId);",
+    );
+    assertBefore(
+      after(source("./certification.ts"), '"/api/me/certification/:competencyId/start"'),
+      "resolveClerkStudent(req)",
+      "if (!isValidCompetencyId(id))",
+    );
+    assertBefore(
+      after(source("./certification.ts"), '"/api/me/certification/:competencyId", clerkMiddleware()'),
+      "resolveClerkStudent(req)",
+      "if (!isValidCompetencyId(id))",
+    );
+    assertBefore(
+      after(source("./student-debriefs.ts"), '"/api/me/debriefs/:qid/events"'),
+      "resolveStudentId(req, res)",
+      "const parsed = eventBody.safeParse",
+    );
+  });
 });
+
+function after(text: string, marker: string): string {
+  const index = text.indexOf(marker);
+  assert.notEqual(index, -1, `${marker} not found`);
+  return text.slice(index);
+}
+
+function assertBefore(text: string, first: string, second: string): void {
+  const firstIndex = text.indexOf(first);
+  const secondIndex = text.indexOf(second);
+
+  assert.notEqual(firstIndex, -1, `${first} not found`);
+  assert.notEqual(secondIndex, -1, `${second} not found`);
+  assert.ok(firstIndex < secondIndex, `${first} should appear before ${second}`);
+}

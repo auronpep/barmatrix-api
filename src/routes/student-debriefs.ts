@@ -86,6 +86,9 @@ export function registerStudentDebriefRoutes(app: Express): void {
   });
 
   app.post("/api/me/debriefs/:qid/events", clerkMiddleware(), async (req: Request, res: Response) => {
+    const studentId = await resolveStudentId(req, res);
+    if (!studentId) return;
+
     const qid = qidFromParams(req);
     if (!qid) {
       res.status(400).json({ error: "invalid qid" });
@@ -99,8 +102,6 @@ export function registerStudentDebriefRoutes(app: Express): void {
     }
 
     try {
-      const studentId = await resolveStudentId(req, res);
-      if (!studentId) return;
       const recorded = await recordStudentDebriefEvent(getPool(), {
         studentId,
         qid,

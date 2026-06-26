@@ -149,9 +149,9 @@ export function registerCertificationRoutes(app: Express): void {
   // Start a timed session (server timestamp).
   app.post("/api/me/certification/:competencyId/start", clerkMiddleware(), async (req: Request, res: Response) => {
     const id = req.params.competencyId;
-    if (!isValidCompetencyId(id)) { res.status(400).json({ error: "invalid competency" }); return; }
     const resolution = await resolveClerkStudent(req).catch(() => ({ kind: "db_error" }) as const);
     if (resolution.kind !== "ok") { res.status(resolution.kind === "unauthenticated" ? 401 : 403).json({ error: "not authorized" }); return; }
+    if (!isValidCompetencyId(id)) { res.status(400).json({ error: "invalid competency" }); return; }
     const done = await lessonsCompleted(resolution.student.student_id);
     if (!canStartCertification(done)) { res.status(403).json({ error: "complete The Method first" }); return; }
     try {
@@ -172,9 +172,9 @@ export function registerCertificationRoutes(app: Express): void {
   // Submit + grade.
   app.post("/api/me/certification/:competencyId", clerkMiddleware(), async (req: Request, res: Response) => {
     const id = req.params.competencyId;
-    if (!isValidCompetencyId(id)) { res.status(400).json({ error: "invalid competency" }); return; }
     const resolution = await resolveClerkStudent(req).catch(() => ({ kind: "db_error" }) as const);
     if (resolution.kind !== "ok") { res.status(resolution.kind === "unauthenticated" ? 401 : 403).json({ error: "not authorized" }); return; }
+    if (!isValidCompetencyId(id)) { res.status(400).json({ error: "invalid competency" }); return; }
     const studentId = resolution.student.student_id;
     const keys = getKeys(id);
     if (!keys) { res.status(404).json({ error: "not found" }); return; }
