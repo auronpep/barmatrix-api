@@ -138,7 +138,8 @@ describe("Sentry API wiring", () => {
     );
     assert.match(
       indexSource,
-      /^import "\.\/sentry-init\.js";\r?\nawait import\("\.\/app-entry\.js"\);/m,
+      /^import "\.\/sentry-init\.js";\r?\nvoid import\("\.\/app-entry\.js"\)/m,
     );
+    assert.doesNotMatch(indexSource, /^await import/m);
   });
 });
