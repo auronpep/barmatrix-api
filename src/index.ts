@@ -3,7 +3,6 @@
 // Contracts: BARMATRIX/engineering/API_CONTRACTS.md (SRC-0020)
 // Schema:    BARMATRIX/engineering/SCHEMA_ONE_COHORT.sql (Postgres canonical)
 
-import "./sentry-init.js";
 import express, { type Request, type Response, type NextFunction } from "express";
 import cors from "cors";
 import helmet from "helmet";

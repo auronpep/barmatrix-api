@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "description": "BarMatrix.app backend API — Express + TypeScript + mysql2 + Stripe + Clerk. Deploys to Hostinger, backed by Hostinger MySQL.",
-  "main": "dist/index.js",
+  "main": "dist/passenger-entry.js",
   "type": "module",
   "engines": {
     "node": ">=20"

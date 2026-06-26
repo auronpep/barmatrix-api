@@ -128,19 +128,20 @@ describe("Sentry API wiring", () => {
   it("preloads Sentry instrumentation before the production app starts", () => {
     const packageJson = JSON.parse(
       readFileSync(new URL("../package.json", import.meta.url), "utf8"),
-    ) as { scripts?: { start?: string } };
-    const indexSource = readFileSync(
-      new URL("./index.ts", import.meta.url),
+    ) as { main?: string; scripts?: { start?: string } };
+    const passengerEntrySource = readFileSync(
+      new URL("./passenger-entry.ts", import.meta.url),
       "utf8",
     );
 
+    assert.equal(packageJson.main, "dist/passenger-entry.js");
     assert.equal(
       packageJson.scripts?.start,
       "node --import ./dist/sentry-init.js dist/index.js",
     );
     assert.match(
-      indexSource,
-      /^import "\.\/sentry-init\.js";\r?\nimport express/m,
+      passengerEntrySource,
+      /^import "\.\/sentry-init\.js";\r?\nimport "\.\/index\.js";/m,
     );
   });
 });
