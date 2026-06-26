@@ -76,8 +76,8 @@ echo "==> [1/6] Local build (tsc)"
 npm run build
 
 echo "==> [2/6] Verify the built entry + preload parse locally (node --check)"
-node --check dist/passenger-entry.js
 node --check dist/index.js
+node --check dist/app-entry.js
 node --check dist/sentry-init.js
 
 if [ "$DRY_RUN" = "1" ]; then
