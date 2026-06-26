@@ -69,7 +69,7 @@ Skeleton implementations of the SRC-0020 contracts. TODO markers in source flag 
 | POST | `/api/attempts` | Record answer attempt |
 | GET | `/api/attempts/:id/forensics` | Wrong-answer forensics card |
 | GET | `/api/knowledge/search` | Internal knowledge-core retrieval with provenance and review gates |
-| POST | `/api/checkout/create-session` | Stripe Checkout Session for $999 or 2-pay |
+| POST | `/api/checkout/create-session` | Stripe Checkout Session for $999, 2-pay, or approved promotion-code checkout |
 | POST | `/api/webhooks/stripe` | Stripe webhook receiver (raw body) |
 | POST | `/api/referrals/click` | Capture partner attribution |
 | POST | `/api/webinar/leads` | Store next-session webinar interest; no autoresponder/email is sent |
