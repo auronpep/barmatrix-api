@@ -129,6 +129,66 @@ describe("Clerk checkout access invitations", () => {
     ]);
   });
 
+  it("creates an invitation when passwordless user creation is disallowed", async () => {
+    const calls: unknown[] = [];
+
+    const result = await createCheckoutAccessLink(
+      {
+        to: "student@example.com",
+        firstName: "Student",
+        lastName: "Example",
+        checkoutSessionId: "cs_test_123",
+        purchaseId: "purchase_123",
+        studentId: "student_123",
+      },
+      {
+        env: configuredEnv(),
+        createClient: () => ({
+          users: {
+            getUserList: async () => ({ data: [] }),
+            createUser: async () => {
+              throw new Error("skip_password_requirement is not allowed");
+            },
+            updateUser: async () => {
+              throw new Error("new user should not be updated");
+            },
+          },
+          signInTokens: {
+            createSignInToken: async () => {
+              throw new Error("invited user should not receive a sign-in token");
+            },
+          },
+        }),
+        createInvitation: async (input) => {
+          calls.push(input);
+          return {
+            id: "inv_123",
+            url: "https://accounts.barmatrix.app/invitations/accept/abc",
+          };
+        },
+      },
+    );
+
+    assert.deepEqual(result, {
+      status: "sent",
+      userId: "inv_123",
+      accessUrl: "https://accounts.barmatrix.app/invitations/accept/abc",
+    });
+    assert.deepEqual(calls, [
+      {
+        secretKey: "sk_test_placeholder",
+        emailAddress: "student@example.com",
+        frontendUrl: "https://barmatrix.app",
+        publicMetadata: {
+          source: "stripe_checkout",
+          checkoutSessionId: "cs_test_123",
+          purchaseId: "purchase_123",
+          studentId: "student_123",
+        },
+      },
+    ]);
+  });
+
   it("reuses an existing Clerk user and sends a sign-in token", async () => {
     const calls: unknown[] = [];
 

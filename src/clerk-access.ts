@@ -50,9 +50,24 @@ export type ClerkAccessLinkResult =
   | { status: "skipped"; reason: "missing_config" | "missing_recipient" }
   | { status: "failed"; reason: "clerk_error" };
 
+interface CheckoutInvitationInput {
+  secretKey: string;
+  emailAddress: string;
+  frontendUrl: string;
+  publicMetadata: Record<string, string>;
+}
+
+interface CheckoutInvitationResult {
+  id: string;
+  url: string | null;
+}
+
 interface CreateCheckoutAccessLinkOptions {
   env?: Env;
   createClient?: (secretKey: string) => ClerkAccessClient;
+  createInvitation?: (
+    input: CheckoutInvitationInput,
+  ) => Promise<CheckoutInvitationResult>;
 }
 
 export function resolveClerkAccessConfig(
@@ -93,22 +108,28 @@ export async function createCheckoutAccessLink(
       limit: 1,
     });
     const names = resolveNameParts(input);
-    const user =
-      existing.data[0] ??
-      (await client.users.createUser({
-        emailAddress: [recipient],
-        ...names,
-        skipPasswordRequirement: true,
-        publicMetadata: compactMetadata({
-          source: "stripe_checkout",
-          checkoutSessionId: input.checkoutSessionId,
-          purchaseId: input.purchaseId,
-          studentId: input.studentId,
-        }),
-      }));
+    const existingUser = existing.data[0];
+    const user = existingUser
+      ? { kind: "user" as const, id: existingUser.id }
+      : await createUserOrInvite({
+          client,
+          names,
+          input,
+          recipient,
+          config,
+          createInvitation: options.createInvitation,
+        });
 
-    if (existing.data[0] && Object.keys(names).length > 0) {
+    if (existingUser && Object.keys(names).length > 0) {
       await client.users.updateUser(user.id, names);
+    }
+
+    if (user.kind === "invitation") {
+      return {
+        status: "sent",
+        userId: user.id,
+        accessUrl: user.url,
+      };
     }
 
     const token = await client.signInTokens.createSignInToken({
@@ -123,6 +144,48 @@ export async function createCheckoutAccessLink(
     };
   } catch {
     return { status: "failed", reason: "clerk_error" };
+  }
+}
+
+async function createUserOrInvite({
+  client,
+  names,
+  input,
+  recipient,
+  config,
+  createInvitation,
+}: {
+  client: ClerkAccessClient;
+  names: { firstName?: string; lastName?: string };
+  input: CheckoutAccessLinkInput;
+  recipient: string;
+  config: ClerkAccessConfig;
+  createInvitation?: (
+    input: CheckoutInvitationInput,
+  ) => Promise<CheckoutInvitationResult>;
+}): Promise<
+  | { kind: "user"; id: string }
+  | { kind: "invitation"; id: string; url: string | null }
+> {
+  try {
+    const user = await client.users.createUser({
+      emailAddress: [recipient],
+      ...names,
+      skipPasswordRequirement: true,
+      publicMetadata: checkoutPublicMetadata(input),
+    });
+    return { kind: "user", id: user.id };
+  } catch (err) {
+    if (!isPasswordlessCreationDisallowed(err)) {
+      throw err;
+    }
+    const invite = await (createInvitation ?? createCheckoutInvitation)({
+      secretKey: config.secretKey,
+      emailAddress: recipient,
+      frontendUrl: config.frontendUrl,
+      publicMetadata: checkoutPublicMetadata(input),
+    });
+    return { kind: "invitation", id: invite.id, url: invite.url };
   }
 }
 
@@ -164,6 +227,52 @@ function compactMetadata(
       typeof entry[1] === "string" && entry[1].length > 0,
     ),
   );
+}
+
+function checkoutPublicMetadata(
+  input: CheckoutAccessLinkInput,
+): Record<string, string> {
+  return compactMetadata({
+    source: "stripe_checkout",
+    checkoutSessionId: input.checkoutSessionId,
+    purchaseId: input.purchaseId,
+    studentId: input.studentId,
+  });
+}
+
+function isPasswordlessCreationDisallowed(err: unknown): boolean {
+  if (!(err instanceof Error)) return false;
+  return err.message.includes("skip_password_requirement");
+}
+
+async function createCheckoutInvitation(
+  input: CheckoutInvitationInput,
+): Promise<CheckoutInvitationResult> {
+  const response = await fetch("https://api.clerk.com/v1/invitations", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${input.secretKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email_address: input.emailAddress,
+      redirect_url: `${input.frontendUrl}/sign-up?after=dashboard`,
+      public_metadata: input.publicMetadata,
+      notify: true,
+      ignore_existing: true,
+    }),
+  });
+  if (!response.ok) {
+    throw new Error(`Clerk invitation failed: ${response.status}`);
+  }
+  const invitation = (await response.json()) as {
+    id?: string | null;
+    url?: string | null;
+  };
+  return {
+    id: clean(invitation.id) ?? input.emailAddress,
+    url: clean(invitation.url),
+  };
 }
 
 function clean(value: string | null | undefined): string | null {
