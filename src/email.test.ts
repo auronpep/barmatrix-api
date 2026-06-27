@@ -301,6 +301,7 @@ describe("sendEnrollmentEmailForFulfillment", () => {
             errors.push(args);
           },
         },
+        reportIssue: () => {},
       },
     );
 
@@ -312,6 +313,58 @@ describe("sendEnrollmentEmailForFulfillment", () => {
           checkoutSessionId: "cs_test_123",
           purchaseId: "purchase_123",
           reason: "resend_error",
+        },
+      ],
+    ]);
+  });
+
+  it("reports checkout fulfillment delivery problems for alerting", async () => {
+    const reports: unknown[] = [];
+
+    const result = await sendEnrollmentEmailForFulfillment(
+      {
+        session,
+        fulfillment: { status: "fulfilled", purchaseId: "purchase_123" },
+      },
+      {
+        createAccessLink: async () => ({
+          status: "failed",
+          reason: "clerk_error",
+        }),
+        sendEmail: async () => ({ status: "failed", reason: "resend_error" }),
+        logger: {
+          log: () => {},
+          warn: () => {},
+          error: () => {},
+        },
+        reportIssue: (message, context) => {
+          reports.push([message, context]);
+        },
+      },
+    );
+
+    assert.deepEqual(result, { status: "failed", reason: "resend_error" });
+    assert.deepEqual(reports, [
+      [
+        "[clerk] checkout access link failed",
+        {
+          level: "error",
+          tags: { area: "clerk_access", reason: "clerk_error" },
+          extra: {
+            checkoutSessionId: "cs_test_123",
+            purchaseId: "purchase_123",
+          },
+        },
+      ],
+      [
+        "[email] enrollment email failed",
+        {
+          level: "error",
+          tags: { area: "enrollment_email", reason: "resend_error" },
+          extra: {
+            checkoutSessionId: "cs_test_123",
+            purchaseId: "purchase_123",
+          },
         },
       ],
     ]);

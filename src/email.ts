@@ -1,4 +1,5 @@
 import type Stripe from "stripe";
+import * as Sentry from "@sentry/node";
 import { Resend } from "resend";
 import {
   createCheckoutAccessLink,
@@ -94,7 +95,19 @@ interface FulfillmentEmailOptions {
     input: CheckoutAccessLinkInput,
   ) => Promise<ClerkAccessLinkResult>;
   logger?: Pick<typeof console, "log" | "warn" | "error">;
+  reportIssue?: FulfillmentIssueReporter;
 }
+
+interface FulfillmentIssueContext {
+  level: "warning" | "error";
+  tags: Record<string, string>;
+  extra: Record<string, unknown>;
+}
+
+type FulfillmentIssueReporter = (
+  message: string,
+  context: FulfillmentIssueContext,
+) => void;
 
 export function resolveEnrollmentEmailConfig(
   env: Env = process.env,
@@ -200,6 +213,7 @@ export async function sendEnrollmentEmailForFulfillment(
   const sendEmail = options.sendEmail ?? sendEnrollmentEmail;
   const createAccessLink = options.createAccessLink ?? createCheckoutAccessLink;
   const logger = options.logger ?? console;
+  const reportIssue = options.reportIssue ?? reportFulfillmentIssueToSentry;
   let accessUrl: string | null = null;
   const profile = checkoutCustomerProfile(input.session);
 
@@ -231,10 +245,20 @@ export async function sendEnrollmentEmailForFulfillment(
       ...context,
       reason: accessResult.reason,
     });
+    reportIssue("[clerk] checkout access link failed", {
+      level: "error",
+      tags: { area: "clerk_access", reason: accessResult.reason },
+      extra: context,
+    });
   } else {
     logger.warn("[clerk] checkout access link skipped", {
       ...context,
       reason: accessResult.reason,
+    });
+    reportIssue("[clerk] checkout access link skipped", {
+      level: "warning",
+      tags: { area: "clerk_access", reason: accessResult.reason },
+      extra: context,
     });
   }
 
@@ -261,14 +285,35 @@ export async function sendEnrollmentEmailForFulfillment(
       ...context,
       reason: result.reason,
     });
+    reportIssue("[email] enrollment email failed", {
+      level: "error",
+      tags: { area: "enrollment_email", reason: result.reason },
+      extra: context,
+    });
   } else {
     logger.warn("[email] enrollment email skipped", {
       ...context,
       reason: result.reason,
     });
+    reportIssue("[email] enrollment email skipped", {
+      level: "warning",
+      tags: { area: "enrollment_email", reason: result.reason },
+      extra: context,
+    });
   }
 
   return result;
+}
+
+function reportFulfillmentIssueToSentry(
+  message: string,
+  context: FulfillmentIssueContext,
+): void {
+  Sentry.captureMessage(message, {
+    level: context.level,
+    tags: context.tags,
+    extra: context.extra,
+  });
 }
 
 function checkoutCustomerProfile(session: Stripe.Checkout.Session): {
