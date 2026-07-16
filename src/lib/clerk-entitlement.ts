@@ -14,6 +14,7 @@ import type { Request, Response, NextFunction, RequestHandler } from "express";
 import { clerkMiddleware, getAuth } from "@clerk/express";
 import { getPool, type DbPool } from "../db.js";
 import { resolveClerkEmail } from "./clerk-identity.js";
+import { ensureComplimentaryEnrollment } from "./free-enrollment.js";
 
 export interface EnrollmentResult {
   studentId: string | null;
@@ -70,32 +71,11 @@ export async function checkEnrollment(
 ): Promise<EnrollmentResult> {
   const email = await resolveClerkEmail(userId);
   if (!email) return { studentId: null, enrolled: false };
-
-  const { rows } = await db.query<PurchaseRow>(
-    `SELECT s.student_id, p.entitlement_status, p.refund_status
-       FROM students s
-       JOIN purchases p ON p.student_id = s.student_id
-      WHERE s.email = $1
-      LIMIT 5`,
-    [email],
+  const result = await ensureComplimentaryEnrollment(
+    { userId, email },
+    { db: { connect: () => db.connect() } },
   );
-
-  if (rows.length > 0 && isEnrolled(rows)) {
-    const activeRow = rows.find(
-      (r) => r.entitlement_status === "active" && r.refund_status === "none",
-    );
-    return { studentId: activeRow!.student_id, enrolled: true };
-  }
-
-  // Student may exist but have no active purchase.
-  const studentRes = await db.query<{ student_id: string }>(
-    "SELECT student_id FROM students WHERE email = $1 LIMIT 1",
-    [email],
-  );
-  return {
-    studentId: studentRes.rows[0]?.student_id ?? null,
-    enrolled: false,
-  };
+  return { studentId: result.studentId, enrolled: result.enrolled };
 }
 
 /**

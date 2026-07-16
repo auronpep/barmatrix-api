@@ -34,6 +34,10 @@ function optional(name: string, fallback: string): string {
   return process.env[name] ?? fallback;
 }
 
+function enabled(name: string): boolean {
+  return /^(1|true|yes|on)$/i.test(process.env[name]?.trim() ?? "");
+}
+
 const DEV_ALLOWED_ORIGINS = "http://localhost:3000,http://127.0.0.1:3000";
 
 function originList(value: string | undefined): string[] {
@@ -96,6 +100,12 @@ export const config = {
   clerk: {
     publishableKey: required("CLERK_PUBLISHABLE_KEY"),
     secretKey: required("CLERK_SECRET_KEY"),
+  },
+
+  freeEnrollment: {
+    enabled: enabled("FREE_ENROLLMENT_ENABLED"),
+    endsAt: process.env.FREE_ENROLLMENT_END?.trim() || null,
+    campaign: optional("FREE_ENROLLMENT_CAMPAIGN", "july_2026_friends"),
   },
 
   urls: {

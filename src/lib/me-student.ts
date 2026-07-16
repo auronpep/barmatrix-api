@@ -2,9 +2,8 @@
 //
 // Server-derives the student from the signed-in Clerk session email; it never
 // trusts a client-supplied id, so one student cannot read another's data. Used
-// by the Red Zone Library routes. routes/me.ts keeps its own inline copy on
-// purpose — that file is the live, deployed dashboard endpoint and is left
-// untouched here.
+// by the Red Zone Library routes. routes/me.ts keeps its own dashboard shaping,
+// while both paths share the complimentary-enrollment provisioner.
 //
 // DB queries are intentionally NOT wrapped in try/catch: a DB failure should
 // propagate to the calling route's handler so it returns a 500, mirroring the
@@ -13,6 +12,7 @@
 import type { Request } from "express";
 import { getAuth, clerkClient } from "@clerk/express";
 import { getPool } from "../db.js";
+import { ensureComplimentaryEnrollment } from "./free-enrollment.js";
 
 export interface ResolvedStudent {
   student_id: string;
@@ -56,6 +56,7 @@ export async function resolveClerkStudent(
   if (!email) return { kind: "not_enrolled" };
 
   const pool = getPool();
+  await ensureComplimentaryEnrollment({ userId, email }, { db: pool });
   const { rows: studentRows } = await pool.query<StudentRow>(
     "SELECT student_id, status FROM students WHERE email = $1 LIMIT 1",
     [email],

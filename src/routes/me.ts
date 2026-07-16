@@ -25,6 +25,7 @@ import { routeFromSessionAttemptCounts } from "../lib/checkout-next-step.js";
 import { config } from "../config.js";
 import { validateCheckoutSessionForRecovery } from "../checkout.js";
 import { armTwoPaySubscription } from "../lib/two-pay.js";
+import { ensureComplimentaryEnrollment } from "../lib/free-enrollment.js";
 
 const MAX_ZONES_PER_DIMENSION = 5;
 const ACTIVE_RED_ZONE_THRESHOLD = 0.7;
@@ -227,7 +228,9 @@ export function registerMeRoutes(app: Express): void {
         return;
       }
       try {
-        const { rows } = await getPool().query<EntitlementRow>(
+        const pool = getPool();
+        await ensureComplimentaryEnrollment({ userId, email }, { db: pool });
+        const { rows } = await pool.query<EntitlementRow>(
           `SELECT p.entitlement_status, p.refund_status
              FROM purchases p
              JOIN students s ON s.student_id = p.student_id
@@ -285,6 +288,7 @@ export function registerMeRoutes(app: Express): void {
 
       try {
         const pool = getPool();
+        await ensureComplimentaryEnrollment({ userId, email }, { db: pool });
         const { rows: studentRows } = await pool.query<StudentRow>(
           "SELECT student_id, status FROM students WHERE email = $1 LIMIT 1",
           [email],
