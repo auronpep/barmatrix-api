@@ -95,3 +95,7 @@ npm run knowledge:search -- --q decoder --component trap-taxonomy --limit 5
 
 Every result includes `source` and `review` blocks. Candidate material remains
 candidate material; retrieval does not promote anything.
+
+## Maintainers
+
+- auronpep (owner)
